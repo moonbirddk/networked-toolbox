@@ -13,6 +13,13 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 DATABASES = {
     'default': dj_database_url.config()
 }
+DATABASES['default']['ENGINE'] = 'django_postgrespool'
+DATABASE_POOL_ARGS = {
+    'max_overflow': 2,
+    'pool_size': 3,
+    'recycle': 300
+}
+
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
