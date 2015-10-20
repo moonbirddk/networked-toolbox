@@ -5,7 +5,7 @@ gunicorn==19.1.1
 psycopg2>=2.6
 whitenoise==2.0.2
 coverage
-nosetests
+django-nose
 yanc
 ipython<3.0
 
