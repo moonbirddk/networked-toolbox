@@ -1,0 +1,2 @@
+# this is an empty directory where static files are being installed
+# via django ./manage.py collectstatic

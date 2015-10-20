@@ -8,4 +8,4 @@ coverage
 django-nose
 yanc
 ipython<3.0
-
+django-postgrespool
