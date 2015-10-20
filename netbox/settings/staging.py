@@ -26,6 +26,6 @@ DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
 SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
 
 ADMINS = (
-    ('Paweł', 'pawel+network-toolbox-staging-heroku@socialsquare.dk',)
-    ('Viktor', 'viktor+network-toolbox-staging-heroku@socialsquare.dk',)
+    ('Paweł', 'pawel+network-toolbox-staging-heroku@socialsquare.dk',),
+    ('Viktor', 'viktor+network-toolbox-staging-heroku@socialsquare.dk',),
 )
