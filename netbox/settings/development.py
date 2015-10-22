@@ -1,3 +1,4 @@
+
 import os
 import sys
 from .base import *
@@ -29,3 +30,28 @@ for arg in sys.argv:
             '--with-yanc',
         ]
         break
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'netbox': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'tools': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
+

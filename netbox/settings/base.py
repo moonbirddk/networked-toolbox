@@ -27,6 +27,8 @@ SECRET_KEY = 'ns9#tfv!^k*=$5e+9-n5(er(8zxw9y(5gi_^s#-#h^(s$83a_x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+APPEND_SLASH = False
+
 ALLOWED_HOSTS = []
 
 

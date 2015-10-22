@@ -1,0 +1,10 @@
+<h1>add tool</h1>
+
+<form method="POST" action="/tools/add/">
+    {% csrf_token %}
+    {{form}}
+
+    <button class="btn" name="submit" type="submit">submit</button>
+</form>
+
+
