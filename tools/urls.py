@@ -9,5 +9,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^add/$', views.add_tool, name='add_tool'),
+    url(r'^$', views.index, name='index'),
+    url(r'^add/$', views.add, name='add'),
+    url(r'^edit/(\d+)/$', views.edit, name='edit'),
+
 ]

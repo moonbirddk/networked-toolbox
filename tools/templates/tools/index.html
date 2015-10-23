@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block main %}
+
+<h1>List of tools</h1>
+
+{% for tool in tools %}
+    <a href="{% url 'tools:edit' tool.id %}">{{ tool.title }}</a>
+{% endfor %}
+
+{% endblock %}

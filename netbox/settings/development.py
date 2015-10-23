@@ -20,6 +20,8 @@ NOSE_ARGS = [
      '--cover-erase',
      '--cover-package=netbox',
      '--cover-package=tools',
+     'netbox',
+     'tools'
 ]
 
 for arg in sys.argv:
