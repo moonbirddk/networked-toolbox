@@ -16,7 +16,7 @@ def add(request):
     form = ToolForm()
 
     if request.method == 'POST':
-        form = ToolForm(request.POST)
+        form = ToolForm(request.POST, request.FILES)
         if form.is_valid():
             tool = Tool.objects.create(**form.cleaned_data)
             messages.success(request, "You created a tool")
@@ -38,7 +38,7 @@ def edit(request, tool_id):
     form = ToolForm(attributes)
 
     if request.method == 'POST':
-        form = ToolForm(request.POST)
+        form = ToolForm(request.POST, request.FILES)
         if form.is_valid():
             Tool.objects.filter(id=tool_id).update(**form.cleaned_data)
             messages.success(request, "You updated a tool")

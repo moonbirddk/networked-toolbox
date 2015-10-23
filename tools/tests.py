@@ -38,4 +38,25 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.get(reverse('tools:edit', args=(tool.id,)))
         self.assertEqual(200, resp.status_code)
         self.assertContains(resp,'Edit tool')
+        self.assertContains(resp,tool.title)
+        self.assertContains(resp,tool.description)
+
+    def test_edit_tool_post(self):
+        data = {
+            'title': 'our new title',
+            'description': 'new description test',
+        }
+
+        tool = Tool.objects.create(title='A title', description='A description')
+
+        resp = self.client.post(reverse('tools:edit', args=(tool.id,)), data, follow=True)
+        self.assertEqual([('http://testserver/tools/', 302)], resp.redirect_chain)
+        self.assertTrue('messages' in resp.context)
+        self.assertEqual("You updated a tool", str(list(resp.context['messages'])[0]))
+        self.assertContains(resp,data['title'])
+
+    def test_index_get(self):
+        resp = self.client.get(reverse('tools:index'))
+        self.assertEqual(200, resp.status_code)
+        self.assertContains(resp,'List of tools')
 

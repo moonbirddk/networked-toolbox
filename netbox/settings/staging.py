@@ -2,7 +2,7 @@ import os
 import dj_database_url
 
 from .base import *
-
+from .s3_settings import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,7 +11,8 @@ SITE_ID = 1
 DOMAIN = 'network-toolbox-staging.herokuapp.com'
 ALLOWED_HOSTS = [DOMAIN, ]
 
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# We're using S3 for media and static storage.
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 DATABASES = {
     'default': dj_database_url.config()

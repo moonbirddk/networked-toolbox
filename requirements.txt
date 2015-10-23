@@ -10,3 +10,6 @@ yanc
 ipython<3.0
 django-postgrespool
 django-bootstrap3
+git+git://github.com/AGoodId/django-s3-collectstatic.git#egg=django-s3-collectstatic
+git+git://github.com/Axik/django-storages-py3.git#egg=django-storages
+pillow
