@@ -1,10 +1,11 @@
 from django.test import TestCase
+from django.core.urlresolvers import reverse
 
 # Create your tests here.
 
 class HomeViewTestCase(TestCase):
     def test_home_get(self):
-        resp = self.client.get('/')
+        resp = self.client.get(reverse('home'))
         self.assertEqual(200, resp.status_code)
 
 class ToolsViewsTestCase(TestCase):
@@ -12,7 +13,7 @@ class ToolsViewsTestCase(TestCase):
         pass
 
     def test_add_tool_get(self):
-        resp = self.client.get('/tools/add/')
+        resp = self.client.get(reverse('tools:add_tool'))
         self.assertEqual(200, resp.status_code)
 
     def test_add_tool_post(self):
@@ -20,7 +21,7 @@ class ToolsViewsTestCase(TestCase):
             'title': 'our test title',
             'description': 'description test',
         }
-        resp = self.client.post('/tools/add/', data, follow=True)
+        resp = self.client.post(reverse('tools:add_tool'), data, follow=True)
         self.assertEqual([('http://testserver/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual("You created a tool", str(list(resp.context['messages'])[0]))

@@ -1,0 +1,16 @@
+{% load bootstrap3 %}
+
+<html>
+    <head>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+    </head>
+    <body>
+
+    {% bootstrap_messages %}
+
+    {% block main %}
+    {% endblock %}
+    </body>
+</html>
