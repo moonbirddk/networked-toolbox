@@ -6,7 +6,8 @@
 
 {# Display a form #}
 
-<form method="POST" action="{% url 'tools:add' %}" class="form" enctype="multipart/form-data">
+<form method="POST" action="{% url 'tools:add' %}" class="form" 
+enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
