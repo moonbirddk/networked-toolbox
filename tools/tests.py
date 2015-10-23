@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+from .models import Tool
 
 # Create your tests here.
 
@@ -25,4 +26,9 @@ class ToolsViewsTestCase(TestCase):
         self.assertEqual([('http://testserver/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual("You created a tool", str(list(resp.context['messages'])[0]))
+
+        self.assertEqual(Tool.objects.count(), 1)
+        tool = Tool.objects.all()[0]
+        self.assertEqual(tool.title,data['title'])
+        self.assertEqual(tool.description,data['description'])
 
