@@ -16,7 +16,7 @@ import os
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
+PROJECT_DIR = os.path.join(BASE_DIR, 'netbox')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -26,6 +26,8 @@ SECRET_KEY = 'ns9#tfv!^k*=$5e+9-n5(er(8zxw9y(5gi_^s#-#h^(s$83a_x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+APPEND_SLASH = False
 
 ALLOWED_HOSTS = []
 
@@ -40,7 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'bootstrap3',
     'tools',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,7 +63,9 @@ ROOT_URLCONF = 'netbox.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

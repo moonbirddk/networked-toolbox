@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block main %}
+<h1>add tool</h1>
+
+{# Display a form #}
+
+<form method="POST" action="{% url 'tools:add_tool' %}" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Submit
+        </button>
+    {% endbuttons %}
+</form>
+
+
+{% endblock %}
