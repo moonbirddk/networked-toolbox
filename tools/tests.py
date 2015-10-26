@@ -29,12 +29,14 @@ class ToolsViewsTestCase(TestCase):
     def test_add_tool_get(self):
         resp = self.client.get(reverse('tools:add'))
         self.assertEqual(200, resp.status_code)
+        self.assertTemplateUsed(resp, 'tools/add.html')
         self.assertContains(resp, 'Add tool')
 
     def test_add_tool_post(self):
         empty = {}
         resp = self.client.post(reverse('tools:add'), empty, follow=True)
         self.assertEqual(200, resp.status_code)
+        self.assertTemplateUsed(resp, 'tools/add.html')
         self.assertContains(resp, 'Add tool')
 
         data = {
@@ -59,6 +61,7 @@ class ToolsViewsTestCase(TestCase):
 
         resp = self.client.get(reverse('tools:edit', args=(tool.id,)))
         self.assertEqual(200, resp.status_code)
+        self.assertTemplateUsed(resp, 'tools/edit.html')
         self.assertContains(resp, 'Edit tool')
         self.assertContains(resp, tool.title)
         self.assertContains(resp, tool.description)
@@ -71,6 +74,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), empty, follow=True)
         self.assertEqual(200, resp.status_code)
+        self.assertTemplateUsed(resp, 'tools/edit.html')
         self.assertContains(resp, 'Edit tool')
 
         data = {
@@ -89,5 +93,6 @@ class ToolsViewsTestCase(TestCase):
     def test_index_get(self):
         resp = self.client.get(reverse('tools:index'))
         self.assertEqual(200, resp.status_code)
+        self.assertTemplateUsed(resp, 'tools/index.html')
         self.assertContains(resp, 'List of tools')
 
