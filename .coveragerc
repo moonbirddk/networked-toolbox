@@ -5,6 +5,7 @@ omit = *mock*
     *test*
     *settings/*
     */urls*
+    */admin.py
 
 [report]
 exclude_lines =
