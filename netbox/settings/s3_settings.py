@@ -1,8 +1,9 @@
 import os
 
+#from S3 import CallingFormat
+#AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
 
-from S3 import CallingFormat
-AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
+AWS_CALLING_FORMAT = 2
 
 ### Configure S3
 # These are the keys for the IAM user `django_s3_user` on AWS
