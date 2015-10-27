@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 
+{% block head_statics %}
+{{ form.media }}
+{% endblock %}
+
 {% block main %}
 <h1>Add tool</h1>
 
