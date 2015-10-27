@@ -5,11 +5,12 @@
         <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
         {% bootstrap_css %}
         {% bootstrap_javascript %}
+        {{ form.media }}
 
     </head>
     <body>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
             {% bootstrap_messages %}
 
             {% block main %}

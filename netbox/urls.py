@@ -23,6 +23,7 @@ urlpatterns = [
 
     url(r'^tools/', include('tools.urls', namespace='tools')),
     url(r'^$', 'tools.views.home', name='home'),
+    url(r'^summernote/', include('django_summernote.urls')),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +\
