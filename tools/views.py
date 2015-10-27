@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.db import transaction
 from django.core.files.storage import default_storage
 
-from .forms import ToolForm
+from .forms import ToolForm, ToolModelForm
 from .models import Tool
 
 
@@ -18,10 +18,10 @@ def home(request):
 
 def add(request):
 
-    form = ToolForm()
+    form = ToolModelForm()
 
     if request.method == 'POST':
-        form = ToolForm(request.POST, request.FILES)
+        form = ToolModelForm(request.POST, request.FILES)
         if form.is_valid():
             tool = Tool.objects.create(**form.cleaned_data)
             messages.success(request, "You created a tool")
