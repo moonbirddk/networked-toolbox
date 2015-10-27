@@ -13,11 +13,11 @@ AWS_STORAGE_BUCKET_NAME = os.getenv('S3_BUCKET')
 
 
 ### Media files (uploads): use Amazon S3
-DEFAULT_FILE_STORAGE = 'netbox.s3utils.MEDIA_PREPENDED_S3_STORAGE'
+DEFAULT_FILE_STORAGE = 'netbox.s3_utils.MEDIA_PREPENDED_S3_STORAGE'
 MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 
 ### Staticfiles: use Amazon S3
-STATICFILES_STORAGE = 'netbox.s3utils.STATIC_PREPENDED_S3_STORAGE'
+STATICFILES_STORAGE = 'netbox.s3_utils.STATIC_PREPENDED_S3_STORAGE'
 S3_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
 STATIC_URL = S3_URL
 AWS_PRELOAD_METADATA = True # Only upload new files (doesn't actually work)
