@@ -6,14 +6,10 @@
 {% endblock %}
 
 {% block main %}
-<h1>Add tool</h1>
+<h1>Edit tool</h1>
 
-{# Display a form #}
-
-<form method="POST" action="{% url 'tools:add' %}" class="form" 
-enctype="multipart/form-data">
+<form method="POST" action="{% url 'tools:edit' tool.id %}" class="form" enctype="multipart/form-data">
     {% csrf_token %}
-
     {% bootstrap_form form %}
     {% buttons %}
         <button type="submit" class="btn btn-primary">
@@ -21,6 +17,5 @@ enctype="multipart/form-data">
         </button>
     {% endbuttons %}
 </form>
-
 
 {% endblock %}

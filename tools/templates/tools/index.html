@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block main %}
+
+<h1>List of tools</h1>
+<div class="row">
+{% for tool in tools %}
+    <div class="col-md-12">
+        <h3><a href="{% url 'tools:edit' tool.id %}">{{ tool.title }}</a></h3>
+        {% if tool.cover_image %}
+            <img src="{{ tool.cover_image.url }}" />
+        {% endif %}
+        <p>{{tool.description|safe }}</p>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
