@@ -88,7 +88,7 @@ SUMMERNOTE_CONFIG = {
     'iframe': False,  # or set False to use SummernoteInplaceWidget - no iframe mode
 
     # Using Summernote Air-mode
-    'airMode': True,
+    'airMode': False,
 
     # Use native HTML tags (`<b>`, `<i>`, ...) instead of style attributes
     # (Firefox, Chrome only)
@@ -101,8 +101,20 @@ SUMMERNOTE_CONFIG = {
     # Use proper language setting automatically (default)
     'lang': None,
 
+    'toolbar': [
+        ['style', ['style']],
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['fontname', ['fontname']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture','video']],
+        ['view', ['fullscreen', 'codeview']],
+        ['help', ['help']]
+    ],
     # Need authentication while uploading attachments.
-    'attachment_require_authentication': True,
+    'attachment_require_authentication': False,
 
     # Set external media files for SummernoteInplaceWidget.
     # !!! Be sure to put {{ form.media }} in template before initiate summernote.

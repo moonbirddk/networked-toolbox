@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
+{% load static %}
 
 {% block head_statics %}
 {{ form.media }}
+<script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
 {% endblock %}
 
 {% block main %}
