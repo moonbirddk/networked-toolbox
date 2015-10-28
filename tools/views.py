@@ -36,6 +36,11 @@ def index(request):
     context = {'tools': tools}
     return render(request, 'tools/index.html', context)
 
+def show(request,tool_id):
+    tool = get_object_or_404(Tool,id=tool_id)
+
+    context = {'tool': tool}
+    return render(request, 'tools/show.html', context)
 
 @transaction.atomic
 def edit(request, tool_id):

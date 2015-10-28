@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block head_statics %}
+{{ form.media }}
+<script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
+
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <h1>{{ tool.title }} <a href="{% url 'tools:edit' tool.id %}">edit</a></h1>
+        <div class="col-md-8">
+            {% if tool.cover_image %}
+                <img src="{{ tool.cover_image.url }}" class="img-responsive center-block">
+            {% endif %}
+        </div>
+        <div class="col-md-4 bg-primary img-rounded">
+            <h1>Resources</h1>
+            {% for i in "xxxx" %}
+                <h2>Resource n. {{ forloop.counter0 }} </h2>
+            {% endfor %}
+        </div>
+        <div class="col-md-8">
+            <p>{{tool.description|safe }}</p>
+        </div>
+    </div>
+{% endblock %}

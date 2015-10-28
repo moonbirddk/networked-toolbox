@@ -8,11 +8,7 @@
 <div class="row">
 {% for tool in tools %}
     <div class="col-md-12">
-        <h3><a href="{% url 'tools:edit' tool.id %}">{{ tool.title }}</a></h3>
-        {% if tool.cover_image %}
-            <img src="{{ tool.cover_image.url }}" />
-        {% endif %}
-        <p>{{tool.description|safe }}</p>
+        <h3><a href="{% url 'tools:show' tool.id %}">{{ tool.title }}</a></h3>
     </div>
 {% endfor %}
 </div>
