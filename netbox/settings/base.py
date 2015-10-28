@@ -44,7 +44,6 @@ INSTALLED_APPS = (
 
     'bootstrap3',
     'storages',
-    'django_s3_collectstatic',
     'django_summernote',
 
     'tools',

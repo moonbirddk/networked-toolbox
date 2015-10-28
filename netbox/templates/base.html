@@ -12,6 +12,14 @@
 
     </head>
     <body>
+    <div class="row">
+    <div class="col-md-6">
+        <p>
+        <a class="btn btn-sm btn-primary" href="{% url 'tools:index'%}">list tools</a>
+        <a class="btn btn-sm btn-primary" href="{% url 'tools:add'%}">add tool</a>
+        </p>
+    </div>
+    </div>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
             {% bootstrap_messages %}
