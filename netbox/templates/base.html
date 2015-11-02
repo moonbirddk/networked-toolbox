@@ -1,18 +1,20 @@
 {% load bootstrap3 %}
-
+{% load static %}
+{% load staticfiles %}
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" type="text/css" media="all" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         {% bootstrap_css %}
         {% bootstrap_javascript %}
+        <link rel="stylesheet" href="{% static "css/base.css" %}">
 
         {% block head_statics %}
         {% endblock %}
 
     </head>
     <body>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default navbar-top">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -30,10 +32,27 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="{% url 'tools:index'%}">Tools<span class="sr-only">(current)</span></a></li>
               <li><a href="{% url 'tools:add'%}">Add tool<span class="sr-only">(current)</span></a></li>
+              <li><a href="#">Cases<span class="sr-only">(current)</span></a></li>
+              <li><a href="#">Topics<span class="sr-only">(current)</span></a></li>
+              <li><a href="#">People<span class="sr-only">(current)</span></a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#">Username</a></li>
               <li><a href="#">Logout</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <nav class="navbar navbar-default navbar-bottom">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">act!ionaid</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
