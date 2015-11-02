@@ -20,7 +20,7 @@ class ToolResourceForm(forms.ModelForm):
         'pdf', 'docx', 'mp4', 'doc', 'ppt', 'pptx', 'mpeg4', 'avi',
         'mp3', 'png', 'jpeg', ''
     ]
-    MAX_UPLOAD_SIZE = 0.5 * 1024 * 1024
+    MAX_UPLOAD_SIZE = 5 * 1024 * 1024
     class Meta:
         model = ToolResource
         fields = ['title','document']
