@@ -6,6 +6,7 @@
 {% block head_statics %}
 {{ form.media }}
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static "css/tool.css" %}">
 
 {% endblock %}
@@ -19,10 +20,21 @@
             <h1>{{ tool.title }} <a href="{% url 'tools:edit' tool.id %}">edit</a></h1>
             {{tool.description|safe }}
         </div>
-        <div class="col-md-4 bg-primary img-rounded">
-            <h1>Resources</h1>
-            {% for i in "xxxx" %}
-                <h4>Resource n. {{ forloop.counter0 }} </h4>
+        <div id='resource-box' class="col-md-4 img-rounded">
+            <h1>Resources<a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a></h1>
+
+            {% for resource in tool.resources.all %}
+            <div class="row">
+              <div class="col-md-2">
+                <i class="fa fa-3x fa-file-text-o"></i>
+              </div>
+              <div class="col-md-7">
+                <p>{{ resource.title }}<p>
+              </div>
+              <div class="col-md-2">
+                <a target="_blank" href="{{ resource.document.url }}"><i class="fa fa-3x fa-arrow-circle-o-down"></i></a>
+              </div>
+            </div>
             {% endfor %}
         </div>
         <div class="col-md-8">

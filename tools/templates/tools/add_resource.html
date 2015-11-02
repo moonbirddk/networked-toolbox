@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block head_statics %}
+
+{% endblock %}
+
+{% block main %}
+<h1>Add resource to &quot;{{ tool.title }}&quot;</h1>
+
+{# Display a form #}
+
+<form method="POST" action="{% url 'tools:add_resource' tool.id %}" class="form"
+enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Submit
+        </button>
+    {% endbuttons %}
+</form>
+
+
+{% endblock %}

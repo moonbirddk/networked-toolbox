@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.db import transaction
 from django.core.files.storage import default_storage
 
-from .forms import ToolForm
-from .models import Tool
+from tools.forms import ToolForm
+from tools.models import Tool
 
 
 log = logging.getLogger(__name__)

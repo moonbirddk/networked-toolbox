@@ -11,3 +11,9 @@ class Tool(models.Model):
     description = models.CharField(max_length=5000)
     cover_image = models.ImageField(upload_to=do_upload_tool, blank=True,
                                     null=True)
+
+class ToolResource(models.Model):
+    tool = models.ForeignKey('Tool', null=False, related_name='resources', related_query_name='resource')
+    title = models.CharField(max_length=30)
+    document = models.FileField(upload_to=do_upload_tool, blank=False,
+                                    null=False)
