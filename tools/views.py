@@ -36,11 +36,13 @@ def index(request):
     context = {'tools': tools}
     return render(request, 'tools/index.html', context)
 
-def show(request,tool_id):
-    tool = get_object_or_404(Tool,id=tool_id)
+
+def show(request, tool_id):
+    tool = get_object_or_404(Tool, id=tool_id)
 
     context = {'tool': tool}
     return render(request, 'tools/show.html', context)
+
 
 @transaction.atomic
 def edit(request, tool_id):
@@ -63,12 +65,13 @@ def edit(request, tool_id):
         if form.is_valid():
             if request.POST.get('cover_image-clear'):
                 cover_image = None
-                if default_storage.exists(tool.cover_image.name):
+                if tool.cover_image and default_storage.exists(tool.cover_image.name):
                     default_storage.delete(tool.cover_image.name)
             else:
                 if form.cleaned_data['cover_image']:
                     if tool.cover_image:
-                        if default_storage.exists(tool.cover_image.name):
+                        if tool.cover_image and \
+                                default_storage.exists(tool.cover_image.name):
                             default_storage.delete(tool.cover_image.name)
                     cover_image = form.cleaned_data['cover_image']
                 else:
