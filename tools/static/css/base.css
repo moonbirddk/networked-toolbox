@@ -1,15 +1,28 @@
+@font-face {
+  font-family: 'AmericanTypewriter';
+  src: url('../fonts/AmericanTypewriter.tff');
+  src: local('../fonts/AmericanTypewriter.tff');
+}
+
+body{
+  font-family: 'Helvetica Neue'
+}
+
 .navbar{
   border: none;
   border-radius: 0px;
 }
 
 .navbar-top{
+  padding-top: 1rem;
   margin-bottom: 0px;
   background-color: white;
+  min-height: 7rem;
 }
 
 .navbar-bottom{
   background-color: #ED1C24;
+  min-height: 0.5rem !important;
 }
 
 .navbar-bottom .navbar-brand{
@@ -26,6 +39,7 @@
 
 .navbar-brand{
   margin-left: 10vw !important;
+  font-size: 25px;
 }
 
 .navbar-default .navbar-nav{
