@@ -23,3 +23,17 @@ def add_resource(request, tool_id):
 
     context = {'form': form, 'tool': tool}
     return render(request, 'tools/add_resource.html', context)
+
+
+def delete_resource(request, tool_id, resource_id):
+    resource = get_object_or_404(ToolResource.objects.select_related('tool'),id=resource_id)
+    tool = resource.tool
+
+    if request.method == 'GET':
+        context = {'tool': tool, 'resource':resource}
+        return render(request, 'tools/delete_resource.html',context)
+    else:
+        if 'yes' == request.POST.get('confirmation', 'no'):
+            resource.delete()
+            messages.success(request, "You deleted a resource")
+        return redirect('tools:show', tool.id)
