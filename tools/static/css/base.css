@@ -1,11 +1,17 @@
 @font-face {
-  font-family: 'AmericanTypewriter';
-  src: url('../fonts/AmericanTypewriter.tff');
-  src: local('../fonts/AmericanTypewriter.tff');
+  font-family: 'American Typewriter';
+  src: url('static/fonts/AmericanTypewriter.tff');
+  src: local('static/fonts/AmericanTypewriter.tff');
+}
+
+@font-face {
+  font-family: 'American Typewriter Bold';
+  src: url('static/fonts/AmericanTypewriter-Bold.tff');
+  src: local('static/fonts/AmericanTypewriter-Bold.tff');
 }
 
 body{
-  font-family: 'Helvetica Neue'
+  font-family: 'American Typewriter';
 }
 
 .navbar{
@@ -40,6 +46,7 @@ body{
 .navbar-brand{
   margin-left: 10vw !important;
   font-size: 25px;
+  font-weight: bold;
 }
 
 .navbar-default .navbar-nav{

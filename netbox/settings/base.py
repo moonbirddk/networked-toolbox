@@ -120,8 +120,7 @@ SUMMERNOTE_CONFIG = {
     ],
 
     'fontNames': [
-        'Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-        'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande'
+        'American Typewriter'
     ],
     # Need authentication while uploading attachments.
     'attachment_require_authentication': False,

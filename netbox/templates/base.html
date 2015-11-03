@@ -8,6 +8,7 @@
         {% bootstrap_css %}
         {% bootstrap_javascript %}
         <link rel="stylesheet" href="{% static "css/base.css" %}">
+        <link rel="stylesheet" href="{% static "css/tool.css" %}">
 
         {% block head_statics %}
         {% endblock %}
@@ -31,7 +32,6 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="active"><a href="{% url 'tools:index'%}">Tools<span class="sr-only">(current)</span></a></li>
-              <li><a href="{% url 'tools:add'%}">Add tool<span class="sr-only">(current)</span></a></li>
               <li><a href="#">Cases<span class="sr-only">(current)</span></a></li>
               <li><a href="#">Topics<span class="sr-only">(current)</span></a></li>
               <li><a href="#">People<span class="sr-only">(current)</span></a></li>
@@ -60,10 +60,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-            {% bootstrap_messages %}
+              {% bootstrap_messages %}
 
-            {% block main %}
-            {% endblock %}
+              {% block main %}
+              {% endblock %}
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@
   background-color: #C2C1B8;
   height: 30rem;
   overflow: hidden;
-  padding: 0px 15px 0px 15px;
+  padding: 0px 20px 0px 20px;
 }
 .resource-title {
     display: inline-block;
@@ -18,12 +18,25 @@
 
 .resource-item {
   padding: 5px;
+  margin-bottom: 10px;
 }
 
-#resource-box i {
-    vertical-align: middle;
-    font-size: 25px;
+#resource-box .resource-action {
+    font-size: 3rem;
+}
+
+#resource-box p {
+    font-size: 1.2rem;
+}
+
+.resource-icon{
+  font-size: 3.25rem !important;
+}
+
+i {
     color: black;
+    padding: 0 5px 0 5px;
+    vertical-align: middle !important;
 }
 
 iframe {

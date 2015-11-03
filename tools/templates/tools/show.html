@@ -20,18 +20,19 @@
             {{tool.description|safe }}
         </div>
         <div id='resource-box' class="col-md-4 img-rounded">
-            <h1>Resources <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a></h1>
+            <h3>Resources <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a></h3>
             <p>Here you can find the different resources related to the current tool.</p>
 
             {% for resource in tool.resources.all %}
+              {{ resource.document.type }}
               <div class="resource-item">
                 <div class="pull-right">
-                  <a target="_blank" href="{{ resource.document.url }}"><i class="fa fa-arrow-circle-o-down"></i></a>
-                  <a href="{% url 'tools:delete_resource' tool.id resource.id %}"><i class="fa fa-close"></i></a>
+                  <a target="_blank" download href="{{ resource.document.url }}"><i class="fa fa-arrow-circle-o-down resource-action"></i></a>
+                  <a href="{% url 'tools:delete_resource' tool.id resource.id %}"><i class="fa fa-close resource-action"></i></a>
                 </div>
                 <div>
                   <p>
-                    <i class="fa fa-file-text-o"></i>
+                    <i class="fa fa-{{ resource.css_class }} resource-icon"></i>
                     <span class="resource-title">{{ resource.title }}</span>
                   <p>
                 </div>

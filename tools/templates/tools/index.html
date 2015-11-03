@@ -4,7 +4,8 @@
 
 {% block main %}
 
-<h1>List of tools</h1>
+<h1>List of tools <a href="{% url 'tools:add' %}"><i class="fa fa-plus"></i></a></h1>
+
 <div class="row">
 {% for tool in tools %}
     <div class="col-md-12">
