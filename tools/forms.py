@@ -30,7 +30,6 @@ class ToolResourceForm(forms.ModelForm):
     def clean_document(self):
         document = self.cleaned_data['document']
         content_type = document.content_type.split('/')[1]
-        log.debug("posted content_type %s", document.content_type)
         if content_type in self.CONTENT_TYPES:
             if document._size > self.MAX_UPLOAD_SIZE:
                 raise forms.ValidationError(
