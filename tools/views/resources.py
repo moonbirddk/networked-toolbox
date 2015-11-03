@@ -20,9 +20,6 @@ def add_resource(request, tool_id):
             ToolResource.objects.create(tool=tool, **form.cleaned_data)
             messages.success(request, "You added a resource")
             return redirect('tools:show', tool.id)
-        else:
-            log.debug(form.errors)
-            log.debug()
 
     context = {'form': form, 'tool': tool}
     return render(request, 'tools/add_resource.html', context)
