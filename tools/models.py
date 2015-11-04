@@ -18,14 +18,3 @@ class ToolResource(models.Model):
     title = models.CharField(max_length=30)
     document = models.FileField(upload_to=do_upload_tool, blank=False,
                                     null=False)
-
-    def css_class(self):
-        name, extension = os.path.splitext(self.document.name)
-
-        if extension == '.mp4':
-            return 'film'
-        if extension == '.jpg':
-            return 'picture-o'
-        if extension == '.mp3':
-            return 'file-audio-o'
-        return 'file-text-o'
