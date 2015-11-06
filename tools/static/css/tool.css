@@ -10,6 +10,10 @@
   overflow: hidden;
   padding: 0px 20px 0px 20px;
 }
+
+#resource-box a{
+  color: black;
+}
 .resource-title {
     display: inline-block;
     vertical-align: middle;
@@ -17,8 +21,15 @@
 }
 
 .resource-item {
-  padding: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.resource-link {
+  word-wrap: break-word;
+}
+
+.resource-link:hover {
+  color: white !important;
 }
 
 #resource-box .resource-action {
@@ -31,10 +42,15 @@
 
 .resource-icon{
   font-size: 3.25rem !important;
+  width: 1.3em;
+}
+
+.resource-action:hover{
+  color: white;
 }
 
 i {
-    color: black;
+    color: inherit;
     padding: 0 5px 0 5px;
     vertical-align: middle !important;
 }

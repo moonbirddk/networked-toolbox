@@ -11,12 +11,18 @@
 }
 
 body{
-  font-family: 'American Typewriter';
+  font-family: 'Helvetica Neue';
 }
 
 .navbar{
   border: none;
   border-radius: 0px;
+  font-family: 'American Typewriter';
+}
+
+.navbar-logo{
+  height: 1.2em;
+  margin: 1em 0 1em;
 }
 
 .navbar-top{
@@ -44,9 +50,12 @@ body{
 }
 
 .navbar-brand{
-  margin-left: 10vw !important;
   font-size: 25px;
   font-weight: bold;
+}
+
+.navbar-header{
+  margin-left: 8.33333333% !important;
 }
 
 .navbar-default .navbar-nav{

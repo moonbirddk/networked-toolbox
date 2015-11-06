@@ -7,6 +7,8 @@
 {% block head_statics %}
 {{ form.media }}
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
+<script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-fontstyle.js'%}"></script>
+
 <link rel="stylesheet" href="{% static "css/tool.css" %}">
 
 {% endblock %}
@@ -32,10 +34,10 @@
                   <a href="{% url 'tools:delete_resource' tool.id resource.id %}"><i class="fa fa-close resource-action"></i></a>
                 </div>
                 <div>
-                  <p>
+                  <a class="resource-link" target="_blank"  href="{{ resource.document.url }}">
                     <i class="fa {{ resource.document|css_filefield }} resource-icon"></i>
                     <span class="resource-title">{{ resource.title }}</span>
-                  <p>
+                  </a>
                 </div>
               </div>
             {% endfor %}
