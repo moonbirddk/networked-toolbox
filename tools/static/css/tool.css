@@ -8,10 +8,9 @@
 
 .resource-box{
   background-color: #C2C1B8;
-  height: 25rem;
   overflow: hidden;
-  padding: 0px 15px 0px 15px;
-  border-radius: 0.5em 0.5em 0em 0em;
+  padding: 0px 1em 0.5em 1em;
+  border-radius: 0.5em;
 }
 
 .expanded{
