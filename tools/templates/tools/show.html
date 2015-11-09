@@ -8,6 +8,8 @@
 {{ form.media }}
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-fontstyle.js'%}"></script>
+<script type="text/javascript" src="{% static 'javascript/base.js'%}"></script>
+
 
 <link rel="stylesheet" href="{% static "css/tool.css" %}">
 
@@ -17,13 +19,14 @@
     <div class="row">
         <div class="col-md-8 summernote-container">
             {% if tool.cover_image %}
-                <img src="{{ tool.cover_image.url }}" class="cover-image img-responsive">
+             <div class="cover-image" style="background-image: url({{ tool.cover_image.url }})"></div>
             {% endif %}
-            <h1>{{ tool.title }} <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a></h1>
+            <h1 class="title">{{ tool.title }} <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a></h1>
             {{tool.description|safe }}
         </div>
-        <div class="resource-box col-md-4 img-rounded">
-            <h3>Resources <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a></h3>
+        <div class="col-md-4 padding">
+          <div class="resource-box">
+            <h3 class="title">Resources <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a></h3>
             <p>Here you can find the different resources related to the current tool.</p>
 
             {% for resource in tool.resources.all %}
@@ -40,9 +43,28 @@
                   </a>
                 </div>
               </div>
+              {% endfor %}
+          </div>
+          <div class="resource-buttons">
+            <div id='btn-resource-list' class="col-md-6">
+              <a id='btn-expand' class="btn btn-primary btn-outline">Expand <i class="fa fa-chevron-down resource-action"></i></a>
+              <a id='btn-collapse' class="btn btn-primary btn-outline hidden">Collapse <i class="fa fa-chevron-up resource-action"></i></a>
+            </div>
+            <div class="col-md-6 ">
+              <a class="btn btn-primary btn-outline">Download all <i class="fa fa-arrow-circle-o-down resource-action"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+            <h3 class="title">Categories</h3>
+
+            {% for resource in tool.resources.all %}
+            <div class="category">
+              {{ resource.title }}
+            </div>
             {% endfor %}
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
 
         </div>
     </div>
