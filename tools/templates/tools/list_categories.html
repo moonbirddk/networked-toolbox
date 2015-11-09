@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block main %}
+
+<h1>List of categories <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a></h1>
+
+<div class="row">
+{% for category in categories %}
+    <div class="col-md-12">
+        <h3><a href="{% url 'tools:show_category' category.id %}">{{ category.title }}</a></h3>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

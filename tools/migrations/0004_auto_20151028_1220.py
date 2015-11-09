@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='tool',
             name='cover_image',
-            field=models.ImageField(blank=True, null=True, upload_to=tools.models.do_upload_tool),
+            field=models.ImageField(blank=True, null=True, upload_to=tools.models.do_upload_cover_image),
         ),
         migrations.AlterField(
             model_name='tool',

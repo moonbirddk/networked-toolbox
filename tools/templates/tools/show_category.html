@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+
+{% block head_statics %}
+{{ form.media }}
+<script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
+<link rel="stylesheet" href="{% static "css/tool.css" %}">
+
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-8">
+            {% if category.cover_image %}
+                <img src="{{ category.cover_image.url }}" class="cover-image img-responsive">
+            {% endif %}
+            <h1>{{ category.title }} 
+            <a href="{% url 'tools:edit_category' category.id %}"><i class="fa fa-pencil-square-o"></i></a>
+            <a href="{% url 'tools:delete_category' category.id %}"><i class="fa fa-trash-o"></i></a>
+            </h1>
+            {{category.description|safe }}
+        </div>
+        <div class="col-md-8">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+         {% for sublist in category.tools.all|partition:"5" %}
+           <div class="row">
+           {% for tool in sublist %}
+             <div class="col-sm-3">
+               <a href="{% url 'tools:show' tool.id %}" class="thumbnail">
+                 {% if tool.cover_image %}
+                 <img src="{{ tool.cover_image.url }}" />
+                 {% endif %}
+                 <div class="caption text-center">
+                   {{ tool.title }}
+                 </div>
+               </a>
+             </div>
+           {% endfor %}
+           </div>
+         {% empty %}
+           <p>Huh, that's weird. We can't find any tools. Check back later.</p>
+         {% endfor %}
+        </div>
+    </div>
+{% endblock %}
