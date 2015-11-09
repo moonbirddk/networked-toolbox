@@ -24,7 +24,7 @@ class CategoriesViewsTestCase(TestCase):
         resp = self.client.get(reverse('tools:list_categories'))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/list_categories.html')
-        self.assertContains(resp, 'List of categories')
+        self.assertContains(resp, 'Category overview')
 
     def test_show_category_get(self):
         url = reverse('tools:show_category', args=(self.test_category.id, ))
@@ -91,15 +91,16 @@ class CategoriesViewsTestCase(TestCase):
         }
         url = reverse('tools:edit_category', args=(self.test_category.id,))
         resp = self.client.post(url, data, follow=True)
-        self.assertEqual(
-            [('http://testserver/tools/categories/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
-            "You updated a category", str(list(resp.context['messages'])[0]))
+            "You updated this category", str(list(resp.context['messages'])[0]))
         self.assertContains(resp, data['title'])
         category = ToolCategory.objects.get(id=self.test_category.id)
         self.assertTrue(category.cover_image)
         self.assertTrue(category.cover_image.name, 'test empty.png')
+        self.assertEqual(
+            [('http://testserver/tools/categories/show/%d/' % category.id, 302)],
+            resp.redirect_chain)
 
     def test_delete_category_get(self):
         url = reverse(

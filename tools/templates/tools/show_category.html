@@ -14,7 +14,7 @@
 
 {% block main %}
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             {% if category.cover_image %}
                 <img src="{{ category.cover_image.url }}" class="cover-image img-responsive">
             {% endif %}
@@ -24,22 +24,35 @@
             </h1>
             {{category.description|safe }}
         </div>
-        <div class="col-md-8">
-
-        </div>
     </div>
     <div class="row">
-        <div class="col-md-8">
-         {% for sublist in category.tools.all|partition:"5" %}
+        <div class="col-md-12">
+         <hr />
+         <h1>Related tools</h1>
+         {% for sublist in category.tools.all|partition:"4" %}
            <div class="row">
            {% for tool in sublist %}
              <div class="col-sm-3">
-               <a href="{% url 'tools:show' tool.id %}" class="thumbnail">
+                 <div class="row">
+                     <div class="col-md-12">
                  {% if tool.cover_image %}
-                 <img src="{{ tool.cover_image.url }}" />
+                 <a href="{% url 'tools:show' tool.id %}" class="thumbnail">
+                    <img src="{{ tool.cover_image.url }}" />
+                 </a>
+                 {% else %}
+                    <img src="empty-image-here" />
                  {% endif %}
-                 <div class="caption text-center">
-                   {{ tool.title }}
+                    </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-12">
+                         <h3>{{ tool.title|bleach_striptags|truncatechars:16 }}</h3>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-12">
+                         <p>{{ tool.description|bleach_striptags|truncatechars:70 }}</p>
+                     </div>
                  </div>
                </a>
              </div>

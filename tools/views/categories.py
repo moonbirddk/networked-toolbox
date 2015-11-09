@@ -76,8 +76,8 @@ def edit_category(request, cat_id):
             category.description = form.cleaned_data['description']
             category.cover_image = cover_image
             category.save()
-            messages.success(request, "You updated a category")
-            return redirect('tools:list_categories')
+            messages.success(request, "You updated this category")
+            return redirect('tools:show_category', category.id)
 
     context = {'category': category, 'form': form}
     return render(request, 'tools/edit_category.html', context)
