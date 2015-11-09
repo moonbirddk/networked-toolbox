@@ -15,14 +15,14 @@
 
 {% block main %}
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 summernote-container">
             {% if tool.cover_image %}
                 <img src="{{ tool.cover_image.url }}" class="cover-image img-responsive">
             {% endif %}
             <h1>{{ tool.title }} <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a></h1>
             {{tool.description|safe }}
         </div>
-        <div id='resource-box' class="col-md-4 img-rounded">
+        <div class="resource-box col-md-4 img-rounded">
             <h3>Resources <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a></h3>
             <p>Here you can find the different resources related to the current tool.</p>
 

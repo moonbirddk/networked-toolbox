@@ -21,8 +21,7 @@ body{
 }
 
 .navbar-logo{
-  height: 1.2em;
-  margin: 1em 0 1em;
+  height: 2rem;
 }
 
 .navbar-top{
@@ -34,15 +33,7 @@ body{
 
 .navbar-bottom{
   background-color: #ED1C24;
-  min-height: 0.5rem !important;
-}
-
-.navbar-bottom .navbar-brand{
-  color: white;
-}
-
-.navbar-right{
-  margin-right: 10vw !important;
+  height: 1rem;
 }
 
 .navbar-top .navbar-brand{
@@ -50,12 +41,8 @@ body{
 }
 
 .navbar-brand{
-  font-size: 25px;
+  font-size: 2rem;
   font-weight: bold;
-}
-
-.navbar-header{
-  margin-left: 8.33333333% !important;
 }
 
 .navbar-default .navbar-nav{

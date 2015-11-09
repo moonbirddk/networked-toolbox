@@ -4,14 +4,13 @@
   max-height: 30rem;
 }
 
-#resource-box{
+.resource-box{
   background-color: #C2C1B8;
   height: 30rem;
   overflow: hidden;
-  padding: 0px 20px 0px 20px;
 }
 
-#resource-box a{
+.resource-box a{
   color: black;
 }
 .resource-title {
@@ -32,11 +31,11 @@
   color: white !important;
 }
 
-#resource-box .resource-action {
+.resource-box .resource-action {
     font-size: 3rem;
 }
 
-#resource-box p {
+.resource-box p {
     font-size: 1.2rem;
 }
 
@@ -47,6 +46,10 @@
 
 .resource-action:hover{
   color: white;
+}
+
+.summernote-container p{
+  font-size: 14px;
 }
 
 i {
