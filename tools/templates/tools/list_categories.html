@@ -14,17 +14,16 @@
 <div class="row">
 {% for category in categories %}
   <div class="col-md-3">
-    <a href="{% url 'tools:show_category' category.id %}">
       <div class="category-image">
         {% if category.cover_image %}
-        <img src="{{ category.cover_image.url }}" />
+          <a href="{% url 'tools:show_category' category.id %}"><img src="{{ category.cover_image.url }}" /></a>
         {% else %}
         <!--<img src="empty-image-here" />-->
         {% endif %}
       </div>
-    </a>
-    <h3>{{ category.title|bleach_striptags|truncatechars:16 }}</h3>
-    <p>{{ category.description|bleach_striptags|truncatechars:70 }}</p>
+
+    <h3>{{ category.title|bleach_striptags|truncatechars:50 }}</h3>
+    <p>{{ category.description|bleach_striptags|truncatechars:50 }}</p>
   </div>
 {% empty %}
   <p>Huh, that's weird. We can't find any tools. Check back later.</p>

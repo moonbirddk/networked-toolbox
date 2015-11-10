@@ -14,15 +14,13 @@
 <div class="row">
 {% for tool in tools %}
   <div class="col-md-3">
-    <a href="{% url 'tools:show' tool.id %}">
       <div class="category-image">
         {% if tool.cover_image %}
-        <img src="{{ tool.cover_image.url }}" />
+          <a href="{% url 'tools:show' tool.id %}"><img src="{{ tool.cover_image.url }}" /></a>
         {% else %}
         <!--<img src="empty-image-here" />-->
         {% endif %}
       </div>
-    </a>
     <h3>{{ tool.title|bleach_striptags|truncatechars:16 }}</h3>
     <p>{{ tool.description|bleach_striptags|truncatechars:70 }}</p>
   </div>
