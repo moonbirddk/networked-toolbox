@@ -1,6 +1,6 @@
 import logging
 from django import forms
-from tools.models import ToolResource
+from tools.models import ToolResource, ToolCategory
 from django_summernote.widgets import SummernoteInplaceWidget
 
 from django.template.defaultfilters import filesizeformat
@@ -14,10 +14,17 @@ class ToolForm(forms.Form):
     cover_image = forms.fields.ImageField(required=False)
     description = forms.fields.CharField(
         widget=SummernoteInplaceWidget(), required=True)
+    categories = forms.fields.MultipleChoiceField(
+        choices = ToolCategory.objects.all().values_list('id','title'),
+        widget = forms.CheckboxSelectMultiple,
+    )
 
 
-class ToolCategoryForm(ToolForm):
-    pass
+class ToolCategoryForm(forms.Form):
+    title = forms.fields.CharField(max_length=100, required=True)
+    cover_image = forms.fields.ImageField(required=False)
+    description = forms.fields.CharField(
+        widget=SummernoteInplaceWidget(), required=True)
 
 
 class ToolResourceForm(forms.ModelForm):

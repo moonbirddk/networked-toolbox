@@ -102,7 +102,6 @@
 }
 
 .category{
-  background-color: red;
   float: left;
   color: white;
   background-color: #ED1C24;
@@ -110,6 +109,15 @@
   padding: 4px;
   margin-right: 5px;
   margin-top: 5px;
+  cursor: pointer;
+}
+
+.category:hover{
+  background-color: black;
+}
+.category a{
+  color: white;
+  text-decoration: none;
 }
 
 .resource-item i {

@@ -23,9 +23,9 @@ def css_filefield(filefield):
     extension = os.path.splitext(filefield.name)[1].lstrip('.')
 
     if extension == 'mp4':
-        css = 'film'
-    elif extension in ('jpg', ''):
-        css = 'picture-o'
+        css = 'file-video-o'
+    elif extension in ('jpg', 'png'):
+        css = 'file-image-o'
     elif extension == 'mp3':
         css = 'file-audio-o'
     else:

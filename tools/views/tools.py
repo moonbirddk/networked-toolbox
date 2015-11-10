@@ -1,12 +1,12 @@
 import logging
-
+from copy import deepcopy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db import transaction
 from django.core.files.storage import default_storage
 
 from tools.forms import ToolForm
-from tools.models import Tool
+from tools.models import Tool, ToolCategory
 
 
 log = logging.getLogger(__name__)
@@ -16,6 +16,7 @@ def home(request):
     return render(request, 'tools/home.html', {})
 
 
+@transaction.atomic
 def add(request):
 
     form = ToolForm()
@@ -23,7 +24,15 @@ def add(request):
     if request.method == 'POST':
         form = ToolForm(request.POST, request.FILES)
         if form.is_valid():
-            tool = Tool.objects.create(**form.cleaned_data)
+            log.debug(form.cleaned_data)
+            data = deepcopy(form.cleaned_data)
+            categories_ids = data.get('categories', [])
+            del data['categories']
+            tool = Tool.objects.create(**data)
+            for cat_id in categories_ids:
+                cat = ToolCategory.objects.get(id=cat_id)
+                tool.categories.add(cat)
+            tool.save()
             messages.success(request, "You created a tool")
             return redirect('tools:index')
 
@@ -52,6 +61,7 @@ def edit(request, tool_id):
     attributes = {
         'title': tool.title,
         'description': tool.description,
+        'categories': tool.categories.values_list('id', flat=True).all(),
     }
 
     if tool.cover_image and default_storage.exists(tool.cover_image.name):
@@ -80,6 +90,11 @@ def edit(request, tool_id):
             tool.description = form.cleaned_data['description']
             tool.cover_image = cover_image
             tool.save()
+            tool.categories.clear()
+            for cat_id in form.cleaned_data['categories']:
+                cat = ToolCategory.objects.get(id=cat_id)
+                tool.categories.add(cat)
+
             messages.success(request, "You updated a tool")
             return redirect('tools:index')
 
