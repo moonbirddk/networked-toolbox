@@ -16,6 +16,10 @@ class ToolForm(forms.Form):
         widget=SummernoteInplaceWidget(), required=True)
 
 
+class ToolCategoryForm(ToolForm):
+    pass
+
+
 class ToolResourceForm(forms.ModelForm):
     CONTENT_TYPES = [
         'pdf', 'docx', 'mp4', 'doc', 'ppt', 'pptx', 'mpeg4', 'avi',

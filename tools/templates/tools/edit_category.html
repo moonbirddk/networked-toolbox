@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block head_statics %}
+{{ form.media }}
+<script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
+{% endblock %}
+
+{% block main %}
+<h1>Edit category</h1>
+
+<form method="POST" action="{% url 'tools:edit_category' category.id %}" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Submit
+        </button>
+    {% endbuttons %}
+</form>
+
+{% endblock %}

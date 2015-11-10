@@ -65,13 +65,12 @@ def edit(request, tool_id):
         if form.is_valid():
             if request.POST.get('cover_image-clear'):
                 cover_image = None
-                if tool.cover_image and default_storage.exists(tool.cover_image.name):
+                if tool.has_existing_cover_image():
                     default_storage.delete(tool.cover_image.name)
             else:
                 if form.cleaned_data['cover_image']:
                     if tool.cover_image:
-                        if tool.cover_image and \
-                                default_storage.exists(tool.cover_image.name):
+                        if tool.has_existing_cover_image():
                             default_storage.delete(tool.cover_image.name)
                     cover_image = form.cleaned_data['cover_image']
                 else:

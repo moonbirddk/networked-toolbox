@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
                 ('title', models.CharField(max_length=30)),
-                ('document', models.FileField(upload_to=tools.models.do_upload_tool)),
+                ('document', models.FileField(upload_to=tools.models.do_upload_document)),
                 ('tool', models.ForeignKey(to='tools.Tool', related_query_name='resource', related_name='resources')),
             ],
         ),

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+
+{% block main %}
+
+<h1>Category overview<a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a></h1>
+
+<div class="row">
+<div class="col-md-12">
+{% for sublist in categories|partition:"4" %}
+  <div class="row">
+  {% for category in sublist %}
+    <div class="col-lg-3 col-md-3 col-sm-2 col-xs-1">
+        <div class="row">
+            <div class="col-md-12">
+              <a href="{% url 'tools:show_category' category.id %}" class="thumbnail">
+                  {% if category.cover_image %}
+                  <img class="img-responsive thumb" src="{{ category.cover_image.url }}" />
+                  {% else %}
+                  <img src="empty-image-here" />
+                  {% endif %}
+              </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>{{ category.title|bleach_striptags|truncatechars:16 }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>{{ category.description|bleach_striptags|truncatechars:70 }}</p>
+            </div>
+        </div>
+      </a>
+      
+    </div>
+  {% endfor %}
+  </div>
+{% empty %}
+  <p>Huh, that's weird. We can't find any tools. Check back later.</p>
+{% endfor %}
+</div>
+</div>
+{% endblock %}

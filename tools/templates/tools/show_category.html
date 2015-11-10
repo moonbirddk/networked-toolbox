@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+
+{% block head_statics %}
+{{ form.media }}
+<script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
+<link rel="stylesheet" href="{% static "css/tool.css" %}">
+
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-12">
+            {% if category.cover_image %}
+                <img src="{{ category.cover_image.url }}" class="cover-image img-responsive">
+            {% endif %}
+            <h1>{{ category.title }} 
+            <a href="{% url 'tools:edit_category' category.id %}"><i class="fa fa-pencil-square-o"></i></a>
+            <a href="{% url 'tools:delete_category' category.id %}"><i class="fa fa-trash-o"></i></a>
+            </h1>
+            {{category.description|safe }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+         <hr />
+         <h1>Related tools</h1>
+         {% for sublist in category.tools.all|partition:"4" %}
+           <div class="row">
+           {% for tool in sublist %}
+             <div class="col-sm-3">
+                 <div class="row">
+                     <div class="col-md-12">
+                 {% if tool.cover_image %}
+                 <a href="{% url 'tools:show' tool.id %}" class="thumbnail">
+                    <img src="{{ tool.cover_image.url }}" />
+                 </a>
+                 {% else %}
+                    <img src="empty-image-here" />
+                 {% endif %}
+                    </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-12">
+                         <h3>{{ tool.title|bleach_striptags|truncatechars:16 }}</h3>
+                     </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-md-12">
+                         <p>{{ tool.description|bleach_striptags|truncatechars:70 }}</p>
+                     </div>
+                 </div>
+               </a>
+             </div>
+           {% endfor %}
+           </div>
+         {% empty %}
+           <p>Huh, that's weird. We can't find any tools. Check back later.</p>
+         {% endfor %}
+        </div>
+    </div>
+{% endblock %}
