@@ -21,8 +21,10 @@
         <!--<img src="empty-image-here" />-->
         {% endif %}
       </div>
-    <h3>{{ tool.title|bleach_striptags|truncatechars:16 }}</h3>
-    <p>{{ tool.description|bleach_striptags|truncatechars:70 }}</p>
+      <div class="category-content">
+        <h3>{{ tool.title|bleach_striptags|truncatechars:16 }}</h3>
+        <p>{{ tool.description|bleach_striptags|truncatechars:70 }}</p>
+      </div>
   </div>
 {% empty %}
   <p>Huh, that's weird. We can't find any tools. Check back later.</p>

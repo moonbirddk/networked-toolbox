@@ -12,22 +12,22 @@
 </p>
 
 <div class="row">
-{% for category in categories %}
-  <div class="col-md-3">
-      <div class="category-image">
-        {% if category.cover_image %}
-          <a href="{% url 'tools:show_category' category.id %}"><img src="{{ category.cover_image.url }}" /></a>
-        {% else %}
-        <!--<img src="empty-image-here" />-->
-        {% endif %}
+    {% for category in categories %}
+      <div class="col-md-3">
+        <div class="category-image">
+          {% if category.cover_image %}
+            <a href="{% url 'tools:show_category' category.id %}"><img src="{{ category.cover_image.url }}" /></a>
+          {% else %}
+          <!--<img src="empty-image-here" />-->
+          {% endif %}
+        </div>
+        <div class="category-content">
+          <h3>{{ category.title|bleach_striptags|truncatechars:50 }}</h3>
+          <p>{{ category.description|bleach_striptags|truncatechars:80 }}</p>
+        </div>
       </div>
-
-    <h3>{{ category.title|bleach_striptags|truncatechars:50 }}</h3>
-    <p>{{ category.description|bleach_striptags|truncatechars:50 }}</p>
-  </div>
-{% empty %}
-  <p>Huh, that's weird. We can't find any tools. Check back later.</p>
-{% endfor %}
-</div>
+    {% empty %}
+      <p>Huh, that's weird. We can't find any tools. Check back later.</p>
+    {% endfor %}
 </div>
 {% endblock %}

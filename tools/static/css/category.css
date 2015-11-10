@@ -1,8 +1,8 @@
 .category-image{
-    position:relative;
-    overflow:hidden;
-    padding-bottom:100%;
-    background: #8D8478;
+  position:relative;
+  overflow:hidden;
+  padding-bottom:100%;
+  background: #8D8478;
 }
 .category-image img{
   position: absolute;
@@ -18,4 +18,15 @@
   width: 100%;
   max-width: 50rem;
   margin-bottom: 2rem;
+}
+
+.category-content{
+  height: 12rem;
+  overflow: hidden;
+  line-height: 1.5rem;
+}
+
+.category-content h3{
+  word-wrap: break-word;
+  margin: 0.5rem 0 0.5rem;
 }
