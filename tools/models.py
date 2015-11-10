@@ -39,7 +39,7 @@ class ToolResource(models.Model):
         related_name='resources',
         related_query_name='resource'
     )
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=60)
     document = models.FileField(upload_to=do_upload_document, blank=False,
                                 null=False)
 

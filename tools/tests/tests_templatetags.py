@@ -8,15 +8,15 @@ class CssFileFieldTestCase(TestCase):
 
     def test_css_filefield_mp4(self):
         ff = FileField(name="somename.mp4")
-        self.assertEqual('fa-film', css_filefield(ff))
+        self.assertEqual('fa-file-video-o', css_filefield(ff))
 
     def test_css_filefield_jpg(self):
         ff = FileField(name="somename.jpg")
-        self.assertEqual('fa-picture-o', css_filefield(ff))
+        self.assertEqual('fa-file-image-o', css_filefield(ff))
 
     def test_css_filefield_mp3(self):
-        ff = FileField(name="somename.jpg")
-        self.assertEqual('fa-picture-o', css_filefield(ff))
+        ff = FileField(name="somename.mp3")
+        self.assertEqual('fa-audio-o', css_filefield(ff))
 
     def test_css_filefield_text(self):
         ff = FileField(name="somename.txt")

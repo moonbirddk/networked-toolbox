@@ -54,20 +54,20 @@
 .resource-title {
     display: inline-block;
     vertical-align: middle;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    word-wrap: break-word;
+    width: 60%;
+    text-decoration: none;
 }
 
 .resource-item {
   margin: 1rem 0 2rem;
-  height: 2rem;
-}
-
-.resource-link {
-  word-wrap: break-word;
+  height: 2.25rem;
 }
 
 .resource-link:hover {
   color: white !important;
+  text-decoration: none;
 }
 
 .resource-box .resource-action {
@@ -80,7 +80,7 @@
 
 .resource-icon{
   font-size: 3rem !important;
-  width: 1.3em;
+  width: 3rem;
 }
 
 .resource-action:hover{
@@ -122,7 +122,6 @@
 
 .resource-item i {
     color: inherit;
-    padding: 0 5px 0 5px;
     vertical-align: middle !important;
 }
 

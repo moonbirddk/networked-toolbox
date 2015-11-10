@@ -154,7 +154,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.get(reverse('tools:index'))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/index.html')
-        self.assertContains(resp, 'List of tools')
+        self.assertContains(resp, 'Tool overview')
 
     def test_show_get(self):
         tool = Tool.objects.create(
