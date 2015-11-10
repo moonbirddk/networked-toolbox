@@ -1,34 +1,13 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% load staticfiles %}
-{% load toolstags %}
-{% load partition_slice %}
+
 
 {% block main %}
+  <h3 class="title">Tool overview <a href="{% url 'tools:add' %}"><i class="fa fa-plus"></i></a></h3>
+  <p class="category-description">
+    Bacon ipsum dolor amet boudin meatloaf tongue, bacon short ribs salami flank sausage biltong. Alcatra hamburger jerky porchetta, pork andouille landjaeger fatback. Pig strip steak sausage turkey. Andouille cow porchetta tail alcatra shoulder pork belly sirloin drumstick prosciutto tenderloin pork leberkas short ribs.
+  </p>
 
-<h3 class="title">Tool overview <a href="{% url 'tools:add' %}"><i class="fa fa-plus"></i></a></h3>
-<p class="category-description">
-  Bacon ipsum dolor amet boudin meatloaf tongue, bacon short ribs salami flank sausage biltong. Alcatra hamburger jerky porchetta, pork andouille landjaeger fatback. Pig strip steak sausage turkey. Andouille cow porchetta tail alcatra shoulder pork belly sirloin drumstick prosciutto tenderloin pork leberkas short ribs.
-</p>
-
-<div class="row">
-{% for tool in tools %}
-  <div class="col-md-3">
-      <div class="category-image">
-        {% if tool.cover_image %}
-          <a href="{% url 'tools:show' tool.id %}"><img src="{{ tool.cover_image.url }}" /></a>
-        {% else %}
-        <!--<img src="empty-image-here" />-->
-        {% endif %}
-      </div>
-      <div class="category-content">
-        <h3>{{ tool.title|bleach_striptags|truncatechars:16 }}</h3>
-        <p>{{ tool.description|bleach_striptags|truncatechars:70 }}</p>
-      </div>
-  </div>
-{% empty %}
-  <p>Huh, that's weird. We can't find any tools. Check back later.</p>
-{% endfor %}
-</div>
-</div>
+  {% include "tools/resource_overview.html" with resources=tools route='tools:show' %}
 {% endblock %}

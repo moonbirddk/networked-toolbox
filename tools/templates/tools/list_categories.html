@@ -11,23 +11,5 @@
   Bacon ipsum dolor amet boudin meatloaf tongue, bacon short ribs salami flank sausage biltong. Alcatra hamburger jerky porchetta, pork andouille landjaeger fatback. Pig strip steak sausage turkey. Andouille cow porchetta tail alcatra shoulder pork belly sirloin drumstick prosciutto tenderloin pork leberkas short ribs.
 </p>
 
-<div class="row">
-    {% for category in categories %}
-      <div class="col-md-3">
-        <div class="category-image">
-          {% if category.cover_image %}
-            <a href="{% url 'tools:show_category' category.id %}"><img src="{{ category.cover_image.url }}" /></a>
-          {% else %}
-          <!--<img src="empty-image-here" />-->
-          {% endif %}
-        </div>
-        <div class="category-content">
-          <h3>{{ category.title|bleach_striptags|truncatechars:50 }}</h3>
-          <p>{{ category.description|bleach_striptags|truncatechars:80 }}</p>
-        </div>
-      </div>
-    {% empty %}
-      <p>Huh, that's weird. We can't find any tools. Check back later.</p>
-    {% endfor %}
-</div>
+{% include "tools/resource_overview.html" with resources=categories route='tools:show_category' %}
 {% endblock %}
