@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+SITE_ID = 1
+DOMAIN = 'localhost'
+DEFAULT_FROM_EMAIL = 'Networked Toolbox <hello@{}>'.format(DOMAIN)
+
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -37,7 +41,14 @@ CACHES = {
     }
 }
 
-# Application definition
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -46,7 +57,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.facebook',
     'bootstrap3',
     'storages',
     'django_summernote',
@@ -172,3 +190,53 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Network Toolbox]"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
+ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
+ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
+ACCOUNT_USER_DISPLAY = lambda user: user.email
+ACCOUNT_USERNAME_MIN_LENGTH = 3
+ACCOUNT_PASSWORD_MIN_LENGTH = 8
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
+ACCOUNT_SESSION_REMEMBER = None
+SITE_OPEN_FOR_SIGNUP = True
+LOGOUT_URL = 'account_logout'
+LOGIN_URL = 'account_login'
+LOGIN_REDIRECT_URL = 'tools:index'
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = False
+SOCIALACCOUNT_PROVIDERS = {
+'facebook': {
+    'METHOD': 'oauth2',
+    'SCOPE': ['email', 'public_profile', 'user_friends'],
+    'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+    'FIELDS': [
+        'id',
+        'email',
+        'name',
+        'first_name',
+        'last_name',
+        'verified',
+        'locale',
+        'timezone',
+        'link',
+        'gender',
+        'updated_time'],
+    'EXCHANGE_TOKEN': True,
+    #'LOCALE_FUNC': 'path.to.callable',
+    'VERIFIED_EMAIL': False,
+    'VERSION': 'v2.4'
+    },
+}
+
