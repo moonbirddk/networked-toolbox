@@ -4,9 +4,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db import transaction
 from django.core.files.storage import default_storage
+from django.contrib.auth.decorators import login_required, permission_required
 
-from tools.forms import ToolForm
-from tools.models import Tool, ToolCategory
+from ..forms import ToolForm
+from ..models import Tool, ToolCategory
 
 
 log = logging.getLogger(__name__)
@@ -17,6 +18,8 @@ def home(request):
 
 
 @transaction.atomic
+@permission_required('tools.add_tool', login_url='tools:index')
+@login_required
 def add(request):
 
     form = ToolForm()
@@ -24,15 +27,11 @@ def add(request):
     if request.method == 'POST':
         form = ToolForm(request.POST, request.FILES)
         if form.is_valid():
-            log.debug(form.cleaned_data)
-            data = deepcopy(form.cleaned_data)
-            categories_ids = data.get('categories', [])
-            del data['categories']
-            tool = Tool.objects.create(**data)
-            for cat_id in categories_ids:
-                cat = ToolCategory.objects.get(id=cat_id)
-                tool.categories.add(cat)
+            categories = form.cleaned_data.get('categories', [])
+            del form.cleaned_data['categories']
+            tool = Tool.objects.create(**form.cleaned_data)
             tool.save()
+            tool.categories = categories
             messages.success(request, "You created a tool")
             return redirect('tools:index')
 
@@ -54,6 +53,8 @@ def show(request, tool_id):
 
 
 @transaction.atomic
+@permission_required('tools.change_tool', login_url='tools:index')
+@login_required
 def edit(request, tool_id):
     # TODO: use celery tasks for storage IO so id doesn't block transaction
     tool = get_object_or_404(Tool, id=tool_id)
@@ -61,7 +62,7 @@ def edit(request, tool_id):
     attributes = {
         'title': tool.title,
         'description': tool.description,
-        'categories': tool.categories.values_list('id', flat=True).all(),
+        'categories': tool.categories.all(),
     }
 
     if tool.cover_image and default_storage.exists(tool.cover_image.name):
@@ -90,10 +91,7 @@ def edit(request, tool_id):
             tool.description = form.cleaned_data['description']
             tool.cover_image = cover_image
             tool.save()
-            tool.categories.clear()
-            for cat_id in form.cleaned_data['categories']:
-                cat = ToolCategory.objects.get(id=cat_id)
-                tool.categories.add(cat)
+            tool.categories = form.cleaned_data['categories']
 
             messages.success(request, "You updated a tool")
             return redirect('tools:index')

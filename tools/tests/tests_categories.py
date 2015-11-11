@@ -1,8 +1,9 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User, Group
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from tools.models import Tool, ToolCategory
+from ..models import Tool, ToolCategory
 
 TEST_PNG_CONTENT = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
 
@@ -10,6 +11,12 @@ TEST_PNG_CONTENT = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00
 class CategoriesViewsTestCase(TestCase):
 
     def setUp(self):
+        self.test_admin = User.objects.create(username='testadmin')
+        self.test_admin.set_password('testpass')
+        self.admins_group = Group.objects.get(name='admins')
+        self.test_admin.groups.add(self.admins_group)
+        self.test_admin.save()
+
         self.test_category = ToolCategory.objects.create(
             title='test cat',
             description='test cat description'
@@ -34,12 +41,14 @@ class CategoriesViewsTestCase(TestCase):
         self.assertContains(resp, self.test_category.title)
 
     def test_add_category_get(self):
+        self.client.login(username='testadmin', password='testpass')
         resp = self.client.get(reverse('tools:add_category'))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add_category.html')
         self.assertContains(resp, 'Add category')
 
     def test_add_category_post(self):
+        self.client.login(username='testadmin', password='testpass')
         empty = {}
         resp = self.client.post(
             reverse('tools:add_category'), empty, follow=True)
@@ -74,6 +83,7 @@ class CategoriesViewsTestCase(TestCase):
             "You created a category", str(list(resp.context['messages'])[0]))
 
     def test_edit_category_get(self):
+        self.client.login(username='testadmin', password='testpass')
         resp = self.client.get(reverse('tools:edit_category',
                                        args=(self.test_category.id,)))
         self.assertEqual(200, resp.status_code)
@@ -83,6 +93,7 @@ class CategoriesViewsTestCase(TestCase):
         self.assertContains(resp, self.test_category.description)
 
     def test_edit_category_post(self):
+        self.client.login(username='testadmin', password='testpass')
         test_fh = SimpleUploadedFile('test empty.png', TEST_PNG_CONTENT)
         data = {
             'title': 'our category new title',
@@ -103,6 +114,7 @@ class CategoriesViewsTestCase(TestCase):
             resp.redirect_chain)
 
     def test_delete_category_get(self):
+        self.client.login(username='testadmin', password='testpass')
         url = reverse(
             'tools:delete_category',
             args=(self.test_category.id, )
@@ -113,6 +125,7 @@ class CategoriesViewsTestCase(TestCase):
         self.assertContains(resp, 'Are you sure')
 
     def test_delete_category_post(self):
+        self.client.login(username='testadmin', password='testpass')
         url = reverse(
             'tools:delete_category',
             args=(self.test_category.id, )

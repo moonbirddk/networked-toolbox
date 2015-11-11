@@ -1,9 +1,10 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.contrib.auth.models import User, Group, Permission
 
-from tools.models import Tool
 from tools.utils import generate_upload_path
+from ..models import Tool, ToolCategory, ToolResource
 
 
 TEST_PNG_CONTENT = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
@@ -28,16 +29,28 @@ class HomeViewTestCase(TestCase):
 
 class ToolsViewsTestCase(TestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        return super(ToolsViewsTestCase, cls).setUpClass()
+
     def setUp(self):
-        pass
+        self.test_admin = User.objects.create(username='testadmin')
+        self.test_admin.set_password('testpass')
+        self.admins_group = Group.objects.get(name='admins')
+        self.test_admin.groups.add(self.admins_group)
+        self.test_admin.save()
+        self.test_category = ToolCategory.objects\
+            .create(title='test cat', description='test cat desc')
 
     def test_add_tool_get(self):
-        resp = self.client.get(reverse('tools:add'))
+        self.client.login(username='testadmin', password='testpass')
+        resp = self.client.get(reverse('tools:add'), follow=True)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add.html')
         self.assertContains(resp, 'Add tool')
 
     def test_add_tool_post(self):
+        self.client.login(username='testadmin', password='testpass')
         empty = {}
         resp = self.client.post(reverse('tools:add'), empty, follow=True)
         self.assertEqual(200, resp.status_code)
@@ -48,6 +61,7 @@ class ToolsViewsTestCase(TestCase):
         data = {
             'title': 'our test title',
             'description': 'description test',
+            'categories': self.test_category.id,
             'cover_image': test_fh
         }
         resp = self.client.post(reverse('tools:add'), data, follow=True)
@@ -63,8 +77,10 @@ class ToolsViewsTestCase(TestCase):
         self.assertEqual(tool.description, data['description'])
         self.assertTrue(tool.cover_image)
         self.assertTrue(tool.cover_image.name, 'test empty.png')
+        self.assertTrue(self.test_category in tool.categories.all())
 
     def test_edit_tool_get(self):
+        self.client.login(username='testadmin', password='testpass')
         tool = Tool.objects.create(
             title='A title', description='A description')
 
@@ -76,12 +92,14 @@ class ToolsViewsTestCase(TestCase):
         self.assertContains(resp, tool.description)
 
     def test_edit_tool_post(self):
+        self.client.login(username='testadmin', password='testpass')
         tool = Tool.objects.create(
             title='A title', description='A description')
         test_fh = SimpleUploadedFile('test empty.png', TEST_PNG_CONTENT)
         data = {
             'title': 'our new title',
             'description': 'new description test',
+            'categories': self.test_category.id,
             'cover_image': test_fh,
         }
         resp = self.client.post(
@@ -95,8 +113,10 @@ class ToolsViewsTestCase(TestCase):
         tool = Tool.objects.get(id=tool.id)
         self.assertTrue(tool.cover_image)
         self.assertTrue(tool.cover_image.name, 'test empty.png')
+        self.assertTrue(self.test_category in tool.categories.all())
 
     def test_edit_tool_post_update_file(self):
+        self.client.login(username='testadmin', password='testpass')
         test_fh1 = SimpleUploadedFile('test empty1.png', TEST_PNG_CONTENT)
         tool = Tool.objects.create(
             title='A title',
@@ -115,6 +135,7 @@ class ToolsViewsTestCase(TestCase):
         data = {
             'title': 'our new title',
             'description': 'new description test',
+            'categories': self.test_category.id,
             'cover_image': test_fh2,
         }
         resp = self.client.post(
@@ -128,8 +149,10 @@ class ToolsViewsTestCase(TestCase):
         tool = Tool.objects.get(id=tool.id)
         self.assertTrue(tool.cover_image)
         self.assertTrue(tool.cover_image.name, 'test empty2.png')
+        self.assertTrue(self.test_category in tool.categories.all())
 
     def test_edit_tool_post_clear_cover_image(self):
+        self.client.login(username='testadmin', password='testpass')
         test_fh = SimpleUploadedFile('test empty.png', TEST_PNG_CONTENT)
         tool = Tool.objects.create(
             title='A title', description='A description', cover_image=test_fh)
@@ -137,6 +160,7 @@ class ToolsViewsTestCase(TestCase):
         data = {
             'title': 'our new title',
             'description': 'new description test',
+            'categories': self.test_category.id,
             'cover_image-clear': 1,
         }
         resp = self.client.post(
@@ -149,12 +173,13 @@ class ToolsViewsTestCase(TestCase):
         self.assertContains(resp, data['title'])
         tool = Tool.objects.get(id=tool.id)
         self.assertFalse(tool.cover_image)
+        self.assertTrue(self.test_category in tool.categories.all())
 
     def test_index_get(self):
         resp = self.client.get(reverse('tools:index'))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/index.html')
-        self.assertContains(resp, 'Tool overview')
+        self.assertContains(resp, 'Tool overview ')
 
     def test_show_get(self):
         tool = Tool.objects.create(

@@ -12,3 +12,4 @@ def generate_upload_path(instance, filename, dirname=None):
     if dirname:
         rand_name = "{}/{}".format(dirname, rand_name)
     return rand_name
+
