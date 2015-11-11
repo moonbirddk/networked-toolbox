@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.contrib.auth.models import User, Group
 
 from tools.models import Tool, ToolResource
 
@@ -11,8 +12,15 @@ TEST_PNG_CONTENT = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00
 class ToolResourcesViewsTestCase(TestCase):
 
     def setUp(self):
+        self.test_admin = User.objects.create(username='testadmin')
+        self.test_admin.set_password('testpass')
+        self.admins_group = Group.objects.get(name='admins')
+        self.test_admin.groups.add(self.admins_group)
+        self.test_admin.save()
+
         self.test_tool = Tool.objects.create(title='test tool',
                                              description='test description')
+
         test_fh = SimpleUploadedFile('test empty.png',
                                      TEST_PNG_CONTENT)
         self.test_resource = ToolResource.objects.create(
@@ -22,6 +30,7 @@ class ToolResourcesViewsTestCase(TestCase):
         )
 
     def test_add_resource_get(self):
+        self.client.login(username='testadmin', password='testpass')
         url = reverse(
             'tools:add_resource',
             args=(self.test_tool.id,)
@@ -32,6 +41,7 @@ class ToolResourcesViewsTestCase(TestCase):
         self.assertContains(resp, 'Add resource to')
 
     def test_add_resource_post(self):
+        self.client.login(username='testadmin', password='testpass')
         url = reverse(
             'tools:add_resource',
             args=(self.test_tool.id,)
@@ -53,7 +63,6 @@ class ToolResourcesViewsTestCase(TestCase):
 
         resp = self.client.post(url, data, follow=True)
         self.assertEqual(200, resp.status_code)
-        print(resp.content)
         expected_status = (
             'http://testserver/tools/%d/' % self.test_tool.id,
             302
@@ -76,49 +85,52 @@ class ToolResourcesViewsTestCase(TestCase):
             'test post empty.png'
         )
 
-        def test_delete_resource_get(self):
-            url = reverse(
-                'tools:delete_resource',
-                args=(self.test_tool.id, self.test_resource.id)
-            )
-            resp = self.client.get(url)
-            self.assertEqual(200, resp.status_code)
-            self.assertTemplateUsed(resp, 'tools/delete_resource.html')
-            self.assertContains(resp, 'Are you sure')
+    def test_delete_resource_get(self):
+        self.client.login(username='testadmin', password='testpass')
+        url = reverse(
+            'tools:delete_resource',
+            args=(self.test_tool.id, self.test_resource.id)
+        )
+        resp = self.client.get(url)
+        self.assertEqual(200, resp.status_code)
+        self.assertTemplateUsed(resp, 'tools/delete_resource.html')
+        self.assertContains(resp, 'Are you sure')
 
-        def test_delete_resource_post_canceled(self):
-            url = reverse(
-                'tools:delete_resource',
-                args=(self.test_tool_id, self.test_resource_id)
-            )
-            data = {'confirmation': 'no'}
-            resp = self.client.post(url, data, follow=True)
-            expected_status = (
-                'http://testserver/tools/%d/' % self.test_tool.id,
-                302
-            )
-            self.assertEqual([expected_status], resp.redirect_chain)
-            actual = ToolResource.objects.filter(id=self.test_resource_id)\
-                .count()
-            self.assertEqual(1, actual)
+    def test_delete_resource_post_canceled(self):
+        self.client.login(username='testadmin', password='testpass')
+        url = reverse(
+            'tools:delete_resource',
+            args=(self.test_tool.id, self.test_resource.id)
+        )
+        data = {'confirmation': 'no'}
+        resp = self.client.post(url, data, follow=True)
+        expected_status = (
+            'http://testserver/tools/%d/' % self.test_tool.id,
+            302
+        )
+        self.assertEqual([expected_status], resp.redirect_chain)
+        actual = ToolResource.objects.filter(id=self.test_resource.id)\
+            .count()
+        self.assertEqual(1, actual)
 
-        def test_delete_resource_post(self):
-            url = reverse(
-                'tools:delete_resource',
-                args=(self.test_tool_id, self.test_resource_id)
-            )
-            data = {'confirmation': 'yes'}
-            resp = self.client.post(url, data, follow=True)
-            expected_status = (
-                'http://testserver/tools/%d/' % self.test_tool.id,
-                302
-            )
-            self.assertEqual([expected_status], resp.redirect_chain)
-            self.assertFalse(ToolResource.objects.exists())
-            self.assertTrue(Tool.objects.filter(id=self.test_tool_id)
-                            .exists())
-            self.assertTrue('messages' in resp.context)
-            self.assertEqual(
-                "You deleted a resource",
-                str(list(resp.context['messages'])[0])
-            )
+    def test_delete_resource_post(self):
+        self.client.login(username='testadmin', password='testpass')
+        url = reverse(
+            'tools:delete_resource',
+            args=(self.test_tool.id, self.test_resource.id)
+        )
+        data = {'confirmation': 'yes'}
+        resp = self.client.post(url, data, follow=True)
+        expected_status = (
+            'http://testserver/tools/%d/' % self.test_tool.id,
+            302
+        )
+        self.assertEqual([expected_status], resp.redirect_chain)
+        self.assertFalse(ToolResource.objects.exists())
+        self.assertTrue(Tool.objects.filter(id=self.test_tool.id)
+                        .exists())
+        self.assertTrue('messages' in resp.context)
+        self.assertEqual(
+            "You deleted a resource",
+            str(list(resp.context['messages'])[0])
+        )

@@ -19,8 +19,12 @@
                 <img src="{{ category.cover_image.url }}" class="cover-image img-responsive">
             {% endif %}
             <h1>{{ category.title }} 
+            {% if perms.tools %}{% if perms.tools.change_toolcategory%}
             <a href="{% url 'tools:edit_category' category.id %}"><i class="fa fa-pencil-square-o"></i></a>
+            {% endif %}{% endif %}
+            {% if perms.tools %}{% if perms.tools.delete_toolcategory%}
             <a href="{% url 'tools:delete_category' category.id %}"><i class="fa fa-trash-o"></i></a>
+            {% endif %}{% endif %}
             </h1>
             {{category.description|safe }}
         </div>

@@ -19,11 +19,12 @@ from django.contrib import admin
 from django.conf.urls.static import static
 
 urlpatterns = [
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^summernote/', include('django_summernote.urls')),
 
     url(r'^tools/', include('tools.urls', namespace='tools')),
     url(r'^$', 'tools.views.home', name='home'),
-    url(r'^summernote/', include('django_summernote.urls')),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +\

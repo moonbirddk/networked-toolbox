@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db import transaction
 from django.core.files.storage import default_storage
+from django.contrib.auth.decorators import login_required, permission_required
 
 from tools.forms import ToolCategoryForm
 from tools.models import Tool, ToolCategory
@@ -24,6 +25,8 @@ def show_category(request, cat_id):
     return render(request, 'tools/show_category.html', context)
 
 
+@permission_required('tools.add_toolcategory', login_url='tools:index')
+@login_required
 def add_category(request):
 
     form = ToolCategoryForm()
@@ -40,6 +43,8 @@ def add_category(request):
 
 
 @transaction.atomic
+@permission_required('tools.change_toolcategory', login_url='tools:index')
+@login_required
 def edit_category(request, cat_id):
     # TODO: use celery tasks for storage IO so id doesn't block transaction
     category = get_object_or_404(ToolCategory, id=cat_id)
@@ -84,6 +89,8 @@ def edit_category(request, cat_id):
 
 
 @transaction.atomic
+@permission_required('tools.delete_toolcategory', login_url='tools:index')
+@login_required
 def delete_category(request, cat_id):
     category = get_object_or_404(ToolCategory, id=cat_id)
 

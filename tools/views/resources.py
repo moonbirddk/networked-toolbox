@@ -3,13 +3,16 @@ import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db import transaction
+from django.contrib.auth.decorators import login_required, permission_required
 
-from tools.forms import ToolResourceForm
-from tools.models import Tool, ToolResource
+from ..forms import ToolResourceForm
+from ..models import Tool, ToolResource
 
 log = logging.getLogger(__name__)
 
 
+@permission_required('tools.add_toolresource', login_url='tools:index')
+@login_required
 def add_resource(request, tool_id):
     tool = get_object_or_404(Tool, id=tool_id)
     form = ToolResourceForm()
@@ -26,6 +29,8 @@ def add_resource(request, tool_id):
 
 
 @transaction.atomic
+@permission_required('tools.delete_toolresource', login_url='tools:index')
+@login_required
 def delete_resource(request, tool_id, resource_id):
     resource = get_object_or_404(
         ToolResource.objects.select_related('tool'),

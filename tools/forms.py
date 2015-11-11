@@ -1,12 +1,19 @@
 import logging
-from django import forms
-from tools.models import ToolResource, ToolCategory
-from django_summernote.widgets import SummernoteInplaceWidget
 
+from django import forms
+from django_summernote.widgets import SummernoteInplaceWidget
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
 
+from .models import ToolResource, ToolCategory
+
+
 log = logging.getLogger(__name__)
+
+
+class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return obj.title
 
 
 class ToolForm(forms.Form):
@@ -14,10 +21,8 @@ class ToolForm(forms.Form):
     cover_image = forms.fields.ImageField(required=False)
     description = forms.fields.CharField(
         widget=SummernoteInplaceWidget(), required=True)
-    categories = forms.fields.MultipleChoiceField(
-        choices = ToolCategory.objects.all().values_list('id','title'),
-        widget = forms.CheckboxSelectMultiple,
-    )
+    categories = ToolCategoryChoiceField(queryset=ToolCategory.objects.all(),
+                                         widget=forms.CheckboxSelectMultiple)
 
 
 class ToolCategoryForm(forms.Form):

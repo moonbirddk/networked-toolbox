@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="{% static "css/tool.css" %}">
         <link rel="stylesheet" href="{% static "css/category.css" %}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block head_title %}{% endblock %}</title>
 
         {% block head_statics %}
         {% endblock %}
@@ -43,8 +44,11 @@
                 <li><a href="#">People<span class="sr-only">(current)</span></a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Username</a></li>
-                <li><a href="#">Logout</a></li>
+                {% if user.is_authenticated %}
+                <li>{{user.email}} <a href="{% url 'account_logout'%}">sign-out</a></li>
+                {% else %}
+                <li><a href="{% url 'account_login'%}">sign-in</a></li>
+                {% endif %}
               </ul>
             </div><!-- /.navbar-collapse -->
             </div>

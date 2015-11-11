@@ -54,3 +54,29 @@ body{
       color: #ED1C24;
       background: white;
  }
+
+.white-text {
+  color: #ffffff;
+}
+
+.social-button {
+  position: relative;
+  height: 4.125rem;
+  width: 20.125rem;
+  line-height: 4.125rem;
+  max-width: 100%;
+  display: block;
+  background-color: #E2E4DD;
+  margin-bottom: 0.9375rem; }
+
+.social-button.facebook {
+  background-color: #2980B9; }
+.social-button.twitter {
+  background-color: #3498DB; }
+.social-button.google {
+  background-color: #E74C3C; }
+.social-button:hover {
+  background-color: black;
+  transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s; }

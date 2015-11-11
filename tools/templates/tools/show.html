@@ -21,12 +21,20 @@
             {% if tool.cover_image %}
              <div class="cover-image" style="background-image: url({{ tool.cover_image.url }})"></div>
             {% endif %}
-            <h1 class="title">{{ tool.title }} <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a></h1>
+            <h1 class="title">{{ tool.title }} 
+            {% if perms.tools %}{% if perms.tools.change_tool %}
+            <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
+            {% endif %}{% endif %}
+            </h1>
             {{tool.description|safe }}
         </div>
         <div class="col-md-4 padding">
           <div class="resource-box">
-            <h3 class="title">Resources <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a></h3>
+            <h3 class="title">Resources 
+            {% if perms.tools %}{% if perms.tools.add_toolresource %}
+            <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a>
+            {% endif %}{% endif %}
+            </h3>
             <p>Here you can find the different resources related to the current tool.</p>
 
             {% for resource in tool.resources.all %}
@@ -34,7 +42,9 @@
               <div class="resource-item">
                 <div class="pull-right">
                   <a target="_blank" download href="{{ resource.document.url }}"><i class="fa fa-arrow-circle-o-down resource-action"></i></a>
+                  {% if perms.tools %}{% if perms.tools.delete_toolresource %}
                   <a href="{% url 'tools:delete_resource' tool.id resource.id %}"><i class="fa fa-close resource-action"></i></a>
+                  {% endif %}{% endif %}
                 </div>
                 <div>
                   <a class="resource-link" target="_blank"  href="{{ resource.document.url }}">

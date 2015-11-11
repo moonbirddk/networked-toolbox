@@ -6,10 +6,14 @@
 
 {% block main %}
 
-<h3 class="title">Category overview <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a></h3>
+<h3 class="title">Category overview 
+{% if perms.tools %}{% if perms.tools.delete_toolcategory %}
+<a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
+{% endif %}{% endif %}
+</h3>
 <p class="category-description">
   Bacon ipsum dolor amet boudin meatloaf tongue, bacon short ribs salami flank sausage biltong. Alcatra hamburger jerky porchetta, pork andouille landjaeger fatback. Pig strip steak sausage turkey. Andouille cow porchetta tail alcatra shoulder pork belly sirloin drumstick prosciutto tenderloin pork leberkas short ribs.
 </p>
 
-{% include "tools/resource_overview.html" with resources=categories route='tools:show_category' %}
+{% include "tools/_resource_overview.html" with resources=categories route='tools:show_category' %}
 {% endblock %}
