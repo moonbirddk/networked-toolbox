@@ -17,38 +17,73 @@ def add_tools_perms(apps, schema_editor):
     tct = ContentType.objects.get_for_model(Tool)
     rct = ContentType.objects.get_for_model(ToolResource)
     cct = ContentType.objects.get_for_model(ToolCategory)
-    db_alias = schema_editor.connection.alias
+    # db_alias = schema_editor.connection.alias
 
-    Permission.objects.using(db_alias).bulk_create([
-        Permission(codename='add_tool', name='Can add tool',
-                   content_type=tct),
-        Permission(codename='change_tool', name='Can change tool',
-                   content_type=tct),
-        Permission(codename='delete_tool', name='Can delete tool',
-                   content_type=tct),
-    ])
-    Permission.objects.using(db_alias).bulk_create([
-        Permission(codename='add_toolcategory',
-                   name='Can add toolcategory',
-                   content_type=cct),
-        Permission(codename='change_toolcategory',
-                   name='Can change toolcategory',
-                   content_type=cct),
-        Permission(codename='delete_toolcategory',
-                   name='Can delete toolcategory',
-                   content_type=cct),
-    ])
-    Permission.objects.using(db_alias).bulk_create([
-        Permission(codename='add_toolresource',
-                   name='Can add toolresource',
-                   content_type=rct),
-        Permission(codename='change_toolresource',
-                   name='Can change toolresource',
-                   content_type=rct),
-        Permission(codename='delete_toolresource',
-                   name='Can delete toolresource',
-                   content_type=rct),
-    ])
+    # tool
+    if not Permission.objects.filter(codename='add_tool').exists():
+        Permission.objects.create(
+            codename='add_tool',
+            name='Can add tool',
+            content_type=tct
+        )
+
+    if not Permission.objects.filter(codename='change_tool').exists():
+        Permission.objects.create(
+            codename='change_tool',
+            name='Can change tool',
+            content_type=tct
+        )
+
+    if not Permission.objects.filter(codename='delete_tool').exists():
+        Permission.objects.create(
+            codename='delete_tool',
+            name='Can delete tool',
+            content_type=tct
+        )
+
+    # toolcategory
+    if not Permission.objects.filter(codename='add_toolcategory').exists():
+        Permission.objects.create(
+            codename='add_toolcategory',
+            name='Can add toolcategory',
+            content_type=cct
+        )
+
+    if not Permission.objects.filter(codename='change_toolcategory').exists():
+        Permission.objects.create(
+            codename='change_toolcategory',
+            name='Can change toolcategory',
+            content_type=cct
+        )
+
+    if not Permission.objects.filter(codename='delete_toolcategory').exists():
+        Permission.objects.create(
+            codename='delete_toolcategory',
+            name='Can delete toolcategory',
+            content_type=cct
+        )
+
+    # toolresource
+    if not Permission.objects.filter(codename='add_toolresource').exists():
+        Permission.objects.create(
+            codename='add_toolresource',
+            name='Can add toolresource',
+            content_type=rct
+        )
+
+    if not Permission.objects.filter(codename='change_toolresource').exists():
+        Permission.objects.create(
+            codename='change_toolresource',
+            name='Can change toolresource',
+            content_type=rct
+        )
+
+    if not Permission.objects.filter(codename='delete_toolresource').exists():
+        Permission.objects.create(
+            codename='delete_toolresource',
+            name='Can delete toolresource',
+            content_type=rct
+        )
 
 
 def add_admins_group_with_perms(apps, schema_editor):
@@ -62,7 +97,8 @@ def add_admins_group_with_perms(apps, schema_editor):
         Q(codename__endswith='_toolresource')
     )
     for perm in Permission.objects.filter(q):
-        admins.permissions.add(perm)
+        if perm not in admins.permissions.all():
+            admins.permissions.add(perm)
     admins.save()
 
 
