@@ -31,7 +31,7 @@
           {{category.description|safe }}
         </div>
         <div class="col-md-6">
-          <h4 class="title no-top-margin">Related categories</h4>
+          <h4 class="title">Related categories</h4>
           {% for i in "xxxxxxx" %}
             <div class="category">
               Category {{ forloop.counter0 }}
@@ -41,11 +41,11 @@
         <div class="col-md-6">
           <h4 class="title top-margin">Help improve this category</h4>
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7 improvement-info">
               How can we improve this category? Give us concrete feedback on what you think is missing.
             </div>
             <div class="col-md-4">
-              <button class="btn btn-primary">Add a suggestion</button>
+              <button class="btn btn-warning">Add a suggestion</button>
             </div>
           </div>
         </div>
