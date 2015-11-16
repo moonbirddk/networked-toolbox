@@ -16,55 +16,61 @@
     <div class="row">
         <div class="col-md-12">
             {% if category.cover_image %}
-                <img src="{{ category.cover_image.url }}" class="cover-image img-responsive">
+                <div class="category-cover-image" style="background-image: url({{ category.cover_image.url }})"></div>
             {% endif %}
-            <h1>{{ category.title }} 
-            {% if perms.tools %}{% if perms.tools.change_toolcategory%}
-            <a href="{% url 'tools:edit_category' category.id %}"><i class="fa fa-pencil-square-o"></i></a>
-            {% endif %}{% endif %}
-            {% if perms.tools %}{% if perms.tools.delete_toolcategory%}
-            <a href="{% url 'tools:delete_category' category.id %}"><i class="fa fa-trash-o"></i></a>
-            {% endif %}{% endif %}
-            </h1>
-            {{category.description|safe }}
+        </div>
+        <div class="col-md-6">
+          <h2 class="title no-top-margin">{{ category.title }}
+          {% if perms.tools %}{% if perms.tools.change_toolcategory%}
+          <a href="{% url 'tools:edit_category' category.id %}"><i class="fa fa-pencil-square-o"></i></a>
+          {% endif %}{% endif %}
+          {% if perms.tools %}{% if perms.tools.delete_toolcategory%}
+          <a href="{% url 'tools:delete_category' category.id %}"><i class="fa fa-trash-o"></i></a>
+          {% endif %}{% endif %}
+        </h2>
+          {{category.description|safe }}
+        </div>
+        <div class="col-md-6">
+          <h4 class="title no-top-margin">Related categories</h4>
+          {% for i in "xxxxxxx" %}
+            <div class="category">
+              Category {{ forloop.counter0 }}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="col-md-6">
+          <h4 class="title top-margin">Help improve this category</h4>
+          <div class="row">
+            <div class="col-md-8">
+              How can we improve this category? Give us concrete feedback on what you think is missing.
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-primary">Add a suggestion</button>
+            </div>
+          </div>
         </div>
     </div>
+    <hr class="category-seperator">
     <div class="row">
-        <div class="col-md-12">
-         <hr />
-         <h1>Related tools</h1>
-         {% for sublist in category.tools.all|partition:"4" %}
-           <div class="row">
-           {% for tool in sublist %}
-             <div class="col-sm-3">
-                 <div class="row">
-                     <div class="col-md-12">
-                 {% if tool.cover_image %}
-                 <a href="{% url 'tools:show' tool.id %}" class="thumbnail">
-                    <img src="{{ tool.cover_image.url }}" />
-                 </a>
-                 {% else %}
-                    <img src="empty-image-here" />
-                 {% endif %}
-                    </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-12">
-                         <h3>{{ tool.title|bleach_striptags|truncatechars:16 }}</h3>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-md-12">
-                         <p>{{ tool.description|bleach_striptags|truncatechars:70 }}</p>
-                     </div>
-                 </div>
-               </a>
-             </div>
-           {% endfor %}
-           </div>
-         {% empty %}
-           <p>Huh, that's weird. We can't find any tools. Check back later.</p>
-         {% endfor %}
+      <div class="col-md-12">
+        <h2 class="title">Related tools</h2>
+      </div>
+      {% for resource in category.tools.all %}
+        <div class="col-sm-3">
+            <a href="{% url 'tools:show' resource.id %}"><div class="category-image">
+              {% if resource.cover_image %}
+                <img src="{{ resource.cover_image.url }}" />
+              {% else %}
+              <!--<img src="empty-image-here" />-->
+              {% endif %}
+            </div></a>
+            <div class="category-content">
+              <h3>{{ resource.title|bleach_striptags|truncatechars:16 }}</h3>
+              <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
+            </div>
         </div>
+      {% empty %}
+        <p>Huh, that's weird. We can't find any items. Check back later.</p>
+      {% endfor %}
     </div>
 {% endblock %}

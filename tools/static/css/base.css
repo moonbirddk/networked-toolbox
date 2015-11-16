@@ -14,6 +14,12 @@ body{
   font-family: 'Helvetica Neue';
 }
 
+@media (min-width: 1200px){
+  .container{
+    width:1230px;
+  }
+}
+
 .navbar{
   border: none;
   border-radius: 0px;
@@ -21,7 +27,7 @@ body{
 }
 
 .navbar-logo{
-  height: 2rem;
+  height: 1.5rem;
 }
 
 .navbar-top{
@@ -33,7 +39,8 @@ body{
 
 .navbar-bottom{
   background-color: #ED1C24;
-  height: 1rem;
+  min-height: 0.8rem;
+  height: 4.5rem;
 }
 
 .navbar-top .navbar-brand{
@@ -46,7 +53,13 @@ body{
 }
 
 .navbar-default .navbar-nav{
-   font-size: 20px;
+   font-size: 18px;
+ }
+
+ .navbar-right > li > a{
+   color: black !important;
+   font-weight: bold;
+   font-size: 15px;
  }
  .navbar-default .navbar-nav > .active > a,
  .navbar-default .navbar-nav > .active > a:hover,

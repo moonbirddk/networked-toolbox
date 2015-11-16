@@ -30,3 +30,26 @@
   word-wrap: break-word;
   margin: 0.5rem 0 0.5rem;
 }
+
+.category-cover-image{
+  overflow: hidden;
+  height: 30rem;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 2rem;
+}
+
+.no-top-margin{
+  margin-top: 0px;
+}
+
+.top-margin{
+  margin-top: 2rem;
+}
+
+.category-seperator{
+  height: 3px;
+  color: black;
+  background-color: black;
+}

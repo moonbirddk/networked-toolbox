@@ -38,16 +38,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="{% url 'tools:index'%}">Tools<span class="sr-only">(current)</span></a></li>
+                <li><a href="{% url 'tools:index'%}">Tools<span class="sr-only">(current)</span></a></li>
                 <li><a href="{% url 'tools:list_categories'%}">Categories<span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Cases<span class="sr-only">(current)</span></a></li>
                 <li><a href="#">People<span class="sr-only">(current)</span></a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                <li>{{user.email}} <a href="{% url 'account_logout'%}">sign-out</a></li>
+                <li><a href=#>{{user.email}}</a></li>
+                <li><a href="{% url 'account_logout'%}">Log out</a></li>
                 {% else %}
-                <li><a href="{% url 'account_login'%}">sign-in</a></li>
+                <li><a href="{% url 'account_login'%}">Log in</a></li>
                 {% endif %}
               </ul>
             </div><!-- /.navbar-collapse -->
