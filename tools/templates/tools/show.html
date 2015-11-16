@@ -21,7 +21,7 @@
             {% if tool.cover_image %}
              <div class="cover-image" style="background-image: url({{ tool.cover_image.url }})"></div>
             {% endif %}
-            <h1 class="title">{{ tool.title }} 
+            <h1 class="title">{{ tool.title }}
             {% if perms.tools %}{% if perms.tools.change_tool %}
             <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
             {% endif %}{% endif %}
@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-4 padding">
           <div class="resource-box">
-            <h3 class="title">Resources 
+            <h3 class="title">Resources
             {% if perms.tools %}{% if perms.tools.add_toolresource %}
             <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a>
             {% endif %}{% endif %}
@@ -75,7 +75,9 @@
             {% endfor %}
         </div>
         <div class="col-md-4">
-
+            <h3 class="title">Help improve this tool</h3>
+                How can we improve this category? Give us concrete feedback on what you think is missing.
+                <button class="btn btn-warning">Add a suggestion</button>
         </div>
     </div>
 {% endblock %}
