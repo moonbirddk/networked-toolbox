@@ -5,7 +5,7 @@ from .base import *
 from .s3_settings import *
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
 DOMAIN = 'network-toolbox-staging.herokuapp.com'
