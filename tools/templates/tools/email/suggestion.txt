@@ -1,0 +1,17 @@
+{% extends 'email_base.txt'%}
+{% block email_content %}
+
+You receive this email because {{suggestion.author.email}} has send a suggestion to
+{{related_object_type}}
+
+{{related_object.title}}
+{{BASE_URL}}{{suggestion.related_object.get_absolute_url}}
+
+{{suggestion.description}}
+
+{% if suggestion.attachement %}
+    {{suggestion.author.email}} has added an attachement: 
+    {{MEDIA_URL}}{{suggestion.attachement.url}}
+{% endif %}
+
+{% endblock %}

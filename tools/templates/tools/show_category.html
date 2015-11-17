@@ -48,7 +48,7 @@
               How can we improve this category? Give us concrete feedback on what you think is missing.
             </div>
             <div class="col-md-4">
-              <button class="btn btn-warning">Add a suggestion</button>
+              <a class="btn btn-warning" href="{% url 'tools:add_suggestion' 'category' category.id %}">Add a suggestion</a>
             </div>
           </div>
         </div>

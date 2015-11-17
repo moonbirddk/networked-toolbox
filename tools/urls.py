@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^categories/edit/(\d+)/$', views.edit_category, name='edit_category'),
     url(r'^categories/delete/(\d+)/$', views.delete_category, name='delete_category'),
 
+    url(r'^suggestion/([a-z]+)/(\d+)/$', views.add_suggestion, name='add_suggestion'),
+
 ]
