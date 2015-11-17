@@ -13,6 +13,13 @@ log = logging.getLogger(__name__)
 
 
 class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
+
+    widget = forms.CheckboxSelectMultiple
+
+    def __init__(self, *args, **kwargs):
+        queryset = ToolCategory.objects.all()
+        super().__init__(queryset=queryset, **kwargs)
+
     def label_from_instance(self, obj):
         return obj.title
 
@@ -25,8 +32,7 @@ class ToolForm(forms.Form):
     )
     description = forms.fields.CharField(
         widget=SummernoteInplaceWidget(), required=True)
-    categories = ToolCategoryChoiceField(queryset=ToolCategory.objects.all(),
-                                         widget=forms.CheckboxSelectMultiple)
+    categories = ToolCategoryChoiceField()
 
 
 class ToolCategoryForm(forms.Form):

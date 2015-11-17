@@ -59,10 +59,11 @@ def edit(request, tool_id):
     # TODO: use celery tasks for storage IO so id doesn't block transaction
     tool = get_object_or_404(Tool, id=tool_id)
 
+    categories_ids = list(tool.categories.all().values_list('id', flat=True))
     attributes = {
         'title': tool.title,
         'description': tool.description,
-        'categories': tool.categories.all(),
+        'categories': categories_ids,
     }
 
     if tool.cover_image and default_storage.exists(tool.cover_image.name):
