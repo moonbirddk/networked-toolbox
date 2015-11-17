@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block main %}
+<h1>Add suggestion</h1>
+<p>You are adding suggestion to {{related_object_type}}:</p>
+<blockquote>&quot;{{related_object.title}}&quot;</blockquote>
+<hr />
+
+<form
+method="POST" 
+action="{% url 'tools:add_suggestion' related_object_type related_object.id %}" 
+class="form" 
+enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Submit
+        </button>
+        <a class="btn btn-danger" href="{{related_object.get_absolute_url}}">Cancel</a>
+    {% endbuttons %}
+</form>
+
+{% endblock %}

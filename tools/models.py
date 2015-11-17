@@ -1,6 +1,10 @@
 
-from django.db import models
+from django.conf import settings
 from django.core.files.storage import default_storage
+from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.db import models
 
 from .utils import generate_upload_path
 
@@ -11,6 +15,10 @@ def do_upload_cover_image(inst, filename):
 
 def do_upload_document(inst, filename):
     return generate_upload_path(inst, filename, dirname='resources')
+
+
+def do_upload_suggestion_attachement(inst, filename):
+    return generate_upload_path(inst, filename, dirname='suggestions')
 
 
 class ModelWithCoverImage(models.Model):
@@ -31,6 +39,9 @@ class Tool(ModelWithCoverImage):
     categories = models.ManyToManyField('ToolCategory', related_name='tools',
                                         related_query_name='tool')
 
+    def get_absolute_url(self):
+        return reverse('tools:show', args=[self.id, ])
+
 
 class ToolResource(models.Model):
     tool = models.ForeignKey(
@@ -47,3 +58,21 @@ class ToolResource(models.Model):
 class ToolCategory(ModelWithCoverImage):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=5000)
+
+    def get_absolute_url(self):
+        return reverse('tools:show_category', args=[self.id, ])
+
+
+class Suggestion(models.Model):
+    description = models.TextField(max_length=5000, blank=False, null=False)
+    attachement = models.FileField(upload_to=do_upload_suggestion_attachement,
+                                   blank=True, null=True)
+    related_content_type = models.ForeignKey(
+        ContentType,
+        limit_choices_to={"model__in": ("tool", "toolcategory")}
+    )
+    related_object_id = models.PositiveIntegerField(null=False, blank=False)
+    related_object = GenericForeignKey('related_content_type',
+                                       'related_object_id')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
+                               blank=False)

@@ -1,0 +1,16 @@
+{% extends 'email_base.html'%}
+{% block email_content %}
+
+<p>You receive this email because {{suggestion.author.email}} has send a suggestion to
+<a href="{{BASE_URL}}{{suggestion.related_object.get_absolute_url}}">{{related_object.title}}</a></p>
+
+<div><blockquote>
+{{suggestion.description}}
+</blockquote></div>
+
+{% if suggestion.attachement %}
+    <p>{{suggestion.author.email}} has added an 
+    <a href="{{MEDIA_URL}}{{suggestion.attachement.url}}">attachment</a></p>
+{% endif %}
+
+{% endblock %}
