@@ -101,7 +101,11 @@
   font-family: 'American Typewriter';
 }
 
-.category{
+.categories-tags{
+  overflow: auto;
+}
+
+.category-tag{
   float: left;
   color: white;
   background-color: #ED1C24;
@@ -112,10 +116,10 @@
   cursor: pointer;
 }
 
-.category:hover{
+.category-tag:hover{
   background-color: black;
 }
-.category a{
+.category-tag a{
   color: white;
   text-decoration: none;
 }

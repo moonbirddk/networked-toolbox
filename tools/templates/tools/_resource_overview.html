@@ -3,7 +3,7 @@
 
 <div class="row">
   {% for resource in resources %}
-    <div class="col-sm-3">
+    <div class="col-md-3 col-xs-6">
         <a href="{% url route resource.id %}"><div class="category-image">
           {% if resource.cover_image %}
             <img src="{{ resource.cover_image.url }}" />
@@ -12,7 +12,7 @@
           {% endif %}
         </div></a>
         <div class="category-content">
-          <h3>{{ resource.title|bleach_striptags|truncatechars:16 }}</h3>
+          <h3>{{ resource.title|bleach_striptags|truncatechars:40 }}</h3>
           <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
         </div>
     </div>

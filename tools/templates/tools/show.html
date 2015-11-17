@@ -67,12 +67,13 @@
         </div>
         <div class="col-md-4">
             <h3 class="title">Categories</h3>
-
-            {% for category in tool.categories.all %}
-            <div class="category">
-              <a href="{% url 'tools:show_category' category.id %}">{{ category.title }}</a>
+            <div class="categories-tags">
+              {% for category in tool.categories.all %}
+              <div class="category-tag">
+                <a href="{% url 'tools:show_category' category.id %}">{{ category.title }}</a>
+              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
         </div>
         <div class="col-md-4">
             <h3 class="title">Help improve this tool</h3>

@@ -21,7 +21,7 @@
 }
 
 .category-content{
-  height: 12rem;
+  min-height: 10rem;
   overflow: hidden;
   line-height: 1.5rem;
 }
@@ -29,6 +29,7 @@
 .category-content h3{
   word-wrap: break-word;
   margin: 0.5rem 0 0.5rem;
+  font-size: 21px;
 }
 
 .category-cover-image{
