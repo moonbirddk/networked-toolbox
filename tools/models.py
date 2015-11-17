@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models.signals import post_delete
 
 from .utils import generate_upload_path
 
@@ -76,3 +77,14 @@ class Suggestion(models.Model):
                                        'related_object_id')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
                                blank=False)
+
+
+def delete_suggestion_on_related_deleted(sender, instance, **kwargs):
+    ct = ContentType.objects.get_for_model(sender)
+    Suggestion.objects.filter(
+        related_content_type__pk=ct.id,
+        related_object_id=instance.id
+    ).delete()
+
+post_delete.connect(delete_suggestion_on_related_deleted, sender=Tool)
+post_delete.connect(delete_suggestion_on_related_deleted, sender=ToolCategory)

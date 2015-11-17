@@ -62,3 +62,27 @@ class SuggestionTestCase(TestCase):
         self.assertIn(actual.attachement.url, mail.outbox[0].body)
         self.assertIn(actual.author.email, mail.outbox[0].body)
         self.assertIn(actual.description, mail.outbox[0].body)
+
+    def test_delete_tool(self):
+        suggestion = Suggestion(
+            description='test description',
+            related_object=self.test_tool,
+            author=self.test_user
+        )
+        suggestion.save()
+        self.test_tool.delete()
+        self.assertFalse(Suggestion.objects
+                         .filter(description='test description')
+                         .exists())
+
+    def test_delete_suggestion(self):
+        suggestion = Suggestion(
+            description='test description',
+            related_object=self.test_tool,
+            author=self.test_user
+        )
+        suggestion.save()
+        suggestion.delete()
+        self.assertTrue(Tool.objects
+                        .filter(id=self.test_tool.id)
+                        .exists())
