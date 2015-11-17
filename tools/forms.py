@@ -18,7 +18,10 @@ class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
 
 class ToolForm(forms.Form):
     title = forms.fields.CharField(max_length=100, required=True)
-    cover_image = forms.fields.ImageField(required=False)
+    cover_image = forms.fields.ImageField(
+        required=False,
+        label='Cover image (recommended size: 1200x600)'
+    )
     description = forms.fields.CharField(
         widget=SummernoteInplaceWidget(), required=True)
     categories = ToolCategoryChoiceField(queryset=ToolCategory.objects.all(),
@@ -27,7 +30,10 @@ class ToolForm(forms.Form):
 
 class ToolCategoryForm(forms.Form):
     title = forms.fields.CharField(max_length=100, required=True)
-    cover_image = forms.fields.ImageField(required=False)
+    cover_image = forms.fields.ImageField(
+        required=False,
+        label='Cover image (recommended size: 1200x600)'
+    )
     description = forms.fields.CharField(
         widget=SummernoteInplaceWidget(), required=True)
 
