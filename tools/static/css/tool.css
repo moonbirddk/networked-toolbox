@@ -52,12 +52,16 @@
   color: black;
 }
 .resource-title {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 1.3rem;
-    word-wrap: break-word;
-    width: 60%;
-    text-decoration: none;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  max-height: 3.2rem;
+  overflow: hidden;
+  width: 60%;
+
+  display: inline-block;
+  vertical-align: middle;
+  word-wrap: break-word;
+  text-decoration: none;
 }
 
 .resource-item {
@@ -87,6 +91,20 @@
   color: white;
 }
 
+.summernote-container{
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.summernote-container p[style]{
+  font-size: 15px !important;
+  font-family: 'Helvetica Neue' !important;
+}
+
+.summernote-container img{
+  max-width: 100% !important;
+}
+
 .summernote-container p{
   font-size: 14px;
 }
@@ -99,29 +117,6 @@
 .resource-box .title,
 .title{
   font-family: 'American Typewriter';
-}
-
-.categories-tags{
-  overflow: auto;
-}
-
-.category-tag{
-  float: left;
-  color: white;
-  background-color: #ED1C24;
-  border-radius: 5px;
-  padding: 4px;
-  margin-right: 5px;
-  margin-top: 5px;
-  cursor: pointer;
-}
-
-.category-tag:hover{
-  background-color: black;
-}
-.category-tag a{
-  color: white;
-  text-decoration: none;
 }
 
 .resource-item i {

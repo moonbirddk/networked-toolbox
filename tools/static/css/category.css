@@ -21,7 +21,7 @@
 }
 
 .category-content{
-  min-height: 10rem;
+  min-height: 12rem;
   overflow: hidden;
   line-height: 1.5rem;
 }
@@ -53,4 +53,27 @@
   height: 3px;
   color: black;
   background-color: black;
+}
+
+.categories-tags{
+  overflow: auto;
+}
+
+.category-tag{
+  float: left;
+  color: white;
+  background-color: #ED1C24;
+  border-radius: 5px;
+  padding: 4px;
+  margin-right: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.category-tag:hover{
+  background-color: black;
+}
+.category-tag a{
+  color: white;
+  text-decoration: none;
 }
