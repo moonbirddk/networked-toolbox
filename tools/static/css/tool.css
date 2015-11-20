@@ -23,7 +23,7 @@
 
 .resource-buttons{
   min-height: 5rem;
-  background-color: #C2C1B8;
+  background-color: #8D8479;
   border-radius: 0em 0em 0.5em 0.5em;
 }
 
@@ -91,12 +91,67 @@
   color: white;
 }
 
+.usage-indicator{
+  margin: 20px 0 20px;
+  min-height: 100px;
+  background-color: #8D8479;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0 10px;
+}
+
+.usage-indicator h3,
+.usage-indicator p{
+  color: white;
+  margin: 0px;
+}
+
+
+.usage-indicator h3{
+  font-size: 2.5rem;
+}
+.usage-indicator p{
+  font-size: 1.5rem;
+}
+
+.btn-usage{
+  font-weight: bold;
+  background-color: white;
+  color: #8D8479;
+}
+
+.btn-usage:hover{
+  background-color: #F5F5F5;
+  color: #8D8479;
+}
+
+#usage-modal{
+  margin-top: 40vh;
+}
+#usage-modal .modal-content{
+  padding: 8px;
+}
+
+#usage-modal button{
+  background-color:black;
+}
+
+#usage-modal h3{
+  margin: 0.8rem 0 0.7rem;
+}
+
+#usage-modal p{
+  font-size: 1.8rem;
+}
+
 .summernote-container{
   overflow: hidden;
   word-wrap: break-word;
 }
 
-.summernote-container p[style]{
+.summernote-container p[style],
+.summernote-container span[style], {
   font-size: 15px !important;
   font-family: 'Helvetica Neue' !important;
 }
