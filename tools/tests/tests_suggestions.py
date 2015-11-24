@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -55,12 +56,17 @@ class SuggestionTestCase(TestCase):
 
         self.assertEqual(len(mail.outbox), 1)
         expected = "New suggestion"
+        self.assertEqual([settings.SITE_ADMIN_EMAIL], mail.outbox[0].to)
         self.assertEqual(expected, mail.outbox[0].subject)
         print(mail.outbox[0].body)
+        self.assertEqual(actual.related_object.title, self.test_tool.title)
+        self.assertIn(self.test_tool.title, mail.outbox[0].body)
+        self.assertIn('has sent a suggestion to a tool:', mail.outbox[0].body)
         self.assertIn(self.test_tool.get_absolute_url(), mail.outbox[0].body)
-        self.assertIn(actual.attachement.url, mail.outbox[0].body)
+        self.assertIn(actual.author.profile.name(), mail.outbox[0].body)
         self.assertIn(actual.author.email, mail.outbox[0].body)
         self.assertIn(actual.description, mail.outbox[0].body)
+        self.assertIn(actual.attachement.url, mail.outbox[0].body)
 
     def test_delete_tool(self):
         suggestion = Suggestion(

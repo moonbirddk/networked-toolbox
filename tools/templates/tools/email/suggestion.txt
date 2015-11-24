@@ -1,13 +1,12 @@
 {% extends 'email_base.txt'%}
 {% block email_content %}
 
-You receive this email because {{suggestion.author.email}} has send a suggestion to
-{{related_object_type}}
+You receive this email because {% if suggestion.author.profile %}{{suggestion.author.profile.name}}{% endif %}
+{{suggestion.author.email}} has sent a suggestion to a {{related_object_type}}:
+    "{{suggestion.related_object.title}}"
+    {{BASE_URL}}{{suggestion.related_object.get_absolute_url}}
 
-{{related_object.title}}
-{{BASE_URL}}{{suggestion.related_object.get_absolute_url}}
-
-{{suggestion.description}}
+    {{suggestion.description}}
 
 {% if suggestion.attachement %}
     {{suggestion.author.email}} has added an attachement: 

@@ -1,8 +1,11 @@
 {% extends 'email_base.html'%}
 {% block email_content %}
 
-<p>You receive this email because {{suggestion.author.email}} has send a suggestion to
-<a href="{{BASE_URL}}{{suggestion.related_object.get_absolute_url}}">{{related_object.title}}</a></p>
+<p>You receive this email because {% if suggestion.author.profile %}{{suggestion.author.profile.name}}{% endif %}
+<a href="mailto:{{suggestion.author.email}}">{{suggestion.author.email}}</a>
+ has sent a suggestion to a {{related_object_type}}:
+  &quot;<a href="{{BASE_URL}}{{suggestion.related_object.get_absolute_url}}">
+{{suggestion.related_object.title}}</a>&quot;</p>
 
 <div><blockquote>
 {{suggestion.description}}

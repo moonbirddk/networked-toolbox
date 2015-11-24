@@ -136,6 +136,7 @@ class ToolsViewsTestCase(TestCase):
             "You updated a tool", str(list(resp.context['messages'])[0]))
         self.assertContains(resp, data['title'])
         tool = Tool.objects.get(id=tool.id)
+        self.assertTrue(tool.has_existing_cover_image())
         self.assertTrue(tool.cover_image)
         self.assertTrue(tool.cover_image.name, 'test empty2.png')
         self.assertTrue(self.test_category in tool.categories.all())
@@ -162,6 +163,7 @@ class ToolsViewsTestCase(TestCase):
         self.assertContains(resp, data['title'])
         tool = Tool.objects.get(id=tool.id)
         self.assertFalse(tool.cover_image)
+        self.assertFalse(tool.has_existing_cover_image())
         self.assertTrue(self.test_category in tool.categories.all())
 
     def test_index_get(self):

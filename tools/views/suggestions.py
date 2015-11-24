@@ -29,7 +29,8 @@ def add_suggestion(request, related_object_type, related_object_id):
                 author=request.user
             )
             suggestion.save()
-            send_suggestion(suggestion_id=suggestion.id)
+            send_suggestion(related_form.cleaned_data['related_object_type'],
+                            suggestion_id=suggestion.id)
             msg = "Your suggestion has been send to administrator"
             messages.info(request, msg)
             print(related_object.get_absolute_url())
