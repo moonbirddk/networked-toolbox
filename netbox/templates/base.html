@@ -47,7 +47,7 @@
                 {% if user.is_authenticated %}
                 <li><a href="{% url 'profiles:profile'%}">
                 <img src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
-                {% if user.profile and user.profile.name %}
+                {% if user.first_name %}
                     {{user.first_name}}
                 {% else%}
                     My profile
