@@ -23,10 +23,11 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^summernote/', include('django_summernote.urls')),
 
+    url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^tools/', include('tools.urls', namespace='tools')),
     url(r'^$', 'tools.views.home', name='home'),
 
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) +\
-static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
+static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)
 

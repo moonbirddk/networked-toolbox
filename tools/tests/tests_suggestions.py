@@ -3,7 +3,6 @@ from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core import mail
 
-from tools.utils import generate_upload_path
 from ..models import Tool, ToolCategory, ToolResource, Suggestion
 from django.contrib.auth import get_user_model
 
