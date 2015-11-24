@@ -1,5 +1,6 @@
 
 [run]
+branch = True
 omit = *mock*
     *migrations*
     *test*
@@ -10,7 +11,11 @@ omit = *mock*
 [report]
 exclude_lines =
     import
+    (models.Model)
+    class Meta:
     pragma: no cover
+    def __repr__
+    def __str__
     @staticmethod
     raise NotImplementedError
     if six.PY3
