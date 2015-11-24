@@ -16,6 +16,7 @@ import os
 SITE_ID = 1
 DOMAIN = 'localhost'
 DEFAULT_FROM_EMAIL = 'Networked Toolbox <hello@{}>'.format(DOMAIN)
+SITE_ADMIN_EMAIL = 'admin@{}'.format(DOMAIN)
 
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
 
