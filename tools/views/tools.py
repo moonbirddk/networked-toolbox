@@ -81,8 +81,7 @@ def edit(request, tool_id):
                     default_storage.delete(tool.cover_image.name)
             else:
                 if form.cleaned_data['cover_image']:
-                    if tool.cover_image:
-                        if tool.has_existing_cover_image():
+                    if tool.has_existing_cover_image():
                             default_storage.delete(tool.cover_image.name)
                     cover_image = form.cleaned_data['cover_image']
                 else:

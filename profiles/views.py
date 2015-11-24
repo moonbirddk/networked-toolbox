@@ -28,7 +28,18 @@ def profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            profile.photo = form.cleaned_data.get('photo', None)
+            if request.POST.get('photo-clear'):
+                photo = None
+                if profile.has_existing_photo():
+                    default_storage.delete(profile.photo.name)
+            else:
+                if form.cleaned_data['photo']:
+                    if profile.has_existing_photo():
+                            default_storage.delete(profile.photo.name)
+                    photo = form.cleaned_data['photo']
+                else:
+                    photo = profile.photo
+            profile.photo = photo
             profile.save()
             user.first_name = form.cleaned_data.get('first_name', None)
             user.last_name = form.cleaned_data.get('last_name', None)

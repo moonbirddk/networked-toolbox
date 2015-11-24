@@ -70,8 +70,7 @@ def edit_category(request, cat_id):
                     default_storage.delete(category.cover_image.name)
             else:
                 if form.cleaned_data['cover_image']:
-                    if category.cover_image:
-                        if category.has_existing_cover_image():
+                    if category.has_existing_cover_image():
                             default_storage.delete(category.cover_image.name)
                     cover_image = form.cleaned_data['cover_image']
                 else:
