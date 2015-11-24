@@ -54,6 +54,14 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
+        'profiles': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'common': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
     },
 }
 

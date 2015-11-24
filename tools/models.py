@@ -7,7 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models.signals import post_delete
 
-from .utils import generate_upload_path
+from common.utils import generate_upload_path
 
 
 def do_upload_cover_image(inst, filename):

@@ -4,12 +4,12 @@
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         {% bootstrap_css %}
         {% bootstrap_javascript %}
-        <link rel="stylesheet" href="{% static "css/base.css" %}">
-        <link rel="stylesheet" href="{% static "css/tool.css" %}">
-        <link rel="stylesheet" href="{% static "css/category.css" %}">
+        <link rel="stylesheet" href="{% static "netbox/css/base.css" %}">
+        <link rel="stylesheet" href="{% static "tools/css/tool.css" %}">
+        <link rel="stylesheet" href="{% static "tools/css/category.css" %}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block head_title %}{% endblock %}</title>
 
@@ -45,7 +45,14 @@
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                <li><a href=#>{{user.email}}</a></li>
+                <li><a href="{% url 'profiles:profile'%}">
+                <img src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
+                {% if user.profile and user.profile.name %}
+                    {{user.first_name}}
+                {% else%}
+                    My profile
+                {% endif %}
+                </a></li>
                 <li><a href="{% url 'account_logout'%}">Log out</a></li>
                 {% else %}
                 <li><a href="{% url 'account_login'%}">Log in</a></li>
@@ -62,7 +69,7 @@
             <div class="col-md-10 col-md-offset-1">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-              <a href="http://actionaid.org" target='_blank' class="navbar-brand"><img class="navbar-logo" src="{% static "images/AA_Logo-white-web.png" %}"></a>
+              <a href="http://actionaid.org" target='_blank' class="navbar-brand"><img class="navbar-logo" src="{% static "netbox/images/AA_Logo-white-web.png" %}"></a>
             </div>
             </div>
           </div>
