@@ -1,17 +1,35 @@
 @font-face {
-  font-family: 'American Typewriter';
-  src: url('static/fonts/AmericanTypewriter.tff');
-  src: local('static/fonts/AmericanTypewriter.tff');
+	font-family: 'AmericanTypewriter-Light';
+	src: url('../fonts/AmericanTypewriter-Light.eot');
+	src: url('../fonts/AmericanTypewriter-Light.woff') format('woff'),
+       url('../fonts/AmericanTypewriter-Light.ttf') format('truetype'),
+       url('../fonts/AmericanTypewriter-Light.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: 'American Typewriter Bold';
-  src: url('static/fonts/AmericanTypewriter-Bold.tff');
-  src: local('static/fonts/AmericanTypewriter-Bold.tff');
+	font-family: 'AmericanTypewriter-Bold';
+	src: url('../fonts/AmericanTypewriter-Bold.eot');
+	src: url('../fonts/AmericanTypewriter-Bold.woff') format('woff'),
+       url('../fonts/AmericanTypewriter-Bold.ttf') format('truetype'),
+       url('../fonts/AmericanTypewriter-Bold.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'AmericanTypewriter';
+	src: url('../fonts/AmericanTypewriter.eot');
+	src: url('../fonts/AmericanTypewriter.woff') format('woff'),
+       url('../fonts/AmericanTypewriter.ttf') format('truetype'),
+       url('../fonts/AmericanTypewriter.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 
 body{
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica Neue', 'Arial';
 }
 
 @media (min-width: 1200px){
@@ -43,7 +61,11 @@ body{
 .navbar{
   border: none;
   border-radius: 0px;
-  font-family: 'American Typewriter';
+  font-family: 'AmericanTypewriter';
+}
+
+.navbar-brand{
+  font-family: 'AmericanTypewriter-Bold'
 }
 
 .navbar-logo{
@@ -80,12 +102,17 @@ body{
    color: black !important;
    font-weight: bold;
    font-size: 15px;
+   font-family: 'Helvetica Neue', 'Arial'
  }
  .navbar-default .navbar-nav > .active > a,
  .navbar-default .navbar-nav > .active > a:hover,
  .navbar-default .navbar-nav > .active > a:focus {
       color: #ED1C24;
       background: white;
+ }
+
+ .navbar-right > li .profile-thumbnail-link{
+   padding: 0px 0px 0px 15px;
  }
 
 .white-text {

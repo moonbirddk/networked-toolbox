@@ -45,8 +45,10 @@
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
+                <li><a class='profile-thumbnail-link' href="{% url 'profiles:profile'%}">
+                <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
+                </a></li>
                 <li><a href="{% url 'profiles:profile'%}">
-                <img src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
                 {% if user.first_name %}
                     {{user.first_name}}
                 {% else%}
