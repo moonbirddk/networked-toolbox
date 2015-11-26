@@ -25,6 +25,10 @@ class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
 
 
 class ToolForm(forms.Form):
+    published = forms.fields.BooleanField(
+        required=False,
+        label="Published (available for all users)"
+    )
     title = forms.fields.CharField(max_length=100, required=True)
     cover_image = forms.fields.ImageField(
         required=False,
@@ -36,6 +40,10 @@ class ToolForm(forms.Form):
 
 
 class ToolCategoryForm(forms.Form):
+    published = forms.fields.BooleanField(
+        required=False,
+        label="Published (available for all users)"
+    )
     title = forms.fields.CharField(max_length=100, required=True)
     cover_image = forms.fields.ImageField(
         required=False,

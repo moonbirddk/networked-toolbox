@@ -12,11 +12,11 @@ TEST_PNG_CONTENT = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00
 class ToolResourcesViewsTestCase(TestCase):
 
     def setUp(self):
-        self.test_admin = User.objects.create(username='testadmin')
-        self.test_admin.set_password('testpass')
+        self.test_admin = User.objects.create_user('testadmin',
+                                                   'testadmin@localhost',
+                                                   'testpass')
         self.admins_group = Group.objects.get(name='admins')
         self.test_admin.groups.add(self.admins_group)
-        self.test_admin.save()
 
         self.test_tool = Tool.objects.create(title='test tool',
                                              description='test description')
@@ -40,7 +40,7 @@ class ToolResourcesViewsTestCase(TestCase):
         self.assertTemplateUsed(resp, 'tools/add_resource.html')
         self.assertContains(resp, 'Add resource to')
 
-    def test_add_resource_post(self):
+    def test_add_resource_post_empty(self):
         self.client.login(username='testadmin', password='testpass')
         url = reverse(
             'tools:add_resource',
@@ -51,6 +51,13 @@ class ToolResourcesViewsTestCase(TestCase):
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add_resource.html')
         self.assertContains(resp, 'Add resource to')
+
+    def test_add_resource_post(self):
+        self.client.login(username='testadmin', password='testpass')
+        url = reverse(
+            'tools:add_resource',
+            args=(self.test_tool.id,)
+        )
         test_fh = SimpleUploadedFile(
             'test post empty.png',
             TEST_PNG_CONTENT,
@@ -60,7 +67,6 @@ class ToolResourcesViewsTestCase(TestCase):
             'title': 'test post test resource',
             'document': test_fh
         }
-
         resp = self.client.post(url, data, follow=True)
         self.assertEqual(200, resp.status_code)
         expected_status = (

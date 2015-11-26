@@ -98,7 +98,6 @@ class ToolsViewsTestCase(TestCase):
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))
-        self.assertContains(resp, data['title'])
         tool = Tool.objects.get(id=tool.id)
         self.assertTrue(tool.cover_image)
         self.assertTrue(tool.cover_image.name, 'test empty.png')
@@ -126,6 +125,7 @@ class ToolsViewsTestCase(TestCase):
             'description': 'new description test',
             'categories': self.test_category.id,
             'cover_image': test_fh2,
+            'published': True,
         }
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
@@ -174,8 +174,17 @@ class ToolsViewsTestCase(TestCase):
 
     def test_show_get(self):
         tool = Tool.objects.create(
-            title='A title', description='A description')
+            title='A title',
+            description='A description',
+            published=True
+        )
         resp = self.client.get(reverse('tools:show', args=(tool.id, )))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/show.html')
         self.assertContains(resp, 'Resources')
+
+    def test_show_get_unpublished(self):
+        tool = Tool.objects.create(
+            title='A title', description='A description')
+        resp = self.client.get(reverse('tools:show', args=(tool.id, )))
+        self.assertEqual(404, resp.status_code)

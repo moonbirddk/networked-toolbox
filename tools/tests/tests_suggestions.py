@@ -19,7 +19,8 @@ class SuggestionTestCase(TestCase):
         self.test_user.save()
         self.test_tool = Tool.objects.create(
             title='A tool title',
-            description='A tool description'
+            description='A tool description',
+            published=True
         )
 
     def test_add_suggestion_get(self):
@@ -29,6 +30,17 @@ class SuggestionTestCase(TestCase):
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add_suggestion.html')
         self.assertContains(resp, 'Add suggestion')
+
+    def test_add_suggestion_post_to_unpublished(self):
+        self.client.login(username='test@localhost', password='testpass')
+        self.test_tool.published = False
+        self.test_tool.save()
+        url = reverse('tools:add_suggestion', args=('tool', self.test_tool.id))
+        data = {
+            'description': 'test suggestion description',
+        }
+        resp = self.client.post(url, data, follow=True)
+        self.assertEqual(404, resp.status_code)
 
     def test_add_suggestion_post(self):
         self.client.login(username='test@localhost', password='testpass')
