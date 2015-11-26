@@ -1,13 +1,13 @@
 import logging
-from copy import deepcopy
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db import transaction
 from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required, permission_required
 
+from ..filters import PublishedFilter
 from ..forms import ToolForm
-from ..models import Tool, ToolCategory
+from ..models import Tool
 
 
 log = logging.getLogger(__name__)
@@ -40,14 +40,20 @@ def add(request):
 
 
 def index(request):
-    tools = Tool.objects.all()
-    context = {'tools': tools}
+    if request.user.has_perm('tools.change_tool'):
+        queryset = Tool.objects.all()
+    else:
+        queryset = Tool.objects.filter(published=True)
+    tools_filter = PublishedFilter(request.GET, queryset=queryset)
+    context = {'tools_filter': tools_filter}
     return render(request, 'tools/index.html', context)
 
 
 def show(request, tool_id):
-    tool = get_object_or_404(Tool, id=tool_id)
-
+    if request.user.has_perm('tools.change_tool'):
+        tool = get_object_or_404(Tool, id=tool_id)
+    else:
+        tool = get_object_or_404(Tool, id=tool_id, published=True)
     context = {'tool': tool}
     return render(request, 'tools/show.html', context)
 
@@ -56,7 +62,7 @@ def show(request, tool_id):
 @permission_required('tools.change_tool', login_url='tools:index')
 @login_required
 def edit(request, tool_id):
-    # TODO: use celery tasks for storage IO so id doesn't block transaction
+    # TODO: use celery tasks for storage IO so it doesn't block transaction
     tool = get_object_or_404(Tool, id=tool_id)
 
     categories_ids = list(tool.categories.all().values_list('id', flat=True))
@@ -64,6 +70,7 @@ def edit(request, tool_id):
         'title': tool.title,
         'description': tool.description,
         'categories': categories_ids,
+        'published': tool.published,
     }
 
     if tool.cover_image and default_storage.exists(tool.cover_image.name):

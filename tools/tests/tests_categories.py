@@ -34,11 +34,18 @@ class CategoriesViewsTestCase(TestCase):
         self.assertContains(resp, 'Category overview')
 
     def test_show_category_get(self):
+        self.test_category.published = True
+        self.test_category.save()
         url = reverse('tools:show_category', args=(self.test_category.id, ))
         resp = self.client.get(url)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/show_category.html')
         self.assertContains(resp, self.test_category.title)
+
+    def test_show_category_get_unpublished(self):
+        url = reverse('tools:show_category', args=(self.test_category.id, ))
+        resp = self.client.get(url)
+        self.assertEqual(404, resp.status_code)
 
     def test_add_category_get(self):
         self.client.login(username='testadmin', password='testpass')

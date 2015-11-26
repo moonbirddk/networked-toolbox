@@ -39,6 +39,7 @@ class Tool(ModelWithCoverImage):
     description = models.CharField(max_length=5000)
     categories = models.ManyToManyField('ToolCategory', related_name='tools',
                                         related_query_name='tool')
+    published = models.BooleanField(default=False, null=False)
 
     def get_absolute_url(self):
         return reverse('tools:show', args=[self.id, ])
@@ -59,6 +60,7 @@ class ToolResource(models.Model):
 class ToolCategory(ModelWithCoverImage):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=5000)
+    published = models.BooleanField(default=False, null=False)
 
     def get_absolute_url(self):
         return reverse('tools:show_category', args=[self.id, ])

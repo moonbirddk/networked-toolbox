@@ -1,6 +1,7 @@
 import logging
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.db import transaction
 from django.contrib.auth.decorators import login_required, permission_required
@@ -22,6 +23,7 @@ def add_resource(request, tool_id):
         if form.is_valid():
             ToolResource.objects.create(tool=tool, **form.cleaned_data)
             messages.success(request, "You added a resource")
+            log.debug(reverse('tools:show', args=(tool.id,)))
             return redirect('tools:show', tool.id)
 
     context = {'form': form, 'tool': tool}

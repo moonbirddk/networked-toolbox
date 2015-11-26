@@ -6,6 +6,7 @@ from django.db import transaction
 from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required, permission_required
 
+from tools.filters import PublishedFilter
 from tools.forms import ToolCategoryForm
 from tools.models import Tool, ToolCategory
 
@@ -14,13 +15,20 @@ log = logging.getLogger(__name__)
 
 
 def list_categories(request):
-    categories = ToolCategory.objects.all()
-    context = {'categories': categories}
+    if request.user.has_perm('tools.change_toolcategory'):
+        queryset = ToolCategory.objects.all()
+    else:
+        queryset = ToolCategory.objects.filter(published=True)
+    cat_filter = PublishedFilter(request.GET, queryset=queryset)
+    context = {'categories_filter': cat_filter}
     return render(request, 'tools/list_categories.html', context)
 
 
 def show_category(request, cat_id):
-    category = get_object_or_404(ToolCategory, id=cat_id)
+    if request.user.has_perm('tools.change_toolcategory'):
+        category = get_object_or_404(ToolCategory, id=cat_id)
+    else:
+        category = get_object_or_404(ToolCategory, id=cat_id, published=True)
     context = {'category': category}
     return render(request, 'tools/show_category.html', context)
 
@@ -52,6 +60,7 @@ def edit_category(request, cat_id):
     attributes = {
         'title': category.title,
         'description': category.description,
+        'published': category.published,
     }
 
     if category.cover_image and \
@@ -76,6 +85,7 @@ def edit_category(request, cat_id):
                 else:
                     cover_image = category.cover_image
 
+            category.published = form.cleaned_data['published']
             category.title = form.cleaned_data['title']
             category.description = form.cleaned_data['description']
             category.cover_image = cover_image
