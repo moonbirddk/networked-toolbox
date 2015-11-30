@@ -10,9 +10,11 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^(\d+)/$', views.show, name='show'),
     url(r'^add/$', views.add, name='add'),
     url(r'^edit/(\d+)/$', views.edit, name='edit'),
-    url(r'^(\d+)/$', views.show, name='show'),
+    url(r'^follow/(\d+)/$', views.follow, name='follow'),
+    url(r'^unfollow/(\d+)/$', views.unfollow, name='unfollow'),
 
     url(r'^(\d+)/resources/add/$', views.add_resource, name='add_resource'),
     url(r'^(\d+)/resources/(\d+)/delete/$', views.delete_resource, name='delete_resource'),

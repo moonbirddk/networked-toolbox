@@ -101,6 +101,11 @@
   padding: 10px 0 10px;
 }
 
+.usage-indicator div{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .usage-indicator h3,
 .usage-indicator p{
   color: white;

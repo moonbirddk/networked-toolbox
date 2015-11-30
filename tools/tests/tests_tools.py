@@ -55,7 +55,7 @@ class ToolsViewsTestCase(TestCase):
         }
         resp = self.client.post(reverse('tools:add'), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You created a tool", str(list(resp.context['messages'])[0]))
@@ -94,7 +94,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))
@@ -130,7 +130,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))
@@ -156,7 +156,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))

@@ -46,7 +46,11 @@
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li><a class='profile-thumbnail-link' href="{% url 'profiles:profile'%}">
-                <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
+                  {% if user.profile.photo %}
+                    <img class='profile-thumbnail-img' src="{{ user.profile.photo.url }}">&nbsp;
+                  {% else %}
+                    <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
+                  {% endif %}
                 </a></li>
                 <li><a href="{% url 'profiles:profile'%}">
                 {% if user.first_name %}

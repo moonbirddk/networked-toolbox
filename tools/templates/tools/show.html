@@ -86,14 +86,33 @@
                 <h3 class="title">Have you used this tool?</h3>
               </div>
               <div class="col-xs-12 col-sm-2 text-center">
-                <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#usage-modal">
+              {% if user.id in tool_followers %}
+                <form action="{% url 'tools:unfollow' tool.id %}" method="post">
+                  {% csrf_token %}
+                  <div class="col-xs-12 col-sm-2 text-center">
+                    <button type="submit" class="btn btn-usage">
+                      No, I haven't
+                    </button>
+                  </div>
+                </form>
+              {% else %}
+                {% if user.is_authenticated %}
+                  <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#usage-modal">
+                    Yes, I have
+                  </button>
+                {% else %}
+                <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#login-required-modal">
                   Yes, I have
                 </button>
+                {% endif %}
+
+              {% endif %}
               </div>
-              <div class="col-sm-4 col-sm-offset-1" style="visibility:hidden;">
-                <p>As of now 10 users have used this tool.<br>
+              <div class="col-sm-4 col-sm-offset-1">
+                <p>As of now {{ tool.followers.count }} user{{ tool.followers.count|pluralize:"s" }}
+                have used this tool.<!--<br>
                 The tool disussion consists of:<br>
-                4 comments.</p>
+                4 comments.--></p>
               </div>
           </div>
         </div>
@@ -110,14 +129,29 @@
                 <p>Do you want to be called upon via email when other users have questions regarding the tool?</p>
               </div>
               <div class="col-sm-4 text-center">
-                <form action="/">
+                <form action="{% url 'tools:follow' tool.id %}" method="post">
+                  {% csrf_token %}
                   <div class="col-xs-6">
-                    <button type="submit" name='used' value='yes' class="btn btn-primary btn-lg">Yes</button>
+                    <button type="submit" name='should_notify' value='1' class="btn btn-primary btn-lg">Yes</button>
                   </div>
                   <div class="col-xs-6">
-                    <button type="submit" name='used' value='no' class="btn btn-primary btn-lg">No</button>
+                    <button type="submit" name='should_notify' value='0' class="btn btn-primary btn-lg">No</button>
                   </div>
                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="login-required-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h3 class="modal-title title" id="myModalLabel">Login required</h3>
+            <div class="row">
+              <div class="col-sm-8">
+                <p><a href="{% url 'account_login' %}?next={%url 'tools:show' tool.id %}">Please login first.</a></p>
               </div>
             </div>
           </div>
