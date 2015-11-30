@@ -12,6 +12,7 @@
   right: -9999px;
   margin: auto;
   height: 100%;
+  min-width: 100%;
 }
 
 .category-description{

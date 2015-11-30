@@ -115,6 +115,11 @@ body{
    padding: 0px 0px 0px 15px;
  }
 
+ .navbar-right > li > a > img{
+	 width: 45px;
+	 margin-top: 2.5px;
+ 	}
+
 .white-text {
   color: #ffffff;
 }

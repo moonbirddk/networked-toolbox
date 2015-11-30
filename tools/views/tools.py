@@ -7,7 +7,9 @@ from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required, permission_required
 
 from ..forms import ToolForm
-from ..models import Tool, ToolCategory
+from ..models import Tool, ToolCategory, ToolFollower
+from django.contrib.auth.models import User
+
 
 
 log = logging.getLogger(__name__)
@@ -33,7 +35,7 @@ def add(request):
             tool.save()
             tool.categories = categories
             messages.success(request, "You created a tool")
-            return redirect('tools:index')
+            return redirect(tool)
 
     context = {'form': form}
     return render(request, 'tools/add.html', context)
@@ -47,10 +49,34 @@ def index(request):
 
 def show(request, tool_id):
     tool = get_object_or_404(Tool, id=tool_id)
-
-    context = {'tool': tool}
+    tool_followers = (list(tool.followers.all().values_list('user_id', flat=True)))
+    context = {'tool': tool, 'tool_followers': tool_followers}
     return render(request, 'tools/show.html', context)
 
+
+@login_required
+def follow(request,tool_id):
+    tool = get_object_or_404(Tool, id=tool_id)
+    if request.method == 'POST':
+        should_notify = False
+        if request.POST.get('should_notify', '0') == '1':
+            should_notify = True
+        ToolFollower.objects.create(user=request.user, tool=tool,
+        should_notify=should_notify)
+
+        messages.success(request, "You are now following this tool.")
+
+        return redirect(tool)
+
+@login_required
+def unfollow(request,tool_id):
+    if request.method == 'POST':
+        tool = get_object_or_404(Tool,id=tool_id)
+        tool.followers.all().filter(user_id=request.user.id)[0].delete()
+
+        messages.success(request, "You are no longer following this tool.")
+
+        return redirect(tool)
 
 @transaction.atomic
 @permission_required('tools.change_tool', login_url='tools:index')
@@ -94,7 +120,7 @@ def edit(request, tool_id):
             tool.categories = form.cleaned_data['categories']
 
             messages.success(request, "You updated a tool")
-            return redirect('tools:index')
+            return redirect(tool)
 
     context = {'tool': tool, 'form': form}
     return render(request, 'tools/edit.html', context)

@@ -4,6 +4,7 @@ from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_delete
 
@@ -43,6 +44,12 @@ class Tool(ModelWithCoverImage):
     def get_absolute_url(self):
         return reverse('tools:show', args=[self.id, ])
 
+class ToolFollower(models.Model):
+    class Meta:
+        unique_together = (('user', 'tool'))
+    user = models.ForeignKey('auth.User')
+    tool = models.ForeignKey('Tool', related_name='followers')
+    should_notify = models.BooleanField(default=False, null=False)
 
 class ToolResource(models.Model):
     tool = models.ForeignKey(
