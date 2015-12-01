@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_delete
 
+from solo.models import SingletonModel
+
 from common.utils import generate_upload_path
 
 
@@ -105,3 +107,16 @@ def delete_suggestion_on_related_deleted(sender, instance, **kwargs):
 
 post_delete.connect(delete_suggestion_on_related_deleted, sender=Tool)
 post_delete.connect(delete_suggestion_on_related_deleted, sender=ToolCategory)
+
+class ToolOverviewPage(SingletonModel):
+    description = models.CharField(max_length=255, default='Lorem ipsum.')
+
+    class Meta:
+        verbose_name = "Tool Overview Page"
+
+
+class CategoryOverviewPage(SingletonModel):
+    description = models.CharField(max_length=255, default='Lorem ipsum.')
+
+    class Meta:
+        verbose_name = "Category Overview Page"

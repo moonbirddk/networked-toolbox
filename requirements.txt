@@ -17,3 +17,4 @@ django-summernote==0.6.16
 boto
 bleach
 git+https://github.com/jschneier/django-storages.git#egg=django-storages
+django-solo

@@ -2,17 +2,16 @@
 {% load bootstrap3 %}
 {% load staticfiles %}
 
-
 {% block main %}
 
-  <h3 class="title">Tool overview 
+  <h3 class="title">Tool overview
   {% if perms.tools %}{% if perms.tools.add_tool %}
   <a href="{% url 'tools:add' %}"><i class="fa fa-plus"></i></a>
   <!-- filter tools start -->{{tools_filter.form}}<!-- filter tools end -->
   {% endif %}{% endif %}
   </h3>
   <p class="category-description">
-    Bacon ipsum dolor amet boudin meatloaf tongue, bacon short ribs salami flank sausage biltong. Alcatra hamburger jerky porchetta, pork andouille landjaeger fatback. Pig strip steak sausage turkey. Andouille cow porchetta tail alcatra shoulder pork belly sirloin drumstick prosciutto tenderloin pork leberkas short ribs.
+    {{ overview.description }}
   </p>
 
   {% include "tools/_resource_overview.html" with resources=tools_filter route='tools:show' %}

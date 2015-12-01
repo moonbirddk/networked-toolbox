@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from ..filters import PublishedFilter
 from ..forms import ToolForm
 
-from ..models import Tool, ToolCategory, ToolFollower
+from ..models import Tool, ToolCategory, ToolFollower, ToolOverviewPage
 from django.contrib.auth.models import User
 
 
@@ -47,7 +47,8 @@ def index(request):
     else:
         queryset = Tool.objects.filter(published=True)
     tools_filter = PublishedFilter(request.GET, queryset=queryset)
-    context = {'tools_filter': tools_filter}
+    overview = ToolOverviewPage.objects.get()
+    context = {'tools_filter': tools_filter, 'overview':overview}
     return render(request, 'tools/index.html', context)
 
 

@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'storages',
     'django_summernote',
+    'solo',
 
     'profiles',
     'tools',
@@ -248,4 +249,3 @@ SOCIALACCOUNT_PROVIDERS = {
     'VERSION': 'v2.4'
     },
 }
-

@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from tools.filters import PublishedFilter
 from tools.forms import ToolCategoryForm
-from tools.models import Tool, ToolCategory
+from tools.models import Tool, ToolCategory, CategoryOverviewPage
 
 
 log = logging.getLogger(__name__)
@@ -20,7 +20,8 @@ def list_categories(request):
     else:
         queryset = ToolCategory.objects.filter(published=True)
     cat_filter = PublishedFilter(request.GET, queryset=queryset)
-    context = {'categories_filter': cat_filter}
+    overview = CategoryOverviewPage.objects.get()
+    context = {'categories_filter': cat_filter, 'overview':overview}
     return render(request, 'tools/list_categories.html', context)
 
 
