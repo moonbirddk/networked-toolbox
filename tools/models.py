@@ -45,12 +45,17 @@ class Tool(ModelWithCoverImage):
     def get_absolute_url(self):
         return reverse('tools:show', args=[self.id, ])
 
+    def published_categories(self):
+        return self.categories.filter(published=True)
+
+
 class ToolFollower(models.Model):
     class Meta:
         unique_together = (('user', 'tool'))
     user = models.ForeignKey('auth.User')
     tool = models.ForeignKey('Tool', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
+
 
 class ToolResource(models.Model):
     tool = models.ForeignKey(
@@ -71,6 +76,9 @@ class ToolCategory(ModelWithCoverImage):
 
     def get_absolute_url(self):
         return reverse('tools:show_category', args=[self.id, ])
+
+    def published_tools(self):
+        return self.tools.filter(published=True)
 
 
 class Suggestion(models.Model):
