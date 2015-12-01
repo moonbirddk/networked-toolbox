@@ -20,7 +20,7 @@ def list_categories(request):
     else:
         queryset = ToolCategory.objects.filter(published=True)
     cat_filter = PublishedFilter(request.GET, queryset=queryset)
-    overview = CategoryOverviewPage.objects.get()
+    overview = CategoryOverviewPage.get_solo()
     context = {'categories_filter': cat_filter, 'overview':overview}
     return render(request, 'tools/list_categories.html', context)
 
