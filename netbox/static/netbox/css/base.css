@@ -61,11 +61,11 @@ body{
 .navbar{
   border: none;
   border-radius: 0px;
-  font-family: 'AmericanTypewriter';
+  font-family: 'AmericanTypewriter', 'Arial';
 }
 
 .navbar-brand{
-  font-family: 'AmericanTypewriter-Bold'
+  font-family: 'AmericanTypewriter-Bold','Arial';
 }
 
 .navbar-logo{

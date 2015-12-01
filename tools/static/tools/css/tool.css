@@ -158,7 +158,7 @@
 .summernote-container p[style],
 .summernote-container span[style], {
   font-size: 15px !important;
-  font-family: 'Helvetica Neue' !important;
+  font-family: 'Helvetica Neue', 'Arial' !important;
 }
 
 .summernote-container img{
@@ -176,7 +176,7 @@
 .summernote-container .title,
 .resource-box .title,
 .title{
-  font-family: 'AmericanTypewriter';
+  font-family: 'AmericanTypewriter','Arial';
 }
 
 .resource-item i {

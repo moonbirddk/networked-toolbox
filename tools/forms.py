@@ -12,6 +12,9 @@ from .models import Tool, ToolResource, ToolCategory, Suggestion
 log = logging.getLogger(__name__)
 
 
+class OverviewPageForm(forms.Form):
+    description = forms.fields.CharField(max_length=200, required=True)
+
 class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
 
     widget = forms.CheckboxSelectMultiple

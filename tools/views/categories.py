@@ -7,11 +7,22 @@ from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required, permission_required
 
 from tools.filters import PublishedFilter
-from tools.forms import ToolCategoryForm
+from tools.forms import ToolCategoryForm, OverviewPageForm
 from tools.models import Tool, ToolCategory, CategoryOverviewPage
 
 
 log = logging.getLogger(__name__)
+
+@permission_required('tools.add_toolcategory', login_url='categories:index')
+@login_required
+def update_overview(request):
+    overview = CategoryOverviewPage.get_solo()
+
+    context = {'form': form}
+    return render(request, 'tools/edit_overview.html', context)
+
+    if request.method == 'POST':
+        form = OverviewPageForm(request.POST)
 
 
 def list_categories(request):

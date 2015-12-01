@@ -25,9 +25,8 @@ urlpatterns = [
 
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^tools/', include('tools.urls', namespace='tools')),
-    url(r'^$', 'tools.views.home', name='home'),
+    url(r'^$', 'tools.views.index', name='index'),
 
 
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
 static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)
-

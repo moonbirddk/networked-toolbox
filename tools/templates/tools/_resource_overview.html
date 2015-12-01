@@ -10,13 +10,20 @@
           {% else %}
           <!--<img src="empty-image-here" />-->
           {% endif %}
+          {% if resource.published == False %}
+          <div class="unpublished-banner">
+            <span>UNPUBLISHED</span>
+          </div>
+          {% endif %}
         </div></a>
         <div class="category-content">
-          <h3>{{ resource.title|truncatechars:40 }}</h3>
+          <a href="{% url route resource.id %}"><h3>{{ resource.title|truncatechars:40 }}</h3></a>
           <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
         </div>
     </div>
   {% empty %}
-    <p>Huh, that's weird. We can't find any items. Check back later.</p>
+  <div class="col-md-3 col-xs-6">
+    <p>There are no items available.</p>
+  </div>
   {% endfor %}
 </div>

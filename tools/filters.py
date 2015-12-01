@@ -49,7 +49,7 @@ class BooleanLinksGroupWidget(Select):
         except AttributeError:
             query_string = urlencode(data)
         if selected:
-            attrs = ' class="btn btn-danger"'
+            attrs = ' class="btn btn-danger filter-checked"'
         else:
             attrs = ' class="btn btn-default"'
         return format_html('<a href="?{}"' + attrs + '>{}</a>',
@@ -72,7 +72,7 @@ class PublishedFilter(django_filters.FilterSet):
         help_text='',
         name='published',
         widget=BooleanLinksGroupWidget(
-            choices=((1, 'published'), (0, 'unpublished')))
+            choices=((1, 'Published'), (0, 'Unpublished')))
     )
 
     def __init__(self, *args, **kwargs):

@@ -9,7 +9,9 @@
 <h3 class="title">Category overview
 {% if perms.tools %}{% if perms.tools.delete_toolcategory %}
 <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
-<!-- filter cats start -->{{categories_filter.form}}<!-- filter cats end -->
+<div class="filter-buttons pull-right">
+  {{categories_filter.form}}
+</div>
 {% endif %}{% endif %}
 </h3>
 <p class="category-description">

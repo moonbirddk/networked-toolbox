@@ -45,7 +45,9 @@
           <h4 class="title top-margin">Help improve this category</h4>
           <div class="row">
             <div class="col-md-7 improvement-info">
-              How can we improve this category? Give us concrete feedback on what you think is missing.
+              <p>
+                How can we improve this category? Give us concrete feedback on what you think is missing.
+              </p>
             </div>
             <div class="col-md-4">
               <a class="btn btn-warning" href="{% url 'tools:add_suggestion' 'category' category.id %}">Add a suggestion</a>
@@ -57,23 +59,23 @@
     <div class="row">
       <div class="col-md-12">
         <h2 class="title">Related tools</h2>
-      </div>
-      {% for resource in category.published_tools %}
-        <div class="col-md-3 col-xs-6">
-            <a href="{% url 'tools:show' resource.id %}"><div class="category-image">
-              {% if resource.cover_image %}
-                <img src="{{ resource.cover_image.url }}" />
-              {% else %}
-              <!--<img src="empty-image-here" />-->
-              {% endif %}
-            </div></a>
-            <div class="category-content">
-              <h3>{{ resource.title|bleach_striptags|truncatechars:16 }}</h3>
-              <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
+          {% for resource in category.published_tools %}
+            <div class="col-md-3 col-xs-6">
+                <a href="{% url 'tools:show' resource.id %}"><div class="category-image">
+                  {% if resource.cover_image %}
+                    <img src="{{ resource.cover_image.url }}" />
+                  {% else %}
+                  <!--<img src="empty-image-here" />-->
+                  {% endif %}
+                </div></a>
+                <div class="category-content">
+                  <h3>{{ resource.title|bleach_striptags|truncatechars:16 }}</h3>
+                  <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
+                </div>
             </div>
-        </div>
-      {% empty %}
-        <p>Huh, that's weird. We can't find any related tools. Check back later.</p>
-      {% endfor %}
+          {% empty %}
+            <p>There are no related tools.</p>
+          {% endfor %}
+      </div>
     </div>
 {% endblock %}
