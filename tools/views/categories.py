@@ -27,7 +27,7 @@ def update_overview(request):
 
 def list_categories(request):
     if request.user.has_perm('tools.change_toolcategory'):
-        queryset = ToolCategory.objects.all()
+        queryset = ToolCategory.objects.all().order_by('-published')
     else:
         queryset = ToolCategory.objects.filter(published=True)
     cat_filter = PublishedFilter(request.GET, queryset=queryset)

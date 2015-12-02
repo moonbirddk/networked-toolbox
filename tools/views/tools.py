@@ -23,7 +23,6 @@ def home(request):
 @permission_required('tools.add_tool', login_url='tools:index')
 @login_required
 def add(request):
-
     form = ToolForm()
 
     if request.method == 'POST':
@@ -43,7 +42,7 @@ def add(request):
 
 def index(request):
     if request.user.has_perm('tools.change_tool'):
-        queryset = Tool.objects.all()
+        queryset = Tool.objects.all().order_by('-published')
     else:
         queryset = Tool.objects.filter(published=True)
     tools_filter = PublishedFilter(request.GET, queryset=queryset)
