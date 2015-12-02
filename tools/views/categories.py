@@ -13,18 +13,6 @@ from tools.models import Tool, ToolCategory, CategoryOverviewPage
 
 log = logging.getLogger(__name__)
 
-@permission_required('tools.add_toolcategory', login_url='categories:index')
-@login_required
-def update_overview(request):
-    overview = CategoryOverviewPage.get_solo()
-
-    context = {'form': form}
-    return render(request, 'tools/edit_overview.html', context)
-
-    if request.method == 'POST':
-        form = OverviewPageForm(request.POST)
-
-
 def list_categories(request):
     if request.user.has_perm('tools.change_toolcategory'):
         queryset = ToolCategory.objects.all().order_by('-published')

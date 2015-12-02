@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^edit/(\d+)/$', views.edit, name='edit'),
     url(r'^follow/(\d+)/$', views.follow, name='follow'),
     url(r'^unfollow/(\d+)/$', views.unfollow, name='unfollow'),
+    url(r'^overview/$', views.edit_overview, name='edit_overview'),
 
     url(r'^(\d+)/resources/add/$', views.add_resource, name='add_resource'),
     url(r'^(\d+)/resources/(\d+)/delete/$', views.delete_resource, name='delete_resource'),

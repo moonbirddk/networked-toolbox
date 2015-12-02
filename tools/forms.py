@@ -13,7 +13,8 @@ log = logging.getLogger(__name__)
 
 
 class OverviewPageForm(forms.Form):
-    description = forms.fields.CharField(max_length=200, required=True)
+    description = forms.fields.CharField(max_length=255,
+        required=True,widget=forms.Textarea)
 
 class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
 
