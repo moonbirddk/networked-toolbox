@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^summernote/', include('django_summernote.urls')),
 
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
-    #url(r'^overview/', 'tools.view.edit_overview'),
+    url(r'^overview/', 'tools.view.edit_overview'),
     url(r'^tools/', include('tools.urls', namespace='tools')),
     url(r'^$', 'tools.views.index', name='index'),
 
