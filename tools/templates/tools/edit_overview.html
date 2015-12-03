@@ -2,31 +2,15 @@
 {% load bootstrap3 %}
 {% load static %}
 
-{% block head_statics %}
-{{ form.media }}
-
-{% endblock %}
 
 {% block main %}
-<h1>Edit tool</h1>
-
-<h2>Tool overview description</h2>
-<form method="POST" action="{% url 'tools:edit_overview' %}" class="form" enctype="multipart/form-data">
+<h1>Edit {{obj_type_name|capfirst}} overview description</h1>
+<form method="POST" action="{% url 'tools:edit_overview' obj_type_name %}" 
+class="form" enctype="multipart/form-data">
     {% csrf_token %}
-    {% bootstrap_form tool_form %}
+    {% bootstrap_form form %}
     {% buttons %}
-        <button type="submit" class="btn btn-primary" name='tool'>
-            {% bootstrap_icon "star" %} Submit
-        </button>
-    {% endbuttons %}
-</form>
-
-<h2>Category overview description</h2>
-<form method="POST" action="{% url 'tools:edit_overview' %}" class="form" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form cat_form %}
-    {% buttons %}
-        <button type="submit" class="btn btn-primary" name='cat'>
+        <button type="submit" class="btn btn-primary">
             {% bootstrap_icon "star" %} Submit
         </button>
     {% endbuttons %}

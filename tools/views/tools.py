@@ -15,9 +15,6 @@ from django.contrib.auth.models import User
 log = logging.getLogger(__name__)
 
 
-def home(request):
-    return render(request, 'tools/home.html', {})
-
 @transaction.atomic
 @permission_required('tools.add_tool', login_url='tools:index')
 @login_required
