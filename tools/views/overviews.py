@@ -1,40 +1,41 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from ..forms import OverviewPageForm
 
 from django.contrib.auth.decorators import login_required, permission_required
 from ..models import ToolOverviewPage, CategoryOverviewPage
+from django.http.response import HttpResponseNotFound
+
 
 @permission_required('tools.add_toolcategory')
 @login_required
-def edit_overview(request):
-    cat_overview  = CategoryOverviewPage.get_solo()
-    tool_overview = ToolOverviewPage.get_solo()
+def edit_overview(request, obj_type_name):
+
+    if obj_type_name == 'category':
+        overview = CategoryOverviewPage.get_solo()
+        route = 'tools:list_categories'
+    elif obj_type_name == 'tool':
+        overview = ToolOverviewPage.get_solo()
+        route = 'tools:index'
+    else:
+        return HttpResponseNotFound()
 
     if request.method == 'POST':
-        if 'cat' in request.POST:
-            current_overview = cat_overview
-            route = 'tools:list_categories'
-        elif 'tool' in request.POST:
-            current_overview = tool_overview
-            route = 'tools:index'
-
         form = OverviewPageForm(request.POST)
         if form.is_valid():
-            current_overview.description = form.cleaned_data['description']
-            current_overview.save()
+            overview.description = form.cleaned_data['description']
+            overview.save()
+            messages.success(request, "You have changed the overview page.")
+            return redirect(route)
+        messages.success(request, "Please correct errors.")
+    else:
+        form = OverviewPageForm({
+            'description': overview.description
+        })
 
-        messages.success(request, "You changed an overview page.")
-        return redirect(route)
-
-
-    tool_form = OverviewPageForm({
-        'description': tool_overview.description
-    })
-    cat_form = OverviewPageForm({
-        'description': cat_overview.description
-    })
-
-    context = {'cat_form': cat_form, 'tool_form': tool_form}
+    context = {
+        'form': form,
+        'obj_type_name': obj_type_name,
+    }
     return render(request, 'tools/edit_overview.html', context)
