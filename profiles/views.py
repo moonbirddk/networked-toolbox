@@ -1,12 +1,49 @@
 
+import logging
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.utils.http import is_safe_url
 from django.core.files.storage import default_storage
 from django.contrib import messages
 from django.db import transaction
 
 from .forms import ProfileForm
 from .models import Profile
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.http.response import HttpResponseNotFound
+
+log = logging.getLogger(__name__)
+
+
+def terms_and_conditions(request):
+    if not settings.DJANGO_ENV == 'staging':
+        return HttpResponseNotFound("not found")
+
+    next_page = '/'
+    if (REDIRECT_FIELD_NAME in request.POST or
+            REDIRECT_FIELD_NAME in request.GET):
+        next_page = request.POST.get(REDIRECT_FIELD_NAME,
+                                     request.GET.get(REDIRECT_FIELD_NAME))
+        if not is_safe_url(url=next_page, host=request.get_host()):
+            next_page = '/'
+
+    if request.method == 'POST':
+        if request.POST.get('accepted'):
+            resp = HttpResponseRedirect(next_page)
+            resp.set_cookie('has_accepted_terms', '1')
+            return resp
+        else:
+            messages.error(request, "Please accept Terms and Conditions")
+
+    ctx = {
+        'redirect_field_name': REDIRECT_FIELD_NAME,
+        'next_page': next_page,
+    }
+    resp = render(request, 'profiles/terms_and_conditions.html', ctx)
+    resp.set_cookie('has_accepted_terms', '0')
+    return resp
 
 
 @login_required

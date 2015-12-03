@@ -2,11 +2,70 @@ from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from http.cookies import Morsel
 
 from .models import Profile
 
 
 TEST_PNG_CONTENT = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
+
+
+class TermsAndConditionsTestCase(TestCase):
+    def setUp(self):
+        pass
+
+    def test_get_with_next(self):
+        url = reverse('tools:list_categories') + '?published=1'
+        resp = self.client.get(url, follow=True)
+        cookie = self.client.cookies.get('has_accepted_terms')
+        self.assertIsInstance(cookie, Morsel)
+        self.assertEqual('0', cookie.value)
+        self.assertEqual(200, resp.status_code)
+        expected_redirect = (
+            'http://testserver/profiles/terms-and-conditions'
+            '?next=/tools/categories/%3Fpublished%3D1',
+            302
+        )
+        self.assertEqual([expected_redirect], resp.redirect_chain)
+
+    def test_post_with_next_accepted(self):
+        url = reverse('profiles:terms_and_conditions') +\
+            '?next=/tools/%3Fpublished%3D1%3F'
+        data = {
+            'accepted': 'on',
+            'next': '/tools/categories/?published=1',
+            'redirect_field_name': REDIRECT_FIELD_NAME,
+        }
+        resp = self.client.post(url, data, follow=True)
+        cookie = self.client.cookies.get('has_accepted_terms')
+        self.assertIsInstance(cookie, Morsel)
+        self.assertEqual('1', cookie.value)
+        self.assertEqual(200, resp.status_code)
+        expected_redirect = (
+            'http://testserver/tools/categories/?published=1',
+            302
+        )
+        self.assertEqual([expected_redirect], resp.redirect_chain)
+
+    def test_post_with_next_not_accepted(self):
+        url = reverse('profiles:terms_and_conditions') +\
+                      '?next=/tools/%3Fpublished%3D1%3F'
+        data = {
+            'next': '/tools/categories/?published=1',
+            'redirect_field_name': REDIRECT_FIELD_NAME,
+        }
+        resp = self.client.post(url, data, follow=True)
+        cookie = self.client.cookies.get('has_accepted_terms')
+        self.assertIsInstance(cookie, Morsel)
+        self.assertEqual('0', cookie.value)
+        self.assertEqual(200, resp.status_code)
+        self.assertContains(resp, data['next'])
+        self.assertContains(resp, data['redirect_field_name'])
+        self.assertTrue('messages' in resp.context)
+        self.assertEqual(
+            "Please accept Terms and Conditions",
+            str(list(resp.context['messages'])[0]))
 
 
 class ProfilesViewsTestCase(TestCase):

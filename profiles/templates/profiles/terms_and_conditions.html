@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block main %}
+
+<div class="container">
+<div class="row">
+ <div class="col-md-2">
+ </div>
+
+ <div class="col-md-8">
+  <h1>Terms and conditions</h1>
+  
+  <p>This is the staging site for the development process of the Networked Toolbox;
+  a project under the Democratic Governance International Platform. 
+By entering this site you agree to be aware that it is an ActionAid internal
+space, not yet for public access and that it is not to be shared beyond yourself. 
+If you think others need access or have other questions, please get in touch
+with project coordinator Casper Knudsen on ckn@ms.dk. 
+By clicking accept you also accept that we are using cookies.</p>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <input type="hidden" name="{{redirect_field_name}}" value="{{next_page}}" />
+    <label for="id_accepted">
+        <input type="checkbox" name="accepted" id="id_published" 
+            class=""> I accept</label>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">
+            <span class="glyphicon glyphicon-star"></span> Submit
+        </button>
+    </div>
+</form>
+ </div>
+ 
+ <div class="col-md-6">
+ </div>
+</div>
+
+ <div class="col-md-2">
+ </div>
+
+</div>
+</div>
+{% endblock %}
