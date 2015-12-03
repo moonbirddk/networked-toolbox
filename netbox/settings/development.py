@@ -3,7 +3,6 @@ import os
 import sys
 from .base import *
 
-
 SECRET_KEY = 'secret key'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

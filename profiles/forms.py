@@ -1,5 +1,6 @@
 import logging
 from django import forms
+from django.forms import fields
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import filesizeformat
 
@@ -11,8 +12,8 @@ class ProfileForm(forms.Form):
     MAX_PHOTO_SIZE = 2 * 1024 * 1024
     PHOTO_MAX_WIDTH = 1024
     PHOTO_MAX_HEIGH = 1024
-    first_name = forms.fields.CharField(max_length=30, required=False)
-    last_name = forms.fields.CharField(max_length=30, required=False)
+    first_name = fields.CharField(max_length=30, required=False)
+    last_name = fields.CharField(max_length=30, required=False)
     photo = forms.ImageField(required=False,
                              label='Photo image (recommended size: 160x160)')
 
