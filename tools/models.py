@@ -6,6 +6,9 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db.models.signals import post_delete
 
 from solo.models import SingletonModel
@@ -43,6 +46,7 @@ class Tool(ModelWithCoverImage):
     categories = models.ManyToManyField('ToolCategory', related_name='tools',
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
+    resources = GenericRelation('ToolResource')
 
     def get_absolute_url(self):
         return reverse('tools:show', args=[self.id, ])
@@ -60,21 +64,20 @@ class ToolFollower(models.Model):
 
 
 class ToolResource(models.Model):
-    tool = models.ForeignKey(
-        'Tool',
-        null=False,
-        related_name='resources',
-        related_query_name='resource'
-    )
     title = models.CharField(max_length=60)
     document = models.FileField(upload_to=do_upload_document, blank=False,
                                 null=False)
 
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey()
 
 class ToolCategory(ModelWithCoverImage):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=5000)
     published = models.BooleanField(default=False, null=False)
+    resources = GenericRelation('ToolResource')
+
 
     def get_absolute_url(self):
         return reverse('tools:show_category', args=[self.id, ])
