@@ -4,6 +4,14 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 
 
+def del_old_ctontent_types(apps, schema_editor):
+    ContentType = apps.get_model("contenttypes", "ContentType")
+    try:
+        ContentType.objects.filter(app_label='tools',
+            model='toolresource').delete()
+    except Exception as exc:
+        print("fail to delete tools toolresource content types: {}".format(exc))
+
 
 class Migration(migrations.Migration):
 
@@ -12,10 +20,12 @@ class Migration(migrations.Migration):
     ]
 
     database_operations = [
-        migrations.AlterModelTable('ToolResource', 'resources_toolresource')
+        migrations.AlterModelTable('ToolResource', 'resources_toolresource'),
+        migrations.RunPython(del_old_ctontent_types),
     ]
 
     state_operations = [
+        #this will be deleted in a later migration
         #migrations.DeleteModel('ToolResource')
     ]
 
@@ -23,4 +33,5 @@ class Migration(migrations.Migration):
         migrations.SeparateDatabaseAndState(
             database_operations=database_operations,
             state_operations=state_operations),
+
     ]
