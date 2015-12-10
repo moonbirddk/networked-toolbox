@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Group
 from django.core.files.uploadedfile import SimpleUploadedFile
 
-from ..models import Tool, ToolCategory
+from ..models import Tool, ToolCategory, CategoryGroup
 
 TEST_PNG_CONTENT = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
 
@@ -62,13 +62,14 @@ class CategoriesViewsTestCase(TestCase):
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add_category.html')
         self.assertContains(resp, 'Add category')
-
+        test_group = CategoryGroup.objects.get(name='Other')
         test_fh = SimpleUploadedFile('test empty.png', TEST_PNG_CONTENT)
         data = {
             'title': 'our test title',
             'description': 'description test',
             'cover_image': test_fh,
-            'resources_text': 'this changed'
+            'resources_text': 'this changed',
+            'group': test_group.id,
         }
         resp = self.client.post(reverse('tools:add_category'), data,
                                 follow=True)
@@ -103,23 +104,29 @@ class CategoriesViewsTestCase(TestCase):
     def test_edit_category_post(self):
         self.client.login(username='testadmin', password='testpass')
         test_fh = SimpleUploadedFile('test empty.png', TEST_PNG_CONTENT)
+        test_group = CategoryGroup.objects.get(name="Other")
         data = {
             'title': 'our category new title',
             'description': 'new category description test',
             'cover_image': test_fh,
-            'resources_text': 'this changed'
+            'resources_text': 'this changed',
+            'group': test_group.id,
         }
         url = reverse('tools:edit_category', args=(self.test_category.id,))
         resp = self.client.post(url, data, follow=True)
         self.assertTrue('messages' in resp.context)
+        self.assertEqual(len(list(resp.context['messages'])), 1)
         self.assertEqual(
-            "You updated this category", str(list(resp.context['messages'])[0]))
+            "You updated this category",
+            str(list(resp.context['messages'])[0])
+        )
         self.assertContains(resp, data['title'])
         category = ToolCategory.objects.get(id=self.test_category.id)
         self.assertTrue(category.cover_image)
         self.assertTrue(category.cover_image.name, 'test empty.png')
         self.assertEqual(
-            [('http://testserver/tools/categories/show/%d/' % category.id, 302)],
+            [('http://testserver/tools/categories/show/%d/' % category.id,
+              302)],
             resp.redirect_chain)
 
     def test_delete_category_get(self):

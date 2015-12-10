@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block main %}
+<h1>Add category group</h1>
+<hr />
+
+<form
+method="POST" action="{% url 'tools:add_categorygroup' %}" class="form" 
+enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Submit
+        </button>
+        <a class="btn btn-danger" href="{% url 'tools:list_categories' %}">Cancel</a>
+    {% endbuttons %}
+</form>
+
+{% endblock %}

@@ -5,7 +5,7 @@
 <h3>Are you sure you want to remove this category?</h3>
 <form action="{% url 'tools:delete_category' category.id%}" method='POST'>
   {% csrf_token %}
-  <button name='confirmation' type="submit" class="btn btn-danger" value='yes'>DELETE</button>
+  <button name='confirmation' type="submit" class="btn btn-danger" value="yes">DELETE</button>
   <button type="submit" class="btn btn-default" value='no'>Cancel</button>
 </form>
 {% endblock %}

@@ -6,20 +6,39 @@
 
 {% block main %}
 
-<h3 class="title">Category overview
-{% if perms.tools %}{% if perms.tools.delete_toolcategory %}
-<a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
-<div class="filter-buttons pull-right">
-  {{categories_filter.form}}
-</div>
-{% endif %}{% endif %}
-</h3>
-<p class="category-description">
-  {{ overview.description }}
-  {% if perms.tools %}{% if perms.tools.add_tool %}
-  <a href="{% url 'tools:edit_overview' 'category' %}"><i class="fa fa-edit"></i></a>
-  {% endif %}{% endif %}
-</p>
+<div class="row">
+    <div class="col-md-8">
+       <h2 class="title">Category overview
+         {% if perms.tools %}{% if perms.tools.add_toolcategory %}
+         <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
+         {% endif %}{% endif %}
+       </h2>
+    </div>
 
-{% include "tools/_resource_overview.html" with resources=categories_filter route='tools:show_category' %}
+    <div class="col-md-4">
+       <div class="filter-buttons pull-right">
+         {{categories_filter.form}}
+       </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-10">
+         <p class="category-description">
+           {{ overview.description }}
+           {% if perms.tools %}{% if perms.tools.add_tool %}
+           <a href="{% url 'tools:edit_overview' 'category' %}"><i class="fa fa-edit"></i></a>
+           {% endif %}{% endif %}
+         </p>
+    </div>
+    <div class="col-md-2">
+        <div class="filter-buttons pull-right">
+            <a class="btn btn-black" 
+                href="{% url 'tools:add_categorygroup' %}">Add Group</a>
+        </div>
+    </div>
+</div>
+
+{% include "tools/_categories_overview.html" %}
 {% endblock %}
