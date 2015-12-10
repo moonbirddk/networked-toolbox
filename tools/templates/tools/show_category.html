@@ -42,13 +42,26 @@
 
         </div>-->
         <div class="col-md-6">
+          <h4 class="title">Help improve this category</h4>
+          <div class="row">
+            <div class="col-md-7 improvement-info">
+              <p>
+                How can we improve this category? Give us concrete feedback on what you think is missing.
+              </p>
+            </div>
+            <div class="col-md-4">
+              <a class="btn btn-warning" href="{% url 'tools:add_suggestion' 'category' category.id %}">Add a suggestion</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 top-margin">
           <div class="resource-box">
             <h3 class="title">Resources
             {% if perms.tools %}{% if perms.tools.add_toolresource %}
             <a href="{% url 'resources:add' 'toolcategory' category.id %}"><i class="fa fa-plus"></i></a>
             {% endif %}{% endif %}
             </h3>
-            <p>Here you can find the different resources related to the current tool.</p>
+            <p>Here you can find the different resources related to the current category.</p>
 
             {% for resource in category.resources.all %}
               {{ resource.document.type }}
@@ -67,19 +80,6 @@
                 </div>
               </div>
               {% endfor %}
-          </div>
-        </div>
-        <div class="col-md-6">
-          <h4 class="title top-margin">Help improve this category</h4>
-          <div class="row">
-            <div class="col-md-7 improvement-info">
-              <p>
-                How can we improve this category? Give us concrete feedback on what you think is missing.
-              </p>
-            </div>
-            <div class="col-md-4">
-              <a class="btn btn-warning" href="{% url 'tools:add_suggestion' 'category' category.id %}">Add a suggestion</a>
-            </div>
           </div>
         </div>
     </div>
