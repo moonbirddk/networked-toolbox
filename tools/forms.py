@@ -6,7 +6,7 @@ from django_summernote.widgets import SummernoteInplaceWidget
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Tool, ToolResource, ToolCategory, Suggestion
+from .models import Tool, ToolCategory, Suggestion
 
 
 log = logging.getLogger(__name__)

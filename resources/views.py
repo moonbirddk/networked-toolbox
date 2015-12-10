@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.contenttypes.models import ContentType
 
 from .forms import ToolResourceForm
-from tools.models import Tool, ToolCategory, ToolResource
+from .models import ToolResource
 
 log = logging.getLogger(__name__)
 

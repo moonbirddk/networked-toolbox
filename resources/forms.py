@@ -6,7 +6,7 @@ from django_summernote.widgets import SummernoteInplaceWidget
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
 
-from tools.models import Tool, ToolResource, ToolCategory
+from .models import ToolResource
 
 
 class ToolResourceForm(forms.ModelForm):
