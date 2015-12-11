@@ -2,12 +2,12 @@
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
-from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_delete
-
+from resources.models import ToolResource
 from solo.models import SingletonModel
 
 from common.utils import generate_upload_path
@@ -15,10 +15,6 @@ from common.utils import generate_upload_path
 
 def do_upload_cover_image(inst, filename):
     return generate_upload_path(inst, filename, dirname='cover_images')
-
-
-def do_upload_document(inst, filename):
-    return generate_upload_path(inst, filename, dirname='resources')
 
 
 def do_upload_suggestion_attachement(inst, filename):
@@ -43,6 +39,7 @@ class Tool(ModelWithCoverImage):
     categories = models.ManyToManyField('ToolCategory', related_name='tools',
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
+    resources = GenericRelation('resources.ToolResource')
 
     def get_absolute_url(self):
         return reverse('tools:show', args=[self.id, ])
@@ -59,22 +56,13 @@ class ToolFollower(models.Model):
     should_notify = models.BooleanField(default=False, null=False)
 
 
-class ToolResource(models.Model):
-    tool = models.ForeignKey(
-        'Tool',
-        null=False,
-        related_name='resources',
-        related_query_name='resource'
-    )
-    title = models.CharField(max_length=60)
-    document = models.FileField(upload_to=do_upload_document, blank=False,
-                                null=False)
-
 
 class ToolCategory(ModelWithCoverImage):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=5000)
     published = models.BooleanField(default=False, null=False)
+    resources = GenericRelation('resources.ToolResource')
+
 
     def get_absolute_url(self):
         return reverse('tools:show_category', args=[self.id, ])

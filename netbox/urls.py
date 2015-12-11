@@ -25,6 +25,8 @@ urlpatterns = [
 
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^tools/', include('tools.urls', namespace='tools')),
+    url(r'^resources/', include('resources.urls', namespace='resources')),
+
     url(r'^$', 'tools.views.index', name='index'),
 
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\

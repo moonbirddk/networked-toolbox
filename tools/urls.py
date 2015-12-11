@@ -15,10 +15,6 @@ urlpatterns = [
     url(r'^edit/(\d+)/$', views.edit, name='edit'),
     url(r'^follow/(\d+)/$', views.follow, name='follow'),
     url(r'^unfollow/(\d+)/$', views.unfollow, name='unfollow'),
-    url(r'^overview/([a-z]+)/$', views.edit_overview, name='edit_overview'),
-
-    url(r'^(\d+)/resources/add/$', views.add_resource, name='add_resource'),
-    url(r'^(\d+)/resources/(\d+)/delete/$', views.delete_resource, name='delete_resource'),
 
     url(r'^categories/$', views.list_categories, name='list_categories'),
     url(r'^categories/add/$', views.add_category, name='add_category'),
@@ -28,4 +24,5 @@ urlpatterns = [
 
     url(r'^suggestion/([a-z]+)/(\d+)/$', views.add_suggestion, name='add_suggestion'),
 
+    url(r'^overview/edit/([a-z]+)/$', views.edit_overview, name='edit_overview'),
 ]

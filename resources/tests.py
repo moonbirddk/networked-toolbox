@@ -26,37 +26,37 @@ class ToolResourcesViewsTestCase(TestCase):
         self.test_resource = ToolResource.objects.create(
             title='test resource',
             document=test_fh,
-            tool=self.test_tool
+            content_object=self.test_tool
         )
 
     def test_add_resource_get(self):
         self.client.login(username='testadmin', password='testpass')
         url = reverse(
-            'tools:add_resource',
-            args=(self.test_tool.id,)
+            'resources:add',
+            args=('tool',self.test_tool.id,)
         )
         resp = self.client.get(url)
         self.assertEqual(200, resp.status_code)
-        self.assertTemplateUsed(resp, 'tools/add_resource.html')
+        self.assertTemplateUsed(resp, 'resources/add.html')
         self.assertContains(resp, 'Add resource to')
 
     def test_add_resource_post_empty(self):
         self.client.login(username='testadmin', password='testpass')
         url = reverse(
-            'tools:add_resource',
-            args=(self.test_tool.id,)
+            'resources:add',
+            args=('tool',self.test_tool.id,)
         )
         empty = {}
         resp = self.client.post(url, empty, follow=True)
         self.assertEqual(200, resp.status_code)
-        self.assertTemplateUsed(resp, 'tools/add_resource.html')
+        self.assertTemplateUsed(resp, 'resources/add.html')
         self.assertContains(resp, 'Add resource to')
 
     def test_add_resource_post(self):
         self.client.login(username='testadmin', password='testpass')
         url = reverse(
-            'tools:add_resource',
-            args=(self.test_tool.id,)
+            'resources:add',
+            args=('tool',self.test_tool.id,)
         )
         test_fh = SimpleUploadedFile(
             'test post empty.png',
@@ -81,7 +81,7 @@ class ToolResourcesViewsTestCase(TestCase):
         )
 
         result = ToolResource.objects.filter(title='test post test resource',
-                                             tool=self.test_tool)
+                                             object_id=self.test_tool.id)
         self.assertEqual(1, result.count())
         tool_resource = result[0]
         self.assertEqual(tool_resource.title, data['title'])
@@ -94,19 +94,19 @@ class ToolResourcesViewsTestCase(TestCase):
     def test_delete_resource_get(self):
         self.client.login(username='testadmin', password='testpass')
         url = reverse(
-            'tools:delete_resource',
-            args=(self.test_tool.id, self.test_resource.id)
+            'resources:delete',
+            args=(self.test_resource.id,)
         )
         resp = self.client.get(url)
         self.assertEqual(200, resp.status_code)
-        self.assertTemplateUsed(resp, 'tools/delete_resource.html')
+        self.assertTemplateUsed(resp, 'resources/delete.html')
         self.assertContains(resp, 'Are you sure')
 
     def test_delete_resource_post_canceled(self):
         self.client.login(username='testadmin', password='testpass')
         url = reverse(
-            'tools:delete_resource',
-            args=(self.test_tool.id, self.test_resource.id)
+            'resources:delete',
+            args=(self.test_resource.id,)
         )
         data = {'confirmation': 'no'}
         resp = self.client.post(url, data, follow=True)
@@ -122,8 +122,8 @@ class ToolResourcesViewsTestCase(TestCase):
     def test_delete_resource_post(self):
         self.client.login(username='testadmin', password='testpass')
         url = reverse(
-            'tools:delete_resource',
-            args=(self.test_tool.id, self.test_resource.id)
+            'resources:delete',
+            args=(self.test_resource.id,)
         )
         data = {'confirmation': 'yes'}
         resp = self.client.post(url, data, follow=True)

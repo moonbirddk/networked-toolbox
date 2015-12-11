@@ -7,11 +7,11 @@
 {% endblock %}
 
 {% block main %}
-<h1>Add resource to &quot;{{ tool.title }}&quot;</h1>
+<h1>Add resource to &quot;{{ related_object.title }}&quot;</h1>
 
 {# Display a form #}
 
-<form method="POST" action="{% url 'tools:add_resource' tool.id %}" class="form"
+<form method="POST" action="{% url 'resources:add' type_name related_object.id  %}" class="form"
 enctype="multipart/form-data">
     {% csrf_token %}
 

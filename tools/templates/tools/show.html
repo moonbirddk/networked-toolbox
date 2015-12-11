@@ -32,7 +32,7 @@
           <div class="resource-box">
             <h3 class="title">Resources
             {% if perms.tools %}{% if perms.tools.add_toolresource %}
-            <a href="{% url 'tools:add_resource' tool.id %}"><i class="fa fa-plus"></i></a>
+            <a href="{% url 'resources:add' 'tool' tool.id  %}"><i class="fa fa-plus"></i></a>
             {% endif %}{% endif %}
             </h3>
             <p>Here you can find the different resources related to the current tool.</p>
@@ -43,7 +43,7 @@
                 <div class="pull-right">
                   <a target="_blank" download href="{{ resource.document.url }}"><i class="fa fa-arrow-circle-o-down resource-action"></i></a>
                   {% if perms.tools %}{% if perms.tools.delete_toolresource %}
-                  <a href="{% url 'tools:delete_resource' tool.id resource.id %}"><i class="fa fa-close resource-action"></i></a>
+                  <a href="{% url 'resources:delete' resource.id %}"><i class="fa fa-close resource-action"></i></a>
                   {% endif %}{% endif %}
                 </div>
                 <div>

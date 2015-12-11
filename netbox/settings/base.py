@@ -73,6 +73,7 @@ INSTALLED_APPS = (
 
     'profiles',
     'tools',
+    'resources'
 
 )
 
