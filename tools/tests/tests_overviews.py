@@ -1,11 +1,6 @@
-from django.conf import settings
 from django.test import TestCase
 from django.core.urlresolvers import reverse
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core import mail
 from django.contrib.auth.models import User, Group
-
-from ..models import ToolOverviewPage, CategoryOverviewPage
 
 
 class OverviewTestCase(TestCase):
