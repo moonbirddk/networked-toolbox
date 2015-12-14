@@ -6,13 +6,13 @@
   {% for category_group in categories_by_group %}
         <div class="row">
          <div class="col-md-10">
-            <h4 class="title">
+            <h2 class="title">
                 {{category_group.name}}
                 {% if perms.tools %}{% if perms.tools.edit_categorygroup %}
                 <a href="{% url 'tools:edit_categorygroup' category_group.id %}"><i class="fa fa-edit"></i></a>
                 <a href="{% url 'tools:delete_categorygroup' category_group.id %}"><i class="fa fa-trash-o"></i></a>
                 {% endif %}{% endif %}
-            </h4>
+            </h2>
           </div>
         </div>
         <div class="row">

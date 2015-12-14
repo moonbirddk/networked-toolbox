@@ -8,11 +8,11 @@
 
 <div class="row">
     <div class="col-md-8">
-       <h2 class="title">Category overview
+       <h3 class="title">Category overview
          {% if perms.tools %}{% if perms.tools.add_toolcategory %}
          <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
          {% endif %}{% endif %}
-       </h2>
+       </h3>
     </div>
 
     <div class="col-md-4">
