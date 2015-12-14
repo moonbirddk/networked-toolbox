@@ -100,6 +100,7 @@ def edit(request, tool_id):
     attributes = {
         'title': tool.title,
         'description': tool.description,
+        'resources_text': tool.resources_text,
         'categories': categories_ids,
         'published': tool.published,
     }
@@ -127,6 +128,7 @@ def edit(request, tool_id):
             tool.published = form.cleaned_data['published']
             tool.title = form.cleaned_data['title']
             tool.description = form.cleaned_data['description']
+            tool.resources_text = form.cleaned_data['resources_text']
             tool.cover_image = cover_image
             tool.save()
             tool.categories = form.cleaned_data['categories']

@@ -44,7 +44,8 @@ class ToolsViewsTestCase(TestCase):
             'title': 'our test title',
             'description': 'description test',
             'categories': self.test_category.id,
-            'cover_image': test_fh
+            'cover_image': test_fh,
+            'resources_text': 'our new description'
         }
         resp = self.client.post(reverse('tools:add'), data, follow=True)
         self.assertEqual(
@@ -83,6 +84,7 @@ class ToolsViewsTestCase(TestCase):
             'description': 'new description test',
             'categories': self.test_category.id,
             'cover_image': test_fh,
+            'resources_text': 'our new description'
         }
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
@@ -102,7 +104,8 @@ class ToolsViewsTestCase(TestCase):
         tool = Tool.objects.create(
             title='A title',
             description='A description',
-            cover_image=test_fh1
+            cover_image=test_fh1,
+            resources_text= 'our new description'
         )
 
         empty = {}
@@ -119,6 +122,7 @@ class ToolsViewsTestCase(TestCase):
             'categories': self.test_category.id,
             'cover_image': test_fh2,
             'published': True,
+            'resources_text': 'our new description'
         }
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
@@ -145,6 +149,7 @@ class ToolsViewsTestCase(TestCase):
             'description': 'new description test',
             'categories': self.test_category.id,
             'cover_image-clear': 1,
+            'resources_text': 'our new description'
         }
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)

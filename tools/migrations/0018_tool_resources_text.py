@@ -11,11 +11,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='toolresource',
-            name='content_type',
-        ),
-        migrations.DeleteModel(
-            name='ToolResource',
+        migrations.AddField(
+            model_name='tool',
+            name='resources_text',
+            field=models.CharField(default='Here you can find the different resources related to the current tool.', max_length=300),
         ),
     ]

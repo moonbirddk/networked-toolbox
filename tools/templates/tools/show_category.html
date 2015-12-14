@@ -61,7 +61,7 @@
             <a href="{% url 'resources:add' 'toolcategory' category.id %}"><i class="fa fa-plus"></i></a>
             {% endif %}{% endif %}
             </h3>
-            <p>Here you can find the different resources related to the current category.</p>
+            <p>{{ category.resources_text }}</p>
 
             {% for resource in category.resources.all %}
               {{ resource.document.type }}
