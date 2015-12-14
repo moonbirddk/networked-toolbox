@@ -4,10 +4,9 @@ from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_delete
-from resources.models import ToolResource
+from django.db.models.signals import pre_delete, post_delete
+
 from solo.models import SingletonModel
 
 from common.utils import generate_upload_path
@@ -46,9 +45,8 @@ class Tool(ModelWithCoverImage):
     published = models.BooleanField(default=False, null=False)
     resources = GenericRelation('resources.ToolResource')
 
-
     def get_absolute_url(self):
-        return reverse('tools:show', args=[self.id, ])
+        return reverse('tools:show', args=(self.id, ))
 
     def published_categories(self):
         return self.categories.filter(published=True)
@@ -62,6 +60,25 @@ class ToolFollower(models.Model):
     should_notify = models.BooleanField(default=False, null=False)
 
 
+class CategoryGroup(models.Model):
+    name = models.CharField(max_length=30, null=False, blank=False,
+                            unique=True)
+    #created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
+def pre_delete_category_group(sender, instance, **kwargs):
+    if instance.name == 'Other' or instance.id == 1:
+        raise Exception("Can not delete default category group!")
+
+pre_delete.connect(pre_delete_category_group, sender=CategoryGroup)
+
+
+def get_default_category_group_id(*args, **kwargs):
+    return 1
+
 
 class ToolCategory(ModelWithCoverImage):
     title = models.CharField(max_length=100)
@@ -71,8 +88,19 @@ class ToolCategory(ModelWithCoverImage):
 
     resources_text = models.CharField(
         max_length=300,
-        default='Here you can find the different resources related to the current category.',
-        blank = True
+        default='Here you can find the different resources'
+                ' related to the current category.',
+        blank=True
+    )
+    # A category will belong to only one group; categories not belonging
+    # to a group will belong to group 'Other' by default
+    group = models.ForeignKey(
+        'CategoryGroup',
+        null=False,
+        default=get_default_category_group_id,
+        related_name='categories',
+        related_query_name='category',
+        on_delete=models.SET_DEFAULT
     )
 
     def get_absolute_url(self):
@@ -80,6 +108,10 @@ class ToolCategory(ModelWithCoverImage):
 
     def published_tools(self):
         return self.tools.filter(published=True)
+
+    def __str__(self):
+        pub = 'published' if self.published else 'unpublished'
+        return "{} ({})".format(self.title, pub)
 
 
 class Suggestion(models.Model):
@@ -106,6 +138,7 @@ def delete_suggestion_on_related_deleted(sender, instance, **kwargs):
 
 post_delete.connect(delete_suggestion_on_related_deleted, sender=Tool)
 post_delete.connect(delete_suggestion_on_related_deleted, sender=ToolCategory)
+
 
 class ToolOverviewPage(SingletonModel):
     description = models.CharField(max_length=255, default='Lorem ipsum.')
