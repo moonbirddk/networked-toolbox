@@ -61,6 +61,7 @@ def edit_category(request, cat_id):
         'title': category.title,
         'description': category.description,
         'published': category.published,
+        'resources_text': category.resources_text
     }
 
     if category.cover_image and \
@@ -89,6 +90,7 @@ def edit_category(request, cat_id):
             category.title = form.cleaned_data['title']
             category.description = form.cleaned_data['description']
             category.cover_image = cover_image
+            category.resources_text = form.cleaned_data['resources_text']
             category.save()
             messages.success(request, "You updated this category")
             return redirect('tools:show_category', category.id)

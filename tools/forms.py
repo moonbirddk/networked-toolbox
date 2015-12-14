@@ -34,6 +34,9 @@ class ToolForm(forms.Form):
         label="Published (available for all users)"
     )
     title = forms.fields.CharField(max_length=100, required=True)
+    resources_text = forms.fields.CharField(
+        max_length=300
+    )
     cover_image = forms.fields.ImageField(
         required=False,
         label='Cover image (recommended size: 1200x600)'
@@ -49,6 +52,9 @@ class ToolCategoryForm(forms.Form):
         label="Published (available for all users)"
     )
     title = forms.fields.CharField(max_length=100, required=True)
+    resources_text = forms.fields.CharField(
+        max_length=300
+    )
     cover_image = forms.fields.ImageField(
         required=False,
         label='Cover image (recommended size: 1200x600)'

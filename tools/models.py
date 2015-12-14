@@ -36,10 +36,16 @@ class ModelWithCoverImage(models.Model):
 class Tool(ModelWithCoverImage):
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=5000)
+    resources_text = models.CharField(
+        max_length=300,
+        default='Here you can find the different resources related to the current tool.',
+        blank = True
+    )
     categories = models.ManyToManyField('ToolCategory', related_name='tools',
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
     resources = GenericRelation('resources.ToolResource')
+
 
     def get_absolute_url(self):
         return reverse('tools:show', args=[self.id, ])
@@ -63,6 +69,11 @@ class ToolCategory(ModelWithCoverImage):
     published = models.BooleanField(default=False, null=False)
     resources = GenericRelation('resources.ToolResource')
 
+    resources_text = models.CharField(
+        max_length=300,
+        default='Here you can find the different resources related to the current category.',
+        blank = True
+    )
 
     def get_absolute_url(self):
         return reverse('tools:show_category', args=[self.id, ])

@@ -8,6 +8,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from .models import ToolResource
 
+class ToolResourceEditForm(forms.ModelForm):
+    class Meta:
+        model = ToolResource
+        fields = ['title']
 
 class ToolResourceForm(forms.ModelForm):
     CONTENT_TYPES = [

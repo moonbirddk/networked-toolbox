@@ -11,4 +11,5 @@ from . import views
 urlpatterns = [
     url(r'^add/([a-z]+)/(\d+)/$', views.add, name='add'),
     url(r'^(\d+)/delete/$', views.delete, name='delete'),
+    url(r'^(\d+)/edit/$', views.edit, name='edit'),
 ]

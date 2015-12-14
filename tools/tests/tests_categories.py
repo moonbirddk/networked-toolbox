@@ -67,7 +67,8 @@ class CategoriesViewsTestCase(TestCase):
         data = {
             'title': 'our test title',
             'description': 'description test',
-            'cover_image': test_fh
+            'cover_image': test_fh,
+            'resources_text': 'this changed'
         }
         resp = self.client.post(reverse('tools:add_category'), data,
                                 follow=True)
@@ -106,6 +107,7 @@ class CategoriesViewsTestCase(TestCase):
             'title': 'our category new title',
             'description': 'new category description test',
             'cover_image': test_fh,
+            'resources_text': 'this changed'
         }
         url = reverse('tools:edit_category', args=(self.test_category.id,))
         resp = self.client.post(url, data, follow=True)

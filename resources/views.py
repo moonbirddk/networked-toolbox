@@ -7,7 +7,7 @@ from django.db import transaction
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.contenttypes.models import ContentType
 
-from .forms import ToolResourceForm
+from .forms import ToolResourceForm, ToolResourceEditForm
 from .models import ToolResource
 
 log = logging.getLogger(__name__)
@@ -57,3 +57,21 @@ def delete(request, resource_id):
             resource.delete()
             messages.success(request, "You deleted a resource")
         return redirect(content_object)
+
+@permission_required('tools.delete_toolresource', login_url='tools:index')
+@login_required
+def edit(request,resource_id):
+    resource = get_object_or_404(ToolResource, id=resource_id)
+
+    if request.method == 'POST':
+        form = ToolResourceEditForm(request.POST)
+        if form.is_valid():
+            resource.title = form.cleaned_data['title']
+            resource.save()
+            messages.success(request, "You updated a resource")
+            return redirect(resource.content_object)
+            
+    form = ToolResourceEditForm({'title':resource.title})
+    context = {'resource': resource, 'form':form}
+
+    return render(request, 'resources/edit.html', context)
