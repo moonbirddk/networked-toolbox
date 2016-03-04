@@ -18,3 +18,4 @@ boto
 bleach
 git+https://github.com/jschneier/django-storages.git#egg=django-storages
 django-solo
+newrelic==2.60.0.46
