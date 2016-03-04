@@ -3,24 +3,35 @@ import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db import transaction
+from django.db.models import Prefetch
 from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required, permission_required
 
 from tools.filters import PublishedFilter
-from tools.forms import ToolCategoryForm, OverviewPageForm
-from tools.models import Tool, ToolCategory, CategoryOverviewPage
-
+from tools.forms import ToolCategoryForm
+from tools.models import ToolCategory, CategoryOverviewPage,\
+    CategoryGroup
 
 log = logging.getLogger(__name__)
 
+
 def list_categories(request):
     if request.user.has_perm('tools.change_toolcategory'):
-        queryset = ToolCategory.objects.all().order_by('-published')
+        queryset = ToolCategory.objects.all().order_by('-published', 'group')
     else:
-        queryset = ToolCategory.objects.filter(published=True)
+        queryset = ToolCategory.objects.filter(published=True)\
+            .order_by('group')
     cat_filter = PublishedFilter(request.GET, queryset=queryset)
+
+    categories_by_group = CategoryGroup.objects\
+        .prefetch_related(Prefetch('categories', queryset=cat_filter.qs))
+
     overview = CategoryOverviewPage.get_solo()
-    context = {'categories_filter': cat_filter, 'overview':overview}
+    context = {
+        'categories_filter': cat_filter,
+        'overview': overview,
+        'categories_by_group': categories_by_group,
+    }
     return render(request, 'tools/list_categories.html', context)
 
 
@@ -61,7 +72,8 @@ def edit_category(request, cat_id):
         'title': category.title,
         'description': category.description,
         'published': category.published,
-        'resources_text': category.resources_text
+        'resources_text': category.resources_text,
+        'group': category.group.id,
     }
 
     if category.cover_image and \
@@ -91,6 +103,7 @@ def edit_category(request, cat_id):
             category.description = form.cleaned_data['description']
             category.cover_image = cover_image
             category.resources_text = form.cleaned_data['resources_text']
+            category.group = form.cleaned_data['group']
             category.save()
             messages.success(request, "You updated this category")
             return redirect('tools:show_category', category.id)

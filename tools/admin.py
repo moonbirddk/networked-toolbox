@@ -1,10 +1,14 @@
+
 from django.contrib import admin
 from solo.admin import SingletonModelAdmin
-from .models import Tool, ToolCategory, Suggestion, ToolFollower, ToolOverviewPage, CategoryOverviewPage
+from .models import Tool, ToolCategory, Suggestion, ToolFollower, \
+    ToolOverviewPage, CategoryOverviewPage, CategoryGroup
+
 
 admin.site.register(Tool)
 admin.site.register(ToolCategory)
+admin.site.register(CategoryGroup)
 admin.site.register(Suggestion)
 admin.site.register(ToolFollower)
-admin.site.register(ToolOverviewPage,SingletonModelAdmin)
-admin.site.register(CategoryOverviewPage,SingletonModelAdmin)
+admin.site.register(ToolOverviewPage, SingletonModelAdmin)
+admin.site.register(CategoryOverviewPage, SingletonModelAdmin)

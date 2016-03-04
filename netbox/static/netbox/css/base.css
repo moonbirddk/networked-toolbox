@@ -54,6 +54,18 @@ body{
   border-color: grey;
 }
 
+.btn-black {
+  color: #ffffff;
+  background-color: black;
+  border-color: black;
+}
+
+.btn-black:hover {
+  color: #ffffff;
+  background-color: grey;
+  border-color: grey;
+}
+
 .improvement-info{
   line-height: 1.6rem;
 }

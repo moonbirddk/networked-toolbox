@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core import mail
 
-from ..models import Tool, ToolCategory, ToolResource, Suggestion
+from ..models import Tool, Suggestion
 from django.contrib.auth import get_user_model
 
 

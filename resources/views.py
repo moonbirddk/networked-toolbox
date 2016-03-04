@@ -12,6 +12,7 @@ from .models import ToolResource
 
 log = logging.getLogger(__name__)
 
+
 def get_url_for_type_name(type_name, obj_id):
     if type_name == 'tool':
         url = 'tools:show'
@@ -20,7 +21,7 @@ def get_url_for_type_name(type_name, obj_id):
     return reverse(url, args=(obj_id,))
 
 
-@permission_required('tools.add_toolresource', login_url='tools:index')
+@permission_required('resources.add_toolresource', login_url='tools:index')
 @login_required
 def add(request, type_name, type_id):
     content_type = ContentType.objects.get(app_label="tools", model=type_name)
@@ -31,8 +32,10 @@ def add(request, type_name, type_id):
     if request.method == 'POST':
         form = ToolResourceForm(request.POST, request.FILES)
         if form.is_valid():
-            ToolResource.objects.create(content_object=related_object,
-                **form.cleaned_data)
+            ToolResource.objects.create(
+                content_object=related_object,
+                **form.cleaned_data
+            )
             messages.success(request, "You added a resource")
             url = get_url_for_type_name(type_name, related_object.id)
             return redirect(url)
@@ -43,7 +46,7 @@ def add(request, type_name, type_id):
 
 
 @transaction.atomic
-@permission_required('tools.delete_toolresource', login_url='tools:index')
+@permission_required('resources.delete_toolresource', login_url='tools:index')
 @login_required
 def delete(request, resource_id):
     resource = get_object_or_404(ToolResource, id=resource_id)
@@ -58,9 +61,10 @@ def delete(request, resource_id):
             messages.success(request, "You deleted a resource")
         return redirect(content_object)
 
-@permission_required('tools.delete_toolresource', login_url='tools:index')
+
+@permission_required('resources.delete_toolresource', login_url='tools:index')
 @login_required
-def edit(request,resource_id):
+def edit(request, resource_id):
     resource = get_object_or_404(ToolResource, id=resource_id)
 
     if request.method == 'POST':
@@ -70,7 +74,6 @@ def edit(request,resource_id):
             resource.save()
             messages.success(request, "You updated a resource")
             return redirect(resource.content_object)
-            
     form = ToolResourceEditForm({'title':resource.title})
     context = {'resource': resource, 'form':form}
 

@@ -6,26 +6,36 @@ from django_summernote.widgets import SummernoteInplaceWidget
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Tool, ToolCategory, Suggestion
+from .models import Tool, ToolCategory, CategoryGroup
 
 
 log = logging.getLogger(__name__)
 
 
 class OverviewPageForm(forms.Form):
-    description = forms.fields.CharField(max_length=255,
-        required=True,widget=forms.Textarea)
+    description = forms.fields.CharField(
+        max_length=255,
+        required=True,
+        widget=forms.Textarea
+    )
+
 
 class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
 
     widget = forms.CheckboxSelectMultiple
 
-    def __init__(self, *args, **kwargs):
-        queryset = ToolCategory.objects.all()
+    def __init__(self, *args, queryset=None, **kwargs):
+        if not queryset:
+            queryset = ToolCategory.objects.all()
         super().__init__(queryset=queryset, **kwargs)
 
     def label_from_instance(self, obj):
         return obj.title
+
+
+class CategoryGroupForm(forms.Form):
+    name = forms.fields.CharField(max_length=30, required=True)
+    categories = ToolCategoryChoiceField()
 
 
 class ToolForm(forms.Form):
@@ -61,6 +71,8 @@ class ToolCategoryForm(forms.Form):
     )
     description = forms.fields.CharField(
         widget=SummernoteInplaceWidget(), required=True)
+    group = forms.ModelChoiceField(queryset=CategoryGroup.objects.all(),
+                                   required=True)
 
 
 class SuggestionRelatedObjectForm(forms.Form):
