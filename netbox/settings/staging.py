@@ -31,7 +31,7 @@ SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
 
 ADMINS = (
     ('Paweł', 'pawel+network-toolbox-staging-heroku@socialsquare.dk',),
-    ('Viktor', 'viktor+network-toolbox-staging-heroku@socialsquare.dk',),
+    ('Simon', 'simon.carstensen+network-toolbox-staging-heroku@socialsquare.dk',),
 )
 SITE_ADMIN_EMAIL = 'ckn@ms.dk'
 
