@@ -15,9 +15,10 @@ DATABASES = {
     'default': dj_database_url.config()
 }
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
+#DATABASES['default']['CONN_MAX_AGE'] = 5
 DATABASE_POOL_ARGS = {
-    'max_overflow': 1,
-    'pool_size': 2,
+    'max_overflow': 10,
+    'pool_size': 5,
     'recycle': 300
 }
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
