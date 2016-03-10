@@ -21,8 +21,8 @@ def make_default_site(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tools', '0006_auto_20151104_1313'),
         ('sites', '0001_initial'),
+        ('tools', '0001_initial'),
     ]
 
     operations = [

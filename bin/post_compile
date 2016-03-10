@@ -1,6 +1,3 @@
 #!/usr/bin/env bash
 
-./manage.py syncdb
-
-# Run Django migrations.
-./manage.py migrate
+#./manage.py migrate

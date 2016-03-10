@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.db import migrations, models
 import resources.models
 
@@ -8,11 +9,11 @@ import resources.models
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('contenttypes', '0002_remove_content_type_name'),
-        ('tools', '0016_move_resources_20151210_1351')
     ]
 
-    state_operations = [
+    operations = [
         migrations.CreateModel(
             name='ToolResource',
             fields=[
@@ -20,15 +21,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=60)),
                 ('document', models.FileField(upload_to=resources.models.do_upload_document)),
                 ('object_id', models.PositiveIntegerField(null=True)),
-                ('content_type', models.ForeignKey(to='contenttypes.ContentType',null=True)),
+                ('content_type', models.ForeignKey(null=True, to='contenttypes.ContentType')),
             ],
-            options={
-                'db_table': 'resources_toolresource',
-            },
-            bases=(models.Model,),
         ),
-    ]
-
-    operations = [
-        migrations.SeparateDatabaseAndState(state_operations=state_operations)
     ]
