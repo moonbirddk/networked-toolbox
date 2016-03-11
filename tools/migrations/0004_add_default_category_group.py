@@ -12,7 +12,7 @@ def add_default_category_group(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tools', '0021_categorygroup'),
+        ('tools', '0003_add_tool_perms_to_admins'),
     ]
 
     operations = [
