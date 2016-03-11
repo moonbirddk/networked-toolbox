@@ -27,6 +27,16 @@ class Profile(models.Model):
         else:
             return user.email
 
+    def short_name(self):
+        user = self.user
+        if user.first_name and user.last_name:
+            last_name = user.last_name[0] + '.'
+            return "{} {}".format(user.first_name, last_name)
+        elif user.first_name:
+            return user.first_name
+        else:
+            return user.last_name
+
     def has_existing_photo(self):
         return self.photo and \
             default_storage.exists(self.photo.name)

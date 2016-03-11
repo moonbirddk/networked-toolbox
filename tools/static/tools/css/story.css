@@ -1,0 +1,19 @@
+  .story-item h4 {
+    margin-top: 0; 
+  }
+
+  .story-item .story-details {
+    padding: 0 15px 5px 0;
+    display: block;
+    width: 75px;
+  }  
+  
+  .story-item .story-details .profile-name {
+      font-size: 0.9em;
+      color: black;
+      text-decoration: none;
+  }
+
+  .story-item .story-details img {
+	  width: 65px;
+ 	}

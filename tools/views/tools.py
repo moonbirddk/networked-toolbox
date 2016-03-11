@@ -54,7 +54,9 @@ def show(request, tool_id):
         tool = get_object_or_404(Tool, id=tool_id, published=True)
 
     tool_followers = (list(tool.followers.all().values_list('user_id', flat=True)))
-    context = {'tool': tool, 'tool_followers': tool_followers}
+    stories = tool.stories.all().order_by('-created')
+    context = {'tool': tool, 'tool_followers': tool_followers,
+            'stories': stories}
 
     return render(request, 'tools/show.html', context)
 

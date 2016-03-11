@@ -59,6 +59,12 @@ class ToolFollower(models.Model):
     tool = models.ForeignKey('Tool', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
 
+class Story(ModelWithCoverImage):
+    title = models.CharField(max_length=100)
+    content = models.CharField(max_length=5000)
+    user = models.ForeignKey('auth.User')
+    tool = models.ForeignKey('Tool', related_name='stories')
+    created = models.DateTimeField(auto_now_add=True)
 
 class CategoryGroup(models.Model):
     name = models.CharField(max_length=30, null=False, blank=False,
@@ -152,3 +158,4 @@ class CategoryOverviewPage(SingletonModel):
 
     class Meta:
         verbose_name = "Category Overview Page"
+

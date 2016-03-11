@@ -55,6 +55,10 @@ class ToolForm(forms.Form):
         widget=SummernoteInplaceWidget(), required=True)
     categories = ToolCategoryChoiceField()
 
+class StoryForm(forms.Form):
+    title = forms.fields.CharField(max_length=100, required=True)
+    content = forms.fields.CharField(
+        widget=SummernoteInplaceWidget(), required=True)
 
 class ToolCategoryForm(forms.Form):
     published = forms.fields.BooleanField(
