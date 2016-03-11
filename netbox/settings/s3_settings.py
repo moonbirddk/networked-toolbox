@@ -10,13 +10,13 @@ AWS_QUERYSTRING_AUTH = False
 AWS_S3_SECURE_URLS = False
 #AWS_S3_CALLING_FORMAT = 2
 
-MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_CUSTOM_DOMAIN = 'netbox-staging.s3.eu-central-1.amazonaws.com'
+MEDIA_URL = 'http://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_CUSTOM_DOMAIN = '%s.%s' % (AWS_STORAGE_BUCKET_NAME, AWS_S3_HOST)
 
 ### Staticfiles: use Amazon S3
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 #S3_URL = 'http://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
 #STATIC_URL = S3_URL
-AWS_PRELOAD_METADATA = True # does this work?
+AWS_PRELOAD_METADATA = True  # does this work?
