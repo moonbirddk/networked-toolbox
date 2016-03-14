@@ -89,6 +89,7 @@ def unfollow(request,tool_id):
 
         return redirect(tool)
 
+
 @transaction.atomic
 @permission_required('tools.change_tool', login_url='tools:index')
 @login_required
@@ -130,8 +131,9 @@ def edit(request, tool_id):
             tool.description = form.cleaned_data['description']
             tool.resources_text = form.cleaned_data['resources_text']
             tool.cover_image = cover_image
+            tool.categories.clear()
+            tool.categories.add(*form.cleaned_data['categories'])
             tool.save()
-            tool.categories = form.cleaned_data['categories']
 
             messages.success(request, "You updated a tool")
             return redirect(tool)

@@ -2,7 +2,11 @@ from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User, Group
 
-from ..models import ToolCategory, CategoryGroup, Tool
+from ..models import (
+    ToolCategory,
+    CategoryGroup,
+    Tool,
+)
 
 
 class CategoryGroupModelTestCase(TestCase):
@@ -32,7 +36,7 @@ class CategoryGroupModelTestCase(TestCase):
 
     def test_delete_group(self):
         default_group = CategoryGroup.objects.get(name="Other")
-        test_group = CategoryGroup.objects.create(name="a new group")
+        test_group = CategoryGroup.objects.create(name="a new group1")
         test_cat = ToolCategory.objects.create(
             title="test cat",
             description="desc",

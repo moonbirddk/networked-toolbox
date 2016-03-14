@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models.signals import pre_delete, post_delete
+from django.db.models.signals import pre_delete, post_delete, pre_save
 
 from solo.models import SingletonModel
 
@@ -63,21 +63,25 @@ class ToolFollower(models.Model):
 class CategoryGroup(models.Model):
     name = models.CharField(max_length=30, null=False, blank=False,
                             unique=True)
-    #created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
 
 
-def pre_delete_category_group(sender, instance, **kwargs):
-    if instance.name == 'Other' or instance.id == 1:
-        raise Exception("Can not delete default category group!")
-
-pre_delete.connect(pre_delete_category_group, sender=CategoryGroup)
-
-
 def get_default_category_group_id(*args, **kwargs):
-    return 1
+    return CategoryGroup.objects.get(
+        name=settings.DEFAULT_CATEGORY_GROUP_NAME).id
+
+
+def category_group_check(sender, instance, **kwargs):
+    if settings.IN_TEST:
+        return
+    if instance.name == settings.DEFAULT_CATEGORY_GROUP_NAME:
+        raise Exception("Can not update default category group!")
+    if instance.id == get_default_category_group_id():
+        raise Exception("Can not delete default category group")
+pre_delete.connect(category_group_check, sender=CategoryGroup)
+pre_save.connect(category_group_check, sender=CategoryGroup)
 
 
 class ToolCategory(ModelWithCoverImage):
