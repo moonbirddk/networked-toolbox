@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 
 SITE_ID = 1
 DOMAIN = 'localhost'
@@ -253,3 +254,6 @@ SOCIALACCOUNT_PROVIDERS = {
     'VERSION': 'v2.4'
     },
 }
+
+IN_TEST = 'test' in sys.argv
+DEFAULT_CATEGORY_GROUP_NAME = 'Other'

@@ -48,14 +48,15 @@ class ToolsViewsTestCase(TestCase):
             'resources_text': 'our new description'
         }
         resp = self.client.post(reverse('tools:add'), data, follow=True)
+        self.assertEqual(Tool.objects.count(), 1)
+        tool = Tool.objects.all()[0]
         self.assertEqual(
-            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You created a tool", str(list(resp.context['messages'])[0]))
 
-        self.assertEqual(Tool.objects.count(), 1)
-        tool = Tool.objects.all()[0]
         self.assertEqual(tool.title, data['title'])
         self.assertEqual(tool.description, data['description'])
         self.assertTrue(tool.cover_image)
@@ -89,7 +90,8 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))
@@ -127,7 +129,8 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))
@@ -154,7 +157,8 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))

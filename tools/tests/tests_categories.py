@@ -32,6 +32,8 @@ class CategoriesViewsTestCase(TestCase):
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/list_categories.html')
         self.assertContains(resp, 'Category overview')
+        self.assertNotContains(resp, 'Add Group')
+        self.assertNotContains(resp, 'Unpublished')
 
     def test_show_category_get(self):
         self.test_category.published = True
