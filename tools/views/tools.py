@@ -43,7 +43,7 @@ def index(request):
         queryset = Tool.objects.filter(published=True)
     tools_filter = PublishedFilter(request.GET, queryset=queryset)
     overview = ToolOverviewPage.get_solo()
-    context = {'tools_filter': tools_filter, 'overview':overview}
+    context = {'tools_filter': tools_filter, 'overview': overview}
     return render(request, 'tools/index.html', context)
 
 
