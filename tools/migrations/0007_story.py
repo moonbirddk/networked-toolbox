@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('tools', '0005_add_categorygroup_perms_to_admins'),
+        ('tools', '0006_fix_tools_categorygroup_id_seq'),
     ]
 
     operations = [
