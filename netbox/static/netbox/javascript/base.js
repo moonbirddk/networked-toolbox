@@ -6,8 +6,9 @@ $(document).on("click", "#btn-resource-list", function(){
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
-    $('.readmore').readmore({
-        moreLink: '<a class="readmore-more-link" href="#">See more</a>',
-        lessLink: '<a class="readmore-less-link" href="#">Close</a>' 
-    });
+    $('.more').shorten({
+      'moreText': 'See more',
+      'lessText': '',
+      'showChars': 350 
+    }); 
 });

@@ -136,18 +136,8 @@ body{
   color: #ffffff;
 }
 
-.readmore {
-    margin: 0;
-}
-
-.readmore-more-link {
-  margin: 1em 0 2em 0;
-  display: block;
-}
-
-.readmore-less-link {
-  margin: 0 0 2em 0;
-  display: block;
+.more {
+  margin-bottom: 2em;
 }
 
 .social-button {
