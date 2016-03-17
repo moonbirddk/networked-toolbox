@@ -30,17 +30,17 @@
             <div class="row">
                 <h3 class="title col-md-12">
                     Stories
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'tools:add_story' tool.id  %}"><i class="fa fa-plus"></i></a>
-                    {% endif %}
                 </h3>
-                {% for story in stories %}
-                    <div class="story-item col-md-12">
-                        <div class="row">
+                <div class="add-story col-md-12">
+                    <a class="btn btn-warning" href="{% url 'tools:add_story' tool.id %}">Add a story</a>
+                </div>
+                <div class="col-md-12">
+                    {% for story in stories %}
+                        <div class="story-item row">
                             <div class="col-md-2">
                                 <div class="story-details pull-left">
                                     {% if story.user.profile.photo %}
-                                        <img class='profile-thumbnail-img' src="{{ story.user.profile.photo.url }}" />
+                                      <img class='profile-thumbnail-img' src="{{ story.user.profile.photo.url }}" />
                                     {% else %}
                                         <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}" />
                                     {% endif %}
@@ -52,15 +52,12 @@
                                 <div class="more">{{ story.content | safe }}</div>
                             </div>
                         </div>
-                    </div>
-                {% empty %}
-                    <p class="col-md-12">
-                        No stories have been added yet. 
-                        {% if user.is_authenticated %}
-                            Go ahead and <a href="{% url 'tools:add_story' tool.id %}">create the first one</a>.
-                        {% endif %}
-                    </p>
-                {% endfor %}
+                    {% empty %}
+                        <p>
+                            No stories have been added yet. 
+                        </p>
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="col-md-4 padding">
