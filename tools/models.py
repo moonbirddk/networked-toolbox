@@ -8,6 +8,7 @@ from django.db import models
 from django.db.models.signals import pre_delete, post_delete, pre_save
 
 from solo.models import SingletonModel
+from django_countries.fields import CountryField
 
 from common.utils import generate_upload_path
 
@@ -59,12 +60,15 @@ class ToolFollower(models.Model):
     tool = models.ForeignKey('Tool', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
 
+
 class Story(ModelWithCoverImage):
     title = models.CharField(max_length=100)
     content = models.CharField(max_length=5000)
     user = models.ForeignKey('auth.User')
     tool = models.ForeignKey('Tool', related_name='stories')
     created = models.DateTimeField(auto_now_add=True)
+    country = CountryField(blank_label='where did this take place?', null=True)
+
 
 class CategoryGroup(models.Model):
     name = models.CharField(max_length=30, null=False, blank=False,
