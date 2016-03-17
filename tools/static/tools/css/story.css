@@ -3,21 +3,26 @@
  } 
   
 .story-item h4 {
-  margin-top: 0; 
+  margin: 0; 
 }
 
 .story-item .story-details {
-  padding: 0 15px 5px 0;
-  display: block;
-  width: 75px;
+  margin-bottom: 2em;
 }  
   
 .story-item .story-details .profile-name {
     font-size: 0.9em;
     color: black;
     text-decoration: none;
+    text-align: center;
 }
 
 .story-item .story-details img {
   width: 65px;
+}
+
+.story-item .creation-date {
+  font-size: 0.9em;
+  color: #aaa;
+  margin: 0.3em 0 0.7em 0;
 }
