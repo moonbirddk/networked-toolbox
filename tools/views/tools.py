@@ -61,8 +61,9 @@ def show(request, tool_id):
     return render(request, 'tools/show.html', context)
 
 
+@transaction.atomic
 @login_required
-def follow(request,tool_id):
+def follow(request, tool_id):
     if request.user.has_perm('tools.change_tool'):
         tool = get_object_or_404(Tool, id=tool_id)
     else:
@@ -71,25 +72,26 @@ def follow(request,tool_id):
         should_notify = False
         if request.POST.get('should_notify', '0') == '1':
             should_notify = True
-        ToolFollower.objects.create(user=request.user, tool=tool,
-        should_notify=should_notify)
-
+        tfoll, created = ToolFollower.objects.get_or_create(
+            user=request.user,
+            tool=tool
+        )
+        tfoll.should_notify = should_notify
+        tfoll.save()
         messages.success(request, "You are now following this tool.")
+    return redirect(tool)
 
-        return redirect(tool)
 
 @login_required
-def unfollow(request,tool_id):
+def unfollow(request, tool_id):
+    if request.user.has_perm('tools.change_tool'):
+        tool = get_object_or_404(Tool, id=tool_id)
+    else:
+        tool = get_object_or_404(Tool, id=tool_id, published=True)
     if request.method == 'POST':
-        if request.user.has_perm('tools.change_tool'):
-            tool = get_object_or_404(Tool, id=tool_id)
-        else:
-            tool = get_object_or_404(Tool, id=tool_id, published=True)
-        tool.followers.all().filter(user_id=request.user.id)[0].delete()
-
+        tool.followers.all().filter(user_id=request.user.id).delete()
         messages.success(request, "You are no longer following this tool.")
-
-        return redirect(tool)
+    return redirect(tool)
 
 
 @transaction.atomic
