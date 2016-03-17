@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'storages',
     'django_summernote',
     'solo',
+    'django_countries',
 
     'profiles',
     'tools',

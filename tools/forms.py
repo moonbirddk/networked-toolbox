@@ -6,6 +6,9 @@ from django_summernote.widgets import SummernoteInplaceWidget
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
 
+from django_countries.fields import LazyTypedChoiceField
+from django_countries import countries
+
 from .models import Tool, ToolCategory, CategoryGroup
 
 
@@ -55,10 +58,15 @@ class ToolForm(forms.Form):
         widget=SummernoteInplaceWidget(), required=True)
     categories = ToolCategoryChoiceField()
 
+
 class StoryForm(forms.Form):
     title = forms.fields.CharField(max_length=100, required=True)
     content = forms.fields.CharField(
         widget=SummernoteInplaceWidget(), required=True)
+    country = LazyTypedChoiceField(choices=[('', ''), ] + list(countries),
+                                   required=False,
+                                   label='Where did this take place?')
+
 
 class ToolCategoryForm(forms.Form):
     published = forms.fields.BooleanField(

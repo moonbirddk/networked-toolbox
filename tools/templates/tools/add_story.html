@@ -31,6 +31,8 @@ enctype="multipart/form-data">
       </a>
     {% bootstrap_field form.content show_label=False %}
 
+    {% bootstrap_field form.country show_label=True %}
+
     {% buttons %}
         <button type="submit" class="btn btn-primary">
             {% bootstrap_icon "star" %} Add story
