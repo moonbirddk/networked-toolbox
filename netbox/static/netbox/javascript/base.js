@@ -6,9 +6,12 @@ $(document).on("click", "#btn-resource-list", function(){
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
-    $('.more').shorten({
+    $('.tool-more').shorten({
       'moreText': 'See more',
-      'lessText': '',
-      'showChars': 350 
+      'showChars': 1500 
+    }); 
+    $('.story-more').shorten({
+      'moreText': 'See more',
+      'showChars': 250 
     }); 
 });

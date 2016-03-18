@@ -32,6 +32,10 @@
   margin: 0.5rem 0 0.5rem;
 }
 
+.help-improve a {
+  margin: 0 0 1.5em 0;
+}
+
 .btn-outline {
     background-color: transparent;
     border-width: 2px;
@@ -173,8 +177,7 @@
 }
 
 .summernote-container .title,
-.resource-box .title,
-.title{
+.resource-box .title {
   font-family: 'AmericanTypewriter','Arial';
 }
 

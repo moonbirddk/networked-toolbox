@@ -38,6 +38,24 @@ body{
   }
 }
 
+.title {
+  font-family: 'AmericanTypewriter','Arial';
+  font-weight: bold;
+}
+
+h1.title {
+  font-size: 24px;
+}
+
+h3.title {
+  font-size: 18px;
+}
+
+.btn-primary {
+  background-color: #ed1c24;
+  border-color: #ed1c24;
+}
+
 .btn-warning{
   color: white;
   background-color: black;

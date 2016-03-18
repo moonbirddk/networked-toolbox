@@ -26,14 +26,11 @@
             <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
             {% endif %}{% endif %}
             </h1>
-            <div class="more">{{tool.description|safe }}</div>
+            <div class="tool-more">{{tool.description|safe }}</div>
             <div class="row">
                 <h3 class="title col-md-12">
                     Stories
                 </h3>
-                <div class="add-story col-md-12">
-                    <a class="btn btn-warning" href="{% url 'tools:add_story' tool.id %}">Add a story</a>
-                </div>
                 <div class="col-md-12">
                     {% for story in stories %}
                         <div class="story-item row">
@@ -50,12 +47,16 @@
                             <div class="col-md-10">
                                 <h4>{{ story.title }}</h4>
                                 <div class="story-details">
-                                    {{ story.created | date:"F j, Y" }}</span>
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                    Added on 
+                                    <strong>{{ story.created | date:"F j, Y" }}</strong>
                                     {% if story.country %}
-                                        in {{story.country.name}}
+                                        <span class="glyphicon glyphicon-globe"></span>
+                                        Took place in 
+                                        <strong>{{story.country.name}}</strong>
                                     {% endif %}
                                 </div>
-                                <span class="more">{{ story.content | safe }}</span>
+                                <span class="story-more">{{ story.content | safe }}</span>
                             </div>
                         </div>
                     {% empty %}
@@ -118,10 +119,14 @@
               {% endfor %}
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="help-improve col-md-4">
             <h3 class="title">Help improve this tool</h3>
-                <p>How can we improve this category? Give us concrete feedback on what you think is missing.</p>
-                <a class="btn btn-warning" href="{% url 'tools:add_suggestion' 'tool' tool.id %}">Add a suggestion</a>
+            
+            <p>How can we improve this category? Give us concrete feedback on what you think is missing.</p>
+            <a class="btn btn-primary" href="{% url 'tools:add_suggestion' 'tool' tool.id %}">Add a suggestion</a>
+            
+            <p>Have you used this tool in practice? Tell us about your experience, so the community can learn from it.</p>
+            <a class="btn btn-primary" href="{% url 'tools:add_story' tool.id %}">Add a story</a>
         </div>
         <div class="col-sm-12">
           <div class="usage-indicator">
