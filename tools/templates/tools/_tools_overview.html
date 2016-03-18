@@ -18,7 +18,7 @@
         </div></a>
         <div class="category-content">
           <a href="{% url route resource.id %}"><h3>{{ resource.title|truncatechars:45 }}</h3></a>
-          <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
+          <p>{{ resource.description|bleach_striptags|truncatechars:60 }}</p>
         </div>
     </div>
   {% empty %}
