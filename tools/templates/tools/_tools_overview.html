@@ -17,7 +17,7 @@
           {% endif %}
         </div></a>
         <div class="category-content">
-          <a href="{% url route resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
+          <a href="{% url route resource.id %}"><h3>{{ resource.title|truncatechars:45 }}</h3></a>
           <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
         </div>
     </div>
