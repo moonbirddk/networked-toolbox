@@ -47,19 +47,19 @@
             click: function() {
 
                 var $this = $(this);
-                if ($this.hasClass('less')) {
+                if ($this.hasClass('less')) { // show x chars of the text
                     $this.removeClass('less');
                     $this.html(config.moreText);
-                    $this.parent().prev().prev().show(0)
-                    $this.parent().prev().hide(0, function() {
+                    $this.parent().parent().show(0)
+                    $this.parent().parent().next().hide(0, function() {
                         config.onLess();
                       });
 
-                } else {
+                } else { // show all of the text
                     $this.addClass('less');
                     $this.html(config.lessText);
-                    $this.parent().prev().prev().hide(0)
-                    $this.parent().prev().show(0, function() {
+                    $this.parent().parent().hide(0)
+                    $this.parent().parent().next().show(0, function() {
                         config.onMore();
                       });
                 }
@@ -140,11 +140,12 @@
 
                 var html = '<div class="shortcontent">' + c +
                     '</div><div class="allcontent">' + content +
-                    '</div><span><a href="javascript://nop/" class="morelink">' + config.moreText + '</a></span>';
+                    '</div>';
 
                 $this.html(html);
                 $this.find(".allcontent").hide(); // Hide all text
                 $('.shortcontent p:last', $this).css('margin-bottom', 0); //Remove bottom margin on last paragraph as it's likely shortened
+                $('.shortcontent p:last', $this).append(' <a href="javascript://nop/" class="morelink">' + config.moreText + '</a>'); 
             }
         });
 
