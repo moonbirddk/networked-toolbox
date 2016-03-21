@@ -3,7 +3,7 @@
 
 <div class="row flex-wrapper">
   {% for resource in resources %}
-    <div class="col-md-3 col-xs-6">
+    <div class="tool-item col-md-3 col-xs-6">
         <a href="{% url route resource.id %}"><div class="tool-image">
           {% if resource.cover_image %}
             <img src="{{ resource.cover_image.url }}" />

@@ -219,6 +219,10 @@ iframe {
   width: 100%;
 }
 
+.tool-item {
+  margin-bottom: 10px;
+}
+
 .tool-image{
   position:relative;
   overflow:hidden;
