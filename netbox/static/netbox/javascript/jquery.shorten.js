@@ -144,8 +144,14 @@
 
                 $this.html(html);
                 $this.find(".allcontent").hide(); // Hide all text
-                $('.shortcontent p:last', $this).css('margin-bottom', 0); //Remove bottom margin on last paragraph as it's likely shortened
-                $('.shortcontent p:last', $this).append(' <a href="javascript://nop/" class="morelink">' + config.moreText + '</a>'); 
+
+                if ($('.shortcontent', $this).children().last().is("p")) {
+                    //Remove bottom margin on last paragraph as it's shortened
+                    $('.shortcontent p:last', $this).css('margin-bottom', 0); 
+                    $('.shortcontent p:last', $this).append(' <a href="javascript://nop/" class="morelink">' + config.moreText + '</a>'); 
+                } else {
+                    $('.shortcontent', $this).append(' <span><a href="javascript://nop/" class="morelink">' + config.moreText + '</a></span>'); 
+                }
             }
         });
 
