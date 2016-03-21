@@ -56,7 +56,9 @@
                                         <strong>{{story.country.name}}</strong>
                                     {% endif %}
                                 </div>
-                                <span class="story-more">{{ story.content | safe }}</span>
+                                <div class="story-content">
+                                    {{ story.content|bleach_striptags|truncatechars:150 }}
+                                </div>
                             </div>
                         </div>
                     {% empty %}
