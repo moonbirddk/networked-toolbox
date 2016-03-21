@@ -19,3 +19,8 @@ def add_story(request, tool_id):
 
     context = {'tool': tool, 'form': form}
     return render(request, 'tools/add_story.html', context)
+
+def show_story(request, story_id):
+    story = get_object_or_404(Story, id=story_id)
+    context = {'story': story}
+    return render(request, 'tools/show_story.html', context)

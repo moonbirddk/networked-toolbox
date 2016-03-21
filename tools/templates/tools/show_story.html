@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head_statics %}
+<script type="text/javascript" src="{% static 'netbox/javascript/base.js'%}"></script>
+<link rel="stylesheet" href="{% static "tools/css/tool.css" %}">
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title">{{ story.title }}</h1>
+            <div class="tool-more">{{story.content|safe }}</div>
+        </div>
+    </div>
+{% endblock %}

@@ -58,6 +58,7 @@
                                 </div>
                                 <div class="story-content">
                                     {{ story.content|bleach_striptags|truncatechars:150 }}
+                                    <a href="{% url 'tools:show_story' story.id  %}">Read more</a>
                                 </div>
                             </div>
                         </div>
