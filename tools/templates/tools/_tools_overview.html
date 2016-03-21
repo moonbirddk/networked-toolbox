@@ -1,10 +1,10 @@
 {% load toolstags %}
 {% load partition_slice %}
 
-<div class="row">
+<div class="row flex-wrapper">
   {% for resource in resources %}
     <div class="col-md-3 col-xs-6">
-        <a href="{% url route resource.id %}"><div class="category-image">
+        <a href="{% url route resource.id %}"><div class="tool-image">
           {% if resource.cover_image %}
             <img src="{{ resource.cover_image.url }}" />
           {% else %}
@@ -16,14 +16,14 @@
           </div>
           {% endif %}
         </div></a>
-        <div class="category-content">
-          <a href="{% url route resource.id %}"><h3>{{ resource.title|truncatechars:45 }}</h3></a>
-          <p>{{ resource.description|bleach_striptags|truncatechars:60 }}</p>
+        <div class="tool-content">
+          <a href="{% url route resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
+          <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
         </div>
     </div>
   {% empty %}
-  <div class="col-md-3 col-xs-6">
-    <p>There are no items available.</p>
-  </div>
+    <div class="col-md-3 col-xs-6">
+      <p>There are no items available.</p>
+    </div>
   {% endfor %}
 </div>
