@@ -6,11 +6,11 @@ $(document).on("click", "#btn-resource-list", function(){
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
-    $('.tool-more').shorten({
+    $('.more').shorten({
       'moreText': 'See more',
       'showChars': 1500 
     }); 
-    $('.story-more').shorten({
+    $('.more').shorten({
       'moreText': 'See more',
       'showChars': 250 
     }); 
