@@ -1,5 +1,11 @@
- .add-story {
-   margin-bottom: 1em;
+ .note-style,
+ .note-font,
+ .note-color,
+ .note-para,
+ .note-height,
+ .note-view,
+ .note-help {
+  display: none;
  } 
   
 .story-item {
