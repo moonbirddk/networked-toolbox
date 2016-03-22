@@ -38,11 +38,13 @@ body{
   }
 }
 
-a {
+a,
+a:hover {
   color: #ed1c24;
 }
 
-a .fa {
+a .fa,
+a .fa:hover {
   color: #337ab7;
   margin-left: 0.1em;
 }
