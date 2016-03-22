@@ -34,12 +34,12 @@ class ModelWithCoverImage(models.Model):
 
 
 class Tool(ModelWithCoverImage):
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=5000)
+    title = models.CharField(max_length=100, blank=False)
+    description = models.TextField(max_length=20000, blank=False)
     resources_text = models.CharField(
         max_length=300,
         default='Here you can find the different resources related to the current tool.',
-        blank = True
+        blank=True
     )
     categories = models.ManyToManyField('ToolCategory', related_name='tools',
                                         related_query_name='tool')
@@ -95,8 +95,8 @@ pre_save.connect(category_group_check, sender=CategoryGroup)
 
 
 class ToolCategory(ModelWithCoverImage):
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=5000)
+    title = models.CharField(max_length=100, blank=False)
+    description = models.TextField(max_length=20000, blank=False)
     published = models.BooleanField(default=False, null=False)
     resources = GenericRelation('resources.ToolResource')
 
