@@ -289,6 +289,14 @@ iframe {
   margin: 0;
 }
 
+.story h3 a {
+  color: black;
+}
+
+.story h3 a:hover {
+  text-decoration: none;
+}
+
 .story-content a {
   color: black;
   font-weight: bold;

@@ -82,7 +82,7 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <h3>{{ story.title }}</h3>
+                                <h3><a href="{% url 'tools:show_story' story.id  %}">{{ story.title }}</a></h3>
                                 <div class="story-content">
                                     {{ story.content|bleach_striptags|truncatechars:150 }}
                                     <a href="{% url 'tools:show_story' story.id  %}">Read more</a>
