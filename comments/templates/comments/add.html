@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% block head_statics %}
+
+<script>
+ $(function () {
+
+     $(".comment-submit-btn").click(function () {
+         $.ajax({
+             type: 'POST',
+             url: '{% url comments:add_comment %}',
+             data: $('#comment-form').serialize(),
+             cache: false,
+             success: function (data, status) {
+                 var resp = $.parseJSON( response );
+                 if (resp.success){
+                     return true;
+                 } else {
+                     alert(resp.error);
+                 }
+             },
+             error: function(resp, err) {
+                 allert(resp.responseText);
+             }
+         });
+     });
+
+});
+</script>
+
+{% endblock %}
+
+{% block main %}
+<h1>Add resource to &quot;{{ related_object.title }}&quot;</h1>
+
+{# Display a form #}
+
+<form method="POST" action="{% url 'resources:add' type_name related_object.id  %}" class="form"
+enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {% bootstrap_icon "star" %} Submit
+        </button>
+    {% endbuttons %}
+</form>
+
+
+{% endblock %}

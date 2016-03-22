@@ -1,17 +1,16 @@
-import logging
 
 from django import forms
-from django.core.exceptions import ValidationError, ObjectDoesNotExist
-from django_summernote.widgets import SummernoteInplaceWidget
 from django.template.defaultfilters import filesizeformat
 from django.utils.translation import ugettext_lazy as _
 
 from .models import ToolResource
 
+
 class ToolResourceEditForm(forms.ModelForm):
     class Meta:
         model = ToolResource
         fields = ['title']
+
 
 class ToolResourceForm(forms.ModelForm):
     CONTENT_TYPES = [

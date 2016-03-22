@@ -8,8 +8,10 @@ import bleach
 
 from ..models import Tool, Story
 
+
 def create_tool(title, content):
     return
+
 
 class StoriesViewsTestCase(TestCase):
 

@@ -77,7 +77,8 @@ INSTALLED_APPS = (
 
     'profiles',
     'tools',
-    'resources'
+    'resources',
+    'comments',
 
 )
 
@@ -267,3 +268,5 @@ SOCIALACCOUNT_PROVIDERS = {
 IN_TEST = 'test' in sys.argv
 DEFAULT_CATEGORY_GROUP_NAME = 'Other'
 COMPRESS_ENABLED = False
+COMMENT_MAX_LENGTH = 5000
+COMMENT_READ_MORE_LENGTH = 500
