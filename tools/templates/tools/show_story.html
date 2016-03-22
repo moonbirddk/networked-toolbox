@@ -52,7 +52,9 @@
                 {% for story in related_stories %}
                     <li class="list-group-item">
                         <h4>
-                            <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                            {% if story.country %}
+                                <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                            {% endif %}
                             {{story.title}}
                         </h4>
                         {{ story.content|bleach_striptags|truncatechars:150 }}
