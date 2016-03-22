@@ -113,7 +113,8 @@
 }
 
 .usage-indicator .usage-follow{
-  flex: 0.4;
+  flex: 0.5;
+  min-width: 100px;
 }
 
 .usage-indicator .usage-followerse{
