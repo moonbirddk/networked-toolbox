@@ -38,6 +38,15 @@ body{
   }
 }
 
+a {
+  color: #ed1c24;
+}
+
+a .fa {
+  color: #337ab7;
+  margin-left: 0.1em;
+}
+
 .title {
   font-family: 'AmericanTypewriter-Bold','Arial';
   font-weight: bold;
@@ -54,6 +63,11 @@ h3.title {
 .btn-primary {
   background-color: #ed1c24;
   border-color: #ed1c24;
+}
+
+.btn-primary:hover {
+  background-color: #bf0d13;
+  border-color: #bf0d13;
 }
 
 .btn-warning{
@@ -191,4 +205,8 @@ h3.title {
 
 .label-tooltip + .tooltip.right > .tooltip-arrow {
     border-right: 5px solid #eee;
+}
+
+.flag-icon {
+  margin-right: 0.2em;
 }

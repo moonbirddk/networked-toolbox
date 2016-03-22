@@ -22,5 +22,7 @@ def add_story(request, tool_id):
 
 def show_story(request, story_id):
     story = get_object_or_404(Story, id=story_id)
-    context = {'story': story}
+    tool = get_object_or_404(Tool, id=story.tool_id)
+    related_stories = Story.objects.filter(tool_id=story.tool_id).exclude(id=story.id).order_by('-created')[:3]
+    context = {'story': story, 'tool': tool, 'related_stories': related_stories }
     return render(request, 'tools/show_story.html', context)

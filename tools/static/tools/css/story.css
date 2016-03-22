@@ -43,3 +43,56 @@
 .tool-title {
   color: #ed1c24;
 }
+
+.story-tool {
+  margin-top: 1.5em;
+}
+
+.story-tool a {
+  font-weight: bold;
+}
+
+.story-title {
+  margin-top: 0.5em;
+}
+
+.story-title-created {
+  font-size: 12px;
+  color: #8d8479;
+  font-family: 'Helvetica Neue', 'Arial';
+  font-weight: normal;
+  margin-left: 0.3em;
+}
+
+.story-user-image img {
+  width: 100%;
+}
+
+.story-user-details h4 {
+  font-weight: bold;
+  margin: 0 0 0.3em 0;
+  font-size: 14px;
+}
+
+.story-user-bio{
+  ront-size: 0.9em;
+}
+
+.related-stories {
+  margin-left: -15px;
+}
+
+.related-stories h4 {
+  font-weight: bold;
+  margin-bottom: 0.1em;
+}
+
+.related-stories .list-group-item {
+  border: 0;
+  padding-top: 0;
+}
+
+.related-stories .list-group-item a {
+  color: black;
+  font-weight: bold;
+}
