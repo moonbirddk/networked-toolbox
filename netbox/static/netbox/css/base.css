@@ -38,9 +38,12 @@ body{
   }
 }
 
-a,
-a:hover {
+a {
   color: #ed1c24;
+}
+
+a:hover {
+  color: #bf0d13;
 }
 
 a .fa,
