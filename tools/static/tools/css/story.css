@@ -74,6 +74,14 @@
   font-size: 14px;
 }
 
+.story-user-details h4 a {
+  color: black;
+}
+
+.story-user-details h4 a:hover {
+  text-decoration: none;
+}
+
 .story-user-bio{
   ront-size: 0.9em;
 }
@@ -85,6 +93,10 @@
 .related-stories h4 {
   font-weight: bold;
   margin-bottom: 0.1em;
+}
+
+.related-stories h4 a:hover {
+  text-decoration: none;
 }
 
 .related-stories .list-group-item {
