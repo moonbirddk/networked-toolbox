@@ -108,9 +108,16 @@
   padding: 10px 0 10px;
 }
 
+.usage-indicator .usage-title{
+  flex: 1.2;
+}
 
-.usage-indicator div {
-  padding: 0 15px;
+.usage-indicator .usage-follow{
+  flex: 0.4;
+}
+
+.usage-indicator .usage-followerse{
+  flex: 1.1;
 }
 
 .usage-indicator h3,
