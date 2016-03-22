@@ -74,10 +74,11 @@
   color: white;
   background-color: #ED1C24;
   border-radius: 5px;
-  padding: 4px;
+  padding: 4px 6px;
   margin-right: 5px;
   margin-top: 5px;
   cursor: pointer;
+  font-size: 12px;
 }
 
 .category-tag:hover{

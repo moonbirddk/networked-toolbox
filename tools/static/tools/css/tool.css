@@ -36,6 +36,11 @@
   margin: 0 0 1.5em 0;
 }
 
+.help-improve .btn-primary {
+  width: 150px;
+  padding: 0.7em 0;
+}
+
 .btn-outline {
     background-color: transparent;
     border-width: 2px;
@@ -96,7 +101,6 @@
 
 .usage-indicator{
   margin: 20px 0 20px;
-  min-height: 100px;
   background-color: #8D8479;
   align-items: center;
   display: flex;
@@ -104,9 +108,9 @@
   padding: 10px 0 10px;
 }
 
-.usage-indicator div{
-  margin-top: 5px;
-  margin-bottom: 5px;
+
+.usage-indicator div {
+  padding: 0 15px;
 }
 
 .usage-indicator h3,
@@ -115,9 +119,9 @@
   margin: 0px;
 }
 
-
 .usage-indicator h3{
-  font-size: 2.5rem;
+  font-family: 'AmericanTypewriter-Light','Arial';
+  font-size: 18px;
 }
 .usage-indicator p{
   font-size: 1.5rem;
@@ -127,6 +131,7 @@
   font-weight: bold;
   background-color: white;
   color: #8D8479;
+  font-size: 12px;
 }
 
 .btn-usage:hover{
@@ -176,9 +181,9 @@
   width: 100%;
 }
 
-.summernote-container .title,
 .resource-box .title {
-  font-family: 'AmericanTypewriter','Arial';
+  font-family: 'AmericanTypewriter-Bold','Arial';
+  font-size: 24px;
 }
 
 .resource-item i {
@@ -265,4 +270,27 @@ iframe {
 
 .tool-content a:hover{
   text-decoration: none;
+}
+.story {
+  margin: 1.5em 0;
+}
+
+.story h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.story-content a {
+  color: black;
+  font-weight: bold;
+}
+
+.story-user-country {
+  font-size: 22px;
+}
+.story-user-name {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0.3em 0;
 }

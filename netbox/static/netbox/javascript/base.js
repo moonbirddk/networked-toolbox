@@ -7,11 +7,11 @@ $(document).on("click", "#btn-resource-list", function(){
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
     $('.more').shorten({
-      'moreText': 'See more',
+      'moreText': 'Read more',
       'showChars': 1500 
     }); 
     $('.more').shorten({
-      'moreText': 'See more',
+      'moreText': 'Read more',
       'showChars': 250 
     }); 
 });
