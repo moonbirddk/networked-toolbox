@@ -64,6 +64,10 @@
   margin-left: 0.3em;
 }
 
+.story-content img {
+  max-width: 100%;
+}
+
 .story-user-image img {
   width: 100%;
 }
