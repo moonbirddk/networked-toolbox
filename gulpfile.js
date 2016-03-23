@@ -18,11 +18,13 @@ var paths = {
     sass: [
         'netbox/static/netbox/css/*.scss',
         'tools/static/tools/css/*.scss',
-        'profiles/static/profiles/css/*.scss'
+        'profiles/static/profiles/css/*.scss',
+        'comments/static/comments/css/*.scss'
     ],
     js: [
         'netbox/static/netbox/javascript/*.js',
         'profiles/static/profiles/javascript/*.js',
+        'comments/static/comments/javascript/*.js'
     ],
     fonts: [
         'netbox/static/netbox/fonts/*',

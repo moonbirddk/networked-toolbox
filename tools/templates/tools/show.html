@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 
-{% load static %}
-{% load staticfiles %}
+{% load static from staticfiles %}
 {% load toolstags %}
+{% load commentstags %}
+{% load profilestags %}
 {% load compress %}
 
 {% block head_statics %}
+<script type="text/javascript" src="{% static 'netbox/javascript/jsrender.min.js' %}"></script>
+{% comments_javascript %}
 {{ form.media }}
 
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
@@ -13,6 +16,7 @@
 
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/comments.min.css" %}">
 {% endcompress %}
 
 {% endblock %}
@@ -73,11 +77,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="story-user">
-                                    {% if story.user.profile.photo %}
-                                        <img class='profile-thumbnail-img' src="{{ story.user.profile.photo.url }}" />
-                                    {% else %}
-                                        <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}" />
-                                    {% endif %}
+                                    {% render_profile_photo story.user %}
                                     <div class="story-user-name">{{ story.user.profile.short_name }}</div>
                                     <div class="story-user-country">
                                         <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
@@ -95,6 +95,7 @@
                     </div>
                 {% endfor %}
             </div>
+            {% render_comment_list for tool %}
         </div>
         <div class="col-md-4 padding">
           <div class="resource-box">

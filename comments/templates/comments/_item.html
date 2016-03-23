@@ -1,0 +1,19 @@
+{% load profilestags %}
+{% load commentstags %}
+<div class="row comment-item">
+    <div class="col-md-2">
+        {% render_profile_photo comment.author %}
+    </div>
+    <div class="col-md-10">
+      <p>
+        <span>{user flag}</span>
+        <span><strong>{{ user.profile.name }}</strong></span>
+        <span>{% format_comment_date comment.added_dt %}</span>
+      </p>
+      <p>{{ comment.content }}</p>
+      <p><a class="comment-reply-btn"
+      data-related_object_id="{{comment_related_object_id}}"
+      data-related_object_type="{{comment_related_object_type}}"
+      href="">Reply</a></p>
+    </div>
+</div>

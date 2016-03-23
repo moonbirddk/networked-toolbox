@@ -1,5 +1,6 @@
 import logging
 
+import bleach
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
@@ -11,8 +12,8 @@ from .models import Comment
 log = logging.getLogger(__name__)
 
 
-def no_url_in_content_validator(value):
-    if 'http' in value:
+def no_urls_validator(value):
+    if 'http' in value and '://' in value:
         raise ValidationError("Comment can not contain URL")
 
 
@@ -24,7 +25,7 @@ class CommentForm(forms.Form):
     )
 
     content = forms.CharField(
-        validators=[no_url_in_content_validator, ],
+        validators=[no_urls_validator, ],
         widget=forms.Textarea,
         max_length=settings.COMMENT_MAX_LENGTH,
         required=True
@@ -51,8 +52,8 @@ class CommentForm(forms.Form):
                 elif rel_obj_type == 'toolcategory':
                     obj = ToolCategory.objects.get(id=rel_obj_id)
                 elif rel_obj_type == 'comment':
-                    obj = Comment.objects.get(id=rel_obj_id)
-                    if obj.related_object_type == 'comment':
+                    parent = Comment.objects.get(id=rel_obj_id)
+                    if parent.related_object_type == 'comment':
                         raise ValidationError("Commenting on a comment"
                                               "of a comment is not allowed.")
                 else:
@@ -60,5 +61,14 @@ class CommentForm(forms.Form):
             except ObjectDoesNotExist as exc:
                 raise ValidationError("Non existent related object")
             self.cleaned_data['related_object'] = obj
+
         return self.cleaned_data
 
+    def clean_content(self):
+        print("clean_content {}".format(self.cleaned_data))
+        if 'content' in self.cleaned_data:
+            newval = \
+                bleach.clean(self.cleaned_data['content'], tags=[],
+                             strip=True, strip_comments=True)
+            self.cleaned_data['content'] = newval
+            return newval

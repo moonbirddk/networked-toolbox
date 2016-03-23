@@ -1,52 +1,21 @@
-{% extends "base.html" %}
-{% load bootstrap3 %}
-{% load static %}
-{% block head_statics %}
+{% load profilestags %}
 
-<script>
- $(function () {
-
-     $(".comment-submit-btn").click(function () {
-         $.ajax({
-             type: 'POST',
-             url: '{% url comments:add_comment %}',
-             data: $('#comment-form').serialize(),
-             cache: false,
-             success: function (data, status) {
-                 var resp = $.parseJSON( response );
-                 if (resp.success){
-                     return true;
-                 } else {
-                     alert(resp.error);
-                 }
-             },
-             error: function(resp, err) {
-                 allert(resp.responseText);
-             }
-         });
-     });
-
-});
-</script>
-
-{% endblock %}
-
-{% block main %}
-<h1>Add resource to &quot;{{ related_object.title }}&quot;</h1>
-
-{# Display a form #}
-
-<form method="POST" action="{% url 'resources:add' type_name related_object.id  %}" class="form"
-enctype="multipart/form-data">
-    {% csrf_token %}
-
-    {% bootstrap_form form %}
-    {% buttons %}
-        <button type="submit" class="btn btn-primary">
-            {% bootstrap_icon "star" %} Submit
-        </button>
-    {% endbuttons %}
-</form>
-
-
-{% endblock %}
+<div id="comment-form-box" class="col-md-12">
+    <div class="row">
+         <div class="col-md-2">
+             {% render_profile_photo user %}
+         </div>
+         <div class="col-md-10">
+             <form method="POST" action="{% url 'comments:add' %}" class="form comment-form">
+                 <input name="related_object_id" type="hidden" value="{{comment_related_object_id}}" />
+                 <input name="related_object_type" type="hidden" value="{{comment_related_object_type}}" />
+                 <div class="form-group">
+                     <textarea name="content" style="min-width: 100%"></textarea>
+                 </div>
+                 <div class="form-group">
+                     <a class="btn btn-primary comment-submit-btn pull-right">Send</a>
+                 </div>
+             </form>
+         </div>
+    </div>
+</div>

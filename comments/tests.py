@@ -7,9 +7,11 @@ from django.utils.encoding import force_text
 
 from tools.models import Tool
 from .models import Comment
+from .utils import format_added_dt
 
 
 class ToolResourcesViewsTestCase(TestCase):
+    maxDiff = None
 
     def setUp(self):
         self.test_user = User.objects.create_user('testuser',
@@ -72,19 +74,18 @@ class ToolResourcesViewsTestCase(TestCase):
         resp = self.client.post(url, empty)
         self.assertEqual(1, Comment.objects.count())
         actual = Comment.objects.all()[0]
-        added_timestamp = int(time.mktime(actual.added_dt.timetuple())) * 1000
         expected_data = {
             'ok': True,
             'comment': {
                 'added_dt': actual.added_dt.isoformat(),
-                'author_first_name': '',
-                'author_last_name': '',
-                'author_username': 'testuser',
-                'content': 'super duper comment this is yo!',
+                'added_time': format_added_dt(actual.added_dt),
+                'author_name': 'testuser@localhost',
+                'author_country': None,
+                'author_photo_url': '/static/profiles/images/Small%20user%20pic.png',
+                'content': content,
                 'id': actual.id,
                 'related_object_id': self.test_tool.id,
                 'related_object_type': 'tool',
-                'timestamp': added_timestamp,
             },
             'errors': {}
         }
@@ -93,3 +94,34 @@ class ToolResourcesViewsTestCase(TestCase):
         self.assertEqual(content, actual.content)
         self.assertEqual(self.test_tool.id, actual.related_object.id)
         self.assertEqual('tool', actual.related_object_type.model)
+
+    def test_add_comment_post_for_tool_with_tags(self):
+        self.client.login(username='testuser', password='testpass')
+        url = reverse('comments:add')
+        ro_type = ContentType.objects.get_for_model(self.test_tool)
+        content = 'super <a href="kk.dk">kk.dk</a>comment this is yo!'
+        empty = {
+            'related_object_id': self.test_tool.id,
+            'related_object_type': ro_type,
+            'content': content
+        }
+        resp = self.client.post(url, empty)
+        self.assertEqual(1, Comment.objects.count())
+        actual = Comment.objects.all()[0]
+        expected_data = {
+            'comment': {
+                'added_dt': actual.added_dt.isoformat(),
+                'added_time': format_added_dt(actual.added_dt),
+                'author_country': None,
+                'author_name': 'testuser@localhost',
+                'author_photo_url': '/static/profiles/images/Small%20user%20pic.png',
+                'content': 'super kk.dkcomment this is yo!',
+                'id': 2,
+                'related_object_id': 5,
+                'related_object_type': 'tool'
+            },
+                'errors': {},
+                'ok': True
+        }
+        self.assertEqual(200, resp.status_code)
+        self.assertJSONEqual(force_text(resp.content), expected_data)
