@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% load static %}
+{% load compress %}
 
+{% block head_statics %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+{% endcompress %}
+
+{% endblock %}
 
 {% block main %}
 <h1>Edit {{obj_type_name|capfirst}} overview description</h1>

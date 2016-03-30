@@ -1,4 +1,14 @@
+{% load compress %}
+
 {% extends 'base.html' %}
+
+{% block head_statics %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+
+{% endblock %}        
 
 {% block main %}
 

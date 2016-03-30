@@ -10,8 +10,4 @@ $(document).ready(function(){
       'moreText': 'Read more',
       'showChars': 1500 
     }); 
-    $('.more').shorten({
-      'moreText': 'Read more',
-      'showChars': 250 
-    }); 
 });

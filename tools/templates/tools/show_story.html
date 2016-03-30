@@ -2,10 +2,15 @@
 
 {% load static %}
 {% load toolstags %}
+{% load compress %}
 
 {% block head_statics %}
-<script type="text/javascript" src="{% static 'netbox/javascript/base.js'%}"></script>
-<link rel="stylesheet" href="{% static "tools/css/tool.css" %}">
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "tools/css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "tools/css/story.min.css" %}">
+{% endcompress %}
+
 {% endblock %}
 
 {% block main %}
