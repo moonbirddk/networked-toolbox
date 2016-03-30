@@ -19,9 +19,6 @@
       text-decoration: none;
       text-align: center;
     }
-    img {
-      width: 65px;
-    }
   }
   .story-details {
     color: #aaa;
@@ -56,8 +53,8 @@
   max-width: 100%;
 }
 
-.story-user-image img {
-  width: 100%;
+.story-user-image .profile-thumbnail-img {
+  width: 65px;
 }
 
 .story-user-details h4 {
