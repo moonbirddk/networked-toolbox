@@ -2,12 +2,9 @@
   "name": "networked-toolbox",
   "version": "1.0.0",
   "scripts": {
-    "start": "gulp",
-    "postinstall": "gulp default"
+    "start": "gulp"
   },
   "devDependencies": {
-  },
-  "dependencies": {
     "gulp-gzip": "^1.2.0",
     "gulp-livereload": "^3.8.1",
     "gulp-autoprefixer": "^3.1.0",
