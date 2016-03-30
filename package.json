@@ -6,7 +6,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "postinstall": "./node_modules/.bin/gulp default"
+    "postinstall": "./node_modules/.bin/gulp build"
   },
   "dependencies": {
     "gulp": "^3.9.1",

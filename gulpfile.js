@@ -78,5 +78,8 @@ gulp.task('watch', function() {
 
 });
 
+// Builds your entire app once, without starting a server
+gulp.task('build', ['fonts', 'sass', 'uglify']);
+
 // Default task: builds your app, starts a server, and recompiles assets when they change
 gulp.task('default', ['fonts', 'sass', 'uglify', 'watch']);
