@@ -5,8 +5,7 @@
     "node": "4.4.1"
   },
   "scripts": {
-    "start": "gulp",
-    "postinstall": "./node_modules/.bin/gulp build"
+    "start": "gulp"
   },
   "dependencies": {
     "gulp": "^3.9.1",
