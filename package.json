@@ -1,9 +1,6 @@
 {
   "name": "networked-toolbox",
   "version": "1.0.0",
-  "engines": {
-    "node": "4.4.1"
-  },
   "scripts": {
     "start": "gulp"
   },
