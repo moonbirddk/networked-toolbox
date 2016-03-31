@@ -3,6 +3,8 @@ from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User, Group
+from django_countries import countries
+import bleach
 
 from ..models import Tool, Story
 
@@ -61,10 +63,32 @@ class StoriesViewsTestCase(TestCase):
         self.assertEqual(story.content, data['content'])
 
     def test_tool_show_get(self):
+        story_content = '<a href="#">content</a>'
+        story = Story.objects.create(title='test story', content=story_content,
+                country='DK', tool_id=self.tool.id, user_id=self.test_user.id)
         resp = self.client.get(reverse('tools:show', args=(self.tool.id, )))
-        self.assertContains(resp, 'No stories have been added yet')
-        story = Story.objects.create(title='test story', content='content',
-                tool_id=self.tool.id, user_id=self.test_user.id)
-        resp = self.client.get(reverse('tools:show', args=(self.tool.id, )))
-        self.assertNotContains(resp, 'No stories have been added yet')
+        self.assertEqual(200, resp.status_code)
+        self.assertContains(resp, 'Stories')
         self.assertContains(resp, story.title)
+        self.assertNotContains(resp, story.content)
+        self.assertContains(resp, bleach.clean(story.content, tags=[],
+            strip=True, strip_comments=True))
+        self.assertContains(resp, self.test_user.profile.short_name())
+        self.assertContains(resp, story.country.name)
+
+    def test_show_story_get(self):
+        story = Story.objects.create(title='test story', content='test content',
+                country='DK', tool_id=self.tool.id, user_id=self.test_user.id)
+        related_story = Story.objects.create(title='related story', content='related content',
+                country='DK', tool_id=self.tool.id, user_id=self.test_user.id)
+        resp = self.client.get(reverse('tools:show_story', args=(story.id, )))
+        self.assertEqual(200, resp.status_code)
+        self.assertContains(resp, story.title)
+        self.assertContains(resp, story.content)
+        self.assertContains(resp, story.country.name)
+        self.assertContains(resp, 'Contributor')
+        self.assertContains(resp, self.test_user.profile.name())
+        self.assertContains(resp, self.tool.title)
+        self.assertContains(resp, 'Related stories')
+        self.assertContains(resp, related_story.title)
+        self.assertContains(resp, related_story.content)
