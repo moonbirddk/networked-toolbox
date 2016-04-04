@@ -22,6 +22,7 @@ class ProfileForm(forms.Form):
     bio = fields.CharField(widget=forms.Textarea,
                            max_length=400,
                            required=False,
+                           label='Bio: a short description of yourself',
                            help_text='400 characters max.')
     country = LazyTypedChoiceField(choices=[('', ''), ] + list(countries),
                                    required=False,
