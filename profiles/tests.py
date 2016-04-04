@@ -99,6 +99,7 @@ class ProfilesViewsTestCase(TestCase):
         data = {
             'first_name': 'test first name',
             'last_name': 'test last name',
+            'bio': 'test bio',
             'photo': test_fh
         }
 
@@ -120,6 +121,7 @@ class ProfilesViewsTestCase(TestCase):
         test_profile = result[0]
         self.assertEqual(test_profile.user.first_name, data['first_name'])
         self.assertEqual(test_profile.user.last_name, data['last_name'])
+        self.assertEqual(test_profile.profile.bio, data['bio'])
         self.assertTrue(test_profile.photo)
         self.assertTrue(
             test_profile.photo.name,

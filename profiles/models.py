@@ -15,6 +15,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
     photo = models.ImageField(upload_to=do_upload_profile_photo,
                               blank=True, null=True)
+    bio = models.CharField(max_length=400)
 
     def name(self):
         user = self.user

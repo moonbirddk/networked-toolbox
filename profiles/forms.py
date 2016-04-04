@@ -16,6 +16,10 @@ class ProfileForm(forms.Form):
     last_name = fields.CharField(max_length=30, required=False)
     photo = forms.ImageField(required=False,
                              label='Photo image (recommended size: 160x160)')
+    bio = fields.CharField(widget=forms.Textarea,
+                           max_length=400,
+                           required=False,
+                           help_text='400 characters max.')
 
     def clean_photo(self):
         photo = self.cleaned_data.get('photo', False)
