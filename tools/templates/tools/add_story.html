@@ -23,18 +23,18 @@ enctype="multipart/form-data">
 
 
     <label class="control-label" for="id_title">Title</label>
-    <a href="#" class="label-tooltip" data-toggle="tooltip" data-placement="right" data-html="true" title="<p>Describe, in a paragraph or two, the context of your story. A few guiding questions that might help: What was the situation before your intervention? What challenge did you face? Who were you working with?</p>
-      <p>How did you achieve your results? What methods and tools did you use? Describe your process step by step.</p>
-      <p>Did you learn any lessons that others might benefit from?</p>">
+    <a href="#" class="label-tooltip" data-toggle="tooltip" data-html="true" data-placement="right" title="The title of your story should include the tool(s) you used and the context you were in. For example, “Power mapping with indebted farmers in rural India.”">
         <span class="glyphicon glyphicon-question-sign"></span>
-      </a>
+    </a>
     {% bootstrap_field form.title show_label=False%}
 
 
     <label class="control-label" for="id_content">Content</label>
-    <a href="#" class="label-tooltip" data-toggle="tooltip" data-html="true" data-placement="right" title="The title of your story should include the tool(s) you used and the context you were in. For example, “Power mapping with indebted farmers in rural India.”">
+    <a href="#" class="label-tooltip" data-toggle="tooltip" data-placement="right" data-html="true" title="<p>Describe, in a paragraph or two, the context of your story. A few guiding questions that might help: What was the situation before your intervention? What challenge did you face? Who were you working with?</p>
+      <p>How did you achieve your results? What methods and tools did you use? Describe your process step by step.</p>
+      <p>Did you learn any lessons that others might benefit from?</p>">
         <span class="glyphicon glyphicon-question-sign"></span>
-      </a>
+    </a>
     {% bootstrap_field form.content show_label=False %}
 
     {% bootstrap_field form.country show_label=True %}
