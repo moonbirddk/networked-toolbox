@@ -100,6 +100,7 @@ class ProfilesViewsTestCase(TestCase):
             'first_name': 'test first name',
             'last_name': 'test last name',
             'bio': 'test bio',
+            'country': 'DK',
             'photo': test_fh
         }
 
@@ -122,6 +123,7 @@ class ProfilesViewsTestCase(TestCase):
         self.assertEqual(test_profile.user.first_name, data['first_name'])
         self.assertEqual(test_profile.user.last_name, data['last_name'])
         self.assertEqual(test_profile.profile.bio, data['bio'])
+        self.assertEqual(test_profile.profile.country, data['country'])
         self.assertTrue(test_profile.photo)
         self.assertTrue(
             test_profile.photo.name,

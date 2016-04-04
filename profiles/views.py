@@ -57,6 +57,7 @@ def profile(request):
         'first_name': user.first_name,
         'last_name': user.last_name,
         'bio': profile.bio,
+        'country': profile.country,
     }
 
     if profile.photo and default_storage.exists(profile.photo.name):
@@ -82,6 +83,7 @@ def profile(request):
             profile.photo = photo
             profile.bio = clean(form.cleaned_data.get('bio', None), tags=[],
                     strip=True, strip_comments=True)
+            profile.country = form.cleaned_data['country']
             profile.save()
             user.first_name = form.cleaned_data.get('first_name', None)
             user.last_name = form.cleaned_data.get('last_name', None)
