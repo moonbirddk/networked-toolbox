@@ -73,24 +73,54 @@ class ProfilesViewsTestCase(TestCase):
     def setUp(self):
         self.test_user = User.objects.create_user('testuser',
             'testuser@localhost', 'testpass')
+        self.test_user.first_name='test first'
+        self.test_user.last_name='test last'
+        test_profile, _ = Profile.objects.get_or_create(user=self.test_user)
+        test_profile.bio='test bio'
+        test_profile.country='DK'
+        self.test_user.save()
+        self.another_user = User.objects.create_user('anotheruser',
+            'anotheruser@localhost', 'testpass')
+        another_profile, _ = Profile.objects.get_or_create(user=self.another_user)
 
-    def test_add_profile_get(self):
-        self.client.login(username='testuser', password='testpass')
-        url = reverse('profiles:profile')
+    def test_show_profile_get(self):
+        url = reverse('profiles:show', args=(self.test_user.id,))
         resp = self.client.get(url, follow=True)
         self.assertEqual([], resp.redirect_chain)
         self.assertEqual(200, resp.status_code)
-        self.assertTemplateUsed(resp, 'profiles/profile.html')
-        self.assertContains(resp, 'Your profile')
-
-    def test_add_profile_post(self):
+        self.assertTemplateUsed(resp, 'profiles/show.html')
+        self.assertContains(resp, self.test_user.first_name)
+        self.assertContains(resp, self.test_user.last_name)
+        self.assertContains(resp, self.test_user.profile.country)
+        self.assertContains(resp, self.test_user.profile.country.name)
+        self.assertContains(resp, self.test_user.profile.bio)
+        self.assertNotContains(resp, 'glyphicon-pencil')
         self.client.login(username='testuser', password='testpass')
-        url = reverse('profiles:profile')
+        resp = self.client.get(url, follow=True)
+        self.assertContains(resp, 'glyphicon-pencil')
+        url = reverse('profiles:show', args=(self.another_user.id,))
+        resp = self.client.get(url, follow=True)
+        self.assertNotContains(resp, 'glyphicon-pencil')
+
+    def test_edit_profile_get(self):
+        self.client.login(username='testuser', password='testpass')
+        url = reverse('profiles:edit')
+        resp = self.client.get(url, follow=True)
+        self.assertEqual([], resp.redirect_chain)
+        self.assertEqual(200, resp.status_code)
+        self.assertTemplateUsed(resp, 'profiles/edit.html')
+        self.assertContains(resp, 'Your profile')
+        self.assertContains(resp, self.test_user.first_name)
+        self.assertContains(resp, self.test_user.last_name)
+        self.assertContains(resp, self.test_user.profile.bio)
+
+    def test_edit_profile_post(self):
+        self.client.login(username='testuser', password='testpass')
+        url = reverse('profiles:edit')
         empty = {}
         resp = self.client.post(url, empty, follow=True)
         self.assertEqual(200, resp.status_code)
-        self.assertTemplateUsed(resp, 'profiles/profile.html')
-        self.assertContains(resp, 'Your profile')
+        self.assertTemplateUsed(resp, 'profiles/show.html')
         test_fh = SimpleUploadedFile(
             'test post empty.png',
             TEST_PNG_CONTENT,
@@ -99,15 +129,15 @@ class ProfilesViewsTestCase(TestCase):
         data = {
             'first_name': 'test first name',
             'last_name': 'test last name',
-            'bio': 'test bio',
-            'country': 'DK',
+            'bio': 'anotther test bio',
+            'country': 'NL',
             'photo': test_fh
         }
 
         resp = self.client.post(url, data, follow=True)
         self.assertEqual(200, resp.status_code)
         expected_status = (
-            'http://testserver/profiles/your-profile/',
+            'http://testserver/profiles/%d/' % self.test_user.id,
             302
         )
         self.assertEqual([expected_status], resp.redirect_chain)
@@ -122,8 +152,8 @@ class ProfilesViewsTestCase(TestCase):
         test_profile = result[0]
         self.assertEqual(test_profile.user.first_name, data['first_name'])
         self.assertEqual(test_profile.user.last_name, data['last_name'])
-        self.assertEqual(test_profile.profile.bio, data['bio'])
-        self.assertEqual(test_profile.profile.country, data['country'])
+        self.assertEqual(test_profile.bio, data['bio'])
+        self.assertEqual(test_profile.country, data['country'])
         self.assertTrue(test_profile.photo)
         self.assertTrue(
             test_profile.photo.name,

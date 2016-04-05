@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.db import transaction
 
 from .forms import ProfileForm
-from .models import Profile
+from .models import User, Profile
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http.response import HttpResponseNotFound
 
@@ -47,10 +47,23 @@ def terms_and_conditions(request):
     resp.set_cookie('has_accepted_terms', '0')
     return resp
 
+def show(request, user_id):
+    user = User.objects.get(id=user_id)
+    profile, _ = Profile.objects.get_or_create(user=user)
+    tools_used = []
+    stories_shared = []
+    stories_fav = []
+    ctx = {
+        'profile_user': user,
+        'tools_used': tools_used,
+        'stories_shared': stories_shared,
+        'stories_fav': stories_fav,
+    }
+    return render(request, 'profiles/show.html', ctx)
 
 @login_required
 @transaction.atomic
-def profile(request):
+def edit(request):
     user = request.user
     profile, _ = Profile.objects.get_or_create(user=user)
     attributes = {
@@ -89,8 +102,9 @@ def profile(request):
             user.last_name = form.cleaned_data.get('last_name', None)
             user.save()
             messages.success(request, "You have updated your profile.")
-            return redirect('profiles:profile')
+            return redirect('profiles:show', user.id)
     ctx = {
         'form': form,
     }
-    return render(request, 'profiles/profile.html', ctx)
+    return render(request, 'profiles/edit.html', ctx)
+

@@ -17,7 +17,8 @@ var rimraf = require('rimraf');
 var paths = {
     sass: [
         'netbox/static/netbox/css/*.scss',
-        'tools/static/tools/css/*.scss'
+        'tools/static/tools/css/*.scss',
+        'profiles/static/profiles/css/*.scss'
     ],
     js: [
         'netbox/static/netbox/javascript/*.js',
