@@ -1,12 +1,29 @@
 .profile {
+
   .profile-photo {
       width: 100%;
       margin-top: 20px;
       margin-bottom: 10px;
   }
-  .title {
+
+  h1.title {
+
     .glyphicon {
       color: #c2c1b8;
     } 
+
+  }
+
+  h3 {
+    font-size: 18px;
+    margin: 0.7em 0;
+    display: flex;
+    align-items: center; 
+
+    span {
+      margin-right: 0.3em;
+      font-size: 1.1em;
+    }
+
   }
 }
