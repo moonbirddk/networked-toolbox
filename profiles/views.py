@@ -11,6 +11,7 @@ from django.db import transaction
 
 from .forms import ProfileForm
 from .models import User, Profile
+from tools.models import Story
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http.response import HttpResponseNotFound
 
@@ -51,12 +52,12 @@ def show(request, user_id):
     user = User.objects.get(id=user_id)
     profile, _ = Profile.objects.get_or_create(user=user)
     tools_used = []
-    stories_shared = []
+    stories = Story.objects.filter(user=user)
     stories_fav = []
     ctx = {
         'profile_user': user,
         'tools_used': tools_used,
-        'stories_shared': stories_shared,
+        'stories': stories,
         'stories_fav': stories_fav,
     }
     return render(request, 'profiles/show.html', ctx)

@@ -26,4 +26,34 @@
     }
 
   }
+
+  .stories {
+
+    margin: 2.5em 0;
+
+    h3.title {
+      margin-bottom: 0;
+    }
+
+    .story {
+  
+      margin: 0.1em 0;
+
+      h4 {
+        font-size: 16px;
+      }
+
+      a {
+        color: black;
+        font-weight: bold;
+      }
+      
+      a:hover {
+        text-decoration: none;
+      }
+
+    }
+      
+  }
+
 }
