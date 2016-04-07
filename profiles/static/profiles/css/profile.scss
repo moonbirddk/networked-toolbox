@@ -1,10 +1,16 @@
-.profile {
+.flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
-  .profile-photo {
-      width: 100%;
-      margin-top: 20px;
-      margin-bottom: 10px;
-  }
+.profile-photo {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.profile {
 
   h1.title {
 
@@ -37,10 +43,11 @@
 
     .story {
   
-      margin: 0.1em 0;
+      margin: 0.5em 0;
 
       h4 {
         font-size: 16px;
+        margin-bottom: 5px;
       }
 
       a {
@@ -55,5 +62,35 @@
     }
       
   }
+}
+
+.tools-used {
+
+  margin: 1em 0;
+    
+  a { color: black; }
+  a:hover { text-decoration: none; }
+  
+  .tool {
+    
+    font-size: 12px;
+    margin-bottom: 10px;
+
+    .tool-cover-image {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 7px;
+    }
+    
+  }
+ 
+} 
+
+.show-all {
+  margin: 1em 0;
+  font-weight: bold;
+
+  a { color: black; }
+  a:hover { text-decoration: none; }
 
 }

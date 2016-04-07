@@ -11,7 +11,7 @@ from django.db import transaction
 
 from .forms import ProfileForm
 from .models import User, Profile
-from tools.models import Story
+from tools.models import Story, ToolFollower
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http.response import HttpResponseNotFound
 
@@ -51,12 +51,13 @@ def terms_and_conditions(request):
 def show(request, user_id):
     user = User.objects.get(id=user_id)
     profile, _ = Profile.objects.get_or_create(user=user)
-    tools_used = []
+    tool_followers = ToolFollower.objects.filter(user_id=user.id).filter(tool__published=True).order_by('?')
+    tools = [tf.tool for tf in tool_followers]
     stories = Story.objects.filter(user=user)
     stories_fav = []
     ctx = {
         'profile_user': user,
-        'tools_used': tools_used,
+        'tools': tools,
         'stories': stories,
         'stories_fav': stories_fav,
     }
