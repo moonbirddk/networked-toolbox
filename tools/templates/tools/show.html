@@ -32,22 +32,23 @@
                     {% if user.id in tool_followers %}
                         <form action="{% url 'tools:unfollow' tool.id %}" method="post">
                             {% csrf_token %}
-                            <div class="col-xs-12 col-sm-2 text-center">
-                                <button type="submit" class="btn btn-usage">
-                                    No, I haven't
-                                </button>
-                            </div>
+                            <button type="submit" class="btn btn-usage">
+                                No, I haven't
+                            </button>
                         </form>
                     {% else %}
-                        {% if user.is_authenticated %}
-                            <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#usage-modal">
-                                Yes, I have
-                            </button>
+                        <form action="{% url 'tools:follow' tool.id %}" method="post">
+                            {% csrf_token %}
+                            {% if user.is_authenticated %}
+                                <button type="submit" name='should_notify' value='1' class="btn btn-usage">
+                                    Yes, I have
+                                </button>
                         {% else %}
-                            <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#login-required-modal">
+                            <button type="submit" class="btn btn-usage" data-toggle="modal" data-target="#login-required-modal">
                                 Yes, I have
                             </button>
                         {% endif %}
+                        </form>
                     {% endif %}
                 </div>
                 <div class="usage-followers col-sm-5">
@@ -160,31 +161,6 @@
     </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="usage-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <h3 class="modal-title title" id="myModalLabel">Email notifications</h3>
-            <div class="row">
-              <div class="col-sm-8">
-                <p>Do you want to be called upon via email when other users have questions regarding the tool?</p>
-              </div>
-              <div class="col-sm-4 text-center">
-                <form action="{% url 'tools:follow' tool.id %}" method="post">
-                  {% csrf_token %}
-                  <div class="col-xs-6">
-                    <button type="submit" name='should_notify' value='1' class="btn btn-primary btn-lg">Yes</button>
-                  </div>
-                  <div class="col-xs-6">
-                    <button type="submit" name='should_notify' value='0' class="btn btn-primary btn-lg">No</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="modal fade" id="login-required-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -112,6 +112,9 @@
   .usage-follow {
     flex: 0.5;
     min-width: 100px;
+    form {
+      margin: 0;
+    }
   }
   .usage-followerse {
     flex: 1.1;
