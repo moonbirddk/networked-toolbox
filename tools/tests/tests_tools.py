@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User, Group
 
-from ..models import Tool, ToolCategory
+from ..models import Tool, ToolCategory, ToolFollower
 
 
 TEST_PNG_CONTENT = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
@@ -16,6 +16,9 @@ class ToolsViewsTestCase(TestCase):
         return super(ToolsViewsTestCase, cls).setUpClass()
 
     def setUp(self):
+        self.test_user = User.objects.create(username='testuser')
+        self.test_user.set_password('testuserpass')
+        self.test_user.save()
         self.test_admin = User.objects.create(username='testadmin')
         self.test_admin.set_password('testpass')
         self.admins_group = Group.objects.get(name='admins')
@@ -48,14 +51,15 @@ class ToolsViewsTestCase(TestCase):
             'resources_text': 'our new description'
         }
         resp = self.client.post(reverse('tools:add'), data, follow=True)
+        self.assertEqual(Tool.objects.count(), 1)
+        tool = Tool.objects.all()[0]
         self.assertEqual(
-            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You created a tool", str(list(resp.context['messages'])[0]))
 
-        self.assertEqual(Tool.objects.count(), 1)
-        tool = Tool.objects.all()[0]
         self.assertEqual(tool.title, data['title'])
         self.assertEqual(tool.description, data['description'])
         self.assertTrue(tool.cover_image)
@@ -89,7 +93,8 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))
@@ -127,7 +132,8 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))
@@ -154,7 +160,8 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(
             reverse('tools:edit', args=(tool.id,)), data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/1/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
             "You updated a tool", str(list(resp.context['messages'])[0]))
@@ -186,3 +193,122 @@ class ToolsViewsTestCase(TestCase):
             title='A title', description='A description')
         resp = self.client.get(reverse('tools:show', args=(tool.id, )))
         self.assertEqual(404, resp.status_code)
+
+    def test_follow_get(self):
+        tool = Tool.objects.create(
+            title='A title',
+            description='A description',
+            published=True
+        )
+        resp = self.client.get(reverse('tools:follow', args=(tool.id, )),
+                               follow=True)
+        expected_url = (
+            'http://testserver/accounts/login/'
+            '?next=/tools/follow/{}/'
+        ).format(tool.id)
+        self.assertEqual(
+            [(expected_url, 302)],
+            resp.redirect_chain)
+        self.client.login(username='testuser', password='testuserpass')
+        resp = self.client.get(reverse('tools:follow', args=(tool.id, )),
+                               follow=True)
+        self.assertEqual(
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
+
+    def test_follow_post(self):
+        self.client.login(username='testuser', password='testuserpass')
+        tool = Tool.objects.create(
+            title='A title',
+            description='A description',
+            published=True
+        )
+        data = {'should_notify': '1'}
+        resp = self.client.post(reverse('tools:follow', args=(tool.id, ),),
+                                data, follow=True)
+        self.assertEqual(
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
+        self.assertTrue('messages' in resp.context)
+        self.assertEqual(
+            "You are now following this tool.",
+            str(list(resp.context['messages'])[0])
+        )
+        self.assertEqual(
+            1,
+            ToolFollower.objects.filter(user_id=self.test_user.id,
+                                        tool_id=tool.id,
+                                        should_notify=True).count()
+        )
+
+        data = {'should_notify': '0'}
+        resp = self.client.post(reverse('tools:follow', args=(tool.id, ),),
+                                data, follow=True)
+        self.assertEqual(
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
+        self.assertTrue('messages' in resp.context)
+        self.assertEqual(
+            "You are now following this tool.",
+            str(list(resp.context['messages'])[0])
+        )
+        self.assertEqual(
+            1,
+            ToolFollower.objects.filter(user_id=self.test_user.id,
+                                        tool_id=tool.id,
+                                        should_notify=False).count()
+        )
+
+    def test_unfollow_get(self):
+        tool = Tool.objects.create(
+            title='A title',
+            description='A description',
+            published=True
+        )
+        resp = self.client.get(reverse('tools:unfollow', args=(tool.id, )),
+                               follow=True)
+        expected_url = (
+            'http://testserver/accounts/login/'
+            '?next=/tools/unfollow/{}/'
+        ).format(tool.id)
+        self.assertEqual(
+            [(expected_url, 302)],
+            resp.redirect_chain)
+        self.client.login(username='testuser', password='testuserpass')
+        resp = self.client.get(reverse('tools:unfollow', args=(tool.id, )),
+                               follow=True)
+        self.assertEqual(
+            [('http://testserver/tools/%d/' % tool.id, 302)],
+            resp.redirect_chain)
+
+    def test_unfollow_post(self):
+        tool = Tool.objects.create(
+            title='A title',
+            description='A description',
+            published=True
+        )
+        data = {}
+        resp = self.client.post(reverse('tools:unfollow', args=(tool.id, )),
+                                data, follow=True)
+        expected_url = (
+            'http://testserver/accounts/login/'
+            '?next=/tools/unfollow/{}/'
+        ).format(tool.id)
+        self.assertEqual(
+            [(expected_url, 302)],
+            resp.redirect_chain)
+
+        self.client.login(username='testuser', password='testuserpass')
+        data = {}
+        resp = self.client.post(reverse('tools:unfollow', args=(tool.id, )),
+                                data, follow=True)
+        self.assertTrue('messages' in resp.context)
+        self.assertEqual(
+            "You are no longer following this tool.",
+            str(list(resp.context['messages'])[0])
+        )
+        self.assertEqual(
+            0,
+            ToolFollower.objects.filter(user_id=self.test_user.id,
+                                        tool_id=tool.id).count()
+        )

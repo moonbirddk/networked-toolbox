@@ -4,6 +4,8 @@ from django.core.files.storage import default_storage
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save, post_delete, pre_save
 
+from django_countries.fields import CountryField
+
 from common.utils import generate_upload_path
 
 
@@ -15,6 +17,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
     photo = models.ImageField(upload_to=do_upload_profile_photo,
                               blank=True, null=True)
+    bio = models.CharField(max_length=400, blank=True)
+    country = CountryField(blank_label='where did this take place?',
+                           blank=True, null=True)
 
     def name(self):
         user = self.user
@@ -26,6 +31,16 @@ class Profile(models.Model):
             return user.last_name
         else:
             return user.email
+
+    def short_name(self):
+        user = self.user
+        if user.first_name and user.last_name:
+            last_name = user.last_name[0] + '.'
+            return "{} {}".format(user.first_name, last_name)
+        elif user.first_name:
+            return user.first_name
+        else:
+            return user.last_name
 
     def has_existing_photo(self):
         return self.photo and \

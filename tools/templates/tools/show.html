@@ -3,15 +3,17 @@
 {% load static %}
 {% load staticfiles %}
 {% load toolstags %}
+{% load compress %}
 
 {% block head_statics %}
 {{ form.media }}
+
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-fontstyle.js'%}"></script>
-<script type="text/javascript" src="{% static 'netbox/javascript/base.js'%}"></script>
 
-
-<link rel="stylesheet" href="{% static "tools/css/tool.css" %}">
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+{% endcompress %}
 
 {% endblock %}
 
@@ -21,12 +23,77 @@
             {% if tool.cover_image %}
              <div class="cover-image" style="background-image: url({{ tool.cover_image.url }})"></div>
             {% endif %}
+
+            <div class="usage-indicator row">
+                <div class="usage-title col-sm-5">
+                    <h3 class="title">Have you used this tool?</h3>
+                </div>
+                <div class="usage-follow col-xs-12 col-sm-2 text-center">
+                    {% if user.id in tool_followers %}
+                        <form action="{% url 'tools:unfollow' tool.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="col-xs-12 col-sm-2 text-center">
+                                <button type="submit" class="btn btn-usage">
+                                    No, I haven't
+                                </button>
+                            </div>
+                        </form>
+                    {% else %}
+                        {% if user.is_authenticated %}
+                            <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#usage-modal">
+                                Yes, I have
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#login-required-modal">
+                                Yes, I have
+                            </button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="usage-followers col-sm-5">
+                    <p>As of now {{ tool.followers.count }} user{{ tool.followers.count|pluralize:" has,s have" }}
+                    used this tool.<!--<br>
+                    The tool disussion consists of:<br>
+                    4 comments.--></p>
+                </div>
+            </div>
+
             <h1 class="title">{{ tool.title }}
             {% if perms.tools %}{% if perms.tools.change_tool %}
             <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
             {% endif %}{% endif %}
             </h1>
-            {{tool.description|safe }}
+            <div class="tool-description more">{{tool.description|safe }}</div>
+            <h3 class="title">Stories</h3>
+            <p>Read stories about how the tool has been used in different contexts. If you have experience you would like to share, <a href="{% url 'tools:add_story' tool.id %}">add a story</a></p> 
+            <div class="flex-wrapper row">
+                {% for story in stories %}
+                    <div class="story col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="story-user">
+                                    {% if story.user.profile.photo %}
+                                        <img class='profile-thumbnail-img' src="{{ story.user.profile.photo.url }}" />
+                                    {% else %}
+                                        <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}" />
+                                    {% endif %}
+                                    <div class="story-user-name">{{ story.user.profile.short_name }}</div>
+                                    <div class="story-user-country">
+                                        <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <h3><a href="{% url 'tools:show_story' story.id  %}">{{ story.title }}</a></h3>
+                                <div class="story-content">
+                                    {{ story.content|bleach_striptags|truncatechars:150 }}
+                                    <a href="{% url 'tools:show_story' story.id  %}">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
         <div class="col-md-4 padding">
           <div class="resource-box">
@@ -35,6 +102,7 @@
             <a href="{% url 'resources:add' 'tool' tool.id  %}"><i class="fa fa-plus"></i></a>
             {% endif %}{% endif %}
             </h3>
+            <p>Here you can find the different resources related to the current tool.</p>
             <p>{{ tool.resources_text }}</p>
 
             {% for resource in tool.resources.all %}
@@ -80,46 +148,14 @@
               {% endfor %}
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="help-improve col-md-4">
             <h3 class="title">Help improve this tool</h3>
-                <p>How can we improve this category? Give us concrete feedback on what you think is missing.</p>
-                <a class="btn btn-warning" href="{% url 'tools:add_suggestion' 'tool' tool.id %}">Add a suggestion</a>
-        </div>
-        <div class="col-sm-12">
-          <div class="usage-indicator">
-              <div class="col-sm-4 col-sm-offset-1">
-                <h3 class="title">Have you used this tool?</h3>
-              </div>
-              <div class="col-xs-12 col-sm-2 text-center">
-              {% if user.id in tool_followers %}
-                <form action="{% url 'tools:unfollow' tool.id %}" method="post">
-                  {% csrf_token %}
-                  <div class="col-xs-12 col-sm-2 text-center">
-                    <button type="submit" class="btn btn-usage">
-                      No, I haven't
-                    </button>
-                  </div>
-                </form>
-              {% else %}
-                {% if user.is_authenticated %}
-                  <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#usage-modal">
-                    Yes, I have
-                  </button>
-                {% else %}
-                <button type="button" class="btn btn-usage" data-toggle="modal" data-target="#login-required-modal">
-                  Yes, I have
-                </button>
-                {% endif %}
-
-              {% endif %}
-              </div>
-              <div class="col-sm-4 col-sm-offset-1">
-                <p>As of now {{ tool.followers.count }} user{{ tool.followers.count|pluralize:" has,s have" }}
-                used this tool.<!--<br>
-                The tool disussion consists of:<br>
-                4 comments.--></p>
-              </div>
-          </div>
+             
+            <p>Have you used this tool in practice? Tell us about your experience, so the community can learn from it.</p>
+            <a class="btn btn-primary" href="{% url 'tools:add_story' tool.id %}">Add a story</a>
+            
+            <p>How can we improve this category? Give us concrete feedback on what you think is missing.</p>
+            <a class="btn btn-primary" href="{% url 'tools:add_suggestion' 'tool' tool.id %}">Add a suggestion</a>
         </div>
     </div>
     </div>

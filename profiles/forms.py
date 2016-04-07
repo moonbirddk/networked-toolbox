@@ -4,6 +4,9 @@ from django.forms import fields
 from django.core.exceptions import ValidationError
 from django.template.defaultfilters import filesizeformat
 
+from django_countries.fields import LazyTypedChoiceField
+from django_countries import countries
+
 
 log = logging.getLogger(__name__)
 
@@ -16,6 +19,14 @@ class ProfileForm(forms.Form):
     last_name = fields.CharField(max_length=30, required=False)
     photo = forms.ImageField(required=False,
                              label='Photo image (recommended size: 160x160)')
+    bio = fields.CharField(widget=forms.Textarea,
+                           max_length=400,
+                           required=False,
+                           label='Bio (a short description of yourself)',
+                           help_text='400 characters max.')
+    country = LazyTypedChoiceField(choices=[('', ''), ] + list(countries),
+                                   required=False,
+                                   label='Where do you live?')
 
     def clean_photo(self):
         photo = self.cleaned_data.get('photo', False)

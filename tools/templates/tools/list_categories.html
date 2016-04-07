@@ -3,6 +3,15 @@
 {% load staticfiles %}
 {% load toolstags %}
 {% load partition_slice %}
+{% load compress %}
+
+{% block head_statics %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+
+{% endblock %}
 
 {% block main %}
 
@@ -16,9 +25,11 @@
     </div>
 
     <div class="col-md-4">
+       {% if perms.tools %}{% if perms.tools.add_toolcategory %}
        <div class="filter-buttons pull-right">
          {{categories_filter.form}}
        </div>
+       {% endif %}{% endif %}
     </div>
 
 </div>
@@ -34,8 +45,10 @@
     </div>
     <div class="col-md-2">
         <div class="filter-buttons pull-right">
+            {% if perms.tools %}{% if perms.tools.add_group %}
             <a class="btn btn-black" 
                 href="{% url 'tools:add_categorygroup' %}">Add Group</a>
+            {% endif %}{% endif %}
         </div>
     </div>
 </div>

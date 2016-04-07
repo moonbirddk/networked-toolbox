@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^edit/(\d+)/$', views.edit, name='edit'),
     url(r'^follow/(\d+)/$', views.follow, name='follow'),
     url(r'^unfollow/(\d+)/$', views.unfollow, name='unfollow'),
+    url(r'^story/add/tool/(\d+)/$', views.add_story, name='add_story'),
+    url(r'^story/(\d+)/$', views.show_story, name='show_story'),
 
     url(r'^categories/$', views.list_categories, name='list_categories'),
     url(r'^categories/add/$', views.add_category, name='add_category'),

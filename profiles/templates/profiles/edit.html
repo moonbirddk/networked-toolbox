@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block main %}
+
+<div class="container">
+<div class="row">
+ <div class="col-md-2">
+ </div>
+
+ <div class="col-md-8">
+  <h1>Your profile</h1>
+  
+  <p>You have registered using <strong>{{user.email}}</strong> email address.</p>
+ </div>
+ 
+ <div class="col-md-6">
+ </div>
+</div>
+
+<div class="row">
+ 
+ <div class="col-md-2">
+ </div>
+ 
+ <div class="col col-md-2">
+    {% if user.profile %}
+    {% if user.profile.photo %}
+        <img class="thumb img-thumbnail img-responsive" src="{{user.profile.photo.url}}" />
+    {% else %}
+        <p class="text-danger"><strong>Please upload your image</strong></p>
+    {% endif %}
+    {% endif %}
+ </div>
+ 
+ <div class="col col-md-4">
+  <form method="POST" action="{% url 'profiles:edit' %}" class="form" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+          <button type="submit" class="btn btn-primary">
+              {% bootstrap_icon "star" %} Update
+          </button>
+      {% endbuttons %}
+  </form>
+ </div>
+ 
+ <div class="col-md-2">
+ </div>
+
+</div>
+</div>
+{% endblock %}

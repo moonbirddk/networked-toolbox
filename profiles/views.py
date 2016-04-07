@@ -10,9 +10,12 @@ from django.contrib import messages
 from django.db import transaction
 
 from .forms import ProfileForm
-from .models import Profile
+from .models import User, Profile
+from tools.models import Story
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http.response import HttpResponseNotFound
+
+from bleach import clean
 
 log = logging.getLogger(__name__)
 
@@ -45,15 +48,30 @@ def terms_and_conditions(request):
     resp.set_cookie('has_accepted_terms', '0')
     return resp
 
+def show(request, user_id):
+    user = User.objects.get(id=user_id)
+    profile, _ = Profile.objects.get_or_create(user=user)
+    tools_used = []
+    stories = Story.objects.filter(user=user)
+    stories_fav = []
+    ctx = {
+        'profile_user': user,
+        'tools_used': tools_used,
+        'stories': stories,
+        'stories_fav': stories_fav,
+    }
+    return render(request, 'profiles/show.html', ctx)
 
 @login_required
 @transaction.atomic
-def profile(request):
+def edit(request):
     user = request.user
     profile, _ = Profile.objects.get_or_create(user=user)
     attributes = {
         'first_name': user.first_name,
         'last_name': user.last_name,
+        'bio': profile.bio,
+        'country': profile.country,
     }
 
     if profile.photo and default_storage.exists(profile.photo.name):
@@ -77,13 +95,17 @@ def profile(request):
                 else:
                     photo = profile.photo
             profile.photo = photo
+            profile.bio = clean(form.cleaned_data.get('bio', None), tags=[],
+                    strip=True, strip_comments=True)
+            profile.country = form.cleaned_data['country']
             profile.save()
             user.first_name = form.cleaned_data.get('first_name', None)
             user.last_name = form.cleaned_data.get('last_name', None)
             user.save()
             messages.success(request, "You have updated your profile.")
-            return redirect('profiles:profile')
+            return redirect('profiles:show', user.id)
     ctx = {
         'form': form,
     }
-    return render(request, 'profiles/profile.html', ctx)
+    return render(request, 'profiles/edit.html', ctx)
+

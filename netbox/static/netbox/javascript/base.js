@@ -3,3 +3,11 @@ $(document).on("click", "#btn-resource-list", function(){
   $('#btn-expand').toggleClass('hidden');
   $('#btn-collapse').toggleClass('hidden');
 });
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+    $('.more').shorten({
+      'moreText': 'Read more',
+      'showChars': 1500 
+    }); 
+});

@@ -20,3 +20,6 @@ git+https://github.com/jschneier/django-storages.git#egg=django-storages
 django-solo
 newrelic==2.60.0.46
 sqlparse==0.1.18
+django-countries==3.4.1
+django-gulp==2.3.0
+django-compressor==2.0

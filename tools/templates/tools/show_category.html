@@ -4,11 +4,16 @@
 {% load staticfiles %}
 {% load toolstags %}
 {% load partition_slice %}
+{% load compress %}
 
 {% block head_statics %}
 {{ form.media }}
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
-<link rel="stylesheet" href="{% static "tools/css/tool.css" %}">
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
 
 {% endblock %}
 

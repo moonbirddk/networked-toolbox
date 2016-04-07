@@ -43,7 +43,7 @@ def index(request):
         queryset = Tool.objects.filter(published=True)
     tools_filter = PublishedFilter(request.GET, queryset=queryset)
     overview = ToolOverviewPage.get_solo()
-    context = {'tools_filter': tools_filter, 'overview':overview}
+    context = {'tools_filter': tools_filter, 'overview': overview}
     return render(request, 'tools/index.html', context)
 
 
@@ -54,13 +54,16 @@ def show(request, tool_id):
         tool = get_object_or_404(Tool, id=tool_id, published=True)
 
     tool_followers = (list(tool.followers.all().values_list('user_id', flat=True)))
-    context = {'tool': tool, 'tool_followers': tool_followers}
+    stories = tool.stories.all().order_by('-created')
+    context = {'tool': tool, 'tool_followers': tool_followers,
+            'stories': stories}
 
     return render(request, 'tools/show.html', context)
 
 
+@transaction.atomic
 @login_required
-def follow(request,tool_id):
+def follow(request, tool_id):
     if request.user.has_perm('tools.change_tool'):
         tool = get_object_or_404(Tool, id=tool_id)
     else:
@@ -69,25 +72,27 @@ def follow(request,tool_id):
         should_notify = False
         if request.POST.get('should_notify', '0') == '1':
             should_notify = True
-        ToolFollower.objects.create(user=request.user, tool=tool,
-        should_notify=should_notify)
-
+        tfoll, created = ToolFollower.objects.get_or_create(
+            user=request.user,
+            tool=tool
+        )
+        tfoll.should_notify = should_notify
+        tfoll.save()
         messages.success(request, "You are now following this tool.")
+    return redirect(tool)
 
-        return redirect(tool)
 
 @login_required
-def unfollow(request,tool_id):
+def unfollow(request, tool_id):
+    if request.user.has_perm('tools.change_tool'):
+        tool = get_object_or_404(Tool, id=tool_id)
+    else:
+        tool = get_object_or_404(Tool, id=tool_id, published=True)
     if request.method == 'POST':
-        if request.user.has_perm('tools.change_tool'):
-            tool = get_object_or_404(Tool, id=tool_id)
-        else:
-            tool = get_object_or_404(Tool, id=tool_id, published=True)
-        tool.followers.all().filter(user_id=request.user.id)[0].delete()
-
+        tool.followers.all().filter(user_id=request.user.id).delete()
         messages.success(request, "You are no longer following this tool.")
+    return redirect(tool)
 
-        return redirect(tool)
 
 @transaction.atomic
 @permission_required('tools.change_tool', login_url='tools:index')
@@ -130,8 +135,9 @@ def edit(request, tool_id):
             tool.description = form.cleaned_data['description']
             tool.resources_text = form.cleaned_data['resources_text']
             tool.cover_image = cover_image
+            tool.categories.clear()
+            tool.categories.add(*form.cleaned_data['categories'])
             tool.save()
-            tool.categories = form.cleaned_data['categories']
 
             messages.success(request, "You updated a tool")
             return redirect(tool)

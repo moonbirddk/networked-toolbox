@@ -1,0 +1,59 @@
+.profile {
+
+  .profile-photo {
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 10px;
+  }
+
+  h1.title {
+
+    .glyphicon {
+      color: #c2c1b8;
+    } 
+
+  }
+
+  h3 {
+    font-size: 18px;
+    margin: 0.7em 0;
+    display: flex;
+    align-items: center; 
+
+    span {
+      margin-right: 0.3em;
+      font-size: 1.1em;
+    }
+
+  }
+
+  .stories {
+
+    margin: 2.5em 0;
+
+    h3.title {
+      margin-bottom: 0;
+    }
+
+    .story {
+  
+      margin: 0.1em 0;
+
+      h4 {
+        font-size: 16px;
+      }
+
+      a {
+        color: black;
+        font-weight: bold;
+      }
+      
+      a:hover {
+        text-decoration: none;
+      }
+
+    }
+      
+  }
+
+}

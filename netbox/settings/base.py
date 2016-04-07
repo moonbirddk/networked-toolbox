@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import sys
 
 SITE_ID = 1
 DOMAIN = 'localhost'
@@ -57,6 +58,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_gulp',
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
@@ -70,6 +72,8 @@ INSTALLED_APPS = (
     'storages',
     'django_summernote',
     'solo',
+    'django_countries',
+    'compressor',
 
     'profiles',
     'tools',
@@ -201,6 +205,12 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, "static"),
 )
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
 MEDIA_URL_PATTERN = "/media/"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
@@ -253,3 +263,7 @@ SOCIALACCOUNT_PROVIDERS = {
     'VERSION': 'v2.4'
     },
 }
+
+IN_TEST = 'test' in sys.argv
+DEFAULT_CATEGORY_GROUP_NAME = 'Other'
+COMPRESS_ENABLED = False

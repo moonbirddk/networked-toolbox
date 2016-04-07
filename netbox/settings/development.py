@@ -22,7 +22,8 @@ NOSE_ARGS = [
      '--cover-package=tools',
      'netbox',
      'tools',
-     'resources'
+     'resources',
+     'profiles'
 ]
 
 for arg in sys.argv:

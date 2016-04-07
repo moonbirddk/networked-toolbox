@@ -1,15 +1,20 @@
 {% load bootstrap3 %}
 {% load static %}
-{% load staticfiles %}
+{% load compress %}
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+        {% compress js %}
+        <script src="{% static "js/base.js" %}"></script>
+        <script src="{% static "js/jquery.shorten.js" %}"></script>
+        {% endcompress %}
+        {% bootstrap_javascript %}
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         {% bootstrap_css %}
-        {% bootstrap_javascript %}
-        <link rel="stylesheet" href="{% static "netbox/css/base.css" %}">
-        <link rel="stylesheet" href="{% static "tools/css/tool.css" %}">
-        <link rel="stylesheet" href="{% static "tools/css/category.css" %}">
+        {% compress css %}
+        <link rel="stylesheet" href="{% static "netbox/flags/css/flag-icon.min.css" %}">
+        <link rel="stylesheet" href="{% static "css/base.min.css" %}">
+        {% endcompress %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block head_title %}{% endblock %}</title>
 
@@ -55,14 +60,14 @@
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                <li><a class='profile-thumbnail-link' href="{% url 'profiles:profile'%}">
+                <li><a class='profile-thumbnail-link' href="{% url 'profiles:show' user.id %}">
                   {% if user.profile.photo %}
                     <img class='profile-thumbnail-img' src="{{ user.profile.photo.url }}">&nbsp;
                   {% else %}
                     <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
                   {% endif %}
                 </a></li>
-                <li><a href="{% url 'profiles:profile'%}">
+                <li><a href="{% url 'profiles:show' user.id %}">
                 {% if user.first_name %}
                     {{user.first_name}}
                 {% else%}

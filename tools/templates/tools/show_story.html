@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load toolstags %}
+{% load compress %}
+
+{% block head_statics %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/story.min.css" %}">
+{% endcompress %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="story-tool">
+                This story relates to the tool: 
+                <a href="{% url 'tools:show' tool.id  %}">{{tool.title}}</a>
+            </div>
+            <h1 class="story-title title">
+                {% if story.country %}
+                  <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                {% endif %}
+                {{story.title}}
+                <span class="story-title-created">{{ story.created | date:"F j, Y \a\t P" }}</span>
+            </h1>
+            <div class="story-content more">{{story.content|safe }}</div>
+            <div class="story-contributor">
+                <h3 class="title">Contributor</h3>
+                <div class="story-user row">
+                    <div class="story-user-image col-md-2">
+                        {% if story.user.profile.photo %}
+                            <img class='profile-thumbnail-img' src="{{ story.user.profile.photo.url }}" />
+                        {% else %}
+                            <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}" />
+                        {% endif %}
+                    </div>
+                    <div class="story-user-details col-md-10">
+                        <h4>
+                            <span title="Denmark" class="flag-icon flag-icon-dk"></span>
+                            <a href="#">{{story.user.profile.name}}</a>
+                        </h4>
+                        <div class="story-user-bio">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent suscipit consectetur laoreet. Maecenas varius ornare erat nec aliquam. Morbi et turpis metus. Morbi ac nibh id lacus auctor consectetur vitae eget tortor. 
+                          <a href="#">See profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3 class="title">Related stories</h3>
+            <ul class="related-stories list-group">
+                {% for story in related_stories %}
+                    <li class="list-group-item">
+                        <h4>
+                            {% if story.country %}
+                                <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                            {% endif %}
+                            <a href="{% url 'tools:show_story' story.id  %}">{{story.title}}</a>
+                        </h4>
+                        {{ story.content|bleach_striptags|truncatechars:150 }}
+                        <a href="{% url 'tools:show_story' story.id  %}">Read more</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
