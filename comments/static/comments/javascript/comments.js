@@ -6,15 +6,25 @@ $(function() {
         $('#comment-list').append(html);
     }
     
+    function getErrorsHtml(errors) {
+        // '<span class="help-block">content: This field is required.</span>'
+        var html = '';
+        $.each(errors, function(fname, ferrors){
+            $.each(ferrors, function(ferrkey, ferror){
+                console.log(ferror);
+                html += '<span class="help-block">' + fname + ': ' + ferror.message + '<span>';
+            });
+        });
+        return html;
+    }
+    
     $(".comment-submit-btn").click(function(event) {
         event.preventDefault();
-        console.log("comment submit clicked");
         var thisform = $(this).parent().parent();
         var csrftoken = getCookie('csrftoken');
         var postdata = thisform.serialize();
-        thisform.find('textarea').val('');
-        postdata += '&csrfmiddlewaretoken=' + csrftoken
-        console.log(postdata);
+        var thistextarea = thisform.find('textarea');
+        postdata += '&csrfmiddlewaretoken=' + csrftoken;
         
         $.ajax({
             type: 'POST',
@@ -22,18 +32,24 @@ $(function() {
             data: postdata,
             cache: false,
             success: function (resp) {
+                thistextarea.val('');
+                thistextarea.parent().removeClass('has-error');
+                thistextarea.parent().find('.help-block').remove();
                 console.log(resp);
                 //var data = $.parseJSON(resp);
                 if (resp.ok === true){
-                    //location.reload();
                     appendComment(resp.comment);
                 } else {
-                    alert(resp.errors);
+                    thistextarea.parent().removeClass('has-error');
+                    thistextarea.parent().find('.help-block').remove();
+                    
+                    thistextarea.parent().addClass('has-error');
+                    thistextarea.parent().append(getErrorsHtml(resp.errors));
                 }
             },
             error: function(resp) {
-                console.log(resp);
-                alert(resp.responseText);
+                console.error(resp);
+                alert("Internal Error");
             }
         });
     });

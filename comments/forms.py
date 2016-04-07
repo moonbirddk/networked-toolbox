@@ -65,7 +65,6 @@ class CommentForm(forms.Form):
         return self.cleaned_data
 
     def clean_content(self):
-        print("clean_content {}".format(self.cleaned_data))
         if 'content' in self.cleaned_data:
             newval = \
                 bleach.clean(self.cleaned_data['content'], tags=[],

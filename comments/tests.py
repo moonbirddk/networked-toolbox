@@ -10,7 +10,7 @@ from .models import Comment
 from .utils import format_added_dt
 
 
-class ToolResourcesViewsTestCase(TestCase):
+class ToolCommentsViewsTestCase(TestCase):
     maxDiff = None
 
     def setUp(self):
@@ -19,6 +19,9 @@ class ToolResourcesViewsTestCase(TestCase):
                                                   'testpass')
         self.test_tool = Tool.objects.create(title='test tool',
                                              description='test description')
+
+        self.test_user.profile.country = 'PL'
+        self.test_user.profile.save()
 
     def test_add_comment_get_anonymous(self):
         url = reverse('comments:add')
@@ -80,7 +83,8 @@ class ToolResourcesViewsTestCase(TestCase):
                 'added_dt': actual.added_dt.isoformat(),
                 'added_time': format_added_dt(actual.added_dt),
                 'author_name': 'testuser@localhost',
-                'author_country': None,
+                'author_country_code': 'PL',
+                'author_country_name': 'Poland',
                 'author_photo_url': '/static/profiles/images/Small%20user%20pic.png',
                 'content': content,
                 'id': actual.id,
@@ -112,12 +116,13 @@ class ToolResourcesViewsTestCase(TestCase):
             'comment': {
                 'added_dt': actual.added_dt.isoformat(),
                 'added_time': format_added_dt(actual.added_dt),
-                'author_country': None,
+                'author_country_name': 'Poland',
+                'author_country_code': 'PL',
                 'author_name': 'testuser@localhost',
                 'author_photo_url': '/static/profiles/images/Small%20user%20pic.png',
                 'content': 'super kk.dkcomment this is yo!',
-                'id': 2,
-                'related_object_id': 5,
+                'id': actual.id,
+                'related_object_id': self.test_tool.id,
                 'related_object_type': 'tool'
             },
                 'errors': {},

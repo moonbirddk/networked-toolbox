@@ -1,9 +1,12 @@
+import logging
 import pytz
 from html import escape
 from django.conf import settings
 from django.utils.timezone import localtime
 
 from profiles.utils import get_profile_photo_url
+
+log = logging.getLogger(__name__)
 
 
 def format_added_dt(dt, tzstr=settings.TIME_ZONE):
@@ -21,7 +24,12 @@ def build_comment_data(comment, tzstr=None):
     comment_dict['added_time'] = escape(added_time, quote=True)
     comment_dict['author_name'] = escape(comment.author.profile.name(),
                                          quote=True)
-    comment_dict['author_country'] = None
+
+    comment_dict['author_country_name'] =\
+        str(comment.author.profile.country.name)
+    comment_dict['author_country_code'] =\
+        comment.author.profile.country.code or ''
+
     comment_dict['author_photo_url'] = get_profile_photo_url(comment.author)
     comment_dict['related_object_id'] = comment.related_object_id
     comment_dict['related_object_type'] = \
