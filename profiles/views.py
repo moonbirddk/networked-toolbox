@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.db import transaction
 
 from .forms import ProfileForm
-from .models import User, Profile
+from .models import User, Profile, ActivityEntry
 from tools.models import Story, ToolFollower
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http.response import HttpResponseNotFound
@@ -53,13 +53,15 @@ def show(request, user_id):
     profile, _ = Profile.objects.get_or_create(user=user)
     tool_followers = ToolFollower.objects.filter(user_id=user.id).filter(tool__published=True).order_by('?')
     tools = [tf.tool for tf in tool_followers]
-    stories = Story.objects.filter(user=user)
+    stories = Story.objects.filter(user=user).order_by('-created')
     stories_fav = []
+    activities = ActivityEntry.objects.filter(user=user).order_by('-created')
     ctx = {
         'profile_user': user,
         'tools': tools,
         'stories': stories,
         'stories_fav': stories_fav,
+        'activities': activities,
     }
     return render(request, 'profiles/show.html', ctx)
 

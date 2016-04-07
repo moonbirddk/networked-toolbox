@@ -66,6 +66,44 @@
     }
       
   }
+  
+  .activities {
+    list-style-type: none;
+    padding: 0;
+    margin: 1em 0;
+
+    li {
+      margin: 1.2em 0;
+    }
+
+    h4 {
+
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 18px;
+      display: flex;
+      align-items: top; 
+
+      .glyphicon {
+        margin-right: 0.6em;
+        font-size: 1.2em;
+      }
+
+    }
+    
+    .activity-created {
+      color: #8d8479;
+      font-size: 12px;
+      font-weight: normal;
+      white-space: nowrap;
+      margin-left: 0.3em;
+    }
+
+    .activity-content {
+      color: #c2c1b8;
+    }
+  }
 }
 
 .tools-used {

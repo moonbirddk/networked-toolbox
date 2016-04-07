@@ -3,10 +3,16 @@ from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save, post_delete, pre_save
+from django.core.urlresolvers import reverse
 
 from django_countries.fields import CountryField
 
 from common.utils import generate_upload_path
+
+from model_utils.fields import StatusField
+from model_utils import Choices
+
+from tools.models import Story
 
 
 def do_upload_profile_photo(inst, filename):
@@ -71,3 +77,21 @@ def on_profile_post_delete(sender, instance, **kwargs):
     if instance.photo and instance.photo.name and\
             default_storage.exists(instance.photo.name):
         default_storage.delete(instance.photo.name)
+
+class ActivityEntry(models.Model):
+    TYPE_ADD_STORY = 'add_story'
+    ENTRY_TYPES = Choices(TYPE_ADD_STORY)
+    user = models.ForeignKey('auth.User')
+    entry_type = StatusField(choices_name='ENTRY_TYPES')
+    title = models.CharField(max_length=150)
+    content = models.CharField(max_length=500)
+    link = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+
+@receiver(post_save, sender=Story)
+def on_story_create(sender, instance=None, created=False, **kwargs):
+    if created:
+        link = reverse('tools:show', args=(instance.tool.id, ))
+        ActivityEntry.objects.create(user=instance.user,
+                entry_type=ActivityEntry.TYPE_ADD_STORY, title=instance.tool.title,
+                content=instance.content, link=link)

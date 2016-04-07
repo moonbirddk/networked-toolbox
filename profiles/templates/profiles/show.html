@@ -67,6 +67,25 @@
             {% endif %}
             </div>
         {% endif %}
+
+        {% if activities %}
+            <h3 class="title">Recent activity</h3>
+            <ul class="activities">
+                {% for activity in activities %}
+                    <li>
+                      <h4>
+                          <span class="glyphicon glyphicon-align-left"></span>
+                          <div class="activity-title">
+                              {{activity.user.first_name}} wrote a story regarding <a href="{{activity.link}}">{{activity.title}}</a>
+                              <span class="activity-created">{{activity.created | date:"F j, Y \a\t P" }}</span>
+                          </div>
+                      </h4>
+                      <div class="activity-content">{{ activity.content|bleach_striptags|truncatechars:220 }}</div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
     </div>
  
     <div class="col-md-4">
