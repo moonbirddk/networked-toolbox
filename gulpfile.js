@@ -22,6 +22,7 @@ var paths = {
     ],
     js: [
         'netbox/static/netbox/javascript/*.js',
+        'profiles/static/profiles/javascript/*.js',
     ],
     fonts: [
         'netbox/static/netbox/fonts/*',
