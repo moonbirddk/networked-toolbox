@@ -10,6 +10,10 @@ $(document).ready(function(){
       'moreText': 'Read more',
       'showChars': 1500 
     }); 
+    $('.category-more').shorten({
+      'moreText': 'Read more',
+      'showChars': 550
+    }); 
 });
 
 function getCookie(name) {
