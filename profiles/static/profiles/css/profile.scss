@@ -17,6 +17,9 @@
     .glyphicon {
       color: #c2c1b8;
     } 
+  
+    a { color: black; }
+    a:hover { text-decoration: none; }
 
   }
 
@@ -63,6 +66,22 @@
         text-decoration: none;
       }
 
+      .tool-cover-image {
+        width: 80px;
+        height: 80px;
+        margin-top: 10px;
+        margin-right: 10px;
+        background-size: cover;
+      }
+    
+      .tool-content {
+        width: 80%;
+      }
+
+    }
+
+    .tool {
+      margin: 0 0 1em 0;
     }
       
   }

@@ -19,19 +19,21 @@
 
 <div class="row">
     <div class="col-md-2">
-        {% if profile_user.profile.photo %}
-            <img class="profile-photo" src="{{profile_user.profile.photo.url}}" />
-        {% else %}
-            <img class='profile-photo' src="{% static 'profiles/images/Small user pic.png' %}">
-        {% endif %}
+        <a href="{% url 'profiles:show' profile_user.id %}">
+            {% if profile_user.profile.photo %}
+                <img class="profile-photo" src="{{profile_user.profile.photo.url}}" />
+            {% else %}
+                <img class='profile-photo' src="{% static 'profiles/images/Small user pic.png' %}">
+            {% endif %}
+        </a>
     </div>
     <div class="profile col-md-6">
-        <h1 class="title">
+        <h1 class="title"><a href="{% url 'profiles:show' profile_user.id %}">
             {% if profile_user.profile.country %}
                 <span title="{{profile_user.profile.country.name}}" class="flag-icon flag-icon-{{profile_user.profile.country}}"></span>
             {% endif %}
             {{profile_user.profile.name}}
-        </h1>
+        </a></h1>
         {% if profile_user.profile.country %}
             <h3>
                 <span class="glyphicon glyphicon-globe"></span>
@@ -41,10 +43,19 @@
         <div class="tools">
             <h3 class="title">Tools I use</h3>
             {% for tool in tools %}
-                <div class="tool">
-                    <h4><a href="{% url 'tools:show' tool.id %}">{{tool.title}}</a></h4>
-                    {{ tool.description|bleach_striptags|truncatechars:150 }}
-                    <a href="{% url 'tools:show' tool.id %}">Read more</a>
+                <div class="tool flex-wrapper">
+                    <a href="{% url 'tools:show' tool.id %}">
+                        {% if tool.cover_image %}
+                            <div class="tool-cover-image" style="background-image: url({{tool.cover_image.url}})"></div>
+                        {% else %}
+                            <div class="tool-cover-image"></div>
+                        {% endif %}
+                    </a>
+                    <div class="tool-content">
+                        <h4><a href="{% url 'tools:show' tool.id %}">{{tool.title}}</a></h4>
+                        {{ tool.description|bleach_striptags|truncatechars:150 }}
+                        <a href="{% url 'tools:show' tool.id %}">Read more</a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
