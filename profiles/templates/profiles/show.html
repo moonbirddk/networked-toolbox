@@ -46,7 +46,7 @@
         {% if stories %}
             <div class="stories">
                 <h3 class="title">Stories I have shared</h3>
-                <div class="row">
+                <div class="flex-wrapper row">
                     {% for story in stories %}
                         <div class="story col-md-6 {% if forloop.counter > 4%}hidden{% endif %}">
                             <h4>
