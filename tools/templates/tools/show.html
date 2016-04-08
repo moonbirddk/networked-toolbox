@@ -14,9 +14,13 @@
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-fontstyle.js'%}"></script>
 
+{% compress js %}
+<script type="text/javascript" src="{% static 'js/tools.js' %}"></script>
+{% endcompress %}
+
 {% compress css %}
-<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
-<link rel="stylesheet" href="{% static "css/comments.min.css" %}">
+<link rel="stylesheet" href="{% static 'css/tool.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/comments.min.css' %}">
 {% endcompress %}
 
 {% endblock %}
@@ -63,17 +67,18 @@
                 </div>
             </div>
 
-            <h1 class="title">{{ tool.title }}
-            {% if perms.tools %}{% if perms.tools.change_tool %}
-            <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
-            {% endif %}{% endif %}
+            <h1 class="title">
+                {{ tool.title }}
+                {% if perms.tools %}{% if perms.tools.change_tool %}
+                    <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
+                {% endif %}{% endif %}
             </h1>
             <div class="tool-description more">{{tool.description|safe }}</div>
             <h3 class="title">Stories</h3>
             <p>Read stories about how the tool has been used in different contexts. If you have experience you would like to share, <a href="{% url 'tools:add_story' tool.id %}">add a story</a></p> 
             <div class="flex-wrapper row">
                 {% for story in stories %}
-                    <div class="story col-md-6">
+                    <div class="story col-md-6 {% if forloop.counter > 4%}hidden{% endif %}">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="story-user">
@@ -95,6 +100,12 @@
                     </div>
                 {% endfor %}
             </div>
+            {% if stories|length > 4 %}
+                <div class="show-all">
+                    <a id="show-all-stories" href="#">Show all</a>
+                </div>
+            {% endif %}
+
             {% render_comment_list for tool %}
         </div>
         <div class="col-md-4 padding">

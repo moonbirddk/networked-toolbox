@@ -23,6 +23,7 @@ var paths = {
     ],
     js: [
         'netbox/static/netbox/javascript/*.js',
+        'tools/static/tools/javascript/*.js',
         'profiles/static/profiles/javascript/*.js',
         'comments/static/comments/javascript/*.js'
     ],
