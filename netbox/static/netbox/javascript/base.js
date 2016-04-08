@@ -12,7 +12,7 @@ $(document).ready(function(){
     }); 
     $('.category-more').shorten({
       'moreText': 'Read more',
-      'showChars': 550
+      'showChars': 500
     }); 
 });
 
