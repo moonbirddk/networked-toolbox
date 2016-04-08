@@ -12,7 +12,8 @@ from common.utils import generate_upload_path
 from model_utils.fields import StatusField
 from model_utils import Choices
 
-from tools.models import Story
+from tools.models import Tool, Story
+from comments.models import Comment
 
 
 def do_upload_profile_photo(inst, filename):
@@ -80,7 +81,11 @@ def on_profile_post_delete(sender, instance, **kwargs):
 
 class ActivityEntry(models.Model):
     TYPE_ADD_STORY = 'add_story'
-    ENTRY_TYPES = Choices(TYPE_ADD_STORY)
+    TYPE_ADD_COMMENT = 'add_comment'
+    ENTRY_TYPES = Choices(
+            TYPE_ADD_STORY,
+            TYPE_ADD_COMMENT,
+    )
     user = models.ForeignKey('auth.User')
     entry_type = StatusField(choices_name='ENTRY_TYPES')
     title = models.CharField(max_length=150)
@@ -95,3 +100,19 @@ def on_story_create(sender, instance=None, created=False, **kwargs):
         ActivityEntry.objects.create(user=instance.user,
                 entry_type=ActivityEntry.TYPE_ADD_STORY, title=instance.tool.title,
                 content=instance.content, link=link)
+
+@receiver(post_save, sender=Comment)
+def on_comment_create(sender, instance=None, created=False, **kwargs):
+    print('post_save1')
+    if not created: return
+    print('post_save2')
+    print(instance.related_object)
+
+    if isinstance(instance.related_object, Tool):
+        print('post_save3')
+        link = reverse('tools:show', args=(instance.related_object.id, ))
+        ActivityEntry.objects.create(user=instance.author,
+                entry_type=ActivityEntry.TYPE_ADD_COMMENT,
+                title=instance.related_object.title,
+                content=instance.content, link=link)
+
