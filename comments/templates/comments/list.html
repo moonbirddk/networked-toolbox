@@ -1,0 +1,22 @@
+{% load bootstrap3 %}
+{% load static from staticfiles %}
+{% load commentstags %}
+{% load profilestags %}
+
+<h3 class="title">Comments</h3>
+<p>Do you have a comment or question about the {{related_object_type}}.
+ <a href="#comment-base-form-box">Discuss</a> it with the rest of the community.</p>
+
+
+<div id="comment-list-box" class="flex-wrapper row">
+  <div id="comment-list" class="col-md-12">
+  {% for comment in comment_list %}
+    {% include 'comments/_item.html'%}
+  {% endfor %}
+  </div>
+</div>
+<div class="flex-wrapper row">
+  {% if user.is_authenticated %}
+    {% render_addcomment_form %}
+  {% endif %}
+</div>

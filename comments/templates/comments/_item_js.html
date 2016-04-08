@@ -1,0 +1,24 @@
+{% verbatim %}
+<script id="comment-item-tmpl" type="text/x-jsrender">
+<div class="row comment-item">
+    <div class="col-md-2">
+        <img class="profile-thumbnail-img" src="{{:author_photo_url}}" />
+    </div>
+    <div class="col-md-10 comment-text">
+            <p class="comment-text-heading">
+              <i title="{{:author_country_name}}" 
+                  class="flag-icon flag-icon-{{:author_country_code}}"></i>
+              <span class="comment-author-name"><strong>{{:author_name}}</strong></span>
+              <span class="comment-added-dt">{{:added_time}}</span>
+            </p>
+            <p class="comment-text-content">{{:content}}</p>
+            <!--
+            <p><a class="comment-reply-btn"
+            data-related_object_id="{{:related_object_id}}"
+            data-related_object_type="{{:related_object_type}}"
+            href="">Reply</a></p>
+            -->
+    </div>
+</div>
+</script>
+{% endverbatim %}
