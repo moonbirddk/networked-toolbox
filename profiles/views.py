@@ -66,7 +66,7 @@ def show(request, user_id):
 
 def show_tools(request, user_id):
     user = User.objects.get(id=user_id)
-    tool_followers = ToolFollower.objects.filter(user_id=user.id).filter(tool__published=True)
+    tool_followers = ToolFollower.objects.filter(user_id=user.id).filter(tool__published=True).order_by('tool__title')
     tools = [tf.tool for tf in tool_followers]
     ctx = {
         'profile_user': user,
