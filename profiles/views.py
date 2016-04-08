@@ -50,7 +50,6 @@ def terms_and_conditions(request):
 
 def show(request, user_id):
     user = User.objects.get(id=user_id)
-    profile, _ = Profile.objects.get_or_create(user=user)
     tool_followers = ToolFollower.objects.filter(user_id=user.id).filter(tool__published=True).order_by('?')
     tools = [tf.tool for tf in tool_followers]
     stories = Story.objects.filter(user=user).order_by('-created')
@@ -64,6 +63,16 @@ def show(request, user_id):
         'activities': activities,
     }
     return render(request, 'profiles/show.html', ctx)
+
+def show_tools(request, user_id):
+    user = User.objects.get(id=user_id)
+    tool_followers = ToolFollower.objects.filter(user_id=user.id).filter(tool__published=True)
+    tools = [tf.tool for tf in tool_followers]
+    ctx = {
+        'profile_user': user,
+        'tools': tools,
+    }
+    return render(request, 'profiles/show_tools.html', ctx)
 
 @login_required
 @transaction.atomic

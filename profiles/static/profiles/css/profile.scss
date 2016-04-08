@@ -33,7 +33,7 @@
 
   }
 
-  .stories {
+  .stories, .tools {
 
     margin: 2.5em 0;
 
@@ -41,7 +41,7 @@
       margin-bottom: 0;
     }
 
-    .story {
+    .story, .tool {
   
       margin: 0.5em 0;
 
@@ -138,3 +138,4 @@
   a:hover { text-decoration: none; }
 
 }
+
