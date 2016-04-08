@@ -37,7 +37,7 @@ body {
 
 a {
   color: #ed1c24;
-  &:hover {
+  &:hover, &:active,  {
     color: #bf0d13;
   }
   .fa {
