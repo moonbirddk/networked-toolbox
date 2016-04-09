@@ -12,14 +12,14 @@
 
 {% block main %}
 
-  <h3 class="title">Tool overview
+  <h1 class="title">Tool overview
   {% if perms.tools %}{% if perms.tools.add_tool %}
   <a href="{% url 'tools:add' %}"><i class="fa fa-plus"></i></a>
   <div class="filter-buttons pull-right">
     {{tools_filter.form}}
   </div>
   {% endif %}{% endif %}
-  </h3>
+  </h1>
   <p class="category-description">
     {{ overview.description }}
     {% if perms.tools %}{% if perms.tools.add_tool %}

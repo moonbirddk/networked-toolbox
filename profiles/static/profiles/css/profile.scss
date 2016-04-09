@@ -36,7 +36,7 @@
 
   }
 
-  .stories, .tools {
+  .stories {
 
     margin: 2.5em 0;
 
@@ -44,7 +44,7 @@
       margin-bottom: 0;
     }
 
-    .story, .tool {
+    .story {
   
       margin: 0.5em 0;
 
@@ -66,24 +66,8 @@
         text-decoration: none;
       }
 
-      .tool-cover-image {
-        width: 80px;
-        height: 80px;
-        margin-top: 10px;
-        margin-right: 10px;
-        background-size: cover;
-      }
-    
-      .tool-content {
-        width: 75%;
-      }
-
     }
-
-    .tool {
-      margin: 0 0 1em 0;
-    }
-      
+ 
   }
   
   .activities {
@@ -158,3 +142,71 @@
 
 }
 
+.tool-item {
+  margin-bottom: 10px;
+
+  .tool-image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+    background: #8D8478;
+  
+    img {
+      position: absolute;
+      top: -9999px;
+      bottom: -9999px;
+      left: -9999px;
+      right: -9999px;
+      margin: auto;
+      height: 100%;
+      min-width: 100%;
+    }
+  }
+
+  .tool-cover-image {
+    overflow: hidden;
+    height: 30rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 2rem;
+  }
+
+  .tool-content {
+    line-height: 1.5rem;
+    
+    h3 {
+      text-decoration: none;
+      word-wrap: break-word;
+      margin: 0.8rem 0 0.4rem;
+      font-size: 18px;
+      font-weight: 600;
+      color: black;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+  }
+
+}
+
+.old-tool {
+    .tool {
+      margin: 0 0 1em 0;
+
+      .tool-cover-image {
+        width: 80px;
+        height: 80px;
+        margin-top: 10px;
+        margin-right: 10px;
+        background-size: cover;
+      }
+    
+      .tool-content {
+        width: 75%;
+      }
+
+    }
+}
