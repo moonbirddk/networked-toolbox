@@ -2,6 +2,7 @@
 
 {% load static from staticfiles %}
 {% load toolstags %}
+{% load profilestags %}
 {% load commentstags %}
 {% load profilestags %}
 {% load compress %}
@@ -37,7 +38,7 @@
                     <h3 class="title">Have you used this tool?</h3>
                 </div>
                 <div class="usage-follow col-xs-12 col-sm-2 text-center">
-                    {% if user.id in tool_followers %}
+                    {% if user.id in tool_follower_user_ids %}
                         <form action="{% url 'tools:unfollow' tool.id %}" method="post">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-usage">
@@ -160,6 +161,18 @@
                 </p>
               {% endfor %}
             </div>
+        </div>
+        <div class="col-md-4">
+            <h3 class="title">Used by</h3>
+            <div class="tool-followers flex-wrapper">
+            {% for follower in tool_followers %}
+                <div class="tool-follower">
+                  <a title="{{follower.user.profile.name}}" href="{% url 'profiles:show' follower.user.id %}">
+                      {% render_profile_photo follower.user %}
+                  </a>
+                </div>
+            {% endfor %}
+        </div>
         </div>
         <div class="help-improve col-md-4">
             <h3 class="title">Help improve this tool</h3>
