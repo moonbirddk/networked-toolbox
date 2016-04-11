@@ -8,6 +8,7 @@ from http.cookies import Morsel
 
 from common.testlib import TEST_PNG_CONTENT
 from .models import Profile
+from tools.models import Tool, ToolFollower
 
 
 class TermsAndConditionsTestCase(TestCase):
@@ -82,6 +83,11 @@ class ProfilesViewsTestCase(TestCase):
         self.another_user = User.objects.create_user('anotheruser',
             'anotheruser@localhost', 'testpass')
         another_profile, _ = Profile.objects.get_or_create(user=self.another_user)
+        self.tool = Tool.objects.create(title='test tool',
+                description='description', published=True)
+        ToolFollower.objects.create(user=self.test_user, tool=self.tool)
+        self.tool2 = Tool.objects.create(title='another test tool',
+                description='description', published=True)
 
     def test_show_profile_get(self):
         url = reverse('profiles:show', args=(self.test_user.id,))
@@ -94,6 +100,8 @@ class ProfilesViewsTestCase(TestCase):
         self.assertContains(resp, self.test_user.profile.country)
         self.assertContains(resp, self.test_user.profile.country.name)
         self.assertContains(resp, self.test_user.profile.bio)
+        self.assertContains(resp, self.tool.title)
+        self.assertNotContains(resp, self.tool2.title)
         self.assertNotContains(resp, 'glyphicon-pencil')
         self.client.login(username='testuser', password='testpass')
         resp = self.client.get(url, follow=True)
