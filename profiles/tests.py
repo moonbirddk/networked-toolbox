@@ -90,8 +90,6 @@ class ProfilesViewsTestCase(TestCase):
                 description='description', published=True)
         self.tool_with_story = Tool.objects.create(title='third test tool',
                 description='description', published=True)
-        self.story = Story.objects.create(title='test story', content='test story content',
-                country='DK', tool_id=self.tool_with_story.id, user_id=self.test_user.id)
 
     def test_show_profile_get(self):
         url = reverse('profiles:show', args=(self.test_user.id,))
@@ -106,10 +104,16 @@ class ProfilesViewsTestCase(TestCase):
         self.assertContains(resp, self.test_user.profile.bio)
         self.assertContains(resp, self.tool_followed.title)
         self.assertNotContains(resp, self.tool_not_followed.title)
-        self.assertContains(resp, self.story.title)
-        self.assertContains(resp, self.story.content)
-        self.assertContains(resp, self.story.country)
+        self.assertNotContains(resp, self.tool_with_story.title)
+        self.assertContains(resp, 'User has no activity')
+        story = Story.objects.create(title='test story', content='test story content',
+                country='DK', tool_id=self.tool_with_story.id, user_id=self.test_user.id)
+        resp = self.client.get(url, follow=True)
+        self.assertContains(resp, story.title)
+        self.assertContains(resp, story.content)
+        self.assertContains(resp, story.country)
         self.assertContains(resp, self.tool_with_story.title)
+        self.assertNotContains(resp, 'User has no activity')
         self.assertNotContains(resp, 'glyphicon-pencil')
         self.client.login(username='testuser', password='testpass')
         resp = self.client.get(url, follow=True)
