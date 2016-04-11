@@ -68,33 +68,33 @@
             </div>
         {% endif %}
 
-        {% if activities %}
-            <h3 class="title">Recent activity</h3>
-            <ul class="activities">
-                {% for activity in activities %}
-                    <li>
-                      <h4>
-                          {% if activity.entry_type == 'add_story' %}
-                              <span class="glyphicon glyphicon-align-left"></span>
-                          {% elif activity.entry_type == 'add_comment' %}
-                              <span class="glyphicon glyphicon-comment"></span>
-                          {% endif %}
-                          <div class="activity-title">
-                              {{activity.user.first_name}}
-                              {% if activity.entry_type == 'add_story' %}
-                                  wrote a story regarding 
-                              {% elif activity.entry_type == 'add_comment' %}
-                                  commented on 
-                              {% endif %}
-                              <a href="{{activity.link}}">{{activity.title}}</a>
-                              <span class="activity-created">{{activity.created | date:"F j, Y \a\t P" }}</span>
-                          </div>
-                      </h4>
-                      <div class="activity-content">{{ activity.content|bleach_striptags|truncatechars:220 }}</div>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+        <h3 class="title">Recent activity</h3>
+        <ul class="activities">
+            {% for activity in activities %}
+                <li>
+                    <h4>
+                        {% if activity.entry_type == 'add_story' %}
+                            <span class="glyphicon glyphicon-align-left"></span>
+                        {% elif activity.entry_type == 'add_comment' %}
+                            <span class="glyphicon glyphicon-comment"></span>
+                        {% endif %}
+                        <div class="activity-title">
+                            {{activity.user.first_name}}
+                            {% if activity.entry_type == 'add_story' %}
+                                wrote a story regarding 
+                            {% elif activity.entry_type == 'add_comment' %}
+                                commented on 
+                            {% endif %}
+                            <a href="{{activity.link}}">{{activity.title}}</a>
+                            <span class="activity-created">{{activity.created | date:"F j, Y \a\t P" }}</span>
+                        </div>
+                    </h4>
+                    <div class="activity-content">{{ activity.content|bleach_striptags|truncatechars:220 }}</div>
+                </li>
+            {% empty %}
+                <li class="no-activities">User has no activities.</li>
+            {% endfor %}
+        </ul>
 
     </div>
  
