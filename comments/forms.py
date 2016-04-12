@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
 from tools.models import Tool, ToolCategory
-from .models import Comment
+from .models import ThreadedComment
 
 
 log = logging.getLogger(__name__)
@@ -21,7 +21,6 @@ class CommentForm(forms.Form):
     _rel_obj_type_choices = (
         ('tool', 'tool'),
         ('toolcategory', 'toolcategory'),
-        ('comment', 'comment'),
     )
 
     content = forms.CharField(
@@ -41,6 +40,11 @@ class CommentForm(forms.Form):
         widget=forms.fields.HiddenInput()
     )
 
+    parent = forms.ModelChoiceField(
+        queryset=ThreadedComment.objects.filter(parent__isnull=True),
+        required=False, widget=forms.HiddenInput
+    )
+
     def clean(self):
         super().clean()
         rel_obj_id = self.cleaned_data.get('related_object_id')
@@ -51,17 +55,11 @@ class CommentForm(forms.Form):
                     obj = Tool.objects.get(id=rel_obj_id)
                 elif rel_obj_type == 'toolcategory':
                     obj = ToolCategory.objects.get(id=rel_obj_id)
-                elif rel_obj_type == 'comment':
-                    parent = Comment.objects.get(id=rel_obj_id)
-                    if parent.related_object_type == 'comment':
-                        raise ValidationError("Commenting on a comment"
-                                              "of a comment is not allowed.")
                 else:
                     raise ValidationError("Not allowed related object type")
             except ObjectDoesNotExist as exc:
                 raise ValidationError("Non existent related object")
             self.cleaned_data['related_object'] = obj
-
         return self.cleaned_data
 
     def clean_content(self):

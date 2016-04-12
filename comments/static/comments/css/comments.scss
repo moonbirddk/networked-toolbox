@@ -29,3 +29,23 @@
 
 }
 
+.comment-vline {
+    border-right: thick solid gray;
+    width: 55px;
+    margin-right: 20px;
+    padding-right: 50px;
+}
+
+.comment-replies {
+    margin-right: 0;
+    padding-left: 0;
+}
+
+.comment-replies-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}

@@ -20,6 +20,8 @@ def build_comment_data(comment, tzstr=None):
     added_time = format_added_dt(comment.added_dt, tzstr)
     comment_dict = {}
     comment_dict['id'] = comment.id
+    comment_dict['parent_id'] = comment.parent_id
+    comment_dict['tree_id'] = comment.tree_id
     comment_dict['added_dt'] = comment.added_dt.isoformat()
     comment_dict['added_time'] = escape(added_time, quote=True)
     comment_dict['author_name'] = escape(comment.author.profile.name(),

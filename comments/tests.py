@@ -1,4 +1,3 @@
-import time
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
@@ -6,8 +5,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.encoding import force_text
 
 from tools.models import Tool
-from .models import Comment
+from .models import ThreadedComment
 from .utils import format_added_dt
+from .templatetags.commentstags import CommentListNode
 
 
 class ToolCommentsViewsTestCase(TestCase):
@@ -48,7 +48,7 @@ class ToolCommentsViewsTestCase(TestCase):
         url = reverse('comments:add')
         empty = {}
         resp = self.client.post(url, empty)
-        self.assertEqual(0, Comment.objects.count())
+        self.assertEqual(0, ThreadedComment.objects.count())
         self.assertEqual(200, resp.status_code)
         expected_data = {
             'ok': False,
@@ -75,8 +75,8 @@ class ToolCommentsViewsTestCase(TestCase):
             'content': content
         }
         resp = self.client.post(url, empty)
-        self.assertEqual(1, Comment.objects.count())
-        actual = Comment.objects.all()[0]
+        self.assertEqual(1, ThreadedComment.objects.count())
+        actual = ThreadedComment.objects.all()[0]
         expected_data = {
             'ok': True,
             'comment': {
@@ -88,6 +88,8 @@ class ToolCommentsViewsTestCase(TestCase):
                 'author_photo_url': '/static/profiles/images/Small%20user%20pic.png',
                 'content': content,
                 'id': actual.id,
+                'tree_id': actual.id,
+                'parent_id': None,
                 'related_object_id': self.test_tool.id,
                 'related_object_type': 'tool',
             },
@@ -98,6 +100,62 @@ class ToolCommentsViewsTestCase(TestCase):
         self.assertEqual(content, actual.content)
         self.assertEqual(self.test_tool.id, actual.related_object.id)
         self.assertEqual('tool', actual.related_object_type.model)
+
+    def test_add_comment_reply_post_for_tool(self):
+        self.client.login(username='testuser', password='testpass')
+        url = reverse('comments:add')
+        ro_type = ContentType.objects.get_for_model(self.test_tool)
+
+        test_parent = ThreadedComment.objects.create(
+            author=self.test_user,
+            content='1111 parent',
+            related_object=self.test_tool,
+        )
+        test_parent.tree_id = test_parent.id
+        test_parent.save()
+
+        content = '2222 child'
+        empty = {
+            'related_object_id': self.test_tool.id,
+            'related_object_type': ro_type,
+            'content': content,
+            'parent': test_parent.id,
+        }
+        resp = self.client.post(url, empty)
+        self.assertEqual(2, ThreadedComment.objects.count())
+        actual = ThreadedComment.objects.all().order_by('tree_id', 'added_dt')[1]
+        expected_data = {
+            'ok': True,
+            'comment': {
+                'added_dt': actual.added_dt.isoformat(),
+                'added_time': format_added_dt(actual.added_dt),
+                'author_name': 'testuser@localhost',
+                'author_country_code': 'PL',
+                'author_country_name': 'Poland',
+                'author_photo_url': '/static/profiles/images/Small%20user%20pic.png',
+                'content': content,
+                'id': actual.id,
+                'tree_id': test_parent.id,
+                'parent_id': test_parent.id,
+                'related_object_id': self.test_tool.id,
+                'related_object_type': 'tool',
+            },
+            'errors': {}
+        }
+        self.assertEqual(200, resp.status_code)
+        self.assertJSONEqual(force_text(resp.content), expected_data)
+        self.assertEqual(content, actual.content)
+        self.assertEqual(self.test_tool.id, actual.related_object.id)
+        self.assertEqual('tool', actual.related_object_type.model)
+
+        expected = {}
+        expected[test_parent.id] = {
+            'parent': test_parent,
+            'replies': [actual],
+        }
+        comments_dict = CommentListNode\
+            .get_comments_dict(qs=ThreadedComment.objects.all())
+        self.assertDictEqual(expected, comments_dict)
 
     def test_add_comment_post_for_tool_with_tags(self):
         self.client.login(username='testuser', password='testpass')
@@ -110,8 +168,8 @@ class ToolCommentsViewsTestCase(TestCase):
             'content': content
         }
         resp = self.client.post(url, empty)
-        self.assertEqual(1, Comment.objects.count())
-        actual = Comment.objects.all()[0]
+        self.assertEqual(1, ThreadedComment.objects.count())
+        actual = ThreadedComment.objects.all()[0]
         expected_data = {
             'comment': {
                 'added_dt': actual.added_dt.isoformat(),
@@ -122,6 +180,8 @@ class ToolCommentsViewsTestCase(TestCase):
                 'author_photo_url': '/static/profiles/images/Small%20user%20pic.png',
                 'content': 'super kk.dkcomment this is yo!',
                 'id': actual.id,
+                'tree_id': actual.id,
+                'parent_id': None,
                 'related_object_id': self.test_tool.id,
                 'related_object_type': 'tool'
             },

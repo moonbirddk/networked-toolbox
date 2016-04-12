@@ -1,6 +1,6 @@
 {% load profilestags %}
 {% load commentstags %}
-<div class="row comment-item">
+<div class="row {{css_class}}">
     <div class="col-md-2">
         {% render_profile_photo comment.author %}
     </div>
@@ -12,11 +12,10 @@
         <span class="comment-added-dt">{% format_comment_date comment.added_dt %}</span>
       </p>
       <p>{{ comment.content }}</p>
-      <!-- 
       <p><a class="comment-reply-btn"
       data-related_object_id="{{comment_related_object_id}}"
       data-related_object_type="{{comment_related_object_type}}"
+      data-parent_id="{{parent_id}}"
       href="">Reply</a></p>
-       -->
     </div>
 </div>

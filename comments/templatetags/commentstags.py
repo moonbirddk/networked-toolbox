@@ -1,4 +1,5 @@
 import logging
+from collections import OrderedDict
 from django import template
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -11,7 +12,7 @@ from django.contrib.contenttypes.models import ContentType
 from django_comments.templatetags.comments import BaseCommentNode
 from bootstrap3.utils import render_tag
 
-from ..models import Comment
+from ..models import ThreadedComment
 from ..utils import format_added_dt
 
 
@@ -130,12 +131,12 @@ class CommentNode(template.Node):
     def get_queryset(self, context):
         ctype, object_pk = self.get_target_ctype_pk(context)
         if not object_pk:
-            return Comment.objects.none()
+            return ThreadedComment.objects.none()
 
-        qs = Comment.objects.filter(
+        qs = ThreadedComment.objects.select_related('author').filter(
             related_object_type=ctype,
             related_object_id=smart_text(object_pk),
-        ).select_related('author')
+        ).order_by('tree_id', 'added_dt')
         return qs
 
     def get_target_ctype_pk(self, context):
@@ -159,8 +160,18 @@ class CommentNode(template.Node):
 class CommentListNode(CommentNode):
     """Insert a list of comments into the context."""
 
+    @classmethod
+    def get_comments_dict(cls, qs):
+        cdict = OrderedDict({})
+        for c in qs:
+            if not c.parent_id:
+                cdict[c.id] = dict(parent=c, replies=[])
+            else:
+                cdict[c.parent_id]['replies'].append(c)
+        return cdict
+
     def get_context_value_from_queryset(self, context, qs):
-        return list(qs)
+        return CommentListNode.get_comments_dict(qs)
 
 
 @register.tag
@@ -216,7 +227,7 @@ class RenderCommentListNode(CommentListNode):
             context_dict = context.flatten()
             context_dict['comment_related_object_type'] = ctype.model
             context_dict['comment_related_object_id'] = object_pk
-            context_dict['comment_list'] = \
+            context_dict['comment_dict'] = \
                 self.get_context_value_from_queryset(context, qs)
             liststr = render_to_string(template_search_list, context_dict)
             return liststr

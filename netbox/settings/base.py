@@ -75,6 +75,7 @@ INSTALLED_APPS = (
     'django_countries',
     'compressor',
     'easy_timezones',
+    'mptt',
 
     'profiles',
     'tools',
