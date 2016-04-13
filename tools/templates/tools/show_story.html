@@ -2,13 +2,16 @@
 
 {% load static %}
 {% load toolstags %}
+{% load commentstags %}
 {% load compress %}
 
 {% block head_statics %}
-
+<script type="text/javascript" src="{% static 'netbox/javascript/jsrender.min.js' %}"></script>
+{% comments_javascript %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 <link rel="stylesheet" href="{% static "css/story.min.css" %}">
+<link rel="stylesheet" href="{% static "css/comments.min.css" %}">
 {% endcompress %}
 
 {% endblock %}
@@ -44,12 +47,13 @@
                             <a href="#">{{story.user.profile.name}}</a>
                         </h4>
                         <div class="story-user-bio">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent suscipit consectetur laoreet. Maecenas varius ornare erat nec aliquam. Morbi et turpis metus. Morbi ac nibh id lacus auctor consectetur vitae eget tortor. 
+                          {story user bio} 
                           <a href="#">See profile</a>
                         </div>
                     </div>
                 </div>
             </div>
+            {% render_comment_list for story %}
         </div>
         <div class="col-md-4">
             <h3 class="title">Related stories</h3>

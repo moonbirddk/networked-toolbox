@@ -13,7 +13,7 @@ from model_utils.fields import StatusField
 from model_utils import Choices
 
 from tools.models import Tool, Story
-from comments.models import Comment
+from comments.models import ThreadedComment
 
 
 def do_upload_profile_photo(inst, filename):
@@ -101,7 +101,7 @@ def on_story_create(sender, instance=None, created=False, **kwargs):
                 entry_type=ActivityEntry.TYPE_ADD_STORY, title=instance.tool.title,
                 content=instance.content, link=link)
 
-@receiver(post_save, sender=Comment)
+@receiver(post_save, sender=ThreadedComment)
 def on_comment_create(sender, instance=None, created=False, **kwargs):
     print('post_save1')
     if not created: return

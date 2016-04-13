@@ -5,8 +5,8 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
-from tools.models import Tool, ToolCategory
-from .models import Comment
+from tools.models import Tool, ToolCategory, Story
+from .models import ThreadedComment
 
 
 log = logging.getLogger(__name__)
@@ -18,10 +18,13 @@ def no_urls_validator(value):
 
 
 class CommentForm(forms.Form):
-    _rel_obj_type_choices = (
-        ('tool', 'tool'),
-        ('toolcategory', 'toolcategory'),
-        ('comment', 'comment'),
+    _rel_obj_type_cls = {
+        'tool': Tool,
+        'story': Story,
+        'toolcategory': ToolCategory,
+    }
+    _rel_obj_type_choices = tuple(
+        [(k, k) for k in _rel_obj_type_cls.keys()]
     )
 
     content = forms.CharField(
@@ -41,27 +44,24 @@ class CommentForm(forms.Form):
         widget=forms.fields.HiddenInput()
     )
 
+    parent = forms.ModelChoiceField(
+        queryset=ThreadedComment.objects.filter(parent__isnull=True),
+        required=False, widget=forms.HiddenInput
+    )
+
     def clean(self):
         super().clean()
         rel_obj_id = self.cleaned_data.get('related_object_id')
         rel_obj_type = self.cleaned_data.get('related_object_type')
         if rel_obj_id and rel_obj_type:
             try:
-                if rel_obj_type == 'tool':
-                    obj = Tool.objects.get(id=rel_obj_id)
-                elif rel_obj_type == 'toolcategory':
-                    obj = ToolCategory.objects.get(id=rel_obj_id)
-                elif rel_obj_type == 'comment':
-                    parent = Comment.objects.get(id=rel_obj_id)
-                    if parent.related_object_type == 'comment':
-                        raise ValidationError("Commenting on a comment"
-                                              "of a comment is not allowed.")
-                else:
+                rel_cls = self._rel_obj_type_cls[rel_obj_type]
+                obj = rel_cls.objects.get(id=rel_obj_id)
+            except KeyError:
                     raise ValidationError("Not allowed related object type")
-            except ObjectDoesNotExist as exc:
+            except ObjectDoesNotExist:
                 raise ValidationError("Non existent related object")
             self.cleaned_data['related_object'] = obj
-
         return self.cleaned_data
 
     def clean_content(self):
