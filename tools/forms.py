@@ -38,6 +38,10 @@ class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
 
 class CategoryGroupForm(forms.Form):
     name = forms.fields.CharField(max_length=30, required=True)
+    description = forms.fields.CharField(widget=forms.Textarea,
+                           max_length=255,
+                           required=False,
+                           help_text='255 characters max.')
     categories = ToolCategoryChoiceField()
 
 

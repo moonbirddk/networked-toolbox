@@ -73,6 +73,7 @@ class Story(ModelWithCoverImage):
 class CategoryGroup(models.Model):
     name = models.CharField(max_length=30, null=False, blank=False,
                             unique=True)
+    description = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return self.name

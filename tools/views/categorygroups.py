@@ -18,7 +18,8 @@ def add_categorygroup(request):
         form = CategoryGroupForm(request.POST)
         if form.is_valid():
             cat_group = CategoryGroup.objects\
-                .create(name=form.cleaned_data['name'])
+                .create(name=form.cleaned_data['name'],
+                        description=form.cleaned_data['description'])
             ids = [cat.id for cat in form.cleaned_data['categories']]
             ToolCategory.objects.filter(id__in=ids).update(group=cat_group)
             messages.success(request, "You have added the category group")
@@ -41,11 +42,13 @@ def edit_categorygroup(request, category_group_id):
         .filter(group=categorygroup)\
         .values_list('id', flat=True)
     form = CategoryGroupForm(dict(name=categorygroup.name,
+                             description=categorygroup.description,
                              categories=categories_ids))
     if request.method == 'POST':
         form = CategoryGroupForm(request.POST)
         if form.is_valid():
             categorygroup.name = form.cleaned_data['name']
+            categorygroup.description = form.cleaned_data['description']
             categorygroup.save()
             old_ids_set = set(ToolCategory.objects
                               .filter(group_id=categorygroup.id)
