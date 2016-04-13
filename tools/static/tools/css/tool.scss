@@ -342,6 +342,10 @@ iframe {
   .dropdown-toggle.btn-default:active {
     background: white;
     border: 0;
+
+    .caret {
+      font-size: 20px;
+    }
   }
 
   &.open>.dropdown-toggle.btn-default,

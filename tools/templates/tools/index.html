@@ -22,7 +22,11 @@
   </h1>
   <div class="dropdown pull-right">
   <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    <span class="dropdown-label">Ascending</span>
+    {% if order == 'a' %}
+        Ascending
+    {% else %}
+        Descending
+    {% endif %}
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-sort">

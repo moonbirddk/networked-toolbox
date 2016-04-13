@@ -45,7 +45,11 @@ def index(request):
     queryset_ordered = queryset.order_by(order)
     tools_filter = PublishedFilter(request.GET, queryset=queryset_ordered)
     overview = ToolOverviewPage.get_solo()
-    context = {'tools_filter': tools_filter, 'overview': overview}
+    context = {
+            'tools_filter': tools_filter,
+            'overview': overview,
+            'order': request.GET.get('o')
+    }
     return render(request, 'tools/index.html', context)
 
 
