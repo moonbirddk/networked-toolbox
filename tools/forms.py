@@ -42,7 +42,7 @@ class CategoryGroupForm(forms.Form):
                            max_length=255,
                            required=False,
                            help_text='255 characters max.')
-    categories = ToolCategoryChoiceField()
+    categories = ToolCategoryChoiceField(label='Toolbox sections')
 
 
 class ToolForm(forms.Form):

@@ -54,7 +54,7 @@ def add_category(request):
         form = ToolCategoryForm(request.POST, request.FILES)
         if form.is_valid():
             cat = ToolCategory.objects.create(**form.cleaned_data)
-            messages.success(request, "You created a category")
+            messages.success(request, "You created a toolbox section")
             return redirect('tools:show_category', cat.id)
 
     context = {'form': form}
@@ -105,7 +105,7 @@ def edit_category(request, cat_id):
             category.resources_text = form.cleaned_data['resources_text']
             category.group = form.cleaned_data['group']
             category.save()
-            messages.success(request, "You updated this category")
+            messages.success(request, "You updated this toolbox section")
             return redirect('tools:show_category', category.id)
 
     context = {'category': category, 'form': form}
@@ -124,5 +124,5 @@ def delete_category(request, cat_id):
     else:
         if 'yes' == request.POST.get('confirmation', 'no'):
             category.delete()
-            messages.success(request, "You deleted a category")
+            messages.success(request, "You deleted a toolbox section")
         return redirect('tools:list_categories')

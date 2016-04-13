@@ -6,13 +6,13 @@
   {% for category_group in categories_by_group %}
         <div class="row">
          <div class="col-md-10">
-            <h2 class="title">
+            <h1 class="title">
                 {{category_group.name}}
                 {% if perms.tools %}{% if perms.tools.edit_categorygroup %}
                 <a href="{% url 'tools:edit_categorygroup' category_group.id %}"><i class="fa fa-edit"></i></a>
                 <a href="{% url 'tools:delete_categorygroup' category_group.id %}"><i class="fa fa-trash-o"></i></a>
                 {% endif %}{% endif %}
-            </h2>
+            </h1>
             <p>{{category_group.description}}</p>
           </div>
         </div>
@@ -39,7 +39,9 @@
                   </div>
              </div>
         {% empty %}
-              <p>There are no categories in this group.</p>
+              <div class="col-md-12">
+                  There are no toolbox sections in this toolbox.
+              </div>
         {% endfor %}
         </div>
   {% empty %}

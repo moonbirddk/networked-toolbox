@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block main %}
-<h1>Edit category</h1>
+<h1>Edit toolbox section</h1>
 
 <form method="POST" action="{% url 'tools:edit_category' category.id %}" class="form" enctype="multipart/form-data">
     {% csrf_token %}
