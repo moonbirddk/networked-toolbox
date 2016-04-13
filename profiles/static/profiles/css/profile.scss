@@ -4,13 +4,14 @@
   width: 100%;
 }
 
-.profile-photo {
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
 .profile {
+  
+  .profile-photo {
+    width: 125px; 
+    height: 125px; 
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
 
   h1.title {
 
@@ -196,21 +197,3 @@
 
 }
 
-.old-tool {
-    .tool {
-      margin: 0 0 1em 0;
-
-      .tool-cover-image {
-        width: 80px;
-        height: 80px;
-        margin-top: 10px;
-        margin-right: 10px;
-        background-size: cover;
-      }
-    
-      .tool-content {
-        width: 75%;
-      }
-
-    }
-}

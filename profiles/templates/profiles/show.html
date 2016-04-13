@@ -15,12 +15,8 @@
 {% block main %}
 
 <div class="row">
-    <div class="col-md-2">
-        {% if profile_user.profile.photo %}
-            <img class="profile-photo" src="{{profile_user.profile.photo.url}}" />
-        {% else %}
-            <img class='profile-photo' src="{% static 'profiles/images/Small user pic.png' %}">
-        {% endif %}
+    <div class="profile col-md-2">
+        {% render_profile_photo user %}
     </div>
     <div class="profile col-md-6">
         <h1 class="title">

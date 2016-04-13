@@ -77,7 +77,7 @@
             <div class="tool-description more">{{tool.description|safe }}</div>
             <h3 class="title">Stories</h3>
             <p>Read stories about how the tool has been used in different contexts. If you have experience you would like to share, <a href="{% url 'tools:add_story' tool.id %}">add a story</a></p> 
-            <div class="flex-wrapper row">
+            <div class="stories flex-wrapper row">
                 {% for story in stories %}
                     <div class="story col-md-6 {% if forloop.counter > 4%}hidden{% endif %}">
                         <div class="row">
