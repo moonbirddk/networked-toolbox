@@ -41,7 +41,9 @@ def index(request):
         queryset = Tool.objects.all().order_by('-published')
     else:
         queryset = Tool.objects.filter(published=True)
-    tools_filter = PublishedFilter(request.GET, queryset=queryset)
+    order = request.GET.get('o') == 'd' and '-title' or 'title'
+    queryset_ordered = queryset.order_by(order)
+    tools_filter = PublishedFilter(request.GET, queryset=queryset_ordered)
     overview = ToolOverviewPage.get_solo()
     context = {'tools_filter': tools_filter, 'overview': overview}
     return render(request, 'tools/index.html', context)

@@ -34,6 +34,9 @@ class ModelWithCoverImage(models.Model):
 
 
 class Tool(ModelWithCoverImage):
+    class Meta:
+        ordering = ['title']
+
     title = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=20000, blank=False)
     resources_text = models.CharField(
@@ -51,6 +54,9 @@ class Tool(ModelWithCoverImage):
 
     def published_categories(self):
         return self.categories.filter(published=True)
+
+    def sort_tools_descendig(self):
+        return self.tools.order_by('-title')
 
 
 class ToolFollower(models.Model):

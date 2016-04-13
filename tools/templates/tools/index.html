@@ -12,7 +12,7 @@
 
 {% block main %}
 
-  <h1 class="title">Tool overview
+  <h1 class="title">Tool Overview
   {% if perms.tools %}{% if perms.tools.add_tool %}
   <a href="{% url 'tools:add' %}"><i class="fa fa-plus"></i></a>
   <div class="filter-buttons pull-right">
@@ -20,12 +20,22 @@
   </div>
   {% endif %}{% endif %}
   </h1>
+  <div class="dropdown pull-right">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <span class="dropdown-label">Ascending</span>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-sort">
+    <li><a href="?o=a">A-Z</a></li>
+    <li><a href="?o=d">Z-A</a></li>
+  </ul>
+  </div>
   <p class="category-description">
     {{ overview.description }}
     {% if perms.tools %}{% if perms.tools.add_tool %}
     <a href="{% url 'tools:edit_overview' 'tool' %}"><i class="fa fa-edit"></i></a>
     {% endif %}{% endif %}
   </p>
-
+  
   {% include "tools/_tools_overview.html" with resources=tools_filter route='tools:show' %}
 {% endblock %}

@@ -322,3 +322,58 @@ iframe {
   a:hover { text-decoration: none; }
 
 }
+
+.dropdown {
+  margin: 1em 0;
+  padding-left: 24px;
+  background-image: url('/static/tools/images/ic_sort_by_alpha_black_24dp_1x.png');
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  background-position: 5px 3px;
+
+  .dropdown-toggle.btn-default {
+    border: 0;
+    font-size: 12px;
+    padding: 6px 3px 6px 6px;
+  }
+  
+  .dropdown-toggle.btn-default,
+  .dropdown-toggle.btn-default:hover,
+  .dropdown-toggle.btn-default:active {
+    background: white;
+    border: 0;
+  }
+
+  &.open>.dropdown-toggle.btn-default,
+  &.open>.dropdown-toggle.btn-default:hover {
+    background: white;
+    border: 0;
+  }
+
+  .dropdown-menu {
+
+    min-width: 0;
+    border: 1px solid black;
+    border-radius: 0;
+
+    li {
+
+      font-size: 12px;
+      padding: 0;
+      margin: 0;
+   
+      a { 
+        color: #c2c1b8; 
+        padding: 3px 8px;
+      }
+
+      a:hover {
+        background: #ed1c24;
+        color: white;
+      }
+
+    }
+
+  }
+
+}
