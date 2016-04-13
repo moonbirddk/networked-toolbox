@@ -5,19 +5,27 @@
 .story-item {
   margin-top: 1em;
   margin-bottom: 2em;
+
   h4 {
     margin: 0;
     font-size: 16px;
   }
+
   .story-user {
     margin-bottom: 2em;
     width: 65px;
+
     .story-user-name {
       font-size: 0.9em;
       font-weight: bold;
       color: black;
       text-decoration: none;
       text-align: center;
+    }
+
+    .profile-photo {
+      width: 65px;
+      height: 65px;
     }
   }
   .story-details {
@@ -51,10 +59,6 @@
 
 .story-content img {
   max-width: 100%;
-}
-
-.story-user-image .profile-thumbnail-img {
-  width: 65px;
 }
 
 .story-user-details h4 {

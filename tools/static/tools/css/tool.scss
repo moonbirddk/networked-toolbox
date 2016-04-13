@@ -40,11 +40,11 @@
 .tool-followers {
 
   .tool-follower {
-    width: 14%;
     margin: 0 2.5% 2.5% 0;
 
-    .profile-thumbnail-img {
-      width: 100%; 
+    .profile-photo {
+      width: 45px; 
+      height: 45px; 
     }
   }
 
@@ -293,8 +293,9 @@ iframe {
 }
 
 .story-user {
-  .profile-thumbnail-img {
+  .profile-photo {
     width: 55px;
+    height: 55px;
   }
 }
 

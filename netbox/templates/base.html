@@ -1,6 +1,7 @@
 {% load bootstrap3 %}
 {% load static %}
 {% load compress %}
+{% load profilestags %}
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -61,11 +62,7 @@
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li><a class='profile-thumbnail-link' href="{% url 'profiles:show' user.id %}">
-                  {% if user.profile.photo %}
-                    <img class='profile-thumbnail-img' src="{{ user.profile.photo.url }}">&nbsp;
-                  {% else %}
-                    <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
-                  {% endif %}
+                  {% render_profile_photo user %}
                 </a></li>
                 <li><a href="{% url 'profiles:show' user.id %}">
                 {% if user.first_name %}

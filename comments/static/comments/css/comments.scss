@@ -3,13 +3,17 @@
     width: 55px;
 }
 
-.comment-item .profile-thumbnail-img {
-    width: 55px;
-}
+.comment-item {
 
-.comment-item .flag-icon {
+  .profile-photo {
+    width: 55px;
+    height: 55px;
+  }
+
+  .flag-icon {
     margin: 0px 2px 0px 0px;
     padding: 0px 2px 0px 0px;
+  }
 }
 
 .comment-author-name {
