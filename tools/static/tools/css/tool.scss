@@ -323,6 +323,15 @@ iframe {
 
 }
 
+.filter-buttons {
+  width: 100%;
+  text-align: right;
+  font-family: 'Helvetica Neue', 'Arial';
+  a {
+    font-weight: 700;
+  }
+}
+
 .dropdown {
   margin: 1em 0;
   padding-left: 24px;

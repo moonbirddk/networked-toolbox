@@ -21,7 +21,7 @@
          {% if perms.tools %}{% if perms.tools.add_toolcategory %}
          <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
          {% endif %}{% endif %}
-       </h3>
+       </h1>
     </div>
 
     <div class="col-md-4">
@@ -46,8 +46,7 @@
     <div class="col-md-2">
         <div class="filter-buttons pull-right">
             {% if perms.tools %}{% if perms.tools.add_group %}
-            <a class="btn btn-primary" 
-                href="{% url 'tools:add_categorygroup' %}">Add Toolbox</a>
+            <a class="btn btn-primary" href="{% url 'tools:add_categorygroup' %}">Add Toolbox</a>
             {% endif %}{% endif %}
         </div>
     </div>
