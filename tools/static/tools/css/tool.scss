@@ -344,8 +344,13 @@ iframe {
   }
 }
 
+.overview-description {
+  padding: 0 0 2em 0;
+  max-width: 50rem;
+}
+
 .dropdown {
-  margin: 1em 0;
+  margin: 0 0 1em 0;
   padding-left: 24px;
   background-image: url('/static/tools/images/ic_sort_by_alpha_black_24dp_1x.png');
   background-repeat: no-repeat;
