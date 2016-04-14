@@ -22,7 +22,7 @@
                 </div>
             </div>
             
-            <div class="categories row" {% if category_group.categories.count > 0 %}style="display: none"{% endif %}>
+            <div class="categories row flex-wrapper" {% if category_group.categories.count > 0 %}style="display: none"{% endif %}>
                 {% for category in category_group.categories.all %}
                     <div class="category col-md-3 col-xs-6">
                         <a href="{% url 'tools:show_category' category.id %}">
