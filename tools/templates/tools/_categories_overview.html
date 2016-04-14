@@ -1,51 +1,57 @@
 {% load toolstags %}
 {% load partition_slice %}
 
-<div class="row">
-  <div class="col-md-12">
-  {% for category_group in categories_by_group %}
-        <div class="row">
-         <div class="col-md-10">
-            <h1 class="title">
-                {{category_group.name}}
-                {% if perms.tools %}{% if perms.tools.edit_categorygroup %}
-                <a href="{% url 'tools:edit_categorygroup' category_group.id %}"><i class="fa fa-edit"></i></a>
-                <a href="{% url 'tools:delete_categorygroup' category_group.id %}"><i class="fa fa-trash-o"></i></a>
-                {% endif %}{% endif %}
-            </h1>
-            <p>{{category_group.description}}</p>
-          </div>
-        </div>
-        <div class="row">
-        {% for category in category_group.categories.all %}
-             <div class="col-md-3 col-xs-6">
-                  <a href="{% url 'tools:show_category' category.id %}">
-                    <div class="category-image">
-                      {% if category.cover_image %}
-                        <img src="{{ category.cover_image.url }}" />
-                      {% else %}
-                      <!--<img src="empty-image-here" />-->
-                      {% endif %}
-                      {% if category.published == False %}
-                      <div class="unpublished-banner">
-                        <span>UNPUBLISHED</span>
-                      </div>
-                      {% endif %}
+<div class="category-groups row">
+    <div class="col-md-8">
+        {% for category_group in categories_by_group %}
+            <div class="category-group row">
+                <div class="col-md-9">
+                    <h1 class="title">
+                        {% if category_group.categories.count > 0 %}
+                            <a class="category-toggle-fold" href="#"><span class="glyphicon glyphicon-triangle-right"></span></a>
+                            {{category_group.name}}
+                        {% else %}
+                            <span class="toggle-off">{{category_group.name}}</span>
+                        {% endif %}
+                        {% if perms.tools %}{% if perms.tools.edit_categorygroup %}
+                            <a href="{% url 'tools:edit_categorygroup' category_group.id %}"><i class="fa fa-edit"></i></a>
+                            <a href="{% url 'tools:delete_categorygroup' category_group.id %}"><i class="fa fa-trash-o"></i></a>
+                        {% endif %}{% endif %}
+                    </h1>
+                    <p>{{category_group.description}}</p>
+                </div>
+            </div>
+            
+            <div class="categories row" {% if category_group.categories.count > 0 %}style="display: none"{% endif %}>
+                {% for category in category_group.categories.all %}
+                    <div class="category col-md-3 col-xs-6">
+                        <a href="{% url 'tools:show_category' category.id %}">
+                            <div class="category-image">
+                                {% if category.cover_image %}
+                                    <img src="{{ category.cover_image.url }}" />
+                                {% else %}
+                                    <!--<img src="empty-image-here" />-->
+                                {% endif %}
+                                {% if category.published == False %}
+                                    <div class="unpublished-banner">
+                                        <span>UNPUBLISHED</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div class="category-content">
+                            <a href="{% url 'tools:show_category' category.id %}"><h3>{{ category.title|truncatechars:40 }}</h3></a>
+                            <p>{{ category.description|bleach_striptags|truncatechars:70 }}</p>
+                        </div>
                     </div>
-                  </a>
-                  <div class="category-content">
-                    <a href="{% url 'tools:show_category' category.id %}"><h3>{{ category.title|truncatechars:40 }}</h3></a>
-                    <p>{{ category.description|bleach_striptags|truncatechars:70 }}</p>
-                  </div>
-             </div>
+                {% empty %}
+                    <div class="categories-empty col-md-12">
+                        There are no toolbox sections in this toolbox.
+                    </div>
+                {% endfor %}
+            </div>
         {% empty %}
-              <div class="col-md-12">
-                  There are no toolbox sections in this toolbox.
-              </div>
+            <p>There are no items available.</p>
         {% endfor %}
-        </div>
-  {% empty %}
-    <p>There are no items available.</p>
-  {% endfor %}
- </div>
+    </div>
 </div>

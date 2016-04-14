@@ -6,6 +6,10 @@
 {% load compress %}
 
 {% block head_statics %}
+{% compress js %}
+<script src="{% static "js/tools.js"%}"></script>
+{% endcompress %}
+
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 <link rel="stylesheet" href="{% static "css/category.min.css" %}">
