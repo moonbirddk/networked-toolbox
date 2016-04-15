@@ -8,13 +8,14 @@
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/profile.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
+
+{% block head_title %}Tools Used by {{profile_user.profile.name}}{% endblock %}
 
 {% block main %}
 
 <h1 class="title">
-    Tools used by {{profile_user.profile.name}}
+    Tools Used by {{profile_user.profile.name}}
 </h1>
 <div class="flex-wrapper row">
   {% for tool in tools %}

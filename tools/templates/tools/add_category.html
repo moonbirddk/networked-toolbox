@@ -11,11 +11,12 @@
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 <link rel="stylesheet" href="{% static "css/category.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
 
+{% block head_title %}Add Toolbox Section{% endblock %}
+
 {% block main %}
-<h1>Add toolbox section</h1>
+<h1>Add Toolbox Section</h1>
 
 <form method="POST" action="{% url 'tools:add_category' %}" class="form" 
 enctype="multipart/form-data">

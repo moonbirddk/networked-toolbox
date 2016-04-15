@@ -2,6 +2,8 @@
 {% load bootstrap3 %}
 {% load static %}
 
+{% block head_title %}Edit Profile{% endblock %}
+
 {% block main %}
 
 <div class="container">
@@ -10,7 +12,7 @@
  </div>
 
  <div class="col-md-8">
-  <h1>Your profile</h1>
+  <h1>Edit Profile</h1>
   
   <p>You have registered using <strong>{{user.email}}</strong> email address.</p>
  </div>

@@ -11,11 +11,12 @@
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 <link rel="stylesheet" href="{% static "css/story.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
 
+{% block head_title %}Add Story{% endblock %}
+
 {% block main %}
-<h1>Add story to <span class="tool-title">{{tool.title}}</span></h1>
+<h1>Add Story to <span class="tool-title">{{tool.title}}</span></h1>
 
 <form method="POST" action="{% url 'tools:add_story' tool.id %}" class="form" 
 enctype="multipart/form-data">

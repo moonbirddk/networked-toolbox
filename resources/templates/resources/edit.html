@@ -2,8 +2,10 @@
 {% load bootstrap3 %}
 {% load static %}
 
+{% block head_title %}Edit Resource{% endblock %}
+
 {% block main %}
-<h1>Edit resource</h1>
+<h1>Edit Resource</h1>
 
 <form method="POST" action="{% url 'resources:edit' resource.id %}" class="form" enctype="multipart/form-data">
     {% csrf_token %}

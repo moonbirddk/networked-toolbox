@@ -14,8 +14,9 @@
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 <link rel="stylesheet" href="{% static "css/category.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
+
+{% block head_title %}{{ category.title }}{% endblock %}
 
 {% block main %}
     <div class="row">

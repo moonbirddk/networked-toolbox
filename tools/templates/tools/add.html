@@ -7,6 +7,8 @@
 {{ form.media }}
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
 
+{% block head_title %}Add Tool{% endblock %}
+
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 {% endcompress %}
@@ -14,7 +16,7 @@
 {% endblock %}
 
 {% block main %}
-<h1>Add tool</h1>
+<h1>Add Tool</h1>
 
 {# Display a form #}
 

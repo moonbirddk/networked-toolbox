@@ -7,11 +7,12 @@
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
 
+{% block head_title %}Add Suggestion{% endblock %}
+
 {% block main %}
-<h1>Add suggestion</h1>
+<h1>Add Suggestion</h1>
 <p>You are adding suggestion to {{related_object_type}}:</p>
 <blockquote>&quot;{{related_object.title}}&quot;</blockquote>
 <hr />

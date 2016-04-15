@@ -14,8 +14,9 @@
 <link rel="stylesheet" href="{% static "css/story.min.css" %}">
 <link rel="stylesheet" href="{% static "css/comments.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
+
+{% block head_title %}{{ story.title }}{% endblock %}
 
 {% block main %}
     <div class="row">
