@@ -7,9 +7,15 @@
 
       a {
         margin: 0;
-  
+        color: #262626;
+
+        &:link, &:hover {
+          text-decoration: none;
+          color: #262626;
+        }
+        
         .glyphicon {
-          color: #8d8479;
+          color: #262626;
           font-size: 18px;
         }
   

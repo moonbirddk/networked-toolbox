@@ -8,8 +8,10 @@
                 <div class="col-md-9">
                     <h1 class="title">
                         {% if category_group.categories.count > 0 %}
-                            <a class="category-toggle-fold" href="#"><span class="glyphicon glyphicon-triangle-right"></span></a>
-                            {{category_group.name}}
+                            <a class="category-toggle-fold" href="#">
+                                <span class="glyphicon glyphicon-triangle-right"></span>
+                                {{category_group.name}}
+                            </a>
                         {% else %}
                             <span class="toggle-off">{{category_group.name}}</span>
                         {% endif %}
