@@ -94,7 +94,7 @@
     <div class="row">
         <div class="col-md-12">
             <h2 class="title">Related tools</h2>
-            <div class="row">
+            <div class="row flex-wrapper">
                 {% for resource in category.published_tools %}
                     <div class="col-md-3 col-xs-6">
                         <a href="{% url 'tools:show' resource.id %}"><div class="category-image">
