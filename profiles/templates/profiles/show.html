@@ -43,7 +43,7 @@
         {% endif %}
         {% if stories %}
             <div class="stories">
-                <h3 class="title">Stories I have shared</h3>
+                <h3 class="title">Stories I Have Shared</h3>
                 <div class="flex-wrapper row">
                     {% for story in stories %}
                         <div class="story col-md-6 {% if forloop.counter > 4%}hidden{% endif %}">
@@ -66,14 +66,14 @@
             </div>
         {% endif %}
 
-        <h3 class="title">Recent activity</h3>
+        <h3 class="title">Recent Activity</h3>
         <ul class="activities">
             {% for activity in activities %}
                 <li>
                     <h4>
                         {% if activity.entry_type == 'add_story' %}
                             <span class="glyphicon glyphicon-align-left"></span>
-                        {% elif activity.entry_type == 'add_comment' %}
+                        {% elif activity.entry_type == 'add_comment' or activity.entry_type == 'add_comment_reply' %}
                             <span class="glyphicon glyphicon-comment"></span>
                         {% endif %}
                         <div class="activity-title">
@@ -82,8 +82,12 @@
                                 wrote a story regarding 
                             {% elif activity.entry_type == 'add_comment' %}
                                 commented on 
+                            {% elif activity.entry_type == 'add_comment_reply' %}
+                                replied to a comment on 
                             {% endif %}
-                            <a href="{{activity.link}}">{{activity.title}}</a>
+                            <a href="{{activity.link}}#{% if activity.entry_type == 'add_story' %}stories{% else %}comments{% endif %}">
+                                {{activity.title}}
+                            </a>
                             <span class="activity-created">{{activity.created | date:"F j, Y \a\t P" }}</span>
                         </div>
                     </h4>

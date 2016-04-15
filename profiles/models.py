@@ -82,9 +82,11 @@ def on_profile_post_delete(sender, instance, **kwargs):
 class ActivityEntry(models.Model):
     TYPE_ADD_STORY = 'add_story'
     TYPE_ADD_COMMENT = 'add_comment'
+    TYPE_ADD_COMMENT_REPLY = 'add_comment_reply'
     ENTRY_TYPES = Choices(
             TYPE_ADD_STORY,
             TYPE_ADD_COMMENT,
+            TYPE_ADD_COMMENT_REPLY
     )
     user = models.ForeignKey('auth.User')
     entry_type = StatusField(choices_name='ENTRY_TYPES')
@@ -103,16 +105,15 @@ def on_story_create(sender, instance=None, created=False, **kwargs):
 
 @receiver(post_save, sender=ThreadedComment)
 def on_comment_create(sender, instance=None, created=False, **kwargs):
-    print('post_save1')
     if not created: return
-    print('post_save2')
-    print(instance.related_object)
 
-    if isinstance(instance.related_object, Tool):
-        print('post_save3')
-        link = reverse('tools:show', args=(instance.related_object.id, ))
-        ActivityEntry.objects.create(user=instance.author,
-                entry_type=ActivityEntry.TYPE_ADD_COMMENT,
-                title=instance.related_object.title,
-                content=instance.content, link=link)
+    view = isinstance(instance.related_object, Tool) and 'tools:show'\
+            or 'tools:show_story'
+    entry_type = instance.parent and ActivityEntry.TYPE_ADD_COMMENT_REPLY\
+            or ActivityEntry.TYPE_ADD_COMMENT
 
+    link = reverse(view, args=(instance.related_object.id, ))
+    ActivityEntry.objects.create(user=instance.author,
+            entry_type=entry_type,
+            title=instance.related_object.title,
+            content=instance.content, link=link)
