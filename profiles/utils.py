@@ -1,6 +1,10 @@
 from django.conf import settings
 from urllib.parse import quote
+from django.core.urlresolvers import reverse
 
+
+def get_profile_url(user):
+    return reverse('profiles:show', args=(user.id,))
 
 def get_profile_photo_url(user):
     photo_url = settings.STATIC_URL + 'profiles/images/Small user pic.png'

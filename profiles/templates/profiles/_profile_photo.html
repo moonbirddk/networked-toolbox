@@ -1,3 +1,5 @@
 <div class="profile-photo">
-  <div class='profile-photo-img' style="background-image: url({{ photo_url }})"></div>
+    <a href="{% url 'profiles:show' profile_user_id %}">
+        <div class='profile-photo-img' style="background-image: url({{ photo_url }})"></div>
+    </a>
 </div>

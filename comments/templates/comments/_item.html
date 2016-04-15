@@ -8,7 +8,11 @@
       <p class="comment-text-heading">
         <i title="{{comment.author.profile.country.name}}" 
           class="flag-icon flag-icon-{{comment.author.profile.country.code}}"></i>
-        <span class="comment-author-name"><strong>{{ comment.author.profile.name }}</strong></span>
+        <span class="comment-author-name">
+            <a href="{% url 'profiles:show' comment.author.id %}">
+              {{ comment.author.profile.name }}
+            </a>
+        </span>
         <span class="comment-added-dt">{% format_comment_date comment.added_dt %}</span>
       </p>
       <p>{{ comment.content }}</p>

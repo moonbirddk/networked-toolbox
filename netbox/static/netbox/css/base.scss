@@ -135,32 +135,33 @@ h3.title {
 
 .navbar-default .navbar-nav {
   font-size: 18px;
-}
 
-.navbar-right > li > a {
-  color: black !important;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: "Helvetica Neue", "Arial";
-}
-
-.navbar-default .navbar-nav > .active > a {
-  color: #ED1C24;
-  background: white;
-  &:hover, &:focus {
+  > .active > a {
     color: #ED1C24;
     background: white;
+
+    &:hover, &:focus {
+      color: #ED1C24;
+      background: white;
+    }
+
   }
+
 }
 
-.navbar-right > li {
-  .profile-thumbnail-link {
-    padding: 0px 0px 0px 15px;
+.navbar-right {
+  
+  .profile-photo {
+    margin: 3px 3px 0 0;
   }
-  > a > img {
-    width: 45px;
-    margin-top: 2.5px;
+
+  > li > a {
+    color: black !important;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Helvetica Neue", "Arial";
   }
+
 }
 
 .white-text {
@@ -219,7 +220,6 @@ h3.title {
 .profile-photo {
   width: 45px;
   height: 45px;
-  margin: 3px 3px 0 0;
 
   .profile-photo-img {
     overflow: hidden;

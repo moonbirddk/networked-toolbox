@@ -17,4 +17,4 @@ def render_profile_photo(user):
     {% render_profile_photo user %}
     """
     photo_url = get_profile_photo_url(user)
-    return {'photo_url': photo_url}
+    return {'photo_url': photo_url, 'profile_user_id': user.id}
