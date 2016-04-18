@@ -151,7 +151,7 @@
           </div>-->
         </div>
         <div class="col-md-4">
-            <h3 class="title">Categories</h3>
+            <h3 class="title">Toolboxes</h3>
             <div class="categories-tags">
               {% for category in tool.published_categories %}
                 <div class="category-tag">
@@ -159,7 +159,7 @@
                 </div>
               {% empty %}
                 <p>
-                  No categories applied.
+                  No toolboxes applied.
                 </p>
               {% endfor %}
             </div>
@@ -182,7 +182,7 @@
             <p>Have you used this tool in practice? Tell us about your experience, so the community can learn from it.</p>
             <a class="btn btn-primary" href="{% url 'tools:add_story' tool.id %}">Add a story</a>
             
-            <p>How can we improve this category? Give us concrete feedback on what you think is missing.</p>
+            <p>How can we improve this tool? Give us concrete feedback on what you think is missing.</p>
             <a class="btn btn-primary" href="{% url 'tools:add_suggestion' 'tool' tool.id %}">Add a suggestion</a>
         </div>
     </div>
