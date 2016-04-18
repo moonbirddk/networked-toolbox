@@ -4,8 +4,15 @@ $(document).on("click", "#btn-resource-list", function(){
   $('#btn-collapse').toggleClass('hidden');
 });
 
+$(document).on("click", "#accept-cookies", function(e){
+    e.preventDefault();
+    setCookie('accept-cookies', 1, 365); 
+    $('#cookies-notice').fadeOut(300);
+});
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
+
     $('.more').shorten({
       'moreText': 'Read more',
       'showChars': 1500 
@@ -14,7 +21,19 @@ $(document).ready(function(){
       'moreText': 'Read more',
       'showChars': 500
     }); 
+
+    // hide cookie notice, if user already accepted
+    if (getCookie('accept-cookies')) {
+      $('#cookies-notice').hide();
+    }
 });
+
+function setCookie(name, value, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = name + '=' + value + '; ' + expires + '; path=/';
+}
 
 function getCookie(name) {
     var cookieValue = null;

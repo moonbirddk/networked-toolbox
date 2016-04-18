@@ -231,3 +231,27 @@ h3.title {
   }
 }
 
+#cookies-notice {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #262626;
+  opacity: 0.95;
+  color: white;
+  padding: 1em;
+  font-size: 0.9em;
+
+  form {
+    margin: 0 auto;
+    padding: 0 1em;
+    max-width: 910px;
+    display: flex;
+    align-items: center;
+
+    .btn {
+      margin-left: 2em;
+      font-size: 0.8em;
+    }
+  }
+
+}
