@@ -81,7 +81,7 @@
                 {% for story in stories %}
                     <div class="story col-md-6 {% if forloop.counter > 4%}hidden{% endif %}">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="story-user">
                                     {% render_profile_photo story.user %}
                                     <div class="story-user-name">
@@ -92,7 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 <h3><a href="{% url 'tools:show_story' story.id  %}">{{ story.title }}</a></h3>
                                 <div class="story-content">
                                     {{ story.content|bleach_striptags|truncatechars:150 }}

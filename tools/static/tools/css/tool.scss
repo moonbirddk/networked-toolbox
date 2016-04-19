@@ -316,9 +316,13 @@ iframe {
 
     }
 
-    .story-content a {
-      color: black;
-      font-weight: bold;
+    .story-content  {
+      padding-right: 1em; 
+
+      a {
+        color: black;
+        font-weight: bold;
+      }
     }
 
     .story-user-country {
