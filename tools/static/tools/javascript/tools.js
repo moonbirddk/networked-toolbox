@@ -17,8 +17,9 @@ $(document).on("click", ".category-toggle-fold", function(e){
 
 $(document).ready(function(){
   var url = $(location).attr('href');
-  var hash = url.substring(url.indexOf("#")+1);
-  if (hash) {
+  var i = url.indexOf("#");
+  if (i != -1) {
+    var hash = url.substring(i+1);
     var group = $('#'+hash+'-link');
     toggleCategoryGroup(group);
   }
