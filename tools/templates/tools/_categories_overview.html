@@ -4,11 +4,11 @@
 <div class="category-groups row">
     <div class="col-md-8">
         {% for category_group in categories_by_group %}
-            <div class="category-group row">
+            <div id="category-group-{{category_group.id}}" class="category-group row">
                 <div class="col-md-9">
                     <h1 class="title">
                         {% if category_group.categories.count > 0 %}
-                            <a class="category-toggle-fold" href="#">
+                            <a id="category-group-{{category_group.id}}-link" class="category-toggle-fold" href="#">
                                 <span class="glyphicon glyphicon-triangle-right"></span>
                                 {{category_group.name}}
                             </a>
