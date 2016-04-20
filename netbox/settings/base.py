@@ -280,3 +280,5 @@ COMMENT_READ_MORE_LENGTH = 500
 
 GEOIP_DATABASE = os.path.join(BASE_DIR, 'geoip/GeoLiteCity.dat')
 GEOIPV6_DATABASE = os.path.join(BASE_DIR, 'geoip/GeoLiteCityv6.dat')
+
+SEARCH_NUM_RESULTS = 4

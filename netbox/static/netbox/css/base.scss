@@ -255,3 +255,49 @@ h3.title {
   }
 
 }
+
+#home {
+
+  form {
+    margin: 30px auto;
+    width: 600px;
+
+    .form-group{
+
+      input{
+        width: 500px;
+        padding: 10px 5px;
+        margin: 0 10px 0 0;
+        font-size: 12px;
+      }
+      
+      button {
+        width: 80px;
+        font-size: 12px; 
+      }
+
+    }
+
+  }
+
+  .col-md-5 {
+    margin-bottom: 30px;
+
+    div {
+      height: 15em;
+
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+
+        a {
+          color: black; 
+        }
+
+      }
+      
+    }
+
+  }
+
+}

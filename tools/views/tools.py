@@ -60,9 +60,6 @@ def show(request, tool_id):
         tool = get_object_or_404(Tool, id=tool_id, published=True)
 
     tool_follower_ids = list(tool.followers.all().values_list('user_id', flat=True))
-    print('followers:')
-    print(tool_follower_ids)
-    print(request.user.id)
     tool_followers = tool.followers.all().order_by('?')[:12]
     stories = tool.stories.all().order_by('-created')
     context = {
