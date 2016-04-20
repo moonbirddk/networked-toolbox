@@ -1,0 +1,25 @@
+{% load profilestags %}
+{% load commentstags %}
+<div class="row {{css_class}}">
+    <div class="col-md-2">
+        {% render_profile_photo comment.author %}
+    </div>
+    <div class="col-md-10 comment-text">
+      <p class="comment-text-heading">
+        <i title="{{comment.author.profile.country.name}}" 
+          class="flag-icon flag-icon-{{comment.author.profile.country.code}}"></i>
+        <span class="comment-author-name">
+            <a href="{% url 'profiles:show' comment.author.id %}">
+              {{ comment.author.profile.name }}
+            </a>
+        </span>
+        <span class="comment-added-dt">{% format_comment_date comment.added_dt %}</span>
+      </p>
+      <p>{{ comment.content }}</p>
+      <p><a class="comment-reply-btn"
+      data-related_object_id="{{comment_related_object_id}}"
+      data-related_object_type="{{comment_related_object_type}}"
+      data-parent_id="{{parent_id}}"
+      href="">Reply</a></p>
+    </div>
+</div>

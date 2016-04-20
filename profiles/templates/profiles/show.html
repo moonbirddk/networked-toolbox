@@ -4,21 +4,21 @@
 {% load profilestags %}
 
 {% block head_statics %}
+{% compress js %}
+<script src="{% static "js/profiles.js" %}"></script>
+{% endcompress %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/profile.min.css" %}">
 {% endcompress %}
 {% endblock %}
 
+{% block head_title %}{{profile_user.profile.name}}{% endblock %}
+
 {% block main %}
 
-<div class="container">
 <div class="row">
     <div class="profile col-md-2">
-        {% if profile_user.profile.photo %}
-            <img class="profile-photo" src="{{profile_user.profile.photo.url}}" />
-        {% else %}
-            <img class='profile-photo' src="{% static 'profiles/images/Small user pic.png' %}">
-        {% endif %}
+        {% render_profile_photo profile_user %}
     </div>
     <div class="profile col-md-6">
         <h1 class="title">
@@ -33,41 +33,100 @@
             {% endif %}
         </h1>
         {% if profile_user.profile.country %}
-        <h3>
-            <span class="glyphicon glyphicon-globe"></span>
-            {{profile_user.profile.country.name}}
-        </h3>
+            <h3>
+                <span class="glyphicon glyphicon-globe"></span>
+                {{profile_user.profile.country.name}}
+            </h3>
         {% endif %}
         {% if profile_user.profile.bio %}
             <p>{{profile_user.profile.bio}}</p>
         {% endif %}
         {% if stories %}
-        <div class="stories">
-            <h3 class="title">Stories I have shared</h3>
-            <div class="row">
-            {% for story in stories %}
-                <div class="story col-md-6">
-                  <h4>
-                  {% if story.country %}
-                      <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
-                  {% endif %}
-                  <a href="{% url 'tools:show_story' story.id %}">{{story.title}}</a>
-                  </h4>
-                  {{ story.content|bleach_striptags|truncatechars:150 }}
-                  <a href="{% url 'tools:show_story' story.id %}">Read more</a>
+            <div class="stories">
+                <h3 class="title">Stories I Have Shared</h3>
+                <div class="flex-wrapper row">
+                    {% for story in stories %}
+                        <div class="story col-md-6 {% if forloop.counter > 4%}hidden{% endif %}">
+                            <h4>
+                                {% if story.country %}
+                                    <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                                {% endif %}
+                                <a href="{% url 'tools:show_story' story.id %}">{{story.title}}</a>
+                            </h4>
+                            {{ story.content|bleach_striptags|truncatechars:150 }}
+                            <a href="{% url 'tools:show_story' story.id %}">Read more</a>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+                {% if stories|length > 4 %}
+                    <div class="show-all">
+                        <a id="show-all-stories" href="#">Show all</a>
+                    </div>
+                {% endif %}
             </div>
-        </div>
         {% endif %}
+
+        <h3 class="title">Recent Activity</h3>
+        <ul class="activities">
+            {% for activity in activities %}
+                <li>
+                    <h4>
+                        {% if activity.entry_type == 'add_story' %}
+                            <span class="glyphicon glyphicon-align-left"></span>
+                        {% elif activity.entry_type == 'add_comment' or activity.entry_type == 'add_comment_reply' %}
+                            <span class="glyphicon glyphicon-comment"></span>
+                        {% endif %}
+                        <div class="activity-title">
+                            {{activity.user.first_name}}
+                            {% if activity.entry_type == 'add_story' %}
+                                wrote a story regarding 
+                            {% elif activity.entry_type == 'add_comment' %}
+                                commented on 
+                            {% elif activity.entry_type == 'add_comment_reply' %}
+                                replied to a comment on 
+                            {% endif %}
+                            <a href="{{activity.link}}#{% if activity.entry_type == 'add_story' %}stories{% else %}comments{% endif %}">
+                                {{activity.title}}
+                            </a>
+                            <span class="activity-created">{{activity.created | date:"F j, Y \a\t P" }}</span>
+                        </div>
+                    </h4>
+                    <div class="activity-content">{{ activity.content|bleach_striptags|truncatechars:220 }}</div>
+                </li>
+            {% empty %}
+                <li class="no-activities">User has no activity.</li>
+            {% endfor %}
+        </ul>
+
     </div>
  
     <div class="col-md-4">
-        {% if tools_used %}
-        <h3 class="title">
-            <span class="glyphicon glyphicon-wrench"></span>
-            Tool I use
-        </h3>
+        {% if tools %}
+            <div class="tools-used">
+            <h3 class="title">
+                <span class="glyphicon glyphicon-wrench"></span>
+                Tools I Use
+            </h3>
+            <div class="flex-wrapper row">
+                {% for tool in tools|slice:":9" %}
+                    <div class="tool col-md-4">
+                        <a href="{% url 'tools:show' tool.id %}">
+                            {% if tool.cover_image %}
+                                <div class="tool-cover-image" style="background-image: url({{ tool.cover_image.url }})"></div>
+                            {% else %}
+                                <div class="tool-cover-image"></div>
+                            {% endif %}
+                            {{tool.title}}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if tools|length > 9 %}
+                <div class="show-all">
+                    <a href="{% url 'profiles:show_tools' profile_user.id %}">Show all</a>
+                </div>
+            {% endif %}
+            </div>
         {% endif %}
         {% if stories_fav %}
         <h3 class="title">
@@ -76,7 +135,5 @@
         </h3>
         {% endif %}
     </div>
-</div>
-
 </div>
 {% endblock %}

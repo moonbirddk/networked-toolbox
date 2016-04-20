@@ -6,22 +6,27 @@
 {% load compress %}
 
 {% block head_statics %}
+{% compress js %}
+<script src="{% static "js/tools.js"%}"></script>
+{% endcompress %}
+
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 <link rel="stylesheet" href="{% static "css/category.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
+
+{% block head_title %}Toolbox Overview{% endblock %}
 
 {% block main %}
 
 <div class="row">
     <div class="col-md-8">
-       <h3 class="title">Category overview
+       <h1 class="title">Toolbox Overview
          {% if perms.tools %}{% if perms.tools.add_toolcategory %}
          <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
          {% endif %}{% endif %}
-       </h3>
+       </h1>
     </div>
 
     <div class="col-md-4">
@@ -35,7 +40,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8">
          <p class="category-description">
            {{ overview.description }}
            {% if perms.tools %}{% if perms.tools.add_tool %}
@@ -43,11 +48,10 @@
            {% endif %}{% endif %}
          </p>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
         <div class="filter-buttons pull-right">
             {% if perms.tools %}{% if perms.tools.add_group %}
-            <a class="btn btn-black" 
-                href="{% url 'tools:add_categorygroup' %}">Add Group</a>
+            <a class="btn btn-primary" href="{% url 'tools:add_categorygroup' %}">Add Toolbox</a>
             {% endif %}{% endif %}
         </div>
     </div>

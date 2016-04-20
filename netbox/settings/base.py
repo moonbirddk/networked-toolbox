@@ -74,10 +74,12 @@ INSTALLED_APPS = (
     'solo',
     'django_countries',
     'compressor',
+    'easy_timezones',
 
     'profiles',
     'tools',
-    'resources'
+    'resources',
+    'comments',
 
 )
 
@@ -90,7 +92,11 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+
+    'easy_timezones.middleware.EasyTimezoneMiddleware',
+
     'netbox.middleware.RedirectToTermsAndConditionsMiddleware',
+
 )
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -113,6 +119,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 "django.core.context_processors.media",
                 "django.core.context_processors.static",
+                "netbox.context_processors.timezone_name",
             ],
         },
     },
@@ -267,3 +274,11 @@ SOCIALACCOUNT_PROVIDERS = {
 IN_TEST = 'test' in sys.argv
 DEFAULT_CATEGORY_GROUP_NAME = 'Other'
 COMPRESS_ENABLED = False
+COMMENT_MAX_LENGTH = 5000
+COMMENT_READ_MORE_LENGTH = 500
+
+
+GEOIP_DATABASE = os.path.join(BASE_DIR, 'geoip/GeoLiteCity.dat')
+GEOIPV6_DATABASE = os.path.join(BASE_DIR, 'geoip/GeoLiteCityv6.dat')
+
+SEARCH_NUM_RESULTS = 4

@@ -1,9 +1,16 @@
-.profile {
+.flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
+.profile {
+  
   .profile-photo {
-      width: 100%;
-      margin-top: 20px;
-      margin-bottom: 10px;
+    width: 125px; 
+    height: 125px; 
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 
   h1.title {
@@ -11,6 +18,9 @@
     .glyphicon {
       color: #c2c1b8;
     } 
+  
+    a { color: black; }
+    a:hover { text-decoration: none; }
 
   }
 
@@ -37,14 +47,19 @@
 
     .story {
   
-      margin: 0.1em 0;
+      margin: 0.5em 0;
 
       h4 {
         font-size: 16px;
+        margin-bottom: 5px;
+
+        a {
+          color: black;
+        }
+
       }
 
       a {
-        color: black;
         font-weight: bold;
       }
       
@@ -53,7 +68,132 @@
       }
 
     }
-      
+ 
+  }
+  
+  .activities {
+    list-style-type: none;
+    padding: 0;
+    margin: 1em 0;
+
+    li {
+      margin: 1.2em 0;
+    }
+
+    h4 {
+
+      margin-bottom: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 18px;
+      display: flex;
+      align-items: top; 
+
+      .glyphicon {
+        margin-right: 0.6em;
+        font-size: 1.2em;
+      }
+
+    }
+    
+    .activity-created {
+      color: #8d8479;
+      font-size: 12px;
+      font-weight: normal;
+      white-space: nowrap;
+      margin-left: 0.3em;
+    }
+
+    .activity-content {
+      color: #c2c1b8;
+    }
+
+    .no-activities {
+      font-style: italic;
+    }
+  }
+}
+
+.tools-used {
+
+  margin: 1em 0;
+    
+  a { color: black; }
+  a:hover { text-decoration: none; }
+  
+  .tool {
+    
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+    .tool-cover-image {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 7px;
+      background-size: cover;
+    }
+    
+  }
+ 
+} 
+
+.show-all {
+  margin: 1em 0;
+  font-weight: bold;
+
+  a { color: black; }
+  a:hover { text-decoration: none; }
+
+}
+
+.tool-item {
+  margin-bottom: 10px;
+
+  .tool-image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+    background: #8D8478;
+  
+    img {
+      position: absolute;
+      top: -9999px;
+      bottom: -9999px;
+      left: -9999px;
+      right: -9999px;
+      margin: auto;
+      height: 100%;
+      min-width: 100%;
+    }
+  }
+
+  .tool-cover-image {
+    overflow: hidden;
+    height: 30rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 2rem;
+  }
+
+  .tool-content {
+    line-height: 1.5rem;
+    
+    h3 {
+      text-decoration: none;
+      word-wrap: break-word;
+      margin: 0.8rem 0 0.4rem;
+      font-size: 18px;
+      font-weight: 600;
+      color: black;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
   }
 
 }
+

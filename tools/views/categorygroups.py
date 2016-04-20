@@ -18,10 +18,11 @@ def add_categorygroup(request):
         form = CategoryGroupForm(request.POST)
         if form.is_valid():
             cat_group = CategoryGroup.objects\
-                .create(name=form.cleaned_data['name'])
+                .create(name=form.cleaned_data['name'],
+                        description=form.cleaned_data['description'])
             ids = [cat.id for cat in form.cleaned_data['categories']]
             ToolCategory.objects.filter(id__in=ids).update(group=cat_group)
-            messages.success(request, "You have added the category group")
+            messages.success(request, "You have added the toolbox")
             return redirect(reverse('tools:list_categories'))
     ctx = {
         'form': form,
@@ -34,18 +35,20 @@ def add_categorygroup(request):
 @login_required
 def edit_categorygroup(request, category_group_id):
     if category_group_id == '1':
-        messages.error(request, "You can not edit the default category")
+        messages.error(request, "You cannot edit the default toolbox")
         return redirect(reverse('tools:list_categories'))
     categorygroup = get_object_or_404(CategoryGroup, id=category_group_id)
     categories_ids = ToolCategory.objects\
         .filter(group=categorygroup)\
         .values_list('id', flat=True)
     form = CategoryGroupForm(dict(name=categorygroup.name,
+                             description=categorygroup.description,
                              categories=categories_ids))
     if request.method == 'POST':
         form = CategoryGroupForm(request.POST)
         if form.is_valid():
             categorygroup.name = form.cleaned_data['name']
+            categorygroup.description = form.cleaned_data['description']
             categorygroup.save()
             old_ids_set = set(ToolCategory.objects
                               .filter(group_id=categorygroup.id)
@@ -64,7 +67,7 @@ def edit_categorygroup(request, category_group_id):
                 .update(group_id=categorygroup.id)
 
 
-            messages.success(request, "You have updated the category group")
+            messages.success(request, "You have updated the toolbox")
             return redirect(reverse('tools:list_categories'))
     ctx = {
         'form': form,
@@ -79,7 +82,7 @@ def edit_categorygroup(request, category_group_id):
 def delete_categorygroup(request, category_group_id):
     categorygroup = get_object_or_404(CategoryGroup, id=category_group_id)
     if category_group_id == '1':
-        messages.error(request, "You can not delete the default category")
+        messages.error(request, "You can not delete the default toolbox")
         return redirect(reverse('tools:list_categories'))
     ctx = {
         'categorygroup': categorygroup,
@@ -88,6 +91,6 @@ def delete_categorygroup(request, category_group_id):
     if request.method == 'POST':
         if 'yes' == request.POST.get('confirmation', 'no'):
             categorygroup.delete()
-            messages.info(request, "You have deleted the category group")
+            messages.info(request, "You have deleted the toolbox")
         return redirect(reverse('tools:list_categories'))
     return render(request, 'tools/delete_categorygroup.html', ctx)

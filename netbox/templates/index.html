@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block head_title %}Welcome{% endblock %}
+
+{% block main %}
+
+<div id="home">
+    <form class="form-inline" method="get" action="">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-control" type="text" name="s" />
+            <button class="btn btn-primary" type="submit" />Search</button>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <div id="tools">
+                <h1 class="title">Most Used Tools</h1>
+                <ul>
+                    {% for tool in tools %}
+                        <li>
+                            <a href="{% url 'tools:show' tool.id %}">{{tool.title}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="#">Show more results</a>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-1">
+            <div id="toolboxes">
+                <h1 class="title">Toolboxes</h1>
+                <ul>
+                    {% for category in categories %}
+                        <li>
+                            <a href="{% url 'tools:show_category' category.id %}">{{category.title}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="#">Show more results</a>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-md-offset-1">
+            <div id="stories">
+                <h1 class="title">Recent Stories</h1>
+                <ul>
+                    {% for story in stories %}
+                        <li>
+                            <a href="{% url 'tools:show_story' story.id %}">{{story.title}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="#">Show more results</a>
+            </div>
+        </div>
+  
+        <div class="col-md-5 col-md-offset-1">
+          <div id="users">
+                <h1 class="title">Recent Users</h1>
+                <ul>
+                    {% for profile in profiles %}
+                        <li>
+                            <a href="{% url 'profiles:show' profile.id %}">{{profile.name}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="#">Show more results</a>
+          </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

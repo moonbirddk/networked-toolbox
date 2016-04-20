@@ -1,6 +1,7 @@
 {% load bootstrap3 %}
 {% load static %}
 {% load compress %}
+{% load profilestags %}
 <html>
     <head>
         <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
@@ -16,7 +17,7 @@
         <link rel="stylesheet" href="{% static "css/base.min.css" %}">
         {% endcompress %}
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block head_title %}{% endblock %}</title>
+        <title>{% block head_title %}{% endblock %} - Networked Toolbox</title>
 
         {% block head_statics %}
         {% endblock %}
@@ -53,20 +54,15 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
+                <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
                 <li><a href="{% url 'tools:index'%}">Tools<span class="sr-only">(current)</span></a></li>
-                <li><a href="{% url 'tools:list_categories'%}">Categories<span class="sr-only">(current)</span></a></li>
+                <li><a href="{% url 'tools:list_categories'%}">Toolboxes<span class="sr-only">(current)</span></a></li>
                 <!--<li><a href="#">Cases<span class="sr-only">(current)</span></a></li>
                 <li><a href="#">People<span class="sr-only">(current)</span></a></li>-->
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                <li><a class='profile-thumbnail-link' href="{% url 'profiles:show' user.id %}">
-                  {% if user.profile.photo %}
-                    <img class='profile-thumbnail-img' src="{{ user.profile.photo.url }}">&nbsp;
-                  {% else %}
-                    <img class='profile-thumbnail-img' src="{% static 'profiles/images/Small user pic.png' %}">&nbsp;
-                  {% endif %}
-                </a></li>
+                <li>{% render_profile_photo user %}</li>
                 <li><a href="{% url 'profiles:show' user.id %}">
                 {% if user.first_name %}
                     {{user.first_name}}
@@ -105,6 +101,15 @@
               {% endblock %}
             </div>
         </div>
+    </div>
+  
+    <div id="cookies-notice">
+        <form>
+              We use cookies to give you the best online experience. By using our
+              website you agree to our use of cookies in accordance with our cookie 
+              policy.
+              <button id="accept-cookies" class="btn btn-primary" type="submit">OK</button>
+        </form>
     </div>
     </body>
 </html>

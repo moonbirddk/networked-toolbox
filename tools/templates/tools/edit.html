@@ -6,16 +6,16 @@
 {% block head_statics %}
 {{ form.media }}
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
-<script type="text/javascript" src="{% static 'tools/js/summernote.js'%}"></script>
 
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
 
+{% block head_title %}Edit Tool{% endblock %}
+
 {% block main %}
-<h1>Edit tool</h1>
+<h1>Edit Tool</h1>
 
 <form method="POST" action="{% url 'tools:edit' tool.id %}" class="form" enctype="multipart/form-data">
     {% csrf_token %}

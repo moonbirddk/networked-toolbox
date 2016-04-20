@@ -41,9 +41,15 @@ def index(request):
         queryset = Tool.objects.all().order_by('-published')
     else:
         queryset = Tool.objects.filter(published=True)
-    tools_filter = PublishedFilter(request.GET, queryset=queryset)
+    order = request.GET.get('o') == 'd' and '-title' or 'title'
+    queryset_ordered = queryset.order_by(order)
+    tools_filter = PublishedFilter(request.GET, queryset=queryset_ordered)
     overview = ToolOverviewPage.get_solo()
-    context = {'tools_filter': tools_filter, 'overview': overview}
+    context = {
+            'tools_filter': tools_filter,
+            'overview': overview,
+            'order': request.GET.get('o')
+    }
     return render(request, 'tools/index.html', context)
 
 
@@ -53,10 +59,15 @@ def show(request, tool_id):
     else:
         tool = get_object_or_404(Tool, id=tool_id, published=True)
 
-    tool_followers = (list(tool.followers.all().values_list('user_id', flat=True)))
+    tool_follower_ids = list(tool.followers.all().values_list('user_id', flat=True))
+    tool_followers = tool.followers.all().order_by('?')[:12]
     stories = tool.stories.all().order_by('-created')
-    context = {'tool': tool, 'tool_followers': tool_followers,
-            'stories': stories}
+    context = {
+            'tool': tool,
+            'tool_follower_ids': tool_follower_ids,
+            'tool_followers': tool_followers,
+            'stories': stories
+    }
 
     return render(request, 'tools/show.html', context)
 

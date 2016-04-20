@@ -19,11 +19,17 @@ NOSE_ARGS = [
      '--with-coverage',
      '--cover-erase',
      '--cover-package=netbox',
+     '--cover-package=common',
      '--cover-package=tools',
+     '--cover-package=resources',
+     '--cover-package=profiles',
+     '--cover-package=comments',
      'netbox',
+     'common',
      'tools',
      'resources',
-     'profiles'
+     'profiles',
+     'comments',
 ]
 
 for arg in sys.argv:
@@ -52,7 +58,15 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
+        'common': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
         'tools': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'resources': {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
@@ -60,7 +74,7 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
-        'common': {
+        'comments': {
             'handlers': ['console'],
             'level': 'DEBUG',
         },

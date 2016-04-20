@@ -7,8 +7,9 @@
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
+
+{% block head_title %}Edit {{obj_type_name|capfirst}} Overview Description{% endblock %}
 
 {% block main %}
 <h1>Edit {{obj_type_name|capfirst}} overview description</h1>

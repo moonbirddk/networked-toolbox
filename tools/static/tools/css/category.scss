@@ -1,3 +1,41 @@
+.category-groups {
+  margin: 1em 0;
+
+  .category-group {
+
+    h1 {
+      margin-left: -25px;
+
+      a {
+        margin: 0;
+        color: #262626;
+
+        &:link, &:hover {
+          text-decoration: none;
+          color: #262626;
+        }
+        
+        .glyphicon {
+          color: #262626;
+          font-size: 18px;
+        }
+  
+      }
+
+      .toggle-off {
+        margin-left: 25px;
+      }
+
+    }
+
+  }
+
+  .categories-empty {
+    font-style: italic; 
+  }
+
+}
+
 .category-image {
   position: relative;
   overflow: hidden;
@@ -22,7 +60,6 @@
 }
 
 .category-content {
-  min-height: 11rem;
   overflow: hidden;
   line-height: 1.5rem;
   h3 {
@@ -93,4 +130,17 @@
 
 .filter-checked {
   background-color: #ED1C24;
+}
+
+.category {
+
+  .category-group {
+    margin: 1em 0;
+
+    a {
+      font-weight: bold;
+    }
+
+  }
+
 }

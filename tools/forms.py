@@ -38,7 +38,11 @@ class ToolCategoryChoiceField(forms.ModelMultipleChoiceField):
 
 class CategoryGroupForm(forms.Form):
     name = forms.fields.CharField(max_length=30, required=True)
-    categories = ToolCategoryChoiceField()
+    description = forms.fields.CharField(widget=forms.Textarea,
+                           max_length=255,
+                           required=False,
+                           help_text='255 characters max.')
+    categories = ToolCategoryChoiceField(label='Toolbox sections')
 
 
 class ToolForm(forms.Form):
@@ -59,7 +63,7 @@ class ToolForm(forms.Form):
         required=True,
         max_length=20000
     )
-    categories = ToolCategoryChoiceField()
+    categories = ToolCategoryChoiceField(label='Toolbox sections')
 
 
 class StoryForm(forms.Form):
@@ -92,7 +96,8 @@ class ToolCategoryForm(forms.Form):
         required=True,
         max_length=20000
     )
-    group = forms.ModelChoiceField(queryset=CategoryGroup.objects.all(),
+    group = forms.ModelChoiceField(label='Toolbox',
+                                   queryset=CategoryGroup.objects.all(),
                                    required=True)
 
 

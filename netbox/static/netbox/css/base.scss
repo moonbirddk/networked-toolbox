@@ -37,7 +37,7 @@ body {
 
 a {
   color: #ed1c24;
-  &:hover {
+  &:hover, &:active,  {
     color: #bf0d13;
   }
   .fa {
@@ -135,32 +135,33 @@ h3.title {
 
 .navbar-default .navbar-nav {
   font-size: 18px;
-}
 
-.navbar-right > li > a {
-  color: black !important;
-  font-weight: bold;
-  font-size: 15px;
-  font-family: "Helvetica Neue", "Arial";
-}
-
-.navbar-default .navbar-nav > .active > a {
-  color: #ED1C24;
-  background: white;
-  &:hover, &:focus {
+  > .active > a {
     color: #ED1C24;
     background: white;
+
+    &:hover, &:focus {
+      color: #ED1C24;
+      background: white;
+    }
+
   }
+
 }
 
-.navbar-right > li {
-  .profile-thumbnail-link {
-    padding: 0px 0px 0px 15px;
+.navbar-right {
+  
+  .profile-photo {
+    margin: 3px 3px 0 0;
   }
-  > a > img {
-    width: 45px;
-    margin-top: 2.5px;
+
+  > li > a {
+    color: black !important;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: "Helvetica Neue", "Arial";
   }
+
 }
 
 .white-text {
@@ -214,4 +215,89 @@ h3.title {
 
 .flag-icon {
   margin-right: 0.2em;
+}
+
+.profile-photo {
+  width: 45px;
+  height: 45px;
+
+  .profile-photo-img {
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#cookies-notice {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #262626;
+  opacity: 0.95;
+  color: white;
+  padding: 1em;
+  font-size: 0.9em;
+
+  form {
+    margin: 0 auto;
+    padding: 0 1em;
+    max-width: 910px;
+    display: flex;
+    align-items: center;
+
+    .btn {
+      margin-left: 2em;
+      font-size: 0.8em;
+    }
+  }
+
+}
+
+#home {
+
+  form {
+    margin: 30px auto;
+    width: 600px;
+
+    .form-group{
+
+      input{
+        width: 500px;
+        padding: 10px 5px;
+        margin: 0 10px 0 0;
+        font-size: 12px;
+      }
+      
+      button {
+        width: 80px;
+        font-size: 12px; 
+      }
+
+    }
+
+  }
+
+  .col-md-5 {
+    margin-bottom: 30px;
+
+    div {
+      height: 15em;
+
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+
+        a {
+          color: black; 
+        }
+
+      }
+      
+    }
+
+  }
+
 }

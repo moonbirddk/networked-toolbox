@@ -18,10 +18,14 @@ var paths = {
     sass: [
         'netbox/static/netbox/css/*.scss',
         'tools/static/tools/css/*.scss',
-        'profiles/static/profiles/css/*.scss'
+        'profiles/static/profiles/css/*.scss',
+        'comments/static/comments/css/*.scss'
     ],
     js: [
         'netbox/static/netbox/javascript/*.js',
+        'tools/static/tools/javascript/*.js',
+        'profiles/static/profiles/javascript/*.js',
+        'comments/static/comments/javascript/*.js'
     ],
     fonts: [
         'netbox/static/netbox/fonts/*',
@@ -57,7 +61,15 @@ gulp.task('sass', function() {
 // Compiles JS
 gulp.task('uglify', function() {
   return gulp.src(paths.js)
-    .pipe(uglify())
+    //.pipe(uglify().on('error', function(e){
+    //    console.log(e);
+    // }))
+    .pipe(gulp.dest('staticfiles/js'))
+    .pipe(livereload());
+});
+
+gulp.task('copyjs', function() {
+    return gulp.src(paths.js)
     .pipe(gulp.dest('staticfiles/js'))
     .pipe(livereload());
 });
@@ -72,7 +84,7 @@ gulp.task('watch', function() {
     gulp.watch(paths.sass, ['sass']);
 
     // Watch javascript
-    gulp.watch(paths.js, ['uglify']);
+    gulp.watch(paths.js, ['copyjs']);
 
     // Watch Django temlates
     gulp.watch('**/templates/*').on('change', livereload.changed);
@@ -83,4 +95,4 @@ gulp.task('watch', function() {
 gulp.task('build', ['fonts', 'sass', 'uglify']);
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['fonts', 'sass', 'uglify', 'watch']);
+gulp.task('default', ['fonts', 'sass', 'copyjs', 'watch']);

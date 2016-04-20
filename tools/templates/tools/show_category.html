@@ -14,33 +14,40 @@
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 <link rel="stylesheet" href="{% static "css/category.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
 
+{% block head_title %}{{ category.title }}{% endblock %}
+
 {% block main %}
-    <div class="row">
+    <div class="row category">
         <div class="col-md-12">
             {% if category.cover_image %}
                 <div class="category-cover-image" style="background-image: url({{ category.cover_image.url }})"></div>
             {% endif %}
         </div>
         <div class="col-md-6">
-          <h2 class="title no-top-margin">{{ category.title }}
-          {% if perms.tools %}{% if perms.tools.change_toolcategory%}
-          <a href="{% url 'tools:edit_category' category.id %}"><i class="fa fa-pencil-square-o"></i></a>
-          {% endif %}{% endif %}
-          {% if perms.tools %}{% if perms.tools.delete_toolcategory%}
-          <a href="{% url 'tools:delete_category' category.id %}"><i class="fa fa-trash-o"></i></a>
-          {% endif %}{% endif %}
-        </h2>
-          {{category.description|safe }}
+            <div class="category-group">
+                This toolbox section is part of the toolbox: 
+                <a href="{% url 'tools:list_categories' %}#category-group-{{category.group.id}}">
+                    {{category.group.name}}
+                </a>
+            </div>
+            <h1 class="title no-top-margin">{{ category.title }}
+                {% if perms.tools %}{% if perms.tools.change_toolcategory%}
+                    <a href="{% url 'tools:edit_category' category.id %}"><i class="fa fa-pencil-square-o"></i></a>
+                {% endif %}{% endif %}
+                {% if perms.tools %}{% if perms.tools.delete_toolcategory%}
+                    <a href="{% url 'tools:delete_category' category.id %}"><i class="fa fa-trash-o"></i></a>
+                {% endif %}{% endif %}
+            </h1>
+            <div class="category-more">{{category.description|safe }}</div>
         </div>
         <!--<div class="col-md-6">
           <h4 class="title">Related categories</h4>
           <div class="categories-tags">
             {% for i in "xxxxxxx" %}
               <div class="category-tag">
-                Category {{ forloop.counter0 }}
+                Toolbox {{ forloop.counter0 }}
               </div>
             {% endfor %}
           </div>
@@ -51,7 +58,7 @@
           <div class="row">
             <div class="col-md-7 improvement-info">
               <p>
-                How can we improve this category? Give us concrete feedback on what you think is missing.
+                How can we improve this toolbox? Give us concrete feedback on what you think is missing.
               </p>
             </div>
             <div class="col-md-4">
@@ -91,25 +98,27 @@
     </div>
     <hr class="category-seperator">
     <div class="row">
-      <div class="col-md-12">
-        <h2 class="title">Related tools</h2>
-          {% for resource in category.published_tools %}
-            <div class="col-md-3 col-xs-6">
-                <a href="{% url 'tools:show' resource.id %}"><div class="category-image">
-                  {% if resource.cover_image %}
-                    <img src="{{ resource.cover_image.url }}" />
-                  {% else %}
-                  <!--<img src="empty-image-here" />-->
-                  {% endif %}
-                </div></a>
-                <div class="category-content">
-                  <h3>{{ resource.title|bleach_striptags|truncatechars:16 }}</h3>
-                  <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
-                </div>
+        <div class="col-md-12">
+            <h2 class="title">Related tools</h2>
+            <div class="row flex-wrapper">
+                {% for resource in category.published_tools %}
+                    <div class="col-md-3 col-xs-6">
+                        <a href="{% url 'tools:show' resource.id %}"><div class="category-image">
+                            {% if resource.cover_image %}
+                                <img src="{{ resource.cover_image.url }}" />
+                            {% else %}
+                                <!--<img src="empty-image-here" />-->
+                            {% endif %}
+                        </div></a>
+                        <div class="category-content">
+                            <h3>{{ resource.title|bleach_striptags|truncatechars:16 }}</h3>
+                            <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>There are no related tools.</p>
+                {% endfor %}
             </div>
-          {% empty %}
-            <p>There are no related tools.</p>
-          {% endfor %}
-      </div>
+        </div>
     </div>
 {% endblock %}
