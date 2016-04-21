@@ -8,8 +8,12 @@ DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
-DOMAIN = 'network-toolbox-production.herokuapp.com'
-ALLOWED_HOSTS = [DOMAIN, ]
+DOMAIN = 'networkedtoolbox.com'
+ALLOWED_HOSTS = [
+    DOMAIN,
+    'www.' + DOMAIN,
+    'network-toolbox-production.herokuapp.com',
+]
 
 DATABASES = {
     'default': dj_database_url.config()
