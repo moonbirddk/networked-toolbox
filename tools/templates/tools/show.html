@@ -72,7 +72,7 @@
                     <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
                 {% endif %}{% endif %}
             </h1>
-            <div class="tool-description more">{{tool.description|safe }}</div>
+            <div class="tool-description summernote-content more">{{tool.description|safe }}</div>
             
             <h3 class="title">Stories</h3>
             <p>Read stories about how the tool has been used in different contexts. If you have experience you would like to share, <a href="{% url 'tools:add_story' tool.id %}">add a story</a></p> 
