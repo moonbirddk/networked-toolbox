@@ -53,6 +53,9 @@ class Profile(models.Model):
         return self.photo and \
             default_storage.exists(self.photo.name)
 
+    def get_absolute_url(self):
+        return reverse('profiles:show', args=(self.id, ))
+
 
 @receiver(post_save, sender=User, dispatch_uid='profiles-create_user_profile')
 def create_user_profile(sender, instance, created, **kwargs):

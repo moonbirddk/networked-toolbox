@@ -75,6 +75,9 @@ class Story(ModelWithCoverImage):
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
 
+    def get_absolute_url(self):
+        return reverse('tools:show_story', args=(self.id, ))
+
 
 class CategoryGroup(models.Model):
     name = models.CharField(max_length=30, null=False, blank=False,
