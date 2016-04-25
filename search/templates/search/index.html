@@ -6,21 +6,20 @@
 {% block main %}
 
 <div id="home">
-    <form class="form-inline" method="get" action="">
-        {% csrf_token %}
+    <form class="form-inline" method="get" action="{% url 'search:homepage' %}">
         <div class="form-group">
-            <input class="form-control" type="text" name="s" />
+            {% bootstrap_form form%}
             <button class="btn btn-primary" type="submit" />Search</button>
         </div>
     </form>
     <div class="row">
         <div class="col-md-5 col-md-offset-1">
             <div id="tools">
-                <h1 class="title">Most Used Tools</h1>
+                <h1 class="title">Tools</h1>
                 <ul>
                     {% for tool in tools %}
                         <li>
-                            <a href="{% url 'tools:show' tool.id %}">{{tool.title}}</a>
+                            <a href="{{tool.get_absolute_url}}">{{tool.title}}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -34,7 +33,7 @@
                 <ul>
                     {% for category in categories %}
                         <li>
-                            <a href="{% url 'tools:show_category' category.id %}">{{category.title}}</a>
+                            <a href="{{category.get_absolute_url}}">{{category.title}}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -48,7 +47,7 @@
                 <ul>
                     {% for story in stories %}
                         <li>
-                            <a href="{% url 'tools:show_story' story.id %}">{{story.title}}</a>
+                            <a href="{{story.get_absolute_url}}">{{story.title}}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -62,7 +61,7 @@
                 <ul>
                     {% for profile in profiles %}
                         <li>
-                            <a href="{% url 'profiles:show' profile.id %}">{{profile.name}}</a>
+                            <a href="{{profile.get_absolute_url}}">{{profile.name}}</a>
                         </li>
                     {% endfor %}
                 </ul>

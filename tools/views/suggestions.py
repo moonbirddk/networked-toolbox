@@ -40,7 +40,6 @@ def add_suggestion(request, related_object_type, related_object_id):
             send_suggestion(related_object_type, suggestion_id=suggestion.id)
             msg = "Your suggestion has been send to administrator"
             messages.info(request, msg)
-            print(related_object.get_absolute_url())
             return redirect(related_object)
 
     ctx = {

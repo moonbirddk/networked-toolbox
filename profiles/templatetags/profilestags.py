@@ -1,14 +1,8 @@
 
-import bleach
 from django import template
 from ..utils import get_profile_photo_url
 
 register = template.Library()
-
-
-@register.filter
-def bleach_striptags(strval):
-    return bleach.clean(strval, tags=[], strip=True, strip_comments=True)
 
 
 @register.inclusion_tag('profiles/_profile_photo.html')

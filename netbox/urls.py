@@ -27,8 +27,8 @@ urlpatterns = [
     url(r'^tools/', include('tools.urls', namespace='tools')),
     url(r'^resources/', include('resources.urls', namespace='resources')),
     url(r'^comments/', include('comments.urls', namespace='comments')),
-
-    url(r'^$', 'netbox.views.index', name='index'),
+    url(r'^search/', include('search.urls', namespace='search')),
+    url(r'^$', 'search.views.homepage', name='homepage'),
 
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
-static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)
+    static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)
