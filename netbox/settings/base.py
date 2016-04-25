@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import sys
+import datetime
+from celery.schedules import crontab
 
 SITE_ID = 1
 DOMAIN = 'localhost'
@@ -294,3 +296,26 @@ HAYSTACK_CONNECTIONS = {
 }
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 20
+
+BROKER_URL = os.environ.get('REDIS_URL', 'redis://')
+CELERY_IGNORE_RESULT = True
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_ENABLE_UTC = True
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_RESULT_SERIALIZER = 'json'
+if 'test' in sys.argv:
+    CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
+    CELERY_ALWAYS_EAGER = True
+    BROKER_BACKEND = 'memory'
+
+CELERYBEAT_SCHEDULE = {
+    'clear-sessions-everyday-at-1-30': {
+        'task': 'netbox.celery.clear_expired_sessions',
+        'schedule': crontab(hour=1, minute=30),
+    },
+    'rebuild-index-everyday-at-2-30': {
+        'task': 'search.tasks.rebuild_index',
+        'schedule': crontab(hour=2, minute=30),
+    },
+}

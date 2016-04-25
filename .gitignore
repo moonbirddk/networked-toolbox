@@ -8,3 +8,5 @@ media/
 .tmp
 staticfiles/
 node_modules/
+celerybeat-schedule
+celerybeat.pid

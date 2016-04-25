@@ -26,5 +26,8 @@ django-gulp==2.3.0
 django-compressor==2.0
 django-easy-timezones==0.7.0
 django-contrib-comments==1.6.2
-elasticsearch
-django-haystack
+redis==2.10.5
+celery==3.1.23
+django-haystack==2.4.1
+elasticsearch==2.3.0
+
