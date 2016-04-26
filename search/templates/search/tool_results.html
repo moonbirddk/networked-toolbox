@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load commontags %}
+{% load compress %}
+
+{% block head_statics %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}Tool Search Results{% endblock %}
+
+{% block main %}
+
+<div class="row">
+    <div class="col-md-12">
+        <span class="pull-left"><a href="{% url 'search:homepage' %}">Back to search</a></span>
+    </div>
+</div>
+    
+    
+<div class="row">
+    <div class="col-md-12">
+        <i class="fa fa-wrench"></i>
+        <h1 class="title">Tool Search Results for: <span>{{query}}</span>
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <i class="fa fa-plus"></i>
+        <h3 class="title">{{results_count}} Results
+        </h3>
+    </div>
+</div>
+
+<div class="row flex-wrapper">
+  {% for resource in results %}
+    <div class="tool-item col-md-3 col-xs-6">
+        <a href="{% url route resource.id %}"><div class="tool-image">
+          {% if resource.cover_image %}
+            <img src="{{ resource.cover_image.url }}" />
+          {% else %}
+          <!--<img src="empty-image-here" />-->
+          {% endif %}
+        </div></a>
+        <div class="tool-content">
+          <a href="{% url 'tools:show' resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
+          <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
+        </div>
+    </div>
+  {% empty %}
+    <div class="col-md-3 col-xs-6">
+      <p>There are no items available.</p>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

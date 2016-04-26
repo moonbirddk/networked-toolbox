@@ -4,12 +4,14 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.conf import settings
 from django.db.models import Count
+from django.views.generic import View
 
 from haystack.query import SearchQuerySet
+from haystack.views import SearchView
 
 from tools.models import Tool, ToolCategory, Story
 from profiles.models import Profile
-from .forms import SearchForm
+from .forms import SearchForm, ModelSearchForm
 
 
 log = logging.getLogger(__name__)
@@ -24,10 +26,12 @@ def get_search_results(modelcls, q, limit=settings.SEARCH_NUM_RESULTS):
 
 def homepage(request):
     limit = settings.SEARCH_NUM_RESULTS
-    if request.GET and request.GET.get('q'):
+    q = ''
+    if request.GET and 'q' in request.GET:
         form = SearchForm(request.GET)
         if form.is_valid():
             q = form.cleaned_data['q']
+            log.debug("q: %s", q)
             tools = get_search_results(Tool, q, limit=limit)
             categories = get_search_results(ToolCategory, q, limit=limit)
             stories = get_search_results(Story, q, limit=limit)
@@ -43,6 +47,7 @@ def homepage(request):
         profiles = Profile.objects.all().order_by('-user__date_joined')[:limit]
 
     ctx = {
+        'query': q,
         'form': form,
         'tools': tools,
         'categories': categories,
@@ -50,3 +55,31 @@ def homepage(request):
         'profiles': profiles
     }
     return render(request, 'search/index.html', ctx)
+
+
+class BaseSearchView(View):
+    http_method_names = ['get', ]
+    form_class = ModelSearchForm
+
+    def dispatch(self, request, *args, **kwargs):
+        limit = 30
+        form = self.form_class(request.GET)
+        if form.is_valid():
+            q = self.cleaned_data['q']
+            results = get_search_results(self.model_class, q, limit=limit)
+        else:
+            log.debug(form.errors)
+            messages.error(request, 'invalid search query')
+            q = ''
+            results = []
+        ctx = {
+            'query': q,
+            'results': results
+        }
+        return render(request, self.template_name, ctx)
+
+
+class ToolSearchView(BaseSearchView):
+    template_name = "search/tool_results.html"
+    model_class = Tool
+
