@@ -65,9 +65,7 @@
             <h1 class="title search-box__title"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Toolboxes</h1>
             {% for category in categories %}
                 <div class="search-result">
-                  <p class="search-result__title">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                  <a href="{{category.get_absolute_url}}">{{category.title|truncatechars:50}}</a></p>
+                  <p class="search-result__title"><a href="{{category.get_absolute_url}}">{{category.title|truncatechars:50}}</a></p>
                   <p class="search-result__content">{{category.description|bleach_striptags|truncatechars:350}}</p>
                 </div>
             {% endfor %}
