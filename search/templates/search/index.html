@@ -34,7 +34,7 @@
         
     <div class="row">
         <div class="col-md-4 search-box">
-           <h1 class="title search-box__title"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Tools</h1>
+           <h1 class="title search-box__title"><i class="fa fa-wrench" aria-hidden="true"></i>&nbsp;Tools</h1>
            {% for tool in tools %}
              <div class="search-result">
                <p class="search-result__title"><a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a></p>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="col-md-4 search-box">
-            <h1 class="title search-box__title"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Stories</h1>
+            <h1 class="title search-box__title"><i class="fa fa-align-justify" aria-hidden="true"></i>&nbsp;Stories</h1>
             {% for story in stories %}
                 <div class="search-result">
                   <p class="search-result__title"><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></p>
@@ -62,7 +62,7 @@
         <div class="clearfix"></div>
 
         <div class="col-md-6 search-box">
-            <h1 class="title search-box__title"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Toolboxes</h1>
+            <h1 class="title search-box__title"><i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp;Toolboxes</h1>
             {% for category in categories %}
                 <div class="search-result">
                   <p class="search-result__title"><a href="{{category.get_absolute_url}}">{{category.title|truncatechars:50}}</a></p>
