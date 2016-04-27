@@ -38,7 +38,7 @@
            {% for tool in tools %}
              <div class="search-result">
                <p class="search-result__title"><a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a></p>
-               <p class="search-result__content">{{tool.description|bleach_striptags|truncatechars:350}}</p>
+               <p class="search-result__content">{{tool.description|bleach_striptags|truncatechars:130}}</p>
              </div>
            {% endfor %}
            <span class="search-box__showmore">
@@ -51,11 +51,11 @@
             {% for story in stories %}
                 <div class="search-result">
                   <p class="search-result__title"><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></p>
-                  <p class="search-result__content">{{story.content|bleach_striptags|truncatechars:350}}</p>
+                  <p class="search-result__content">{{story.content|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
             <span class="search-box__showmore">
-            <a href="#">Show more results</a>
+            <a href="{% url 'search:story_results' %}?q={{query}}">Show more results</a>
             </span>
         </div>
         
@@ -66,7 +66,7 @@
             {% for category in categories %}
                 <div class="search-result">
                   <p class="search-result__title"><a href="{{category.get_absolute_url}}">{{category.title|truncatechars:50}}</a></p>
-                  <p class="search-result__content">{{category.description|bleach_striptags|truncatechars:350}}</p>
+                  <p class="search-result__content">{{category.description|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
             <span class="search-box__showmore">
@@ -79,7 +79,7 @@
             {% for profile in profiles %}
                 <div class="search-result">
                   <p class="search-result__title"><a  href="{{profile.get_absolute_url}}">{{profile.name|truncatechars:50}}</a></p>
-                  <p class="search-result__content">{{profile.bio|bleach_striptags|truncatechars:350}}</p>
+                  <p class="search-result__content">{{profile.bio|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
             <span class="search-box__showmore">

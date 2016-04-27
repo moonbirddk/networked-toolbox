@@ -21,7 +21,7 @@ def get_search_results(modelcls, q, limit=settings.SEARCH_NUM_RESULTS):
     sqs = SearchQuerySet().models(modelcls)
     sqs = sqs.auto_query(q).filter().load_all()
     sresults = sqs[:limit]
-    return [ccc.object for ccc in sqs._result_cache]
+    return [ccc.object for ccc in sqs._result_cache if ccc]
 
 
 def homepage(request):
@@ -44,7 +44,8 @@ def homepage(request):
             .order_by('-num_followers')[:limit]
         categories = ToolCategory.objects.all().order_by('?')[:limit]
         stories = Story.objects.all().order_by('-created')[:limit]
-        profiles = Profile.objects.all().order_by('-user__date_joined')[:limit]
+        profiles = Profile.objects.filter(user__is_superuser=False)\
+            .order_by('-user__date_joined')[:limit]
 
     ctx = {
         'query': q,
@@ -60,26 +61,44 @@ def homepage(request):
 class BaseSearchView(View):
     http_method_names = ['get', ]
     form_class = ModelSearchForm
+    limit = settings.HAYSTACK_SEARCH_RESULTS_PER_PAGE
 
     def dispatch(self, request, *args, **kwargs):
-        limit = 30
-        form = self.form_class(request.GET)
+        params = {'model': self.model, 'q': request.GET.get('q')}
+        form = self.form_class(params)
         if form.is_valid():
-            q = self.cleaned_data['q']
-            results = get_search_results(self.model_class, q, limit=limit)
+            q = form.cleaned_data['q']
+            results = self.get_results(q)
         else:
-            log.debug(form.errors)
+            log.debug(form.errors.as_data())
             messages.error(request, 'invalid search query')
             q = ''
             results = []
         ctx = {
             'query': q,
-            'results': results
+            'results': results,
+            'results_count': len(results),
         }
         return render(request, self.template_name, ctx)
+
+    def get_results(self, q):
+        raise NotImplementedError
 
 
 class ToolSearchView(BaseSearchView):
     template_name = "search/tool_results.html"
+    model = 'tools.tool'
     model_class = Tool
+
+    def get_results(self, q):
+        return get_search_results(self.model_class, q, limit=self.limit)
+
+
+class StorySearchView(BaseSearchView):
+    template_name = "search/story_results.html"
+    model = 'tools.story'
+    model_class = Story
+
+    def get_results(self, q):
+        return get_search_results(self.model_class, q, limit=self.limit)
 
