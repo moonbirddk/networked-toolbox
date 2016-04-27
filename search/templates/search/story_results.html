@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load commontags %}
+{% load compress %}
+
+{% block head_statics %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/story.min.css" %}">
+<link rel="stylesheet" href="{% static "css/search.min.css" %}">
+<link rel="stylesheet" href="{% static "css/results.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}Story Search Results{% endblock %}
+
+{% block main %}
+
+{% include 'search/_back_to_search.html'%}
+    
+    
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="title">
+        <i class="fa fa-align-justify"></i>
+        Story Search Results for:&nbsp;<span class="red-text">{{query}}</span>
+        </h1>
+        <h1 class="title gray-text">{{results_count}} Results</h1>
+    </div>
+</div>
+
+<div class="row flex-wrapper">
+  {% for resource in results %}
+    <div class="col-md-6 results-item">
+         <div class="results-item-content-box">
+           <p class="search-result__title">
+            {% if resource.country %}
+                <span title="{{resource.country.name}}" class="flag-icon flag-icon-{{resource.country}}"></span>
+            {% endif %}
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title|truncatechars:51 }}</a>
+           </p>
+           <p>
+            <span class="results-story-author">{{resource.user.profile.name}}</span>
+            <span class="results-story-date">{{resource.created | date:"F j, Y \a\t P" }}</span>
+            </p>
+           <p class="results-story-content">{{ resource.content|bleach_striptags|truncatechars:400 }}</p>
+         </div>
+    </div>
+  {% empty %}
+    <div class="col-md-3 col-xs-6">
+      <p>There are no items available.</p>
+    </div>
+  {% endfor %}
+</div>
+
+{% if results_count %}
+    {% include 'search/_back_to_search.html'%}
+{% endif %}
+
+{% endblock %}
