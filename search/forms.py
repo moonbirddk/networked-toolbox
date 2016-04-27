@@ -34,7 +34,8 @@ class ModelSearchForm(SearchForm):
         if self.cleaned_data.get('model'):
             model = self.cleaned_data.get('model')
             hchoices = haystack_forms.model_choices()
-            log.debug(hchoices)
-            if model in [hch[1] for hch in hchoices]:
-                self.cleaned_data['model'] = models.get_model(*model.split('.'))
+            if model in [hch[0] for hch in hchoices]:
+                self.cleaned_data['model'] =\
+                    models.get_model(*model.split('.'))
+                return self.cleaned_data['model']
             raise forms.ValidationError("invalid search model")
