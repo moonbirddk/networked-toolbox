@@ -84,7 +84,7 @@
                                 <div class="story-user">
                                     {% render_profile_photo story.user %}
                                     <div class="story-user-name">
-                                      <a href="{% url 'profiles:show' story.user.id %}">{{ story.user.profile.short_name }}</a>
+                                      <a href="{% url 'profiles:show' story.user.profile.uid %}">{{ story.user.profile.short_name }}</a>
                                     </div>
                                     <div class="story-user-country">
                                         <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
@@ -168,7 +168,7 @@
             <div class="tool-followers flex-wrapper">
             {% for follower in tool_followers %}
                 <div class="tool-follower">
-                  <a title="{{follower.user.profile.name}}" href="{% url 'profiles:show' follower.user.id %}">
+                  <a title="{{follower.user.profile.name}}" href="{% url 'profiles:show' follower.user.profile.uid %}">
                       {% render_profile_photo follower.user %}
                   </a>
                 </div>

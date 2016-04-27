@@ -4,7 +4,8 @@ from django.core.urlresolvers import reverse
 
 
 def get_profile_url(user):
-    return reverse('profiles:show', args=(user.id,))
+    return reverse('profiles:show', args=(user.profile.uid,))
+
 
 def get_profile_photo_url(user):
     photo_url = settings.STATIC_URL + 'profiles/images/Small user pic.png'

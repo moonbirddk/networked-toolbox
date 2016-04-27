@@ -63,7 +63,7 @@
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>{% render_profile_photo user %}</li>
-                <li><a href="{% url 'profiles:show' user.id %}">
+                <li><a href="{% url 'profiles:show' user.profile.uid %}">
                 {% if user.first_name %}
                     {{user.first_name}}
                 {% else%}

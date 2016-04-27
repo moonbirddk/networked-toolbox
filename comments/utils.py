@@ -24,7 +24,6 @@ def build_comment_data(comment, tzstr=None):
     comment_dict['tree_id'] = comment.tree_id
     comment_dict['added_dt'] = comment.added_dt.isoformat()
     comment_dict['added_time'] = escape(added_time, quote=True)
-    comment_dict['author_id'] = comment.author.id
     comment_dict['author_name'] = escape(comment.author.profile.name(),
             quote=True)
 
@@ -33,7 +32,7 @@ def build_comment_data(comment, tzstr=None):
     comment_dict['author_country_code'] =\
         comment.author.profile.country.code or ''
 
-    comment_dict['author_url'] = get_profile_url(comment.author)
+    comment_dict['author_url'] = comment.author.profile.get_absolute_url()
     comment_dict['author_photo_url'] = get_profile_photo_url(comment.author)
     comment_dict['related_object_id'] = comment.related_object_id
     comment_dict['related_object_type'] = \
