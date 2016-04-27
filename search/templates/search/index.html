@@ -83,7 +83,7 @@
                 </div>
             {% endfor %}
             <span class="search-box__showmore">
-            <a href="#">Show more results</a>
+            <a href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
             </span>
         </div>
 

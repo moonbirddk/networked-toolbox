@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load commontags %}
+{% load compress %}
+{% load profilestags %}
+
+{% block head_statics %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/profile.min.css" %}">
+<link rel="stylesheet" href="{% static "css/search.min.css" %}">
+<link rel="stylesheet" href="{% static "css/results.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}User Search Results{% endblock %}
+
+{% block main %}
+
+{% include 'search/_back_to_search.html'%}
+    
+    
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="title">
+        <i class="fa fa-user"></i>
+        User Search Results for:&nbsp;<span class="red-text">{{query}}</span>
+        </h1>
+        <h1 class="title gray-text">{{results_count}} Results</h1>
+    </div>
+</div>
+
+<div class="row flex-wrapper">
+  {% for resource in results %}
+    <div class="col-md-6 results-item">
+    
+        <div class="row">
+         <div class="col-md-5 results-item-image-box">
+          <a href="{{ resource.get_absolute_url }}">
+            <div class="results-item-image">
+            {% render_profile_photo resource.user %}
+            </div>
+          </a>
+         </div>
+
+         <div class="col-md-7 results-item-content-box">
+           <p class="search-result__title">
+            <a href="{{ resource.get_absolute_url }}">{{ resource.name|truncatechars:51 }}</a>
+           </p>
+           <p class="search-result__content">{{ resource.bio|bleach_striptags|truncatechars:270 }}</p>
+         </div>
+        
+        </div>
+    </div>
+  {% empty %}
+    <div class="col-md-3 col-xs-6">
+      <p>There are no items available.</p>
+    </div>
+  {% endfor %}
+</div>
+
+{% if results_count %}
+    {% include 'search/_back_to_search.html'%}
+{% endif %}
+
+{% endblock %}
