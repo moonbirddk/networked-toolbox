@@ -26,9 +26,9 @@ def get_search_results(modelcls, q, limit=settings.SEARCH_NUM_RESULTS):
 
 def homepage(request):
     limit = settings.SEARCH_NUM_RESULTS
-    q = ''
-    if request.GET and 'q' in request.GET:
-        form = SearchForm(request.GET)
+    q = request.GET.get('q', '')
+    if q:
+        form = SearchForm({'q': q})
         if form.is_valid():
             q = form.cleaned_data['q']
             log.debug("q: %s", q)
