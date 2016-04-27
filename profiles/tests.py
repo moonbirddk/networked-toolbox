@@ -129,7 +129,7 @@ class ProfilesViewsTestCase(TestCase):
         self.assertEqual([], resp.redirect_chain)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'profiles/edit.html')
-        self.assertContains(resp, 'Your profile')
+        self.assertContains(resp, 'Edit Profile')
         self.assertContains(resp, self.test_user.first_name)
         self.assertContains(resp, self.test_user.last_name)
         self.assertContains(resp, self.test_user.profile.bio)

@@ -27,7 +27,7 @@ class SuggestionTestCase(TestCase):
         resp = self.client.get(url)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add_suggestion.html')
-        self.assertContains(resp, 'Add suggestion')
+        self.assertContains(resp, 'Add Suggestion')
 
     def test_add_suggestion_post_to_unpublished(self):
         self.client.login(username='test@localhost', password='testpass')

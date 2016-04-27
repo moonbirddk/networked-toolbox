@@ -37,7 +37,7 @@ class ToolResourcesViewsTestCase(TestCase):
         resp = self.client.get(url)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'resources/add.html')
-        self.assertContains(resp, 'Add resource to')
+        self.assertContains(resp, 'Add Resource to')
 
     def test_add_resource_post_empty(self):
         self.client.login(username='testadmin', password='testpass')
@@ -49,7 +49,7 @@ class ToolResourcesViewsTestCase(TestCase):
         resp = self.client.post(url, empty, follow=True)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'resources/add.html')
-        self.assertContains(resp, 'Add resource to')
+        self.assertContains(resp, 'Add Resource to')
 
     def test_add_resource_post(self):
         self.client.login(username='testadmin', password='testpass')

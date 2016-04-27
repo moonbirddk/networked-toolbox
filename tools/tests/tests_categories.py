@@ -30,7 +30,7 @@ class CategoriesViewsTestCase(TestCase):
         resp = self.client.get(reverse('tools:list_categories'))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/list_categories.html')
-        self.assertContains(resp, 'Category overview')
+        self.assertContains(resp, 'Toolbox Overview')
         self.assertNotContains(resp, 'Add Group')
         self.assertNotContains(resp, 'Unpublished')
 
@@ -53,7 +53,7 @@ class CategoriesViewsTestCase(TestCase):
         resp = self.client.get(reverse('tools:add_category'))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add_category.html')
-        self.assertContains(resp, 'Add category')
+        self.assertContains(resp, 'Add Toolbox Section')
 
     def test_add_category_post(self):
         self.client.login(username='testadmin', password='testpass')
@@ -62,7 +62,7 @@ class CategoriesViewsTestCase(TestCase):
             reverse('tools:add_category'), empty, follow=True)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add_category.html')
-        self.assertContains(resp, 'Add category')
+        self.assertContains(resp, 'Add Toolbox Section')
         test_group = CategoryGroup.objects.get(name='Other')
         test_fh = SimpleUploadedFile('test empty.png', TEST_PNG_CONTENT)
         data = {
@@ -84,13 +84,13 @@ class CategoriesViewsTestCase(TestCase):
         self.assertTrue(category.cover_image)
         self.assertTrue(category.cover_image.name, 'test empty.png')
 
-        expected_url = 'http://testserver/tools/categories/show/{}/'.format(
+        expected_url = 'http://testserver/tools/toolboxes/section/show/{}/'.format(
             category.id)
         self.assertEqual(
             [(expected_url, 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
-            "You created a category", str(list(resp.context['messages'])[0]))
+            "You created a toolbox section", str(list(resp.context['messages'])[0]))
 
     def test_edit_category_get(self):
         self.client.login(username='testadmin', password='testpass')
@@ -98,7 +98,7 @@ class CategoriesViewsTestCase(TestCase):
                                        args=(self.test_category.id,)))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/edit_category.html')
-        self.assertContains(resp, 'Edit category')
+        self.assertContains(resp, 'Edit Toolbox Section')
         self.assertContains(resp, self.test_category.title)
         self.assertContains(resp, self.test_category.description)
 
@@ -118,7 +118,7 @@ class CategoriesViewsTestCase(TestCase):
         self.assertTrue('messages' in resp.context)
         self.assertEqual(len(list(resp.context['messages'])), 1)
         self.assertEqual(
-            "You updated this category",
+            "You updated this toolbox section",
             str(list(resp.context['messages'])[0])
         )
         self.assertContains(resp, data['title'])
@@ -126,7 +126,7 @@ class CategoriesViewsTestCase(TestCase):
         self.assertTrue(category.cover_image)
         self.assertTrue(category.cover_image.name, 'test empty.png')
         self.assertEqual(
-            [('http://testserver/tools/categories/show/%d/' % category.id,
+            [('http://testserver/tools/toolboxes/section/show/%d/' % category.id,
               302)],
             resp.redirect_chain)
 
@@ -150,7 +150,7 @@ class CategoriesViewsTestCase(TestCase):
         data = {'confirmation': 'yes'}
         resp = self.client.post(url, data, follow=True)
         expected_status = (
-            'http://testserver/tools/categories/',
+            'http://testserver/tools/toolboxes/',
             302
         )
         self.assertEqual([expected_status], resp.redirect_chain)
@@ -162,6 +162,6 @@ class CategoriesViewsTestCase(TestCase):
         self.assertEqual(0, expected_tool_categories)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
-            "You deleted a category",
+            "You deleted a toolbox section",
             str(list(resp.context['messages'])[0])
         )
