@@ -7,6 +7,8 @@
 {% block head_statics %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/search.min.css" %}">
+<link rel="stylesheet" href="{% static "css/results.min.css" %}">
 {% endcompress %}
 {% endblock %}
 
@@ -14,11 +16,7 @@
 
 {% block main %}
 
-<div class="row">
-    <div class="col-md-12">
-        <span class="pull-left"><a href="{% url 'search:homepage' %}">Back to search</a></span>
-    </div>
-</div>
+{% include 'search/_back_to_search.html'%}
     
     
 <div class="row">
@@ -27,23 +25,34 @@
         <i class="fa fa-wrench"></i>
         Tool Search Results for:&nbsp;<span class="red-text">{{query}}</span>
         </h1>
-        <h3 class="title gray-text">{{results_count}} Results</h3>
+        <h1 class="title gray-text">{{results_count}} Results</h1>
     </div>
 </div>
 
 <div class="row flex-wrapper">
   {% for resource in results %}
-    <div class="tool-item col-md-3 col-xs-6">
-        <a href="{% url 'tools:show' resource.id %}"><div class="tool-image">
-          {% if resource.cover_image %}
-            <img src="{{ resource.cover_image.url }}" />
-          {% else %}
-          <!--<img src="empty-image-here" />-->
-          {% endif %}
-        </div></a>
-        <div class="tool-content">
-          <a href="{% url 'tools:show' resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
-          <p>{{ resource.description|bleach_striptags|truncatechars:250 }}</p>
+    <div class="col-md-6 results-item">
+    
+        <div class="row">
+         <div class="col-md-5 results-item-image-box">
+          <a href="{{ resource.get_absolute_url }}">
+            <div class="results-item-image">
+            {% if resource.cover_image %}
+              <img src="{{ resource.cover_image.url }}" />
+            {% else %}
+            <!--<img src="empty-image-here" />-->
+            {% endif %}
+            </div>
+          </a>
+         </div>
+
+         <div class="col-md-7 results-item-content-box">
+           <p class="search-result__title">
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title|truncatechars:51 }}</a>
+           </p>
+           <p class="search-result__content">{{ resource.description|bleach_striptags|truncatechars:270 }}</p>
+         </div>
+        
         </div>
     </div>
   {% empty %}
@@ -54,11 +63,7 @@
 </div>
 
 {% if results_count %}
-<div class="row">
-    <div class="col-md-12">
-        <span class="pull-left"><a href="{% url 'search:homepage' %}">Back to search</a></span>
-    </div>
-</div>
+    {% include 'search/_back_to_search.html'%}
 {% endif %}
 
 {% endblock %}

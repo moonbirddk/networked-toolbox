@@ -1,0 +1,27 @@
+
+.back-to-search {
+    font-size: 17px;
+}
+.results-item {
+    padding-left: 0px;
+    margin-left: 0px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.results-item-image {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 100%;
+    background: #8D8478;
+    img {
+        position: absolute;
+        margin: auto;
+        height: 100%;
+        min-width: 100%;
+        top: -9999px;
+        bottom: -9999px;
+        left: -9999px;
+        right: -9999px;
+    }
+}
