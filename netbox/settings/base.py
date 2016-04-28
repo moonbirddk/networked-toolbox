@@ -124,6 +124,7 @@ TEMPLATES = [
                 "django.core.context_processors.media",
                 "django.core.context_processors.static",
                 "netbox.context_processors.timezone_name",
+                "netbox.context_processors.google_analytics_id",
             ],
         },
     },
@@ -325,3 +326,5 @@ CELERYBEAT_SCHEDULE = {
         'schedule': crontab(hour=2, minute=30),
     },
 }
+
+GOOGLE_ANALYTICS_ID = 'UA-71138728-1'
