@@ -2,6 +2,15 @@
 .back-to-search {
     font-size: 17px;
 }
+
+.results-item-image-box {
+    &__profile {
+        width: 175px;
+        height: 175px;
+        margin-right: 10px;
+    }
+}
+
 .results-item {
     padding-left: 0px;
     margin-left: 0px;
@@ -14,6 +23,18 @@
     overflow: hidden;
     padding-bottom: 100%;
     background: #8D8478;
+    
+    &__profile {
+        width: 170px;
+        height: 170px;
+        padding-right: 20px;
+        .profile-photo {
+            width: 170px;
+            height: 170px;
+        }
+    
+    }
+    
     img {
         position: absolute;
         margin: auto;

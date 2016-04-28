@@ -124,7 +124,7 @@
             </div>
             {% if tools|length > 9 %}
                 <div class="show-all">
-                    <a href="{% url 'profiles:show_tools' profile_user.id %}">Show all</a>
+                    <a href="{% url 'profiles:show_tools' profile_user.profile.uid %}">Show all</a>
                 </div>
             {% endif %}
             </div>

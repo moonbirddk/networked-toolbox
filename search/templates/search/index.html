@@ -64,11 +64,11 @@
                   <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
-           {% if query %}
+            {% if query %}
               <a href="#">
                   Show more results
               </a>
-           {% endif %}
+            {% endif %}
         </div>
         
         <div class="clearfix"></div>
@@ -84,11 +84,11 @@
                   <p>{{category.description|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
-           {% if query %}
+            {% if query %}
               <a href="#">
                   Show more results
               </a>
-           {% endif %}
+            {% endif %}
         </div>
 
         <div class="col-md-6 col-sm-12 search-box">
@@ -102,11 +102,9 @@
                   <p>{{profile.bio|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
-           {% if query %}
-              <a href="{% url 'search:story_results' %}?q={{query}}">
-                  Show more results
-              </a>
-           {% endif %}
+            {% if query %}
+                <a href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
+            {% endif %}
         </div>
 
     </div>

@@ -84,7 +84,7 @@
                                 <div class="story-user">
                                     {% render_profile_photo story.user %}
                                     <div class="story-user-name">
-                                      <a href="{% url 'profiles:show' story.user.id %}">{{ story.user.profile.short_name }}</a>
+                                      <a href="{% url 'profiles:show' story.user.profile.uid %}">{{ story.user.profile.short_name }}</a>
                                     </div>
                                     <div class="story-user-country">
                                         <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
@@ -176,10 +176,8 @@
             </div>
             <div class="help-improve">
                 <h3 class="title">Help improve this tool</h3>
-             
                 <p>Have you used this tool in practice? Tell us about your experience, so the community can learn from it.</p>
                 <a class="btn btn-primary" href="{% url 'tools:add_story' tool.id %}">Add a story</a>
-            
                 <p>How can we improve this tool? Give us concrete feedback on what you think is missing.</p>
                 <a class="btn btn-primary" href="{% url 'tools:add_suggestion' 'tool' tool.id %}">Add a suggestion</a>
             </div>

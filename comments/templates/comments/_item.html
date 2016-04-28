@@ -9,7 +9,7 @@
             <i title="{{comment.author.profile.country.name}}" 
               class="flag-icon flag-icon-{{comment.author.profile.country.code}}"></i>
             <span class="comment-author-name">
-                <a href="{% url 'profiles:show' comment.author.id %}">
+                <a href="{% url 'profiles:show' comment.author.profile.uid %}">
                     {{ comment.author.profile.name }}
                 </a>
             </span>

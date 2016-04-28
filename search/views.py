@@ -102,3 +102,12 @@ class StorySearchView(BaseSearchView):
     def get_results(self, q):
         return get_search_results(self.model_class, q, limit=self.limit)
 
+
+class ProfileSearchView(BaseSearchView):
+    template_name = "search/profile_results.html"
+    model = 'profiles.profile'
+    model_class = Profile
+
+    def get_results(self, q):
+        return get_search_results(self.model_class, q, limit=self.limit)
+
