@@ -18,6 +18,10 @@
 
 {% block head_title %}{{ category.title }}{% endblock %}
 
+{% block ga_events %}
+ga('send', 'event', 'toolboxSection', 'view');
+{% endblock %}
+
 {% block main %}
     <div class="row category">
         <div class="col-md-12">

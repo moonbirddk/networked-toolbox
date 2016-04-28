@@ -19,6 +19,10 @@
 
 {% block head_title %}{{ story.title }}{% endblock %}
 
+{% block ga_events %}
+ga('send', 'event', 'story', 'view');
+{% endblock %}
+
 {% block main %}
     <div class="row">
         <div class="col-md-8">

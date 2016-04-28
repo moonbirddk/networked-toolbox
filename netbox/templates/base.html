@@ -30,6 +30,10 @@
 
           ga('create', 'UA-71138728-1', 'auto');
           ga('send', 'pageview');
+          
+          {% block ga_events %}
+          {% endblock %}
+
 
           </script>
     </head>
