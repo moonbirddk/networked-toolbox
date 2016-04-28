@@ -126,10 +126,10 @@
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 10px;
+    max-width: 90%;
 
     .tool-cover-image {
-      width: 90px;
-      height: 90px;
+      padding: 60% 60%;
       margin-bottom: 7px;
       background-size: cover;
     }

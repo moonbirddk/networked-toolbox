@@ -1,10 +1,10 @@
 {% load profilestags %}
 
 <div id="comment-form-box" class="row comment-item">
-     <div class="col-md-2">
+     <div class="col-md-2 col-sm-2">
          {% render_profile_photo user %}
      </div>
-     <div class="col-md-10 comment-text">
+     <div class="col-md-10 col-sm-10 comment-text">
          <form method="POST" action="{% url 'comments:add' %}" class="form comment-form">
              <input name="related_object_id" type="hidden" value="{{comment_related_object_id}}" />
              <input name="related_object_type" type="hidden" value="{{comment_related_object_type}}" />
