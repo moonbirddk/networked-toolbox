@@ -16,6 +16,7 @@
   background-color: #C2C1B8;
   overflow: hidden;
   padding: 0px 1em 0.5em 1em;
+  margin: 0 0 1em 0;
 }
 
 .expanded {
@@ -120,23 +121,20 @@
 
 .usage-indicator {
   margin: 20px 0 20px;
+  padding: 10px 10px 15px 10px;
   background-color: #8D8479;
   align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px 0 10px;
   .usage-title {
-    flex: 1.2;
   }
   .usage-follow {
-    flex: 0.5;
+    text-align: center;
     min-width: 100px;
-    form {
-      margin: 0;
-    }
+    margin: 0.5em 0;
   }
-  .usage-followerse {
-    flex: 1.1;
+  .usage-followers {
+  }
+  form {
+    margin: 0;
   }
   h3, p {
     color: white;
@@ -355,6 +353,7 @@ iframe {
   a {
     font-weight: 700;
   }
+  margin: 1em 0;
 }
 
 .overview-description {

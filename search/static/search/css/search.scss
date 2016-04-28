@@ -4,12 +4,15 @@
 }
 
 .search-info {
-    margin-top: 15px;
+    margin-top: 30px;
+    font-size: 1.2em;
 }
 
 .search-form-box {
     color: white;
     background-color: #bf0d13;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 .search-form {
@@ -34,32 +37,41 @@
 }
 
 .search-box {
-    width: 510px;
-    &__title {
+    .title {
         color: white;
         background-color: #bf0d13;
-        height: 35px;
-        padding-left: 15px;
-        padding-top: 4px;
-    }
-}
+        padding: .5em .7em;
+        font-size: 22px;
 
-.search-result {
-    &__title {
+        .fa {
+          margin-right: .2em;
+        }
+    }
+    margin-bottom: 1em;
+
+    .more-results {
+      font-size: 17px; 
+      font-weight: bold;
+    }
+
+    .search-result {
+    h3 {
         color: black;
         font-size: 17px;
         font-weight: bold;
         margin-bottom: 3px;
-        &:hover{
-            text-decoration: underline;
-        }
         a {
             color: black;
+            text-decoration: none;
+            &:hover{
+              text-decoration: underline;
+            }
         }
     }
-    &__content {
-        color: grey;
-        font-size: 16px;
+    p {
+        color: #8D8479;
+        font-size: 14px;
         word-break: break-all;
+    }
     }
 }

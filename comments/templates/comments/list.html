@@ -9,14 +9,14 @@
     <p>Do you have a comment or question about this tool?
     <a href="#comment-form-box">Discuss</a> it with the rest of the community.</p>
 
-    <div id="comment-list-box" class="flex-wrapper row">
+    <div id="comment-list-box" class="row">
         <div id="comment-list" class="col-md-12">
             {% for parent_id, node in comment_dict.items %}
                 {% include 'comments/_item.html' with comment=node.parent parent_id=node.parent.tree_id css_class='comment-item' %}
                 {% if node.replies %}
                     <div class="row comment-replies-row">
-                        <div class="col-md-2 comment-vline"></div>
-                        <div class="col-md-10 comment-replies">
+                        <div class="col-md-2 col-sm-2 comment-vline"></div>
+                        <div class="col-md-10 col-sm-10 comment-replies" style="">
                             {% for reply in node.replies %}
                                 {% include 'comments/_item.html' with comment=reply parent_id=reply.tree_id css_class='comment-item comment-reply' %}
                             {% endfor %}
@@ -27,12 +27,12 @@
         </div>
     </div>
 
-    <div class="flex-wrapper row">
-        {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
+        <div class="row">
             <div class="col-md-12">
                 {% render_addcomment_form %}
             </div>
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 
 </div>

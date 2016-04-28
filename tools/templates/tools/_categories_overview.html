@@ -2,8 +2,7 @@
 {% load partition_slice %}
 {% load commontags %}
 
-<div class="category-groups row">
-    <div class="col-md-8">
+<div class="category-groups">
         {% for category_group in categories_by_group %}
             <div id="category-group-{{category_group.id}}" class="category-group row">
                 <div class="col-md-9">
@@ -56,5 +55,4 @@
         {% empty %}
             <p>There are no items available.</p>
         {% endfor %}
-    </div>
 </div>
