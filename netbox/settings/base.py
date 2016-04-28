@@ -124,6 +124,7 @@ TEMPLATES = [
                 "django.core.context_processors.media",
                 "django.core.context_processors.static",
                 "netbox.context_processors.timezone_name",
+                "search.context_processors.homepage_display_results",
             ],
         },
     },
@@ -285,8 +286,6 @@ COMMENT_READ_MORE_LENGTH = 500
 GEOIP_DATABASE = os.path.join(BASE_DIR, 'geoip/GeoLiteCity.dat')
 GEOIPV6_DATABASE = os.path.join(BASE_DIR, 'geoip/GeoLiteCityv6.dat')
 
-SEARCH_NUM_RESULTS = 4
-
 #HAYSTACK_CONNECTIONS = {
 #    'default': {
 #        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
@@ -302,6 +301,7 @@ HAYSTACK_CONNECTIONS = {
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 20
+HOMEPAGE_DISPLAY_RESULTS = 4
 
 BROKER_URL = os.environ.get('REDIS_URL', 'redis://')
 CELERY_IGNORE_RESULT = True

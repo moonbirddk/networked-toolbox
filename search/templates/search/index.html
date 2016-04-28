@@ -46,10 +46,10 @@
                <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
              </div>
            {% endfor %}
-            {% if query and tools|length > 5 %}
-              <a class="more-results" href="{% url 'search:tool_results' %}?q={{query}}">
+            {% if query and tools_results_count > HOMEPAGE_DISPLAY_RESULTS %}
+              <p><a class="more-results" href="{% url 'search:tool_results' %}?q={{query}}">
                   Show more results
-              </a>
+              </a></p>
            {% endif %}
         </div>
 
@@ -64,7 +64,7 @@
                   <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
-            {% if query and stories|length > 5 %}
+            {% if query and stories_results_count > HOMEPAGE_DISPLAY_RESULTS%}
               <a class="more-results" href="{% url 'search:story_results' %}?q={{query}}">
                   Show more results
               </a>
@@ -100,7 +100,7 @@
                   <p>{{profile.bio|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
-            {% if query and profiles|length > 5 %}
+            {% if query and profiles_results_count > HOMEPAGE_DISPLAY_RESULTS %}
                 <a class="more-results" href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
             {% endif %}
         </div>

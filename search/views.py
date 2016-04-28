@@ -16,44 +16,65 @@ from .forms import SearchForm, ModelSearchForm
 
 log = logging.getLogger(__name__)
 
+DEFAULT_LIMIT = settings.HAYSTACK_SEARCH_RESULTS_PER_PAGE
 
-def get_search_results(modelcls, q, limit=settings.SEARCH_NUM_RESULTS):
+
+def get_search_results(modelcls, q, limit=DEFAULT_LIMIT):
     sqs = SearchQuerySet().models(modelcls)
     sqs = sqs.auto_query(q).filter().load_all()
+    total_results_count = sqs.count()
     sresults = sqs[:limit]
-    return [ccc.object for ccc in sqs._result_cache if ccc]
+    results = [ccc.object for ccc in sqs._result_cache[:limit] if ccc]
+    return total_results_count, results
 
 
 def homepage(request):
-    limit = settings.SEARCH_NUM_RESULTS
+    limit = settings.HOMEPAGE_DISPLAY_RESULTS
     q = request.GET.get('q', '')
     if q:
         form = SearchForm({'q': q})
         if form.is_valid():
             q = form.cleaned_data['q']
-            log.debug("q: %s", q)
-            tools = get_search_results(Tool, q, limit=limit)
-            categories = get_search_results(ToolCategory, q, limit=limit)
-            stories = get_search_results(Story, q, limit=limit)
-            profiles = get_search_results(Profile, q, limit=limit)
+
+            tools_results_count, tools =\
+                get_search_results(Tool, q, limit=limit)
+
+            categories_results_count, categories =\
+                get_search_results(ToolCategory, q, limit=limit)
+
+            stories_results_count, stories =\
+                get_search_results(Story, q, limit=limit)
+            profiles_results_count, profiles =\
+                get_search_results(Profile, q, limit=limit)
         else:
             messages.error(request, "invalid search expression")
     else:
         form = SearchForm()
         tools = Tool.objects.annotate(num_followers=Count('followers'))\
             .order_by('-num_followers')[:limit]
+        tools_results_count = len(tools)
+
         categories = ToolCategory.objects.all().order_by('?')[:limit]
+        categories_results_count = len(categories)
+
         stories = Story.objects.all().order_by('-created')[:limit]
+        stories_results_count = len(stories)
+
         profiles = Profile.objects.filter(user__is_superuser=False)\
             .order_by('-user__date_joined')[:limit]
+        profiles_results_count = len(profiles)
 
     ctx = {
         'query': q,
         'form': form,
         'tools': tools,
+        'tools_results_count': tools_results_count,
         'categories': categories,
+        'categories_results_count': categories_results_count,
         'stories': stories,
-        'profiles': profiles
+        'stories_results_count': stories_results_count,
+        'profiles': profiles,
+        'profiles_results_count': profiles_results_count,
     }
     return render(request, 'search/index.html', ctx)
 
@@ -68,16 +89,17 @@ class BaseSearchView(View):
         form = self.form_class(params)
         if form.is_valid():
             q = form.cleaned_data['q']
-            results = self.get_results(q)
+            total_results_count, results = self.get_results(q)
         else:
             log.debug(form.errors.as_data())
             messages.error(request, 'invalid search query')
             q = ''
             results = []
+            total_results_count = 0
         ctx = {
             'query': q,
             'results': results,
-            'results_count': len(results),
+            'total_results_count': total_results_count,
         }
         return render(request, self.template_name, ctx)
 
