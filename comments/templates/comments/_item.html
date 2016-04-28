@@ -4,8 +4,8 @@
     <div class="col-md-2 col-sm-2">
         {% render_profile_photo comment.author %}
     </div>
-    <div class="col-md-10 col-sm-10 comment-text">
-        <p class="comment-text-heading">
+    <div class="col-md-10 col-sm-10">
+        <p>
             <i title="{{comment.author.profile.country.name}}" 
               class="flag-icon flag-icon-{{comment.author.profile.country.code}}"></i>
             <span class="comment-author-name">
@@ -16,11 +16,12 @@
             <span class="comment-added-dt">{% format_comment_date comment.added_dt %}</span>
         </p>
         <p>{{ comment.content }}</p>
-        <p><a class="comment-reply-btn"
-            data-related_object_id="{{comment_related_object_id}}"
-            data-related_object_type="{{comment_related_object_type}}"
-            data-parent_id="{{parent_id}}"
-            href="">Reply</a>
+        <p>
+            <a class="comment-reply-btn"
+              data-related_object_id="{{comment_related_object_id}}"
+              data-related_object_type="{{comment_related_object_type}}"
+              data-parent_id="{{parent_id}}"
+              href="">Reply</a>
         </p>
     </div>
 </div>
