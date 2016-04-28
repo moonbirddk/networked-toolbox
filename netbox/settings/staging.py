@@ -50,3 +50,5 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'haystack',
     },
 }
+
+GOOGLE_ANALYTICS_ID = 'UA-71138728-2'
