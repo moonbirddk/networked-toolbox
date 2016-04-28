@@ -47,9 +47,14 @@
           margin-right: .2em;
         }
     }
-}
+    margin-bottom: 1em;
 
-.search-result {
+    .more-results {
+      font-size: 17px; 
+      font-weight: bold;
+    }
+
+    .search-result {
     h3 {
         color: black;
         font-size: 17px;
@@ -67,5 +72,6 @@
         color: #8D8479;
         font-size: 14px;
         word-break: break-all;
+    }
     }
 }

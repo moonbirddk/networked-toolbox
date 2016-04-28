@@ -47,7 +47,7 @@
              </div>
            {% endfor %}
            {% if query %}
-              <a href="{% url 'search:tool_results' %}?q={{query}}">
+              <a class="more-results" href="{% url 'search:tool_results' %}?q={{query}}">
                   Show more results
               </a>
            {% endif %}
@@ -65,7 +65,7 @@
                 </div>
             {% endfor %}
             {% if query %}
-              <a href="#">
+              <a class="more-results" href="#">
                   Show more results
               </a>
             {% endif %}
@@ -85,7 +85,7 @@
                 </div>
             {% endfor %}
             {% if query %}
-              <a href="#">
+              <a class="more-results" href="#">
                   Show more results
               </a>
             {% endif %}
@@ -103,7 +103,7 @@
                 </div>
             {% endfor %}
             {% if query %}
-                <a href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
+                <a class="more-results" href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
             {% endif %}
         </div>
 
