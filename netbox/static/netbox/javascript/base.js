@@ -10,6 +10,10 @@ $(document).on("click", "#accept-cookies", function(e){
     $('#cookies-notice').fadeOut(300);
 });
 
+$(document).on("click", "#user-signup", function(e){
+  ga('send', 'event', 'profile', 'signup');
+});
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
 

@@ -5,6 +5,9 @@
 
 {% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
 
+{% block ga_events %}
+ga('send', 'event', 'profile', 'confirm');
+{% endblock %}
 
 {% block main %}
 

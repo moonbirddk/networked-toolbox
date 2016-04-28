@@ -11,6 +11,10 @@
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
 <link rel="stylesheet" href="{% static "css/story.min.css" %}">
 {% endcompress %}
+
+{% compress js %}
+<script type="text/javascript" src="{% static 'js/tools.js' %}"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block head_title %}Add Story{% endblock %}
@@ -41,7 +45,7 @@ enctype="multipart/form-data">
     {% bootstrap_field form.country show_label=True %}
 
     {% buttons %}
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" id="add-story" class="btn btn-primary">
             {% bootstrap_icon "star" %} Add story
         </button>
     {% endbuttons %}
