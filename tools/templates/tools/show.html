@@ -168,7 +168,7 @@
             <div class="tool-followers flex-wrapper">
                 {% for follower in tool_followers %}
                     <div class="tool-follower">
-                      <a title="{{follower.user.profile.name}}" href="{% url 'profiles:show' follower.user.id %}">
+                      <a title="{{follower.user.profile.name}}" href="{% url 'profiles:show' follower.user.profile.uid %}">
                           {% render_profile_photo follower.user %}
                       </a>
                     </div>
