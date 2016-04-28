@@ -65,7 +65,7 @@
                 </div>
             {% endfor %}
             {% if query %}
-              <a class="more-results" href="#">
+              <a class="more-results" href="{% url 'search:story_results' %}?q={{query}}">
                   Show more results
               </a>
             {% endif %}
@@ -84,11 +84,9 @@
                   <p>{{category.description|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
-            {% if query %}
-              <a class="more-results" href="#">
-                  Show more results
+              <a class="more-results" href="{% url 'tools:list_categories'%}">
+                  Show all toolboxes
               </a>
-            {% endif %}
         </div>
 
         <div class="col-md-6 col-sm-12 search-box">
