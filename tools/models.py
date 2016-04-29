@@ -109,7 +109,7 @@ class ToolCategory(ModelWithCoverImage):
     description = models.TextField(max_length=20000, blank=False)
     published = models.BooleanField(default=False, null=False)
     resources = GenericRelation('resources.ToolResource')
-
+    order = models.PositiveIntegerField(default=0, null=False)
     resources_text = models.CharField(
         max_length=300,
         default='Here you can find the different resources'
