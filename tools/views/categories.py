@@ -18,10 +18,10 @@ log = logging.getLogger(__name__)
 
 def list_categories(request):
     if request.user.has_perm('tools.change_toolcategory'):
-        queryset = ToolCategory.objects.all().order_by('-published', 'group')
+        queryset = ToolCategory.objects.all().order_by('-published', 'group', '-order')
     else:
         queryset = ToolCategory.objects.filter(published=True)\
-            .order_by('group')
+            .order_by('group', '-order')
     cat_filter = PublishedFilter(request.GET, queryset=queryset)
 
     categories_by_group = CategoryGroup.objects\

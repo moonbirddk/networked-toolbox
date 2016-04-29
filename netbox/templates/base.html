@@ -28,8 +28,11 @@
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-          ga('create', 'UA-71138728-1', 'auto');
+          ga('create', '{{GOOGLE_ANALYTICS_ID}}', 'auto');
           ga('send', 'pageview');
+          
+          {% block ga_events %}
+          {% endblock %}
 
           </script>
     </head>
@@ -63,7 +66,7 @@
               <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>{% render_profile_photo user %}</li>
-                <li><a href="{% url 'profiles:show' user.id %}">
+                <li><a href="{% url 'profiles:show' user.profile.uid %}">
                 {% if user.first_name %}
                     {{user.first_name}}
                 {% else%}
@@ -92,6 +95,8 @@
           </div>
         </div><!-- /.container-fluid -->
       </nav>
+    {% block searchform %}
+    {% endblock %}
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">

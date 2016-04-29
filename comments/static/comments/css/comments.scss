@@ -1,6 +1,9 @@
 
-#comment-form-box .profile-thumbnail-img {
-    width: 55px;
+#comment-form-box {
+  margin-top: 1em; 
+  .comment-form {
+    padding: 1em 0;
+  }
 }
 
 #comments { margin: 1em 0; }
@@ -29,15 +32,6 @@
 
 .comment-added-dt {
     color: grey;
-}
-
-.comment-text {
-    margin-left: -15;
-    padding-left: 0;
-}
-
-.comment-text-heading {
-
 }
 
 .comment-vline {

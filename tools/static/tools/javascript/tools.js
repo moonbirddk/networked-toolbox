@@ -15,6 +15,10 @@ $(document).on("click", ".category-toggle-fold", function(e){
   toggleCategoryGroup($(this));
 });
 
+$(document).on("click", "#add-story", function(e){
+  ga('send', 'event', 'story', 'add');
+});
+
 $(document).ready(function(){
   var url = $(location).attr('href');
   var i = url.indexOf("#");

@@ -72,8 +72,10 @@ class TermsAndConditionsTestCase(TestCase):
 class ProfilesViewsTestCase(TestCase):
 
     def setUp(self):
-        self.test_user = User.objects.create_user('testuser',
-            'testuser@localhost', 'testpass')
+        self.test_user = User.objects.create_user(
+            'testuser',
+            'testuser@localhost', 'testpass'
+        )
         self.test_user.first_name='test first'
         self.test_user.last_name='test last'
         test_profile, _ = Profile.objects.get_or_create(user=self.test_user)
@@ -82,17 +84,19 @@ class ProfilesViewsTestCase(TestCase):
         self.test_user.save()
         self.another_user = User.objects.create_user('anotheruser',
             'anotheruser@localhost', 'testpass')
-        another_profile, _ = Profile.objects.get_or_create(user=self.another_user)
+        another_profile, _ = Profile.objects\
+            .get_or_create(user=self.another_user)
         self.tool_followed = Tool.objects.create(title='test tool',
                 description='description', published=True)
-        ToolFollower.objects.create(user=self.test_user, tool=self.tool_followed)
+        ToolFollower.objects.create(user=self.test_user,
+                                    tool=self.tool_followed)
         self.tool_not_followed = Tool.objects.create(title='another test tool',
                 description='description', published=True)
         self.tool_with_story = Tool.objects.create(title='third test tool',
                 description='description', published=True)
 
     def test_show_profile_get(self):
-        url = reverse('profiles:show', args=(self.test_user.id,))
+        url = reverse('profiles:show', args=(self.test_user.profile.uid,))
         resp = self.client.get(url, follow=True)
         self.assertEqual([], resp.redirect_chain)
         self.assertEqual(200, resp.status_code)
@@ -118,7 +122,7 @@ class ProfilesViewsTestCase(TestCase):
         self.client.login(username='testuser', password='testpass')
         resp = self.client.get(url, follow=True)
         self.assertContains(resp, 'glyphicon-pencil')
-        url = reverse('profiles:show', args=(self.another_user.id,))
+        url = reverse('profiles:show', args=(self.another_user.profile.uid,))
         resp = self.client.get(url, follow=True)
         self.assertNotContains(resp, 'glyphicon-pencil')
 
@@ -129,7 +133,7 @@ class ProfilesViewsTestCase(TestCase):
         self.assertEqual([], resp.redirect_chain)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'profiles/edit.html')
-        self.assertContains(resp, 'Your profile')
+        self.assertContains(resp, 'Edit Profile')
         self.assertContains(resp, self.test_user.first_name)
         self.assertContains(resp, self.test_user.last_name)
         self.assertContains(resp, self.test_user.profile.bio)
@@ -157,7 +161,7 @@ class ProfilesViewsTestCase(TestCase):
         resp = self.client.post(url, data, follow=True)
         self.assertEqual(200, resp.status_code)
         expected_status = (
-            'http://testserver/profiles/%d/' % self.test_user.id,
+            'http://testserver/profiles/%s/' % self.test_user.profile.uid,
             302
         )
         self.assertEqual([expected_status], resp.redirect_chain)

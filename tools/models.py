@@ -75,6 +75,9 @@ class Story(ModelWithCoverImage):
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
 
+    def get_absolute_url(self):
+        return reverse('tools:show_story', args=(self.id, ))
+
 
 class CategoryGroup(models.Model):
     name = models.CharField(max_length=30, null=False, blank=False,
@@ -106,7 +109,7 @@ class ToolCategory(ModelWithCoverImage):
     description = models.TextField(max_length=20000, blank=False)
     published = models.BooleanField(default=False, null=False)
     resources = GenericRelation('resources.ToolResource')
-
+    order = models.PositiveIntegerField(default=0, null=False)
     resources_text = models.CharField(
         max_length=300,
         default='Here you can find the different resources'

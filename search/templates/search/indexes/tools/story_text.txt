@@ -1,0 +1,5 @@
+{% load commontags %}
+{{object.user.profile.name}}
+{{object.title}}
+{{object.content|bleach_striptags}}
+{{object.country.name}}

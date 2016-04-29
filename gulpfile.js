@@ -19,6 +19,7 @@ var paths = {
         'netbox/static/netbox/css/*.scss',
         'tools/static/tools/css/*.scss',
         'profiles/static/profiles/css/*.scss',
+        'search/static/search/css/*.scss',
         'comments/static/comments/css/*.scss'
     ],
     js: [

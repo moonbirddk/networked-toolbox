@@ -1,4 +1,5 @@
-from django.db import models
+import uuid
+from django.db import models, transaction
 from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
 from django.dispatch.dispatcher import receiver
@@ -20,13 +21,40 @@ def do_upload_profile_photo(inst, filename):
     return generate_upload_path(inst, filename, dirname='profile_photos')
 
 
+def generate_profile_uid():
+    return uuid.uuid4().hex
+
+
+class ProfileManager(models.Manager):
+    def create(self, *args, **kwargs):
+        kwargs['uid'] = generate_profile_uid()
+        return super().create(*args, **kwargs)
+
+    def get_or_create(self, *args, **kwargs):
+        with transaction.atomic():
+            qs = self.get_queryset().filter(*args, **kwargs)
+            if not qs.count():
+                return self.create(*args, **kwargs), True
+            return qs.first(), False
+
+
 class Profile(models.Model):
+    uid = models.CharField(unique=True, editable=False, null=True,
+                           max_length=32)
+    # FIXME: migrate uid to be not null
     user = models.OneToOneField(User)
     photo = models.ImageField(upload_to=do_upload_profile_photo,
                               blank=True, null=True)
     bio = models.CharField(max_length=400, blank=True)
     country = CountryField(blank_label='where did this take place?',
                            blank=True, null=True)
+
+    objects = ProfileManager()
+
+    def save(self, *args, **kwargs):
+        if not self.uid:
+            self.uid = generate_profile_uid()
+        return super().save(*args, **kwargs)
 
     def name(self):
         user = self.user
@@ -37,7 +65,7 @@ class Profile(models.Model):
         elif user.last_name:
             return user.last_name
         else:
-            return user.email
+            return "Noname Nosurname"
 
     def short_name(self):
         user = self.user
@@ -52,6 +80,9 @@ class Profile(models.Model):
     def has_existing_photo(self):
         return self.photo and \
             default_storage.exists(self.photo.name)
+
+    def get_absolute_url(self):
+        return reverse('profiles:show', args=(self.uid, ))
 
 
 @receiver(post_save, sender=User, dispatch_uid='profiles-create_user_profile')

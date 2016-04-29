@@ -4,6 +4,7 @@
 {% load toolstags %}
 {% load commentstags %}
 {% load profilestags %}
+{% load commontags %}
 {% load compress %}
 
 {% block head_statics %}
@@ -17,6 +18,10 @@
 {% endblock %}
 
 {% block head_title %}{{ story.title }}{% endblock %}
+
+{% block ga_events %}
+ga('send', 'event', 'story', 'view');
+{% endblock %}
 
 {% block main %}
     <div class="row">
@@ -41,12 +46,15 @@
                     </div>
                     <div class="story-user-details col-md-10">
                         <h4>
-                            <span title="Denmark" class="flag-icon flag-icon-dk"></span>
-                            <a href="{% url 'profiles:show' story.user.id %} ">{{story.user.profile.name}}</a>
+                            {% if story.user.profile.country %}
+                              <span title="{{story.user.profile.country.name}}" class="flag-icon flag-icon-{{story.user.profile.country}}"></span>
+                            {% endif %}
+                            {{story.title}}
+                            <a href="{% url 'profiles:show' story.user.profile.uid %} ">{{story.user.profile.name}}</a>
                         </h4>
                         <div class="story-user-bio">
                           {{story.user.profile.bio}}
-                          <a href="{% url 'profiles:show' story.user.id %} ">See profile</a>
+                          <a href="{% url 'profiles:show' story.user.profile.uid %} ">See profile</a>
                         </div>
                     </div>
                 </div>

@@ -42,3 +42,11 @@ EMAIL_HOST_PASSWORD = os.environ['MAILGUN_SMTP_PASSWORD']
 EMAIL_PORT = os.environ['MAILGUN_SMTP_PORT']
 EMAIL_USE_TLS = True
 
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': os.environ['BONSAI_URL'],
+        'INDEX_NAME': 'haystack',
+    },
+}

@@ -168,6 +168,14 @@ h3.title {
   color: #ffffff;
 }
 
+.red-text {
+  color: #ed1c24;
+}
+
+.gray-text {
+  color: #777;
+}
+
 .more {
   margin-bottom: 2em;
 }
@@ -256,48 +264,38 @@ h3.title {
 
 }
 
-#home {
-
-  form {
-    margin: 30px auto;
-    width: 600px;
-
-    .form-group{
-
-      input{
-        width: 500px;
-        padding: 10px 5px;
-        margin: 0 10px 0 0;
-        font-size: 12px;
-      }
-      
-      button {
-        width: 80px;
-        font-size: 12px; 
-      }
-
-    }
-
+.note-editor,
+.summernote-content {
+  h2, h3, h4, h5, h6 {
+    font-weight: bold;
   }
 
-  .col-md-5 {
-    margin-bottom: 30px;
-
-    div {
-      height: 15em;
-
-      ul {
-        list-style-type: none;
-        padding-left: 0;
-
-        a {
-          color: black; 
-        }
-
-      }
-      
-    }
-
+  h1 {
+    font-family: 'AmericanTypewriter-Bold','Arial';
+    font-weight: bold;
+    color: #8d8479 !important;
+    font-size: 24px;
+    margin-top: 0;
   }
 
+  h2 {
+    font-size: 16px; 
+  }
+  
+  h3 {
+    font-size: 15px;
+  }
+
+  h4 {
+    font-size: 14px;
+  }
+
+  h5 {
+    font-size: 13px;
+  }
+
+  h6 {
+    font-size: 12px;
+  }
 }
+

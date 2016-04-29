@@ -2,6 +2,7 @@
 {% load static %}
 {% load compress %}
 {% load profilestags %}
+{% load commontags %}
 
 {% block head_statics %}
 {% compress js %}
@@ -14,13 +15,17 @@
 
 {% block head_title %}{{profile_user.profile.name}}{% endblock %}
 
+{% block ga_events %}
+ga('send', 'event', 'profile', 'view');
+{% endblock %}
+
 {% block main %}
 
 <div class="row">
-    <div class="profile col-md-2">
+    <div class="profile col-md-2 col-sm-3">
         {% render_profile_photo profile_user %}
     </div>
-    <div class="profile col-md-6">
+    <div class="profile col-md-6 col-sm-9">
         <h1 class="title">
             {% if profile_user.profile.country %}
                 <span title="{{profile_user.profile.country.name}}" class="flag-icon flag-icon-{{profile_user.profile.country}}"></span>
@@ -46,7 +51,7 @@
                 <h3 class="title">Stories I Have Shared</h3>
                 <div class="flex-wrapper row">
                     {% for story in stories %}
-                        <div class="story col-md-6 {% if forloop.counter > 4%}hidden{% endif %}">
+                        <div class="story col-md-6 col-xs-12 {% if forloop.counter > 4%}hidden{% endif %}">
                             <h4>
                                 {% if story.country %}
                                     <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
@@ -100,7 +105,7 @@
 
     </div>
  
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-9 col-md-offset-0 col-sm-offset-3">
         {% if tools %}
             <div class="tools-used">
             <h3 class="title">
@@ -109,7 +114,7 @@
             </h3>
             <div class="flex-wrapper row">
                 {% for tool in tools|slice:":9" %}
-                    <div class="tool col-md-4">
+                    <div class="tool col-md-4 col-xs-6">
                         <a href="{% url 'tools:show' tool.id %}">
                             {% if tool.cover_image %}
                                 <div class="tool-cover-image" style="background-image: url({{ tool.cover_image.url }})"></div>
@@ -123,7 +128,7 @@
             </div>
             {% if tools|length > 9 %}
                 <div class="show-all">
-                    <a href="{% url 'profiles:show_tools' profile_user.id %}">Show all</a>
+                    <a href="{% url 'profiles:show_tools' profile_user.profile.uid %}">Show all</a>
                 </div>
             {% endif %}
             </div>

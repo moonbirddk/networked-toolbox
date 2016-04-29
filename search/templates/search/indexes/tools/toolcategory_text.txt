@@ -1,0 +1,3 @@
+{% load commontags %}
+{{object.title}}
+{{object.description|bleach_striptags}}

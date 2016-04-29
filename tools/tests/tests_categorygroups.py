@@ -106,10 +106,10 @@ class CategoryGroupViewsTestCase(TestCase):
         }
         resp = self.client.post(url, data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/categories/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/toolboxes/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
-            "You have added the category group",
+            "You have added the toolbox",
             str(list(resp.context['messages'])[0]))
 
     def test_edit_categorygroup_get(self):
@@ -130,10 +130,10 @@ class CategoryGroupViewsTestCase(TestCase):
         }
         resp = self.client.post(url, data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/categories/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/toolboxes/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
-            "You have updated the category group", str(list(resp.context['messages'])[0]))
+            "You have updated the toolbox", str(list(resp.context['messages'])[0]))
 
     def test_delete_categorygroup_get(self):
         self.client.login(username='testadmin', password='testpass')
@@ -152,7 +152,7 @@ class CategoryGroupViewsTestCase(TestCase):
         }
         resp = self.client.post(url, data, follow=True)
         self.assertEqual(
-            [('http://testserver/tools/categories/', 302)], resp.redirect_chain)
+            [('http://testserver/tools/toolboxes/', 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)
         self.assertEqual(
-            "You have deleted the category group", str(list(resp.context['messages'])[0]))
+            "You have deleted the toolbox", str(list(resp.context['messages'])[0]))

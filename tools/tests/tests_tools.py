@@ -30,7 +30,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.get(reverse('tools:add'), follow=True)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add.html')
-        self.assertContains(resp, 'Add tool')
+        self.assertContains(resp, 'Add Tool')
 
     def test_add_tool_post(self):
         self.client.login(username='testadmin', password='testpass')
@@ -38,7 +38,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.post(reverse('tools:add'), empty, follow=True)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/add.html')
-        self.assertContains(resp, 'Add tool')
+        self.assertContains(resp, 'Add Tool')
 
         test_fh = SimpleUploadedFile('test empty.png', TEST_PNG_CONTENT)
         data = {
@@ -72,7 +72,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.get(reverse('tools:edit', args=(tool.id,)))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/edit.html')
-        self.assertContains(resp, 'Edit tool')
+        self.assertContains(resp, 'Edit Tool')
         self.assertContains(resp, tool.title)
         self.assertContains(resp, tool.description)
 
@@ -116,7 +116,7 @@ class ToolsViewsTestCase(TestCase):
             reverse('tools:edit', args=(tool.id,)), empty, follow=True)
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/edit.html')
-        self.assertContains(resp, 'Edit tool')
+        self.assertContains(resp, 'Edit Tool')
 
         test_fh2 = SimpleUploadedFile('test empty2.png', TEST_PNG_CONTENT)
         data = {
@@ -173,7 +173,7 @@ class ToolsViewsTestCase(TestCase):
         resp = self.client.get(reverse('tools:index'))
         self.assertEqual(200, resp.status_code)
         self.assertTemplateUsed(resp, 'tools/index.html')
-        self.assertContains(resp, 'Tool overview')
+        self.assertContains(resp, 'Tool Overview')
 
     def test_show_get(self):
         tool = Tool.objects.create(

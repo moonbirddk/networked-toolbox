@@ -49,7 +49,7 @@ class OverviewTestCase(TestCase):
         url = reverse('tools:edit_overview', args=('category',))
         data = {'description': 'some desc1'}
         resp = self.client.post(url, data, follow=True)
-        expected_url = 'http://testserver/tools/categories/'
+        expected_url = 'http://testserver/tools/toolboxes/'
         self.assertEqual(
             [(expected_url, 302)], resp.redirect_chain)
         self.assertTrue('messages' in resp.context)

@@ -1,0 +1,4 @@
+{% load commontags %}
+{{object.name}}
+{{object.bio|bleach_striptags}}
+{{object.country.name}}
