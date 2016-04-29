@@ -51,10 +51,11 @@ def homepage(request):
     else:
         form = SearchForm()
         tools = Tool.objects.annotate(num_followers=Count('followers'))\
-            .order_by('-num_followers')[:limit]
+            .filter(published=True).order_by('-num_followers')[:limit]
         tools_results_count = len(tools)
 
-        categories = ToolCategory.objects.all().order_by('?')[:limit]
+        categories = ToolCategory.objects.filter(published=True)\
+            .order_by('?')[:limit]
         categories_results_count = len(categories)
 
         stories = Story.objects.all().order_by('-created')[:limit]
