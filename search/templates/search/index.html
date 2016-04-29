@@ -12,19 +12,26 @@
 
 {% block head_title %}Welcome{% endblock %}
 
-{% block main %}
-
-<div id="mainpage">
-    <div class="row search-form-box">
-        <div class="col-md-12">
-        <form class="form-inline search-form" method="get" action="{% url 'search:homepage' %}">
-            <div class="form-group">
-                {% bootstrap_form form %}
-                <button class="btn btn-primary" type="submit" />Search</button>
+{% block searchform %}
+<div class="search-form-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <form class="row form-inline search-form" method="get" action="{% url 'search:homepage' %}">
+                    <div class="search-q col-md-11 col-sm-12 col-xs-12">
+                        {% bootstrap_form form %}
+                    </div>
+                    <div class="col-md-1 col-sm-12 col-xs-12">
+                        <button class="btn btn-primary" type="submit" />Search</button>
+                    </div>
+                </form>
             </div>
-        </form>
         </div>
     </div>
+</div>
+{% endblock %}
+
+{% block main %}
 
     <div class="row">
         <div class="col-md-12">
@@ -106,6 +113,5 @@
         </div>
 
     </div>
-</div>
 
 {% endblock %}

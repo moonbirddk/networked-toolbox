@@ -11,28 +11,38 @@
 .search-form-box {
     color: white;
     background-color: #bf0d13;
-    margin-right: 0px;
-    margin-left: 0px;
+    margin: -20px 0 0 0;
 }
 
 .search-form {
-    margin: 30px auto;
-    width: 600px;
+    margin: 30px 0;
+    width: 100%;
+      
+    .col-xs-12 {
+        padding-left: 0 !important;
+    }
     
     .form-group {
+        width: 100%;
+        margin-bottom: 10px;
     
         input {
-            width: 500px;
-            padding: 10px 5px;
-            margin: 0 10px 0 0;
-            font-size: 12px;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 0;
         }
-      
-        button {
-            width: 80px;
-            font-size: 12px; 
+     
+    }
+
+    button {
+        font-size: 15px; 
+        margin-bottom: 10px;
+
+        &:hover {
+          background-color: #ED1C24;
+          border-color: #ED1C24;
         }
-    
     }
 }
 

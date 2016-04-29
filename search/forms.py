@@ -10,7 +10,8 @@ log = logging.getLogger(__name__)
 
 
 class SearchForm(forms.Form):
-    q = forms.fields.CharField(max_length=30, label='')
+    q = forms.fields.CharField(max_length=30, label='',
+        widget=forms.TextInput(attrs={'placeholder': 'Search content...'}))
 
     def clean_q(self):
         q = self.cleaned_data.get('q')
