@@ -1,13 +1,10 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 {% load account %}
 
 {% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
 
-{% block ga_events %}
-ga('send', 'event', 'profile', 'confirm');
-{% endblock %}
 
 {% block main %}
 

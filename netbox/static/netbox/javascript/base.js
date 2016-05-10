@@ -14,6 +14,10 @@ $(document).on("click", "#user-signup", function(e){
   ga('send', 'event', 'profile', 'signup');
 });
 
+$(document).on("click", "#user-email-confirm", function(e){
+    ga('send', 'event', 'profile', 'confirm');
+});
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
 
