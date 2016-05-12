@@ -49,7 +49,6 @@ ga('send', 'event', 'story', 'view');
                             {% if story.user.profile.country %}
                               <span title="{{story.user.profile.country.name}}" class="flag-icon flag-icon-{{story.user.profile.country}}"></span>
                             {% endif %}
-                            {{story.title}}
                             <a href="{% url 'profiles:show' story.user.profile.uid %} ">{{story.user.profile.name}}</a>
                         </h4>
                         <div class="story-user-bio">
