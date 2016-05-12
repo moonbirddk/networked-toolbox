@@ -9,6 +9,8 @@ from django_countries import countries
 
 from bleach import clean
 
+from .models import PROFILE_BIO_MAX_LEN
+
 
 log = logging.getLogger(__name__)
 
@@ -17,13 +19,12 @@ class ProfileForm(forms.Form):
     MAX_PHOTO_SIZE = 2 * 1024 * 1024
     PHOTO_MAX_WIDTH = 1024
     PHOTO_MAX_HEIGH = 1024
-    BIO_MAX_LEN = 400
     first_name = fields.CharField(max_length=30, required=False)
     last_name = fields.CharField(max_length=30, required=False)
     photo = forms.ImageField(required=False,
                              label='Photo image (recommended size: 160x160)')
     bio = fields.CharField(widget=forms.Textarea,
-                           max_length=BIO_MAX_LEN,
+                           max_length=PROFILE_BIO_MAX_LEN,
                            required=False,
                            label='Bio (a short description of yourself)',
                            help_text='400 characters max.')

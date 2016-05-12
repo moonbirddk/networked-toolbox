@@ -7,7 +7,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from http.cookies import Morsel
 
 from common.testlib import TEST_PNG_CONTENT
-from .models import Profile
+from .models import PROFILE_BIO_MAX_LEN, Profile
 from .forms import ProfileForm
 from tools.models import Tool, ToolFollower, Story
 
@@ -80,7 +80,7 @@ class ProfilesViewsTestCase(TestCase):
         self.test_user.first_name = 'test first'
         self.test_user.last_name = 'test last'
         self.test_user.save()
-        self.test_user.profile.bio = '𐍈' * ProfileForm.BIO_MAX_LEN
+        self.test_user.profile.bio = '𐍈' * PROFILE_BIO_MAX_LEN
         self.test_user.profile.country = 'DK'
         self.test_user.profile.save()
         self.another_user = User.objects.create_user('anotheruser',
@@ -171,7 +171,7 @@ class ProfilesViewsTestCase(TestCase):
         data = {
             'first_name': 'test first name',
             'last_name': 'test last name',
-            'bio': '𐍈' * ProfileForm.BIO_MAX_LEN,
+            'bio': '𐍈' * PROFILE_BIO_MAX_LEN,
             'country': 'PL',
             'photo': test_fh
         }

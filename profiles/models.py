@@ -25,6 +25,9 @@ def generate_profile_uid():
     return uuid.uuid4().hex
 
 
+PROFILE_BIO_MAX_LEN = 400
+
+
 class ProfileManager(models.Manager):
     def create(self, *args, **kwargs):
         kwargs['uid'] = generate_profile_uid()
@@ -45,7 +48,11 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
     photo = models.ImageField(upload_to=do_upload_profile_photo,
                               blank=True, null=True)
-    bio = models.TextField(max_length=1600, blank=True, null=True)
+    bio = models.TextField(
+        max_length=PROFILE_BIO_MAX_LEN,
+        blank=True,
+        null=True
+    )
     country = CountryField(blank_label='where did this take place?',
                            blank=True, null=True)
 
