@@ -45,7 +45,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
     photo = models.ImageField(upload_to=do_upload_profile_photo,
                               blank=True, null=True)
-    bio = models.CharField(max_length=400, blank=True)
+    bio = models.TextField(max_length=1600, blank=True, null=True)
     country = CountryField(blank_label='where did this take place?',
                            blank=True, null=True)
 

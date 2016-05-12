@@ -15,8 +15,6 @@ from tools.models import Story, ToolFollower
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http.response import HttpResponseNotFound
 
-from bleach import clean
-
 log = logging.getLogger(__name__)
 
 
@@ -116,8 +114,7 @@ def edit(request):
                 else:
                     photo = profile.photo
             profile.photo = photo
-            profile.bio = clean(form.cleaned_data.get('bio', None), tags=[],
-                    strip=True, strip_comments=True)
+            profile.bio = form.cleaned_data.get('bio', '')
             profile.country = form.cleaned_data['country']
             profile.save()
             user.first_name = form.cleaned_data.get('first_name', None)

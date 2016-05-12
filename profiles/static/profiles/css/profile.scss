@@ -5,6 +5,10 @@
 }
 
 .profile {
+
+  &__bio {
+    word-wrap: break-word;
+  }
   
   .profile-photo {
     width: 125px; 

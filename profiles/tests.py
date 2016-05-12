@@ -8,6 +8,7 @@ from http.cookies import Morsel
 
 from common.testlib import TEST_PNG_CONTENT
 from .models import Profile
+from .forms import ProfileForm
 from tools.models import Tool, ToolFollower, Story
 
 
@@ -51,7 +52,7 @@ class TermsAndConditionsTestCase(TestCase):
     @unittest.skip("FIXME")
     def test_post_with_next_not_accepted(self):
         url = reverse('profiles:terms_and_conditions') +\
-                      '?next=/tools/%3Fpublished%3D1%3F'
+            '?next=/tools/%3Fpublished%3D1%3F'
         data = {
             'next': '/tools/categories/?published=1',
             'redirect_field_name': REDIRECT_FIELD_NAME,
@@ -76,24 +77,36 @@ class ProfilesViewsTestCase(TestCase):
             'testuser',
             'testuser@localhost', 'testpass'
         )
-        self.test_user.first_name='test first'
-        self.test_user.last_name='test last'
-        test_profile, _ = Profile.objects.get_or_create(user=self.test_user)
-        test_profile.bio='test bio'
-        test_profile.country='DK'
+        self.test_user.first_name = 'test first'
+        self.test_user.last_name = 'test last'
         self.test_user.save()
+        self.test_user.profile.bio = '𐍈' * ProfileForm.BIO_MAX_LEN
+        self.test_user.profile.country = 'DK'
+        self.test_user.profile.save()
         self.another_user = User.objects.create_user('anotheruser',
-            'anotheruser@localhost', 'testpass')
+                                                     'anotheruser@localhost',
+                                                     'testpass')
         another_profile, _ = Profile.objects\
             .get_or_create(user=self.another_user)
-        self.tool_followed = Tool.objects.create(title='test tool',
-                description='description', published=True)
-        ToolFollower.objects.create(user=self.test_user,
-                                    tool=self.tool_followed)
-        self.tool_not_followed = Tool.objects.create(title='another test tool',
-                description='description', published=True)
-        self.tool_with_story = Tool.objects.create(title='third test tool',
-                description='description', published=True)
+        self.tool_followed = Tool.objects.create(
+            title='test tool',
+            description='description',
+            published=True
+        )
+        ToolFollower.objects.create(
+            user=self.test_user,
+            tool=self.tool_followed
+        )
+        self.tool_not_followed = Tool.objects.create(
+            title='another test tool',
+            description='description',
+            published=True
+        )
+        self.tool_with_story = Tool.objects.create(
+           title='third test tool',
+           description='description',
+           published=True
+        )
 
     def test_show_profile_get(self):
         url = reverse('profiles:show', args=(self.test_user.profile.uid,))
@@ -110,8 +123,13 @@ class ProfilesViewsTestCase(TestCase):
         self.assertNotContains(resp, self.tool_not_followed.title)
         self.assertNotContains(resp, self.tool_with_story.title)
         self.assertContains(resp, 'User has no activity')
-        story = Story.objects.create(title='test story', content='test story content',
-                country='DK', tool_id=self.tool_with_story.id, user_id=self.test_user.id)
+        story = Story.objects.create(
+            title='test story',
+            content='test story content',
+            country='DK',
+            tool_id=self.tool_with_story.id,
+            user_id=self.test_user.id
+        )
         resp = self.client.get(url, follow=True)
         self.assertContains(resp, story.title)
         self.assertContains(resp, story.content)
@@ -153,8 +171,8 @@ class ProfilesViewsTestCase(TestCase):
         data = {
             'first_name': 'test first name',
             'last_name': 'test last name',
-            'bio': 'anotther test bio',
-            'country': 'NL',
+            'bio': '𐍈' * ProfileForm.BIO_MAX_LEN,
+            'country': 'PL',
             'photo': test_fh
         }
 
