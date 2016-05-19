@@ -68,8 +68,8 @@ class ToolFollower(models.Model):
 
 
 class Story(ModelWithCoverImage):
-    title = models.CharField(max_length=100)
-    content = models.CharField(max_length=5000)
+    title = models.CharField(max_length=100, null=False, blank=False)
+    content = models.TextField(max_length=5000, null=False, blank=False)
     user = models.ForeignKey('auth.User')
     tool = models.ForeignKey('Tool', related_name='stories')
     created = models.DateTimeField(auto_now_add=True)

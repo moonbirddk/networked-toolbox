@@ -117,6 +117,7 @@ def on_profile_post_delete(sender, instance, **kwargs):
             default_storage.exists(instance.photo.name):
         default_storage.delete(instance.photo.name)
 
+
 class ActivityEntry(models.Model):
     TYPE_ADD_STORY = 'add_story'
     TYPE_ADD_COMMENT = 'add_comment'
@@ -133,13 +134,18 @@ class ActivityEntry(models.Model):
     link = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
 
+
 @receiver(post_save, sender=Story)
 def on_story_create(sender, instance=None, created=False, **kwargs):
     if created:
         link = reverse('tools:show', args=(instance.tool.id, ))
-        ActivityEntry.objects.create(user=instance.user,
-                entry_type=ActivityEntry.TYPE_ADD_STORY, title=instance.tool.title,
-                content=instance.content, link=link)
+        ActivityEntry.objects.create(
+            user=instance.user,
+            entry_type=ActivityEntry.TYPE_ADD_STORY,
+            title=instance.tool.title[:150],
+            content=instance.content[:500], link=link
+        )
+
 
 @receiver(post_save, sender=ThreadedComment)
 def on_comment_create(sender, instance=None, created=False, **kwargs):
@@ -151,7 +157,10 @@ def on_comment_create(sender, instance=None, created=False, **kwargs):
             or ActivityEntry.TYPE_ADD_COMMENT
 
     link = reverse(view, args=(instance.related_object.id, ))
-    ActivityEntry.objects.create(user=instance.author,
-            entry_type=entry_type,
-            title=instance.related_object.title,
-            content=instance.content, link=link)
+    ActivityEntry.objects.create(
+        user=instance.author,
+        entry_type=entry_type,
+        title=instance.related_object.title[:150],
+        content=instance.content[:500],
+        link=link
+    )

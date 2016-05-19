@@ -47,7 +47,7 @@ class StoriesViewsTestCase(TestCase):
         self.client.login(username='testuser', password='testpass')
         data = {
             'title': 'our test title',
-            'content': 'content test',
+            'content': '𐍈' * 5000,
             'tool_id' : self.tool.id
         }
         url = reverse('tools:add_story', args=(self.tool.id, ))
