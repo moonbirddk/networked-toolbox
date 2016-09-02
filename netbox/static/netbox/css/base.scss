@@ -29,7 +29,7 @@ body {
   font-family: 'Helvetica Neue', 'Arial';
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1230px) {
   .container {
     width: 1230px;
   }
@@ -150,7 +150,7 @@ h3.title {
 }
 
 .navbar-right {
-  
+
   .profile-photo {
     margin: 3px 3px 0 0;
   }
@@ -279,9 +279,9 @@ h3.title {
   }
 
   h2 {
-    font-size: 16px; 
+    font-size: 16px;
   }
-  
+
   h3 {
     font-size: 15px;
   }
@@ -298,4 +298,3 @@ h3.title {
     font-size: 12px;
   }
 }
-
