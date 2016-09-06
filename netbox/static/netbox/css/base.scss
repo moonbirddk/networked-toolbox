@@ -63,9 +63,9 @@ h3.title {
 .btn-primary {
   background-color: $color-primary;
   border-color: $color-primary;
-  &:hover {
-    background-color: $color-primary-dark;
-    border-color: $color-primary-dark;
+  &:hover, &:focus {
+    background-color: $color-primary-dark !important;
+    border-color: $color-primary-dark !important;
   }
 }
 
