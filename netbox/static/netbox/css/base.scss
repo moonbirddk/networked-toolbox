@@ -152,6 +152,11 @@ h3.title {
 
 .navbar-collapse {
   border-top: 0;
+  padding: 0;
+
+  @media (min-width: $media-medium) {
+    padding: 0 15px;
+  }
 }
 
 .navbar-right {
