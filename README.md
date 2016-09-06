@@ -22,6 +22,7 @@ export DJANGO_SETTINGS_MODULE=netbox.settings
 Subsequent runs:
 
 ```
+. .venv/bin/activate
 ./manage.py migrate
 ./manage.py runserver
 ```
