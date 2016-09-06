@@ -6,7 +6,6 @@
   font-style: normal;
 }
 
-
 @font-face {
   font-family: 'AmericanTypewriter-Bold';
   src: url('../fonts/AmericanTypewriter-Bold.eot');
@@ -14,7 +13,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
 
 @font-face {
   font-family: 'AmericanTypewriter';
@@ -24,21 +22,20 @@
   font-style: normal;
 }
 
+@import 'variables.scss';
 
 body {
-  font-family: 'Helvetica Neue', 'Arial';
+  font-family: $sans-serif;
 }
 
-@media (min-width: 1230px) {
-  .container {
-    width: 1230px;
-  }
+.container-fluid {
+  max-width: $media-large;
 }
 
 a {
-  color: #ed1c24;
+  color: $color-primary;
   &:hover, &:active,  {
-    color: #bf0d13;
+    color: $color-primary-dark;
   }
   .fa {
     color: #337ab7;
@@ -51,7 +48,7 @@ a {
 }
 
 .title {
-  font-family: 'AmericanTypewriter-Bold','Arial';
+  font-family: $serif-bold;
   font-weight: bold;
 }
 
@@ -64,11 +61,11 @@ h3.title {
 }
 
 .btn-primary {
-  background-color: #ed1c24;
-  border-color: #ed1c24;
+  background-color: $color-primary;
+  border-color: $color-primary;
   &:hover {
-    background-color: #bf0d13;
-    border-color: #bf0d13;
+    background-color: $color-primary-dark;
+    border-color: $color-primary-dark;
   }
 }
 
@@ -100,68 +97,86 @@ h3.title {
 .navbar {
   border: none;
   border-radius: 0px;
-  font-family: 'AmericanTypewriter', 'Arial';
+  font-family: $serif;
+
+  &-bottom {
+    background-color: $color-primary;
+    min-height: 0.8rem;
+    height: 4.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  &-brand {
+    color: black !important;
+    font-family: $serif-bold;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-left: -15px;
+  }
+
+  &-logo {
+    height: 1.5rem;
+  }
+
+  &-nav {
+    @media (min-width: $media-medium) {
+      margin: 1px 0 -1px 30px;
+    }
+  }
+
+  &-toggle {
+    margin-right: 0;
+  }
+
+  &-top {
+    padding: 1.2rem 0;
+    margin-bottom: 0px;
+    background-color: white;
+  }
 }
 
-.navbar-brand {
-  font-family: 'AmericanTypewriter-Bold','Arial';
-}
-
-.navbar-logo {
-  height: 1.5rem;
-}
-
-.navbar-top {
-  padding-top: 1rem;
-  margin-bottom: 0px;
-  background-color: white;
-  min-height: 7rem;
-}
-
-.navbar-bottom {
-  background-color: #ED1C24;
-  min-height: 0.8rem;
-  height: 4.5rem;
-}
-
-.navbar-top .navbar-brand {
-  color: black;
-}
-
-.navbar-brand {
-  font-size: 2rem;
-  font-weight: bold;
-}
 
 .navbar-default .navbar-nav {
   font-size: 18px;
 
   > .active > a {
-    color: #ED1C24;
+    color: $color-primary;
     background: white;
 
     &:hover, &:focus {
-      color: #ED1C24;
+      color: $color-primary;
       background: white;
     }
-
   }
+}
 
+.navbar-collapse {
+  border-top: 0;
 }
 
 .navbar-right {
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  font-family: $sans-serif;
+  height: 50px;
 
   .profile-photo {
     margin: 3px 3px 0 0;
   }
 
-  > li > a {
-    color: black !important;
-    font-weight: bold;
-    font-size: 15px;
-    font-family: "Helvetica Neue", "Arial";
+  > li {
+    display: inline-block;
   }
 
+  .btn {
+    font-weight: bold;
+  }
+
+  .btn-link {
+    border-radius: $border-radius;
+    margin-right: 5px;
+  }
 }
 
 .white-text {
@@ -169,7 +184,7 @@ h3.title {
 }
 
 .red-text {
-  color: #ed1c24;
+  color: $color-primary;
 }
 
 .gray-text {
