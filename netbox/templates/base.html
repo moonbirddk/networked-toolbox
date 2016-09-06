@@ -31,20 +31,19 @@
 
           ga('create', '{{GOOGLE_ANALYTICS_ID}}', 'auto');
           ga('send', 'pageview');
-          
+
           {% block ga_events %}
           {% endblock %}
-
-          </script>
+        </script>
     </head>
     <body>
       <nav class="navbar navbar-default navbar-top">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
 
 
           <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="col-md-10 col-md-offset-1">
+          <div class="col-xs-12">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -58,13 +57,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav">
-                <li><a href="/">Home<span class="sr-only">(current)</span></a></li>
-                <li><a href="{% url 'tools:index'%}">Tools<span class="sr-only">(current)</span></a></li>
-                <li><a href="{% url 'tools:list_categories'%}">Toolboxes<span class="sr-only">(current)</span></a></li>
-                <!--<li><a href="#">Cases<span class="sr-only">(current)</span></a></li>
-                <li><a href="#">People<span class="sr-only">(current)</span></a></li>-->
+                <!-- <li><a href="/">Home<span class="sr-only">(current)</span></a></li> -->
+                <li><a href="{% url 'tools:index'%}">Tools</a></li>
+                <li><a href="{% url 'tools:list_categories'%}">Toolboxes</a></li>
               </ul>
-              <ul class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>{% render_profile_photo user %}</li>
                 <li><a href="{% url 'profiles:show' user.profile.uid %}">
@@ -76,7 +73,8 @@
                 </a></li>
                 <li><a href="{% url 'account_logout'%}">Log out</a></li>
                 {% else %}
-                <li><a href="{% url 'account_login'%}">Log in</a></li>
+                <li><a class="btn btn-link" href="{% url 'account_signup'%}">Sign Up</a></li>
+                <li><a class="btn btn-primary" href="{% url 'account_login'%}">Log In</a></li>
                 {% endif %}
               </ul>
             </div><!-- /.navbar-collapse -->
@@ -85,9 +83,9 @@
         </div><!-- /.container-fluid -->
       </nav>
       <nav class="navbar navbar-default navbar-bottom">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-xs-12">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <a href="http://actionaid.org" target='_blank' class="navbar-brand"><img class="navbar-logo" src="{% static "netbox/images/AA_Logo-white-web.png" %}"></a>
@@ -98,9 +96,9 @@
       </nav>
     {% block searchform %}
     {% endblock %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-xs-12">
               {% bootstrap_messages %}
 
               {% block main %}
@@ -108,11 +106,11 @@
             </div>
         </div>
     </div>
-  
+
     <div id="cookies-notice">
         <form>
               We use cookies to give you the best online experience. By using our
-              website you agree to our use of cookies in accordance with our cookie 
+              website you agree to our use of cookies in accordance with our cookie
               policy.
               <button id="accept-cookies" class="btn btn-primary" type="submit">OK</button>
         </form>
