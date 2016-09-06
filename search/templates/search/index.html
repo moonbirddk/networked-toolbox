@@ -14,19 +14,11 @@
 
 {% block searchform %}
 <div class="search-form-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <form class="row form-inline search-form" method="get" action="{% url 'search:homepage' %}">
-                    <div class="search-q col-md-11 col-sm-12 col-xs-12">
-                        {% bootstrap_form form %}
-                    </div>
-                    <div class="col-md-1 col-sm-12 col-xs-12">
-                        <button class="btn btn-primary" type="submit" />Search</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="container-fluid">
+      <form class="form-inline search-form" method="get" action="{% url 'search:homepage' %}">
+        {% bootstrap_form form %}
+        <button class="btn btn-primary" type="submit" />Search</button>
+      </form>
     </div>
 </div>
 {% endblock %}
@@ -40,7 +32,7 @@
             </p>
         </div>
     </div>
-        
+
     <div class="row">
         <div class="col-md-6 col-sm-12 search-box">
             <h1 class="title">
@@ -77,7 +69,7 @@
               </a>
             {% endif %}
         </div>
-        
+
         <div class="clearfix"></div>
 
         <div class="col-md-6 col-sm-12 search-box">
