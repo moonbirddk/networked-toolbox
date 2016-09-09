@@ -65,12 +65,12 @@
               <ul class="nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>{% render_profile_photo user %}</li>
-                <li><a class="btn btn-link" href="{% url 'profiles:show' user.profile.uid %}">
-                {% if user.first_name %}
+                  <li><a class="btn btn-link" href="{% url 'profiles:show' user.profile.uid %}">
+                  {% if user.first_name %}
                     {{user.first_name}}
-                {% else%}
+                  {% else%}
                     My profile
-                {% endif %}
+                  {% endif %}
                 </a></li>
                 <li><a class="btn btn-primary" href="{% url 'account_logout'%}">Log out</a></li>
                 {% else %}

@@ -8,7 +8,7 @@ def get_profile_url(user):
 
 
 def get_profile_photo_url(user):
-    photo_url = settings.STATIC_URL + 'profiles/images/Small user pic.png'
+    photo_url = settings.STATIC_URL + 'profiles/images/defaultUser.svg'
     photo_url = quote(photo_url)
     if user and not user.is_anonymous() and user.profile and\
             user.profile.photo and user.profile.photo.url:
