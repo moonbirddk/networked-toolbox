@@ -19,9 +19,6 @@ log = logging.getLogger(__name__)
 
 
 def terms_and_conditions(request):
-    if not settings.DJANGO_ENV == 'staging':
-        return HttpResponseNotFound("not found")
-
     next_page = '/'
     if (REDIRECT_FIELD_NAME in request.POST or
             REDIRECT_FIELD_NAME in request.GET):
@@ -126,4 +123,3 @@ def edit(request):
         'form': form,
     }
     return render(request, 'profiles/edit.html', ctx)
-
