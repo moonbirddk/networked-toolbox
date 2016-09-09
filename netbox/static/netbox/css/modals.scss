@@ -54,3 +54,14 @@
     }
   }
 }
+
+#verified-email-required-modal:not(.email-sent) {
+  .after-email-sent {
+    display: none;
+  }
+}
+#verified-email-required-modal.email-sent {
+  .before-email-sent {
+    display: none;
+  }
+}

@@ -1,0 +1,56 @@
+<!-- EmailRequired -->
+<div
+  class="modal fade"
+  id="verified-email-required-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="verified-email-required-modal-label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="verified-email-required-modal-label">
+          <span class="before-email-sent">Please verify your e-mail</span>
+          <span class="after-email-sent">Email sent to {{user.email}}</span>
+        </h3>
+      </div>
+      <div class="modal-body before-email-sent">
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <p>
+              You need to verify your account via email before you can comment, share stories, etc.
+            </p>
+            <p>
+              We can send another verification e-mail if you didn't receive the first one in your email inbox.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body after-email-sent">
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <p>
+              We have send another verification e-mail to your inbox.
+            </p>
+            <p>
+              (Remember to check your spam filter.)
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer before-email-sent">
+        <button type="button" class="btn btn-link" data-resend-verification>
+          Send verification e-mail
+        </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Cancel
+        </button>
+      </div>
+      <div class="modal-footer after-email-sent">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          Ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
