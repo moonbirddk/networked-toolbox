@@ -43,11 +43,11 @@ $(document).ready(function() {
   $('[data-requires-validated-user]').on("click", function(e) {
     if ($('body').data('userIsAuthenticated') === false) {
       e.preventDefault();
-      $('#loginRequiredModal').modal()
+      $('#login-required-modal').modal()
     }
     else if ($('body').data('userHasVerifiedEmail') === false) {
       e.preventDefault();
-      $('#verifiedEmailRequiredModal').modal()
+      $('#verified-email-required-modal').modal()
     }
   });
 
@@ -55,6 +55,21 @@ $(document).ready(function() {
   if (getCookie('accept-cookies')) {
     $('#cookies-notice').hide();
   }
+
+  // Register listner for button to resend verification e-mail
+  $('button[data-resend-verification]').click(function(e) {
+    var $btn = $(e.target);
+    $btn.attr('disabled', true);
+    $.get('/profiles/resend-verification', function(response) {
+      $btn.attr('disabled', false);
+      // Update the modal
+      $btn.closest('.modal').addClass('email-sent');
+    });
+  });
+  // When dismissing the resend verification modal, make sure it's resat
+  $('#verified-email-required-modal').on('hidden.bs.modal', function() {
+    $(this).removeClass('email-sent');
+  });
 });
 
 function setCookie(name, value, exdays) {
