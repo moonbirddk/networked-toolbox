@@ -125,6 +125,7 @@ TEMPLATES = [
                 "django.core.context_processors.static",
                 "netbox.context_processors.timezone_name",
                 "netbox.context_processors.google_analytics_id",
+                "netbox.context_processors.user_has_verified_email",
                 "search.context_processors.homepage_display_results",
             ],
         },

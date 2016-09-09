@@ -31,13 +31,14 @@
 
           ga('create', '{{GOOGLE_ANALYTICS_ID}}', 'auto');
           ga('send', 'pageview');
-          
+
           {% block ga_events %}
           {% endblock %}
 
           </script>
     </head>
-    <body>
+    <body data-user-has-verified-email="{{ user_has_verified_email|yesno:"true,false" }}"
+          data-user-is-authenticated="{{ user.is_authenticated|yesno:"true,false" }}">
       <nav class="navbar navbar-default navbar-top">
         <div class="container">
           <div class="row">
@@ -108,11 +109,11 @@
             </div>
         </div>
     </div>
-  
+
     <div id="cookies-notice">
         <form>
               We use cookies to give you the best online experience. By using our
-              website you agree to our use of cookies in accordance with our cookie 
+              website you agree to our use of cookies in accordance with our cookie
               policy.
               <button id="accept-cookies" class="btn btn-primary" type="submit">OK</button>
         </form>
