@@ -8,27 +8,24 @@
 
 {% block main %}
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
     <h1>{% trans "Sign Up" %}</h1>
     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">log in</a>.{% endblocktrans %}</p>
+    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    <p><strong>We recommend you use your work e-mail for this purpose.</strong></p>
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% else %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{% url 'profiles:edit' %}#welcome" />
+      {% endif %}
+      {% buttons %}
+      <button id="user-signup" class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+      {% endbuttons %}
+    </form>
   </div>
-    <div class="col-md-6">
-       <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-       <p><strong>We recommend you use your work e-mail for this purpose.</strong></p>
-         {% csrf_token %}
-         {% bootstrap_form form %}
-         {% if redirect_field_value %}
-         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-         {% else %}
-         <input type="hidden" name="{{ redirect_field_name }}" value="{% url 'profiles:edit' %}#welcome" />
-         {% endif %}
-         {% buttons %}
-         <button id="user-signup" class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
-         {% endbuttons %}
-       </form>
-    </div>
-
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
     {# if socialaccount_providers #}
       <h3>{% trans 'Or sign up with these services' %}</h3>
       <a class="social-button facebook" href="{% provider_login_url "facebook" %}">
@@ -41,6 +38,6 @@
         <span class="white-text">&nbsp;<i class="fa fa-3 fa-google white-text"></i>&nbsp;{% trans 'Sign up with <strong>Google+</strong>' %}</span>
       </a>
     {# endif #}
-  </div>
+  </div> -->
 </div>
 {% endblock %}
