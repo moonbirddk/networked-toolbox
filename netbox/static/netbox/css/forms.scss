@@ -4,3 +4,7 @@
     box-shadow: 0 0 $spacer-md rgba($color-primary, 0.3);
   }
 }
+
+.form-group.required .control-label:after {
+  content: ' *'
+}

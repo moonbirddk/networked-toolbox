@@ -60,6 +60,8 @@ class NetboxSignupForm(forms.Form):
     first_name = fields.CharField(max_length=30, required=True)
     last_name = fields.CharField(max_length=30, required=False)
 
+    required_css_class = 'required'
+
     def signup(self, request, user):
         """
         Invoked at signup time to complete the signup of the user.
