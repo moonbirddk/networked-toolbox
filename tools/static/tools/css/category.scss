@@ -1,3 +1,5 @@
+@import '../../../../netbox/static/netbox/css/variables';
+
 .category-groups {
   margin: 1em 0;
 
@@ -13,22 +15,19 @@
           text-decoration: none;
           color: #262626;
         }
-        
+
         .glyphicon {
           color: #262626;
           font-size: 18px;
         }
-  
       }
-
     }
-
   }
 
   .categories {
   }
   .categories-empty {
-    font-style: italic; 
+    font-style: italic;
   }
 
 }
