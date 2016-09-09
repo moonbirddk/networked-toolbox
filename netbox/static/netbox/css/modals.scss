@@ -25,12 +25,12 @@
   &-body {
     font-weight: $medium-weight;
     font-size: 1.5rem;
-    padding: $spacer-md;
-    white-space: pre-line;
+    padding: $spacer-lg $spacer-md $spacer-md;
   }
 
   &-footer {
     border-top: 0;
+    padding-top: 0;
   }
 
   .close {
