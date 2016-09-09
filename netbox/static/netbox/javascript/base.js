@@ -6,7 +6,7 @@ $(document).on("click", "#btn-resource-list", function(){
 
 $(document).on("click", "#accept-cookies", function(e){
     e.preventDefault();
-    setCookie('accept-cookies', 1, 365); 
+    setCookie('accept-cookies', 1, 365);
     $('#cookies-notice').fadeOut(300);
 });
 
@@ -19,16 +19,24 @@ $(document).on("click", "#user-email-confirm", function(e){
 });
 
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
+    $('[data-toggle="tooltip"]').tooltip();
 
     $('.more').shorten({
       'moreText': 'Read more',
-      'showChars': 1500 
-    }); 
+      'showChars': 1500
+    });
     $('.category-more').shorten({
       'moreText': 'Read more',
       'showChars': 500
-    }); 
+    });
+
+    if (
+      window.location.pathname === '/profiles/edit'
+      &&
+      $('body').data('userHasVerifiedEmail') === false
+    ){
+      $('#verifyEmailModal').modal()
+    }
 
     // hide cookie notice, if user already accepted
     if (getCookie('accept-cookies')) {

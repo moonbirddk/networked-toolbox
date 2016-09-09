@@ -1,11 +1,24 @@
 $sans-serif: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $serif: 'AmericanTypewriter', Arial;
 $serif-bold: 'AmericanTypewriter-Bold', Arial;
+$medium-weight: 500;
+$bold-weight: 600;
 
 $color-primary: #ed1c24;
 $color-primary-dark: #bf0d13;
 
-$border-radius: 4px;
+// Radius
+$radius: 4;
+$border-radius: #{$radius}px;
+$border-radius-big: #{2*$radius}px;
 
+// Breakpoints
 $media-large: 1170px;
 $media-medium: 768px;
+
+// Spacers
+$spacer-base: 5;
+$spacer-xs: #{$spacer-base}px;
+$spacer-sm: #{2*$spacer-base}px;
+$spacer-md: #{3*$spacer-base}px;
+$spacer-lg: #{6*$spacer-base}px;

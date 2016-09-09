@@ -65,14 +65,14 @@
               <ul class="nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>{% render_profile_photo user %}</li>
-                <li><a href="{% url 'profiles:show' user.profile.uid %}">
+                <li><a class="btn btn-link" href="{% url 'profiles:show' user.profile.uid %}">
                 {% if user.first_name %}
                     {{user.first_name}}
                 {% else%}
                     My profile
                 {% endif %}
                 </a></li>
-                <li><a href="{% url 'account_logout'%}">Log out</a></li>
+                <li><a class="btn btn-primary" href="{% url 'account_logout'%}">Log out</a></li>
                 {% else %}
                 <li><a class="btn btn-link" href="{% url 'account_signup'%}">Sign Up</a></li>
                 <li><a class="btn btn-primary" href="{% url 'account_login'%}">Log In</a></li>
@@ -98,23 +98,19 @@
     {% block searchform %}
     {% endblock %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12">
-              {% bootstrap_messages %}
+      {% bootstrap_messages %}
 
-              {% block main %}
-              {% endblock %}
-            </div>
-        </div>
+      {% block main %}
+      {% endblock %}
     </div>
 
     <div id="cookies-notice">
-        <form>
-              We use cookies to give you the best online experience. By using our
-              website you agree to our use of cookies in accordance with our cookie
-              policy.
-              <button id="accept-cookies" class="btn btn-primary" type="submit">OK</button>
-        </form>
+      <form>
+        We use cookies to give you the best online experience. By using our
+        website you agree to our use of cookies in accordance with our cookie
+        policy.
+        <button id="accept-cookies" class="btn btn-primary" type="submit">OK</button>
+      </form>
     </div>
     </body>
 </html>

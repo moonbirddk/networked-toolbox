@@ -22,7 +22,10 @@
   font-style: normal;
 }
 
-@import 'variables.scss';
+@import 'variables';
+@import 'modals';
+@import 'buttons';
+@import 'forms';
 
 body {
   font-family: $sans-serif;
@@ -58,36 +61,6 @@ h1.title {
 
 h3.title {
   font-size: 18px;
-}
-
-.btn-primary {
-  background-color: $color-primary;
-  border-color: $color-primary;
-  &:hover, &:focus {
-    background-color: $color-primary-dark !important;
-    border-color: $color-primary-dark !important;
-  }
-}
-
-.btn-warning {
-  color: white;
-  background-color: black;
-  border-color: black;
-  &:hover, &:active {
-    background-color: grey;
-    border-color: grey;
-  }
-}
-
-.btn-black {
-  color: #ffffff;
-  background-color: black;
-  border-color: black;
-  &:hover {
-    color: #ffffff;
-    background-color: grey;
-    border-color: grey;
-  }
 }
 
 .improvement-info {
