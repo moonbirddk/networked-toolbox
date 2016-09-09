@@ -22,7 +22,7 @@ class ProfileForm(forms.Form):
     first_name = fields.CharField(max_length=30, required=False)
     last_name = fields.CharField(max_length=30, required=False)
     photo = forms.ImageField(required=False,
-                             label='Photo image (recommended size: 160x160)',
+                             label='Profile image (recommended size: 160x160)',
                              widget=forms.FileInput)
     bio = fields.CharField(widget=forms.Textarea,
                            max_length=PROFILE_BIO_MAX_LEN,
