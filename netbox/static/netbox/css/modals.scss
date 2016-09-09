@@ -1,7 +1,9 @@
 .modal {
 
-  display: flex;
-  align-items: center;
+  &:not(.fade){
+    display: flex;
+    align-items: center;
+  }
 
   &-content {
     border: 2px solid $color-primary-dark;

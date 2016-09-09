@@ -24,7 +24,7 @@
 
 {% block head_title %}{{ tool.title }}{% endblock %}
 
-          
+
 {% block ga_events %}
 ga('send', 'event', 'tool', 'view');
 {% endblock %}
@@ -42,25 +42,25 @@ ga('send', 'event', 'tool', 'view');
                 </div>
                 <div class="usage-follow col-lg-2 col-md-3 col-xs-3">
                     {% if user.id in tool_follower_ids %}
-                        <form action="{% url 'tools:unfollow' tool.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-usage">
-                                No, I haven't
-                            </button>
-                        </form>
+                      <form action="{% url 'tools:unfollow' tool.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-usage">
+                          No, I haven't
+                        </button>
+                      </form>
                     {% else %}
-                        <form action="{% url 'tools:follow' tool.id %}" method="post">
-                            {% csrf_token %}
-                            {% if user.is_authenticated %}
-                                <button type="submit" name='should_notify' value='1' class="btn btn-usage">
-                                    Yes, I have
-                                </button>
+                      <form action="{% url 'tools:follow' tool.id %}" method="post">
+                        {% csrf_token %}
+                        {% if user.is_authenticated %}
+                          <button type="submit" name='should_notify' value='1' class="btn btn-usage">
+                            Yes, I have
+                          </button>
                         {% else %}
-                            <button type="submit" class="btn btn-usage" data-toggle="modal" data-target="#login-required-modal">
-                                Yes, I have
-                            </button>
+                          <button type="submit" class="btn btn-usage" data-toggle="modal" data-target="#login-required-modal">
+                            Yes, I have
+                          </button>
                         {% endif %}
-                        </form>
+                      </form>
                     {% endif %}
                 </div>
                 <div class="usage-followers col-lg-4 col-lg-offset-1 col-md-12 col-xs-12">
@@ -78,9 +78,9 @@ ga('send', 'event', 'tool', 'view');
                 {% endif %}{% endif %}
             </h1>
             <div class="tool-description summernote-content more">{{tool.description|safe }}</div>
-            
+
             <h3 class="title">Stories</h3>
-            <p>Read stories about how the tool has been used in different contexts. If you have experience you would like to share, <a href="{% url 'tools:add_story' tool.id %}">add a story</a></p> 
+            <p>Read stories about how the tool has been used in different contexts. If you have experience you would like to share, <a href="{% url 'tools:add_story' tool.id %}">add a story</a></p>
             <div id="stories" class="flex-wrapper row">
                 {% for story in stories %}
                     <div class="story col-md-6 col-sm-6 {% if forloop.counter > 4%}hidden{% endif %}">
@@ -189,11 +189,16 @@ ga('send', 'event', 'tool', 'view');
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="login-required-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div
+      class="modal fade"
+      id="login-required-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="loginRequiredModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body">
-                    <h3 class="modal-title title" id="myModalLabel">Login required</h3>
+                    <h3 class="modal-title title" id="loginRequiredModalLabel">Login required</h3>
                     <div class="row">
                         <div class="col-sm-8">
                             <p><a href="{% url 'account_login' %}?next={%url 'tools:show' tool.id %}">Please login first.</a></p>
