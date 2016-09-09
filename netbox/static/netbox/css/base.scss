@@ -22,7 +22,8 @@
   font-style: normal;
 }
 
-@import 'variables.scss';
+@import 'variables';
+@import 'modals';
 
 body {
   font-family: $sans-serif;

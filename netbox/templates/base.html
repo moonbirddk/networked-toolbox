@@ -98,14 +98,10 @@
     {% block searchform %}
     {% endblock %}
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12">
-              {% bootstrap_messages %}
+      {% bootstrap_messages %}
 
-              {% block main %}
-              {% endblock %}
-            </div>
-        </div>
+      {% block main %}
+      {% endblock %}
     </div>
 
     <div id="cookies-notice">

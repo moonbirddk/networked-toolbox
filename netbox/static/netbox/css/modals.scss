@@ -1,0 +1,50 @@
+.modal {
+
+  display: flex;
+  align-items: center;
+
+  &-content {
+    border: 2px solid $color-primary-dark;
+    border-radius: $border-radius-big;
+  }
+
+  &-header {
+    background-color: $color-primary-dark;
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+    border-radius: 0;
+    color: white;
+    font-family: $serif-bold;
+    text-align: center;
+
+    h3 {
+      padding: $spacer-lg 0;
+    }
+  }
+
+  &-body {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: $spacer-md;
+    white-space: pre-line;
+  }
+
+  &-footer {
+    border-top: 0;
+  }
+
+  .close {
+    font-size: 4rem;
+    line-height: 1;
+    font-family: $sans-serif;
+    font-weight: 200;
+    color: white;
+    margin-right: -$spacer-xs;
+    margin-top: -$spacer-md;
+    opacity: 0.4;
+
+    &:hover, &:focus {
+      opacity: 1;
+    }
+  }
+}

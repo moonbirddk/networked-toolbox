@@ -2,8 +2,6 @@
 {% load bootstrap3 %}
 {% load i18n %}
 {% load account %}
-{% load socialaccount %}
-{% get_providers as socialaccount_providers %}
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block main %}
@@ -12,13 +10,13 @@
     <h1>{% trans "Sign Up" %}</h1>
     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">log in</a>.{% endblocktrans %}</p>
     <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-    <p><strong>We recommend you use your work e-mail for this purpose.</strong></p>
+      <p><strong>We recommend you use your work e-mail for this purpose.</strong></p>
       {% csrf_token %}
       {% bootstrap_form form %}
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% else %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{% url 'profiles:edit' %}#welcome" />
+      <input type="hidden" name="{{ redirect_field_name }}" value="{% url 'profiles:edit' %}" />
       {% endif %}
       {% buttons %}
       <button id="user-signup" class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
