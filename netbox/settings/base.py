@@ -66,10 +66,6 @@ INSTALLED_APPS = (
 
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.facebook',
     'bootstrap3',
     'storages',
     'django_summernote',
@@ -253,32 +249,7 @@ SITE_OPEN_FOR_SIGNUP = True
 LOGOUT_URL = 'account_logout'
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'tools:index'
-SOCIALACCOUNT_QUERY_EMAIL = True
-SOCIALACCOUNT_EMAIL_REQUIRED = True
-SOCIALACCOUNT_EMAIL_VERIFICATION = False
-SOCIALACCOUNT_PROVIDERS = {
-'facebook': {
-    'METHOD': 'oauth2',
-    'SCOPE': ['email', 'public_profile', 'user_friends'],
-    'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-    'FIELDS': [
-        'id',
-        'email',
-        'name',
-        'first_name',
-        'last_name',
-        'verified',
-        'locale',
-        'timezone',
-        'link',
-        'gender',
-        'updated_time'],
-    'EXCHANGE_TOKEN': True,
-    #'LOCALE_FUNC': 'path.to.callable',
-    'VERIFIED_EMAIL': False,
-    'VERSION': 'v2.4'
-    },
-}
+
 
 IN_TEST = 'test' in sys.argv
 DEFAULT_CATEGORY_GROUP_NAME = 'Other'
