@@ -108,9 +108,10 @@ $(function() {
         }
         repform.show('slow');
     }
-    if ($('body').data('userIsAuthenticated') === true) && ($('body').data('userHasVerifiedEmail') === true) {
-      $('#comment-list-box').delegate('a.comment-reply-btn', 'click', onReplyBtnClick);
-      $('#comment-list-box').delegate('a.comment-submit-btn', 'click', onSubmitBtnClick);
-      $('#comment-form-box').delegate('a.comment-submit-btn', 'click', onSubmitBtnClick);
+    if ($('body').data('userIsAuthenticated') === true && 
+      $('body').data('userHasVerifiedEmail') === true) {
+        $('#comment-list-box').delegate('a.comment-reply-btn', 'click', onReplyBtnClick);
+        $('#comment-list-box').delegate('a.comment-submit-btn', 'click', onSubmitBtnClick);
+        $('#comment-form-box').delegate('a.comment-submit-btn', 'click', onSubmitBtnClick);
     }
 });
