@@ -54,3 +54,14 @@ class ProfileForm(forms.Form):
         bio = self.cleaned_data.get('bio', '')
         bio = clean(bio, tags=[], strip=True, strip_comments=True)
         return bio
+
+class NetboxSignupForm(forms.Form):
+
+    first_name = fields.CharField(max_length=30, required=True)
+    last_name = fields.CharField(max_length=30, required=False)
+
+    def signup(self, request, user):
+        """
+        Invoked at signup time to complete the signup of the user.
+        """
+        pass
