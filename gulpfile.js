@@ -16,11 +16,14 @@ var rimraf = require('rimraf');
 
 var paths = {
     sass: [
-        'netbox/static/netbox/css/*.scss',
+        'netbox/static/netbox/css/base.scss',
         'tools/static/tools/css/*.scss',
         'profiles/static/profiles/css/*.scss',
         'search/static/search/css/*.scss',
         'comments/static/comments/css/*.scss'
+    ],
+    sassWatch: [
+        'netbox/static/netbox/css/*.scss'
     ],
     js: [
         'netbox/static/netbox/javascript/*.js',
@@ -32,6 +35,10 @@ var paths = {
         'netbox/static/netbox/fonts/*',
     ]
 }
+
+paths.sassWatch = paths.sassWatch.concat(paths.sass);
+
+console.log(paths.sassWatch);
 
 // 3. TASKS
 // - - - - - - - - - - - - - - -
@@ -77,12 +84,12 @@ gulp.task('copyjs', function() {
 
 gulp.task('watch', function() {
     livereload.listen();
-    
+
     // Watch fonts
     gulp.watch(paths.fonts, ['fonts']);
 
     // Watch Sass
-    gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.sassWatch, ['sass']);
 
     // Watch javascript
     gulp.watch(paths.js, ['copyjs']);
