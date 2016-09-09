@@ -96,7 +96,6 @@ MIDDLEWARE_CLASSES = (
     'easy_timezones.middleware.EasyTimezoneMiddleware',
 
     'netbox.middleware.RedirectToTermsAndConditionsMiddleware',
-
 )
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
