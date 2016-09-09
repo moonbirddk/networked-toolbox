@@ -65,14 +65,14 @@
               <ul class="nav navbar-right">
                 {% if user.is_authenticated %}
                 <li>{% render_profile_photo user %}</li>
-                <li><a href="{% url 'profiles:show' user.profile.uid %}">
+                <li><a class="btn btn-link" href="{% url 'profiles:show' user.profile.uid %}">
                 {% if user.first_name %}
                     {{user.first_name}}
                 {% else%}
                     My profile
                 {% endif %}
                 </a></li>
-                <li><a href="{% url 'account_logout'%}">Log out</a></li>
+                <li><a class="btn btn-primary" href="{% url 'account_logout'%}">Log out</a></li>
                 {% else %}
                 <li><a class="btn btn-link" href="{% url 'account_signup'%}">Sign Up</a></li>
                 <li><a class="btn btn-primary" href="{% url 'account_login'%}">Log In</a></li>
