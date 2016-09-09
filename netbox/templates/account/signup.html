@@ -8,11 +8,10 @@
 
 {% block main %}
 <div class="row">
-<h1>{% trans "Sign Up" %}</h1>
-
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-</div>
-<div class="row">
+  <div class="col-xs-12">
+    <h1>{% trans "Sign Up" %}</h1>
+    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">log in</a>.{% endblocktrans %}</p>
+  </div>
     <div class="col-md-6">
        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
        <p><strong>We recommend you use your work e-mail for this purpose.</strong></p>
