@@ -5,6 +5,11 @@
     align-items: center;
   }
 
+  &-dialog {
+    width: 100%;
+    max-width: 600px;
+  }
+
   &-content {
     border: 2px solid $color-primary-dark;
     border-radius: $border-radius-big;
@@ -27,12 +32,11 @@
   &-body {
     font-weight: $medium-weight;
     font-size: 1.5rem;
-    padding: $spacer-lg $spacer-md $spacer-md;
+    padding: $spacer-lg $spacer-md 0;
   }
 
   &-footer {
     border-top: 0;
-    padding-top: 0;
   }
 
   .close {

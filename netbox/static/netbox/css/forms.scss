@@ -1,7 +1,7 @@
 .form-control {
   &:focus {
-    border-color: $color-primary;
-    box-shadow: 0 0 $spacer-md rgba($color-primary, 0.3);
+    border-color: black;
+    box-shadow: 0 0 $spacer-lg rgba(black, 0.1), 0 0 $spacer-sm rgba(black, 0.1);
   }
 }
 
