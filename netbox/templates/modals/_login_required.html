@@ -1,3 +1,5 @@
+{% load i18n %}
+{% load account %}
 
 <!-- LoginRequired -->
 <div
@@ -12,7 +14,18 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title" id="login-required-modal-label">Log In Required</h3>
       </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-10 col-sm-offset-1">
+            <p>{% blocktrans %}You need to be logged in. If don't have an account yet, then please sign up.{% endblocktrans %}</p>
+          </div>
+        </div>
+      </div>
       <div class="modal-footer">
+        <a href="{% url 'account_signup' %}"
+          class="btn btn-link">
+          Sign Up
+        </a>
         <a href="{% url 'account_login' %}?next={{ request.path }}"
           class="btn btn-primary">
           Log In
