@@ -15,6 +15,7 @@
 
   &__row {
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__img-col {
@@ -42,6 +43,8 @@
   &__license {
     width: 120px;
     height: 20px;
+    margin-top: $spacer-sm;
+    margin-bottom: $spacer-lg;
   }
 
   &__actionaid {
