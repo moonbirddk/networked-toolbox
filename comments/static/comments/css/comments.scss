@@ -1,9 +1,7 @@
+@import '../../../../netbox/static/netbox/css/variables';
 
 #comment-form-box {
-  margin-top: 1em; 
-  .comment-form {
-    padding: 1em 0;
-  }
+  margin-top: 1em;
 }
 
 #comments { margin: 1em 0; }
@@ -13,6 +11,7 @@
   .profile-photo {
     width: 55px;
     height: 55px;
+    margin-bottom: $spacer-md;
   }
 
   .flag-icon {
@@ -25,8 +24,8 @@
     font-weight: bold;
 
     a {
-      color: black; 
-      text-decoration: none; 
+      color: black;
+      text-decoration: none;
     }
 }
 
@@ -57,6 +56,4 @@
 
 .comment-reply-form-box .profile-thumbnail-img {
     width: 55px;
-} 
-
-
+}

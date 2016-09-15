@@ -3,11 +3,14 @@ import logging
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.utils.http import is_safe_url
 from django.core.files.storage import default_storage
 from django.contrib import messages
 from django.db import transaction
+
+from allauth.account.utils import send_email_confirmation, user_email
+from allauth.account.models import EmailAddress
 
 from .forms import ProfileForm
 from .models import User, Profile, ActivityEntry
@@ -19,9 +22,6 @@ log = logging.getLogger(__name__)
 
 
 def terms_and_conditions(request):
-    if not settings.DJANGO_ENV == 'staging':
-        return HttpResponseNotFound("not found")
-
     next_page = '/'
     if (REDIRECT_FIELD_NAME in request.POST or
             REDIRECT_FIELD_NAME in request.GET):
@@ -127,3 +127,22 @@ def edit(request):
     }
     return render(request, 'profiles/edit.html', ctx)
 
+
+@login_required
+def resend_verification(request):
+    '''Resend the verification email, if no verified email exists.
+    '''
+    # success = send_email_confirmation(request, request.user)
+    email = user_email(request.user)
+    if email:
+        email_address = EmailAddress.objects.get_for_user(request.user, email)
+        if not email_address.verified:
+            confirmation = email_address.send_confirmation(request, signup=False)
+            success = confirmation != None
+        else:
+            success = False
+    else:
+        success = False
+    return JsonResponse({
+        'success': success
+    })

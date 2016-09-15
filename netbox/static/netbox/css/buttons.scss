@@ -1,0 +1,45 @@
+.btn {
+  font-weight: $bold-weight;
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &-primary {
+    background-color: $color-primary;
+    border-color: $color-primary;
+    &:hover, &:focus, &:active {
+      background-color: $color-primary-dark !important;
+      border-color: $color-primary-dark !important;
+    }
+  }
+
+  &-warning {
+    color: white;
+    background-color: black;
+    border-color: black;
+    &:hover, &:focus, &:active {
+      background-color: grey;
+      border-color: grey;
+    }
+  }
+
+  &-black {
+    color: #ffffff;
+    background-color: black;
+    border-color: black;
+    &:hover, &:focus, &:active {
+      color: #ffffff;
+      background-color: grey;
+      border-color: grey;
+    }
+  }
+
+  &-link {
+    color: $color-primary;
+
+    &:hover, &:focus, &:active {
+      color: $color-primary-dark;
+    }
+  }
+}

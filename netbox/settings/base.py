@@ -66,10 +66,6 @@ INSTALLED_APPS = (
 
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.facebook',
     'bootstrap3',
     'storages',
     'django_summernote',
@@ -100,7 +96,6 @@ MIDDLEWARE_CLASSES = (
     'easy_timezones.middleware.EasyTimezoneMiddleware',
 
     'netbox.middleware.RedirectToTermsAndConditionsMiddleware',
-
 )
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -125,6 +120,7 @@ TEMPLATES = [
                 "django.core.context_processors.static",
                 "netbox.context_processors.timezone_name",
                 "netbox.context_processors.google_analytics_id",
+                "netbox.context_processors.user_has_verified_email",
                 "search.context_processors.homepage_display_results",
             ],
         },
@@ -233,7 +229,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Network Toolbox]"
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
@@ -246,36 +242,13 @@ ACCOUNT_USERNAME_MIN_LENGTH = 3
 ACCOUNT_PASSWORD_MIN_LENGTH = 8
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 ACCOUNT_SESSION_REMEMBER = None
+ACCOUNT_SIGNUP_FORM_CLASS = 'profiles.forms.NetboxSignupForm'
+ACCOUNT_LOGOUT_ON_GET = True
 SITE_OPEN_FOR_SIGNUP = True
 LOGOUT_URL = 'account_logout'
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'tools:index'
-SOCIALACCOUNT_QUERY_EMAIL = True
-SOCIALACCOUNT_EMAIL_REQUIRED = True
-SOCIALACCOUNT_EMAIL_VERIFICATION = False
-SOCIALACCOUNT_PROVIDERS = {
-'facebook': {
-    'METHOD': 'oauth2',
-    'SCOPE': ['email', 'public_profile', 'user_friends'],
-    'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-    'FIELDS': [
-        'id',
-        'email',
-        'name',
-        'first_name',
-        'last_name',
-        'verified',
-        'locale',
-        'timezone',
-        'link',
-        'gender',
-        'updated_time'],
-    'EXCHANGE_TOKEN': True,
-    #'LOCALE_FUNC': 'path.to.callable',
-    'VERIFIED_EMAIL': False,
-    'VERSION': 'v2.4'
-    },
-}
+
 
 IN_TEST = 'test' in sys.argv
 DEFAULT_CATEGORY_GROUP_NAME = 'Other'
@@ -328,3 +301,5 @@ CELERYBEAT_SCHEDULE = {
 }
 
 GOOGLE_ANALYTICS_ID = 'UA-71138728-1'
+
+GULP_DEVELOP_COMMAND = 'node_modules/.bin/gulp'

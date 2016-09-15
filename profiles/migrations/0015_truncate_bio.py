@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 
 
-TRUNCATE_BIO_SQL = '''UPDATE profiles_profile SET bio=left(bio, 400);'''
+TRUNCATE_BIO_SQL = '''UPDATE profiles_profile SET bio=substr(bio, 0, 401);'''
 
 
 class Migration(migrations.Migration):

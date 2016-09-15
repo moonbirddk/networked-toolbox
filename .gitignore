@@ -1,4 +1,5 @@
-venv/
+venv
+.venv
 db.sqlite3
 .idea/
 __pycache__
@@ -8,5 +9,6 @@ media/
 .tmp
 staticfiles/
 node_modules/
+npm-debug.log
 celerybeat-schedule
 celerybeat.pid

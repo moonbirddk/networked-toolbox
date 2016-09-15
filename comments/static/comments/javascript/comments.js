@@ -7,7 +7,7 @@ $(function() {
         commentEl = $.parseHTML(commenthtml);
         whereTo.append(commentEl);
     }
-    
+
     function getErrorsHtml(errors) {
         // '<span class="help-block">content: This field is required.</span>'
         var html = '';
@@ -19,17 +19,16 @@ $(function() {
         });
         return html;
     }
-    
+
     function onSubmitBtnClick(event) {
         event.preventDefault();
         console.log("onSubmitBtnClick: ", $(this));
-        var thisitem = $(this).closest('comment-item');
         var thisform = $(this).closest('form');
         var csrftoken = getCookie('csrftoken');
         var postdata = thisform.serialize();
         var thistextarea = thisform.find('textarea');
         postdata += '&csrfmiddlewaretoken=' + csrftoken;
-        
+
         $.ajax({
             type: 'POST',
             url: window.COMMENTS_ADD_COMMENT_URL,
@@ -64,7 +63,7 @@ $(function() {
             }
         });
     }
-    
+
     function onReplyBtnClick(event){
         event.preventDefault();
         console.log("onReplyBtnClick: ", $(this));
@@ -75,10 +74,10 @@ $(function() {
         if (repform.attr('id')) {
             repform.removeAttr('id');
         }
-        thisitem = repform.closest('.comment-item');
+        var thisitem = repform.closest('.comment-item');
         thisitem.removeClass('comment-item');
         thisitem.addClass('comment-reply-form-box');
-        
+
         repform.find('input[name=related_object_id]').val(related_object_id);
         repform.find('input[name=related_object_type]').val(related_object_type);
         repform.find('input[name=parent]').val(parent_id);
@@ -109,8 +108,10 @@ $(function() {
         }
         repform.show('slow');
     }
-    
-    $('#comment-list-box').delegate('a.comment-reply-btn', 'click', onReplyBtnClick);
-    $('#comment-list-box').delegate('a.comment-submit-btn', 'click', onSubmitBtnClick);
-    $('#comment-form-box').delegate('a.comment-submit-btn', 'click', onSubmitBtnClick);
+    if ($('body').data('userIsAuthenticated') === true && 
+      $('body').data('userHasVerifiedEmail') === true) {
+        $('#comment-list-box').delegate('a.comment-reply-btn', 'click', onReplyBtnClick);
+        $('#comment-list-box').delegate('a.comment-submit-btn', 'click', onSubmitBtnClick);
+        $('#comment-form-box').delegate('a.comment-submit-btn', 'click', onSubmitBtnClick);
+    }
 });

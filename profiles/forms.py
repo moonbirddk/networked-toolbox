@@ -22,7 +22,8 @@ class ProfileForm(forms.Form):
     first_name = fields.CharField(max_length=30, required=False)
     last_name = fields.CharField(max_length=30, required=False)
     photo = forms.ImageField(required=False,
-                             label='Photo image (recommended size: 160x160)')
+                             label='Profile image (recommended size: 160x160)',
+                             widget=forms.FileInput)
     bio = fields.CharField(widget=forms.Textarea,
                            max_length=PROFILE_BIO_MAX_LEN,
                            required=False,
@@ -54,3 +55,20 @@ class ProfileForm(forms.Form):
         bio = self.cleaned_data.get('bio', '')
         bio = clean(bio, tags=[], strip=True, strip_comments=True)
         return bio
+
+class NetboxSignupForm(forms.Form):
+
+    first_name = fields.CharField(max_length=30, required=True)
+    last_name = fields.CharField(max_length=30, required=True)
+
+    required_css_class = 'required'
+
+    def __init__(self, *args, **kwargs):
+        super(NetboxSignupForm, self).__init__(*args, **kwargs)
+        self.fields['email'].help_text = 'We recommend you use your work e-mail'
+
+    def signup(self, request, user):
+        """
+        Invoked at signup time to complete the signup of the user.
+        """
+        pass

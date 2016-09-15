@@ -23,7 +23,7 @@ ga('send', 'event', 'profile', 'view');
 
 <div class="row">
     <div class="profile col-md-2 col-sm-3">
-        {% render_profile_photo profile_user %}
+        {% render_profile_photo profile_user show_link=False %}
     </div>
     <div class="profile col-md-6 col-sm-9">
         <h1 class="title">
@@ -84,11 +84,11 @@ ga('send', 'event', 'profile', 'view');
                         <div class="activity-title">
                             {{activity.user.first_name}}
                             {% if activity.entry_type == 'add_story' %}
-                                wrote a story regarding 
+                                wrote a story regarding
                             {% elif activity.entry_type == 'add_comment' %}
-                                commented on 
+                                commented on
                             {% elif activity.entry_type == 'add_comment_reply' %}
-                                replied to a comment on 
+                                replied to a comment on
                             {% endif %}
                             <a href="{{activity.link}}#{% if activity.entry_type == 'add_story' %}stories{% else %}comments{% endif %}">
                                 {{activity.title}}
@@ -104,7 +104,7 @@ ga('send', 'event', 'profile', 'view');
         </ul>
 
     </div>
- 
+
     <div class="col-md-4 col-sm-9 col-md-offset-0 col-sm-offset-3">
         {% if tools %}
             <div class="tools-used">

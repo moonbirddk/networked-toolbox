@@ -1,3 +1,5 @@
+@import '../../../../netbox/static/netbox/css/variables';
+
 .flex-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -44,8 +46,8 @@
     margin: 0 2.5% 2.5% 0;
 
     .profile-photo {
-      width: 45px; 
-      height: 45px; 
+      width: 45px;
+      height: 45px;
     }
   }
 
@@ -120,18 +122,15 @@
 }
 
 .usage-indicator {
-  margin: 20px 0 20px;
-  padding: 10px 10px 15px 10px;
+  margin: $spacer-md 0;
+  padding: $spacer-md 0;
   background-color: #8D8479;
-  align-items: center;
   .usage-title {
-  }
-  .usage-follow {
-    text-align: center;
-    min-width: 100px;
-    margin: 0.5em 0;
+    padding-top: 1.5 * $spacer-xs;
+    padding-bottom: 1.5 * $spacer-xs;
   }
   .usage-followers {
+    padding-top: 1.5 * $spacer-xs;
   }
   form {
     margin: 0;
@@ -150,10 +149,8 @@
 }
 
 .btn-usage {
-  font-weight: bold;
   background-color: white;
   color: #8D8479;
-  font-size: 12px;
   &:hover {
     background-color: #F5F5F5;
     color: #8D8479;
@@ -284,10 +281,10 @@ iframe {
       font-size: 16px;
       font-weight: bold;
       margin: 0;
-      
+
       a {
         color: black;
-      
+
         &:hover {
           text-decoration: none;
         }
@@ -304,7 +301,7 @@ iframe {
       }
 
       .story-user-name {
- 
+
         a {
           color: black;
           text-decoration: none;
@@ -315,7 +312,7 @@ iframe {
     }
 
     .story-content  {
-      padding-right: 1em; 
+      padding-right: 1em;
 
       a {
         color: black;
@@ -374,7 +371,7 @@ iframe {
     font-size: 12px;
     padding: 6px 3px 6px 6px;
   }
-  
+
   .dropdown-toggle.btn-default,
   .dropdown-toggle.btn-default:hover,
   .dropdown-toggle.btn-default:active {
@@ -403,9 +400,9 @@ iframe {
       font-size: 12px;
       padding: 0;
       margin: 0;
-   
-      a { 
-        color: #c2c1b8; 
+
+      a {
+        color: #c2c1b8;
         padding: 3px 8px;
       }
 

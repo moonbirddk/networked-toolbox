@@ -7,51 +7,66 @@
 
 {% block main %}
 
-<div class="container">
 <div class="row">
- <div class="col-md-2">
- </div>
-
- <div class="col-md-8">
-  <h1>Edit Profile</h1>
-  
-  <p>You have registered using <strong>{{user.email}}</strong> email address.</p>
- </div>
- 
- <div class="col-md-6">
- </div>
+  <div class="col-md-8 col-md-offset-2">
+    <h1>Edit Profile</h1>
+    <p>You have registered using <strong>{{user.email}}</strong> email address.</p>
+  </div>
 </div>
 
 <div class="row">
- 
- <div class="col-md-2">
- </div>
- 
- <div class="col col-md-2">
+  <div class="col-md-2 col-md-offset-2">
     {% if user.profile %}
     {% if user.profile.photo %}
-        <img class="thumb img-thumbnail img-responsive" src="{{user.profile.photo.url}}" />
+      <img class="thumb img-thumbnail img-responsive" src="{{user.profile.photo.url}}" />
     {% else %}
-        <p class="text-danger"><strong>Please upload your image</strong></p>
+      <p class="text-danger"><strong>Please upload your image</strong></p>
     {% endif %}
     {% endif %}
- </div>
- 
- <div class="col col-md-4">
-  <form method="POST" action="{% url 'profiles:edit' %}" class="form" enctype="multipart/form-data">
+  </div>
+
+  <div class="col-md-4">
+    <form method="POST" action="{% url 'profiles:edit' %}" class="form" enctype="multipart/form-data">
       {% csrf_token %}
       {% bootstrap_form form %}
       {% buttons %}
-          <button type="submit" class="btn btn-primary">
-              {% bootstrap_icon "star" %} Update
-          </button>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary">
+          Update
+        </button>
+      </div>
       {% endbuttons %}
-  </form>
- </div>
- 
- <div class="col-md-2">
- </div>
+    </form>
+  </div>
+</div>
 
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="verifyEmailModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="verifyEmailModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="verifyEmailModalLabel">Thank you for signing up!</h3>
+      </div>
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="modal-body">
+            We have sent you an e-mail to verify your e-mail address.<br /><br />
+            While you wait for it to arrive, take a minute to set up your profile before you start exploring Networked Toolbox.<br /><br />
+            In order to get full use of Networked Toolbox, we need you to confirm your account from the e-mail in your inbox and fill out your name on your profile.
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary">Continue</button>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
+
 {% endblock %}

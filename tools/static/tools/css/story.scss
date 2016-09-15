@@ -1,3 +1,5 @@
+@import '../../../../netbox/static/netbox/css/variables';
+
 .note-style, .note-font, .note-color, .note-para, .note-height, .note-view, .note-help {
   display: none;
 }
@@ -18,7 +20,7 @@
   max-width: 100%;
 }
 
-.story-user {  
+.story-user {
 
   .story-user-photo {
 
@@ -26,7 +28,6 @@
       width: 95px;
       height: 95px;
     }
-  
   }
 
   .story-user-details {
@@ -35,24 +36,20 @@
       font-weight: bold;
       margin: 0 0 0.3em 0;
       font-size: 14px;
-    
+
       a {
         color: black;
-        
+
         &:hover {
           text-decoration: none;
         }
-
       }
-
     }
-
   }
 
   .story-user-bio {
     font-size: 0.9em;
   }
-
 }
 
 .related-stories {
