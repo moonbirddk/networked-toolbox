@@ -1,0 +1,59 @@
+{% load static %}
+{% load profilestags %}
+<nav class="navbar navbar-default navbar-top">
+  <div class="container-fluid">
+    <div class="row">
+
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="col-xs-12">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Networked Toolbox</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/">Home</a></li>
+          <li><a href="{% url 'tools:index'%}">Tools</a></li>
+          <li><a href="{% url 'tools:list_categories'%}">Toolboxes</a></li>
+        </ul>
+        <ul class="nav navbar-right">
+          {% if user.is_authenticated %}
+          <li>{% render_profile_photo user %}</li>
+            <li><a class="btn btn-link" href="{% url 'profiles:show' user.profile.uid %}">
+            {% if user.first_name %}
+              {{user.first_name}}
+            {% else%}
+              My profile
+            {% endif %}
+          </a></li>
+          <li><a class="btn btn-primary" href="{% url 'account_logout'%}">Log out</a></li>
+          {% else %}
+          <li><a class="btn btn-link" href="{% url 'account_signup'%}">Sign Up</a></li>
+          <li><a class="btn btn-primary" href="{% url 'account_login'%}">Log In</a></li>
+          {% endif %}
+        </ul>
+      </div><!-- /.navbar-collapse -->
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+<nav class="navbar navbar-default navbar-bottom">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a href="http://actionaid.org" target='_blank' class="navbar-brand"><img class="navbar-logo" src="{% static "netbox/images/AA_Logo-white-web.png" %}"></a>
+      </div>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>

@@ -7,6 +7,8 @@ $bold-weight: 600;
 // Colors
 $color-primary: #ed1c24;
 $color-primary-dark: #bf0d13;
+$color-sand: #c2c1b8;
+$color-footer-link: #554A3C;
 
 // Grays
 $gray: #555;
@@ -22,8 +24,8 @@ $media-large: 1170px;
 $media-medium: 768px;
 
 // Spacers
-$spacer-base: 5;
-$spacer-xs: #{$spacer-base}px;
-$spacer-sm: #{2*$spacer-base}px;
-$spacer-md: #{3*$spacer-base}px;
-$spacer-lg: #{6*$spacer-base}px;
+$spacer-base: 5px;
+$spacer-xs: 5px;
+$spacer-sm: 5px * 2;
+$spacer-md: 5px * 3;
+$spacer-lg: 5px * 6;

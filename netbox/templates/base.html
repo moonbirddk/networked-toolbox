@@ -3,105 +3,60 @@
 {% load compress %}
 {% load profilestags %}
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-        {% compress js %}
-        <script src="{% static "js/base.js" %}"></script>
-        <script src="{% static "js/jquery.shorten.js" %}"></script>
-        {% endcompress %}
-        {% bootstrap_javascript %}
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        {% bootstrap_css %}
-        {% compress css %}
-        <link rel="stylesheet" href="{% static "netbox/flags/css/flag-icon.min.css" %}">
-        <link rel="stylesheet" href="{% static "css/base.min.css" %}">
-        {% endcompress %}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block head_title %}{% endblock %} - Networked Toolbox</title>
+  <head>
+    <meta charset="UTF-8">
+    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    {% compress js %}
+    <script src="{% static "js/base.js" %}"></script>
+    <script src="{% static "js/jquery.shorten.js" %}"></script>
+    {% endcompress %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    {% bootstrap_css %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static "netbox/flags/css/flag-icon.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/base.min.css" %}">
+    {% endcompress %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block head_title %}{% endblock %} - Networked Toolbox</title>
 
-        {% block head_statics %}
-        {% endblock %}
-
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-          ga('create', '{{GOOGLE_ANALYTICS_ID}}', 'auto');
-          ga('send', 'pageview');
-
-          {% block ga_events %}
-          {% endblock %}
-        </script>
-    </head>
-    <body data-user-has-verified-email="{{ user_has_verified_email|yesno:"true,false" }}"
-          data-user-is-authenticated="{{ user.is_authenticated|yesno:"true,false" }}">
-      <nav class="navbar navbar-default navbar-top">
-        <div class="container-fluid">
-          <div class="row">
-
-
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="col-xs-12">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">Networked Toolbox</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="{% url 'tools:index'%}">Tools</a></li>
-                <li><a href="{% url 'tools:list_categories'%}">Toolboxes</a></li>
-              </ul>
-              <ul class="nav navbar-right">
-                {% if user.is_authenticated %}
-                <li>{% render_profile_photo user %}</li>
-                  <li><a class="btn btn-link" href="{% url 'profiles:show' user.profile.uid %}">
-                  {% if user.first_name %}
-                    {{user.first_name}}
-                  {% else%}
-                    My profile
-                  {% endif %}
-                </a></li>
-                <li><a class="btn btn-primary" href="{% url 'account_logout'%}">Log out</a></li>
-                {% else %}
-                <li><a class="btn btn-link" href="{% url 'account_signup'%}">Sign Up</a></li>
-                <li><a class="btn btn-primary" href="{% url 'account_login'%}">Log In</a></li>
-                {% endif %}
-              </ul>
-            </div><!-- /.navbar-collapse -->
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </nav>
-      <nav class="navbar navbar-default navbar-bottom">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-xs-12">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <a href="http://actionaid.org" target='_blank' class="navbar-brand"><img class="navbar-logo" src="{% static "netbox/images/AA_Logo-white-web.png" %}"></a>
-            </div>
-            </div>
-          </div>
-        </div><!-- /.container-fluid -->
-      </nav>
-    {% block searchform %}
+    {% block head_statics %}
     {% endblock %}
-    <div class="container-fluid">
-      {% bootstrap_messages %}
 
-      {% block main %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', '{{GOOGLE_ANALYTICS_ID}}', 'auto');
+      ga('send', 'pageview');
+
+      {% block ga_events %}
       {% endblock %}
+    </script>
+  </head>
+  <body data-user-has-verified-email="{{ user_has_verified_email|yesno:"true,false" }}"
+        data-user-is-authenticated="{{ user.is_authenticated|yesno:"true,false" }}">
+    <div class="flex-column main-wrap">
+
+      <div> <!-- Nav -->
+        {% include '_nav.html' %}
+        {% block searchform %}
+        {% endblock %}
+      </div> <!-- /Nav -->
+
+      <div class="flex-grow"> <!-- Content -->
+        <div class="container-fluid">
+          {% bootstrap_messages %}
+
+          {% block main %}
+          {% endblock %}
+        </div>
+      </div> <!-- /Content -->
+
+      {% include '_footer.html' %}
+
     </div>
 
     <div id="cookies-notice">
@@ -113,8 +68,9 @@
       </form>
     </div>
 
-    <!-- Modals -->
-    {% include 'modals/_login_required.html' %}
-    {% include 'modals/_email_required.html' %}
+  <!-- Modals -->
+  {% include 'modals/_login_required.html' %}
+  {% include 'modals/_email_required.html' %}
+
   </body>
 </html>

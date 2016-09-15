@@ -23,12 +23,32 @@
 }
 
 @import 'variables';
-@import 'modals';
 @import 'buttons';
+@import 'modals';
 @import 'forms';
+@import 'footer';
 
 body {
   font-family: $sans-serif;
+}
+
+svg {
+  fill: currentColor;
+}
+
+// Allow for a footer that is always at the bottom regardles of content in
+// content container
+.main-wrap {
+  min-height: 100vh;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
 }
 
 .container-fluid {
