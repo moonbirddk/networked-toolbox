@@ -59,7 +59,7 @@ class ProfileForm(forms.Form):
 class NetboxSignupForm(forms.Form):
 
     first_name = fields.CharField(max_length=30, required=True)
-    last_name = fields.CharField(max_length=30, required=False)
+    last_name = fields.CharField(max_length=30, required=True)
 
     required_css_class = 'required'
 
