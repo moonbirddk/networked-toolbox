@@ -9,5 +9,6 @@ media/
 .tmp
 staticfiles/
 node_modules/
+npm-debug.log
 celerybeat-schedule
 celerybeat.pid
