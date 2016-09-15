@@ -32,7 +32,7 @@ $(document).ready(function() {
 
   // Show modal on profiles/edit page if user hasn't verified
   if (
-    window.location.pathname === '/profiles/edit' &&
+    window.location.hash === '#welcome' &&
     $('body').data('userHasVerifiedEmail') === false
   ) {
     $('#verifyEmailModal').modal()
