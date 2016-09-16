@@ -3,19 +3,19 @@ from django.core.urlresolvers import reverse
 from pages.models import Page
 
 class MenuItem(models.Model):
-    MENU_FOOTER_LEFT = 'footer-left'
-    MENU_FOOTER_CENTER = 'footer-center'
-    MENU_FOOTER_RIGHT = 'footer-right'
+    MENU_FOOTER_1 = 'footer-1'
+    MENU_FOOTER_2 = 'footer-2'
+    MENU_FOOTER_3 = 'footer-3'
     MENU_CHOICES = (
-        (MENU_FOOTER_LEFT, 'Footer left'),
-        (MENU_FOOTER_CENTER, 'Footer center'),
-        (MENU_FOOTER_RIGHT, 'Footer right'),
+        (MENU_FOOTER_1, 'Networked Toolbox'),
+        (MENU_FOOTER_2, 'The Network'),
+        (MENU_FOOTER_3, 'The Toolbox'),
     )
     title = models.CharField(blank=False, max_length=128)
     menu = models.CharField(
         max_length=20,
         choices=MENU_CHOICES,
-        default=MENU_FOOTER_LEFT
+        default=MENU_FOOTER_1
     )
     page = models.ForeignKey(
         Page,
