@@ -20,11 +20,16 @@ class MenuItem(models.Model):
     page = models.ForeignKey(
         Page,
         null=True,
-        blank=False,
+        blank=True,
         related_name='menu_items'
     )
     link = models.URLField(blank=True)
     order = models.PositiveIntegerField(default=1)
 
-    def __str__(self):
-        return '"%s" (/%s)' % (self.title, self.slug)
+    def get_absolute_url(self):
+        if self.page:
+            return reverse('pages:show_page', args=(self.page.slug, ))
+        elif self.link:
+            return self.link
+        else:
+            return reverse('homepage')
