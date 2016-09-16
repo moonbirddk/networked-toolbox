@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block head_statics %}
+{{ form.media }}
+
+{% endblock %}
+
+{% block head_title %}{{ page.title }}{% endblock %}
+
+{% block main %}
+  <h1 class="title no-top-margin">{{ page.title }}</h1>
+  <div class="summernote-content">{{ page.content |safe }}</div>
+{% endblock %}
