@@ -25,6 +25,16 @@ Subsequent runs:
 . .venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
 
+# Setting up the development environment to support task execution
+
+## Get a celery supported broker (in this case Redis)
+
+For ubuntu install the redis-server package
+
+```
+sudo apt-get install redis-server
+```
+
 And on a new terminal:
 
 ```
