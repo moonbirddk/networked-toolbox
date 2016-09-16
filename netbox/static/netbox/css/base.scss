@@ -42,6 +42,10 @@ svg {
   min-height: 100vh;
 }
 
+.main-content {
+  padding-bottom: $spacer-lg * 2;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
