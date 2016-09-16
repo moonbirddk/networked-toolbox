@@ -6,4 +6,4 @@ class Page(models.Model):
     content = models.TextField(blank=False)
 
     def __str__(self):
-        return 'Page "%s" (%s)' % (self.page, self.slug)
+        return '"%s" (/%s)' % (self.title, self.slug)
