@@ -10,15 +10,17 @@
 
 {% block main %}
   {% if perms.pages.change_page %}
-    <div class="pull-right edit-pages-menu">
-      <div class="btn-group" role="group" aria-label="...">
-        <a class="btn btn-default"
+    <div class="pull-right">
+      <div class="btn-group" role="group">
+        <a class="btn btn-sm btn-default"
            href="{% url 'pages:edit_page' page.slug %}">
-          Edit page
+          Edit
         </a>
-        <div class="dropdown btn-group">
-          <button class="btn btn-default btn-dropdown" type="button" id="allEditPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Edit other pages
+        <div class="btn-group" role="group">
+          <button class="btn btn-default btn-dropdown btn-sm dropdown-toggle"
+            type="button" id="allEditPages" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+            Edit other
           </button>
           <ul class="dropdown-menu" aria-labelledby="allEditPages">
             <li class="dropdown-header">Published pages</li>
