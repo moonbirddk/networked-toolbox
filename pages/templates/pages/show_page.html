@@ -10,5 +10,10 @@
 
 {% block main %}
   <h1 class="title no-top-margin">{{ page.title }}</h1>
+  {% if perms.pages.change_page %}
+    <a class="btn" href="{% url 'pages:edit_page' page.slug %}">
+      Edit page
+    </a>
+  {% endif %}
   <div class="summernote-content">{{ page.content |safe }}</div>
 {% endblock %}

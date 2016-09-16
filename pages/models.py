@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 class Page(models.Model):
     slug = models.SlugField(primary_key=True)
@@ -8,3 +9,6 @@ class Page(models.Model):
 
     def __str__(self):
         return '"%s" (/%s)' % (self.title, self.slug)
+
+    def get_absolute_url(self):
+        return reverse('pages:show_page', args=(self.slug, ))
