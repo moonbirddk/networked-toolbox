@@ -4,6 +4,7 @@ class Page(models.Model):
     slug = models.SlugField(primary_key=True)
     title = models.CharField(blank=False, max_length=128)
     content = models.TextField(blank=False)
+    published = models.BooleanField(default=False)
 
     def __str__(self):
         return '"%s" (/%s)' % (self.title, self.slug)
