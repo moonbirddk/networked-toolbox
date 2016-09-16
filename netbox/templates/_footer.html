@@ -1,4 +1,5 @@
 {% load static %}
+{% load menus %}
 
 <footer class="footer">
   <div class="container-fluid">
@@ -10,46 +11,13 @@
     </div>
     <div class="row footer__row">
       <div class="col-xs-12 col-sm-4 col-md-3">
-        <h4 class="footer__title">Networked Toolbox</h4>
-        <ul class="list-unstyled">
-          <li>
-            <a href="" class="footer__link">Tools</a>
-          </li>
-          <li>
-            <a href="" class="footer__link">Toolboxes</a>
-          </li>
-          <li>
-            <a href="" class="footer__link">Search</a>
-          </li>
-        </ul>
+        {% render_menu 'footer-1' %}
       </div>
       <div class="col-xs-12 col-sm-4 col-md-3">
-        <h4 class="footer__title">The Network</h4>
-        <ul class="list-unstyled">
-          <li>
-            <a href="" class="footer__link">Get engaged</a>
-          </li>
-          <li>
-            <a href="" class="footer__link">Terms of service</a>
-          </li>
-          <li>
-            <a href="" class="footer__link">Creative Commons License</a>
-          </li>
-        </ul>
+        {% render_menu 'footer-2' %}
       </div>
       <div class="col-xs-12 col-sm-4 col-md-3">
-        <h4 class="footer__title">The Toolbox</h4>
-        <ul class="list-unstyled">
-          <li>
-            <a href="" class="footer__link">About Reflection-Action</a>
-          </li>
-          <li>
-            <a href="" class="footer__link">About ActionAid</a>
-          </li>
-          <li>
-            <a href="" class="footer__link">Learn more</a>
-          </li>
-        </ul>
+        {% render_menu 'footer-3' %}
       </div>
       <div class="col-xs-12 col-md-3 footer__img-col">
         <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
