@@ -15,5 +15,4 @@ def edit_menus(request):
     context = {
         'menus': menus
     }
-    print('context', context)
     return render(request, 'menus/edit_menus.html', context)
