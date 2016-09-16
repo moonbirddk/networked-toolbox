@@ -34,6 +34,12 @@ For ubuntu install the redis-server package
 sudo apt-get install redis-server
 ```
 
+On mac
+```
+brew install redis
+```
+
+
 And on a new terminal:
 
 ```
