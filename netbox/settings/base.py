@@ -55,6 +55,14 @@ AUTHENTICATION_BACKENDS = (
 )
 
 INSTALLED_APPS = (
+    # Following a guide to install Django CMS
+    # See: http://docs.django-cms.org/en/latest/how_to/install.html
+    'cms',
+    'treebeard',
+    'menus',
+    'sekizai',
+    'djangocms_admin_style',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +71,15 @@ INSTALLED_APPS = (
     'django_gulp',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
+    # 'djangocms_file',
+    # 'djangocms_googlemap',
+    'djangocms_inherit',
+    #'djangocms_picture',
+    'djangocms_teaser',
+    #'djangocms_video',
+    'djangocms_link',
+    # 'djangocms_snippet',
 
     'allauth',
     'allauth.account',
@@ -84,6 +101,8 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'cms.middleware.utils.ApphookReloadMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -94,6 +113,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 
     'easy_timezones.middleware.EasyTimezoneMiddleware',
+
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 
     'netbox.middleware.RedirectToTermsAndConditionsMiddleware',
 )
@@ -116,12 +140,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.core.context_processors.media",
-                "django.core.context_processors.static",
-                "netbox.context_processors.timezone_name",
-                "netbox.context_processors.google_analytics_id",
-                "netbox.context_processors.user_has_verified_email",
-                "search.context_processors.homepage_display_results",
+                'django.core.context_processors.media',
+                'django.core.context_processors.static',
+                'sekizai.context_processors.sekizai', # Needed by Django CMS
+                'cms.context_processors.cms_settings', # Needed by Django CMS
+                'netbox.context_processors.timezone_name',
+                'netbox.context_processors.google_analytics_id',
+                'netbox.context_processors.user_has_verified_email',
+                'search.context_processors.homepage_display_results',
             ],
         },
     },
@@ -303,3 +329,9 @@ CELERYBEAT_SCHEDULE = {
 GOOGLE_ANALYTICS_ID = 'UA-71138728-1'
 
 GULP_DEVELOP_COMMAND = 'node_modules/.bin/gulp'
+
+# Django CMS specific settings
+
+CMS_TEMPLATES = (
+    ('page.html', 'Page Template'),
+)

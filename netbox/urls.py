@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^pages/', include('cms.urls')),
 
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^tools/', include('tools.urls', namespace='tools')),

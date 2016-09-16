@@ -2,6 +2,7 @@
 {% load static %}
 {% load compress %}
 {% load profilestags %}
+{% load cms_tags sekizai_tags %}
 <html>
   <head>
     <meta charset="UTF-8">
@@ -17,6 +18,7 @@
     <link rel="stylesheet" href="{% static "netbox/flags/css/flag-icon.min.css" %}">
     <link rel="stylesheet" href="{% static "css/base.min.css" %}">
     {% endcompress %}
+    {% render_block "css" %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block head_title %}{% endblock %} - Networked Toolbox</title>
 
@@ -38,6 +40,7 @@
   </head>
   <body data-user-has-verified-email="{{ user_has_verified_email|yesno:"true,false" }}"
         data-user-is-authenticated="{{ user.is_authenticated|yesno:"true,false" }}">
+    {% cms_toolbar %}
     <div class="flex-column main-wrap">
 
       <div> <!-- Nav -->
@@ -72,5 +75,7 @@
   {% include 'modals/_login_required.html' %}
   {% include 'modals/_email_required.html' %}
 
+  <!-- Django CMS -->
+  {% render_block "js" %}
   </body>
 </html>
