@@ -45,3 +45,17 @@ And on a new terminal:
 ```
 celery -A netbox worker --concurrency=1 -l debug --purge
 ```
+
+# Load some test data into the database
+
+## Pages
+
+```
+./manage.py loaddata pages/fixtures/test-pages.json
+```
+
+## Menus
+
+```
+./manage.py loaddata menus/fixtures/initial-menus.json
+```
