@@ -81,7 +81,8 @@ INSTALLED_APPS = (
     'resources',
     'comments',
     'search',
-    'pages'
+    'pages',
+    'menus'
 )
 
 MIDDLEWARE_CLASSES = (
