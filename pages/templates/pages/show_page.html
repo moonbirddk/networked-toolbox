@@ -9,11 +9,12 @@
 {% block head_title %}{{ page.title }}{% endblock %}
 
 {% block main %}
-  <h1 class="title no-top-margin">{{ page.title }}</h1>
   {% if perms.pages.change_page %}
-    <a class="btn" href="{% url 'pages:edit_page' page.slug %}">
+    <a class="btn btn-primary pull-right"
+       href="{% url 'pages:edit_page' page.slug %}">
       Edit page
     </a>
   {% endif %}
+  <h1 class="title no-top-margin">{{ page.title }}</h1>
   <div class="summernote-content">{{ page.content |safe }}</div>
 {% endblock %}
