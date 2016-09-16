@@ -19,7 +19,7 @@ def send_suggestion(related_object_type=None, suggestion_id=None):
     html_msg = render_to_string('tools/email/suggestion.html', ctx)
     txt_msg = render_to_string('tools/email/suggestion.txt', ctx)
     email_from = settings.DEFAULT_FROM_EMAIL
-    email_to = [settings.SITE_ADMIN_EMAIL, ]
+    email_to = [settings.SUGGESTIONS_EMAIL, ]
 
     msg = EmailMultiAlternatives(subject, txt_msg, email_from, email_to)
     msg.attach_alternative(html_msg, "text/html")

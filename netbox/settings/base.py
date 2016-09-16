@@ -20,6 +20,7 @@ SITE_ID = 1
 DOMAIN = 'localhost'
 DEFAULT_FROM_EMAIL = 'Networked Toolbox <hello@{}>'.format(DOMAIN)
 SITE_ADMIN_EMAIL = 'admin@{}'.format(DOMAIN)
+SUGGESTIONS_EMAIL = 'networkedtoolbox@actionaid.dk'
 
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
 
