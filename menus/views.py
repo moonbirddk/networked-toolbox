@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import MenuItem
 
+'''
 @login_required
 @permission_required('is_staff')
 def edit_menus(request):
@@ -16,3 +17,4 @@ def edit_menus(request):
         'menus': menus
     }
     return render(request, 'menus/edit_menus.html', context)
+'''

@@ -3,5 +3,5 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.edit_menus, name='edit_menus'),
+    # url(r'^$', views.edit_menus, name='edit_menus'),
 ]

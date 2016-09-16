@@ -3,12 +3,14 @@
 
 <footer class="footer">
   <div class="container-fluid">
+    {% if perms.menus.change_menuitems %}
     <div class="text-right">
       <a class="btn btn-sm btn-default"
-         href="{% url 'menus:edit_menus' %}">
+         href="{% url 'admin:menus_menuitem_changelist' %}">
         Edit
       </a>
     </div>
+    {% endif %}
     <div class="row footer__row">
       <div class="col-xs-12 col-sm-4 col-md-3">
         {% render_menu 'footer-1' %}
