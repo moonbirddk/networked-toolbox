@@ -48,11 +48,18 @@ def edit_page(request, page_slug):
 
 
 def show_page(request, page_slug):
+    published_pages = None
+    drafted_pages = None
     if request.user.has_perm('pages.change_page'):
         page = get_object_or_404(Page, slug=page_slug)
+        published_pages = Page.objects.filter(published=True)
+        drafted_pages = Page.objects.filter(published=False)
     else:
         page = get_object_or_404(Page, slug=page_slug, published=True)
+
     context = {
-        'page': page
+        'page': page,
+        'published_pages': published_pages,
+        'drafted_pages': drafted_pages
     }
     return render(request, 'pages/show_page.html', context)

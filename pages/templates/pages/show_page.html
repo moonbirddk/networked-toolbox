@@ -10,6 +10,22 @@
 
 {% block main %}
   {% if perms.pages.change_page %}
+    <ul>
+    {% for published_page in published_pages %}
+      <li>
+        <a href="{% url 'pages:edit_page' published_page.slug %}">
+          {{ published_page.title }}
+        </a>
+      </li>
+    {% endfor %}
+    {% for drafted_page in drafted_pages %}
+      <li>
+        <a href="{% url 'pages:edit_page' drafted_page.slug %}">
+          {{ drafted_page.title }}
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
     <a class="btn btn-primary pull-right"
        href="{% url 'pages:edit_page' page.slug %}">
       Edit page
