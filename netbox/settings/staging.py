@@ -34,7 +34,7 @@ ADMINS = (
     ('Kræn', 'kraen+network-toolbox-staging@socialsquare.dk', ),
     ('Andreas', 'andreas+network-toolbox-staging@socialsquare.dk', ),
 )
-SITE_ADMIN_EMAIL = 'ckn@ms.dk'
+SITE_ADMIN_EMAIL = 'networkedtoolbox@actionaid.dk'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['MAILGUN_SMTP_SERVER']
