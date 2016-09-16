@@ -8,13 +8,6 @@
       box-shadow: 0 3px $spacer-lg rgba(black, 0.1), 0 1px $spacer-sm rgba(black, 0.2);
     }
   }
-  select.form-control {
-    -webkit-appearance: none;
-    border-radius: $border-radius;
-    background-image: url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.6%208.6L12%2013.2%207.4%208.6%206%2010l6%206%206-6z%22%20fill%3D%22%232b2b2b%22%2F%3E%3C%2Fsvg%3E);
-    background-position: right;
-    background-repeat: no-repeat;
-  }
   .control-label {
     color: inherit;
   }
@@ -24,8 +17,22 @@
     font-size: 85%;
     margin-bottom: -$spacer-sm;
   }
+  select.form-control {
+    border-radius: $border-radius;
+  }
 }
 
+select.form-control, .btn-dropdown {
+  -webkit-appearance: none;
+  border-radius: $border-radius;
+  background-image: url(data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.6%208.6L12%2013.2%207.4%208.6%206%2010l6%206%206-6z%22%20fill%3D%22%232b2b2b%22%2F%3E%3C%2Fsvg%3E);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.btn-dropdown {
+  padding-right: 30px;
+}
 
 .form-group.required .control-label:after {
   content: ' *'
