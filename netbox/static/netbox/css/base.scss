@@ -25,6 +25,7 @@
 @import 'variables';
 @import 'buttons';
 @import 'modals';
+@import 'notifications';
 @import 'forms';
 @import 'footer';
 
@@ -161,14 +162,16 @@ h3.title {
   justify-content: flex-end;
   display: flex;
   font-family: $sans-serif;
-  height: 50px;
-
-  .profile-photo {
-    margin: 3px 3px 0 0;
-  }
+  height: 50px; // ugly fix to center veritcally
 
   > li {
     display: inline-block;
+  }
+
+  .profile-photo {
+    margin-right: $spacer-sm;
+    border-radius: $border-radius;
+    overflow: hidden;
   }
 
   .btn {
@@ -190,7 +193,7 @@ h3.title {
 }
 
 .gray-text {
-  color: #777;
+  color: $color-gray-light;
 }
 
 .more {
@@ -217,8 +220,8 @@ h3.title {
 }
 
 .profile-photo {
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
 
   .profile-photo-img {
     overflow: hidden;

@@ -26,6 +26,19 @@
         </ul>
         <ul class="nav navbar-right">
           {% if user.is_authenticated %}
+          <li role="presentation" class="dropdown notifications">
+            <a class="dropdown-toggle btn btn-notification"
+              data-toggle="dropdown" href="#" role="button"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-bell" aria-hidden="true"></i>
+              <span class="notifications__count">+9</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+            </ul>
+          </li>
           <li>{% render_profile_photo user %}</li>
             <li><a class="btn btn-link" href="{% url 'profiles:show' user.profile.uid %}">
             {% if user.first_name %}

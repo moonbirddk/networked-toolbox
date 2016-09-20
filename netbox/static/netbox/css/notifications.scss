@@ -1,0 +1,36 @@
+.notifications {
+  position: relative;
+  margin-right: $spacer-sm;
+
+  &__count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $color-primary;
+    color: white;
+    padding: 2px;
+    line-height: 1;
+    border-radius: $border-radius;
+  }
+
+  .dropdown-menu>li>a {
+    padding: $spacer-sm $spacer-md;
+  }
+}
+
+.btn-notification {
+  background-color: transparent !important;
+  border: 0;
+  color: $color-gray-light;
+  padding: $spacer-md;
+
+  &:hover, &:focus {
+    color: $color-gray;
+  }
+
+  .fa {
+    color: inherit !important;
+    font-size: 22px;
+    line-height: 1;
+  }
+}
