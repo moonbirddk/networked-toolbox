@@ -62,6 +62,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django_gulp', # 3rd party, but needs to be before 'staticfiles'
     'django.contrib.staticfiles',
 
     # 3rd party
@@ -70,7 +71,6 @@ INSTALLED_APPS = (
     'bootstrap3',
     'compressor',
     'django_countries',
-    'django_gulp',
     'django_summernote',
     'easy_timezones',
     'haystack',
