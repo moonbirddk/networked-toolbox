@@ -1,0 +1,35 @@
+[
+{
+  "fields": {
+    "resources_text": "Resources text - que?",
+    "published": true,
+    "categories": [
+      1
+    ],
+    "title": "Hackathon",
+    "description": "<p>Yay! It's awesome ...</p>"
+  },
+  "model": "tools.tool",
+  "pk": 1
+},
+{
+  "fields": {
+    "description": "What an awesome toolbox this is ...",
+    "name": "My first toolbox"
+  },
+  "model": "tools.categorygroup",
+  "pk": 2
+},
+{
+  "fields": {
+    "published": true,
+    "title": "An awesome toolbox section ...",
+    "description": "<p>Great section of toolbox I believe!</p>",
+    "resources_text": "Resources text - que\u00b2?",
+    "group": 2,
+    "order": 0
+  },
+  "model": "tools.toolcategory",
+  "pk": 1
+}
+]
