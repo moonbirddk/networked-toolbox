@@ -1,6 +1,6 @@
 {% load profilestags %}
 {% load commentstags %}
-<div class="row {{css_class}}">
+<div class="row {{css_class}}" id="comment-{{comment.id}}">
   <div class="col-md-2 col-sm-2">
     {% render_profile_photo comment.author %}
   </div>
