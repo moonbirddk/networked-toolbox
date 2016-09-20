@@ -55,34 +55,38 @@ AUTHENTICATION_BACKENDS = (
 )
 
 INSTALLED_APPS = (
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
-    'django_gulp',
-    'django.contrib.staticfiles',
+    'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.staticfiles',
 
-    'allauth',
+    # 3rd party
     'allauth.account',
+    'allauth',
     'bootstrap3',
-    'storages',
-    'django_summernote',
-    'solo',
-    'django_countries',
     'compressor',
+    'django_countries',
+    'django_gulp',
+    'django_summernote',
     'easy_timezones',
     'haystack',
+    'notifications',
+    'solo',
+    'storages',
 
-    'common',
-    'profiles',
-    'tools',
-    'resources',
+    # Networked toolbox apps
     'comments',
-    'search',
+    'common',
+    'menus',
     'pages',
-    'menus'
+    'profiles',
+    'resources',
+    'search',
+    'tools',
 )
 
 MIDDLEWARE_CLASSES = (
