@@ -1,0 +1,10 @@
+{% load notifications_tags %}
+<li role="presentation" class="dropdown notifications">
+  <a class="dropdown-toggle btn btn-notification"
+    data-toggle="dropdown" href="#" role="button"
+    aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-bell" aria-hidden="true"></i>
+    {% live_notify_badge classes="notifications__count" %}
+  </a>
+  {% live_notify_list classes="dropdown-menu" %}
+</li>

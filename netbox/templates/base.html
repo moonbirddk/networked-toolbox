@@ -2,6 +2,7 @@
 {% load static %}
 {% load compress %}
 {% load profilestags %}
+{% load notifications_tags %}
 <html>
   <head>
     <meta charset="UTF-8">
@@ -9,6 +10,10 @@
     {% compress js %}
     <script src="{% static "js/base.js" %}"></script>
     <script src="{% static "js/jquery.shorten.js" %}"></script>
+    <!-- Notifications -->
+    <script src="{% static "notifications/notify.js" %}"></script>
+    <script src="{% static "js/notifications.js" %}"></script>
+    {% register_notify_callbacks callbacks='netbox_fill_notification_list,fill_notification_badge' %}
     {% endcompress %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
