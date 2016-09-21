@@ -1,6 +1,12 @@
 Network Toolbox
 ===============
 
+
+admin
+=====
+Only admin users can add, edit pages, tools etc.
+
+
 development
 ===========
 Install postgres database, redis-server and elasticsearch
