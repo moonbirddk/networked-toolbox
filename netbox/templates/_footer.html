@@ -1,0 +1,40 @@
+{% load static %}
+{% load menus %}
+
+<footer class="footer">
+  <div class="container-fluid">
+    {% if perms.menus.change_menuitems %}
+    <div class="text-right">
+      <a class="btn btn-sm btn-default"
+         href="{% url 'admin:menus_menuitem_changelist' %}">
+        Edit
+      </a>
+    </div>
+    {% endif %}
+    <div class="row footer__row">
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        {% render_menu 'footer-1' %}
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        {% render_menu 'footer-2' %}
+      </div>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        {% render_menu 'footer-3' %}
+      </div>
+      <div class="col-xs-12 col-md-3 footer__img-col">
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">
+          <img
+            class="footer__license"
+            src="{% static "netbox/images/by-nc-sa.svg" %}"
+          />
+        </a>
+        <a href="http://actionaid.org/" target="_blank">
+          <img
+            class="footer__actionaid"
+            src="{% static "netbox/images/actionaid.svg" %}"
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

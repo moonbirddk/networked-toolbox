@@ -1,3 +1,5 @@
+@import '../../../../netbox/static/netbox/css/variables';
+
 .flex-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -9,10 +11,10 @@
   &__bio {
     word-wrap: break-word;
   }
-  
+
   .profile-photo {
-    width: 125px; 
-    height: 125px; 
+    width: 125px;
+    height: 125px;
     margin-top: 20px;
     margin-bottom: 10px;
   }
@@ -20,9 +22,9 @@
   h1.title {
 
     .glyphicon {
-      color: #c2c1b8;
-    } 
-  
+      color: $color-sand;
+    }
+
     a { color: black; }
     a:hover { text-decoration: none; }
 
@@ -32,7 +34,7 @@
     font-size: 18px;
     margin: 0.7em 0;
     display: flex;
-    align-items: center; 
+    align-items: center;
 
     span {
       margin-right: 0.3em;
@@ -50,7 +52,7 @@
     }
 
     .story {
-  
+
       margin: 0.5em 0;
 
       h4 {
@@ -66,15 +68,15 @@
       a {
         font-weight: bold;
       }
-      
+
       a:hover {
         text-decoration: none;
       }
 
     }
- 
+
   }
-  
+
   .activities {
     list-style-type: none;
     padding: 0;
@@ -91,7 +93,7 @@
       font-weight: bold;
       line-height: 18px;
       display: flex;
-      align-items: top; 
+      align-items: top;
 
       .glyphicon {
         margin-right: 0.6em;
@@ -99,7 +101,7 @@
       }
 
     }
-    
+
     .activity-created {
       color: #8d8479;
       font-size: 12px;
@@ -109,7 +111,7 @@
     }
 
     .activity-content {
-      color: #c2c1b8;
+      color: $color-sand;
     }
 
     .no-activities {
@@ -121,12 +123,12 @@
 .tools-used {
 
   margin: 1em 0;
-    
+
   a { color: black; }
   a:hover { text-decoration: none; }
-  
+
   .tool {
-    
+
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -137,10 +139,10 @@
       margin-bottom: 7px;
       background-size: cover;
     }
-    
+
   }
- 
-} 
+
+}
 
 .show-all {
   margin: 1em 0;
@@ -159,7 +161,7 @@
     overflow: hidden;
     padding-bottom: 100%;
     background: #8D8478;
-  
+
     img {
       position: absolute;
       top: -9999px;
@@ -183,7 +185,7 @@
 
   .tool-content {
     line-height: 1.5rem;
-    
+
     h3 {
       text-decoration: none;
       word-wrap: break-word;
@@ -200,4 +202,3 @@
   }
 
 }
-

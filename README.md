@@ -13,7 +13,6 @@ virtualenv -p python3 .venv
 . .venv/bin/activate
 pip install -r requirements.txt
 npm install
-export DJANGO_SETTINGS_MODULE=netbox.settings
 ./manage.py migrate
 ./manage.py createsuperuser
 ./manage.py runserver
@@ -25,8 +24,38 @@ Subsequent runs:
 . .venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
 
+# Setting up the development environment to support task execution
+
+## Get a celery supported broker (in this case Redis)
+
+For ubuntu install the redis-server package
+
+```
+sudo apt-get install redis-server
+```
+
+On mac
+```
+brew install redis
+```
+
+
 And on a new terminal:
 
 ```
 celery -A netbox worker --concurrency=1 -l debug --purge
+```
+
+# Load some test data into the database
+
+## Pages
+
+```
+./manage.py loaddata pages/fixtures/test-pages.json
+```
+
+## Menus
+
+```
+./manage.py loaddata menus/fixtures/initial-menus.json
 ```

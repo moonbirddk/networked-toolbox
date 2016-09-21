@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+
+{% block head_statics %}
+{{ form.media }}
+
+{% endblock %}
+
+{% block head_title %}{{ page.title }}{% endblock %}
+
+{% block main %}
+  {% if perms.pages.change_page %}
+    <div class="pull-right">
+      <a class="btn btn-sm btn-default"
+         href="{% url 'pages:edit_page' page.slug %}">
+        Edit
+      </a>
+    </div>
+  {% endif %}
+
+  <h1 class="title no-top-margin">{{ page.title }}</h1>
+  <div class="summernote-content">{{ page.content |safe }}</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+[
+{
+  "fields": {
+    "content": "Read more about ActionAid ... right here!",
+    "title": "About ActionAid",
+    "published": true
+  },
+  "model": "pages.page",
+  "pk": "about-actionaid"
+},
+{
+  "fields": {
+    "content": "What is Reflection-Action? Great question ...",
+    "title": "About Reflection-Action",
+    "published": true
+  },
+  "model": "pages.page",
+  "pk": "about-reflection-action"
+},
+{
+  "fields": {
+    "content": "This page describes the license under which the works will be destributed",
+    "title": "Creative Commons License",
+    "published": true
+  },
+  "model": "pages.page",
+  "pk": "creative-commons-license"
+},
+{
+  "fields": {
+    "content": "This is a guide on how to get engaged",
+    "title": "Get engaged",
+    "published": true
+  },
+  "model": "pages.page",
+  "pk": "get-engaged"
+},
+{
+  "fields": {
+    "content": "Yes ... please learn a lot more :)",
+    "title": "Learn more",
+    "published": true
+  },
+  "model": "pages.page",
+  "pk": "learn-more"
+},
+{
+  "fields": {
+    "content": "This page describes the terms under which you receive the service",
+    "title": "Terms of service",
+    "published": true
+  },
+  "model": "pages.page",
+  "pk": "terms-service"
+},
+{
+  "fields": {
+    "content": "Shhhh - very hidden",
+    "title": "Hidden page",
+    "published": true
+  },
+  "model": "pages.page",
+  "pk": "hidden-page"
+}
+]

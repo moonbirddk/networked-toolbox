@@ -1,3 +1,5 @@
+@import '../../../../netbox/static/netbox/css/variables';
+
 #mainpage {
   margin-top: -20px;
 }
@@ -33,6 +35,8 @@
       font-size: 16px;
       border-radius: 0;
       border: 0;
+
+
     }
   }
 
@@ -41,8 +45,8 @@
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
 
     &:hover {
-      background-color: #ED1C24;
-      border-color: #ED1C24;
+      background-color: $color-primary;
+      border-color: $color-primary;
     }
   }
 }
@@ -87,6 +91,7 @@
     p {
       color: #8D8479;
       font-size: 14px;
+      word-wrap: break-word;
     }
   }
 }

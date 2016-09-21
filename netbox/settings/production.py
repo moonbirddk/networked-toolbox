@@ -30,10 +30,10 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
 SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
 ADMINS = (
-    ('Paweł', 'pawel+network-toolbox-staging-heroku@socialsquare.dk',),
-    ('Simon', 'simon.carstensen+network-toolbox-staging-heroku@socialsquare.dk',),
+    ('Kræn', 'kraen+network-toolbox-production@socialsquare.dk', ),
+    ('Andreas', 'andreas+network-toolbox-production@socialsquare.dk', ),
 )
-SITE_ADMIN_EMAIL = 'ckn@ms.dk'
+SITE_ADMIN_EMAIL = 'networkedtoolbox@actionaid.dk'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['MAILGUN_SMTP_SERVER']
