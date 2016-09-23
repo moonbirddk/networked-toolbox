@@ -19,7 +19,7 @@ from celery.schedules import crontab
 SITE_ID = 1
 DOMAIN = 'localhost'
 DEFAULT_FROM_EMAIL = 'Networked Toolbox <hello@{}>'.format(DOMAIN)
-SITE_ADMIN_EMAIL = 'admin@{}'.format(DOMAIN)
+SITE_ADMIN_EMAIL = 'Networked Toolbox <admin@{}>'.format(DOMAIN)
 
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
 
