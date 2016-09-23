@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
-DOMAIN = 'network-toolbox-staging.herokuapp.com'
+DOMAIN = 'staging.networkedtoolbox.com'
 ALLOWED_HOSTS = [DOMAIN, ]
 
 # We're using S3 for media and static storage.
