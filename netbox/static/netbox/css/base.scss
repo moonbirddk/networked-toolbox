@@ -75,6 +75,10 @@ a {
   }
 }
 
+.no-wrap {
+  white-space: nowrap;
+}
+
 .title {
   font-family: $serif-bold;
   font-weight: bold;
