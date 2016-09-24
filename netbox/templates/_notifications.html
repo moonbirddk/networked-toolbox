@@ -4,7 +4,16 @@
     data-toggle="dropdown" href="#" role="button"
     aria-haspopup="true" aria-expanded="false">
     <i class="fa fa-bell" aria-hidden="true"></i>
-    {% live_notify_badge classes="notifications__count" %}
+    {% live_notify_badge classes="notifications__count notifications__count--zero" %}
   </a>
-  {% live_notify_list classes="dropdown-menu" %}
+  <ul class="dropdown-menu notifications__dropdown">
+    <div id="live_notify_list" class="notifications__wrapper">
+    </div>
+    <li id="mark_all_notifications_as_read">
+      <button onclick="mark_all_notifications_as_read()"
+        class="btn btn-primary notifications__read">
+        Mark all as read
+      </button>
+    </li>
+  </ul>
 </li>
