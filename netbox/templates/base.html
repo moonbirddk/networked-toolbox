@@ -13,7 +13,7 @@
     <!-- Notifications -->
     <script src="{% static "notifications/notify.js" %}"></script>
     <script src="{% static "js/notifications.js" %}"></script>
-    {% register_notify_callbacks callbacks='netbox_fill_notification_list,fill_notification_badge' %}
+    {% register_notify_callbacks fetch=100 callbacks='netbox_fill_notification_list,fill_notification_badge' %}
     {% endcompress %}
     {% bootstrap_javascript %}
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
