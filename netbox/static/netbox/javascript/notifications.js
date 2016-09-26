@@ -2,12 +2,11 @@ function netbox_fill_notification_list(data) {
   var $list = $('#live_notify_list').empty();
   if($list) {
     if(data.unread_list.length == 0) {
-      $('<li class="no-notification">')
-        .wrapInner('You have no unread notifications')
-        .appendTo($list);
-      $('#mark_all_notifications_as_read').hide();
+      $('#no-notification').show();
+      $('#mark_all_notifications_as_read, #live_notify_list').hide();
     } else {
-      $('#mark_all_notifications_as_read').show();
+      $('#no-notification').hide();
+      $('#mark_all_notifications_as_read, #live_notify_list').show();
       for (var i=0; i < data.unread_list.length; i++) {
         var notification = data.unread_list[i];
         var notificationData = JSON.parse(notification.data) || {};
