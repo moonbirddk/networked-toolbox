@@ -18,8 +18,6 @@ function netbox_fill_notification_list(data) {
         description = '<span class="notification__text">' + description + '</span>';
         var content = '<div class="no-wrap">' + actor + verb + '</div>' + description;
 
-        var classes = 'notification'
-
         $('<li class="notification">')
           .wrapInner('<a href="' + link + '">' + content + '</a>')
           .appendTo($list);
