@@ -55,34 +55,38 @@ AUTHENTICATION_BACKENDS = (
 )
 
 INSTALLED_APPS = (
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
-    'django_gulp',
-    'django.contrib.staticfiles',
+    'django.contrib.sessions',
     'django.contrib.sites',
+    'django_gulp', # 3rd party, but needs to be before 'staticfiles'
+    'django.contrib.staticfiles',
 
-    'allauth',
+    # 3rd party
     'allauth.account',
+    'allauth',
     'bootstrap3',
-    'storages',
-    'django_summernote',
-    'solo',
-    'django_countries',
     'compressor',
+    'django_countries',
+    'django_summernote',
     'easy_timezones',
     'haystack',
+    'notifications',
+    'solo',
+    'storages',
 
-    'common',
-    'profiles',
-    'tools',
-    'resources',
+    # Networked toolbox apps
     'comments',
-    'search',
+    'common',
+    'menus',
     'pages',
-    'menus'
+    'profiles',
+    'resources',
+    'search',
+    'tools',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -305,3 +309,5 @@ CELERYBEAT_SCHEDULE = {
 GOOGLE_ANALYTICS_ID = 'UA-71138728-1'
 
 GULP_DEVELOP_COMMAND = 'node_modules/.bin/gulp'
+
+NOTIFICATIONS_USE_JSONFIELD=True

@@ -1,22 +1,24 @@
 {% load profilestags %}
 {% load commentstags %}
-<div class="row {{css_class}}">
+<div class="row {{css_class}}" id="comment-{{comment.id}}">
   <div class="col-md-2 col-sm-2">
     {% render_profile_photo comment.author %}
   </div>
   <div class="col-md-10 col-sm-10">
     <p>
+      {% if comment.author.profile.country.code %}
       <i title="{{comment.author.profile.country.name}}"
         class="flag-icon flag-icon-{{comment.author.profile.country.code}}"></i>
+      {% endif %}
       <span class="comment-author-name">
         <a href="{% url 'profiles:show' comment.author.profile.uid %}">
           {{ comment.author.profile.name }}
         </a>
       </span>
       <span class="comment-added-dt">{% format_comment_date comment.added_dt %}</span>
-    </p>
-    <p>{{ comment.content }}</p>
-    <p>
+      <br />
+      {{ comment.content }}
+      <br />
       <a class="comment-reply-btn"
         data-requires-validated-user="true"
         data-related_object_id="{{comment_related_object_id}}"

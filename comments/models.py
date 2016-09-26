@@ -3,6 +3,12 @@ from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models.signals import post_save
+from django.core.urlresolvers import reverse
+
+from notifications.signals import notify
+
+from tools.models import Tool
 
 
 class ThreadedCommentManager(models.Manager):
@@ -43,3 +49,23 @@ class ThreadedComment(models.Model):
 
     class Meta:
         ordering = ['tree_id', 'added_dt']
+
+
+def notify_parent_author(sender, instance, created, **kwargs):
+    if instance.parent:
+        actions = []
+        if instance.related_object_type.model == 'tool':
+            href = reverse('tools:show', args=[instance.related_object_id])
+            href += '#comment-' + str(instance.id)
+            actions.append({
+                'title': 'read',
+                'href': href
+            })
+        notify.send(instance.author,
+                    verb='replied to your comment',
+                    recipient=instance.parent.author,
+                    target=instance.parent,
+                    description=instance.content,
+                    actions=actions)
+
+post_save.connect(notify_parent_author, sender=ThreadedComment)
