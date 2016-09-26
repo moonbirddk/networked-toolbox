@@ -16,9 +16,9 @@
         </a>
       </span>
       <span class="comment-added-dt">{% format_comment_date comment.added_dt %}</span>
-    </p>
-    <p>{{ comment.content }}</p>
-    <p>
+      <br />
+      {{ comment.content }}
+      <br />
       <a class="comment-reply-btn"
         data-requires-validated-user="true"
         data-related_object_id="{{comment_related_object_id}}"

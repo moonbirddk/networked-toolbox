@@ -7,6 +7,9 @@
 #comments { margin: 1em 0; }
 
 .comment-item {
+  padding-top: $spacer-md;
+  margin-bottom: -$spacer-md;
+  line-height: 1.6;
 
   .profile-photo {
     width: 55px;
