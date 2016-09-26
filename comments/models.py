@@ -51,8 +51,27 @@ class ThreadedComment(models.Model):
         ordering = ['tree_id', 'added_dt']
 
 
+def notify_author(sender, instance, created, **kwargs):
+    if created:
+        actions = []
+        if instance.related_object_type.model == 'story':
+            href = instance.related_object.get_absolute_url()
+            href += '#comment-' + str(instance.id)
+            actions.append({
+                'title': 'read',
+                'href': href
+            })
+        notify.send(instance.author,
+                    verb='commented on your story',
+                    recipient=instance.related_object.user,
+                    target=instance.related_object,
+                    description=instance.content,
+                    actions=actions)
+
+post_save.connect(notify_author, sender=ThreadedComment)
+
 def notify_parent_author(sender, instance, created, **kwargs):
-    if instance.parent:
+    if instance.parent and created:
         actions = []
         if instance.related_object_type.model == 'tool':
             href = reverse('tools:show', args=[instance.related_object_id])
