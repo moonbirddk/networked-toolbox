@@ -164,3 +164,6 @@ def on_comment_create(sender, instance=None, created=False, **kwargs):
         content=instance.content[:500],
         link=link
     )
+
+# Inject a better __str__ method on the Django User class
+User.add_to_class("__str__", User.get_full_name)
