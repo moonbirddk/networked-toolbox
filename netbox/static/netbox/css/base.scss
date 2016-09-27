@@ -113,7 +113,9 @@ h3.title {
     font-family: $serif-bold;
     font-size: 2.2rem;
     font-weight: bold;
-    margin-left: -15px;
+    @media (max-width: $media-medium) {
+      font-size: 1.5rem;
+    }
   }
 
   &-logo {
@@ -126,14 +128,16 @@ h3.title {
     }
   }
 
-  &-toggle {
-    margin-right: 0;
-  }
-
   &-top {
     padding: 1.2rem 0;
     margin-bottom: 0px;
     background-color: white;
+  }
+
+  &-collapse {
+    @media (max-width: $media-medium) {
+      clear: both;
+    }
   }
 }
 
@@ -152,6 +156,7 @@ h3.title {
   }
 }
 
+/*
 .navbar-collapse {
   border-top: 0;
   padding: 0;
@@ -160,12 +165,14 @@ h3.title {
     padding: 0 15px;
   }
 }
+*/
 
 .navbar-right {
   align-items: center;
   justify-content: flex-end;
   display: flex;
   font-family: $sans-serif;
+  margin-right: 1rem;
   height: 50px; // ugly fix to center veritcally
 
   > li {
