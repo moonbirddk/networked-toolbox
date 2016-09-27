@@ -52,17 +52,21 @@ class ThreadedComment(models.Model):
 
 
 def notify_author(sender, instance, created, **kwargs):
-    if created:
-        actions = []
-        if instance.related_object_type.model == 'story':
-            recipient = instance.related_object.user
+    # Let's only notify when it's on a story and it's not on another persons
+    # comment.
+    if instance.related_object_type.model == 'story' and \
+       created and instance.parent == None:
+        actor = instance.author
+        recipient = instance.related_object.user
+        # Let's not send a notification when someone comments on their own story
+        if recipient != actor:
             href = instance.related_object.get_absolute_url()
             href += '#comment-' + str(instance.id)
-            actions.append({
+            actions = [{
                 'title': 'read',
                 'href': href
-            })
-            notify.send(instance.author,
+            }]
+            notify.send(actor,
                         verb='commented on your story',
                         recipient=instance.related_object.user,
                         target=instance.related_object,
@@ -73,18 +77,22 @@ post_save.connect(notify_author, sender=ThreadedComment)
 
 def notify_parent_author(sender, instance, created, **kwargs):
     if instance.parent and created:
-        actions = []
-        if instance.related_object_type.model == 'tool' or \
-           instance.related_object_type.model == 'story':
+        actor = instance.author
+        recipient = instance.parent.author
+        # Only comments on tools and stories for now
+        # And don't notify when someone comments on their own comment
+        if (instance.related_object_type.model == 'tool' or \
+            instance.related_object_type.model == 'story') and \
+            recipient != actor:
             href = instance.related_object.get_absolute_url()
             href += '#comment-' + str(instance.id)
-            actions.append({
+            actions = [{
                 'title': 'read',
                 'href': href
-            })
-            notify.send(instance.author,
+            }]
+            notify.send(actor,
                         verb='replied to your comment',
-                        recipient=instance.parent.author,
+                        recipient=recipient,
                         target=instance.parent,
                         description=instance.content,
                         actions=actions)
