@@ -26,6 +26,8 @@ function netbox_fill_notification_list(data) {
       $notification.appendTo($list);
     }
   }
+  // Unhide the dropdown when the data is loaded
+  $('.notifications__dropdown').removeClass('hidden');
 }
 
 function fill_notification_badge(data) {

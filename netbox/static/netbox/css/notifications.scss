@@ -21,7 +21,7 @@
   &__wrapper {
     height: 60vh;
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   &__dropdown {
