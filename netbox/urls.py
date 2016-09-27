@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^search/', include('search.urls', namespace='search')),
     url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^menus/', include('menus.urls', namespace='menus')),
+    url(r'^activities/', include('activities.urls', namespace='activities')),
     url(r'^$', 'search.views.homepage', name='homepage'),
 
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\

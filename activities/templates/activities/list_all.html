@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load commontags %}
+{% load static %}
+{% load compress %}
+
+{% block head_statics %}
+{% endblock %}
+
+{% block head_title %}All activities{% endblock %}
+
+{% block main %}
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1 class="title">All activities</h1>
+    {% for activity in activities %}
+      <div class="panel panel-default">
+        <div class="panel-body">
+          {{ activity }}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
