@@ -2,11 +2,12 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save
+from django.core.urlresolvers import reverse
 
 from model_utils.fields import StatusField
 from model_utils import Choices
 
-from tools.models import Story
+from tools.models import Story, Tool
 from comments.models import ThreadedComment
 
 
