@@ -10,6 +10,7 @@
 {% endcompress %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/profile.min.css" %}">
+<link rel="stylesheet" href="{% static "css/activities.min.css" %}">
 {% endcompress %}
 {% endblock %}
 
@@ -72,36 +73,11 @@ ga('send', 'event', 'profile', 'view');
         {% endif %}
 
         <h3 class="title">Recent Activity</h3>
-        <ul class="activities">
-            {% for activity in activities %}
-                <li>
-                    <h4>
-                        {% if activity.entry_type == 'add_story' %}
-                            <span class="glyphicon glyphicon-align-left"></span>
-                        {% elif activity.entry_type == 'add_comment' or activity.entry_type == 'add_comment_reply' %}
-                            <span class="glyphicon glyphicon-comment"></span>
-                        {% endif %}
-                        <div class="activity-title">
-                            {{activity.user.first_name}}
-                            {% if activity.entry_type == 'add_story' %}
-                                wrote a story regarding
-                            {% elif activity.entry_type == 'add_comment' %}
-                                commented on
-                            {% elif activity.entry_type == 'add_comment_reply' %}
-                                replied to a comment on
-                            {% endif %}
-                            <a href="{{activity.link}}#{% if activity.entry_type == 'add_story' %}stories{% else %}comments{% endif %}">
-                                {{activity.title}}
-                            </a>
-                            <span class="activity-created">{{activity.created | date:"F j, Y \a\t P" }}</span>
-                        </div>
-                    </h4>
-                    <div class="activity-content">{{ activity.content|bleach_striptags|truncatechars:220 }}</div>
-                </li>
-            {% empty %}
-                <li class="no-activities">User has no activity.</li>
-            {% endfor %}
-        </ul>
+        {% for activity in activities %}
+          {% include "activities/_entry.html" %}
+        {% empty %}
+          <p class="no-activities">User has no activity.</li>
+        {% endfor %}
 
     </div>
 

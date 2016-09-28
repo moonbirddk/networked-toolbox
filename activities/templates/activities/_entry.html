@@ -1,0 +1,56 @@
+{% load commontags %}
+{% load humanize %}
+
+<div class="panel panel-default activity">
+  <div class="panel-body">
+    <span class="activity-created pull-right"
+      title="{{ activity.created | date:"F j, Y \a\t P" }}">
+      {{ activity.created | naturaltime }}
+    </span>
+    <div class="activity-title">
+      {% if activity.entry_type == 'add_story' %}
+        <span class="glyphicon glyphicon-align-left"></span>
+      {% elif activity.entry_type == 'add_comment' or activity.entry_type == 'add_comment_reply' %}
+        <span class="glyphicon glyphicon-comment"></span>
+      {% endif %}
+      {{activity.user.first_name}}
+      {% if activity.entry_type == 'add_story' %}
+        wrote a story regarding
+      {% elif activity.entry_type == 'add_comment' %}
+        commented on
+      {% elif activity.entry_type == 'add_comment_reply' %}
+        replied to a comment on
+      {% endif %}
+      <a href="{{activity.link}}#{% if activity.entry_type == 'add_story' %}stories{% else %}comments{% endif %}">
+          {{activity.title}}
+      </a>
+    </div>
+    <p class="activity-content">
+      {{ activity.content|bleach_striptags|truncatechars:220 }}
+    </p>
+  </div>
+</div>
+<!-- li>
+    <h4>
+        {% if activity.entry_type == 'add_story' %}
+            <span class="glyphicon glyphicon-align-left"></span>
+        {% elif activity.entry_type == 'add_comment' or activity.entry_type == 'add_comment_reply' %}
+            <span class="glyphicon glyphicon-comment"></span>
+        {% endif %}
+        <div class="activity-title">
+            {{activity.user.first_name}}
+            {% if activity.entry_type == 'add_story' %}
+                wrote a story regarding
+            {% elif activity.entry_type == 'add_comment' %}
+                commented on
+            {% elif activity.entry_type == 'add_comment_reply' %}
+                replied to a comment on
+            {% endif %}
+            <a href="{{activity.link}}#{% if activity.entry_type == 'add_story' %}stories{% else %}comments{% endif %}">
+                {{activity.title}}
+            </a>
+            <span class="activity-created">{{activity.created | date:"F j, Y \a\t P" }}</span>
+        </div>
+    </h4>
+    <div class="activity-content">{{ activity.content|bleach_striptags|truncatechars:220 }}</div>
+</li -->

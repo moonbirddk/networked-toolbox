@@ -13,7 +13,8 @@ from allauth.account.utils import send_email_confirmation, user_email
 from allauth.account.models import EmailAddress
 
 from .forms import ProfileForm
-from .models import User, Profile, ActivityEntry
+from .models import User, Profile
+from activities.models import ActivityEntry
 from tools.models import Story, ToolFollower
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http.response import HttpResponseNotFound
