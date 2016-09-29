@@ -37,7 +37,8 @@ def on_story_create(sender, instance=None, created=False, **kwargs):
             user=instance.user,
             entry_type=ActivityEntry.TYPE_ADD_STORY,
             title=instance.tool.title[:150],
-            content=instance.content[:500], link=link
+            content=instance.title,
+            link=link
         )
 
 
