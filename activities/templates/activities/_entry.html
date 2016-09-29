@@ -21,7 +21,7 @@
       {% elif activity.entry_type == 'add_comment_reply' %}
         replied to a comment on
       {% endif %}
-      <a href="{{activity.link}}#{% if activity.entry_type == 'add_story' %}stories{% else %}comments{% endif %}">
+      <a href="{{activity.link}}">
           {{activity.title}}
       </a>
     </div>

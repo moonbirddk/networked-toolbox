@@ -32,6 +32,7 @@ class ActivityEntry(models.Model):
 def on_story_create(sender, instance=None, created=False, **kwargs):
     if created:
         link = reverse('tools:show', args=(instance.tool.id, ))
+        link += '#stories'
         ActivityEntry.objects.create(
             user=instance.user,
             entry_type=ActivityEntry.TYPE_ADD_STORY,
@@ -42,21 +43,25 @@ def on_story_create(sender, instance=None, created=False, **kwargs):
 
 @receiver(post_save, sender=ThreadedComment)
 def on_comment_create(sender, instance=None, created=False, **kwargs):
-    if not created: return
+    if created:
+        if instance.parent:
+            entry_type = ActivityEntry.TYPE_ADD_COMMENT_REPLY
+        else:
+            entry_type = ActivityEntry.TYPE_ADD_COMMENT
 
-    view = isinstance(instance.related_object, Tool) and 'tools:show'\
-            or 'tools:show_story'
-    entry_type = instance.parent and ActivityEntry.TYPE_ADD_COMMENT_REPLY\
-            or ActivityEntry.TYPE_ADD_COMMENT
-
-    link = reverse(view, args=(instance.related_object.id, ))
-    ActivityEntry.objects.create(
-        user=instance.author,
-        entry_type=entry_type,
-        title=instance.related_object.title[:150],
-        content=instance.content[:500],
-        link=link
-    )
+        if hasattr(instance.related_object, 'get_absolute_url'):
+            link = instance.related_object.get_absolute_url()
+        else:
+            raise Error('Expected that the model that was commented on has a'
+                        'method to generate an absolute URL.')
+        link = '#comment-%d' % instance.id
+        ActivityEntry.objects.create(
+            user=instance.author,
+            entry_type=entry_type,
+            title=instance.related_object.title[:150],
+            content=instance.content[:500],
+            link=link
+        )
 
 # Inject a better __str__ method on the Django User class
 User.add_to_class("__str__", User.get_full_name)
