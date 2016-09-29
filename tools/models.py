@@ -176,4 +176,3 @@ class CategoryOverviewPage(SingletonModel):
 
     class Meta:
         verbose_name = "Category Overview Page"
-

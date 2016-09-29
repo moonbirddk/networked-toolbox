@@ -7,13 +7,21 @@
       title="{{ activity.created | date:"F j, Y \a\t P" }}">
       {{ activity.created | naturaltime }}
     </span>
+    <p class="activity-content">
+      {{ activity.content | bleach_striptags | truncatechars:220 }}
+    </p>
     <div class="activity-title">
       {% if activity.entry_type == 'add_story' %}
         <span class="glyphicon glyphicon-align-left"></span>
       {% elif activity.entry_type == 'add_comment' or activity.entry_type == 'add_comment_reply' %}
         <span class="glyphicon glyphicon-comment"></span>
       {% endif %}
-      {{activity.user.first_name}}
+      {% if activity.user == user %}
+        You
+      {% else %}
+        <a href="{{ activity.user.profile.get_absolute_url }}">
+          {{ activity.user.first_name }}</a>
+      {% endif %}
       {% if activity.entry_type == 'add_story' %}
         wrote a story regarding
       {% elif activity.entry_type == 'add_comment' %}
@@ -25,9 +33,6 @@
           {{activity.title}}
       </a>
     </div>
-    <p class="activity-content">
-      {{ activity.content|bleach_striptags|truncatechars:220 }}
-    </p>
   </div>
 </div>
 <!-- li>
