@@ -7,4 +7,7 @@ if django_env == 'production':
 elif django_env == 'staging':
     from .staging import *
 else:
-    from .development import *
+    try:
+        from .local_development import *
+    except ImportError:
+        from .development import *
