@@ -1,13 +1,10 @@
-{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hi {{user_display}},
-
+{% extends 'email/base.txt' %}
+{% load i18n %}
+{% block message %}
 You’re only one step from being able to join the Networked Toolbox community!
 
 Click this link to verify your account on Networked Toolbox:
 {{ activate_url }}
 
 We’re glad to have you with us!
-{% endblocktrans %}{% endautoescape %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
-Kind regards,
-The Networked Toolbox Team
-
-{{ site_domain }}{% endblocktrans %}
+{% endblock %}
