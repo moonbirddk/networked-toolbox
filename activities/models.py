@@ -58,10 +58,14 @@ def on_comment_create(sender, instance=None, created=False, **kwargs):
             raise Error('Expected that the model that was commented on has a'
                         'method to generate an absolute URL.')
         link += '#comment-%d' % instance.id
+        title = 'the %s "%s"' % (
+            instance.related_object_type.model,
+            instance.related_object.title[:150]
+        )
         ActivityEntry.objects.create(
             user=instance.author,
             entry_type=entry_type,
-            title=instance.related_object.title[:150],
+            title=title,
             content=instance.content[:500],
             link=link
         )
