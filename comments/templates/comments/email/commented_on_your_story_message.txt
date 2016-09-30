@@ -1,0 +1,10 @@
+{% extends 'email/base.txt' %}
+{% load i18n %}
+{% block message %}
+{{ actor }} has commented on the story you shared on Networked Toolbox, titled: "{{target.title}}"
+
+"{{ description | truncatechars:220 }}"
+
+Click here to respond:
+{% for action in actions %}{{ BASE_URL }}{{ action.href }}
+{% endfor %}{% endblock %}

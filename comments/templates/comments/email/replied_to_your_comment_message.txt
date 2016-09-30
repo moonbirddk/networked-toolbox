@@ -1,0 +1,10 @@
+{% extends 'email/base.txt' %}
+{% load i18n %}
+{% block message %}
+{{ actor }} has replied to one of your comments on Networked Toolbox.
+
+"{{ description | truncatechars:220 }}"
+
+Click here to respond:
+{% for action in actions %}{{ BASE_URL }}{{ action.href }}
+{% endfor %}{% endblock %}

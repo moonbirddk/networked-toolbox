@@ -3,9 +3,15 @@ from django.db import models
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save
 from django.core.urlresolvers import reverse
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
+from django.contrib.sites.models import Site
 
 from model_utils.fields import StatusField
 from model_utils import Choices
+from notifications.models import Notification
+from allauth.account.utils import user_email
 
 from tools.models import Story, Tool, ToolFollower
 from comments.models import ThreadedComment
@@ -80,6 +86,36 @@ def on_tool_used(sender, instance=None, created=False, **kwargs):
             entry_type=ActivityEntry.TYPE_USED_TOOL,
             title=instance.tool.title[:150],
             link=link
+        )
+
+# Send notifications as mail if they have an email_template associated
+@receiver(post_save, sender=Notification)
+def send_notification_email(sender, instance=None, created=False, **kwargs):
+    if not created: return
+    email_template = instance.data.get('email_template')
+    if email_template:
+        context = {
+            'user': instance.recipient,
+            'actor': instance.actor,
+            'verb': instance.verb,
+            'target': instance.target,
+            'description': instance.description,
+            'BASE_URL': 'http://%s' % Site.objects.get_current().domain
+        }
+        # Add the notification data to the context
+        context.update(instance.data)
+        # Render the subject and message templates
+        subject_template = '%s_subject.txt' % email_template
+        message_template = '%s_message.txt' % email_template
+        subject = render_to_string(subject_template, context)
+        message = render_to_string(message_template, context)
+        subject = " ".join(subject.splitlines()).strip()
+        # Send the mail
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            [user_email(instance.recipient)]
         )
 
 # Inject a better __str__ method on the Django User class

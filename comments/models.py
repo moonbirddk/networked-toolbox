@@ -71,7 +71,8 @@ def notify_author(sender, instance, created, **kwargs):
                         recipient=instance.related_object.user,
                         target=instance.related_object,
                         description=instance.content,
-                        actions=actions)
+                        actions=actions,
+                        email_template='comments/email/commented_on_your_story')
 
 post_save.connect(notify_author, sender=ThreadedComment)
 
@@ -95,6 +96,7 @@ def notify_parent_author(sender, instance, created, **kwargs):
                         recipient=recipient,
                         target=instance.parent,
                         description=instance.content,
-                        actions=actions)
+                        actions=actions,
+                        email_template='comments/email/replied_to_your_comment')
 
 post_save.connect(notify_parent_author, sender=ThreadedComment)
