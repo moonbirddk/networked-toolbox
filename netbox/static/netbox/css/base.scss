@@ -25,6 +25,7 @@
 @import 'variables';
 @import 'buttons';
 @import 'modals';
+@import 'notifications';
 @import 'forms';
 @import 'footer';
 
@@ -74,6 +75,10 @@ a {
   }
 }
 
+.no-wrap {
+  white-space: nowrap;
+}
+
 .title {
   font-family: $serif-bold;
   font-weight: bold;
@@ -108,7 +113,6 @@ h3.title {
     font-family: $serif-bold;
     font-size: 2.2rem;
     font-weight: bold;
-    margin-left: -15px;
   }
 
   &-logo {
@@ -121,17 +125,27 @@ h3.title {
     }
   }
 
-  &-toggle {
-    margin-right: 0;
-  }
-
   &-top {
     padding: 1.2rem 0;
     margin-bottom: 0px;
     background-color: white;
   }
+
+  &-collapse {
+    @media (max-width: $media-medium) {
+      clear: both;
+    }
+  }
 }
 
+.navbar-top {
+  .navbar-brand {
+    @media (max-width: $media-medium) {
+      font-size: 1.5rem;
+      padding: 5px;
+    }
+  }
+}
 
 .navbar-default .navbar-nav {
   font-size: 18px;
@@ -147,6 +161,7 @@ h3.title {
   }
 }
 
+/*
 .navbar-collapse {
   border-top: 0;
   padding: 0;
@@ -155,20 +170,24 @@ h3.title {
     padding: 0 15px;
   }
 }
+*/
 
 .navbar-right {
   align-items: center;
   justify-content: flex-end;
   display: flex;
   font-family: $sans-serif;
-  height: 50px;
-
-  .profile-photo {
-    margin: 3px 3px 0 0;
-  }
+  margin-right: 1rem;
+  height: 50px; // ugly fix to center veritcally
 
   > li {
     display: inline-block;
+  }
+
+  .profile-photo {
+    margin-right: $spacer-sm;
+    border-radius: $border-radius;
+    overflow: hidden;
   }
 
   .btn {
@@ -190,7 +209,7 @@ h3.title {
 }
 
 .gray-text {
-  color: #777;
+  color: $color-gray-light;
 }
 
 .more {
@@ -217,8 +236,8 @@ h3.title {
 }
 
 .profile-photo {
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
 
   .profile-photo-img {
     overflow: hidden;

@@ -19,7 +19,7 @@ from celery.schedules import crontab
 SITE_ID = 1
 DOMAIN = 'localhost'
 DEFAULT_FROM_EMAIL = 'Networked Toolbox <hello@{}>'.format(DOMAIN)
-SITE_ADMIN_EMAIL = 'admin@{}'.format(DOMAIN)
+SITE_ADMIN_EMAIL = 'Networked Toolbox <admin@{}>'.format(DOMAIN)
 
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development')
 
@@ -55,34 +55,40 @@ AUTHENTICATION_BACKENDS = (
 )
 
 INSTALLED_APPS = (
+    # Django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.humanize',
     'django.contrib.messages',
-    'django_gulp',
-    'django.contrib.staticfiles',
+    'django.contrib.sessions',
     'django.contrib.sites',
+    'django_gulp', # 3rd party, but needs to be before 'staticfiles'
+    'django.contrib.staticfiles',
 
-    'allauth',
+    # 3rd party
     'allauth.account',
+    'allauth',
     'bootstrap3',
-    'storages',
-    'django_summernote',
-    'solo',
-    'django_countries',
     'compressor',
+    'django_countries',
+    'django_summernote',
     'easy_timezones',
     'haystack',
+    'notifications',
+    'solo',
+    'storages',
 
-    'common',
-    'profiles',
-    'tools',
-    'resources',
+    # Networked toolbox apps
     'comments',
-    'search',
+    'common',
+    'menus',
     'pages',
-    'menus'
+    'profiles',
+    'resources',
+    'search',
+    'tools',
+    'activities',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -232,14 +238,14 @@ ACCOUNT_CONFIRM_EMAIL_ON_GET = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
-ACCOUNT_EMAIL_SUBJECT_PREFIX = "[Network Toolbox]"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = ''
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
 ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
 ACCOUNT_USER_MODEL_EMAIL_FIELD = "email"
-ACCOUNT_USER_DISPLAY = lambda user: user.email
+ACCOUNT_USER_DISPLAY = lambda user: user.first_name or user.email
 ACCOUNT_USERNAME_MIN_LENGTH = 3
 ACCOUNT_PASSWORD_MIN_LENGTH = 8
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
@@ -305,3 +311,5 @@ CELERYBEAT_SCHEDULE = {
 GOOGLE_ANALYTICS_ID = 'UA-71138728-1'
 
 GULP_DEVELOP_COMMAND = 'node_modules/.bin/gulp'
+
+NOTIFICATIONS_USE_JSONFIELD=True

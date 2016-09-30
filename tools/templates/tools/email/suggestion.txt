@@ -1,5 +1,5 @@
-{% extends 'email_base.txt'%}
-{% block email_content %}
+{% extends 'email/base.txt'%}
+{% block message %}
 
 You receive this email because {% if suggestion.author.profile %}{{suggestion.author.profile.name}}{% endif %}
 {{suggestion.author.email}} has sent a suggestion to a {{related_object_type}}:
@@ -9,7 +9,7 @@ You receive this email because {% if suggestion.author.profile %}{{suggestion.au
     {{suggestion.description}}
 
 {% if suggestion.attachement %}
-    {{suggestion.author.email}} has added an attachement: 
+    {{suggestion.author.email}} has added an attachement:
     {{MEDIA_URL}}{{suggestion.attachement.url}}
 {% endif %}
 

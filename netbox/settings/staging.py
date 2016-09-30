@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
-DOMAIN = 'network-toolbox-staging.herokuapp.com'
+DOMAIN = 'staging.networkedtoolbox.com'
 ALLOWED_HOSTS = [DOMAIN, ]
 
 # We're using S3 for media and static storage.
@@ -27,8 +27,8 @@ DATABASE_POOL_ARGS = {
 
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
-SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
+DEFAULT_FROM_EMAIL = 'Networked Toolbox <info@{0}>'.format(DOMAIN)
+SERVER_EMAIL = 'Networked Toolbox <alerts@{0}>'.format(DOMAIN)
 
 ADMINS = (
     ('Kræn', 'kraen+network-toolbox-staging@socialsquare.dk', ),

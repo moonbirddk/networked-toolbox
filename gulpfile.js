@@ -20,7 +20,8 @@ var paths = {
         'tools/static/tools/css/*.scss',
         'profiles/static/profiles/css/*.scss',
         'search/static/search/css/*.scss',
-        'comments/static/comments/css/*.scss'
+        'comments/static/comments/css/*.scss',
+        'activities/static/activities/css/*.scss',
     ],
     sassWatch: [
         'netbox/static/netbox/css/*.scss'

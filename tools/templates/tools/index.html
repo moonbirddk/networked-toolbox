@@ -20,7 +20,7 @@
                 {{tools_filter.form}}
             </div>
         {% endif %}{% endif %}
-        <div class="dropdown pull-right">
+        <div class="dropdown tools__dropdown pull-right">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 {% if order == 'd' %}
                     Descending
@@ -50,6 +50,6 @@
     </div>
 
 </div>
-  
+
   {% include "tools/_tools_overview.html" with resources=tools_filter route='tools:show' %}
 {% endblock %}

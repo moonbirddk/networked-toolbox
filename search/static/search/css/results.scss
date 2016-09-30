@@ -1,3 +1,4 @@
+@import '../../../../netbox/static/netbox/css/variables';
 
 .back-to-search {
     font-size: 17px;
@@ -23,7 +24,7 @@
     overflow: hidden;
     padding-bottom: 100%;
     background: #8D8478;
-    
+
     &__profile {
         width: 170px;
         height: 170px;
@@ -32,9 +33,9 @@
             width: 170px;
             height: 170px;
         }
-    
+
     }
-    
+
     img {
         position: absolute;
         margin: auto;
@@ -54,7 +55,7 @@
 }
 
 .results-story-date {
-    color: #777;
+    color: $color-gray-light;
     font-weight: normal;
 }
 

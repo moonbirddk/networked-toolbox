@@ -7,11 +7,15 @@
 #comments { margin: 1em 0; }
 
 .comment-item {
+  padding-top: $spacer-md;
+  margin-bottom: -$spacer-md;
+  line-height: 1.6;
 
   .profile-photo {
     width: 55px;
     height: 55px;
     margin-bottom: $spacer-md;
+    margin-top: $spacer-xs;
   }
 
   .flag-icon {
@@ -52,6 +56,7 @@
     display: flex;
     margin-top: 0px;
     margin-bottom: 10px;
+    clear: both;
 }
 
 .comment-reply-form-box .profile-thumbnail-img {

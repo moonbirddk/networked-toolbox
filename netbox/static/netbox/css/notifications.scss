@@ -1,0 +1,87 @@
+.notifications {
+  margin-right: $spacer-sm;
+  position: relative;
+
+  &__count {
+    background-color: $color-primary;
+    border-radius: $border-radius;
+    color: white;
+    line-height: 1;
+    min-width: 1.8rem;
+    padding: 2px;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    &--zero {
+      display: none;
+    }
+  }
+
+  &__wrapper {
+    height: 60vh;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  &__dropdown {
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  &__read {
+    background-color: $color-gray-lightest;
+    border-radius: 0;
+    border: 0;
+    border-top: 1px solid $color-gray-lighter;
+    padding: $spacer-sm $spacer-md !important;
+    width: 100%;
+  }
+}
+
+.no-notification {
+  padding: $spacer-sm $spacer-md;
+}
+
+.notification {
+  > a {
+    padding: $spacer-sm $spacer-md !important;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+
+    &:hover, &:focus {
+      background-color: $color-gray-lightest;
+    }
+  }
+
+  &__actor {
+    color: $color-gray-dark;
+    font-weight: $bold-weight;
+    font-size: 90%;
+  }
+  &__verb {
+    color: $color-gray-light;
+    font-size: 90%;
+  }
+  &__text {
+    color: $color-gray-dark;
+  }
+}
+
+.btn-notification {
+  background-color: transparent !important;
+  border: 0;
+  color: $color-gray-light;
+  padding: $spacer-md;
+
+  &:hover, &:focus {
+    color: $color-gray;
+  }
+
+  .fa {
+    color: inherit !important;
+    font-size: 22px;
+    line-height: 1;
+  }
+}

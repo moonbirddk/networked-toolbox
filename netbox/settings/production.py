@@ -27,8 +27,8 @@ DATABASE_POOL_ARGS = {
 }
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
-SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
+DEFAULT_FROM_EMAIL = 'Networked Toolbox <info@{0}>'.format(DOMAIN)
+SERVER_EMAIL = 'Networked Toolbox <alerts@{0}>'.format(DOMAIN)
 ADMINS = (
     ('Kræn', 'kraen+network-toolbox-production@socialsquare.dk', ),
     ('Andreas', 'andreas+network-toolbox-production@socialsquare.dk', ),

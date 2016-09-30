@@ -13,3 +13,4 @@ npm-debug.log
 celerybeat-schedule
 celerybeat.pid
 dump.rdb
+netbox/settings/local_development.py

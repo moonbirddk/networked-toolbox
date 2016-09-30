@@ -22,6 +22,9 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^inbox/notifications/',
+        include('notifications.urls',
+        namespace='notifications')),
 
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^tools/', include('tools.urls', namespace='tools')),
@@ -30,6 +33,7 @@ urlpatterns = [
     url(r'^search/', include('search.urls', namespace='search')),
     url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^menus/', include('menus.urls', namespace='menus')),
+    url(r'^activity/', include('activities.urls', namespace='activities')),
     url(r'^$', 'search.views.homepage', name='homepage'),
 
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
