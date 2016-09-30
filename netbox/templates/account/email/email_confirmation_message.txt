@@ -1,8 +1,13 @@
-{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hello from {{ site_name }}!
+{% load account %}{% user_display user as user_display %}{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Hi {{user_display}},
 
-You're receiving this e-mail because user {{ user_display }} at {{ site_domain }} has given yours as an e-mail address to connect their account.
+You’re only one step from being able to join the Networked Toolbox community!
 
-To confirm this is correct, go to {{ activate_url }}
-{% endblocktrans %}{% endautoescape %}
-{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from {{ site_name }}!
+Click this link to verify your account on Networked Toolbox:
+{{ activate_url }}
+
+We’re glad to have you with us!
+{% endblocktrans %}{% endautoescape %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+Kind regards,
+The Networked Toolbox Team
+
 {{ site_domain }}{% endblocktrans %}
