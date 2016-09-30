@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 from model_utils.fields import StatusField
 from model_utils import Choices
 
-from tools.models import Story, Tool
+from tools.models import Story, Tool, ToolFollower
 from comments.models import ThreadedComment
 
 
@@ -15,10 +15,12 @@ class ActivityEntry(models.Model):
     TYPE_ADD_STORY = 'add_story'
     TYPE_ADD_COMMENT = 'add_comment'
     TYPE_ADD_COMMENT_REPLY = 'add_comment_reply'
+    TYPE_USED_TOOL = 'used_tool'
     ENTRY_TYPES = Choices(
             TYPE_ADD_STORY,
             TYPE_ADD_COMMENT,
-            TYPE_ADD_COMMENT_REPLY
+            TYPE_ADD_COMMENT_REPLY,
+            TYPE_USED_TOOL
     )
     user = models.ForeignKey('auth.User')
     entry_type = StatusField(choices_name='ENTRY_TYPES')
@@ -61,6 +63,18 @@ def on_comment_create(sender, instance=None, created=False, **kwargs):
             entry_type=entry_type,
             title=instance.related_object.title[:150],
             content=instance.content[:500],
+            link=link
+        )
+
+
+@receiver(post_save, sender=ToolFollower)
+def on_tool_used(sender, instance=None, created=False, **kwargs):
+    if created:
+        link = reverse('tools:show', args=(instance.tool.id, ))
+        ActivityEntry.objects.create(
+            user=instance.user,
+            entry_type=ActivityEntry.TYPE_USED_TOOL,
+            title=instance.tool.title[:150],
             link=link
         )
 
