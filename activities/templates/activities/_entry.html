@@ -7,11 +7,6 @@
       title="{{ activity.created | date:"F j, Y \a\t P" }}">
       {{ activity.created | naturaltime }}
     </span>
-    {% if activity.content %}
-      <p class="activity-content">
-        {{ activity.content | bleach_striptags | truncatechars:220 }}
-      </p>
-    {% endif %}
     <div class="activity-title">
       {% if activity.entry_type == 'add_story' %}
         <span class="glyphicon glyphicon-align-left"></span>
@@ -29,16 +24,27 @@
       {% if activity.entry_type == 'add_story' %}
         wrote a story regarding
       {% elif activity.entry_type == 'add_comment' %}
-        commented on
+        commented on <!-- the story / the tool -->
       {% elif activity.entry_type == 'add_comment_reply' %}
         replied to a comment on
       {% elif activity.entry_type == 'used_tool' %}
-        used the tool
+        {% if activity.user == user %}
+          have
+        {% else %}
+          has
+        {% endif %}
+        added
       {% endif %}
-      <a href="{{activity.link}}">
-          {{activity.title}}
-      </a>
+      <a href="{{activity.link}}">{{activity.title}}</a>
+      {% if activity.entry_type == 'used_tool' %}
+        as a "tool I have used"
+      {% endif %}
     </div>
+    {% if activity.content %}
+      <p class="activity-content">
+        {{ activity.content | bleach_striptags | truncatechars:220 }}
+      </p>
+    {% endif %}
   </div>
 </div>
 <!-- li>
