@@ -1,7 +1,7 @@
 {% extends 'email/base.txt' %}
 {% load i18n %}
 {% block message %}
-{{ actor }} has commented on the story you shared on Networked Toolbox, titled: "{{target.title}}"
+{{ actor }} has replied to one of your comments on Networked Toolbox.
 
 "{{ description | truncatechars:220 }}"
 

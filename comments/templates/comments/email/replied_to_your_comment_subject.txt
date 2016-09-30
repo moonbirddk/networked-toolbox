@@ -1,0 +1,4 @@
+{% load i18n %}
+{% autoescape off %}
+{% blocktrans with actor_first_name=actor.first_name %}{{ actor_first_name }} has responded to your comment on Networked Toolbox{% endblocktrans %}
+{% endautoescape %}

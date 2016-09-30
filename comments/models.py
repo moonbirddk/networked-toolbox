@@ -96,6 +96,7 @@ def notify_parent_author(sender, instance, created, **kwargs):
                         recipient=recipient,
                         target=instance.parent,
                         description=instance.content,
-                        actions=actions)
+                        actions=actions,
+                        email_template='comments/email/replied_to_your_comment')
 
 post_save.connect(notify_parent_author, sender=ThreadedComment)
