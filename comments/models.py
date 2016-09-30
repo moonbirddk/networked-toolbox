@@ -71,7 +71,8 @@ def notify_author(sender, instance, created, **kwargs):
                         recipient=instance.related_object.user,
                         target=instance.related_object,
                         description=instance.content,
-                        actions=actions)
+                        actions=actions,
+                        email_template='comments/email/commented_on_your_story')
 
 post_save.connect(notify_author, sender=ThreadedComment)
 
