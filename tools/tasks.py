@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 
@@ -9,7 +10,9 @@ from .models import Suggestion
 def send_suggestion(related_object_type=None, suggestion_id=None):
     suggestion = Suggestion.objects.get(id=suggestion_id)
     domain = Site.objects.get(id=settings.SITE_ID).domain
+    dummy = get_user_model()()
     ctx = {
+        'user': dummy,
         'related_object_type': related_object_type,
         'suggestion': suggestion,
         'title': "New suggestion",
