@@ -9,6 +9,7 @@ from django.db.models.signals import pre_delete, post_delete, pre_save
 
 from solo.models import SingletonModel
 from django_countries.fields import CountryField
+from shared.helpers import truncate_string
 
 from common.utils import generate_upload_path
 
@@ -49,6 +50,9 @@ class Tool(ModelWithCoverImage):
     published = models.BooleanField(default=False, null=False)
     resources = GenericRelation('resources.ToolResource')
 
+    def __str__(self): 
+        return self.title
+
     def get_absolute_url(self):
         return reverse('tools:show', args=(self.id, ))
 
@@ -68,6 +72,10 @@ class ToolFollower(models.Model):
 
 
 class Story(ModelWithCoverImage):
+    class Meta: 
+        verbose_name = 'Story'
+        verbose_name_plural = 'Stories'
+        ordering = ('created', )
     title = models.CharField(max_length=100, null=False, blank=False)
     content = models.TextField(max_length=5000, null=False, blank=False)
     user = models.ForeignKey('auth.User')
@@ -77,6 +85,9 @@ class Story(ModelWithCoverImage):
 
     def get_absolute_url(self):
         return reverse('tools:show_story', args=(self.id, ))
+
+    def __str__(self): 
+        return self.title
 
 
 class CategoryGroup(models.Model):
@@ -105,6 +116,11 @@ pre_save.connect(category_group_check, sender=CategoryGroup)
 
 
 class ToolCategory(ModelWithCoverImage):
+    class Meta: 
+        verbose_name = 'Tool Category'
+        verbose_name_plural = 'Tool Categories'
+        ordering = ['order', 'group']
+
     title = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=20000, blank=False)
     published = models.BooleanField(default=False, null=False)
@@ -134,8 +150,7 @@ class ToolCategory(ModelWithCoverImage):
         return self.tools.filter(published=True)
 
     def __str__(self):
-        pub = 'published' if self.published else 'unpublished'
-        return "{} ({})".format(self.title, pub)
+        return "{}".format(self.title)
 
 
 class Suggestion(models.Model):
@@ -152,6 +167,8 @@ class Suggestion(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
                                blank=False)
 
+    def __str__(self):
+        return truncate_string(self.description, 20)
 
 def delete_suggestion_on_related_deleted(sender, instance, **kwargs):
     ct = ContentType.objects.get_for_model(sender)

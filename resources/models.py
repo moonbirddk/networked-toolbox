@@ -18,3 +18,6 @@ class ToolResource(models.Model):
     content_type = models.ForeignKey(ContentType, null=True)
     object_id = models.PositiveIntegerField(null=True)
     content_object = GenericForeignKey('content_type', 'object_id')
+
+    def __str__(self): 
+    	return self.title

@@ -22,7 +22,7 @@
 {% endcompress %}
 {% endblock %}
 
-{% block head_title %}{{ tool.title }}{% endblock %}
+{% block head_title %}{{ tool.title }} - {% endblock %}
 
 
 {% block ga_events %}
@@ -122,7 +122,7 @@ ga('send', 'event', 'tool', 'view');
                   <a href="{% url 'resources:add' 'tool' tool.id  %}"><i class="fa fa-plus"></i></a>
               {% endif %}{% endif %}
           </h3>
-          <p>Here you can find the different resources related to the current tool.</p>
+          
           <p>{{ tool.resources_text }}</p>
 
           {% for resource in tool.resources.all %}

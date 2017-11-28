@@ -20,6 +20,9 @@ class ThreadedCommentManager(models.Manager):
 
 
 class ThreadedComment(models.Model):
+    class Meta:
+        ordering = ['tree_id', 'added_dt']
+    
     related_object_type = models.ForeignKey(
         ContentType,
         null=False,
@@ -47,9 +50,16 @@ class ThreadedComment(models.Model):
     is_removed = models.BooleanField(default=False)
     edited_dt = models.DateTimeField(auto_now=True, null=True, blank=True)
 
-    class Meta:
-        ordering = ['tree_id', 'added_dt']
+    @property 
+    def content_short(self): 
+        return self.content[:50]
 
+    @property
+    def related_object_title(self): 
+        return self.related_object.title if self.related_object else None
+    
+    def __str__(self): 
+        return '{} - {}...'.format(self.author, self.content[:10])
 
 def notify_author(sender, instance, created, **kwargs):
     # Let's only notify when it's on a story and it's not on another persons

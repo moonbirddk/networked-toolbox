@@ -1,0 +1,1264 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"related_object_",
+				"related_object_title\t(models.py)"
+			],
+			[
+				"link",
+				"link_to_related_obejct"
+			],
+			[
+				"Tool",
+				"ToolCategoryAdmin"
+			],
+			[
+				"__str",
+				"__str__"
+			],
+			[
+				"list",
+				"list_display"
+			],
+			[
+				"verbose",
+				"verbose_name_plural"
+			],
+			[
+				"Ca",
+				"Category"
+			],
+			[
+				"Suggest",
+				"SuggestionAdmin"
+			],
+			[
+				"_",
+				"__str__"
+			],
+			[
+				"related_",
+				"related_object\t(models.py)"
+			],
+			[
+				"Model",
+				"ModelAdmin"
+			],
+			[
+				"tr",
+				"truncate_string\t(helpers.py)"
+			],
+			[
+				"get",
+				"get_absolute_url\t(models.py)"
+			],
+			[
+				"St",
+				"StoryAdmin"
+			],
+			[
+				"related_o",
+				"related_object_title\t(models.py)"
+			],
+			[
+				"toos",
+				"tools:index"
+			],
+			[
+				"rea",
+				"realestate_settings"
+			],
+			[
+				"realestate",
+				"realestate_settings"
+			],
+			[
+				"RE",
+				"REPORT_FIELDS\t(forms.py)"
+			],
+			[
+				"uget",
+				"ugettext_lazy\t(forms.py)"
+			],
+			[
+				"non",
+				"non_committing_information_meeting\t(forms.py)"
+			],
+			[
+				"realtor_",
+				"realtor_joint_sale\t(forms.py)"
+			],
+			[
+				"Http",
+				"HttpResponse\t(options.py)"
+			],
+			[
+				"chen",
+				"change_form_template"
+			],
+			[
+				"requ",
+				"required"
+			],
+			[
+				"re",
+				"realestatecommunitysettings"
+			],
+			[
+				"format",
+				"format_html"
+			],
+			[
+				"reales",
+				"realestate_settings"
+			],
+			[
+				"model",
+				"model_field"
+			],
+			[
+				"rep",
+				"report_plumbing"
+			],
+			[
+				"report_",
+				"report_electricity"
+			],
+			[
+				"Rea",
+				"RealestateCommunitySettings"
+			],
+			[
+				"real",
+				"realtor_joint_sale"
+			],
+			[
+				"Sal",
+				"SalesForm"
+			],
+			[
+				"reale",
+				"realestate_settings"
+			],
+			[
+				"REPORT_",
+				"REPORT_TYPE_ASSESSMENT"
+			],
+			[
+				"Sefsale",
+				"SelfSaleImage"
+			],
+			[
+				"case",
+				"case_id"
+			],
+			[
+				"Self",
+				"SelfSaleImageInline〔class〕"
+			],
+			[
+				"__",
+				"__init__"
+			],
+			[
+				"SelfSaleIm",
+				"SelfSaleImageBySellerInline"
+			],
+			[
+				"SelfSaleImageBys",
+				"SelfSaleImageBySellerInline"
+			],
+			[
+				"image",
+				"image_tag"
+			],
+			[
+				"exter",
+				"external_photographer\t(models.py)"
+			],
+			[
+				"SelfSa",
+				"SelfSaleImage〔class〕"
+			],
+			[
+				"DE",
+				"DEFAULT_AGENT_EMAIL"
+			],
+			[
+				"fu",
+				"full_service〔variable〕"
+			],
+			[
+				"sa",
+				"safestring\t(models.py)"
+			],
+			[
+				"pro",
+				"profile_image"
+			],
+			[
+				"ce",
+				"cell_phone\t(models.py)"
+			],
+			[
+				"reepay_su",
+				"reepay_subscription_active\t(models.py)"
+			],
+			[
+				"ree",
+				"reepay_subscription_handle\t(helpers.py)"
+			],
+			[
+				"profile",
+				"profile_image\t(models.py)"
+			],
+			[
+				"validation",
+				"validation_form"
+			],
+			[
+				"Mod",
+				"ModifySelfSaleCase"
+			],
+			[
+				"form",
+				"form_instance"
+			],
+			[
+				"sub",
+				"subscription\t(helpers.py)"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"un",
+				"uncancel_subscription\t(helpers.py)"
+			],
+			[
+				"subscribe",
+				"subscribe_recurring_customer\t(helpers.py)"
+			],
+			[
+				"AP",
+				"API_CALLS"
+			],
+			[
+				"card",
+				"card_token"
+			],
+			[
+				"API_",
+				"API_ROOT"
+			],
+			[
+				"req",
+				"request_name"
+			],
+			[
+				"get_reep",
+				"get_reepay_subscription_status\t(models.py)"
+			],
+			[
+				"reepay_s",
+				"reepay_subscription_handle\t(models.py)"
+			],
+			[
+				"r",
+				"reepay_subscription_handle〔variable〕"
+			],
+			[
+				"inc",
+				"include_building_docs"
+			],
+			[
+				"sales",
+				"sales_blanket"
+			],
+			[
+				"images",
+				"images_sorted"
+			],
+			[
+				"order",
+				"order_by\t(schema.py)"
+			],
+			[
+				"sor",
+				"sort_order"
+			],
+			[
+				"Pa",
+				"Page"
+			],
+			[
+				"cad",
+				"cadastre_apartment_number\t(models.py)"
+			],
+			[
+				"str",
+				"street\t(models.py)"
+			],
+			[
+				"start",
+				"start_sale_date\t(models.py)"
+			],
+			[
+				"ag",
+				"agreement_duration\t(models.py)"
+			],
+			[
+				"nee",
+				"need_for_capital_on_purchase_pdf\t(models.py)"
+			],
+			[
+				"monthly",
+				"monthly_total_export\t(models.py)"
+			],
+			[
+				"dispat",
+				"dispatch_fee_buyer\t(data_import.py)"
+			],
+			[
+				"change",
+				"change_of_ownership_fee_buyer\t(data_import.py)"
+			],
+			[
+				"plumb",
+				"plumbing_check_fee_buyer\t(models.py)"
+			],
+			[
+				"electr",
+				"electricity_check_fee_buyer\t(data_import.py)"
+			],
+			[
+				"evaluation_",
+				"evaluation_fee_buyer\t(data_import.py)"
+			],
+			[
+				"transfer",
+				"transferrance_expense_buyer\t(data_import.py)"
+			],
+			[
+				"move",
+				"move_in_deposit"
+			],
+			[
+				"utili",
+				"utilities_water"
+			],
+			[
+				"mnonth",
+				"monthly_including_water_heating_pdf\t(models.py)"
+			],
+			[
+				"utilities_",
+				"utilities_heating"
+			],
+			[
+				"mon",
+				"monthly_fee"
+			],
+			[
+				"bui_econ",
+				"bui_economy_deposit\t(building.json)"
+			],
+			[
+				"email_",
+				"email_user\t(schema.py)"
+			],
+			[
+				"contact",
+				"contact_type〔variable〕"
+			],
+			[
+				"CO",
+				"CONTACT_TYPES"
+			],
+			[
+				"i",
+				"info"
+			],
+			[
+				"validation_f",
+				"validation_form_instance"
+			],
+			[
+				"val",
+				"validation\t(base.py)"
+			],
+			[
+				"Val",
+				"ValidationForm"
+			],
+			[
+				"genera",
+				"generate_case_id"
+			],
+			[
+				"cooper",
+				"cooperative_name\t(admin.py)"
+			],
+			[
+				"ad",
+				"administration_association_name〔variable〕"
+			],
+			[
+				"firs",
+				"first_name"
+			],
+			[
+				"Django",
+				"DjangoObjectType"
+			],
+			[
+				"Djan",
+				"DjangoObjectType"
+			],
+			[
+				"cl",
+				"class"
+			],
+			[
+				"values",
+				"value_salary_total"
+			],
+			[
+				"utilities_total",
+				"utilities_total_export\t(models.py)"
+			],
+			[
+				"realtor",
+				"realtor_fee_plus_outlay"
+			],
+			[
+				"thi",
+				"third_party_outlay"
+			],
+			[
+				"building",
+				"buildingdocuments_set"
+			],
+			[
+				"bulidn",
+				"building"
+			],
+			[
+				"buildin",
+				"buildingdocument_set\t(data_import.py)"
+			],
+			[
+				"attr",
+				"attributes"
+			],
+			[
+				"property_",
+				"property_document"
+			],
+			[
+				"build",
+				"building_documents"
+			],
+			[
+				"Build",
+				"BuildingDocumentInline"
+			],
+			[
+				"path",
+				"path_to_file"
+			],
+			[
+				"part",
+				"particulars_url\t(models.py)"
+			],
+			[
+				"download_",
+				"download_sales_particulars"
+			],
+			[
+				"assoc",
+				"association_url\t(models.py)"
+			],
+			[
+				"d",
+				"request_case_documents〔function〕"
+			],
+			[
+				"uge",
+				"ugettext_lazy\t(apps.py)"
+			],
+			[
+				"u",
+				"ugettext_lazy\t(apps.py)"
+			],
+			[
+				"ver",
+				"verbose_name"
+			],
+			[
+				"verb",
+				"verbose_name"
+			],
+			[
+				"verbo",
+				"verbose_name_plural"
+			],
+			[
+				"Ass",
+				"AssertionError"
+			],
+			[
+				"ResetTo",
+				"ResetTokenQuery\t(schema.py)"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "comments/models.py",
+			"settings":
+			{
+				"buffer_size": 4101,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "comments/admin.py",
+			"settings":
+			{
+				"buffer_size": 512,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/models.py",
+			"settings":
+			{
+				"buffer_size": 6773,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "shared/helpers.py",
+			"settings":
+			{
+				"buffer_size": 130,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/admin.py",
+			"settings":
+			{
+				"buffer_size": 1237,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/templates/tools/index.html",
+			"settings":
+			{
+				"buffer_size": 1916,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "resources/models.py",
+			"settings":
+			{
+				"buffer_size": 744,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "search/templates/search/index.html",
+			"settings":
+			{
+				"buffer_size": 3910,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "profiles/admin.py",
+			"settings":
+			{
+				"buffer_size": 90,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "profiles/models.py",
+			"settings":
+			{
+				"buffer_size": 3721,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 167.0,
+		"last_filter": "mater",
+		"selected_items":
+		[
+			[
+				"mater",
+				"Material Theme: Activate theme"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"instakl",
+				"Package Control: Install Package"
+			],
+			[
+				"paca",
+				"Package Control: Disable Package"
+			],
+			[
+				"PEP",
+				"User: Python PEP8 Autoformat"
+			],
+			[
+				"pa",
+				"Package Control: Disable Package"
+			],
+			[
+				"pre",
+				"Pretty JSON: Format and Sort JSON"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"pret",
+				"HTMLPrettify"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"pretty",
+				"HTMLPrettify"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 485.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/mathiaswedeken/python/networked-toolbox-master"
+	],
+	"file_history":
+	[
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/base.py",
+		"/usr/local/etc/redis.conf",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/common/templatetags/commontags.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templatetags/profilestags.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/tools.py",
+		"/Users/mathiaswedeken/python/community_app/venv/lib/python3.5/site-packages/django/contrib/admin/options.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/models.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/templates/admin/sale/sale/postflight.html",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/views.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/admin.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/admin/mixins.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/forms.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/templates/admin/change_form.html",
+		"/Users/mathiaswedeken/python/networked-toolbox/README.md",
+		"/etc/hosts",
+		"/Users/mathiaswedeken/python/community_app/.hgignore",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/forms.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/views.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/helpers.py",
+		"/Users/mathiaswedeken/python/community_app/fabfile.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/selfsalecase/change_form.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/admin.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/docker-compose.yml",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/DockerFile",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/models.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/migrations/0017_selfsaleimage.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/migrations/0016_auto_20171107_0908.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/scripts/dev/ub",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/migrations/0003_auto_20171107_1609.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/schema.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/schema.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/models.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/admin/views.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/unik_boligsalg/urls.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/penneo/models.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/penneo/views.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/penneo/penneo_helpers.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/settings_local.py",
+		"/Users/mathiaswedeken/.bash_profile",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/registration/activation_email.txt",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/case/stacked_inline.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/static/admin/css/fieldset_new.css",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/admin.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/info_pages/admin.py",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/models",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/management/commands/data_import.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/files/models.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/schema.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/files/views.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/unik_boligsalg/settings/base.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/admin/widgets.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_feedback/models.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/menu.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/case/formidlingsaftale.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/case/salgsbudget.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/.hgignore",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/import/JSON/property.json",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/Dockerfile",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/scripts/prod/backup_db",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/import/JSON/building.json",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/buildings/models.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/case/pdf_export.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/buildings/admin.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/static/css/salgsopstilling.css",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/migrations/0009_case_move_in_deposit.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/migrations/0010_auto_20171031_1051.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/static/admin/js/case_change_form.js",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/case/salgsopstilling.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/docker-compose.yml",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/unik_boligsalg/settings/local.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/Docker",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/graphene_custom.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/docker-compose.override.yml",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/static/css/formidlingsaftale.css",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/templatetags/math_tags.py",
+		"/Users/mathiaswedeken/.ssh/config",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/unik_boligsalg/locale/da/LC_MESSAGES/django.mo",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/static/css/salgsbudget.css",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/buildings/building/change_form.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/case/change_form.html",
+		"/Users/mathiaswedeken/.ssh/known_hosts",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/dashboard.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/xml_export.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/import/JSON/property_document_exclude.json",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/batch.xml",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/batch_orig.xml",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/requirements.txt",
+		"/Users/mathiaswedeken/Downloads/batch.xml",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/.hg/hgrc",
+		"/Users/mathiaswedeken/.hgrc",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/files/urls.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/nginx/nginx-dev.conf",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/apps.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_feedback/apps.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/real_estate_agents/apps.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/info_pages/apps.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/files/apps.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/buildings/apps.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/apps.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/administration_associations/apps.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/overview_module.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/case/change_list.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/buildings/building/change_list.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/unik_boligsalg/locale/da/LC_MESSAGES/django.po",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/unik_boligsalg/locale/da/LC_MESSAGES/django.po_old",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/reepay/repay-client/README.md",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/reepay/operations.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/requirements.text",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/requirements",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/reepay/first_test.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/migrations/0005_auto_20171011_2210.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/migrations/0003_auto_20171012_0801.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/migrations/0004_auto_20171011_2210.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/migrations/0001_initial.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/migrations/0002_unikboligsalguser_verification_code.py",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/local_apps/cases/admin.py",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/forms.py",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/admin.py",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/local_apps/cases/models.py",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/shared/admin/mixins.py",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/templates/admin/overview_module.html",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/unik_boligsalg/settings/base.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/venv/lib/python3.5/site-packages/admin_tools/dashboard/modules.py",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/local_apps/real_estate_agents/models.py",
+		"/Users/mathiaswedeken/python/unik_ny/unik_boligsalg/unik_boligsalg/local_apps/real_estate_agents/admin.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/local_apps/real_estate_agents/models.py",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/templates/admin/base_site.html",
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/templates/admin/chart.html"
+	],
+	"find":
+	{
+		"height": 70.0
+	},
+	"find_in_files":
+	{
+		"height": 158.0,
+		"where_history":
+		[
+			"<project>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"index.html",
+			"(published)",
+			"published",
+			"bleach_striptags",
+			"related_object_title"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "comments/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4101,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1810,
+								1810
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 2.0,
+						"translation.y": 312.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "comments/admin.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 512,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								34,
+								77
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "tools/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6773,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4112,
+								4112
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 886.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "shared/helpers.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 130,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								129,
+								129
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "tools/admin.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1237,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								452,
+								452
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "tools/templates/tools/index.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1916,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "resources/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 744,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								743,
+								743
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "search/templates/search/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3893,
+								3893
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "profiles/admin.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 90,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								90,
+								90
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"open_with_edit": true,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "profiles/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3721,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1704,
+								1704
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 2.0,
+						"translation.y": 25.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 63.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "nw-m.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"unik_boligsalg/settings/local.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/python/unik_boligsalg/unikboligsalg.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 347.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
