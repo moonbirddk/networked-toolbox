@@ -14,7 +14,6 @@ class ToolResource(models.Model):
     title = models.CharField(max_length=60)
     document = models.FileField(upload_to=do_upload_document, blank=False,
                                 null=False)
-    hyperlink = models.CharField(verbose_name="Hyperlink", max_length=100, blank=True, null=True)
     content_type = models.ForeignKey(ContentType, null=True)
     object_id = models.PositiveIntegerField(null=True)
     content_object = GenericForeignKey('content_type', 'object_id')

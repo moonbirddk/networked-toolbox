@@ -17,17 +17,21 @@ class StoryAdmin(admin.ModelAdmin):
 		return format_html('<a href="{}">{}</a>', url, str(self))
 
 	list_display = ['__str__', author, 'tool', link_to_story_on_website, 'created']
+	list_per_page = 20
 
 class SuggestionAdmin(admin.ModelAdmin): 
 	list_display = ['__str__', 'related_object']
+	list_per_page = 20
 
 class ToolFollowerAdmin(admin.ModelAdmin): 
 	list_display = ['user', 'tool', 'should_notify']
 	list_filter = ['user', 'tool'] #MTODO: Smart Filtering
+	list_per_page = 20
 
 class ToolCategoryAdmin(admin.ModelAdmin): 
 	list_display = ['__str__', 'group', 'published']
-
+	list_per_page = 20
+	
 admin.site.register(Tool)
 admin.site.register(Story, StoryAdmin)
 admin.site.register(ToolCategory, ToolCategoryAdmin)

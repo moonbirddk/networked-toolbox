@@ -20,7 +20,8 @@ class CountryListFilter(admin.SimpleListFilter):
 class ProfileAdmin(admin.ModelAdmin): 
 
 
-	list_display = ['__str__', 'country']
-	list_filter= [CountryListFilter,]
+    list_display = ['__str__', 'country']
+    list_filter= [CountryListFilter,]
+    list_per_page = 20
 
 admin.site.register(Profile, ProfileAdmin)

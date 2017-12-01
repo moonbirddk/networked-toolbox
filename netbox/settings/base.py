@@ -198,7 +198,7 @@ WSGI_APPLICATION = 'netbox.wsgi.application'
 DATABASES = {
     'default':{ 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'networked_toolbox',
+            'NAME': 'nwt_production',
             'USER': 'postgres',
             'HOST': 'localhost',
             'PORT': '',

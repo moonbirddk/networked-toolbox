@@ -25,7 +25,6 @@ urlpatterns = [
     url(r'^inbox/notifications/',
         include('notifications.urls',
         namespace='notifications')),
-
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
     url(r'^tools/', include('tools.urls', namespace='tools')),
     url(r'^resources/', include('resources.urls', namespace='resources')),
