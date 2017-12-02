@@ -36,6 +36,8 @@ class ModelWithCoverImage(models.Model):
 
 class Tool(ModelWithCoverImage):
     class Meta:
+        verbose_name = 'Tool'
+        verbose_name_plural = 'Tools'
         ordering = ['title']
 
     title = models.CharField(max_length=100, blank=False)
@@ -66,6 +68,9 @@ class Tool(ModelWithCoverImage):
 class ToolFollower(models.Model):
     class Meta:
         unique_together = (('user', 'tool'))
+        verbose_name = "'Tool Follower"
+        verbose_name_plural = 'Tool Followers'
+
     user = models.ForeignKey('auth.User')
     tool = models.ForeignKey('Tool', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
@@ -76,6 +81,7 @@ class Story(ModelWithCoverImage):
         verbose_name = 'Story'
         verbose_name_plural = 'Stories'
         ordering = ('created', )
+
     title = models.CharField(max_length=100, null=False, blank=False)
     content = models.TextField(max_length=5000, null=False, blank=False)
     user = models.ForeignKey('auth.User')
@@ -91,10 +97,14 @@ class Story(ModelWithCoverImage):
 
 
 class CategoryGroup(models.Model):
+    class Meta: 
+        verbose_name = 'Work Area'
+        verbose_name_plural = 'Work Areas'
+
     name = models.CharField(max_length=30, null=False, blank=False,
                             unique=True)
     description = models.CharField(max_length=255, blank=True)
-
+    published = models.BooleanField('published', default=False)
     def __str__(self):
         return self.name
 
@@ -117,8 +127,9 @@ pre_save.connect(category_group_check, sender=CategoryGroup)
 
 class ToolCategory(ModelWithCoverImage):
     class Meta: 
-        verbose_name = 'Tool Category'
-        verbose_name_plural = 'Tool Categories'
+        verbose_name = 'Toolbox'
+        verbose_name_plural = 'Toolboxes'
+
         ordering = ['order', 'group']
 
     title = models.CharField(max_length=100, blank=False)
@@ -182,6 +193,9 @@ post_delete.connect(delete_suggestion_on_related_deleted, sender=ToolCategory)
 
 
 class ToolOverviewPage(SingletonModel):
+    class Meta: 
+        verbose_name = 'Tool Overview Page'
+
     description = models.CharField(max_length=255, default='Lorem ipsum.')
 
     class Meta:
@@ -189,7 +203,15 @@ class ToolOverviewPage(SingletonModel):
 
 
 class CategoryOverviewPage(SingletonModel):
+    class Meta:
+        verbose_name = "Toolbox Overview Page"
+
     description = models.CharField(max_length=255, default='Lorem ipsum.')
 
-    class Meta:
-        verbose_name = "Category Overview Page"
+    
+class CategoryGroupOverviewPage(SingletonModel):
+    
+    class Meta: 
+        verbose_name = "Work Area Overview Page"
+
+    description = models.CharField(max_length=255, default='Lorem ipsum.')

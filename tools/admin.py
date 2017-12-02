@@ -4,9 +4,13 @@ from django.utils.html import format_html
 
 from solo.admin import SingletonModelAdmin
 from .models import Tool, ToolCategory, Suggestion, ToolFollower, \
-    ToolOverviewPage, CategoryOverviewPage, CategoryGroup, Story
+    ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupOverviewPage, Story
 
 
+class CategoryGroupAdmin(admin.ModelAdmin): 
+	list_per_page = 20 
+	list_display = ('__str__','published')
+	list_editable = ('published',)
 
 class StoryAdmin(admin.ModelAdmin): 
 
@@ -35,8 +39,9 @@ class ToolCategoryAdmin(admin.ModelAdmin):
 admin.site.register(Tool)
 admin.site.register(Story, StoryAdmin)
 admin.site.register(ToolCategory, ToolCategoryAdmin)
-admin.site.register(CategoryGroup)
+admin.site.register(CategoryGroup, CategoryGroupAdmin)
 admin.site.register(Suggestion, SuggestionAdmin)
 admin.site.register(ToolFollower, ToolFollowerAdmin)
 admin.site.register(ToolOverviewPage, SingletonModelAdmin)
 admin.site.register(CategoryOverviewPage, SingletonModelAdmin)
+admin.site.register(CategoryGroupOverviewPage, SingletonModelAdmin) 

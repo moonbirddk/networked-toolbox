@@ -6,8 +6,33 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
-from ..models import CategoryGroup, ToolCategory, get_default_category_group_id
+from ..models import CategoryGroup, CategoryGroupOverviewPage, ToolCategory, get_default_category_group_id
 from ..forms import CategoryGroupForm
+
+
+
+def list_categorygroups(request):
+    if request.user.has_perm('tools.change_toolcategory'):
+        queryset = CategoryGroup.objects.all()
+    else:
+        queryset = CategoryGroup.objects.filter(published=True)
+    
+#     categories_by_group = CategoryGroup.objects\
+#         .prefetch_related(Prefetch('categories', queryset=cat_filter.qs))\
+#         .order_by('name')
+
+#     default_id = get_default_category_group_id()
+#     default_category = categories_by_group.get(id=default_id)
+#     categories_by_group = list(categories_by_group.exclude(id=default_id))\
+#             + [default_category]
+
+    overview = CategoryGroupOverviewPage.get_solo()
+    context = {
+        'overview': overview,
+        'category_groups': queryset,
+    }
+    print (context)
+    return render(request, 'tools/list_category_groups.html', context) 
 
 
 @permission_required('tools.add_categorygroup', login_url='tools:index')
