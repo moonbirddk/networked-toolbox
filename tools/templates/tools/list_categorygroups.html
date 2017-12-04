@@ -23,12 +23,12 @@
 
 <div class="row">
     <div class="col-md-4 col-xs-12 pull-right">
-        {% if perms.tools %}{% if perms.tools.add_toolcategory %}
-            <a class="btn btn-primary pull-right" href="{% url 'tools:add_categorygroup' %}">Add Toolbox</a>
+        {% if perms.tools %}{% if perms.tools.add_categorygroup %}
+            <a class="btn btn-primary pull-right" href="{% url 'tools:add_categorygroup' %}">Add Work Area</a>
         {% endif %}{% endif %}
     </div>
     <div class="col-md-8 col-xs-12">
-       <h1 class="title">Toolbox Overview
+       <h1 class="title">Work Area Overview
          {% if perms.tools %}{% if perms.tools.add_toolcategory %}
          <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
          {% endif %}{% endif %}

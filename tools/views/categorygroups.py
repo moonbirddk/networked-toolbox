@@ -6,34 +6,23 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
-from ..models import CategoryGroup, CategoryGroupOverviewPage, ToolCategory, get_default_category_group_id
+from ..models import CategoryGroup, ToolCategory, get_default_category_group_id, CategoryOverviewPage
 from ..forms import CategoryGroupForm
 
 
 
-def list_categorygroups(request):
-    if request.user.has_perm('tools.change_toolcategory'):
-        queryset = CategoryGroup.objects.all()
-    else:
-        queryset = CategoryGroup.objects.filter(published=True)
-    
-#     categories_by_group = CategoryGroup.objects\
-#         .prefetch_related(Prefetch('categories', queryset=cat_filter.qs))\
-#         .order_by('name')
+def show_categorygroup(request, category_group_id):
 
-#     default_id = get_default_category_group_id()
-#     default_category = categories_by_group.get(id=default_id)
-#     categories_by_group = list(categories_by_group.exclude(id=default_id))\
-#             + [default_category]
-
-    overview = CategoryGroupOverviewPage.get_solo()
+    category_group = get_object_or_404(CategoryGroup, id=category_group_id)
+    categories = category_group.categories.all().order_by('title')
     context = {
-        'overview': overview,
-        'category_groups': queryset,
-    }
-    print (context)
-    return render(request, 'tools/list_category_groups.html', context) 
+        'category_group': category_group,
+        'categories': categories, 
 
+    }
+    return render (request, 'tools/show_categorygroup.html', context)
+    
+    
 
 @permission_required('tools.add_categorygroup', login_url='tools:index')
 @login_required
@@ -48,7 +37,7 @@ def add_categorygroup(request):
             ids = [cat.id for cat in form.cleaned_data['categories']]
             ToolCategory.objects.filter(id__in=ids).update(group=cat_group)
             messages.success(request, "You have added the toolbox")
-            return redirect(reverse('tools:list_categories'))
+            return redirect(reverse('tools:index'))
     ctx = {
         'form': form,
     }
@@ -61,7 +50,7 @@ def add_categorygroup(request):
 def edit_categorygroup(request, category_group_id):
     if category_group_id == '1':
         messages.error(request, "You cannot edit the default toolbox")
-        return redirect(reverse('tools:list_categories'))
+        return redirect(reverse('tools:index'))
     categorygroup = get_object_or_404(CategoryGroup, id=category_group_id)
     categories_ids = ToolCategory.objects\
         .filter(group=categorygroup)\
@@ -93,7 +82,7 @@ def edit_categorygroup(request, category_group_id):
 
 
             messages.success(request, "You have updated the toolbox")
-            return redirect(reverse('tools:list_categories'))
+            return redirect(reverse('tools:index'))
     ctx = {
         'form': form,
         'categorygroup': categorygroup,
@@ -108,7 +97,7 @@ def delete_categorygroup(request, category_group_id):
     categorygroup = get_object_or_404(CategoryGroup, id=category_group_id)
     if category_group_id == '1':
         messages.error(request, "You can not delete the default toolbox")
-        return redirect(reverse('tools:list_categories'))
+        return redirect(reverse('tools:index'))
     ctx = {
         'categorygroup': categorygroup,
     }
@@ -117,5 +106,5 @@ def delete_categorygroup(request, category_group_id):
         if 'yes' == request.POST.get('confirmation', 'no'):
             categorygroup.delete()
             messages.info(request, "You have deleted the toolbox")
-        return redirect(reverse('tools:list_categories'))
+        return redirect(reverse('tools:index'))
     return render(request, 'tools/delete_categorygroup.html', ctx)

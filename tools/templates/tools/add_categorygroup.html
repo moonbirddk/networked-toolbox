@@ -10,10 +10,10 @@
 {% endcompress %}
 {% endblock %}
 
-{% block head_title %}Add Toolbox - {% endblock %}
+{% block head_title %}Add Work Area - {% endblock %}
 
 {% block main %}
-<h1>Add Toolbox</h1>
+<h1>Add Work Area</h1>
 <hr />
 
 <form
@@ -26,7 +26,7 @@ enctype="multipart/form-data">
         <button type="submit" class="btn btn-primary">
             {% bootstrap_icon "star" %} Submit
         </button>
-        <a class="btn btn-danger" href="{% url 'tools:list_categories' %}">Cancel</a>
+        <a class="btn btn-danger" href="{% url 'tools:index' %}">Cancel</a>
     {% endbuttons %}
 </form>
 

@@ -14,5 +14,7 @@ def render_profile_photo(user, show_link=True):
     return {
         'photo_url': photo_url,
         'profile_uid': user.profile.uid,
-        'show_link': show_link
+        'show_link': show_link, 
+        'title': user.profile.name, 
+
         }

@@ -32,7 +32,7 @@ ga('send', 'event', 'toolboxSection', 'view');
         <div class="col-md-6">
             <div class="category-group">
                 This toolbox section is part of the toolbox: 
-                <a href="{% url 'tools:list_categories' %}#category-group-{{category.group.id}}">
+                <a href="{% url 'tools:index' %}#category-group-{{category.group.id}}">
                     {{category.group.name}}
                 </a>
             </div>
