@@ -17,26 +17,24 @@
 {% endcompress %}
 {% endblock %}
 
-{% block head_title %}Work Area Overview - {% endblock %}
+{% block head_title %}{{ category_group.name }} - {% endblock %}
 
 {% block main %}
 
 <div class="row">
-    <div class="col-md-4 col-xs-12 pull-right">
+    <div class="col-md-8 col-sm-12">
         {% if perms.tools %}{% if perms.tools.add_toolcategory %}
-            <a class="btn btn-primary pull-right" href="{% url 'tools:add_categorygroup' %}">Add Toolbox</a>
+            <a class="btn btn-primary pull-right" href="{% url 'tools:add_category_to_group' category_group.id %}">Add Toolbox</a>
         {% endif %}{% endif %}
     </div>
     <div class="col-md-8 col-xs-12">
-       <h1 class="title">Toolbox Overview
-         {% if perms.tools %}{% if perms.tools.add_toolcategory %}
-         <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
-         {% endif %}{% endif %}
+       <h1 class="title">{{category_group.name}}
+         
        </h1>
          <p class="category-description">
-           {{ overview.description }}
-           {% if perms.tools %}{% if perms.tools.add_tool %}
-           <a href="{% url 'tools:edit_overview' 'category' %}"><i class="fa fa-edit"></i></a>
+           {{ category_group.description }}
+           {% if perms.tools %}{% if perms.tools.change_category %}
+           <a href="{% url 'tools:edit_categorygroup' category_group.id %}"><i class="fa fa-edit"></i></a>
            {% endif %}{% endif %}
          </p>
     </div>
@@ -44,5 +42,5 @@
 
 </div>
 
-{% include "tools/_categorygroups_overview.html" %}
+{% include "tools/_categorygroup_categorylist.html" %}
 {% endblock %}

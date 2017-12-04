@@ -14,7 +14,7 @@ def edit_overview(request, obj_type_name):
 
     if obj_type_name == 'category':
         overview = CategoryOverviewPage.get_solo()
-        route = 'tools:list_categories'
+        route = 'tools:index'
     elif obj_type_name == 'tool':
         overview = ToolOverviewPage.get_solo()
         route = 'tools:index'

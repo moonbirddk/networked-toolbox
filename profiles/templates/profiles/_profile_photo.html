@@ -2,7 +2,7 @@
   {% if show_link %}
     <a href="{% url 'profiles:show' profile_uid %}">
   {% endif %}
-      <div class='profile-photo-img' style="background-image: url({{ photo_url }})"></div>
+      <div title="{{ title }}" class='profile-photo-img' style="background-image: url({{ photo_url }})"></div>
   {% if show_link %}
     </a>
   {% endif %}

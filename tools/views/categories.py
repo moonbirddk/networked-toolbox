@@ -10,7 +10,7 @@ from django.conf import settings
 
 from tools.filters import PublishedFilter
 from tools.forms import ToolCategoryForm
-from tools.models import ToolCategory, CategoryOverviewPage,\
+from tools.models import ToolCategory, CategoryGroupOverviewPage,\
     CategoryGroup, get_default_category_group_id
 
 log = logging.getLogger(__name__)
@@ -33,13 +33,13 @@ def list_categories(request):
     categories_by_group = list(categories_by_group.exclude(id=default_id))\
             + [default_category]
 
-    overview = CategoryOverviewPage.get_solo()
+    overview = CategoryGroupOverviewPage.get_solo()
     context = {
         'categories_filter': cat_filter,
         'overview': overview,
         'categories_by_group': categories_by_group,
     }
-    return render(request, 'tools/list_categories.html', context)
+    return render(request, 'tools/list_categorygroups.html', context)
 
 
 def show_category(request, cat_id):
@@ -53,9 +53,12 @@ def show_category(request, cat_id):
 
 @permission_required('tools.add_toolcategory', login_url='tools:index')
 @login_required
-def add_category(request):
+def add_category(request, group_category_id=None):
+    if group_category_id: 
 
-    form = ToolCategoryForm()
+        form = ToolCategoryForm(initial={'group':group_category_id})
+    else:
+        form = ToolCategoryForm()
 
     if request.method == 'POST':
         form = ToolCategoryForm(request.POST, request.FILES)
@@ -132,4 +135,4 @@ def delete_category(request, cat_id):
         if 'yes' == request.POST.get('confirmation', 'no'):
             category.delete()
             messages.success(request, "You deleted a toolbox section")
-        return redirect('tools:list_categories')
+        return redirect('tools:index')

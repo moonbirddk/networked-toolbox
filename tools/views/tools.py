@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 @transaction.atomic
 @permission_required('tools.add_tool', login_url='tools:index')
 @login_required
-def add(request):
+def add_tool(request):
     form = ToolForm()
 
     if request.method == 'POST':
@@ -36,7 +36,7 @@ def add(request):
     return render(request, 'tools/add.html', context)
 
 
-def index(request):
+def list_tools(request):
     if request.user.has_perm('tools.change_tool'):
         queryset = Tool.objects.all().order_by('-published')
     else:
@@ -55,7 +55,7 @@ def index(request):
     return render(request, 'tools/index.html', context)
 
 
-def show(request, tool_id):
+def show_tool(request, tool_id):
     if request.user.has_perm('tools.change_tool'):
         tool = get_object_or_404(Tool, id=tool_id)
     else:
@@ -76,7 +76,7 @@ def show(request, tool_id):
 
 @transaction.atomic
 @login_required
-def follow(request, tool_id):
+def follow_tool(request, tool_id):
     if request.user.has_perm('tools.change_tool'):
         tool = get_object_or_404(Tool, id=tool_id)
     else:
@@ -96,7 +96,7 @@ def follow(request, tool_id):
 
 
 @login_required
-def unfollow(request, tool_id):
+def unfollow_tool(request, tool_id):
     if request.user.has_perm('tools.change_tool'):
         tool = get_object_or_404(Tool, id=tool_id)
     else:
@@ -110,7 +110,7 @@ def unfollow(request, tool_id):
 @transaction.atomic
 @permission_required('tools.change_tool', login_url='tools:index')
 @login_required
-def edit(request, tool_id):
+def edit_tool(request, tool_id):
     # TODO: use celery tasks for storage IO so it doesn't block transaction
     tool = get_object_or_404(Tool, id=tool_id)
 
