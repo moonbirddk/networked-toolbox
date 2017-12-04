@@ -22,14 +22,11 @@
 {% block main %}
 
 <div class="row">
-    <div class="col-md-8 col-sm-12">
-        {% if perms.tools %}{% if perms.tools.add_toolcategory %}
-            <a class="btn btn-primary pull-right" href="{% url 'tools:add_category_to_group' category_group.id %}">Add Toolbox</a>
-        {% endif %}{% endif %}
-    </div>
+     <div class="col-md-8 col-sm-12 summernote-container">
+        
+    
     <div class="col-md-8 col-xs-12">
        <h1 class="title">{{category_group.name}}
-         
        </h1>
          <p class="category-description">
            {{ category_group.description }}
@@ -37,7 +34,30 @@
            <a href="{% url 'tools:edit_categorygroup' category_group.id %}"><i class="fa fa-edit"></i></a>
            {% endif %}{% endif %}
          </p>
+         <p class="tool-description summernote-content more">
+          {{ category_group.main_text }}
     </div>
+  </div>
+{% if perms.tools %}{% if perms.tools.add_toolcategory %}
+            <a class="btn btn-primary pull-right" href="{% url 'tools:add_category_to_group' category_group.id %}">Add Toolbox</a>
+        {% endif %}{% endif %}
+    
+
+    <div class="help-improve">
+
+
+        <h3 class="title">Help improve this Work Area</h3>
+        <p>Tell us about your experience in this Work Area, so the community can learn from it.</p>
+        <a
+          class="btn btn-primary"
+          href="{% url 'tools:add_workarea_story' category_group.id %}"
+          data-requires-validated-user="true">Add a story</a>
+        <p>How can we improve this Work Area? Give us concrete feedback on what you think is missing.</p>
+        <a
+          class="btn btn-primary"
+          href="{% url 'tools:add_suggestion' 'categorygroup' category_group.id %}"
+          data-requires-validated-user="true">Add a suggestion</a>
+      </div>
 
 
 </div>

@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^tools/follow/(\d+)/$', views.follow_tool, name='follow'),
     url(r'^tools/unfollow/(\d+)/$', views.unfollow_tool, name='unfollow'),
     url(r'^story/add/tool/(\d+)/$', views.add_story, name='add_story'),
+    url(r'^story/add/workarea/(\d+)/$', views.add_workarea_story, name='add_workarea_story'),
     url(r'^story/(\d+)/$', views.show_story, name='show_story'),
     url(r'^toolboxes/add/$', views.add_category, name='add_category'),
     url(r'^(\d+)/toolboxes/add/$', views.add_category, name='add_category_to_group'), 

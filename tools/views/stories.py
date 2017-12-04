@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from tools.forms import StoryForm
-from tools.models import Tool, Story
+from tools.models import Tool, Story, CategoryGroup
 
 @login_required
 def add_story(request, tool_id):
@@ -19,6 +19,21 @@ def add_story(request, tool_id):
 
     context = {'tool': tool, 'form': form}
     return render(request, 'tools/add_story.html', context)
+
+@login_required
+def add_workarea_story(request, category_group_id):
+    category_group = get_object_or_404(CategoryGroup, id=category_group_id, published=True)
+    form = StoryForm()
+
+    if request.method == 'POST':
+        form = StoryForm(request.POST)
+        if form.is_valid():
+            story = Story.objects.create(category_group=category_group, user_id=request.user.id, **form.cleaned_data)
+            messages.success(request, "You created a story")
+            return redirect('tools:show_categorygroup', story.category_group.id)
+
+    context = {'category_group': category_group, 'form': form}
+    return render(request, 'tools/add_workarea_story.html', context)
 
 def show_story(request, story_id):
     story = get_object_or_404(Story, id=story_id)

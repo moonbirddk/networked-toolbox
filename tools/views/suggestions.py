@@ -11,11 +11,13 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def add_suggestion(request, related_object_type, related_object_id):
+
     related_form = SuggestionRelatedObjectForm(dict(
         related_object_type=related_object_type,
         related_object=related_object_id
     ))
     if not related_form.is_valid():
+
         raise Http404()
 
     # FIXME: move this into permissions logic
@@ -44,7 +46,10 @@ def add_suggestion(request, related_object_type, related_object_id):
 
     ctx = {
         'form': form,
+        'related_object_verbose_name': related_object._meta.verbose_name,
         'related_object_type': related_object_type,
         'related_object': related_object,
-    }
+        'object_title': related_object.title, 
+        }
+
     return render(request, 'tools/add_suggestion.html', ctx)
