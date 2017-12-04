@@ -85,7 +85,8 @@ class Story(ModelWithCoverImage):
     title = models.CharField(max_length=100, null=False, blank=False)
     content = models.TextField(max_length=5000, null=False, blank=False)
     user = models.ForeignKey('auth.User')
-    tool = models.ForeignKey('Tool', related_name='stories')
+    tool = models.ForeignKey('Tool', related_name='stories', blank=True, null=True)
+    category_group = models.ForeignKey('CategoryGroup', related_name='stories', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
 
@@ -104,10 +105,14 @@ class CategoryGroup(models.Model):
     name = models.CharField(max_length=30, null=False, blank=False,
                             unique=True)
     description = models.CharField(max_length=255, blank=True)
+    main_text = models.TextField(max_length=5000, blank=True, null=True, default='Lorem ipsum.')
     published = models.BooleanField('published', default=False)
     def __str__(self):
         return self.name
 
+    @property
+    def title(self):
+        return self.name
 
 def get_default_category_group_id(*args, **kwargs):
     return CategoryGroup.objects.get(

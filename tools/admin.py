@@ -16,11 +16,16 @@ class StoryAdmin(admin.ModelAdmin):
 
 	def author(self): 
 		return self.user
+	
 	def link_to_story_on_website(self): 
 		url = self.get_absolute_url()
 		return format_html('<a href="{}">{}</a>', url, str(self))
+	
+	def tool_or_work_area(self): 
+		return 'Tool: {}'.format(self.tool) if self.tool else 'Work Area: {}'.format(self.category_group) 
+	
 
-	list_display = ['__str__', author, 'tool', link_to_story_on_website, 'created']
+	list_display = ['__str__', author, tool_or_work_area, link_to_story_on_website, 'created']
 	list_per_page = 20
 
 class SuggestionAdmin(admin.ModelAdmin): 

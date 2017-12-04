@@ -105,8 +105,14 @@ class SuggestionRelatedObjectForm(forms.Form):
     _rel_obj_type_choices = (
         ('tool', 'tool'),
         ('category', 'category'),
+        ('categorygroup', 'categorygroup'),
     )
 
+    RELATED_OBJECT_MODELS = {
+        'tool': Tool, 
+        'category': ToolCategory, 
+        'categorygroup': CategoryGroup, 
+    }
     related_object_type = forms.fields.ChoiceField(
         choices=_rel_obj_type_choices,
         required=True,
@@ -122,10 +128,8 @@ class SuggestionRelatedObjectForm(forms.Form):
         rel_obj_id = cleaned_data['related_object']
         rel_obj_type = self.cleaned_data['related_object_type']
         try:
-            if rel_obj_type == 'tool':
-                obj = Tool.objects.get(id=rel_obj_id)
-            elif rel_obj_type == 'category':
-                obj = ToolCategory.objects.get(id=rel_obj_id)
+            obj = self.RELATED_OBJECT_MODELS[rel_obj_type].objects.get(id=rel_obj_id)
+        
         except ObjectDoesNotExist as exc:
             raise ValidationError("Non existent related object")
 
