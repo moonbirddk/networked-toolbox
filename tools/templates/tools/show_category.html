@@ -31,8 +31,8 @@ ga('send', 'event', 'toolboxSection', 'view');
         </div>
         <div class="col-md-6">
             <div class="category-group">
-                This toolbox section is part of the toolbox: 
-                <a href="{% url 'tools:index' %}#category-group-{{category.group.id}}">
+                This Toolbox is part of the Work Area: 
+                <a href="{% url 'tools:show_categorygroup' category.group.id %}">
                     {{category.group.name}}
                 </a>
             </div>
@@ -100,6 +100,34 @@ ga('send', 'event', 'toolboxSection', 'view');
           </div>
         </div>
     </div>
+    <hr class="category-seperator">  
+    <div class="row">
+      <div class="col-md-12">
+      <h2 class="title">Other Toolboxes in "{{ category.group.name }}"
+    </h2>
+    <div class="row flex-wrapper">
+                {% with category.group.categories.all as categories %}
+                {% for category in categories %}
+                    <div class="col-md-3 col-xs-6">
+                        <a href="{% url 'tools:show_category' category.id %}"><div class="category-image">
+                            {% if category.cover_image %}
+                                <img src="{{ category.cover_image.url }}" />
+                            {% else %}
+                                <!--<img src="empty-image-here" />-->
+                            {% endif %}
+                        </div></a>
+                        <div class="category-content">
+                            <h3>{{ category.title|bleach_striptags|truncatechars:16 }}</h3>
+                            <p>{{ category.description|bleach_striptags|truncatechars:70 }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>There are no related toolboxes.</p>
+                {% endfor %}
+            {% endwith %}
+            </div>
+  </div>
+  </div>    
     <hr class="category-seperator">
     <div class="row">
         <div class="col-md-12">
