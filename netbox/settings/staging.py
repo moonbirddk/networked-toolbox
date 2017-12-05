@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
-DOMAIN = 'network-toolbox-staging.herokuapp.com'
+DOMAIN = 'staging.networkedtoolbox.com'
 ALLOWED_HOSTS = [DOMAIN, ]
 
 # We're using S3 for media and static storage.
@@ -25,7 +25,7 @@ DATABASE_POOL_ARGS = {
     'recycle': 300
 }
 
-SECRET_KEY = '1d427e2f01b46d5ae6188c42e55b0956'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 DEFAULT_FROM_EMAIL = 'Networked Toolbox <info@{0}>'.format(DOMAIN)
 SERVER_EMAIL = 'Networked Toolbox <alerts@{0}>'.format(DOMAIN)
@@ -36,19 +36,19 @@ ADMINS = (
 )
 SITE_ADMIN_EMAIL = 'networkedtoolbox@actionaid.dk'
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = os.environ['MAILGUN_SMTP_SERVER']
-# EMAIL_HOST_USER = os.environ['MAILGUN_SMTP_LOGIN']
-# EMAIL_HOST_PASSWORD = os.environ['MAILGUN_SMTP_PASSWORD']
-# EMAIL_PORT = os.environ['MAILGUN_SMTP_PORT']
-# EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.environ['MAILGUN_SMTP_SERVER']
+EMAIL_HOST_USER = os.environ['MAILGUN_SMTP_LOGIN']
+EMAIL_HOST_PASSWORD = os.environ['MAILGUN_SMTP_PASSWORD']
+EMAIL_PORT = os.environ['MAILGUN_SMTP_PORT']
+EMAIL_USE_TLS = True
 
-# HAYSTACK_CONNECTIONS = {
-#     'default': {
-#         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-#         'URL': os.environ['BONSAI_URL'],
-#         'INDEX_NAME': 'haystack',
-#     },
-# }
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': os.environ['BONSAI_URL'],
+        'INDEX_NAME': 'haystack',
+    },
+}
 
 GOOGLE_ANALYTICS_ID = 'UA-71138728-2'
