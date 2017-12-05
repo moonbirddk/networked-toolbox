@@ -27,8 +27,12 @@ ga('send', 'event', 'story', 'view');
     <div class="row">
         <div class="col-md-8">
             <div class="story-tool">
-                This story relates to the tool: 
-                <a href="{% url 'tools:show' tool.id  %}">{{tool.title}}</a>
+                This story relates to the {{ related_model_name }}: 
+                {% if related_model_name == "Tool" %}
+                <a href="{% url 'tools:show' related_model_instance.id  %}">{{related_model_instance.title}}</a>
+                {% else %}
+                <a href="{% url 'tools:show_categorygroup' related_model_instance.id  %}">{{related_model_instance.title}}</a>
+                {% endif %}
             </div>
             <h1 class="story-title title">
                 {% if story.country %}

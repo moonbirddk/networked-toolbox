@@ -37,7 +37,13 @@ def add_workarea_story(request, category_group_id):
 
 def show_story(request, story_id):
     story = get_object_or_404(Story, id=story_id)
-    tool = get_object_or_404(Tool, id=story.tool_id)
+    related_model_instance = get_object_or_404(Tool, id=story.tool_id) if story.tool else get_object_or_404(CategoryGroup, id=story.category_group_id)
+    related_model_name = related_model_instance._meta.verbose_name
     related_stories = Story.objects.filter(tool_id=story.tool_id).exclude(id=story.id).order_by('-created')[:3]
-    context = {'story': story, 'tool': tool, 'related_stories': related_stories }
+    context = {
+        'story': story, 
+        'related_model_instance': related_model_instance, 
+        'related_model_name': related_model_name, 
+        'related_stories': related_stories 
+    }
     return render(request, 'tools/show_story.html', context)
