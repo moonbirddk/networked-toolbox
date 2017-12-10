@@ -8,39 +8,39 @@ from .models import Tool, ToolCategory, Suggestion, ToolFollower, \
 
 
 class CategoryGroupAdmin(admin.ModelAdmin): 
-	list_per_page = 20 
-	list_display = ('__str__','published')
-	list_editable = ('published',)
+    list_per_page = 20 
+    list_display = ('__str__','published')
+    list_editable = ('published',)
 
 class StoryAdmin(admin.ModelAdmin): 
 
-	def author(self): 
-		return self.user
-	
-	def link_to_story_on_website(self): 
-		url = self.get_absolute_url()
-		return format_html('<a href="{}">{}</a>', url, str(self))
-	
-	def tool_or_work_area(self): 
-		return 'Tool: {}'.format(self.tool) if self.tool else 'Work Area: {}'.format(self.category_group) 
-	
+    def author(self): 
+        return self.user
+    
+    def link_to_story_on_website(self): 
+        url = self.get_absolute_url()
+        return format_html('<a href="{}">{}</a>', url, str(self))
+    
+    def tool_or_work_area(self): 
+        return 'Tool: {}'.format(self.tool) if self.tool else 'Work Area: {}'.format(self.category_group) 
+    
 
-	list_display = ['__str__', author, tool_or_work_area, link_to_story_on_website, 'created']
-	list_per_page = 20
+    list_display = ['__str__', author, tool_or_work_area, link_to_story_on_website, 'created']
+    list_per_page = 20
 
 class SuggestionAdmin(admin.ModelAdmin): 
-	list_display = ['__str__', 'related_object']
-	list_per_page = 20
+    list_display = ['__str__', 'related_object']
+    list_per_page = 20
 
 class ToolFollowerAdmin(admin.ModelAdmin): 
-	list_display = ['user', 'tool', 'should_notify']
-	list_filter = ['user', 'tool'] #MTODO: Smart Filtering
-	list_per_page = 20
+    list_display = ['user', 'tool', 'should_notify']
+    list_filter = ['user', 'tool'] #MTODO: Smart Filtering
+    list_per_page = 20
 
 class ToolCategoryAdmin(admin.ModelAdmin): 
-	list_display = ['__str__', 'group', 'published']
-	list_per_page = 20
-	
+    list_display = ['__str__', 'group', 'published']
+    list_per_page = 20
+    
 admin.site.register(Tool)
 admin.site.register(Story, StoryAdmin)
 admin.site.register(ToolCategory, ToolCategoryAdmin)

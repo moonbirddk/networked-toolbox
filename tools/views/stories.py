@@ -22,7 +22,7 @@ def add_story(request, tool_id):
 
 @login_required
 def add_workarea_story(request, category_group_id):
-    category_group = get_object_or_404(CategoryGroup, id=category_group_id, published=True)
+    category_group = get_object_or_404(CategoryGroup, id=category_group_id)
     form = StoryForm()
 
     if request.method == 'POST':

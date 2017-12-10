@@ -28,7 +28,7 @@ class ProfileForm(forms.Form):
                            max_length=PROFILE_BIO_MAX_LEN,
                            required=False,
                            label='Bio (a short description of yourself)',
-                           help_text='400 characters max.')
+                           help_text='{} characters max.'.format(PROFILE_BIO_MAX_LEN))
     country = LazyTypedChoiceField(choices=[('', ''), ] + list(countries),
                                    required=False,
                                    label='Where do you live?')
@@ -52,9 +52,12 @@ class ProfileForm(forms.Form):
             return photo
 
     def clean_bio(self):
+        import html.parser
+        html_parser = html.parser.HTMLParser()
+
         bio = self.cleaned_data.get('bio', '')
         bio = clean(bio, tags=[], strip=True, strip_comments=True)
-        return bio
+        return html_parser.unescape(bio)
 
 class NetboxSignupForm(forms.Form):
 
