@@ -4,6 +4,162 @@
 		"selected_items":
 		[
 			[
+				"cat",
+				"categories"
+			],
+			[
+				"categro",
+				"category_group\t(models.py)"
+			],
+			[
+				"show_",
+				"show_categorygroup\t(urls.py)"
+			],
+			[
+				"categ",
+				"category-seperator"
+			],
+			[
+				"related_n",
+				"related_model_instance\t(stories.py)"
+			],
+			[
+				"related_model_",
+				"related_model_instance\t(stories.py)"
+			],
+			[
+				"related_m",
+				"related_model_name"
+			],
+			[
+				"related_model",
+				"related_model_instance"
+			],
+			[
+				"related_",
+				"related_object"
+			],
+			[
+				"related",
+				"related_object"
+			],
+			[
+				"rel",
+				"rel_obj_type"
+			],
+			[
+				"cate",
+				"categorygroup"
+			],
+			[
+				"related_object",
+				"related_object_type"
+			],
+			[
+				"rela",
+				"related_object"
+			],
+			[
+				"add_",
+				"add_story.html\t(stories.py)"
+			],
+			[
+				"category",
+				"category_group\t(stories.py)"
+			],
+			[
+				"catgory",
+				"category_group"
+			],
+			[
+				"categor",
+				"category_group.id"
+			],
+			[
+				"summer",
+				"summernote-content\t(show.html)"
+			],
+			[
+				"su",
+				"summernote-container"
+			],
+			[
+				"group",
+				"group_category_id"
+			],
+			[
+				"Tool",
+				"ToolCategory"
+			],
+			[
+				"order",
+				"order_by\t(tools.py)"
+			],
+			[
+				"Category",
+				"CategoryOverviewPage"
+			],
+			[
+				"Cate",
+				"CategoryOverviewPage"
+			],
+			[
+				"show_category",
+				"show_categorygroup"
+			],
+			[
+				"shwo",
+				"show_categorygroup\t(urls.py)"
+			],
+			[
+				"show_ca",
+				"show_category_group"
+			],
+			[
+				"CategoryGro",
+				"CategoryGroupOverviewPage"
+			],
+			[
+				"verbo",
+				"verbose_name_plural"
+			],
+			[
+				"ver",
+				"verbose_name_plural"
+			],
+			[
+				"verbose",
+				"verbose_name"
+			],
+			[
+				"category_",
+				"category_group"
+			],
+			[
+				"list_",
+				"list_categorygroups"
+			],
+			[
+				"list",
+				"list_categorygroups\t(categorygroups.py)"
+			],
+			[
+				"Single",
+				"SingletonModelAdmin"
+			],
+			[
+				"Categor",
+				"CategoryOverviewPage"
+			],
+			[
+				"Categ",
+				"CategoryGroup"
+			],
+			[
+				"Gene",
+				"GenericAdminMixin"
+			],
+			[
 				"fil",
 				"filter_list"
 			],
@@ -20,20 +176,8 @@
 				"link_to_related_obejct"
 			],
 			[
-				"Tool",
-				"ToolCategoryAdmin"
-			],
-			[
 				"__str",
 				"__str__"
-			],
-			[
-				"list",
-				"list_display"
-			],
-			[
-				"verbose",
-				"verbose_name_plural"
 			],
 			[
 				"Ca",
@@ -46,10 +190,6 @@
 			[
 				"_",
 				"__str__"
-			],
-			[
-				"related_",
-				"related_object\t(models.py)"
 			],
 			[
 				"Model",
@@ -292,10 +432,6 @@
 				"images_sorted"
 			],
 			[
-				"order",
-				"order_by\t(schema.py)"
-			],
-			[
 				"sor",
 				"sort_order"
 			],
@@ -378,161 +514,64 @@
 			[
 				"email_",
 				"email_user\t(schema.py)"
-			],
-			[
-				"contact",
-				"contact_type〔variable〕"
-			],
-			[
-				"CO",
-				"CONTACT_TYPES"
-			],
-			[
-				"i",
-				"info"
-			],
-			[
-				"validation_f",
-				"validation_form_instance"
-			],
-			[
-				"val",
-				"validation\t(base.py)"
-			],
-			[
-				"Val",
-				"ValidationForm"
-			],
-			[
-				"genera",
-				"generate_case_id"
-			],
-			[
-				"cooper",
-				"cooperative_name\t(admin.py)"
-			],
-			[
-				"ad",
-				"administration_association_name〔variable〕"
-			],
-			[
-				"firs",
-				"first_name"
-			],
-			[
-				"Django",
-				"DjangoObjectType"
-			],
-			[
-				"Djan",
-				"DjangoObjectType"
-			],
-			[
-				"cl",
-				"class"
-			],
-			[
-				"values",
-				"value_salary_total"
-			],
-			[
-				"utilities_total",
-				"utilities_total_export\t(models.py)"
-			],
-			[
-				"realtor",
-				"realtor_fee_plus_outlay"
-			],
-			[
-				"thi",
-				"third_party_outlay"
-			],
-			[
-				"building",
-				"buildingdocuments_set"
-			],
-			[
-				"bulidn",
-				"building"
-			],
-			[
-				"buildin",
-				"buildingdocument_set\t(data_import.py)"
-			],
-			[
-				"attr",
-				"attributes"
-			],
-			[
-				"property_",
-				"property_document"
-			],
-			[
-				"build",
-				"building_documents"
-			],
-			[
-				"Build",
-				"BuildingDocumentInline"
-			],
-			[
-				"path",
-				"path_to_file"
-			],
-			[
-				"part",
-				"particulars_url\t(models.py)"
-			],
-			[
-				"download_",
-				"download_sales_particulars"
-			],
-			[
-				"assoc",
-				"association_url\t(models.py)"
-			],
-			[
-				"d",
-				"request_case_documents〔function〕"
-			],
-			[
-				"uge",
-				"ugettext_lazy\t(apps.py)"
-			],
-			[
-				"u",
-				"ugettext_lazy\t(apps.py)"
-			],
-			[
-				"ver",
-				"verbose_name"
-			],
-			[
-				"verb",
-				"verbose_name"
-			],
-			[
-				"verbo",
-				"verbose_name_plural"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "profiles/admin.py",
+			"file": "tools/models.py",
 			"settings":
 			{
-				"buffer_size": 686,
+				"buffer_size": 7624,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "profiles/models.py",
+			"file": "tools/admin.py",
 			"settings":
 			{
-				"buffer_size": 3721,
+				"buffer_size": 1823,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\nfrom django.shortcuts import render, redirect, get_object_or_404\nfrom django.contrib.auth.decorators import login_required\nfrom django.contrib import messages\nfrom tools.forms import StoryForm\nfrom tools.models import Tool, Story, CategoryGroup\n\n@login_required\ndef add_story(request, tool_id):\n    tool = get_object_or_404(Tool, id=tool_id, published=True)\n    form = StoryForm()\n\n    if request.method == 'POST':\n        form = StoryForm(request.POST)\n        if form.is_valid():\n            story = Story.objects.create(tool_id=tool.id, user_id=request.user.id, **form.cleaned_data)\n            messages.success(request, \"You created a story\")\n            return redirect('tools:show', story.tool_id)\n\n    context = {'tool': tool, 'form': form}\n    return render(request, 'tools/add_story.html', context)\n\n@login_required\ndef add_workarea_story(request, category_group_id):\n    category_group = get_object_or_404(CategoryGroup, id=category_group_id, published=True)\n    form = StoryForm()\n\n    if request.method == 'POST':\n        form = StoryForm(request.POST)\n        if form.is_valid():\n            story = Story.objects.create(category_group=category_group, user_id=request.user.id, **form.cleaned_data)\n            messages.success(request, \"You created a story\")\n            return redirect('tools:show_categorygroup', story.category_group.id)\n\n    context = {'category_group': category_group, 'form': form}\n    return render(request, 'tools/add_workarea_story.html', context)\n\ndef show_story(request, story_id):\n    story = get_object_or_404(Story, id=story_id)\n    related_model_instance = get_object_or_404(Tool, id=story.tool_id) if story.tool else get_object_or_404(CategoryGroup, id=story.category_group_id)\n    related_model_name = related_model_instance._meta.verbose_name\n    related_stories = Story.objects.filter(tool_id=story.tool_id).exclude(id=story.id).order_by('-created')[:3]\n    context = {\n        'story': story, \n        'related_model_instance': related_model_instance, \n        'related_model_name': related_model_name, \n        'related_stories': related_stories \n    }\n    return render(request, 'tools/show_story.html', context)\n",
+			"file": "tools/views/stories.py",
+			"file_size": 2149,
+			"file_write_time": 131570234344203912,
+			"settings":
+			{
+				"buffer_size": 2165,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/templates/tools/show_category.html",
+			"settings":
+			{
+				"buffer_size": 6649,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "netbox/settings/base.py",
+			"settings":
+			{
+				"buffer_size": 9217,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "netbox/urls.py",
+			"settings":
+			{
+				"buffer_size": 1882,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -625,11 +664,50 @@
 	],
 	"file_history":
 	[
+		"/Users/mathiaswedeken/python/networked-toolbox-master/requirements.txt",
+		"/Users/mathiaswedeken/python/networked-toolbox-bleedingedge/requirements.txt",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/staging.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/development.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/stories.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_workarea_story.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/activities/models.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/admin.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/categorygroups.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_categorygroup.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/forms.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_suggestion.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/suggestions.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_story.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/tools.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/urls.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/models.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_categorygroup_categorylist.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templates/profiles/_profile_photo.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templatetags/profilestags.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/categories.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/admin.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/_nav.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_categorygroup.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_category.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_categorygroup.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_categorygroups.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/search/templates/search/index.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/overviews.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/admin.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/comments/admin.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_category.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_categories.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_categorygroups_overview.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/base.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/urls.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_category_groups.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_category_group_overview_aly.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/models.py",
 		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/buildings/admin.py",
 		"/Users/mathiaswedeken/python/awesome/README.rst",
 		"/Users/mathiaswedeken/python/awesome/awesome/awesome/users/models.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/forms.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/models.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/index.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/logout.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/account_inactive.html",
@@ -648,21 +726,13 @@
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/verified_email_required.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templates/profiles/show.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/pages/templates/pages/show_page.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_category.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_story.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_overview.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_categories.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/home.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_categorygroup.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_category.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/delete_category.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/delete_categorygroup.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_suggestion.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_story.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_categorygroup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_category.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/resources/delete.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/resources/edit.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add.html",
@@ -680,14 +750,10 @@
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/openid/login.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/activities/templates/activities/list_all.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/comments/models.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/comments/admin.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/admin.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/base.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/account_inactive.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/email.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/socialaccount/signup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/search/templates/search/index.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/models.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/email_confirm.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/email_confirmed.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/login.html",
@@ -710,15 +776,10 @@
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/static/netbox/css/base.scss",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.tmp/css/base.css",
 		"/Users/mathiaswedeken/python/networked-toolbox-clone/staticfiles/css/base.min.css",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/_nav.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/models.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/admin.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/shared/helpers.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/base.py",
 		"/usr/local/etc/redis.conf",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/common/templatetags/commontags.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templatetags/profilestags.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/tools.py",
 		"/Users/mathiaswedeken/python/community_app/venv/lib/python3.5/site-packages/django/contrib/admin/options.py",
 		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/models.py",
 		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/templates/admin/sale/sale/postflight.html",
@@ -730,29 +791,7 @@
 		"/Users/mathiaswedeken/python/networked-toolbox/README.md",
 		"/etc/hosts",
 		"/Users/mathiaswedeken/python/community_app/.hgignore",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/forms.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/views.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/helpers.py",
-		"/Users/mathiaswedeken/python/community_app/fabfile.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/templates/admin/cases/selfsalecase/change_form.html",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/admin.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/docker-compose.yml",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/DockerFile",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/models.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/migrations/0017_selfsaleimage.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/migrations/0016_auto_20171107_0908.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/scripts/dev/ub",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/migrations/0003_auto_20171107_1609.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/schema.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/user_profiles/schema.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/models.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/admin/views.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/unik_boligsalg/urls.py",
-		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/penneo/models.py",
-		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/penneo/views.py",
-		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/penneo/penneo_helpers.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/settings_local.py",
-		"/Users/mathiaswedeken/.bash_profile"
+		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/forms.py"
 	],
 	"find":
 	{
@@ -771,6 +810,22 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"url 'tools:add_workarea_story'",
+			"'tools:add_story",
+			"'tools:add",
+			"add_story",
+			"category_group",
+			"on_story_create",
+			"tool",
+			"{% url 'tools:add_story' tool.id %}",
+			"used by",
+			"DEFAULT_CATEGORY_GROUP_NAME",
+			"Toolbox",
+			"list_categories",
+			"\n            ",
+			"'tools:list_categories'",
+			"Tool",
+			"GenericRelation",
 			"({% block head_title %}([aA-zZ {}])+)",
 			"({% block head_title %}([aA-zZ ])+)",
 			"1.5rem",
@@ -825,67 +880,199 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "profiles/admin.py",
+					"file": "tools/models.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 686,
+						"buffer_size": 7624,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								289,
-								289
+								3743,
+								3807
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
 							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1470.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "profiles/models.py",
-					"semi_transient": true,
+					"file": "tools/admin.py",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3721,
+						"buffer_size": 1823,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								521,
+								521
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "tools/views/stories.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2165,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								954,
+								963
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 119.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "tools/templates/tools/show_category.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6649,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4770,
+								4770
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1427.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "netbox/settings/base.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9217,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2195,
+								2195
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 957.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "netbox/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1882,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								782,
+								782
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 3.0,
+						"translation.y": 76.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -908,6 +1095,12 @@
 				0,
 				1,
 				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
 			]
 		],
 		"cols":
@@ -918,6 +1111,7 @@
 		"rows":
 		[
 			0.0,
+			0.532194626721,
 			1.0
 		]
 	},
@@ -954,7 +1148,7 @@
 		[
 			[
 				"",
-				"~/python/networked-toolbox/nw.sublime-project"
+				"~/python/unik_boligsalg/unikboligsalg.sublime-project"
 			]
 		],
 		"width": 380.0

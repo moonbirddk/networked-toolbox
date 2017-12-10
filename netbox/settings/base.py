@@ -56,6 +56,7 @@ AUTHENTICATION_BACKENDS = (
 
 INSTALLED_APPS = (
     # Django
+  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,6 +79,8 @@ INSTALLED_APPS = (
     'notifications',
     'solo',
     'storages',
+    #'hijack', 
+    #'compat', 
 
     # Networked toolbox apps
     'comments',

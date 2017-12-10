@@ -23,7 +23,7 @@ Django<1.9
 elasticsearch==2.3.0
 git+https://github.com/jschneier/django-storages.git#egg=django-storages
 gunicorn==19.1.1
-ipython<3.0
+bpython
 newrelic==2.60.0.46
 pillow
 psycopg2>=2.6
