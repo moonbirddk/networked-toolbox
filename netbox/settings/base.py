@@ -79,9 +79,9 @@ INSTALLED_APPS = (
     'notifications',
     'solo',
     'storages',
-    #'hijack', 
-    #'compat', 
-
+    'hijack', 
+    'compat', 
+    'hijack_admin', 
     # Networked toolbox apps
     'comments',
     'common',
@@ -93,6 +93,8 @@ INSTALLED_APPS = (
     'tools',
     'activities',
 )
+
+HIJACK_ALLOW_GET_REQUESTS = True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -127,8 +129,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.core.context_processors.media",
-                "django.core.context_processors.static",
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
                 "netbox.context_processors.timezone_name",
                 "netbox.context_processors.google_analytics_id",
                 "netbox.context_processors.user_has_verified_email",

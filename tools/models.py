@@ -40,6 +40,7 @@ class Tool(ModelWithCoverImage):
         verbose_name_plural = 'Tools'
         ordering = ['title']
 
+    
     title = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=20000, blank=False)
     resources_text = models.CharField(
@@ -89,6 +90,15 @@ class Story(ModelWithCoverImage):
     category_group = models.ForeignKey('CategoryGroup', related_name='stories', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
+    associated_tools = models.ManyToManyField(Tool, related_name='associated_tools')
+
+    @property
+    def parent_object(self): 
+        return self.tool if self.tool else self.category_group 
+
+    @property 
+    def parent_object_name(self): 
+        return self.tool.title if self.tool else self.category_group.name 
 
     def get_absolute_url(self):
         return reverse('tools:show_story', args=(self.id, ))
@@ -107,6 +117,8 @@ class CategoryGroup(models.Model):
     description = models.CharField(max_length=255, blank=True)
     main_text = models.TextField(max_length=5000, blank=True, null=True, default='Lorem ipsum.')
     published = models.BooleanField('published', default=False)
+    
+
     def __str__(self):
         return self.name
 

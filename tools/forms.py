@@ -9,8 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import LazyTypedChoiceField
 from django_countries import countries
 
-from .models import Tool, ToolCategory, CategoryGroup
-
+from .models import Tool, ToolCategory, CategoryGroup, Story
+from .widgets import ColumnCheckboxSelectMultiple
 
 log = logging.getLogger(__name__)
 
@@ -66,16 +66,20 @@ class ToolForm(forms.Form):
     categories = ToolCategoryChoiceField(label='Toolboxes')
 
 
-class StoryForm(forms.Form):
-    title = forms.fields.CharField(max_length=100, required=True)
-    content = forms.fields.CharField(
-        widget=SummernoteInplaceWidget(),
-        required=True,
-        max_length=5000
-    )
-    country = LazyTypedChoiceField(choices=[('', ''), ] + list(countries),
-                                   required=False,
-                                   label='Where did this take place?')
+class StoryForm(forms.ModelForm):
+    #title = forms.fields.CharField(max_length=100, required=True)
+    class Meta: 
+        model = Story 
+        fields = ('title', 'content', 'country', 'associated_tools',)
+        widgets = {
+            'content': SummernoteInplaceWidget(), 
+            'associated_tools': ColumnCheckboxSelectMultiple(
+                columns=3,
+                css_class='col-md-4', wrapper_css_class='row',
+                ),
+        }
+  
+   
 
 
 class ToolCategoryForm(forms.Form):

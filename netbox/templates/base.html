@@ -3,6 +3,7 @@
 {% load compress %}
 {% load profilestags %}
 {% load notifications_tags %}
+{% load hijack_tags %}
 <html>
   <head>
     <meta charset="UTF-8">
@@ -21,8 +22,12 @@
     {% compress css %}
     <link rel="stylesheet" href="{% static "netbox/flags/css/flag-icon.min.css" %}">
     <link rel="stylesheet" href="{% static "css/base.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
+
     {% endcompress %}
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block head_title %}{% endblock %}Networked Toolbox</title>
 
     {% block head_statics %}
@@ -43,8 +48,8 @@
   </head>
   <body data-user-has-verified-email="{{ user_has_verified_email|yesno:"true,false" }}"
         data-user-is-authenticated="{{ user.is_authenticated|yesno:"true,false" }}">
+    {% hijack_notification %}
     <div class="flex-column main-wrap">
-
       <div> <!-- Nav -->
         {% include '_nav.html' %}
         {% block searchform %}

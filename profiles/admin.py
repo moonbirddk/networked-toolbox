@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Profile
+from hijack_admin.admin import HijackRelatedAdminMixin
 
 
 
@@ -17,10 +18,10 @@ class CountryListFilter(admin.SimpleListFilter):
         else:
             return queryset
 
-class ProfileAdmin(admin.ModelAdmin): 
+class ProfileAdmin(HijackRelatedAdminMixin, admin.ModelAdmin): 
 
 
-    list_display = ['__str__', 'country']
+    list_display = ['__str__', 'country', 'hijack_field']
     list_filter= [CountryListFilter,]
     list_per_page = 20
 

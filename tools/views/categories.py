@@ -39,7 +39,7 @@ def list_categories(request):
         'overview': overview,
         'categories_by_group': categories_by_group,
     }
-    return render(request, 'tools/list_categorygroups.html', context)
+    return render(request, 'category_groups/list_categorygroups.html', context)
 
 
 def show_category(request, cat_id):
@@ -48,7 +48,7 @@ def show_category(request, cat_id):
     else:
         category = get_object_or_404(ToolCategory, id=cat_id, published=True)
     context = {'category': category}
-    return render(request, 'tools/show_category.html', context)
+    return render(request, 'categories/show_category.html', context)
 
 
 @permission_required('tools.add_toolcategory', login_url='tools:index')
@@ -64,11 +64,11 @@ def add_category(request, group_category_id=None):
         form = ToolCategoryForm(request.POST, request.FILES)
         if form.is_valid():
             cat = ToolCategory.objects.create(**form.cleaned_data)
-            messages.success(request, "You created a toolbox section")
+            messages.success(request, "You created a toolbox")
             return redirect('tools:show_category', cat.id)
 
     context = {'form': form}
-    return render(request, 'tools/add_category.html', context)
+    return render(request, 'categories/add_category.html', context)
 
 
 @transaction.atomic
@@ -115,11 +115,11 @@ def edit_category(request, cat_id):
             category.resources_text = form.cleaned_data['resources_text']
             category.group = form.cleaned_data['group']
             category.save()
-            messages.success(request, "You updated this toolbox section")
+            messages.success(request, "You updated this toolbox")
             return redirect('tools:show_category', category.id)
 
     context = {'category': category, 'form': form}
-    return render(request, 'tools/edit_category.html', context)
+    return render(request, 'categories/edit_category.html', context)
 
 
 @transaction.atomic
@@ -130,9 +130,9 @@ def delete_category(request, cat_id):
 
     if request.method == 'GET':
         context = {'category': category}
-        return render(request, 'tools/delete_category.html', context)
+        return render(request, 'categories/delete_category.html', context)
     else:
         if 'yes' == request.POST.get('confirmation', 'no'):
             category.delete()
-            messages.success(request, "You deleted a toolbox section")
+            messages.success(request, "You deleted a toolbox")
         return redirect('tools:index')
