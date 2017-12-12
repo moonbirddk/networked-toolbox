@@ -17,7 +17,6 @@ ALLOWED_HOSTS = [DOMAIN, ]
 DATABASES = {
     'default': dj_database_url.config()
 }
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
 #DATABASES['default']['CONN_MAX_AGE'] = 5
 DATABASE_POOL_ARGS = {
     'max_overflow': 10,

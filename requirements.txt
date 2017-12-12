@@ -16,7 +16,6 @@ django-haystack
 django-model-utils
 django-notifications-hq
 django-nose
-django-postgrespool
 django-solo
 django-summernote
 django-hijack
