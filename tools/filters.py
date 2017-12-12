@@ -1,7 +1,8 @@
 import logging
 from itertools import chain
 from django.utils.safestring import mark_safe
-from django.forms.widgets import flatatt, Select
+from django.forms.widgets import  Select
+from django.forms.utils import flatatt
 from django.utils.encoding import force_text
 from django.utils.http import urlencode
 from django.utils.html import format_html

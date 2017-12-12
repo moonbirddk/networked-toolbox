@@ -21,7 +21,7 @@ def show_categorygroup(request, category_group_id):
         'stories': category_group.stories.all(), 
 
     }
-    return render (request, 'tools/show_categorygroup.html', context)
+    return render (request, 'category_groups/show_categorygroup.html', context)
     
     
 
@@ -42,7 +42,7 @@ def add_categorygroup(request):
     ctx = {
         'form': form,
     }
-    return render(request, 'tools/add_categorygroup.html', ctx)
+    return render(request, 'category_groups/add_categorygroup.html', ctx)
 
 
 @transaction.atomic
@@ -88,7 +88,7 @@ def edit_categorygroup(request, category_group_id):
         'form': form,
         'categorygroup': categorygroup,
     }
-    return render(request, 'tools/edit_categorygroup.html', ctx)
+    return render(request, 'category_groups/edit_categorygroup.html', ctx)
 
 
 @transaction.atomic
@@ -108,4 +108,4 @@ def delete_categorygroup(request, category_group_id):
             categorygroup.delete()
             messages.info(request, "You have deleted the toolbox")
         return redirect(reverse('tools:index'))
-    return render(request, 'tools/delete_categorygroup.html', ctx)
+    return render(request, 'category_groups/delete_categorygroup.html', ctx)

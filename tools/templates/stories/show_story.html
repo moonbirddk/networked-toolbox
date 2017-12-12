@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load toolstags %}
+{% load commentstags %}
+{% load profilestags %}
+{% load commontags %}
+{% load compress %}
+
+{% block head_statics %}
+<script type="text/javascript" src="{% static 'netbox/javascript/jsrender.min.js' %}"></script>
+{% comments_javascript %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/story.min.css" %}">
+<link rel="stylesheet" href="{% static "css/comments.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{ story.title }} - {% endblock %}
+
+{% block ga_events %}
+ga('send', 'event', 'story', 'view');
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="story-tool">
+                This story relates to the {{ related_model_name }}: 
+                {% if related_model_name == "Tool" %}
+                <a href="{% url 'tools:show' related_model_instance.id  %}">{{related_model_instance.title}}</a>
+                {% else %}
+                <a href="{% url 'tools:show_categorygroup' related_model_instance.id  %}">{{related_model_instance.title}}</a>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    {% if story.user == user %}
+                        <a class="btn btn-primary pull-right" href="{% url 'tools:edit_story' story.id %}">Edit Story</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <h1 class="story-title title">
+                {% if story.country %}
+                  <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                {% endif %}
+                {{story.title}}
+                <span class="story-title-created">{{ story.created | date:"F j, Y \a\t P" }}</span>
+            </h1>
+            <div class="story-content more">{{story.content|safe }}</div>
+            <div class="story-contributor">
+                <h3 class="title">Contributor</h3>
+                <div class="story-user row">
+                    <div class="story-user-photo col-md-2">
+                        {% render_profile_photo story.user %}
+                    </div>
+                    <div class="story-user-details col-md-10">
+                        <h4>
+                            {% if story.user.profile.country %}
+                              <span title="{{story.user.profile.country.name}}" class="flag-icon flag-icon-{{story.user.profile.country}}"></span>
+                            {% endif %}
+                            <a href="{% url 'profiles:show' story.user.profile.uid %} ">{{story.user.profile.name}}</a>
+                        </h4>
+                        <div class="story-user-bio">
+                          {{story.user.profile.bio}}
+                          <a href="{% url 'profiles:show' story.user.profile.uid %} ">See profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% render_comment_list for story %}
+        </div>
+        <div class="col-md-4">
+            <h3 class="title">Related stories</h3>
+            <ul class="related-stories list-group">
+                {% for story in related_stories %}
+                    <li class="list-group-item">
+                        <h4>
+                            {% if story.country %}
+                                <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                            {% endif %}
+                            <a href="{% url 'tools:show_story' story.id  %}">{{story.title}}</a>
+                        </h4>
+                        {{ story.content|bleach_striptags|truncatechars:150 }}
+                        <a href="{% url 'tools:show_story' story.id  %}">Read more</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

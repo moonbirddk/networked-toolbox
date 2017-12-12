@@ -52,6 +52,7 @@ def homepage(request):
         form = SearchForm()
         tools = Tool.objects.annotate(num_followers=Count('followers'))\
             .filter(published=True).order_by('-num_followers')[:limit]
+                
         tools_results_count = len(tools)
 
         categories = ToolCategory.objects.filter(published=True)\

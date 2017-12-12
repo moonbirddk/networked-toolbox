@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+{% load commontags %}
+{% load compress %}
+
+{% block head_statics %}
+{% compress js %}
+<script src="{% static "js/tools.js"%}"></script>
+{% endcompress %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}Stories - {% endblock %}
+
+{% block main %}
+
+<div class="row">
+    
+    <div class="col-md-8 col-xs-12">
+       <h1 class="title">Stories
+       </h1>
+         
+    </div>
+    <div class="dropdown tools__dropdown pull-right">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                {%if order%}
+                {{ order }}
+                {%else%}
+                newest
+                {% endif %}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdown-sort">
+                {%for order, ordername in order_by_list.items %} 
+                  <li><a href="?order={{order}}">{{ordername.0}}</a></li>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+
+
+
+
+{% include "stories/_stories_overview.html" %}
+{% endblock %}

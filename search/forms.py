@@ -24,6 +24,8 @@ class SearchForm(forms.Form):
             return newval
 
 
+
+
 class ModelSearchForm(SearchForm):
     model = forms.CharField(
         required=True,

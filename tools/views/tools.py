@@ -43,7 +43,7 @@ def list_tools(request):
         queryset = Tool.objects.filter(published=True)
     order = request.GET.get('o') == 'd' and '-title' or 'title'
     queryset_ordered = queryset.order_by(order)
-    tools_filter = PublishedFilter(request.GET, queryset=queryset_ordered)
+    tools_filter = PublishedFilter(request.GET, queryset=queryset_ordered).qs
     overview = ToolOverviewPage.get_solo()
     
     print (len(tools_filter))

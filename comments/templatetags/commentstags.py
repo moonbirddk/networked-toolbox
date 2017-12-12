@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.utils.encoding import smart_text
 from django.utils.safestring import mark_safe
-from django.template import Variable, VariableDoesNotExist, Template, Context
+from django.template import Variable, VariableDoesNotExist, Template
 from django.template.loader import get_template, render_to_string
 from django.contrib.contenttypes.models import ContentType
 
@@ -33,7 +33,9 @@ def render_addcomment_form(context, *args, **kwargs):
     template = get_template('comments/add.html')
     if context is None:
         context = {}
-    return template.render(Context(context))
+    else: 
+        context = context.flatten()
+    return template.render(context)
 
 
 @register.simple_tag
@@ -47,7 +49,7 @@ def comments_javascript():
     url = settings.STATIC_URL + 'js/comments.js'
     commentsjs = render_tag('script', attrs={'src': url})
     javascript = mark_safe(javascript + commentsjs)
-    itemjstmpl = get_template('comments/_item_js.html').render(Context({}))
+    itemjstmpl = get_template('comments/_item_js.html').render({})
     javascript += itemjstmpl
     return javascript
 
