@@ -209,26 +209,26 @@ post_delete.connect(delete_suggestion_on_related_deleted, sender=Tool)
 post_delete.connect(delete_suggestion_on_related_deleted, sender=ToolCategory)
 
 
-class ToolOverviewPage(SingletonModel):
+class OverviewPage(SingletonModel): 
     class Meta: 
-        verbose_name = 'Tool Overview Page'
+        abstract = True 
 
+    headline = models.CharField(max_length=100, default='Lorem ipsum.')
     description = models.CharField(max_length=255, default='Lorem ipsum.')
 
-    class Meta:
-        verbose_name = "Tool Overview Page"
 
-
-class CategoryOverviewPage(SingletonModel):
-    class Meta:
-        verbose_name = "Toolbox Overview Page"
-
-    description = models.CharField(max_length=255, default='Lorem ipsum.')
-
-    
-class CategoryGroupOverviewPage(SingletonModel):
-    
+class ToolOverviewPage(OverviewPage):
     class Meta: 
-        verbose_name = "Work Area Overview Page"
+        verbose_name = 'Tools Overview Page'
 
-    description = models.CharField(max_length=255, default='Lorem ipsum.')
+class CategoryOverviewPage(OverviewPage):
+    class Meta:
+        verbose_name = "Toolboxes Overview Page"
+       
+class CategoryGroupOverviewPage(OverviewPage):
+    class Meta: 
+        verbose_name = "Work Areas Overview Page"
+
+class StoryOverviewPage(OverviewPage): 
+    class Meta: 
+        verbose_name = 'Stories Overview Page'
