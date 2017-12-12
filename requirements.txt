@@ -14,7 +14,8 @@ django-filter
 django-gulp
 django-haystack
 django-model-utils
-sqlparsedjango-nose
+django-notifications-hq
+django-nose
 django-postgrespool
 django-solo
 django-summernote
