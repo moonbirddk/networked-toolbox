@@ -17,7 +17,7 @@ django-model-utils
 django-notifications-hq
 django-nose
 django-solo
-django-summernote
+django-summernote==0.6.16
 django-hijack
 django-hijack-admin
 Django==1.11.8
