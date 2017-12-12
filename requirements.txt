@@ -14,15 +14,14 @@ django-filter
 django-gulp
 django-haystack
 django-model-utils
-django-notifications-hq
-django-nose
+sqlparsedjango-nose
 django-postgrespool
 django-solo
 django-summernote
 django-hijack
 django-hijack-admin
 Django==1.11.8
-elasticsearch
+elasticsearch==5.5.0
 git+https://github.com/jschneier/django-storages.git#egg=django-storages
 gunicorn
 bpython
