@@ -96,7 +96,7 @@ def show_all_stories(request):
     ORDERINGS = {
         'a_z': ('alphabetically', 'title'), 
         'country': ('by country', 'country'),
-        'date': ('newest', 'created'),
+        'date': ('newest', '-created'),
     }
     order = ORDERINGS[request.GET.get('order')] if request.GET.get('order') in ORDERINGS.keys() else ORDERINGS['date']
     stories = Story.objects.all().order_by(order[1])

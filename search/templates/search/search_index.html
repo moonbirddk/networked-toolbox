@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load commontags %}
+{% load static %}
+{% load compress %}
+
+{% block head_statics %}
+ {% compress css %}
+ <link rel="stylesheet" href="{% static "css/search.min.css" %}">
+ {% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{block.super}}{% endblock %}
+
+{% block searchform %}
+<div class="search-form-box">
+    <div class="container-fluid">
+      <form class="form-inline search-form" method="get" action="{% url 'search:homepage' %}">
+        {% bootstrap_form form %}
+        <button class="btn btn-primary" type="submit" />Search</button>
+      </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="search-info">
+                Take a look on the recent activity or use the search field above to find specific content.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-12 search-box">
+            <h1 class="title">
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                Tools
+            </h1>
+           {% for tool in tools %}
+             <div class="search-result">
+               <h3><a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a></h3>
+               <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
+             </div>
+           {% endfor %}
+            {% if query and tools_results_count > HOMEPAGE_DISPLAY_RESULTS %}
+              <p><a class="more-results" href="{% url 'search:tool_results' %}?q={{query}}">
+                  Show more results
+              </a></p>
+           {% endif %}
+        </div>
+
+        <div class="col-md-6 col-sm-12 search-box">
+            <h1 class="title">
+              <i class="fa fa-align-justify" aria-hidden="true"></i>
+              Stories
+            </h1>
+            {% for story in stories %}
+                <div class="search-result">
+                  <h3><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></h3>
+                  <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
+                </div>
+            {% endfor %}
+            {% if query and stories_results_count > HOMEPAGE_DISPLAY_RESULTS%}
+              <a class="more-results" href="{% url 'search:story_results' %}?q={{query}}">
+                  Show more results
+              </a>
+            {% endif %}
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="col-md-6 col-sm-12 search-box">
+            <h1 class="title">
+                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                Toolboxes
+            </h1>
+            {% for category in categories %}
+                <div class="search-result">
+                  <h3><a href="{{category.get_absolute_url}}">{{category.title|truncatechars:50}}</a></h3>
+                  <p>{{category.description|bleach_striptags|truncatechars:130}}</p>
+                </div>
+            {% endfor %}
+              <a class="more-results" href="{% url 'tools:index'%}">
+                  Show all toolboxes
+              </a>
+        </div>
+
+        <div class="col-md-6 col-sm-12 search-box">
+            <h1 class="title">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Users
+            </h1>
+            {% for profile in profiles %}
+                <div class="search-result">
+                  <h3><a  href="{{profile.get_absolute_url}}">{{profile.name|truncatechars:50}}</a></h3>
+                  <p>{{profile.bio|bleach_striptags|truncatechars:130}}</p>
+                </div>
+            {% endfor %}
+            {% if query and profiles_results_count > HOMEPAGE_DISPLAY_RESULTS %}
+                <a class="more-results" href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}

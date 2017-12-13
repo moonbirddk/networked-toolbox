@@ -4,7 +4,7 @@ from django.utils.html import format_html
 
 from solo.admin import SingletonModelAdmin
 from .models import Tool, ToolCategory, Suggestion, ToolFollower, \
-    ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupOverviewPage, Story
+    ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupOverviewPage, Story, StoryOverviewPage
 
 
 class CategoryGroupAdmin(admin.ModelAdmin): 
@@ -50,4 +50,5 @@ admin.site.register(Suggestion, SuggestionAdmin)
 admin.site.register(ToolFollower, ToolFollowerAdmin)
 admin.site.register(ToolOverviewPage, SingletonModelAdmin)
 admin.site.register(CategoryOverviewPage, SingletonModelAdmin)
-admin.site.register(CategoryGroupOverviewPage, SingletonModelAdmin) 
+admin.site.register(CategoryGroupOverviewPage, SingletonModelAdmin)
+admin.site.register(StoryOverviewPage, SingletonModelAdmin)
