@@ -217,6 +217,7 @@ class OverviewPage(SingletonModel):
     description = models.CharField(max_length=255, default='Lorem ipsum.')
     cover_image = models.ImageField(upload_to=do_upload_cover_image,
                                     blank=True, null=True)
+    link = models.CharField(max_length=160, default='Loren ipsum.')
 
     def has_existing_cover_image(self):
         return self.cover_image and \
