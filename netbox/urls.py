@@ -35,7 +35,7 @@ urlpatterns = [
     url(r'^menus/', include('menus.urls', namespace='menus')),
     url(r'^activity/', include('activities.urls', namespace='activities')),
     url(r'search/^$', search.views.search_page, name='search_page'),
-    url(r'^$', search.views.search_page, name='homepage')
-    
+    url(r'^$', search.views.homepage, name='homepage')
+
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
     static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)

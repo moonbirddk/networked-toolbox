@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load commontags %}
+{% load static %}
+{% load compress %}
+
+{% block head_statics %}
+ {% compress css %}
+ <link rel="stylesheet" href="{% static "css/search.min.css" %}">
+ {% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{block.super}}{% endblock %}
+
+
+{% block main %}
+ <div class="row">
+    {%for overview_name, overview in overviews.items %}
+    
+      <div class="col-md-4">
+            <h1 class="title">
+                <i class="fa fa-briefcase" aria-hidden="true"></i>
+               {{ overview_name }}
+            </h1>
+            <div class="search-result">
+            <img src="{{ overview.cover_image }}" alt="" width="100%">
+                  <h4>
+                    {{ overview.headline }}
+                  </h4>
+                </div>
+        </div>
+
+    {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="title">
+              <i class="fa fa-align-justify" aria-hidden="true"></i>
+              Explore Latest Stories
+            </h1>
+        </div>
+        <div class="col-md-4">
+         <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>  
+        </div>
+    </div>
+
+    <div class="row">
+            {% for story in recent_stories %}
+
+                <div class="col-md-4 search-result">
+                  <h3><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></h3>
+                  <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
+                </div>
+            {% endfor %}
+          
+    </div>
+        
+       <div class="row">
+        <div class="col-md-8">
+            <h1 class="title">
+                <i class="fa fa-wrench" aria-hidden="true"></i>
+                Recently used Tools
+            </h1>
+        </div>
+        <div class="col-md-4">
+        <a href="{%url 'tools:list_tools' %}" class="btn btn-primary">Show All Tools</a>
+        </div>
+      </div>
+      <div class="row">
+           {% for tool in recent_tools %}
+             <div class="col-md-4 search-result">
+               <h3><a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a></h3>
+               <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
+             </div>
+           {% endfor %}
+            
+    </div>
+       
+
+
+{% endblock %}

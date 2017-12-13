@@ -9,7 +9,7 @@ from django.views.generic import View
 from haystack.query import SearchQuerySet
 from haystack.views import SearchView
 
-from tools.models import Tool, ToolCategory, Story
+from tools.models import Tool, ToolCategory, Story, StoryOverviewPage, ToolOverviewPage, CategoryGroupOverviewPage
 from profiles.models import Profile
 from .forms import SearchForm, ModelSearchForm
 
@@ -31,10 +31,15 @@ def get_search_results(modelcls, q, limit=DEFAULT_LIMIT):
 def homepage(request): 
     recent_stories = Story.objects.all().order_by('-created')[:3]
     recent_tools = Tool.objects.all()[:3]
+    overviews = {
+        'Stories': StoryOverviewPage.objects.get(pk=1), 
+        'Work Areas': CategoryGroupOverviewPage.objects.get(pk=1),
+        'Tools': ToolOverviewPage.objects.get(pk=1)
+    }
     context = {
         'recent_stories': recent_stories, 
         'recent_tools': recent_tools, 
-        
+        'overviews': overviews, 
     }
     return render(request, 'search/index.html', context)
 

@@ -215,7 +215,12 @@ class OverviewPage(SingletonModel):
 
     headline = models.CharField(max_length=100, default='Lorem ipsum.')
     description = models.CharField(max_length=255, default='Lorem ipsum.')
+    cover_image = models.ImageField(upload_to=do_upload_cover_image,
+                                    blank=True, null=True)
 
+    def has_existing_cover_image(self):
+        return self.cover_image and \
+            default_storage.exists(self.cover_image.name)
 
 class ToolOverviewPage(OverviewPage):
     class Meta: 
