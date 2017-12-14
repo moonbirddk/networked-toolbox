@@ -27,7 +27,7 @@
                   <h4>
                     {{ overview.headline }}
                   </h4>
-                    {% autoescape off %}{{ overview.link }}{% endautoescape %}
+                    <a href="{% url  overview.link  %}" class="btn btn-primary">{{overview.link_text}}</a>
                 </div>
         </div>
 
