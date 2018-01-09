@@ -47,7 +47,10 @@ ga('send', 'event', 'story', 'view');
                 {{story.title}}
                 <span class="story-title-created">{{ story.created | date:"F j, Y \a\t P" }}</span>
             </h1>
-            <div class="story-content more">{{story.content|safe }}</div>
+            <div class="story-content more">
+                {{story.content|safe }}
+            </div>
+            
             <div class="story-contributor">
                 <h3 class="title">Contributor</h3>
                 <div class="story-user row">
@@ -68,6 +71,7 @@ ga('send', 'event', 'story', 'view');
                     </div>
                 </div>
             </div>
+            {% include "tools/_tools_overview.html" %}
             {% render_comment_list for story %}
         </div>
         <div class="col-md-4">

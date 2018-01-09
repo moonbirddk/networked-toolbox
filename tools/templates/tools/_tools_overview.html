@@ -5,7 +5,7 @@
 <div class="row flex-wrapper">
   {% for resource in resources %}
     <div class="tool-item col-md-3 col-xs-6">
-        <a href="{% url route resource.id %}"><div class="tool-image">
+        <a href="{% url 'tools:show' resource.id %}"><div class="tool-image">
           {% if resource.cover_image %}
             <img src="{{ resource.cover_image.url }}" />
           {% else %}
@@ -18,7 +18,7 @@
           {% endif %}
         </div></a>
         <div class="tool-content">
-          <a href="{% url route resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
+          <a href="{% url 'tools:show' resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
           <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
         </div>
     </div>
