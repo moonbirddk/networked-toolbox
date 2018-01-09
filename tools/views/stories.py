@@ -50,6 +50,7 @@ def edit_story(request, story_id):
         'title': story.title, 
         'content': story.content, 
         'country': story.country, 
+        'associated_tools': story.associated_tools.all()
     }
 
     files = {}
@@ -63,10 +64,11 @@ def edit_story(request, story_id):
         form = StoryForm(request.POST, request.FILES)
         if form.is_valid():
             
-
+            story.associated_tools=form.cleaned_data['associated_tools']
             story.title = form.cleaned_data['title']
             story.content = form.cleaned_data['content']
             story.country = form.cleaned_data['country']
+
             story.save()
             messages.success(request, "You edited this story")
             return redirect('tools:show_story', story.id)
