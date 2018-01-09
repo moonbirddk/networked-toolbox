@@ -4,8 +4,112 @@
 		"selected_items":
 		[
 			[
+				"ver",
+				"verbose_name_plural"
+			],
+			[
+				"bt",
+				"btn-primary\t(add_workarea_story.html)"
+			],
+			[
+				"cover",
+				"cover_image\t(models.py)"
+			],
+			[
+				"ToolO",
+				"ToolOverviewPage"
+			],
+			[
+				"Too",
+				"ToolOverviewPage〔class〕"
+			],
+			[
+				"Story",
+				"StoryOverviewPage〔class〕"
+			],
+			[
+				"search",
+				"search-box"
+			],
+			[
+				"over",
+				"overview_pages\t(base.py)"
+			],
+			[
+				"overview",
+				"overview_pages\t(0002_auto_20171212_2023.py)"
+			],
+			[
+				"Cate",
+				"CategoryGroupOverviewPage\t(models.py)"
+			],
+			[
+				"Tool",
+				"ToolOverviewPage\t(models.py)"
+			],
+			[
+				"Category",
+				"CategoryGroupOverviewPage〔class〕"
+			],
+			[
+				"Ca",
+				"CategoryOverviewPage〔class〕"
+			],
+			[
+				"Stor",
+				"StoryOverviewPage"
+			],
+			[
+				"recent_",
+				"recent_tools"
+			],
+			[
+				"user_id",
+				"user_id=request.user.id"
+			],
+			[
 				"cat",
-				"categories"
+				"category_group\t(models.py)"
+			],
+			[
+				"cle",
+				"cleaned_data"
+			],
+			[
+				"related",
+				"related_name"
+			],
+			[
+				"ass",
+				"associated_tools"
+			],
+			[
+				"Sec",
+				"SectionHeadline"
+			],
+			[
+				"defaul",
+				"default_storage\t(models.py)"
+			],
+			[
+				"order",
+				"order_by"
+			],
+			[
+				"ca",
+				"category_group"
+			],
+			[
+				"show",
+				"show_story"
+			],
+			[
+				"Hi",
+				"HijackRelatedAdminMixin"
+			],
+			[
+				"PRO",
+				"PROFILE_BIO_MAX_LEN"
 			],
 			[
 				"categro",
@@ -37,10 +141,6 @@
 			],
 			[
 				"related_",
-				"related_object"
-			],
-			[
-				"related",
 				"related_object"
 			],
 			[
@@ -88,22 +188,6 @@
 				"group_category_id"
 			],
 			[
-				"Tool",
-				"ToolCategory"
-			],
-			[
-				"order",
-				"order_by\t(tools.py)"
-			],
-			[
-				"Category",
-				"CategoryOverviewPage"
-			],
-			[
-				"Cate",
-				"CategoryOverviewPage"
-			],
-			[
 				"show_category",
 				"show_categorygroup"
 			],
@@ -121,10 +205,6 @@
 			],
 			[
 				"verbo",
-				"verbose_name_plural"
-			],
-			[
-				"ver",
 				"verbose_name_plural"
 			],
 			[
@@ -178,10 +258,6 @@
 			[
 				"__str",
 				"__str__"
-			],
-			[
-				"Ca",
-				"Category"
 			],
 			[
 				"Suggest",
@@ -438,82 +514,6 @@
 			[
 				"Pa",
 				"Page"
-			],
-			[
-				"cad",
-				"cadastre_apartment_number\t(models.py)"
-			],
-			[
-				"str",
-				"street\t(models.py)"
-			],
-			[
-				"start",
-				"start_sale_date\t(models.py)"
-			],
-			[
-				"ag",
-				"agreement_duration\t(models.py)"
-			],
-			[
-				"nee",
-				"need_for_capital_on_purchase_pdf\t(models.py)"
-			],
-			[
-				"monthly",
-				"monthly_total_export\t(models.py)"
-			],
-			[
-				"dispat",
-				"dispatch_fee_buyer\t(data_import.py)"
-			],
-			[
-				"change",
-				"change_of_ownership_fee_buyer\t(data_import.py)"
-			],
-			[
-				"plumb",
-				"plumbing_check_fee_buyer\t(models.py)"
-			],
-			[
-				"electr",
-				"electricity_check_fee_buyer\t(data_import.py)"
-			],
-			[
-				"evaluation_",
-				"evaluation_fee_buyer\t(data_import.py)"
-			],
-			[
-				"transfer",
-				"transferrance_expense_buyer\t(data_import.py)"
-			],
-			[
-				"move",
-				"move_in_deposit"
-			],
-			[
-				"utili",
-				"utilities_water"
-			],
-			[
-				"mnonth",
-				"monthly_including_water_heating_pdf\t(models.py)"
-			],
-			[
-				"utilities_",
-				"utilities_heating"
-			],
-			[
-				"mon",
-				"monthly_fee"
-			],
-			[
-				"bui_econ",
-				"bui_economy_deposit\t(building.json)"
-			],
-			[
-				"email_",
-				"email_user\t(schema.py)"
 			]
 		]
 	},
@@ -523,7 +523,52 @@
 			"file": "tools/models.py",
 			"settings":
 			{
-				"buffer_size": 7624,
+				"buffer_size": 8401,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "runtime.txt",
+			"settings":
+			{
+				"buffer_size": 13,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "search/views.py",
+			"settings":
+			{
+				"buffer_size": 4926,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "search/urls.py",
+			"settings":
+			{
+				"buffer_size": 363,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "requirements.txt",
+			"settings":
+			{
+				"buffer_size": 511,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Procfile",
+			"settings":
+			{
+				"buffer_size": 274,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -532,36 +577,170 @@
 			"file": "tools/admin.py",
 			"settings":
 			{
-				"buffer_size": 1823,
+				"buffer_size": 1893,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "\nfrom django.shortcuts import render, redirect, get_object_or_404\nfrom django.contrib.auth.decorators import login_required\nfrom django.contrib import messages\nfrom tools.forms import StoryForm\nfrom tools.models import Tool, Story, CategoryGroup\n\n@login_required\ndef add_story(request, tool_id):\n    tool = get_object_or_404(Tool, id=tool_id, published=True)\n    form = StoryForm()\n\n    if request.method == 'POST':\n        form = StoryForm(request.POST)\n        if form.is_valid():\n            story = Story.objects.create(tool_id=tool.id, user_id=request.user.id, **form.cleaned_data)\n            messages.success(request, \"You created a story\")\n            return redirect('tools:show', story.tool_id)\n\n    context = {'tool': tool, 'form': form}\n    return render(request, 'tools/add_story.html', context)\n\n@login_required\ndef add_workarea_story(request, category_group_id):\n    category_group = get_object_or_404(CategoryGroup, id=category_group_id, published=True)\n    form = StoryForm()\n\n    if request.method == 'POST':\n        form = StoryForm(request.POST)\n        if form.is_valid():\n            story = Story.objects.create(category_group=category_group, user_id=request.user.id, **form.cleaned_data)\n            messages.success(request, \"You created a story\")\n            return redirect('tools:show_categorygroup', story.category_group.id)\n\n    context = {'category_group': category_group, 'form': form}\n    return render(request, 'tools/add_workarea_story.html', context)\n\ndef show_story(request, story_id):\n    story = get_object_or_404(Story, id=story_id)\n    related_model_instance = get_object_or_404(Tool, id=story.tool_id) if story.tool else get_object_or_404(CategoryGroup, id=story.category_group_id)\n    related_model_name = related_model_instance._meta.verbose_name\n    related_stories = Story.objects.filter(tool_id=story.tool_id).exclude(id=story.id).order_by('-created')[:3]\n    context = {\n        'story': story, \n        'related_model_instance': related_model_instance, \n        'related_model_name': related_model_name, \n        'related_stories': related_stories \n    }\n    return render(request, 'tools/show_story.html', context)\n",
 			"file": "tools/views/stories.py",
-			"file_size": 2149,
-			"file_write_time": 131570234344203912,
 			"settings":
 			{
-				"buffer_size": 2165,
+				"buffer_size": 4025,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "tools/templates/tools/show_category.html",
+			"file": "tools/templates/stories/add_workarea_story.html",
 			"settings":
 			{
-				"buffer_size": 6649,
+				"buffer_size": 2636,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/forms.py",
+			"settings":
+			{
+				"buffer_size": 5468,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tools/templates/stories/edit_story.html",
+			"settings":
+			{
+				"buffer_size": 857,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/widgets.py",
+			"settings":
+			{
+				"buffer_size": 3553,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "# A fork from https://djangosnippets.org/snippets/"
 			}
 		},
 		{
 			"file": "netbox/settings/base.py",
 			"settings":
 			{
-				"buffer_size": 9217,
+				"buffer_size": 9282,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "menus/templatetags/menus.py",
+			"settings":
+			{
+				"buffer_size": 571,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/views/tools.py",
+			"settings":
+			{
+				"buffer_size": 5651,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "comments/templatetags/commentstags.py",
+			"settings":
+			{
+				"buffer_size": 8805,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/templates/stories/show_all_stories.html",
+			"settings":
+			{
+				"buffer_size": 1410,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/templates/stories/_stories_overview.html",
+			"settings":
+			{
+				"buffer_size": 1253,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tools/urls.py",
+			"settings":
+			{
+				"buffer_size": 1892,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "netbox/templates/_nav.html",
+			"settings":
+			{
+				"buffer_size": 1987,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "profiles/admin.py",
+			"settings":
+			{
+				"buffer_size": 811,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "netbox/templates/base.html",
+			"settings":
+			{
+				"buffer_size": 2962,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "search/forms.py",
+			"settings":
+			{
+				"buffer_size": 1243,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "profiles/templates/profiles/show.html",
+			"settings":
+			{
+				"buffer_size": 4566,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "profiles/forms.py",
+			"settings":
+			{
+				"buffer_size": 3052,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -570,9 +749,26 @@
 			"file": "netbox/urls.py",
 			"settings":
 			{
-				"buffer_size": 1882,
+				"buffer_size": 1961,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "search/templates/search/index.html",
+			"settings":
+			{
+				"buffer_size": 2479,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/templates/tools/_tools_overview.html",
+			"settings":
+			{
+				"buffer_size": 990,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -583,10 +779,14 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 167.0,
-		"last_filter": "mater",
+		"height": 354.0,
+		"last_filter": "m",
 		"selected_items":
 		[
+			[
+				"m",
+				"Material Theme: Advanced configuration"
+			],
 			[
 				"mater",
 				"Material Theme: Activate theme"
@@ -640,7 +840,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 485.0
+		"width": 462.0
 	},
 	"console":
 	{
@@ -660,24 +860,54 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/mathiaswedeken/python/networked-toolbox-master"
+		"/Users/mathiaswedeken/python/networked-toolbox-master",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/__pycache__",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools"
 	],
 	"file_history":
 	[
+		"/etc/hosts",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/migrations/0009_auto_20171212_2027.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/overview_pages/models.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/overview_pages/migrations/0001_initial.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/overview_pages/migrations/0002_auto_20171212_2004.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/bin/post_compile",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/filters.py",
+		"/Users/mathiaswedeken/python/django-notifications/setup.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/requirements_old.txt",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/production.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/staging.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/requirements-old.txt",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/stories/add_workarea_story.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templatetags/storiestags.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_category.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/categories.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/categorygroups.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/category_groups/list_categorygroups.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/category_groups/show_categorygroup.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_categories_overview.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_category.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_categories.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_story.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/search/views.py",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/_hijack_form.html",
+		"/Users/mathiaswedeken/python/networked-toolbox-master/common/templatetags/commontags.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/requirements.txt",
 		"/Users/mathiaswedeken/python/networked-toolbox-bleedingedge/requirements.txt",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/staging.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/development.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/stories.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_workarea_story.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/activities/models.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/admin.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/categorygroups.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_categorygroup.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/forms.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_suggestion.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/suggestions.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_story.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/tools.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/urls.py",
@@ -685,7 +915,6 @@
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_categorygroup_categorylist.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templates/profiles/_profile_photo.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templatetags/profilestags.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/categories.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/admin.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/_nav.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_categorygroup.html",
@@ -696,8 +925,6 @@
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/overviews.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/admin.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/comments/admin.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_category.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_categories.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_categorygroups_overview.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/base.py",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/urls.py",
@@ -728,10 +955,8 @@
 		"/Users/mathiaswedeken/python/networked-toolbox-master/pages/templates/pages/show_page.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_overview.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/home.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_category.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/delete_category.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/delete_categorygroup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_story.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/resources/delete.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/resources/edit.html",
@@ -772,36 +997,20 @@
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/socialaccount/connections.html",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/staticfiles/css/base.min.css",
 		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/socialaccount/login_cancelled.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/gulpfile.js",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/static/netbox/css/base.scss",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.tmp/css/base.css",
-		"/Users/mathiaswedeken/python/networked-toolbox-clone/staticfiles/css/base.min.css",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/models.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/shared/helpers.py",
-		"/usr/local/etc/redis.conf",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/common/templatetags/commontags.py",
-		"/Users/mathiaswedeken/python/community_app/venv/lib/python3.5/site-packages/django/contrib/admin/options.py",
-		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/models.py",
-		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/templates/admin/sale/sale/postflight.html",
-		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/views.py",
-		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/admin.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/shared/admin/mixins.py",
-		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/sale/forms.py",
-		"/Users/mathiaswedeken/python/community_app/community_app/templates/admin/change_form.html",
-		"/Users/mathiaswedeken/python/networked-toolbox/README.md",
-		"/etc/hosts",
-		"/Users/mathiaswedeken/python/community_app/.hgignore",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/cases/forms.py"
+		"/Users/mathiaswedeken/python/networked-toolbox-master/gulpfile.js"
 	],
 	"find":
 	{
-		"height": 70.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
 		"height": 158.0,
 		"where_history":
 		[
+			"<project>,-*.js, -*.html",
+			"<project>,-*.js, -*.html, -.venv/*",
+			"<project>,-*.js, -.venv/*",
 			"<project>"
 		]
 	},
@@ -810,6 +1019,34 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"    '",
+			"4",
+			"overview_pages_",
+			"newapp_themodel",
+			")",
+			"),",
+			"AlterModelTable",
+			" =",
+			"tools",
+			"Ol",
+			"SingletonModel",
+			"postgrespool",
+			"user",
+			"force_unicode",
+			"form",
+			"django.core.urlresolvers",
+			"OneToOneField",
+			"OneToOne",
+			"SectionHeadline",
+			"Context",
+			"==",
+			"Wark Area",
+			"category",
+			"\n",
+			" = models",
+			"pull",
+			"related",
+			"bleach_striptags",
 			"url 'tools:add_workarea_story'",
 			"'tools:add_story",
 			"'tools:add",
@@ -880,7 +1117,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 6,
 			"sheets":
 			[
 				{
@@ -889,15 +1126,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7624,
+						"buffer_size": 8401,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3743,
-								3807
+								1146,
+								1146
 							]
 						],
 						"settings":
@@ -908,27 +1145,55 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1470.0,
+						"translation.y": 10.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "tools/admin.py",
+					"file": "runtime.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1823,
+						"buffer_size": 13,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								521,
-								521
+								10,
+								10
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "search/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4926,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1217,
+								1217
 							]
 						],
 						"settings":
@@ -939,27 +1204,334 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 90.0,
+						"translation.y": 379.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "search/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 363,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								99,
+								99
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "requirements.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 511,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								294,
+								294
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Procfile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 274,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/zzz A File Icon zzz/aliases/YAML (Procfile).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "tools/admin.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1893,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								299,
+								299
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 211.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "tools/views/stories.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4025,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3615,
+								3615
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "tools/templates/stories/add_workarea_story.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2636,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2429,
+								2429
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 194.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "tools/forms.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5468,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2522,
+								2522
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1439.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "tools/templates/stories/edit_story.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 857,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								827,
+								827
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "tools/widgets.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3553,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1009,
+								1009
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"auto_name": "# A fork from https://djangosnippets.org/snippets/",
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 181.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 12,
+					"file": "netbox/settings/base.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9282,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1958,
+								1958
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "tools/views/stories.py",
+					"buffer": 13,
+					"file": "menus/templatetags/menus.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2165,
+						"buffer_size": 571,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								954,
-								963
+								569,
+								569
 							]
 						],
 						"settings":
@@ -969,34 +1541,183 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 119.0,
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 21,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 3,
-					"file": "tools/templates/tools/show_category.html",
+					"buffer": 14,
+					"file": "tools/views/tools.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6649,
+						"buffer_size": 5651,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4770,
-								4770
+								1575,
+								1575
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 83.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "comments/templatetags/commentstags.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8805,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1071,
+								1071
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "tools/templates/stories/show_all_stories.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1410,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1132,
+								1132
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 284.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "tools/templates/stories/_stories_overview.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								784,
+								784
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "tools/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1892,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								818,
+								818
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 148.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "netbox/templates/_nav.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1987,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1017,
+								1017
 							]
 						],
 						"settings":
@@ -1007,27 +1728,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1427.0,
+						"translation.y": 198.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "netbox/settings/base.py",
+					"buffer": 20,
+					"file": "profiles/admin.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9217,
+						"buffer_size": 811,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2195,
-								2195
+								704,
+								704
 							]
 						],
 						"settings":
@@ -1038,27 +1759,58 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 957.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "netbox/urls.py",
+					"buffer": 21,
+					"file": "netbox/templates/base.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1882,
+						"buffer_size": 2962,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								782,
-								782
+								136,
+								136
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 24,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"file": "search/forms.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1243,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								656,
+								656
 							]
 						],
 						"settings":
@@ -1068,11 +1820,165 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 3.0,
-						"translation.y": 76.0,
+						"translation.x": 0.0,
+						"translation.y": 186.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"file": "profiles/templates/profiles/show.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4566,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1586,
+								1586
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 382.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 27,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"file": "profiles/forms.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3052,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2515,
+								2515
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 582.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 26,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"file": "netbox/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1961,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1784,
+								1784
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 188.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 26,
+					"file": "search/templates/search/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2479,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								892,
+								892
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 342.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 27,
+					"file": "tools/templates/tools/_tools_overview.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 990,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -1111,7 +2017,7 @@
 		"rows":
 		[
 			0.0,
-			0.532194626721,
+			0.563962859603,
 			1.0
 		]
 	},
@@ -1148,7 +2054,7 @@
 		[
 			[
 				"",
-				"~/python/unik_boligsalg/unikboligsalg.sublime-project"
+				"~/python/community_app/community_app.sublime-project"
 			]
 		],
 		"width": 380.0
@@ -1162,7 +2068,7 @@
 		],
 		"width": 392.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},

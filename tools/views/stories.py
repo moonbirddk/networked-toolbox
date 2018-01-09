@@ -83,11 +83,14 @@ def show_story(request, story_id):
     related_model_instance = get_object_or_404(Tool, id=story.tool_id) if story.tool else get_object_or_404(CategoryGroup, id=story.category_group_id)
     related_model_name = related_model_instance._meta.verbose_name
     related_stories = Story.objects.filter(tool_id=story.tool_id).exclude(id=story.id).order_by('-created')[:3]
+    associated_tools = story.associated_tools.all()
     context = {
         'story': story, 
         'related_model_instance': related_model_instance, 
         'related_model_name': related_model_name, 
-        'related_stories': related_stories 
+        'related_stories': related_stories, 
+        'resources': associated_tools
+
     }
     return render(request, 'stories/show_story.html', context)
 
