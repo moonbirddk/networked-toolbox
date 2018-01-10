@@ -86,10 +86,11 @@
     </form>
     {% endif %}
   </div>
+  {%if category_group.followers.count > 0%}
   <div class="usage-followers col-sm-5 col-xs-8 text-right">
-    <p>{{ tool.followers.count }} user{{ tool.followers.count|pluralize:" is,s are" }} following this Work Area.</p>
+    <p>{{ category_group.followers.count }} user{{ category_group.followers.count|pluralize:" is,s are" }} following this Work Area.</p>
   </div>
-  
+  {%endif%}
 </div>
 
 {% include "category_groups/_categorygroup_categorylist.html" %}
