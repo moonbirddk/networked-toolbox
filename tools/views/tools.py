@@ -85,12 +85,12 @@ def follow_tool(request, tool_id):
         should_notify = False
         if request.POST.get('should_notify', '0') == '1':
             should_notify = True
-        tfoll, created = ToolFollower.objects.get_or_create(
+        tool_follower, created = ToolFollower.objects.get_or_create(
             user=request.user,
             tool=tool
         )
-        tfoll.should_notify = should_notify
-        tfoll.save()
+        tool_follower.should_notify = should_notify
+        tool_follower.save()
         messages.success(request, "You are now following this tool.")
     return redirect(tool)
 

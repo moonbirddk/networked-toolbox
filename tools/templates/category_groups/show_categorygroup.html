@@ -64,6 +64,35 @@
 
 </div>
 
+<div class="usage-indicator row">
+  <div class="usage-title col-sm-5 col-xs-12">
+    
+    <h3 class="title">Want to {% if user.id in category_group_follower_ids %}continue{%endif%} follow this Work Area?</h3>
+  </div>
+  <div class="usage-follow col-sm-2 col-xs-4">
+    {% if user.id in category_group_follower_ids %}
+    <form action="{% url 'tools:unfollow_work_area' category_group.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-usage">
+        No, Thank You
+      </button>
+    </form>
+    {% else %}
+    <form action="{% url 'tools:follow_work_area' category_group.id %}" method="post">
+      {% csrf_token %}
+      <button type="submit" name='should_notify' value='1' class="btn btn-usage" data-requires-validated-user="true">
+        Yes, please
+      </button>
+    </form>
+    {% endif %}
+  </div>
+  {%if category_group.followers.count > 0%}
+  <div class="usage-followers col-sm-5 col-xs-8 text-right">
+    <p>{{ category_group.followers.count }} user{{ category_group.followers.count|pluralize:" is,s are" }} following this Work Area.</p>
+  </div>
+  {%endif%}
+</div>
+
 {% include "category_groups/_categorygroup_categorylist.html" %}
 
  <h3 class="title">Stories</h3>
