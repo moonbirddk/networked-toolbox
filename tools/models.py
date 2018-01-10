@@ -160,8 +160,9 @@ def notify_work_area_followers(sender, instance, created, **kwargs):
             'title': 'read',
             'href': href
         }]        
+        email_template = 'stories/email/story_written_about_tool_area'
         for recipient in recipients: 
-            notify.send(instance.user, verb=verb, recipient=recipient.user, target=instance.category_group, description=instance.title, actions=actions)
+            notify.send(instance.user, verb=verb, recipient=recipient.user, target=instance.category_group, description=instance.title, actions=actions, email_template=email_template)
 
 post_save.connect(notify_work_area_followers, sender=Story)
 
