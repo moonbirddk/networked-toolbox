@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
-from ..models import CategoryGroup, ToolCategory, get_default_category_group_id, CategoryOverviewPage
+from ..models import CategoryGroup, CategoryGroupFollower, ToolCategory, get_default_category_group_id, CategoryOverviewPage
 from ..forms import CategoryGroupForm
 
 
@@ -15,11 +15,14 @@ def show_categorygroup(request, category_group_id):
 
     category_group = get_object_or_404(CategoryGroup, id=category_group_id)
     categories = category_group.categories.all().order_by('title')
+    category_group_follower_ids = list(category_group.followers.all().values_list('user_id', flat=True))
+
     context = {
         'category_group': category_group,
         'categories': categories, 
         'stories': category_group.stories.all(), 
-
+        'category_group_follower_ids': category_group_follower_ids,
+        
     }
     return render (request, 'category_groups/show_categorygroup.html', context)
     
@@ -109,3 +112,36 @@ def delete_categorygroup(request, category_group_id):
             messages.info(request, "You have deleted the toolbox")
         return redirect(reverse('tools:index'))
     return render(request, 'category_groups/delete_categorygroup.html', ctx)
+
+
+@transaction.atomic
+@login_required
+def follow_category_group(request, category_group_id):
+    if request.user.has_perm('category_groups.change_category_group'):
+        category_group = get_object_or_404(CategoryGroup, id=category_group_id)
+    else:
+        category_group = get_object_or_404(CategoryGroup, id=category_group_id, published=True)
+    if request.method == 'POST':
+        should_notify = False
+        if request.POST.get('should_notify', '0') == '1':
+            should_notify = True
+        category_group_follower, created = CategoryGroupFollower.objects.get_or_create(
+            user=request.user,
+            category_group=category_group
+        )
+        category_group_follower.should_notify = should_notify
+        category_group_follower.save()
+        messages.success(request, "You are now following this Work Area.")
+    return redirect(category_group)
+
+
+@login_required
+def unfollow_category_group(request, category_group_id):
+    if request.user.has_perm('category_groups.change_category_group'):
+        category_group = get_object_or_404(CategoryGroup, id=category_group_id)
+    else:
+        category_group = get_object_or_404(CategoryGroup, id=category_group_id, published=True)
+    if request.method == 'POST':
+        category_group.followers.all().filter(user_id=request.user.id).delete()
+        messages.success(request, "You are no longer following this Work Area.")
+    return redirect(category_group)

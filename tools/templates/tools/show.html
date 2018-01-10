@@ -38,14 +38,14 @@ ga('send', 'event', 'tool', 'view');
 
       <div class="usage-indicator row">
         <div class="usage-title col-sm-5 col-xs-12">
-          <h3 class="title">Have you used this tool?</h3>
+          <h3 class="title">Want to {%if user.id in tool_follower_ids %}continue{%endif%} follow this tool?</h3>
         </div>
         <div class="usage-follow col-sm-2 col-xs-4">
           {% if user.id in tool_follower_ids %}
             <form action="{% url 'tools:unfollow' tool.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn btn-usage">
-                No, I haven't
+                No, thank you
               </button>
             </form>
           {% else %}
@@ -57,14 +57,14 @@ ga('send', 'event', 'tool', 'view');
                   value='1'
                   class="btn btn-usage"
                   data-requires-validated-user="true">
-                  Yes, I have
+                  Yes, please
                 </button>
             </form>
           {% endif %}
         </div>
         <div class="usage-followers col-sm-5 col-xs-8 text-right">
-          <p>{{ tool.followers.count }} user{{ tool.followers.count|pluralize:" has,s have" }}
-          used this tool.</p>
+          <p>{{ tool.followers.count }} user{{ tool.followers.count|pluralize:" is,s are" }}
+          following this tool.</p>
         </div>
       </div>
 

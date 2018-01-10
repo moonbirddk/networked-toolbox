@@ -1,10 +1,9 @@
-
 from django.contrib import admin
 from django.utils.html import format_html 
 
 from solo.admin import SingletonModelAdmin
 from .models import Tool, ToolCategory, Suggestion, ToolFollower, \
-    ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupOverviewPage, Story, StoryOverviewPage
+    ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupFollower, CategoryGroupOverviewPage, Story, StoryOverviewPage
 
 
 class CategoryGroupAdmin(admin.ModelAdmin): 
@@ -38,6 +37,11 @@ class ToolFollowerAdmin(admin.ModelAdmin):
     list_filter = ['user', 'tool'] #MTODO: Smart Filtering
     list_per_page = 20
 
+class CategoryGroupFollowerAdmin(admin.ModelAdmin): 
+    lsit_display = ['user','category_group','should_notify']
+    list_filter = ['user', 'category_group']
+    list_per_page = 20 
+
 class ToolCategoryAdmin(admin.ModelAdmin): 
     list_display = ['__str__', 'group', 'published']
     list_per_page = 20
@@ -48,6 +52,7 @@ admin.site.register(ToolCategory, ToolCategoryAdmin)
 admin.site.register(CategoryGroup, CategoryGroupAdmin)
 admin.site.register(Suggestion, SuggestionAdmin)
 admin.site.register(ToolFollower, ToolFollowerAdmin)
+admin.site.register(CategoryGroupFollower, CategoryGroupFollowerAdmin)
 admin.site.register(ToolOverviewPage, SingletonModelAdmin)
 admin.site.register(CategoryOverviewPage, SingletonModelAdmin)
 admin.site.register(CategoryGroupOverviewPage, SingletonModelAdmin)
