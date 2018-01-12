@@ -5,6 +5,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var minifycss = require('gulp-minify-css');
+var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
@@ -58,11 +59,13 @@ gulp.task('fonts', function() {
 // Compiles Sass
 gulp.task('sass', function() {
     return gulp.src(paths.sass)
+    .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie 10']}))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('.tmp/css'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(minifycss())
+    // .pipe(minifycss())
     .pipe(gulp.dest('staticfiles/css'))
     .pipe(livereload());
 });

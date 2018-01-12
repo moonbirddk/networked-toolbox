@@ -1,42 +1,105 @@
+//  AMERICAN TYPEWRITER
 @font-face {
   font-family: 'AmericanTypewriter-Light';
-  src: url('../fonts/AmericanTypewriter-Light.eot');
-  src: url('../fonts/AmericanTypewriter-Light.woff') format("woff"), url('../fonts/AmericanTypewriter-Light.ttf') format("truetype"), url('../fonts/AmericanTypewriter-Light.svg') format("svg");
+  src: url('../fonts/AmericanTypewriter/AmericanTypewriter-Light.eot');
+  src: url('../fonts/AmericanTypewriter/AmericanTypewriter-Light.woff') format("woff"), url('../fonts/AmericanTypewriter/AmericanTypewriter-Light.ttf') format("truetype"), url('../fonts/AmericanTypewriter/AmericanTypewriter-Light.svg') format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'AmericanTypewriter-Bold';
-  src: url('../fonts/AmericanTypewriter-Bold.eot');
-  src: url('../fonts/AmericanTypewriter-Bold.woff') format("woff"), url('../fonts/AmericanTypewriter-Bold.ttf') format("truetype"), url('../fonts/AmericanTypewriter-Bold.svg') format("svg");
+  src: url('../fonts/AmericanTypewriter/AmericanTypewriter-Bold.eot');
+  src: url('../fonts/AmericanTypewriter/AmericanTypewriter-Bold.woff') format("woff"), url('../fonts/AmericanTypewriter/AmericanTypewriter-Bold.ttf') format("truetype"), url('../fonts/AmericanTypewriter/AmericanTypewriter-Bold.svg') format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'AmericanTypewriter';
-  src: url('../fonts/AmericanTypewriter.eot');
-  src: url('../fonts/AmericanTypewriter.woff') format("woff"), url('../fonts/AmericanTypewriter.ttf') format("truetype"), url('../fonts/AmericanTypewriter.svg') format("svg");
+  src: url('../fonts/AmericanTypewriter/AmericanTypewriter.eot');
+  src: url('../fonts/AmericanTypewriter/AmericanTypewriter.woff') format("woff"), url('../fonts/AmericanTypewriter/AmericanTypewriter.ttf') format("truetype"), url('../fonts/AmericanTypewriter/AmericanTypewriter.svg') format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
+// HELVETICA
+
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('../fonts/HelveticaNeue/HelveticaNeue-Roman.eot');
+  src: url('../fonts/HelveticaNeue/HelveticaNeue-Roman.woff') format("woff"), url('../fonts/HelveticaNeue/HelveticaNeue-Roman.ttf') format("truetype"), url('../fonts/HelveticaNeue/HelveticaNeue-Roman.svg') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HelveticaNeue-Bold';
+  src: url('../fonts/HelveticaNeue/HelveticaNeue-Bold.eot');
+  src: url('../fonts/HelveticaNeue/HelveticaNeue-Bold.woff') format("woff"), url('../fonts/HelveticaNeue/HelveticaNeue-Bold.ttf') format("truetype"), url('../fonts/HelveticaNeue/HelveticaNeue-Bold.svg') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'HelveticaNeue-Black';
+  src: url('../fonts/HelveticaNeue/HelveticaNeue-Black.eot');
+  src: url('../fonts/HelveticaNeue/HelveticaNeue-Black.woff') format("woff"), url('../fonts/HelveticaNeue/HelveticaNeue-Black.ttf') format("truetype"), url('../fonts/HelveticaNeue/HelveticaNeue-Black.svg') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 @import 'variables';
+@import 'functions';
 @import 'buttons';
 @import 'modals';
+@import 'global';
 @import 'notifications';
 @import 'forms';
 @import 'footer';
+@import 'navigation';
 
 body {
   font-family: $sans-serif;
+  font-size: 18px;
+  color: #616161;
+  letter-spacing: 0;
+  line-height: 28px;
 }
 
+h1, h2, h3{
+  font-family: 'HelveticaNeue-Black';  
+  color: black;
+}
+h1{
+  font-size: 35px;
+  @media (min-width: $media-medium) {
+    font-size: 65px;
+  }
+}
+h2{
+  font-size: 30px;
+  @media (min-width: $media-medium) {
+    font-size: 40px;
+  }
+}
+h3{
+  font-size: 25px;
+}
+h4{
+  font-family: "HelveticaNeue-Bold";
+  font-size: 20px;
+}
+.splash{
+  opacity: 0.9;
+  font-family: "AmericanTypewriter";
+  font-size: 25px;
+  color: black;
+  line-height: 32px;
+}
 svg {
   fill: currentColor;
 }
-
 // Allow for a footer that is always at the bottom regardles of content in
 // content container
 .main-wrap {
@@ -45,15 +108,6 @@ svg {
 
 .main-content {
   padding-bottom: $spacer-lg * 2;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-grow {
-  flex-grow: 1;
 }
 
 .container-fluid {
@@ -79,126 +133,24 @@ a {
   white-space: nowrap;
 }
 
-.title {
-  font-family: $serif-bold;
-  font-weight: bold;
-}
+// // .title {
+// //   font-family: $serif-bold;
+// //   font-weight: bold;
+// // }
 
-h1.title {
-  font-size: 24px;
-}
+// h1.title {
+//   font-family: "HelveticaNeue-Black";
+//   font-size: 65px;
+//   color: #FFFFFF;
+//   color: black;
+// }
 
-h3.title {
-  font-size: 18px;
-}
+// h3.title {
+//   font-size: 18px;
+// }
 
 .improvement-info {
   line-height: 1.6rem;
-}
-
-.navbar {
-  border: none;
-  border-radius: 0px;
-  font-family: $serif;
-
-  &-bottom {
-    background-color: $color-primary;
-    min-height: 0.8rem;
-    height: 4.5rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  }
-
-  &-brand {
-    color: black !important;
-    font-family: $serif-bold;
-    font-size: 2.2rem;
-    font-weight: bold;
-  }
-
-  &-logo {
-    height: 1.5rem;
-    margin-top:13px; 
-  }
-
-  &-nav {
-    @media (min-width: $media-medium) {
-      margin: 1px 0 -1px 30px;
-    }
-  }
-
-  &-top {
-    padding: 1.2rem 0;
-    margin-bottom: 0px;
-    background-color: white;
-  }
-
-  &-collapse {
-    @media (max-width: $media-medium) {
-      clear: both;
-    }
-  }
-}
-
-.navbar-top {
-  .navbar-brand {
-    @media (max-width: $media-medium) {
-      font-size: 1.5rem;
-      padding: 5px;
-    }
-  }
-}
-
-.navbar-default .navbar-nav {
-  font-size: 18px;
-
-  > .active > a {
-    color: $color-primary;
-    background: white;
-
-    &:hover, &:focus {
-      color: $color-primary;
-      background: white;
-    }
-  }
-}
-
-/*
-.navbar-collapse {
-  border-top: 0;
-  padding: 0;
-
-  @media (min-width: $media-medium) {
-    padding: 0 15px;
-  }
-}
-*/
-
-.navbar-right {
-  align-items: center;
-  justify-content: flex-end;
-  display: flex;
-  font-family: $sans-serif;
-  margin-right: 1rem;
-  height: 50px; // ugly fix to center veritcally
-
-  > li {
-    display: inline-block;
-  }
-
-  .profile-photo {
-    margin-right: $spacer-sm;
-    border-radius: $border-radius;
-    overflow: hidden;
-  }
-
-  .btn {
-    font-weight: bold;
-  }
-
-  .btn-link {
-    border-radius: $border-radius;
-    margin-right: 5px;
-  }
 }
 
 .white-text {
