@@ -1,6 +1,8 @@
 .btn {
-  font-weight: $bold-weight;
-
+  font-family: HelveticaNeue-Bold;
+  font-size: 18px;
+  width: 100%;
+  padding: 14px 0;
   &:active {
     box-shadow: none;
   }
@@ -8,12 +10,16 @@
   &-primary {
     background-color: $color-primary;
     border-color: $color-primary;
+    /* Rectangle 6 Copy 10: */
+
     &:hover, &:focus, &:active {
       background-color: $color-primary-dark !important;
       border-color: $color-primary-dark !important;
     }
   }
-
+  &-dark{
+    background-color: $color-primary-dark;
+  }
   &-warning {
     color: white;
     background-color: black;

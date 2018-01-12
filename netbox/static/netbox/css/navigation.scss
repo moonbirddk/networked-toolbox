@@ -1,0 +1,245 @@
+
+.navbar {
+  border: none;
+  border-radius: 0px;
+  font-family: $serif;
+  &-top {
+    min-height: 80px;
+    margin-bottom: 0px;
+    // margin-bottom: 100vh;    
+    // background-color: white;
+    background: $color-primary;
+    border-bottom: 1px solid $color-primary-dark;
+    @media (min-width: $media-medium){
+      height: 95px;
+    }
+    &__inner{
+        min-height: 80px;
+        display: flex;
+        padding: 0;
+        flex-wrap: wrap;
+        @include breakpoint($media-medium){
+          flex-wrap: nowrap;
+        }
+    }
+  }
+  &__signup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+    @include breakpoint($media-medium){
+      padding: 0;
+    }
+    li{
+      flex: 1 1 auto;
+      &:not(:last-child){
+        padding-right: 10px;
+        @include breakpoint($media-medium){
+          padding: 0;
+          width: 140px;
+        }
+      }
+    }
+    a.btn{
+      font-family: $sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      text-transform: capitalize;
+      border-color: $color-primary-dark;
+      width: 100%;
+      border-radius: 0;
+      color: white;
+      @include breakpoint($media-medium){
+        height: 100%;
+        min-width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__search{
+    width: 120px;
+    height: 80px;
+    @include breakpoint($media-medium){
+      height: 100%;
+    }
+    path{
+      fill: white;
+    }
+  }
+
+  &-bottom {
+    background-color: $color-primary;
+    min-height: 0.8rem;
+    height: 4.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+
+  &-brand {
+    color: white !important;
+    height: 80px;
+    padding-left: 20px;
+    background: black;
+    font-family: $serif-bold;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 100%;  
+    flex: 1 1 120px;
+    /* Networked Toolbox: */
+    @include breakpoint($media-medium){
+      margin-left: 15px !important;
+      padding-left: 30px;
+      flex: 0 1 228px;
+      height: 95px;
+    }
+  }
+
+  &-logo {
+    height: 1.5rem;
+    margin-top: 13px; 
+    
+  }
+
+  &-nav {
+    li>a{
+      font-family: 'HelveticaNeue-Black';  
+      font-family: $sans-serif;
+      font-family: 'HelveticaNeue-Bold';  
+      text-transform: uppercase;
+      font-size: 15px;
+      color: #FFFFFF;
+    }
+    @include breakpoint($media-medium){
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+  }
+  
+  &-toggle{
+    align-self: -1;
+    height: 80px;
+    width: 80px;
+    margin: 0;
+    -webkit-appearance: none;
+    border: 1px solid $color-primary-dark;
+    border-radius: 0;
+    background: $color-primary;
+    flex-direction: column;
+    @include breakpoint($media-medium){
+      display: none;
+    }
+    span.icon-bar{
+      background: white;
+      border-radius: 0;
+    }
+    &__menu{
+      /* MENU: */
+      text-transform: uppercase;
+      font-family: $sans-serif;
+      font-size: 10px;
+      color: #FFFFFF;
+      letter-spacing: 0.8px;
+      margin-bottom: -12px;
+    }
+  }
+  
+  &-collapse#main-menu {
+    width: 100vw;
+    margin: 0 !important;
+    // background: $color-primary;
+    padding-left: 20px;
+    @include breakpoint($media-medium){
+      display: flex !important;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 1 1 100%;
+      width: auto;
+
+    }
+  }
+
+  
+  
+}
+
+.navbar-default .navbar-nav {
+  font-size: 18px;
+
+  > .active > a {
+    color: $color-primary;
+    background: white;
+
+    &:hover, &:focus {
+      color: $color-primary;
+      background: white;
+    }
+  }
+}
+
+
+
+
+
+.hero__section{
+  height: 276px;
+  background-color: $color-primary;
+  &__inner{
+    height: 100%;
+    height: 276p7x;
+  }
+  &__title{
+    color: white;
+  }
+  &__tagline{
+    color: white;
+    font-size: 20px;
+  }
+}
+
+
+
+
+/*
+.navbar-collapse {
+  border-top: 0;
+  padding: 0;
+
+  @media (min-width: $media-medium) {
+    padding: 0 15px;
+  }
+}
+*/
+
+// .navbar-right {
+//   align-items: center;
+//   justify-content: flex-end;
+//   display: flex;
+//   font-family: $sans-serif;
+//   margin-right: 1rem;
+//   height: 50px; // ugly fix to center veritcally
+
+//   > li {
+//     display: inline-block;
+//   }
+
+//   .profile-photo {
+//     margin-right: $spacer-sm;
+//     border-radius: $border-radius;
+//     overflow: hidden;
+//   }
+
+//   .btn {
+//     font-weight: bold;
+//   }
+
+//   .btn-link {
+//     border-radius: $border-radius;
+//     margin-right: 5px;
+//   }
+// }

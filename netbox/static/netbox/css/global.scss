@@ -1,0 +1,19 @@
+.flex-vertical{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.flex-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
