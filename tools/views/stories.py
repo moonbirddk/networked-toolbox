@@ -104,7 +104,7 @@ def show_all_stories(request):
         'date': ('newest', '-created'),
     }
     order = ORDERINGS[request.GET.get('order')] if request.GET.get('order') in ORDERINGS.keys() else ORDERINGS['date']
-    stories = Story.objects.all().order_by(order[1])
+    stories = Story.objects.filter(published=True).order_by(order[1])
     context = {
         'stories': stories, 
         'order': order[0],

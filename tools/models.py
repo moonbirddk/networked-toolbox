@@ -82,6 +82,17 @@ class ToolFollower(models.Model):
     def __str__(self): 
         return '{} - {}'.format(self.user, self.tool)
 
+class ToolUser(models.Model): 
+    class Meta: 
+        unique_together = (('user', 'tool'))
+        verbose_name = 'Tool User'
+        verbose_name_plural = 'Tool Users'
+
+    user = models.ForeignKey('auth.User')
+    tool = models.ForeignKey('Tool', related_name='users')
+    
+    def __str__(self): 
+        return '{} - {}'.format(self.user, self.tool)
 
 class Story(ModelWithCoverImage):
     class Meta: 
@@ -97,7 +108,8 @@ class Story(ModelWithCoverImage):
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools')
-
+    published = models.BooleanField('Published', default=False)
+    
     @property
     def parent_object(self): 
         return self.tool if self.tool else self.category_group 

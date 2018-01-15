@@ -25,7 +25,8 @@ class StoryAdmin(admin.ModelAdmin):
         return '{}: {}'.format(self.parent_object._meta.verbose_name.title(), self.parent_object)
     
 
-    list_display = ['__str__', author, tool_or_work_area, link_to_story_on_website, 'created']
+    list_display = ['__str__', author, tool_or_work_area, link_to_story_on_website, 'created', 'published']
+    list_editable = ['published']
     list_per_page = 20
 
 class SuggestionAdmin(admin.ModelAdmin): 
