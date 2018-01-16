@@ -17,7 +17,7 @@
     "order": 2,
     "menu": "footer-1",
     "link": "http://localhost:8000/tools/toolboxes/",
-    "title": "Toolboxeses"
+    "title": "Toolboxes"
   },
   "model": "menus.menuitem"
 },

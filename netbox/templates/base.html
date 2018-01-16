@@ -9,11 +9,12 @@
     <meta charset="UTF-8">
     <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
     {% compress js %}
-    <script src="{% static "js/base.js" %}"></script>
     <script src="{% static "js/jquery.shorten.js" %}"></script>
     <!-- Notifications -->
     <script src="{% static "notifications/notify.js" %}"></script>
     <script src="{% static "js/notifications.js" %}"></script>
+    <script src="{% static "js/wow.min.js" %}"></script>
+    <script src="{% static "js/base.js" %}"></script>
     {% register_notify_callbacks fetch=100 callbacks='netbox_fill_notification_list,fill_notification_badge' %}
     {% endcompress %}
     {% bootstrap_javascript %}
@@ -57,12 +58,10 @@
       </div> <!-- /Nav -->
 
       <div class="flex-grow"> <!-- Content -->
-        <div class="container-fluid main-content">
           {% bootstrap_messages %}
 
           {% block main %}
           {% endblock %}
-        </div>
       </div> <!-- /Content -->
 
       {% include '_footer.html' %}

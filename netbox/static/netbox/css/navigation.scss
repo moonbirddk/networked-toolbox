@@ -255,59 +255,26 @@
 
 
 .hero__section{
-  height: 276px;
+  height: 476px;
   background-color: $color-primary;
+  padding-bottom: 100px;
   &__inner{
     height: 100%;
-    height: 276p7x;
+    // height: 276px;
   }
   &__title{
     color: white;
+    text-align: center;
+    @include breakpoint($media-medium){
+      text-align: left;
+    }
   }
   &__tagline{
     color: white;
     font-size: 20px;
+    text-align: center;
+    @include breakpoint($media-medium){
+      text-align: left;
+    }
   }
 }
-
-
-
-
-/*
-.navbar-collapse {
-  border-top: 0;
-  padding: 0;
-
-  @media (min-width: $media-medium) {
-    padding: 0 15px;
-  }
-}
-*/
-
-// .navbar-right {
-//   align-items: center;
-//   justify-content: flex-end;
-//   display: flex;
-//   font-family: $sans-serif;
-//   margin-right: 1rem;
-//   height: 50px; // ugly fix to center veritcally
-
-//   > li {
-//     display: inline-block;
-//   }
-
-//   .profile-photo {
-//     margin-right: $spacer-sm;
-//     border-radius: $border-radius;
-//     overflow: hidden;
-//   }
-
-//   .btn {
-//     font-weight: bold;
-//   }
-
-//   .btn-link {
-//     border-radius: $border-radius;
-//     margin-right: 5px;
-//   }
-// }

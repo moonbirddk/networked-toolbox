@@ -14,69 +14,118 @@
 
 
 {% block main %}
- <div class="row">
-    {%for overview_name, overview in overviews.items %}
-    
-      <div class="col-md-4">
-            <h1 class="title">
-                <i class="fa fa-briefcase" aria-hidden="true"></i>
-               {{ overview_name }}
-            </h1>
-            <div class="search-result">
-            <img src="{{ overview.cover_image.url }}" alt="" width="100%">
-                  <h4>
-                    {{ overview.headline }}
-                  </h4>
-                    <a href="{% url  overview.link  %}" class="btn btn-primary">{{overview.link_text}}</a>
+<section class="front__cards gray">
+    <div class="container-fluid">
+        <div class="front__cards__inner">
+        {%for overview_name, overview in overviews.items %}
+            <div class="front__cards__card wow fadein" data-wow-delay=" 0.{{ forloop.counter }}s">
+                <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
+                <div class="front__cards__icon__container">
+                    <svg class="front__cards__icon" viewbox="0 0 1 1">
+                        <use href="{% static "icons/tools.svg" %}#tools"></use>
+                    </svg>
                 </div>
+                <h3 class="title">
+                    {{ overview_name }}
+                </h3>
+                <img class="front__cards__bgimg" src="{{ overview.cover_image.url }}" alt="" width="100%">
+                <div class="search-result">
+                    <p >
+                    {{ overview.headline }}
+                    </p>
+                    <a href="{% url  overview.link  %}" class="btn btn-bordered">
+                        <h4 class="red-text">
+                            {{overview.link_text}}
+                        </h4>
+                        <img src="{% static "icons/chevron.svg" %}" alt="">
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
         </div>
-
-    {% endfor %}
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <h1 class="title">
-              <i class="fa fa-align-justify" aria-hidden="true"></i>
-              Explore Latest Stories
-            </h1>
+</section>
+{% include 'search/_search-bar.html' %}
+
+<section class="section white padded wow fadeinUp">
+    <div class="container-fluid">
+        <div class="flex-space-between">
+            <h2 class="title">
+                RECENTLY USED <br> TOOLS
+            </h2>
+            <a href="{%url 'tools:list_tools' %}" class="btn btn-primary">View All Tools</a>
         </div>
-        <div class="col-md-4">
-         <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>  
+        <div class="row tools flex-row cards">
+            {% for tool in recent_tools %}
+            <div class="col-md-4 ">
+                <div class="card card--tool wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
+                     {% if tool.cover_image %}
+                        <div class="card__img" style="background-image: url({{ tool.cover_image }})"></div>
+                    {% else %}
+                        <div class="card__img" style="background-image: url(https://placeimg.com/640/480/any)"></div>
+                    {% endif %}
+                    <div class="card__content">
+                        <h4>
+                            <a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a>
+                        </h4>
+                        <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
+                        <div class="card__counter">
+                            <div class="card__counter--people ">
+                                <img src="{% static 'icons/profile.svg' %}" alt="">
+                                <span>14</span>
+                                <span>people</span>
+                            </div>
+                            <div class="card__counter--comments ">
+                                <img src="{% static 'icons/comment.svg' %}" alt="">
+                                <span>4</span>
+                                <span>comments</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
         </div>
     </div>
+</section>
 
-    <div class="row">
+<section class="gray padded wow fadeinup">
+    <div class="container-fluid">
+        <div class="flex-space-between">
+            <h2 class="title">
+            EXPLORE <br> LATEST STORIES
+            </h2>
+            <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>  
+        </div>
+        <div class="row stories cards">
             {% for story in recent_stories %}
+                <div class="col-md-4 ">
+                    <div class="card card--tool wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
+                        <div class="card__content">
 
-                <div class="col-md-4 search-result">
-                  <h3><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></h3>
-                  <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
+                            <h4>
+                                <a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a>
+                            </h4>
+                            <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
+                            <div class="card__counter">
+                                <div class="card__counter--people ">
+                                    <img src="{% static 'icons/profile.svg' %}" alt="">
+                                    <span>14</span>
+                                    <span>people</span>
+                                </div>
+                                <div class="card__counter--comments ">
+                                    <img src="{% static 'icons/comment.svg' %}" alt="">
+                                    <span>4</span>
+                                    <span>comments</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
-          
-    </div>
-        
-       <div class="row">
-        <div class="col-md-8">
-            <h1 class="title">
-                <i class="fa fa-wrench" aria-hidden="true"></i>
-                Recently used Tools
-            </h1>
         </div>
-        <div class="col-md-4">
-        <a href="{%url 'tools:list_tools' %}" class="btn btn-primary">Show All Tools</a>
-        </div>
-      </div>
-      <div class="row">
-           {% for tool in recent_tools %}
-             <div class="col-md-4 search-result">
-               <h3><a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a></h3>
-               <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
-             </div>
-           {% endfor %}
-            
     </div>
-       
-
+</section>
 
 {% endblock %}

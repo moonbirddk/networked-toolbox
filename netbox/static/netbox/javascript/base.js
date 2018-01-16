@@ -94,3 +94,13 @@ function getCookie(name) {
   }
   return cookieValue;
 }
+// WOW INIT
+
+var vov = new WOW({
+  boxClass: 'wow',      // default
+  animateClass: 'animated', // default
+  offset: 0,          // default
+  mobile: true,
+  live: true        // default
+});
+vov.init();
