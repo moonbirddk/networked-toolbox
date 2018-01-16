@@ -3,10 +3,17 @@
   font-size: 18px;
   width: 100%;
   padding: 14px 0;
+  @include breakpoint($media-medium){
+    max-width: 210px;
+  }
   &:active {
     box-shadow: none;
   }
-
+  &--wide{
+    @include breakpoint($media-medium){
+      max-width: 300px;
+    }
+  }
   &-primary {
     background-color: $color-primary;
     border-color: $color-primary;
@@ -17,8 +24,13 @@
       border-color: $color-primary-dark !important;
     }
   }
+  &-bordered{
+    border: 1px solid $color-gray-lighter;
+    border-radius: 5px;
+  }
   &-dark{
     background-color: $color-primary-dark;
+    color: white;
   }
   &-warning {
     color: white;

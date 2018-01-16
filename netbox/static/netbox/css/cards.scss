@@ -1,0 +1,53 @@
+.cards{
+  >div{
+    // height: 100%;
+  }
+}
+.card{
+  // min-height: 600px;
+  .stories &{
+    background: $color-gray-lightest;
+    padding: 20px;
+  }
+  .tools &{
+    background: white;
+  }
+  &__img{
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $color-gray-lightest;
+  }
+  &__content{
+    padding: 20px;
+    border: 1px solid $color-gray-lightest;
+  }
+  h4{
+    margin-bottom: 20px;
+  }
+  a{
+    color: black;
+  }
+  p{
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+  &__counter{
+    color: $color-primary;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    div{
+      margin-right: 15px;
+    }
+    span{
+      // display: inline-block;
+      // margin-top: 5px;
+    }
+    img{
+      margin-right: 5px;
+    }
+  }
+}
