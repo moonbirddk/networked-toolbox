@@ -11,7 +11,9 @@ var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
 var rimraf = require('rimraf');
-
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
+var url = 'http://localhost:8000';
 // 2. FILE PATHS
 // - - - - - - - - - - - - - - -
 
@@ -67,7 +69,10 @@ gulp.task('sass', function() {
     .pipe(rename({suffix: '.min'}))
     // .pipe(minifycss())
     .pipe(gulp.dest('staticfiles/css'))
-    .pipe(livereload());
+    // .pipe(livereload());
+    .pipe(reload({
+        stream: true
+    }))
 });
 
 // Compiles JS
@@ -103,8 +108,42 @@ gulp.task('watch', function() {
 
 });
 
+gulp.task('default', function() {
+    browserSync.init({
+        proxy: url,
+        open: false,
+        notify: false,
+        ghostMode: {
+            clicks: true,
+            scroll: true,
+            forms: {
+                submit: true,
+                inputs: true,
+                toggles: true
+            }
+        }
+    });
+
+    // Watch fonts
+    gulp.watch(paths.fonts, ['fonts']);
+
+    // Watch Sass
+    gulp.watch(paths.sassWatch, ['sass']);
+
+    // Watch javascript
+    gulp.watch(paths.js, ['copyjs']);
+
+    // Watch Django temlates
+    // gulp.watch(['**/*.html', '**/*.py']).on('change', reload);
+    gulp.watch(['**/*.html']).on('change', reload);
+
+});
+
+
+
 // Builds your entire app once, without starting a server
 gulp.task('build', ['fonts', 'sass', 'uglify']);
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['fonts', 'sass', 'copyjs', 'watch']);
+gulp.task('watch', ['fonts', 'sass', 'copyjs', 'watch']);
+

@@ -1,9 +1,12 @@
-<div class="profile-photo">
-  {% if show_link %}
-    <a href="{% url 'profiles:show' profile_uid %}">
-  {% endif %}
-      <div title="{{ title }}" class='profile-photo-img' style="background-image: url({{ photo_url }})"></div>
-  {% if show_link %}
-    </a>
-  {% endif %}
+{% if show_link %}
+<a class="profile-photo" href="{% url 'profiles:show' profile_uid %}">
+    <div title="{{ title }}" class='profile-photo-img' style="background-image: url({{ photo_url }})"></div>
+    <p title="{{ title }}" class='profile-photo-name small' >{{ user.first_name }}</p>
+</a>
+{% else %}
+<div class="profile-photo" >
+  <div title="{{ title }}" class='profile-photo-img' style="background-image: url({{ photo_url }})"></div>
+  <p title="{{ title }}" class='profile-photo-name small'>{{ title }}</p>
 </div>
+{% endif %}
+

@@ -20,3 +20,4 @@ nw-m.sublime-workspace
 *.sublime-workspace
 nw-m.sublime-workspace
 .vscode
+.DS_Store

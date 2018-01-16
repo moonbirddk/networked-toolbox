@@ -2,7 +2,7 @@
 .navbar {
   border: none;
   border-radius: 0px;
-  font-family: $serif;
+  // font-family: $serif;
   &-top {
     min-height: 80px;
     margin-bottom: 0px;
@@ -21,6 +21,24 @@
         @include breakpoint($media-medium){
           flex-wrap: nowrap;
         }
+      >.notifications{
+          position: absolute; 
+          top: 0;
+          right: 80px;
+          height: 80px;
+          width: 70px;
+          padding: 0 !important;
+          margin: 0;
+          background: $color-primary;
+          border-bottom: 1px solid $color-primary-dark;
+          @extend .flex-center !optional;
+          .fa{
+            color: white !important;
+          }
+          @include breakpoint($media-medium){
+            display: none;
+          }
+      }
     }
   }
   &__signup{
@@ -28,16 +46,34 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px 0;
+    margin: 0;
     @include breakpoint($media-medium){
       padding: 0;
     }
+    .notifications{
+      display: none;
+      @include breakpoint($media-medium){
+        display: block;
+      }
+    }
     li{
       flex: 1 1 auto;
+      .profile-photo{
+        padding: 0 !important; 
+        @include breakpoint($media-medium){
+          padding: 10px 15px !important;
+        }
+      }
+      &:hover{
+        background: $color-primary-dark;
+      }
       &:not(:last-child){
         padding-right: 10px;
         @include breakpoint($media-medium){
           padding: 0;
-          width: 140px;
+          // width: 140px;
+          margin: 0;
+          // border-left: 1px solid $color-primary-dark;
         }
       }
     }
@@ -63,9 +99,18 @@
   &__search{
     width: 120px;
     height: 80px;
+    &:hover{
+        svg{
+
+          transform: scale(1.1);
+          transform-origin: center;
+          backface-visibility: hidden;
+        }
+      }
     @include breakpoint($media-medium){
       height: 100%;
     }
+    
     path{
       fill: white;
     }
@@ -111,6 +156,9 @@
       text-transform: uppercase;
       font-size: 15px;
       color: #FFFFFF;
+      &:hover{
+        transform: scale(1.1);
+      }
     }
     @include breakpoint($media-medium){
       flex: 1 1 auto;
@@ -136,6 +184,19 @@
     span.icon-bar{
       background: white;
       border-radius: 0;
+      &:nth-child(2){
+        transform: translateY(6px) rotate(45deg);
+      }
+      &:nth-child(3){
+        opacity: 0;
+      }
+      &:nth-child(4){
+       transform: translateY(-6px) rotate(-45deg);
+      }
+    }
+    &.collapsed span.icon-bar{
+      transform: none;
+      opacity: 1;
     }
     &__menu{
       /* MENU: */
@@ -166,6 +227,13 @@
 
   
   
+}
+.navbar *{
+  @include transition;
+}
+.nav>li>a:focus, .nav>li>a:hover{
+  background: initial;
+  // transform: scale(1.1);
 }
 
 .navbar-default .navbar-nav {
