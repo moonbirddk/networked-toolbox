@@ -10,7 +10,7 @@ from . import views
 
 urlpatterns = [
    # url(r'^$', views.index, name='index'),
-    url(r'^$', views.list_categories, name='index'),
+    url(r'^$', views.list_category_groups, name='index'),
     url(r'^tools/$', views.list_tools, name='list_tools'), 
     url(r'^tools/(\d+)/$', views.show_tool, name='show'),
     

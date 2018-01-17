@@ -6,6 +6,7 @@
 {% load commontags %}
 {% load compress %}
 
+
 {% block head_statics %}
 {% compress js %}
 <script src="{% static "js/tools.js"%}"></script>
@@ -22,22 +23,12 @@
 {% block main %}
 
 <div class="row">
-    <div class="col-md-4 col-xs-12 pull-right">
-        {% if perms.tools %}{% if perms.tools.add_categorygroup %}
-            <a class="btn btn-primary pull-right" href="{% url 'tools:add_categorygroup' %}">Add Work Area</a>
-        {% endif %}{% endif %}
-    </div>
-    <div class="col-md-8 col-xs-12">
-       <h1 class="title">Work Area Overview
-         {% if perms.tools %}{% if perms.tools.add_toolcategory %}
-         <a href="{% url 'tools:add_category' %}"><i class="fa fa-plus"></i></a>
-         {% endif %}{% endif %}
-       </h1>
+    <div class="col-md-4 col-xs-12">
+        
+    
+       <h1 class="title">Work Area Overview</h1>
          <p class="category-description">
            {{ overview.description }}
-           {% if perms.tools %}{% if perms.tools.add_tool %}
-           <a href="{% url 'tools:edit_overview' 'category' %}"><i class="fa fa-edit"></i></a>
-           {% endif %}{% endif %}
          </p>
     </div>
 
@@ -45,4 +36,5 @@
 </div>
 
 {% include "category_groups/_categorygroups_overview.html" %}
+{% include "stories/_recent_stories.html"  %}
 {% endblock %}

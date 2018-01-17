@@ -4,8 +4,12 @@ import json
 from django.conf import settings
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
+from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import ThreadedComment
+from django.contrib import messages
+
+from .models import ThreadedComment, CommentLike
 from .forms import CommentForm
 from .utils import build_comment_data
 
@@ -47,3 +51,26 @@ def add(request):
         'comment': comment_dict,
     }
     return JsonResponse(data)
+
+
+@transaction.atomic
+@login_required
+def like_comment(request, comment_id):
+   
+    comment = get_object_or_404(ThreadedComment, id=comment_id)
+    comment_like, created = CommentLike.objects.get_or_create(
+            user=request.user,
+            comment=comment
+        ) 
+    messages.success(request, "You like this comment.")
+    url = comment.related_object.get_absolute_url() + '#comments'
+    return redirect(url)
+
+
+@login_required
+def unlike_comment(request, comment_id):
+    comment = get_object_or_404(ThreadedComment, id=comment_id)
+    comment.likes.all().filter(user_id=request.user.id).delete()
+    messages.success(request, "You are no longer liking this comment.")
+    url = comment.related_object.get_absolute_url()+ '#comments'
+    return redirect(url)

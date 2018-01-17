@@ -5,11 +5,39 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
+from tools.filters import PublishedFilter
+from django.db.models import Prefetch
 
-from ..models import CategoryGroup, CategoryGroupFollower, ToolCategory, get_default_category_group_id, CategoryOverviewPage
+from ..models import CategoryGroup, CategoryGroupFollower, ToolCategory, get_default_category_group_id, CategoryOverviewPage, CategoryGroupOverviewPage, Story
 from ..forms import CategoryGroupForm
 
 
+
+def list_category_groups(request):
+    if request.user.has_perm('tools.change_toolcategory'):
+        queryset = ToolCategory.objects.all().order_by('-published', 'group', '-order')
+    else:
+        queryset = ToolCategory.objects.filter(published=True)\
+            .order_by('group', '-order')
+    cat_filter = PublishedFilter(request.GET, queryset=queryset)
+
+    categories_by_group = CategoryGroup.objects\
+        .prefetch_related(Prefetch('categories', queryset=cat_filter.qs))\
+        .order_by('name')
+
+    default_id = get_default_category_group_id()
+    default_category = categories_by_group.get(id=default_id)
+    categories_by_group = list(categories_by_group.exclude(id=default_id))\
+            + [default_category]
+
+    overview = CategoryGroupOverviewPage.get_solo()
+    context = {
+        'categories_filter': cat_filter,
+        'overview': overview,
+        'categories_by_group': categories_by_group,
+        'stories': Story.objects.all().order_by('-created')
+    }
+    return render(request, 'category_groups/list_categorygroups.html', context)
 
 def show_categorygroup(request, category_group_id):
 

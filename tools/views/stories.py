@@ -102,12 +102,13 @@ def show_all_stories(request):
         'a_z': ('alphabetically', 'title'), 
         'country': ('by country', 'country'),
         'date': ('newest', '-created'),
+        'newest_comments': ('recently discussed', 'comments__added_dt'),
     }
-    order = ORDERINGS[request.GET.get('order')] if request.GET.get('order') in ORDERINGS.keys() else ORDERINGS['date']
-    stories = Story.objects.filter(published=True).order_by(order[1])
+    order_name, order_query = ORDERINGS[request.GET.get('order', 'date')]
+    stories = Story.objects.filter(published=True).order_by(order_query)
     context = {
         'stories': stories, 
-        'order': order[0],
+        'order': order_name,
         'order_by_list': ORDERINGS
     }
     return render(request, 'stories/show_all_stories.html', context)

@@ -6,7 +6,7 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
 from django.core.urlresolvers import reverse
-
+from django.contrib.auth import get_user_model
 from notifications.signals import notify
 
 from tools.models import Tool, ToolFollower
@@ -51,6 +51,11 @@ class ThreadedComment(models.Model):
     is_removed = models.BooleanField(default=False)
     edited_dt = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+
+    @property
+    def liker_ids(self): 
+        return [like.user_id for like in self.likes.all()]
+        
     @property 
     def content_short(self): 
         return self.content[:50]
@@ -62,7 +67,16 @@ class ThreadedComment(models.Model):
     def __str__(self): 
         return '{} - {}...'.format(self.author, self.content[:10])
 
-
+class CommentLike(models.Model): 
+    class Meta:
+        unique_together = (('user', 'comment'))
+        verbose_name = "'Comment Like"
+        verbose_name_plural = 'Comment Likes'
+    pass
+   
+    user = models.ForeignKey('auth.User')
+    comment = models.ForeignKey(ThreadedComment, related_name="likes")
+   
 def is_comment_root(instance, created):
     return created and instance.parent == None
 
