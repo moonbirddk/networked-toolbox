@@ -6,7 +6,7 @@
         {% for category_group in categories_by_group %}
             <div id="category-group-{{category_group.id}}" class="category-group row">
                 <div class="col-md-9">
-                    <h1 class="title">
+                    <h3 class="title">
                         {% if category_group.categories.count > 0 %}
                             <a id="category-group-{{category_group.id}}-link" href="{% url 'tools:show_categorygroup' category_group.id %}">
                                 <span class="glyphicon glyphicon-triangle-right"></span>
@@ -15,11 +15,9 @@
                         {% else %}
                             <span class="toggle-off">{{category_group.name}}</span>
                         {% endif %}
-                        {% if perms.tools %}{% if perms.tools.edit_categorygroup %}
-                            <a href="{% url 'tools:edit_categorygroup' category_group.id %}"><i class="fa fa-edit"></i></a>
-                            <a href="{% url 'tools:delete_categorygroup' category_group.id %}"><i class="fa fa-trash-o"></i></a>
-                        {% endif %}{% endif %}
-                    </h1>
+                        <span style="font-size: small; color:#bbb; right: 10px;">{{category_group.stories.count}} Stor{{category_group.stories.count|pluralize:"y,ies"}}</span>
+                        <span style="font-size: small; color:#bbb;">{{category_group.followers.count}} Follower{{category_group.followers.count|pluralize}}</span>
+                    </h3><span>{{category_group.stories.count}} Stor{{category_group.stories.count|pluralize:"y,ies"}}</span>
                     <p>{{category_group.description}}</p>
                 </div>
             </div>

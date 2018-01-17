@@ -16,6 +16,17 @@
         </a>
       </span>
       <span class="comment-added-dt">{% format_comment_date comment.added_dt %}</span>
+      <span style="font-size: 11px !important">{{comment.likes.count}} like{{coment.likes.count|pluralize}}</span>
+      {%if user.is_authenticated%}
+      {% ifnotequal user.id comment.author.id %}
+        <a href="{% if user.id in comment.liker_ids %}{%url 'comments:unlike' comment.id%}{%else%}{%url 'comments:like' comment.id%}{%endif%}">
+        {%if user.id in comment.liker_ids %}un{%endif%}like
+        </a>
+          
+        {% endifnotequal %}
+      
+
+      {%endif%}
       <br />
       {{ comment.content }}
       <br />

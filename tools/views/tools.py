@@ -2,15 +2,16 @@ import logging
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db import transaction
+from django.db.models import Count
 from django.core.files.storage import default_storage
 from django.contrib.auth.decorators import login_required, permission_required
-
-from ..filters import PublishedFilter
+from django.contrib.contenttypes.models import ContentType
 from ..forms import ToolForm
 
 from ..models import Tool, ToolCategory, ToolFollower, ToolOverviewPage
 from django.contrib.auth.models import User
-
+from comments.models import ThreadedComment
+from shared.helpers import OrderedSet
 
 log = logging.getLogger(__name__)
 
@@ -37,20 +38,28 @@ def add_tool(request):
 
 
 def list_tools(request):
-    if request.user.has_perm('tools.change_tool'):
-        queryset = Tool.objects.all().order_by('-published')
-    else:
-        queryset = Tool.objects.filter(published=True)
-    order = request.GET.get('o') == 'd' and '-title' or 'title'
-    queryset_ordered = queryset.order_by(order)
-    tools_filter = PublishedFilter(request.GET, queryset=queryset_ordered).qs
+    ORDERINGS = {
+        'a_z': ('alphabetically', 'title'), 
+        'created': ('recently added', 'created_date'),
+        'newest_comments': ('recently discussed', 'comments__added_dt'),
+        'most_followed': ('most followed', 'followers'), 
+        'most_used': ('most used', 'users')
+    }
+    order_name, order_query = ORDERINGS[request.GET.get('order', 'a_z')]
+    queryset = Tool.objects.filter(published=True)
+    if 'most' in order_name: 
+        queryset_ordered=queryset.annotate(num_count=Count(order_query)).order_by('-num_count')
+    
+    else: 
+        queryset_ordered = queryset.order_by(order_query)
     overview = ToolOverviewPage.get_solo()
     
-    print (len(tools_filter))
+    
     context = {
-            'tools_filter': tools_filter,
+            'tools_filter': queryset_ordered,
             'overview': overview,
-            'order': request.GET.get('o')
+            'order': order_name, 
+            'order_by_list': ORDERINGS, 
     }
     return render(request, 'tools/index.html', context)
 
@@ -60,15 +69,17 @@ def show_tool(request, tool_id):
         tool = get_object_or_404(Tool, id=tool_id)
     else:
         tool = get_object_or_404(Tool, id=tool_id, published=True)
-
+    comments = tool.comments.all()
     tool_follower_ids = list(tool.followers.all().values_list('user_id', flat=True))
     tool_followers = tool.followers.all().order_by('?')[:12]
     stories = tool.stories.all().order_by('-created')
+
     context = {
             'tool': tool,
             'tool_follower_ids': tool_follower_ids,
             'tool_followers': tool_followers,
-            'stories': stories
+            'stories': stories, 
+            'comments': comments
     }
 
     return render(request, 'tools/show.html', context)
@@ -77,10 +88,8 @@ def show_tool(request, tool_id):
 @transaction.atomic
 @login_required
 def follow_tool(request, tool_id):
-    if request.user.has_perm('tools.change_tool'):
-        tool = get_object_or_404(Tool, id=tool_id)
-    else:
-        tool = get_object_or_404(Tool, id=tool_id, published=True)
+    
+    tool = get_object_or_404(Tool, id=tool_id, published=True)
     if request.method == 'POST':
         should_notify = False
         if request.POST.get('should_notify', '0') == '1':
@@ -97,10 +106,7 @@ def follow_tool(request, tool_id):
 
 @login_required
 def unfollow_tool(request, tool_id):
-    if request.user.has_perm('tools.change_tool'):
-        tool = get_object_or_404(Tool, id=tool_id)
-    else:
-        tool = get_object_or_404(Tool, id=tool_id, published=True)
+    tool = get_object_or_404(Tool, id=tool_id, published=True)
     if request.method == 'POST':
         tool.followers.all().filter(user_id=request.user.id).delete()
         messages.success(request, "You are no longer following this tool.")

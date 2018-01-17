@@ -54,7 +54,9 @@ class Tool(ModelWithCoverImage):
     categories = models.ManyToManyField('ToolCategory', related_name='tools',
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
     resources = GenericRelation('resources.ToolResource')
+    comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
 
     def __str__(self): 
         return self.title
@@ -67,6 +69,7 @@ class Tool(ModelWithCoverImage):
 
     def sort_tools_descendig(self):
         return self.tools.order_by('-title')
+    
 
 
 class ToolFollower(models.Model):
@@ -109,7 +112,8 @@ class Story(ModelWithCoverImage):
     country = CountryField(blank_label='where did this take place?', null=True)
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools')
     published = models.BooleanField('Published', default=False)
-    
+    comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
+
     @property
     def parent_object(self): 
         return self.tool if self.tool else self.category_group 
