@@ -50,6 +50,7 @@
     height: 70px;
     @include breakpoint($media-large){
       padding: 0;
+      height: 100%;
     }
     .notifications{
       display: none;
@@ -59,6 +60,9 @@
     }
     li{
       flex: 1 1 auto;
+      @include breakpoint($media-large){
+        border-left: 1px solid $color-primary-dark;
+      }
       .profile-photo{
         padding: 0 !important; 
         @include breakpoint($media-large){
@@ -67,6 +71,11 @@
       }
       &:hover{
         background: $color-primary-dark;
+      }
+      &:last-child{
+        @include breakpoint($media-large){
+          border-right: 1px solid $color-primary-dark;
+        }
       }
       &:not(:last-child){
         padding-right: 10px;
@@ -88,6 +97,7 @@
       border-radius: 0;
       color: white;
       @include breakpoint($media-large){
+        border: none;
         height: 100%;
         min-width: 100px;
         display: flex;
