@@ -1,16 +1,46 @@
+.section--cards{
+  position: relative;
+  padding-bottom: 140px;
+  @include breakpoint($media-medium){
+    padding-bottom: 40px;
+  }
+  &--header{
+    a.btn{
+      position: absolute;
+      bottom: 20px;
+      width: calc(100% - 30px);
+      @include breakpoint($media-medium){
+        position: static;
+        width: 100%;
+      }
+    }
+  }
+}
 .cards{
+  overflow-x: scroll;
+  @include breakpoint($media-large){
+    overflow: hidden;
+  }
   >div{
     // height: 100%;
   }
 }
 .card{
-  // min-height: 600px;
+  width: 80vw;
+  @include breakpoint($media-medium){
+    width: auto;
+  }
   .stories &{
     background: $color-gray-lightest;
-    padding: 20px;
+    // padding: 20px;
   }
   .tools &{
     background: white;
+  }
+  &__category{
+    border-bottom: 1px solid rgba($color-gray-light, 0.5);
+    margin-bottom: 30px;
+    height: 40px;
   }
   &__img{
     width: 100%;
@@ -32,13 +62,40 @@
   }
   p{
     font-size: 15px;
+    line-height: 21px;
     margin-bottom: 40px;
+   
+  }
+  &__footer{
+    height: 42px;
+    .stories &{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      .profile-photo{
+        width: 42px;
+        margin-right: 10px;
+      }
+      .user-info{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      h5{
+        margin: 0;
+        a{
+          color: $color-primary;
+        }
+      }
+    }
   }
   &__counter{
     color: $color-primary;
     font-size: 12px;
     display: flex;
     flex-direction: row;
+    align-items: flex-end;
     div{
       margin-right: 15px;
     }
@@ -50,4 +107,12 @@
       margin-right: 5px;
     }
   }
+
 }
+
+
+// $color-gray-dark: #333;
+// $color-gray: #555;
+// $color-gray-light: #777;
+// $color-gray-lighter: #E5E5E5;
+// $color-gray-lightest: #F4F4F4;

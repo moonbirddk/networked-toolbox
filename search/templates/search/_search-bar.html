@@ -4,10 +4,10 @@
       <span class="red-text">search</span> within more thank 300+ tools here
       <img class="search-bar__arrow wow zoomin" data-delay="0.5s" src="{% static 'icons/splash-arrow.svg' %}" alt="">
     </div>  
-      <form class="form-inline search-form" method="get" action="{% url 'search:homepage' %}">
-        <div class="form-group">
-          <input type="text" name="q" value="" placeholder="Search for a tool, story or a method" maxlength="30" class="form-control" title="" required="" id="id_q">
-        </div>
-        <button class="btn btn-primary" type="submit" />Search</button>
-      </form>
+    <form class="form-inline search-form" method="get" action="{% url 'search:homepage' %}">
+      <div class="form-group">
+        <input type="text" name="q" value="" placeholder="Search for a tool, story or a method" maxlength="30" class="form-control" title="" required="" id="id_q">
+      </div>
+      <button class="btn btn-primary" type="submit" />Search</button>
+    </form>
 </section>
