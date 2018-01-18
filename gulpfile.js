@@ -37,6 +37,9 @@ var paths = {
     ],
     fonts: [
         'netbox/static/netbox/fonts/*',
+    ],
+    icons: [
+        'netbox/static/netbox/icons/*',
     ]
 }
 
@@ -56,6 +59,12 @@ gulp.task('clean', function(cb) {
 gulp.task('fonts', function() {
     return gulp.src(paths.fonts)
     .pipe(gulp.dest('staticfiles/fonts'));
+});
+
+// Copies icons
+gulp.task('icons', function() {
+    return gulp.src(paths.icons)
+    .pipe(gulp.dest('staticfiles/icons'));
 });
 
 // Compiles Sass
@@ -78,17 +87,17 @@ gulp.task('sass', function() {
 // Compiles JS
 gulp.task('uglify', function() {
   return gulp.src(paths.js)
-    //.pipe(uglify().on('error', function(e){
-    //    console.log(e);
-    // }))
+    .pipe(uglify().on('error', function(e){
+       console.log(e);
+    }))
     .pipe(gulp.dest('staticfiles/js'))
-    .pipe(livereload());
+    // .pipe(livereload());
 });
 
 gulp.task('copyjs', function() {
     return gulp.src(paths.js)
     .pipe(gulp.dest('staticfiles/js'))
-    .pipe(livereload());
+    // .pipe(livereload());
 });
 
 gulp.task('watch', function() {
@@ -126,6 +135,8 @@ gulp.task('default', function() {
 
     // Watch fonts
     gulp.watch(paths.fonts, ['fonts']);
+    // Watch fonts
+    gulp.watch(paths.icons, ['icons']);
 
     // Watch Sass
     gulp.watch(paths.sassWatch, ['sass']);
@@ -142,7 +153,7 @@ gulp.task('default', function() {
 
 
 // Builds your entire app once, without starting a server
-gulp.task('build', ['fonts', 'sass', 'uglify']);
+gulp.task('build', ['fonts', 'icons', 'sass', 'uglify']);
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
 gulp.task('watch', ['fonts', 'sass', 'copyjs', 'watch']);
