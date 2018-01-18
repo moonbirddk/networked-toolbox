@@ -6,7 +6,7 @@
       display: block;
       transform: translateY(-120px);
       text-align: center;
-      @include breakpoint($media-medium){
+      @include breakpoint($media-large){
         display: flex;
       }
     }
@@ -16,7 +16,7 @@
       position: relative;
       height: 120px;
       border-bottom: 1px solid $color-gray-lighter;
-      @include breakpoint($media-medium){
+      @include breakpoint($media-large){
         height: auto;
         border-right: 1px solid $color-gray-lightest;
       }
@@ -37,7 +37,7 @@
         background: black;
         border-radius: 50%;
         padding: 8px;
-        @include breakpoint($media-medium){
+        @include breakpoint($media-large){
           right: auto;
           top: calc(0% - 25px );
           left: calc( 50% - 25px );
@@ -53,7 +53,7 @@
           position: absolute;
           animation: scale 1s 1s forwards;
           display: none;
-          @include breakpoint($media-medium){
+          @include breakpoint($media-large){
             display: block;
           }
         }
@@ -68,7 +68,7 @@
       padding-left: 30px;
       padding-top: 35px;
       font-size: 20px;
-      @include breakpoint($media-medium){
+      @include breakpoint($media-large){
         font-size: 25px;
         padding-top: 20px;
         height: 120px;
@@ -82,7 +82,7 @@
       width: 100%;
       height: 210px;
       display: none;
-      @include breakpoint($media-medium){
+      @include breakpoint($media-large){
         display: block;
       }
     }
@@ -94,7 +94,7 @@
       margin: 0 auto;
       margin-bottom: 40px;
       display: none;
-      @include breakpoint($media-medium){
+      @include breakpoint($media-large){
         display: block;
       }
     }
@@ -108,7 +108,8 @@
       top: 0;
       left: 0;
       padding-left: 30px;
-      @include breakpoint($media-medium){
+      @include breakpoint($media-large){
+        border: 1px solid $color-gray-lighter;
         padding-left: 20px;
         position: relative;
         height: 50px;
@@ -123,7 +124,7 @@
         border-left: 1px solid $color-gray-lighter;
         padding: 16px;
         display: none;
-        @include breakpoint($media-medium){
+        @include breakpoint($media-large){
           display: block;
         }
       }
@@ -131,7 +132,7 @@
         padding: 0;
         font-size: 14px;
         margin-top: 30px;
-        @include breakpoint($media-medium){
+        @include breakpoint($media-large){
           margin: 0;
           font-size: 18px;
         }

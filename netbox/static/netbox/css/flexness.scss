@@ -1,0 +1,38 @@
+.flex-vertical{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.flex-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-space-between{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div[class*="flex"]{
+  >*{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

@@ -6,7 +6,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('profiles/_profile_photo.html')
-def render_profile_photo(user, show_link=True):
+def render_profile_photo(user, show_link=True, show_name=True):
     """
     {% render_profile_photo user %}
     """
@@ -15,6 +15,7 @@ def render_profile_photo(user, show_link=True):
         'photo_url': photo_url,
         'profile_uid': user.profile.uid,
         'show_link': show_link, 
+        'show_name': show_name, 
         'title': user.profile.name,
         'user': user
         }
