@@ -3,7 +3,7 @@
 {% load commontags %}
 {% load static %}
 {% load compress %}
-
+{% load profilestags %}
 {% block head_statics %}
  {% compress css %}
  <link rel="stylesheet" href="{% static "css/search.min.css" %}">
@@ -47,14 +47,15 @@
 </section>
 {% include 'search/_search-bar.html' %}
 
-<section class="section white padded wow fadeinUp">
+<section class="section--cards section--white section--padded wow fadeinUp ">
     <div class="container-fluid">
-        <div class="flex-space-between">
+        <div class="flex-space-between section--cards--header">
             <h2 class="title">
                 RECENTLY USED <br> TOOLS
             </h2>
             <a href="{%url 'tools:list_tools' %}" class="btn btn-primary">View All Tools</a>
         </div>
+        <div class="divider"></div>
         <div class="row tools flex-row cards">
             {% for tool in recent_tools %}
             <div class="col-md-4 ">
@@ -69,13 +70,13 @@
                             <a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a>
                         </h4>
                         <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
-                        <div class="card__counter">
-                            <div class="card__counter--people ">
+                        <div class="card__footer card__counter">
+                            <div class="card__counter--people flex-vertical">
                                 <img src="{% static 'icons/profile.svg' %}" alt="">
                                 <span>{{tool.followers.count}}</span>
                                 <span>people</span>
                             </div>
-                            <div class="card__counter--comments ">
+                            <div class="card__counter--comments flex-vertical">
                                 <img src="{% static 'icons/comment.svg' %}" alt="">
                                 <span>{{tool.comments.count}}</span>
                                 <span>comments</span>
@@ -85,44 +86,49 @@
                 </div>
             </div>
             {% endfor %}
-
         </div>
     </div>
 </section>
 
-<section class="gray padded wow fadeinup">
+<section class="section--gray section--padded wow fadeinup section--cards">
     <div class="container-fluid">
-        <div class="flex-space-between">
+        <div class="flex-space-between section--cards--header">
             <h2 class="title">
             EXPLORE <br> LATEST STORIES
             </h2>
             <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>  
         </div>
-        <div class="row stories cards">
+        <div class="divider"></div>
+        <div class="row stories flex-row cards">
             {% for story in recent_stories %}
-                <div class="col-md-4 ">
-                    <div class="card card--tool wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
-                        <div class="card__content">
-
-                            <h4>
-                                <a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a>
-                            </h4>
-                            <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
-                            <div class="card__counter">
-                                <!--div class="card__counter--people ">
-                                    <img src="{% static 'icons/profile.svg' %}" alt="">
-                                    <span>{{story.followers.count}}</span>
-                                    <span>people</span>
-                                </div-->
-                                <div class="card__counter--comments ">
-                                    <img src="{% static 'icons/comment.svg' %}" alt="">
-                                    <span>{{story.comments.count}}</span>
-                                    <span>comments</span>
+            <div class="col-md-4 ">
+                <div class="card card--story wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
+                    <div class="card__content">
+                        <div class="card__category flex-vertical">
+                            <img class="icon" src="{% static 'icons/tools.svg' %}" alt="">
+                            <h5>{{ story.parent_object_name }}</h5>
+                        </div>
+                        <h4>
+                            <a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a>
+                        </h4>
+                        <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
+                        <div class="card__footer">
+                            <div class="flex-row">
+                                {% render_profile_photo story.user show_name=False %}
+                                <div class="user-info">
+                                    {% if story.country %}
+                                    <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                                    {% endif %}
+                                    <span class="results-story-author small">{{story.user.first_name}}</span>
                                 </div>
                             </div>
+                            <h5>
+                                <a href="{{story.get_absolute_url}}">Read more</a>
+                            </h5>
                         </div>
                     </div>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </div>

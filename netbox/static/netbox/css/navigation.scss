@@ -10,15 +10,15 @@
     // background-color: white;
     background: $color-primary;
     border-bottom: 1px solid $color-primary-dark;
-    @media (min-width: $media-medium){
+    @media (min-width: $media-large){
       height: 95px;
     }
     &__inner{
         min-height: 80px;
         display: flex;
-        padding: 0;
+        padding: 0 !important;
         flex-wrap: wrap;
-        @include breakpoint($media-medium){
+        @include breakpoint($media-large){
           flex-wrap: nowrap;
         }
       >.notifications{
@@ -35,7 +35,7 @@
           .fa{
             color: white !important;
           }
-          @include breakpoint($media-medium){
+          @include breakpoint($media-large){
             display: none;
           }
       }
@@ -47,29 +47,39 @@
     justify-content: space-between;
     padding: 10px 0;
     margin: 0;
-    @include breakpoint($media-medium){
+    height: 70px;
+    @include breakpoint($media-large){
       padding: 0;
+      height: 100%;
     }
     .notifications{
       display: none;
-      @include breakpoint($media-medium){
+      @include breakpoint($media-large){
         display: block;
       }
     }
     li{
       flex: 1 1 auto;
+      @include breakpoint($media-large){
+        border-left: 1px solid $color-primary-dark;
+      }
       .profile-photo{
         padding: 0 !important; 
-        @include breakpoint($media-medium){
+        @include breakpoint($media-large){
           padding: 10px 15px !important;
         }
       }
       &:hover{
         background: $color-primary-dark;
       }
+      &:last-child{
+        @include breakpoint($media-large){
+          border-right: 1px solid $color-primary-dark;
+        }
+      }
       &:not(:last-child){
         padding-right: 10px;
-        @include breakpoint($media-medium){
+        @include breakpoint($media-large){
           padding: 0;
           // width: 140px;
           margin: 0;
@@ -86,7 +96,8 @@
       width: 100%;
       border-radius: 0;
       color: white;
-      @include breakpoint($media-medium){
+      @include breakpoint($media-large){
+        border: none;
         height: 100%;
         min-width: 100px;
         display: flex;
@@ -99,6 +110,7 @@
   &__search{
     width: 120px;
     height: 80px;
+    justify-content: flex-start;
     &:hover{
         svg{
 
@@ -107,8 +119,9 @@
           backface-visibility: hidden;
         }
       }
-    @include breakpoint($media-medium){
+    @include breakpoint($media-large){
       height: 100%;
+      justify-content: center;
     }
     
     path{
@@ -133,8 +146,8 @@
     font-weight: bold;
     width: 100%;  
     flex: 1 1 120px;
-    /* Networked Toolbox: */
-    @include breakpoint($media-medium){
+    margin-left: 0 !important;
+    @include breakpoint($media-large){
       margin-left: 15px !important;
       padding-left: 30px;
       flex: 0 1 228px;
@@ -147,24 +160,30 @@
     margin-top: 13px; 
     
   }
-
+  
   &-nav {
-    li>a{
-      font-family: 'HelveticaNeue-Black';  
-      font-family: $sans-serif;
-      font-family: 'HelveticaNeue-Bold';  
-      text-transform: uppercase;
-      font-size: 15px;
-      color: #FFFFFF;
-      &:hover{
-        transform: scale(1.1);
+    // float: none !important;
+    margin: 7.5px -15px;
+    li{
+      // float: none !important;
+      >a{
+        font-family: 'HelveticaNeue-Black';  
+        font-family: $sans-serif;
+        font-family: 'HelveticaNeue-Bold';  
+        text-transform: uppercase;
+        font-size: 15px;
+        color: #FFFFFF;
+        &:hover{
+          transform: scale(1.1);
+        }
       }
     }
-    @include breakpoint($media-medium){
+    @include breakpoint($media-large){
       flex: 1 1 auto;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+      margin: 0;
     }
   }
   
@@ -178,7 +197,7 @@
     border-radius: 0;
     background: $color-primary;
     flex-direction: column;
-    @include breakpoint($media-medium){
+    @include breakpoint($media-large){
       display: none;
     }
     span.icon-bar{
@@ -199,7 +218,6 @@
       opacity: 1;
     }
     &__menu{
-      /* MENU: */
       text-transform: uppercase;
       font-family: $sans-serif;
       font-size: 10px;
@@ -214,7 +232,17 @@
     margin: 0 !important;
     // background: $color-primary;
     padding-left: 20px;
+    // height: auto!important;
+    // padding-bottom: 0;
+    // overflow: visible!important;
     @include breakpoint($media-medium){
+      display: none !important;
+      padding-left: 50px;
+      &.in{
+        display: block !important;
+      }
+    }
+    @include breakpoint($media-large){
       display: flex !important;
       flex-direction: row;
       align-items: center;
@@ -230,6 +258,7 @@
 }
 .navbar *{
   @include transition;
+  float: none !important;
 }
 .nav>li>a:focus, .nav>li>a:hover{
   background: initial;
@@ -261,11 +290,14 @@
   &__inner{
     height: 100%;
     // height: 276px;
+    >div{
+      width: 100%;
+    }
   }
   &__title{
     color: white;
     text-align: center;
-    @include breakpoint($media-medium){
+    @include breakpoint($media-large){
       text-align: left;
     }
   }
@@ -273,7 +305,7 @@
     color: white;
     font-size: 20px;
     text-align: center;
-    @include breakpoint($media-medium){
+    @include breakpoint($media-large){
       text-align: left;
     }
   }
