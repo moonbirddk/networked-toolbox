@@ -82,11 +82,19 @@
         flex-direction: column;
         justify-content: space-between;
       }
-      h5{
-        margin: 0;
-        a{
-          color: $color-primary;
-        }
+    }
+    .workarea &{
+      justify-content: flex-end;
+      align-items: center;
+    }
+    h5{
+      margin: 0;
+      .workarea &{
+        position: absolute;
+        left: 15px;
+      }
+      a{
+        color: $color-primary;
       }
     }
   }
@@ -100,8 +108,8 @@
       margin-right: 15px;
     }
     span{
-      // display: inline-block;
-      // margin-top: 5px;
+      display: inline-block;
+      margin-right: 5px;
     }
     img{
       margin-right: 5px;

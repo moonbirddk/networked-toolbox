@@ -39,7 +39,8 @@ def list_categories(request):
         'overview': overview,
         'categories_by_group': categories_by_group,
     }
-    return render(request, 'category_groups/list_categorygroups.html', context)
+    # return render(request, 'category_groups/list_categorygroups.html', context)  #OLD PATH
+    return render(request, 'workareas/list_workareas.html', context)
 
 
 def show_category(request, cat_id):

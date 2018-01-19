@@ -1,0 +1,12 @@
+// GENERAL
+.overview{
+  &--workarea &__container, &--stories &__container{
+    padding-top: 100px;
+    padding-right: 50px;
+  }
+}
+
+// WORKAREAS
+.workarea{
+  border-bottom: 1px solid $color-gray-lighter;
+}
