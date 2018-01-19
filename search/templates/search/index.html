@@ -72,12 +72,12 @@
                         <div class="card__counter">
                             <div class="card__counter--people ">
                                 <img src="{% static 'icons/profile.svg' %}" alt="">
-                                <span>14</span>
+                                <span>{{tool.followers.count}}</span>
                                 <span>people</span>
                             </div>
                             <div class="card__counter--comments ">
                                 <img src="{% static 'icons/comment.svg' %}" alt="">
-                                <span>4</span>
+                                <span>{{tool.comments.count}}</span>
                                 <span>comments</span>
                             </div>
                         </div>
@@ -109,14 +109,14 @@
                             </h4>
                             <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
                             <div class="card__counter">
-                                <div class="card__counter--people ">
+                                <!--div class="card__counter--people ">
                                     <img src="{% static 'icons/profile.svg' %}" alt="">
-                                    <span>14</span>
+                                    <span>{{story.followers.count}}</span>
                                     <span>people</span>
-                                </div>
+                                </div-->
                                 <div class="card__counter--comments ">
                                     <img src="{% static 'icons/comment.svg' %}" alt="">
-                                    <span>4</span>
+                                    <span>{{story.comments.count}}</span>
                                     <span>comments</span>
                                 </div>
                             </div>

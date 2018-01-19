@@ -15,7 +15,8 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
     "gulp-watch": "^4.3.5",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "wow": "0.0.6"
   },
   "private": true
 }
