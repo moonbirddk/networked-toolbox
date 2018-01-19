@@ -82,6 +82,7 @@
       width: 100%;
       height: 210px;
       display: none;
+      background: center / cover no-repeat;
       @include breakpoint($media-large){
         display: block;
       }

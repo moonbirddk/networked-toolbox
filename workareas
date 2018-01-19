@@ -1,0 +1,12 @@
+Committing with message: renamed categorygroup- and styles initial workarea 
+[moonbird-william 7eeda26] renamed categorygroup- and styles initial workarea
+ 20 files changed, 550 insertions(+), 66 deletions(-)
+ create mode 100644 netbox/static/netbox/css/overviews.scss
+ rewrite tools/templates/category_groups/_categorygroups_overview.html (93%)
+ create mode 100644 tools/templates/workareas/_workareas_overview.html
+ create mode 100644 tools/templates/workareas/_workareas_workareaslist.html
+ create mode 100755 tools/templates/workareas/add_workareas.html
+ create mode 100755 tools/templates/workareas/delete_workareas.html
+ create mode 100755 tools/templates/workareas/edit_workareas.html
+ create mode 100644 tools/templates/workareas/list_workareas.html
+ create mode 100644 tools/templates/workareas/show_workareas.html

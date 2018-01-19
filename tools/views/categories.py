@@ -15,8 +15,31 @@ from tools.models import ToolCategory, CategoryGroupOverviewPage,\
 
 log = logging.getLogger(__name__)
 
+def list_categories(request):
+    if request.user.has_perm('tools.change_toolcategory'):
+        queryset = ToolCategory.objects.all().order_by('-published', 'group', '-order')
+    else:
+        queryset = ToolCategory.objects.filter(published=True)\
+            .order_by('group', '-order')
+    cat_filter = PublishedFilter(request.GET, queryset=queryset)
 
+    categories_by_group = CategoryGroup.objects\
+        .prefetch_related(Prefetch('categories', queryset=cat_filter.qs))\
+        .order_by('name')
 
+    default_id = get_default_category_group_id()
+    default_category = categories_by_group.get(id=default_id)
+    categories_by_group = list(categories_by_group.exclude(id=default_id))\
+            + [default_category]
+
+    overview = CategoryGroupOverviewPage.get_solo()
+    context = {
+        'categories_filter': cat_filter,
+        'overview': overview,
+        'categories_by_group': categories_by_group,
+    }
+    # return render(request, 'category_groups/list_categorygroups.html', context)  #OLD PATH
+    return render(request, 'workareas/list_workareas.html', context)
 
 
 def show_category(request, cat_id):

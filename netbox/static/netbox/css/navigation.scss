@@ -283,15 +283,32 @@
 
 
 
-.hero__section{
-  height: 476px;
+.hero-section{
+  height: 280px;
   background-color: $color-primary;
-  padding-bottom: 100px;
+  &--front{
+    padding-bottom: 100px;
+    height: 476px;
+  }
+  &--overview{
+    background-size: cover;
+  }
   &__inner{
     height: 100%;
-    // height: 276px;
-    >div{
+    background: center / cover  no-repeat;
+    position: relative;
+    
+  }
+  &--overview &__inner{
+    position: relative;
+    &:after{
+      content: '';
+      position: absolute;
+      left: 0%;
+      top: 0;
       width: 100%;
+      height: 100%;
+      background: linear-gradient(to right,$color-primary 0%,transparent  100%  );
     }
   }
   &__title{
@@ -299,6 +316,12 @@
     text-align: center;
     @include breakpoint($media-large){
       text-align: left;
+    }
+    &-container{
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: 10;
     }
   }
   &__tagline{
@@ -309,4 +332,40 @@
       text-align: left;
     }
   }
+  &__icon{
+      height: 100%;
+      width: 100%;
+      fill: white;
+      &__container{
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        background: black;
+        border-radius: 50%;
+        padding: 8px;
+        @include breakpoint($media-large){
+          left: 0;
+          bottom: -25px;
+        }
+        &:after{
+          content: '';
+          height: 100%;
+          width: 100%;
+          background: rgba(black, 0.2);
+          left: 0px;
+          top: 0;
+          border-radius: 50%;
+          position: absolute;
+          animation: scale 1s 1s forwards;
+          display: none;
+          @include breakpoint($media-large){
+            display: block;
+          }
+        }
+      }
+      // position: relative;
+    }
 }

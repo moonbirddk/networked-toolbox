@@ -14,12 +14,27 @@
 
 
 {% block main %}
+<div class="hero-section hero-section--front">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="hero-section__inner flex-vertical">
+                    <div>
+                        <h1 class="hero-section__title">EXPLORE</h1>
+                        <p class="hero-section__tagline">Find the right tools by exploring one of the sections below</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="front__cards gray">
     <div class="container-fluid">
         <div class="front__cards__inner">
         {%for overview_name, overview in overviews.items %}
             <div class="front__cards__card wow fadein" data-wow-delay=" 0.{{ forloop.counter }}s">
-                <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
+            <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
                 <div class="front__cards__icon__container">
                     <svg class="front__cards__icon" viewbox="0 0 1 1">
                         <use href="{% static "icons/tools.svg" %}#tools"></use>
@@ -28,7 +43,8 @@
                 <h3 class="title">
                     {{ overview_name }}
                 </h3>
-                <img class="front__cards__bgimg" src="{{ overview.cover_image.url }}" alt="" width="100%">
+                <div class="front__cards__bgimg" style="background-image: url({{ overview.cover_image.url }})"></div>
+                <!-- <img class="front__cards__bgimg" src="{{ overview.cover_image.url }}" alt="" width="100%"> -->
                 <div class="search-result">
                     <p >
                     {{ overview.headline }}
