@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 {% load staticfiles %}
 {% load compress %}
-
+{% load profilestags %}
 {% block head_statics %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
@@ -15,37 +15,30 @@
 
 <div class="row">
     <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
-        {% if perms.tools %}{% if perms.tools.add_tool %}
-            <div class="filter-buttons pull-right">
-                {{tools_filter.form}}
-            </div>
-        {% endif %}{% endif %}
+      
         <div class="dropdown tools__dropdown pull-right">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                {% if order == 'd' %}
-                    Descending
+                {% if order%}
+                    {{order}}
                 {% else %}
-                    Ascending
+                    newest
                 {% endif %}
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdown-sort">
-                <li><a href="?o=a">A-Z</a></li>
-                <li><a href="?o=d">Z-A</a></li>
+                {%for order, ordername in order_by_list.items%}
+                    <li><a href="?order={{order}}">{{ordername.0}}</a></li>
+                {%endfor%}
             </ul>
         </div>
     </div>
     <div class="col-md-8 col-sm-8 col-xs-12">
         <h1 class="title">Tool Overview
-            {% if perms.tools %}{% if perms.tools.add_tool %}
-                <a href="{% url 'tools:add' %}"><i class="fa fa-plus"></i></a>
-            {% endif %}{% endif %}
+           
         </h1>
         <div class="overview-description">
             {{ overview.description }}
-            {% if perms.tools %}{% if perms.tools.add_tool %}
-                <a href="{% url 'tools:edit_overview' 'tool' %}"><i class="fa fa-edit"></i></a>
-            {% endif %}{% endif %}
+           
         </div>
     </div>
 

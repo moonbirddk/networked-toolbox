@@ -95,6 +95,7 @@ INSTALLED_APPS = (
 )
 
 HIJACK_ALLOW_GET_REQUESTS = True
+HIJACK_LOGOUT_REDIRECT_URL = '/admin/profiles/profile/'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

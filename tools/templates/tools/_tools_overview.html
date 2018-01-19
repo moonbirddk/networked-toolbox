@@ -19,6 +19,7 @@
         </div></a>
         <div class="tool-content">
           <a href="{% url 'tools:show' resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
+          <span style="font-size: small;padding-right:20px;">{{resource.followers.count}} user{{resource.followers.count|pluralize}}</span><span style="font-size: small">{{resource.comments.count}} comment{{resource.comments.count|pluralize}}</span>
           <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
         </div>
     </div>

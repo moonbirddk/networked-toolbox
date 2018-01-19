@@ -15,7 +15,6 @@ from tools.models import ToolCategory, CategoryGroupOverviewPage,\
 
 log = logging.getLogger(__name__)
 
-
 def list_categories(request):
     if request.user.has_perm('tools.change_toolcategory'):
         queryset = ToolCategory.objects.all().order_by('-published', 'group', '-order')

@@ -6,6 +6,7 @@
 {% load commontags %}
 {% load compress %}
 
+
 {% block head_statics %}
 {% compress js %}
 <script src="{% static "js/tools.js"%}"></script>
@@ -45,6 +46,7 @@
 </div>
 
 <div class="row">
+
     <div class="col-md-4 col-xs-12 pull-right">
         {% if perms.tools %}{% if perms.tools.add_categorygroup %}
             <a class="btn btn-primary pull-right" href="{% url 'tools:add_categorygroup' %}">Add Work Area</a>
@@ -63,4 +65,5 @@
 </div>
 
 {% include "category_groups/_categorygroups_overview.html" %}
+{% include "stories/_recent_stories.html"  %}
 {% endblock %}
