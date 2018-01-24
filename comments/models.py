@@ -102,7 +102,7 @@ def notify_author(sender, instance, created, **kwargs):
                         actions=actions,
                         email_template='comments/email/commented_on_your_story')
 
-post_save.connect(notify_author, sender=ThreadedComment)
+post_save.connect(notify_author, sender=CommentLike)
 
 def notify_parent_author(sender, instance, created, **kwargs):
     if instance.parent and created:
