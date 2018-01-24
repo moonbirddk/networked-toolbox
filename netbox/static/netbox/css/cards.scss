@@ -34,6 +34,9 @@
     background: $color-gray-lightest;
     // padding: 20px;
   }
+  .sidebar.stories &{
+    background: $color-gray-lighter;
+  }
   .tools &{
     background: white;
   }
@@ -68,6 +71,7 @@
   }
   &__footer{
     height: 42px;
+    height: 52px;
     .stories &{
       display: flex;
       justify-content: space-between;

@@ -37,7 +37,8 @@ def list_category_groups(request):
         'categories_by_group': categories_by_group,
         'stories': Story.objects.all().order_by('-created')
     }
-    return render(request, 'category_groups/list_categorygroups.html', context)
+    #return render(request, 'category_groups/list_categorygroups.html', context) OLD PATH
+    return render(request, 'workareas/list_workareas.html', context)
 
 def show_categorygroup(request, category_group_id):
 
@@ -52,7 +53,8 @@ def show_categorygroup(request, category_group_id):
         'category_group_follower_ids': category_group_follower_ids,
         
     }
-    return render (request, 'category_groups/show_categorygroup.html', context)
+    #return render (request, 'category_groups/show_categorygroup.html', context)
+    return render (request, 'workareas/show_workarea.html', context)
     
     
 

@@ -30,12 +30,12 @@
                             </h5>
                             <div class="card__counter--people flex-vertical">
                                 <img src="{% static 'icons/profile.svg' %}" alt="">
-                                <span>14</span>
+                                <span>{{category_group.followers.count}}</span>
                                 <span>people</span>
                             </div>
                             <div class="card__counter--comments flex-vertical">
                                 <img src="{% static 'icons/comment.svg' %}" alt="">
-                                <span>4</span>
+                                <span>{{category_group.comments.count}}</span>
                                 <span>comments</span>
                             </div>
                         </div>
@@ -47,9 +47,17 @@
             </div>
 
             <!-- RECENT STORIES -->
-            <div class="col-md-4 ">
-                <div class="stories cards">
-                {% for story in recent_stories %}
+            <div class="col-md-4 sidebar--overlay sidebar--overlay--gray">
+                <div class="stories cards sidebar">
+                    <div class="sidebar__header flex-vertical">
+                        <div class="icon__rounded icon__rounded--black">
+                            <svg class="icon" viewbox="0 0 1 1">
+                                <use href="{% static "/icons/comment.svg"%}#comment"></use>
+                            </svg>
+                        </div>
+                        <h4>Recent stories</h4>
+                    </div>
+                    {% for story in recent_stories %}
                     <div class="card card--story wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
                         <div class="card__content">
                             <div class="card__category flex-vertical">

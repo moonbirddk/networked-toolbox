@@ -12,37 +12,30 @@
 {% block head_title %}Tool Overview - {% endblock %}
 
 {% block main %}
-
-<div class="row">
-    <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
-      
-        <div class="dropdown tools__dropdown pull-right">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                {% if order%}
-                    {{order}}
-                {% else %}
-                    newest
-                {% endif %}
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdown-sort">
-                {%for order, ordername in order_by_list.items%}
-                    <li><a href="?order={{order}}">{{ordername.0}}</a></li>
-                {%endfor%}
-            </ul>
+<div class="hero-section hero-section--overview">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="hero-section__inner flex-vertical" style="background-image: url( {{ overview.cover_image.url }} )">
+                    <div class="hero-section__title-container flex-vertical">
+                        <h1 class="hero-section__title">TOOLS</h1>
+                    </div>
+                    <div class="hero-section__icon__container">
+                        <svg class="hero-section__icon" viewbox="0 0 1 1">
+                            <use href="{% static " icons/tools.svg " %}#tools"></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="hero-section__filters filters">
+                    <h4 class="white-text">Filter tools by:</h4>
+                    {% include '_filters.html' %}
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-8 col-sm-8 col-xs-12">
-        <h1 class="title">Tool Overview
-           
-        </h1>
-        <div class="overview-description">
-            {{ overview.description }}
-           
-        </div>
-    </div>
 
+    </div>
 </div>
-
   {% include "tools/_tools_overview.html" with resources=tools_filter  %}
 {% endblock %}

@@ -8,3 +8,41 @@
     width: 40px;
   }
 }
+.icon__rounded{
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  padding: 8px;
+  &--black{
+    background: black;
+  }
+  @include breakpoint($media-large){
+    left: 0;
+    bottom: -25px;
+  }
+  &:after{
+    content: '';
+    height: 100%;
+    width: 100%;
+    background: rgba(black, 0.2);
+    left: 0px;
+    top: 0;
+    border-radius: 50%;
+    position: absolute;
+    animation: scale 1s 1s forwards;
+    display: none;
+    @include breakpoint($media-large){
+      display: block;
+    }
+  }
+  
+  .icon{
+    height: 100%;
+    width: 100%;
+    fill: white;
+  }
+}
