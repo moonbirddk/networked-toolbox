@@ -28,8 +28,8 @@
                     <div class="hero-section__title-container flex-vertical">
                         <h1 class="hero-section__title">WORK AREAS</h1>
                     </div>
-                    <div class="hero-section__icon__container">
-                        <svg class="hero-section__icon" viewbox="0 0 1 1">
+                    <div class="icon__rounded icon__rounded--black ">
+                        <svg class="icon" viewbox="0 0 1 1">
                             <use href="{% static "icons/tools.svg" %}#tools"></use>
                         </svg>
                     </div>
@@ -37,10 +37,12 @@
             </div>
             <div class="col-xs-12 col-md-4">
                 <div class="hero-section__filters filters">
-                    <h1>Filters</h1>
+                    <h4 class="">Filter work areas by:</h4>
+                     {% include '_filters.html' %}
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 

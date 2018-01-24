@@ -16,6 +16,9 @@
       position: relative;
       height: 120px;
       border-bottom: 1px solid $color-gray-lighter;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       @include breakpoint($media-large){
         height: auto;
         border-right: 1px solid $color-gray-lightest;
@@ -89,6 +92,12 @@
     }
     .search-result{
       padding: 30px;
+      @include breakpoint($media-large){
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
     }
     p{
       width: 70%;

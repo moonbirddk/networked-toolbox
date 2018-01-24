@@ -1,0 +1,7 @@
+<ul class="filters__list">
+  {%for orderitem, ordername in order_by_list.items %} 
+    <li>
+      <a class="{% if order == ordername.0 %}active{% endif %}" href="?order={{orderitem}}">{{ordername.0}}</a>
+    </li>
+  {%endfor%}
+</il>

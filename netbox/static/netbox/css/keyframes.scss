@@ -3,3 +3,9 @@
     transform: scale(1.5)   
   }
 }
+
+@keyframes transformNone{
+  100%{
+    transform: none;
+  }
+}
