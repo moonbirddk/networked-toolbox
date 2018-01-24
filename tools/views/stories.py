@@ -50,6 +50,7 @@ def edit_story(request, story_id):
         'title': story.title, 
         'content': story.content, 
         'country': story.country, 
+        'associated_tools': story.associated_tools.all()
     }
 
     files = {}
@@ -63,10 +64,11 @@ def edit_story(request, story_id):
         form = StoryForm(request.POST, request.FILES)
         if form.is_valid():
             
-
+            story.associated_tools=form.cleaned_data['associated_tools']
             story.title = form.cleaned_data['title']
             story.content = form.cleaned_data['content']
             story.country = form.cleaned_data['country']
+
             story.save()
             messages.success(request, "You edited this story")
             return redirect('tools:show_story', story.id)
@@ -100,12 +102,13 @@ def show_all_stories(request):
         'a_z': ('alphabetically', 'title'), 
         'country': ('by country', 'country'),
         'date': ('newest', '-created'),
+        'newest_comments': ('recently discussed', 'comments__added_dt'),
     }
-    order = ORDERINGS[request.GET.get('order')] if request.GET.get('order') in ORDERINGS.keys() else ORDERINGS['date']
-    stories = Story.objects.all().order_by(order[1])
+    order_name, order_query = ORDERINGS[request.GET.get('order', 'date')]
+    stories = Story.objects.filter(published=True).order_by(order_query)
     context = {
         'stories': stories, 
-        'order': order[0],
+        'order': order_name,
         'order_by_list': ORDERINGS
     }
     return render(request, 'stories/show_all_stories.html', context)

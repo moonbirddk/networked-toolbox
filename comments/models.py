@@ -3,12 +3,13 @@ from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import post_save
 from django.core.urlresolvers import reverse
-
+from django.contrib.auth import get_user_model
 from notifications.signals import notify
 
-from tools.models import Tool
+from tools.models import Tool, ToolFollower
 
 
 class ThreadedCommentManager(models.Manager):
@@ -50,6 +51,11 @@ class ThreadedComment(models.Model):
     is_removed = models.BooleanField(default=False)
     edited_dt = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+
+    @property
+    def liker_ids(self): 
+        return [like.user_id for like in self.likes.all()]
+        
     @property 
     def content_short(self): 
         return self.content[:50]
@@ -61,11 +67,23 @@ class ThreadedComment(models.Model):
     def __str__(self): 
         return '{} - {}...'.format(self.author, self.content[:10])
 
+class CommentLike(models.Model): 
+    class Meta:
+        unique_together = (('user', 'comment'))
+        verbose_name = "'Comment Like"
+        verbose_name_plural = 'Comment Likes'
+    pass
+   
+    user = models.ForeignKey('auth.User')
+    comment = models.ForeignKey(ThreadedComment, related_name="likes")
+   
+def is_comment_root(instance, created):
+    return created and instance.parent == None
+
 def notify_author(sender, instance, created, **kwargs):
     # Let's only notify when it's on a story and it's not on another persons
     # comment.
-    if instance.related_object_type.model == 'story' and \
-       created and instance.parent == None:
+    if instance.related_object_type.model == 'story' and is_comment_root(instance, created): 
         actor = instance.author
         recipient = instance.related_object.user
         # Let's not send a notification when someone comments on their own story
@@ -110,3 +128,19 @@ def notify_parent_author(sender, instance, created, **kwargs):
                         email_template='comments/email/replied_to_your_comment')
 
 post_save.connect(notify_parent_author, sender=ThreadedComment)
+
+def notify_tool_follower(sender, instance, created, **kwargs):
+    if instance.related_object_type.model == 'tool' and is_comment_root(instance, created): 
+        recipients = ToolFollower.objects.filter(~Q(user=instance.author), tool=instance.related_object)
+        verb = 'commented on a tool you follow'
+        href = instance.related_object.get_absolute_url()
+        href += '#comment-' + str(instance.id)
+        actions = [{
+            'title': 'read',
+            'href': href
+        }]        
+        for recipient in recipients: 
+            notify.send(instance.author, verb=verb, recipient=recipient.user, target=instance.related_object, description=instance.content, actions=actions)
+
+post_save.connect(notify_tool_follower, sender=ThreadedComment)
+    

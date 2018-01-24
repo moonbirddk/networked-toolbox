@@ -5,16 +5,18 @@
     "start": "gulp"
   },
   "dependencies": {
+    "browser-sync": "^2.23.5",
     "gulp": "^3.9.1",
-    "gulp-livereload": "^3.8.1",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-livereload": "^3.8.1",
     "gulp-minify-css": "^1.2.4",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-sass": "^2.2.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
     "gulp-watch": "^4.3.5",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "wow": "0.0.6"
   },
   "private": true
 }

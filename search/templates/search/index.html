@@ -89,12 +89,12 @@
                         <div class="card__footer card__counter">
                             <div class="card__counter--people flex-vertical">
                                 <img src="{% static 'icons/profile.svg' %}" alt="">
-                                <span>14</span>
+                                <span>{{tool.followers.count}}</span>
                                 <span>people</span>
                             </div>
                             <div class="card__counter--comments flex-vertical">
                                 <img src="{% static 'icons/comment.svg' %}" alt="">
-                                <span>4</span>
+                                <span>{{tool.comments.count}}</span>
                                 <span>comments</span>
                             </div>
                         </div>

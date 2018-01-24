@@ -38,14 +38,14 @@ ga('send', 'event', 'tool', 'view');
 
       <div class="usage-indicator row">
         <div class="usage-title col-sm-5 col-xs-12">
-          <h3 class="title">Have you used this tool?</h3>
+          <h3 class="title">Want to {%if user.id in tool_follower_ids %}continue{%endif%} follow this tool?</h3>
         </div>
         <div class="usage-follow col-sm-2 col-xs-4">
           {% if user.id in tool_follower_ids %}
             <form action="{% url 'tools:unfollow' tool.id %}" method="post">
               {% csrf_token %}
               <button type="submit" class="btn btn-usage">
-                No, I haven't
+                No, thank you
               </button>
             </form>
           {% else %}
@@ -57,15 +57,17 @@ ga('send', 'event', 'tool', 'view');
                   value='1'
                   class="btn btn-usage"
                   data-requires-validated-user="true">
-                  Yes, I have
+                  Yes, please
                 </button>
             </form>
           {% endif %}
         </div>
+        {%if tool.followers.count > 0%}
         <div class="usage-followers col-sm-5 col-xs-8 text-right">
-          <p>{{ tool.followers.count }} user{{ tool.followers.count|pluralize:" has,s have" }}
-          used this tool.</p>
+          <p>{{ tool.followers.count }} user{{ tool.followers.count|pluralize:" is,s are" }}
+          following this tool.</p>
         </div>
+        {%endif%}
       </div>
 
       <h1 class="title">
@@ -76,43 +78,7 @@ ga('send', 'event', 'tool', 'view');
       </h1>
       <div class="tool-description summernote-content more">{{tool.description|safe }}</div>
 
-      <h3 class="title">Stories</h3>
-      <p>Read stories about how the tool has been used in different contexts. If you have experience you would like to share, <a href="{% url 'tools:add_story' tool.id %}"
-        data-requires-validated-user="true">
-        add a story
-      </a></p>
-      <div id="stories" class="flex-wrapper row">
-        {% for story in stories %}
-          <div class="story col-md-6 col-sm-6 {% if forloop.counter > 4%}hidden{% endif %}">
-            <div class="row">
-              <div class="col-md-3 col-sm-3 col-xs-10">
-                <div class="story-user">
-                  {% render_profile_photo story.user %}
-                  <div class="story-user-name">
-                    <a href="{% url 'profiles:show' story.user.profile.uid %}">{{ story.user.profile.short_name }}</a>
-                  </div>
-                  <div class="story-user-country">
-                    <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-9 col-sm-9 col-xs-10">
-                <h3><a href="{% url 'tools:show_story' story.id  %}">{{ story.title }}</a></h3>
-                <div class="story-content">
-                  {{ story.content|bleach_striptags|truncatechars:150 }}
-                  <a href="{% url 'tools:show_story' story.id  %}">Read more</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-      {% if stories|length > 4 %}
-        <div class="show-all">
-          <a id="show-all-stories" href="#">Show all</a>
-        </div>
-      {% endif %}
-
+      
       {% render_comment_list for tool %}
   </div>
   <div class="col-md-4 col-sm-12">
@@ -172,11 +138,7 @@ ga('send', 'event', 'tool', 'view');
       </div>
       <div class="help-improve">
         <h3 class="title">Help improve this tool</h3>
-        <p>Have you used this tool in practice? Tell us about your experience, so the community can learn from it.</p>
-        <a
-          class="btn btn-primary"
-          href="{% url 'tools:add_story' tool.id %}"
-          data-requires-validated-user="true">Add a story</a>
+        
         <p>How can we improve this tool? Give us concrete feedback on what you think is missing.</p>
         <a
           class="btn btn-primary"

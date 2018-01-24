@@ -29,7 +29,7 @@ def get_search_results(modelcls, q, limit=DEFAULT_LIMIT):
 
 
 def homepage(request): 
-    recent_stories = Story.objects.all().order_by('-created')[:3]
+    recent_stories = Story.objects.filter(published=True).order_by('-created')[:3]
     recent_tools = Tool.objects.all()[:3]
     overviews = {
         'Stories': StoryOverviewPage.objects.get(pk=1), 

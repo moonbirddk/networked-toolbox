@@ -5,13 +5,16 @@ from django.core.urlresolvers import reverse
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import pre_delete, post_delete, pre_save
+from django.db.models.signals import post_save
 
 from solo.models import SingletonModel
 from django_countries.fields import CountryField
 from shared.helpers import truncate_string
 
 from common.utils import generate_upload_path
+from notifications.signals import notify
 
 
 def do_upload_cover_image(inst, filename):
@@ -51,7 +54,9 @@ class Tool(ModelWithCoverImage):
     categories = models.ManyToManyField('ToolCategory', related_name='tools',
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
     resources = GenericRelation('resources.ToolResource')
+    comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
 
     def __str__(self): 
         return self.title
@@ -64,6 +69,7 @@ class Tool(ModelWithCoverImage):
 
     def sort_tools_descendig(self):
         return self.tools.order_by('-title')
+    
 
 
 class ToolFollower(models.Model):
@@ -76,6 +82,20 @@ class ToolFollower(models.Model):
     tool = models.ForeignKey('Tool', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
 
+    def __str__(self): 
+        return '{} - {}'.format(self.user, self.tool)
+
+class ToolUser(models.Model): 
+    class Meta: 
+        unique_together = (('user', 'tool'))
+        verbose_name = 'Tool User'
+        verbose_name_plural = 'Tool Users'
+
+    user = models.ForeignKey('auth.User')
+    tool = models.ForeignKey('Tool', related_name='users')
+    
+    def __str__(self): 
+        return '{} - {}'.format(self.user, self.tool)
 
 class Story(ModelWithCoverImage):
     class Meta: 
@@ -91,6 +111,8 @@ class Story(ModelWithCoverImage):
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools')
+    published = models.BooleanField('Published', default=False)
+    comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
 
     @property
     def parent_object(self): 
@@ -107,6 +129,8 @@ class Story(ModelWithCoverImage):
         return self.title
 
 
+
+
 class CategoryGroup(models.Model):
     class Meta: 
         verbose_name = 'Work Area'
@@ -118,6 +142,8 @@ class CategoryGroup(models.Model):
     main_text = models.TextField(max_length=5000, blank=True, null=True, default='Lorem ipsum.')
     published = models.BooleanField('published', default=False)
     
+    def get_absolute_url(self):
+        return reverse('tools:show_categorygroup', args=(self.id, ))
 
     def __str__(self):
         return self.name
@@ -125,6 +151,36 @@ class CategoryGroup(models.Model):
     @property
     def title(self):
         return self.name
+
+class CategoryGroupFollower(models.Model): 
+    class Meta:
+        unique_together = (('user', 'category_group'))
+        verbose_name = "'Work Area Follower"
+        verbose_name_plural = 'Work Area Followers'
+
+    user = models.ForeignKey('auth.User')
+    category_group = models.ForeignKey('CategoryGroup', related_name='followers')
+    should_notify = models.BooleanField(default=False, null=False)
+
+    def __str__(self): 
+        return '{} - {}'.format(self.user, self.category_group)
+    
+
+def notify_work_area_followers(sender, instance, created, **kwargs): 
+    CREATED_BIT = {True : 'written'}
+    if instance.category_group: 
+        recipients = CategoryGroupFollower.objects.filter(~Q(user=instance.user), category_group=instance.category_group)
+        verb="has {} a story related to a Work Area you follow".format(CREATED_BIT.get(created, 'edited'))
+        href = instance.get_absolute_url()
+        actions = [{
+            'title': 'read',
+            'href': href
+        }]        
+        email_template = 'stories/email/story_written_about_tool_area'
+        for recipient in recipients: 
+            notify.send(instance.user, verb=verb, recipient=recipient.user, target=instance.category_group, description=instance.title, actions=actions, email_template=email_template)
+
+post_save.connect(notify_work_area_followers, sender=Story)
 
 def get_default_category_group_id(*args, **kwargs):
     return CategoryGroup.objects.get(
