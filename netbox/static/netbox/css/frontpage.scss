@@ -27,13 +27,7 @@
         border: none;
       }
     }
-    &__icon{
-      height: 100%;
-      width: 100%;
-      fill: white;
-      &__container{
-        height: 50px;
-        width: 50px;
+    .icon__rounded{
         position: absolute;
         right: 10px;
         top: calc(50% - 25px );
@@ -44,25 +38,44 @@
           right: auto;
           top: calc(0% - 25px );
           left: calc( 50% - 25px );
-        }
-        &:after{
-          content: '';
-          height: 100%;
-          width: 100%;
-          background: rgba(black, 0.2);
-          left: 0px;
-          top: 0;
-          border-radius: 50%;
-          position: absolute;
-          animation: scale 1s 1s forwards;
-          display: none;
-          @include breakpoint($media-large){
-            display: block;
-          }
-        }
-      }
-      // position: relative;
+        } 
     }
+    // &__icon{
+    //   height: 100%;
+    //   width: 100%;
+    //   fill: white;
+    //   &__container{
+    //     height: 50px;
+    //     width: 50px;
+    //     position: absolute;
+    //     right: 10px;
+    //     top: calc(50% - 25px );
+    //     background: black;
+    //     border-radius: 50%;
+    //     padding: 8px;
+    //     @include breakpoint($media-large){
+    //       right: auto;
+    //       top: calc(0% - 25px );
+    //       left: calc( 50% - 25px );
+    //     }
+    //     &:after{
+    //       content: '';
+    //       height: 100%;
+    //       width: 100%;
+    //       background: rgba(black, 0.2);
+    //       left: 0px;
+    //       top: 0;
+    //       border-radius: 50%;
+    //       position: absolute;
+    //       animation: scale 1s 1s forwards;
+    //       display: none;
+    //       @include breakpoint($media-large){
+    //         display: block;
+    //       }
+    //     }
+    //   }
+    //   // position: relative;
+    // }
     .title{
       display: flex;
       margin: 0;

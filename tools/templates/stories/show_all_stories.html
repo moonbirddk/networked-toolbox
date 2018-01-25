@@ -28,9 +28,9 @@
                     <div class="hero-section__title-container flex-vertical">
                         <h1 class="hero-section__title">STORIES</h1>
                     </div>
-                    <div class="hero-section__icon__container">
-                        <svg class="hero-section__icon" viewbox="0 0 1 1">
-                            <use href="{% static " icons/tools.svg " %}#tools"></use>
+                    <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
+                        <svg class="icon" viewbox="0 0 1 1">
+                            <use href="{% static "icons/stories.svg" %}#stories"></use>
                         </svg>
                     </div>
                 </div>
@@ -45,8 +45,6 @@
 
     </div>
 </div>
-
-
 
 {% include "stories/_stories_overview.html" %}
 {% endblock %}

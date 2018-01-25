@@ -24,6 +24,9 @@
     margin-bottom: 40px;
     .icon__rounded{
       position: relative;
+      bottom: auto;
+      top: auto;
+      margin-right: 50px;
     }
   }
   &--overlay{

@@ -29,13 +29,24 @@ def list_category_groups(request):
     default_category = categories_by_group.get(id=default_id)
     categories_by_group = list(categories_by_group.exclude(id=default_id))\
             + [default_category]
-
+    
+    
     overview = CategoryGroupOverviewPage.get_solo()
+    ORDERINGS = {
+        'a_z': ('alphabetically', 'title'), 
+        'created': ('recently added', 'created_date'),
+        'newest_comments': ('recently discussed', 'comments__added_dt'),
+        'most_followed': ('most followed', 'followers'), 
+        'most_used': ('most used', 'users')
+    }
+    order_name, order_query = ORDERINGS[request.GET.get('order', 'a_z')]
     context = {
         'categories_filter': cat_filter,
         'overview': overview,
         'categories_by_group': categories_by_group,
-        'stories': Story.objects.all().order_by('-created')
+        'stories': Story.objects.all().order_by('-created'),
+        'order': order_name,
+        'order_by_list': ORDERINGS
     }
     #return render(request, 'category_groups/list_categorygroups.html', context) OLD PATH
     return render(request, 'workareas/list_workareas.html', context)

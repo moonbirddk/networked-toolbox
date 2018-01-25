@@ -35,4 +35,7 @@ div[class*="flex"]{
     margin-top: 0;
     margin-bottom: 0;
   }
+  h5{
+    margin-top: 5px; // fix strange font height issue 
+  }
 }
