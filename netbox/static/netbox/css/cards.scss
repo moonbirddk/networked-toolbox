@@ -27,6 +27,7 @@
 }
 .card{
   width: 80vw;
+  margin-bottom: 20px;
   @include breakpoint($media-medium){
     width: auto;
   }

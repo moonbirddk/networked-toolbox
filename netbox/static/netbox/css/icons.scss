@@ -7,6 +7,9 @@
     height: 40px;
     width: 40px;
   }
+  &--white{
+    fill: white;
+  }
 }
 .icon__rounded{
   height: 50px;
@@ -19,27 +22,29 @@
   padding: 8px;
   &--black{
     background: black;
+    fill: white;
   }
   @include breakpoint($media-large){
     left: 0;
     bottom: -25px;
   }
-  &:after{
-    content: '';
-    height: 100%;
-    width: 100%;
-    background: rgba(black, 0.2);
-    left: 0px;
-    top: 0;
-    border-radius: 50%;
-    position: absolute;
-    animation: scale 1s 1s forwards;
-    display: none;
-    @include breakpoint($media-large){
-      display: block;
+  &--overlay{
+    &:after{
+      content: '';
+      height: 100%;
+      width: 100%;
+      background: rgba(black, 0.2);
+      left: 0px;
+      top: 0;
+      border-radius: 50%;
+      position: absolute;
+      animation: scale 1s 1s forwards;
+      display: none;
+      @include breakpoint($media-large){
+        display: block;
+      }
     }
   }
-  
   .icon{
     height: 100%;
     width: 100%;

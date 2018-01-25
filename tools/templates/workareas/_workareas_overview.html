@@ -51,40 +51,20 @@
                 <div class="stories cards sidebar">
                     <div class="sidebar__header flex-vertical">
                         <div class="icon__rounded icon__rounded--black">
-                            <svg class="icon" viewbox="0 0 1 1">
-                                <use href="{% static "/icons/comment.svg"%}#comment"></use>
+                            <svg class="icon icon--white" viewbox="0 0 1 1">
+                                <use href="{% static "/icons/stories.svg"%}#stories"></use>
                             </svg>
                         </div>
                         <h4>Recent stories</h4>
                     </div>
-                    {% for story in recent_stories %}
-                    <div class="card card--story wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
-                        <div class="card__content">
-                            <div class="card__category flex-vertical">
-                                <img class="icon" src="{% static 'icons/tools.svg' %}" alt="">
-                                <h5>{{ story.parent_object_name }}</h5>
-                            </div>
-                            <h4>
-                                <a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a>
-                            </h4>
-                            <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
-                            <div class="card__footer">
-                                <div class="flex-row">
-                                    {% render_profile_photo story.user show_name=False %}
-                                    <div class="user-info">
-                                        {% if story.country %}
-                                        <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
-                                        {% endif %}
-                                        <span class="results-story-author small">{{story.user.first_name}}</span>
-                                    </div>
-                                </div>
-                                <h5>
-                                    <a href="{{story.get_absolute_url}}">Read more</a>
-                                </h5>
-                            </div>
-                        </div>
+                    {% for story in stories %}
+                        {% include 'stories/_story_card.html' %}
+                    {% endfor %}
+                     {% if stories|length > 4 %}
+                    <div class="show-all">
+                        <a id="show-all-stories" href="#">Show all</a>
                     </div>
-                {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>
