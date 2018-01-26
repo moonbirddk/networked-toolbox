@@ -39,11 +39,9 @@
                 <div class="hero-section__filters filters">
                     <h4 class="white-text">Filter work areas by:</h4>
                      {% include '_filters.html' %}
-                </div>
-                
+                </div>  
             </div>
         </div>
-        
     </div>
 </div>
 
@@ -65,5 +63,5 @@
 
 </div>
 
-{% include "workareas/_workareas_overview.html" %}
+{% include "workareas/_workareas_overview.html" with resources=cat_filter %}
 {% endblock %}

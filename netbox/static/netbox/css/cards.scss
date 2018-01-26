@@ -20,16 +20,30 @@
   overflow-x: scroll;
   @include breakpoint($media-large){
     overflow: hidden;
+
   }
-  >div{
-    // height: 100%;
+  > div[class*="col"] {
+    display: flex;
+
+  }
+  &.toolboxes{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    >*{
+      flex: 0 1 50%;
+    }
   }
 }
 .card{
   width: 80vw;
   margin-bottom: 20px;
+  display: flex;
+  flex-flow: column;
   @include breakpoint($media-medium){
     width: auto;
+    flex: 1 1;
   }
   .stories &{
     background: $color-gray-lightest;
@@ -57,6 +71,17 @@
   &__content{
     padding: 20px;
     border: 1px solid $color-gray-lightest;
+    display: flex;
+    flex-flow: column;
+    @include breakpoint($media-large){
+      flex: 1 1 auto;
+      display: flex;
+      // flex-flow: row wrap;
+      align-content: flex-start;
+      > *{
+        flex: 0 1 auto;
+      }
+    }
   }
   h4{
     margin-bottom: 20px;
@@ -67,12 +92,16 @@
   p{
     font-size: 15px;
     line-height: 21px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+    @include breakpoint($media-large){
+      flex-grow: 1;
+    }
    
   }
   &__footer{
     height: 42px;
-    height: 52px;
+    align-self: flex-end;
+    width: 100%;
     .stories &{
       display: flex;
       justify-content: space-between;
@@ -123,7 +152,29 @@
 
 }
 
-
+.content-card{
+  // transform: translateY(-100px);
+  margin-top: -100px;
+  background: white;
+  padding: 30px;
+  position: relative;
+  &:after, &:before{
+    content: '';
+    position: absolute;
+    height: 200px;
+    width: 10px;
+    top: 100px;
+    
+  }
+  &:before{
+    left: -10px;  
+    background: linear-gradient(to left bottom, rgba(black, 0.2) -100%, transparent 50% );
+  }
+  &:after{
+    right: -10px;
+    background: linear-gradient(to right bottom, rgba(black, 0.2) -100%, transparent 50% );
+  } 
+}
 // $color-gray-dark: #333;
 // $color-gray: #555;
 // $color-gray-light: #777;

@@ -1,6 +1,6 @@
-<svg width="6px" height="11px" viewBox="0 0 6 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Frontpage-v1" transform="translate(-1222.000000, -904.000000)" fill="#ED1C24" fill-rule="nonzero">
+<svg id="chevron"  viewBox="0 0 6 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" >
+        <g id="Frontpage-v1" transform="translate(-1222.000000, -904.000000)">
             <path d="M1222.137,914.215213 C1221.95433,914.394098 1221.95433,914.688393 1222.137,914.867279 C1222.23128,914.953836 1222.34913,915 1222.47287,915 C1222.59661,915 1222.71446,914.959607 1222.80874,914.867279 L1227.79376,909.985443 C1227.92929,909.858492 1228,909.685377 1228,909.500721 C1228,909.316066 1227.9234,909.142951 1227.79376,909.016 L1222.80874,904.134164 C1222.62607,903.955279 1222.32556,903.955279 1222.14289,904.134164 C1221.96023,904.313049 1221.96023,904.607344 1222.14289,904.78623 L1226.95703,909.500721 L1222.137,914.215213 Z" id="XMLID_48_-Copy-10"></path>
         </g>
     </g>

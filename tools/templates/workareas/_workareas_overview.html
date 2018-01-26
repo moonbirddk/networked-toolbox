@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="overview__container">
                 {% for category_group in categories_by_group %}
-                    <div id="workarea-{{category_group.id}}" class="workarea card">
+                    <div id="workarea-{{category_group.id}}" class="workarea card wow fadeinup">
                         <h3 class="title">
                             {% if category_group.categories.count > 0 %}
                             <a id="category-group-{{category_group.id}}-link" href="{% url 'tools:show_categorygroup' category_group.id %}">
@@ -24,21 +24,31 @@
                             {% endif %}{% endif %}
                         </h3>
                         <p>{{category_group.description}}</p>
+
                         <div class="card__footer card__counter">
                             <h5>
-                                <a href="{{story.get_absolute_url}}">Read more</a>
+                                <a href="{% url 'tools:show_categorygroup' category_group.id %}">Read more</a>
                             </h5>
+                            {% if category_group.followers.count > 0 %}
                             <div class="card__counter--people flex-vertical">
-                                <img src="{% static 'icons/profile.svg' %}" alt="">
+                                <svg class="icon icon--black" viewbox="0 0 1 1">
+                                    <use href="{% static 'icons/profile.svg' %}#profile"></use>
+                                </svg>
                                 <span>{{category_group.followers.count}}</span>
                                 <span>people</span>
                             </div>
+                            {% endif %}
+                             {% if category_group.comments.count > 0 %}
                             <div class="card__counter--comments flex-vertical">
-                                <img src="{% static 'icons/comment.svg' %}" alt="">
+                                <svg class="icon icon--black" viewbox="0 0 1 1">
+                                    <use href="{% static 'icons/comment.svg' %}#comment"></use>
+                                </svg>
                                 <span>{{category_group.comments.count}}</span>
                                 <span>comments</span>
                             </div>
+                            {% endif %}
                         </div>
+
                     </div>
                     {% empty %}
                     <p>There are no items available.</p>

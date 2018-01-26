@@ -3,32 +3,31 @@
 {% load commontags %}
 {% load profilestags %}
 
-
 <div class="category-groups">
-        {% for story in story_results %}
-            <div id="story-{{story.id}}" class="category-group row">
-                <div class="col-md-9">
-                    <h2 class="story-title title">
-                        {% if story.country %}
-                  <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
-                {% endif %}
-                 <a href="{% url 'profiles:show' story.user.profile.uid %}">
-                    {% render_profile_photo story.user %}</a>
+    {% for story in stories %}
+        <div id="story-{{story.id}}" class="category-group row">
+            <div class="col-md-9">
+                <h2 class="story-title title">
+                    {% if story.country %}
+                <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+            {% endif %}
+                <a href="{% url 'profiles:show' story.user.profile.uid %}">
+                {% render_profile_photo story.user %}</a>
 
-                       {{ story.title }}
-                    </h2>
-                    by {{story.user.first_name}} {{story.user.last_name}}
-                    <h4>
-                    Related to {{ story.parent_object_name }}    
-                    </h4>
-                    <p>{{story.content|bleach_striptags|truncatechars:100}}</p>
-                    <a href="{% url 'tools:show_story' story.id %}">read more...</a>   
-                 
-                </div>
+                    {{ story.title }}
+                </h2>
+                by {{story.user.first_name}} {{story.user.last_name}}
+                <h4>
+                Related to {{ story.parent_object_name }}    
+                </h4>
+                <p>{{story.content|bleach_striptags|truncatechars:100}}</p>
+                <a href="{% url 'tools:show_story' story.id %}">read more...</a>   
+                
             </div>
-            
-            
-        {% empty %}
-            <p>There are no items available.</p>
-        {% endfor %}
+        </div>
+        
+        
+    {% empty %}
+        <p>There are no items available.</p>
+    {% endfor %}
 </div>

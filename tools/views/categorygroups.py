@@ -56,12 +56,16 @@ def show_categorygroup(request, category_group_id):
     category_group = get_object_or_404(CategoryGroup, id=category_group_id)
     categories = category_group.categories.all().order_by('title')
     category_group_follower_ids = list(category_group.followers.all().values_list('user_id', flat=True))
-
+    breadcrumbs = [
+        'workarea',
+        category_group.name
+    ]
     context = {
         'category_group': category_group,
         'categories': categories, 
         'stories': category_group.stories.all(), 
         'category_group_follower_ids': category_group_follower_ids,
+        'breadcrumbs': breadcrumbs
         
     }
     #return render (request, 'category_groups/show_categorygroup.html', context)

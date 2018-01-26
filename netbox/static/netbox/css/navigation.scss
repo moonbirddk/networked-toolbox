@@ -20,6 +20,7 @@
         flex-wrap: wrap;
         @include breakpoint($media-large){
           flex-wrap: nowrap;
+          padding: 0 30px !important;
         }
       >.notifications{
           position: absolute; 
@@ -148,7 +149,6 @@
     flex: 1 1 120px;
     margin-left: 0 !important;
     @include breakpoint($media-large){
-      margin-left: 15px !important;
       padding-left: 30px;
       flex: 0 1 228px;
       height: 95px;
@@ -249,7 +249,8 @@
       justify-content: flex-end;
       flex: 1 1 100%;
       width: auto;
-
+      padding-right: 0 !important;
+      padding-left: 10px !important;
     }
   }
 
@@ -312,6 +313,23 @@
       background: linear-gradient(to right,$color-primary 0%,transparent  100%  );
     }
   }
+  &--breadcrumbs &__inner{
+    padding-top: 30px;
+    height: auto;
+    p{
+      color: black;
+      font-size: 14px;
+      text-transform: capitalize;
+    }
+    .icon--chevron{
+      height: 10px;
+      width: 10px;
+    }
+    >*{
+        margin-right: 10px;
+      }
+  }
+
   &__title{
     color: white;
     text-align: center;
@@ -338,10 +356,13 @@
 
 .filters{
   height: 100%;
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  display: none;
+  @include breakpoint($media-large){
+    display: flex;
+  }
   &__list{
     height: 50%;
     width: 100%;

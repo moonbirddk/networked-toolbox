@@ -73,7 +73,10 @@ def show_tool(request, tool_id):
     tool_follower_ids = list(tool.followers.all().values_list('user_id', flat=True))
     tool_followers = tool.followers.all().order_by('?')[:12]
     stories = tool.stories.all().order_by('-created')
-
+    breadcrumbs = [
+        'workarea',
+        tool.name
+    ]
     context = {
             'tool': tool,
             'tool_follower_ids': tool_follower_ids,

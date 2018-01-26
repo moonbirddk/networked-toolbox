@@ -47,8 +47,15 @@ def show_category(request, cat_id):
         category = get_object_or_404(ToolCategory, id=cat_id)
     else:
         category = get_object_or_404(ToolCategory, id=cat_id, published=True)
-    context = {'category': category}
-    return render(request, 'categories/show_category.html', context)
+    breadcrumbs = [
+        'workarea',
+        category
+    ]
+    context = {
+        'breadcrumbs': breadcrumbs,
+        'category': category
+    }
+    return render(request, 'toolboxes/show_toolbox.html', context)
 
 
 @permission_required('tools.add_toolcategory', login_url='tools:index')
