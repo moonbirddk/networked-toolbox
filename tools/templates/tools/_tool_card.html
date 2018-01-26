@@ -1,0 +1,55 @@
+{% load static %} {% load commontags %} {% load bootstrap3 %}
+<div class="card card--toolbox wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
+    {% if toolbox.cover_image %}
+    <div class="card__img" style="background-image: url({{ tool.cover_image }})"></div>
+    {% else %}
+    <div class="card__img" style="background-image: url(https://placeimg.com/640/480/any)"></div>
+    {% endif %}
+    <div class="card__content">
+        <h4>
+            <a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a>
+        </h4>
+        <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
+        <div class="card__footer card__counter">
+            {% if tool.followers.count > 0 %}
+            <div class="card__counter--people flex-vertical">
+                <svg class="icon icon--black" viewbox="0 0 1 1">
+                    <use href="{% static 'icons/profile.svg' %}#profile"></use>
+                </svg>
+                <span>{{tool.followers.count}}</span>
+                <span>people</span>
+            </div>
+            {% endif %}
+             {% if tool.comments.count > 0 %}
+            <div class="card__counter--comments flex-vertical">
+                <svg class="icon icon--black" viewbox="0 0 1 1">
+                    <use href="{% static 'icons/comment.svg' %}#comment"></use>
+                </svg>
+                <span>{{tool.comments.count}}</span>
+                <span>comments</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% comment %}
+<div class="category col-md-3 col-xs-6">
+    <a href="{% url 'tools:show_category' category.id %}">
+        <div class="category-image">
+            {% if category.cover_image %}
+            <img src="{{ category.cover_image.url }}" /> {% else %}
+            <!--<img src="empty-image-here" />-->
+            {% endif %} {% if category.published == False %}
+            <div class="unpublished-banner">
+                <span>UNPUBLISHED</span>
+            </div>
+            {% endif %}
+        </div>
+    </a>
+    <div class="category-content">
+        <a href="{% url 'tools:show_category' category.id %}">
+            <h3>{{ category.title|truncatechars:40 }}</h3>
+        </a>
+        <p>{{ category.description|bleach_striptags|truncatechars:70 }}</p>
+    </div>
+</div> {% endcomment %}

@@ -79,9 +79,22 @@ svg {
     padding-left: 30px;
     padding-right: 30px;
   }
+  @include breakpoint($media-large){
+    max-width: 90%;
+  }
+  @include breakpoint($media-xl){
+    max-width: 70%;
+  }
 }
 .divider{
   height: $spacer-lg;
+  width: 100%;
+  &--bordered{
+    @extend .divider;
+    height: 2px;
+    margin: $spacer-lg 0;
+    background: $color-gray-lighter;
+  }
 }
 .section{
   &--padded{

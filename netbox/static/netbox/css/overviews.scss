@@ -19,7 +19,10 @@
 
 .sidebar{
   padding-top: 40px;
-  padding-left: 30px;
+  @include breakpoint($media-large){
+    padding-left: 30px;
+    
+  }
   &__header{
     margin-bottom: 40px;
     .icon__rounded{

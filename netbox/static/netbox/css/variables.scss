@@ -25,7 +25,8 @@ $border-radius: #{$radius}px;
 $border-radius-big: #{2*$radius}px;
 
 // Breakpoints
-$media-large: 1170px;
+$media-xl: 1440px;
+$media-large: 992px;
 $media-medium: 768px;
 $media-small: 480px;
 

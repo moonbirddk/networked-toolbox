@@ -1,5 +1,5 @@
  {% load commontags %} {% load static %} {% load profilestags %}
-<div class="card card--story wow fadeinup {% if forloop.counter > 4%}hidden{% endif %}">
+<div class="card card--story wow fadeinright {% if forloop.counter > 4%}hidden{% endif %}" data-wow-delay="0.{{forloop.counter}}s">
     <div class="card__content">
         <div class="card__category flex-vertical">
             <img class="icon" src="{% static 'icons/tools.svg' %}" alt="">
