@@ -16,6 +16,7 @@
   background-color: #bf0d13;
   margin: -20px 0 0;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  
 }
 
 .search-form {
@@ -39,6 +40,9 @@
       border-radius: 5px;
       border: 0;
       margin-right: 10px;
+      .tools &{
+        background: $color-gray-lightest;
+      }
     }
   }
 
@@ -111,6 +115,9 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    .tools &{
+      background: none;
+    } 
     &__splash{
       display: inline-block;
       position: absolute;
@@ -150,6 +157,10 @@
       }
       @include breakpoint($media-large){
         width: 70%;
+        .tools &{
+          width: 100%;
+          margin: 0;
+        }
       }
       button{
         margin-top: 20px;

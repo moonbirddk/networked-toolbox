@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -36,7 +35,7 @@ def add_workarea_story(request, category_group_id):
             instance.category_group = category_group
             instance.save()
             form.save_m2m()
-            
+
             messages.success(request, "You created a story")
             return redirect('tools:show_categorygroup', category_group.id)
 
@@ -47,9 +46,9 @@ def add_workarea_story(request, category_group_id):
 def edit_story(request, story_id):
     story = get_object_or_404(Story, id=story_id, user=request.user)
     attributes = {
-        'title': story.title, 
-        'content': story.content, 
-        'country': story.country, 
+        'title': story.title,
+        'content': story.content,
+        'country': story.country,
         'associated_tools': story.associated_tools.all()
     }
 
@@ -63,7 +62,7 @@ def edit_story(request, story_id):
     if request.method == 'POST':
         form = StoryForm(request.POST, request.FILES)
         if form.is_valid():
-            
+
             story.associated_tools=form.cleaned_data['associated_tools']
             story.title = form.cleaned_data['title']
             story.content = form.cleaned_data['content']
@@ -75,10 +74,11 @@ def edit_story(request, story_id):
 
     context = {
         'story': story,
-        'form': form, 
+        'form': form,
 
-    } 
+    }
     return render(request, 'stories/edit_story.html', context)
+
 
 def show_story(request, story_id):
     story = get_object_or_404(Story, id=story_id)
@@ -86,28 +86,30 @@ def show_story(request, story_id):
     related_model_name = related_model_instance._meta.verbose_name
     related_stories = Story.objects.filter(tool_id=story.tool_id).exclude(id=story.id).order_by('-created')[:3]
     associated_tools = story.associated_tools.all()
+    breadcrumbs = [related_model_instance.title, story.title]
     context = {
-        'story': story, 
-        'related_model_instance': related_model_instance, 
-        'related_model_name': related_model_name, 
-        'related_stories': related_stories, 
-        'resources': associated_tools
-
+        'story': story,
+        'related_model_instance': related_model_instance,
+        'related_model_name': related_model_name,
+        'related_stories': related_stories,
+        'resources': associated_tools,
+        'breadcrumbs': breadcrumbs,
     }
     return render(request, 'stories/show_story.html', context)
 
-def show_all_stories(request): 
-    ##EXTENDABLE 
+def show_all_stories(request):
+    ##EXTENDABLE
     ORDERINGS = {
-        'a_z': ('alphabetically', 'title'), 
+        'a_z': ('alphabetically', 'title'),
         'country': ('by country', 'country'),
         'date': ('newest', '-created'),
         'newest_comments': ('recently discussed', 'comments__added_dt'),
     }
     order_name, order_query = ORDERINGS[request.GET.get('order', 'date')]
-    stories = Story.objects.filter(published=True).order_by(order_query)
+    # stories = Story.objects.filter(published=True).order_by(order_query)
+    stories = Story.objects.all().order_by(order_query)
     context = {
-        'stories': stories, 
+        'stories': stories,
         'order': order_name,
         'order_by_list': ORDERINGS
     }

@@ -1,9 +1,9 @@
 {% load toolstags %} {% load partition_slice %} {% load commontags %} {% load static %} {% load profilestags %}
-
+ 
 <div class="overview overview--workarea">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 col-xs-12">
                 <div class="overview__container">
                 {% for category_group in categories_by_group %}
                     <div id="workarea-{{category_group.id}}" class="workarea card wow fadeinup">
@@ -57,7 +57,7 @@
             </div>
 
             <!-- RECENT STORIES -->
-            <div class="col-md-4 sidebar--overlay sidebar--overlay--gray">
+            <div class="col-md-4 col-xs-12 sidebar--overlay sidebar--overlay--gray">
                 <div class="stories cards sidebar">
                     <div class="sidebar__header flex-vertical">
                         <div class="icon__rounded icon__rounded--black">

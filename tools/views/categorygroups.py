@@ -57,7 +57,7 @@ def show_categorygroup(request, category_group_id):
     categories = category_group.categories.all().order_by('title')
     category_group_follower_ids = list(category_group.followers.all().values_list('user_id', flat=True))
     breadcrumbs = [
-        'workarea',
+        'Work areas',
         category_group.name
     ]
     context = {

@@ -26,15 +26,24 @@
     display: flex;
 
   }
-  &.toolboxes{
+  &.tools,
+  &.halfs,
+  &.thirds
+  {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    >*{
-      flex: 0 1 50%;
-    }
+    justify-content: space-between;
   }
+  // &.toolboxes{
+  //   display: flex;
+  //   flex-direction: row;
+  //   flex-wrap: wrap;
+  //   justify-content: flex-start;
+  //   >*{
+  //     flex: 0 1 50%;
+  //   }
+  // }
 }
 .card{
   width: 80vw;
@@ -43,7 +52,17 @@
   flex-flow: column;
   @include breakpoint($media-medium){
     width: auto;
-    flex: 1 1;
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+  .full &{
+    flex-basis: 100%;
+  }
+  .halfs &{
+    flex-basis: calc(50% - 15px);
+  }
+  .thirds &{
+    flex-basis: calc(100% / 3 - 20px);
   }
   .stories &{
     background: $color-gray-lightest;
@@ -54,6 +73,16 @@
   }
   .tools &{
     background: white;
+    // flex: 0 0 32%; 
+  }
+  .toolboxes &{
+    background: #454545;
+    h4 a{
+      color: white;
+    }
+    p{
+      color: $color-gray-light;
+    }
   }
   &__category{
     border-bottom: 1px solid rgba($color-gray-light, 0.5);
@@ -85,6 +114,7 @@
   }
   h4{
     margin-bottom: 20px;
+
   }
   a{
     color: black;
@@ -102,6 +132,7 @@
     height: 42px;
     align-self: flex-end;
     width: 100%;
+    position: relative;
     .stories &{
       display: flex;
       justify-content: space-between;
@@ -125,7 +156,7 @@
       margin: 0;
       .workarea &{
         position: absolute;
-        left: 15px;
+        left: 0;
       }
       a{
         color: $color-primary;

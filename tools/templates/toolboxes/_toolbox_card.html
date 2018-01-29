@@ -17,8 +17,8 @@
                 <svg class="icon icon--black" viewbox="0 0 1 1">
                     <use href="{% static 'icons/profile.svg' %}#profile"></use>
                 </svg>
-                <span>{{toolbox.followers.count}}</span>
                 <span>people</span>
+                <span>{{toolbox.followers.count}}</span>
             </div>
             {% endif %}
              {% if toolbox.comments.count > 0 %}
