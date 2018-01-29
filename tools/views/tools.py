@@ -74,15 +74,16 @@ def show_tool(request, tool_id):
     tool_followers = tool.followers.all().order_by('?')[:12]
     stories = tool.stories.all().order_by('-created')
     breadcrumbs = [
-        'workarea',
-        tool.name
+        'Tools',
+        tool.title
     ]
     context = {
-            'tool': tool,
-            'tool_follower_ids': tool_follower_ids,
-            'tool_followers': tool_followers,
-            'stories': stories, 
-            'comments': comments
+        'breadcrumbs': breadcrumbs,
+        'tool': tool,
+        'tool_follower_ids': tool_follower_ids,
+        'tool_followers': tool_followers,
+        'stories': stories, 
+        'comments': comments
     }
 
     return render(request, 'tools/show.html', context)

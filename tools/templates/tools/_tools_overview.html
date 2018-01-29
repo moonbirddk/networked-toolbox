@@ -2,6 +2,24 @@
 {% load partition_slice %}
 {% load commontags %}
 
+<div class="container-fluid overview--tools tools">
+  <div class="overview__container">
+    {% include 'search/_search-bar.html' with placeholder="Search for a specific tool" %}
+    <h3>Tools overview</h3>
+    <div class="tools cards thirds">
+      {% for resource in resources %}
+        {% include 'tools/_tools_card.html' with tool=resource %}
+      {% empty %}
+      <div class="categories-empty col-md-12">
+        There are no tools sections in this Work Area.
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+</div>
+
+
+{% comment %} 
 <div class="row flex-wrapper">
   {% for resource in resources %}
     <div class="tool-item col-md-3 col-xs-6">
@@ -28,4 +46,4 @@
       <p>There are no items available.</p>
     </div>
   {% endfor %}
-</div>
+</div> {% endcomment %}

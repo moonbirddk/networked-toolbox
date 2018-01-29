@@ -15,9 +15,7 @@
 }
 
 .resource-box {
-  background-color: $color-sand;
   overflow: hidden;
-  padding: 0px 1em 0.5em 1em;
   margin: 0 0 1em 0;
 }
 
@@ -192,8 +190,9 @@
 }
 
 .resource-box .title {
-  font-family: 'AmericanTypewriter-Bold','Arial';
-  font-size: 24px;
+  @extend h4 !optional;
+  // font-family: 'AmericanTypewriter-Bold','Arial';
+  // font-size: 24px;
 }
 
 .resource-item i {

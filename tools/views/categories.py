@@ -48,7 +48,8 @@ def show_category(request, cat_id):
     else:
         category = get_object_or_404(ToolCategory, id=cat_id, published=True)
     breadcrumbs = [
-        'workarea',
+        'Work areas',
+        category.group.name,
         category
     ]
     context = {

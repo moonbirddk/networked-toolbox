@@ -6,7 +6,7 @@
 {% load commontags %}
 {% load compress %}
 {% load profilestags %}
-
+{% load debug_tags %}
 
 {% block head_statics %}
 {% compress js %}
@@ -28,7 +28,7 @@
   <div class="content-card wow fadeinup">
     <div class="row">
       <div class="col-md-8 col-sm-12 summernote-container">   
-          <h1 class="title">{{category_group.name}}</h1>
+          <h2 class="title">{{category_group.name}}</h2>
           <p class="category-description">
             {{ category_group.description }}
             {% if perms.tools %}{% if perms.tools.change_category %}
@@ -39,28 +39,46 @@
             {{ category_group.main_text }}
           </p>
           <div class="divider--bordered"></div>
-          <h2>Toolboxes</h2>
+          <h3>Toolboxes</h3>
           {% include "workareas/_workareas_workareaslist.html" %}
       </div>
         {% if perms.tools %}{% if perms.tools.add_toolcategory %}
         <a class="btn btn-primary pull-right" href="{% url 'tools:add_category_to_group' category_group.id %}">Add Toolbox</a>
         {% endif %}{% endif %}
       <div class="col-md-4 col-sm-12">
+        <div class="">
+          <h4 class="title">Resources 
+            {% if perms.tools %}{% if perms.tools.add_toolresource %}
+            <a href="{% url 'resources:add' 'toolcategory' category.id %}">
+              <i class="fa fa-plus"></i>
+            </a>
+            {% endif %}{% endif %}
+          </h4>
+          <p>{{ category_group.resources_text }}</p>
 
-        <div class="help-improve">
-
-
-            <h3 class="title">Help improve this Work Area</h3>
-            <p>Tell us about your experience in this Work Area, so the community can learn from it.</p>
-            <a
-              class="btn btn-primary"
-              href="{% url 'tools:add_workarea_story' category_group.id %}"
-              data-requires-validated-user="true">Add a story</a>
-            <p>How can we improve this Work Area? Give us concrete feedback on what you think is missing.</p>
-            <a
-              class="btn btn-primary"
-              href="{% url 'tools:add_suggestion' 'categorygroup' category_group.id %}"
-              data-requires-validated-user="true">Add a suggestion</a>
+          {% for resource in category_group.resources.all %} {{ resource.document.type }}
+          <div class="resource-item">
+            <div class="pull-right">
+              <a target="_blank" download href="{{ resource.document.url }}">
+                <i class="fa fa-arrow-circle-o-down resource-action"></i>
+              </a>
+              {% if perms.tools %}{% if perms.tools.delete_toolresource %}
+              <a href="{% url 'resources:edit' resource.id %}">
+                <i class="fa fa-pencil resource-action"></i>
+              </a>
+              <a href="{% url 'resources:delete' resource.id %}">
+                <i class="fa fa-close resource-action"></i>
+              </a>
+              {% endif %}{% endif %}
+            </div>
+            <div>
+              <a class="resource-link" target="_blank" href="{{ resource.document.url }}">
+                <i class="fa {{ resource.document|css_filefield }} resource-icon"></i>
+                <span class="resource-title">{{ resource.title }}</span>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
         </div>
 
       </div>
@@ -68,6 +86,7 @@
   </div>
   <div class="divider__bordered"></div>
 </div>
+
 <section class="section--gray section--padded wow fadeinup section--cards">
   <div class="container-fluid">
     <div class="flex-space-between section--cards--header">
@@ -76,12 +95,17 @@
     </div>
     <div class="divider"></div>
     <div class="row stories flex-row cards">
-
-      {% for story in stories %}
-      <div class="col-md-4 ">
-        {% include 'stories/_story_card.html' %}
-      </div>
-      {% endfor %}
+      {% if stories.length > 0 %}
+        {% for story in stories %}
+        <div class="col-md-4 ">
+          {% include 'stories/_story_card.html' %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-md-6">
+          <h4>There are no stories about this workarea</h4>
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>

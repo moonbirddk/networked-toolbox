@@ -61,7 +61,7 @@
         </div>
     </div>
 </section>
-{% include 'search/_search-bar.html' %}
+{% include 'search/_search-bar.html' with front=True placeholder="Find tools, stories, a users and more" %}
 
 <section class="section--cards section--white section--padded wow fadeinUp ">
     <div class="container-fluid">
@@ -72,11 +72,9 @@
             <a href="{%url 'tools:list_tools' %}" class="btn btn-primary">View All Tools</a>
         </div>
         <div class="divider"></div>
-        <div class="row tools flex-row cards">
+        <div class="tools cards thirds">
             {% for tool in recent_tools %}
-            <div class="col-md-4 ">
                 {% include 'tools/_tool_card.html' %}
-            </div>
             {% endfor %}
         </div>
     </div>
@@ -91,9 +89,8 @@
             <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>  
         </div>
         <div class="divider"></div>
-        <div class="row stories flex-row cards">
+        <div class="stories cards thirds">
             {% for story in recent_stories %}
-            <div class="col-md-4 ">
                 <div class="card card--story wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
                     <div class="card__content">
                         <div class="card__category flex-vertical">
@@ -120,7 +117,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>
