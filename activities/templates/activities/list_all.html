@@ -10,16 +10,20 @@
 {% block head_title %}All activity - {% endblock %}
 
 {% block main %}
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <h1 class="title">All activity</h1>
+<div class="container-fluid">
+  <section class="section--padded">
+    <div class="row">
+      <div class="col-md-12 ">
+        <h1 class="title">All activity</h1>
 
-    <div class="activities">
-      {% for activity in activities %}
-        {% include "activities/_entry.html" %}
-      {% empty %}
-        <p class="no-activities">No activity yet ...</li>
-      {% endfor %}
-  </div>
+        <div class="activities">
+          {% for activity in activities %}
+            {% include "activities/_entry.html" %}
+          {% empty %}
+            <p class="no-activities">No activity yet ...</li>
+          {% endfor %}
+      </div>
+    </div>
+  </section>
 </div>
 {% endblock %}

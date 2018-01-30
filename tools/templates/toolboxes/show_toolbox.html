@@ -28,9 +28,13 @@ ga('send', 'event', 'toolboxSection', 'view');
 
 <div class="container-fluid">
     <div class="content-card wow fadeinup">
-        <div class="col-md-8 col-sm-12 summernote-container">
-            <div class="row">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 summernote-container">
                 <h2 class="title">{{category.title}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-sm-12 summernote-container">
                 <div class="category-description summernote-content category-more">
                     {% if perms.tools %}{% if perms.tools.change_category %}
                     <a href="{% url 'tools:edit_categorygroup' category.id %}">
@@ -39,19 +43,7 @@ ga('send', 'event', 'toolboxSection', 'view');
                     {% endif %}{% endif %}
                     {{category.description|safe }}
                 </div>
-                <div class="divider--bordered"></div>
-                <h3>Tools in this toolbox</h3>
-                <div class="cards halfs">
-                    {% for resource in category.published_tools %} 
-                        {% include "tools/_tools_card.html" with tool=resource %} 
-                    {% empty %}
-                        <p>There are no related tools.</p>
-                    {% endfor %}
-                </div>
             </div>
-            {% if perms.tools %}{% if perms.tools.add_toolcategory %}
-            <a class="btn btn-primary pull-right" href="{% url 'tools:add_category_to_group' category.id %}">Add Toolbox</a>
-            {% endif %}{% endif %}
             <div class="col-md-4 col-sm-12">
                 <div class="resource-box">
                     <h4 class="title">Resources {% if perms.tools %}{% if perms.tools.add_toolresource %}
@@ -61,7 +53,7 @@ ga('send', 'event', 'toolboxSection', 'view');
                         {% endif %}{% endif %}
                     </h4>
                     <p>{{ category.resources_text }}</p>
-                
+            
                     {% for resource in category.resources.all %} {{ resource.document.type }}
                     <div class="resource-item">
                         <div class="pull-right">
@@ -86,20 +78,21 @@ ga('send', 'event', 'toolboxSection', 'view');
                     </div>
                     {% endfor %}
                 </div>
-                <div class="help-improve">
-
-
-                    <h3 class="title">Help improve this Work Area</h3>
-                    <p>Tell us about your experience in this Work Area, so the community can learn from it.</p>
-                    <a class="btn btn-primary" href="{% url 'tools:add_workarea_story' category.id %}" data-requires-validated-user="true">Add a story</a>
-                    <p>How can we improve this Work Area? Give us concrete feedback on what you think is missing.</p>
-                    <a class="btn btn-primary" href="{% url 'tools:add_suggestion' 'categorygroup' category.id %}" data-requires-validated-user="true">Add a suggestion</a>
-                </div>
-                <div class="divider--bordered"></div>
             </div>
         </div>
+        <div class="divider--bordered"></div>
+        <h3>Tools in this toolbox</h3>
+        <div class="cards thirds">
+            {% for tool in category.published_tools %} 
+                {% include "tools/_tools_card.html" with tool=tool %} 
+            {% empty %}
+                <p>There are no related tools.</p>
+            {% endfor %}
+        </div>
+            {% if perms.tools %}{% if perms.tools.add_toolcategory %}
+            <a class="btn btn-primary pull-right" href="{% url 'tools:add_category_to_group' category.id %}">Add Toolbox</a>
+            {% endif %}{% endif %}
     </div>
-    <div class="divider__bordered"></div>
 </div>
 
 
