@@ -154,7 +154,46 @@
     color: #8D8479;
   }
 }
+// NEW FOLLOW BUTTON
 
+.follow-button{
+  color: $color-primary;
+  border: 1px solid $color-gray-light;
+  border-radius: 5px;
+  height: 45px;
+  width: 180px;
+  position: absolute;
+  right: 25px;
+  top: 20px;
+  padding: 0;
+  margin: 0;
+  &__icon__container{
+    border-right: 1px solid $color-gray-light;
+    height: 44px;
+    width: 44px;
+    margin-left: 2px;
+  }
+  .icon{
+    stroke: $color-primary;
+  }
+  .btn{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    border: none;
+    &:hover{
+      background: $color-gray-lightest;
+      color: $color-primary;
+    }
+  }
+  &__text{
+    height: 44px;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    margin-top: 2px;
+  }
+}
 #usage-modal {
   margin-top: 40vh;
   .modal-content {
@@ -174,15 +213,15 @@
 .summernote-container {
   overflow: hidden;
   word-wrap: break-word;
-  p[style], span[style] {
-    font-size: 15px !important;
-    font-family: 'Helvetica Neue', 'Arial' !important;
-  }
+  // p[style], span[style] {
+  //   font-size: 15px !important;
+  //   font-family: 'Helvetica Neue', 'Arial' !important;
+  // }
   img {
     max-width: 100% !important;
   }
   p {
-    font-size: 14px;
+    // font-size: 14px;
   }
   img {
     width: 100%;

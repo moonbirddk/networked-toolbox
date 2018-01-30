@@ -1,0 +1,11 @@
+<svg id="cross" viewBox="0 0 15 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Specific-Tool" transform="translate(-1078.000000, -283.000000)" stroke-linecap="square">
+        <g id="Group-8" transform="translate(1057.000000, 266.000000)"  stroke-width="1.36">
+            <g id="Group" transform="translate(22.000000, 18.000000)">
+                <path d="M6.24,0.266 L6.24,13.0782566" id="Line"></path>
+                <path d="M12.48,7 L0,7" id="Line"></path>
+            </g>
+        </g>
+    </g>
+</svg>

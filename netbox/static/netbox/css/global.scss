@@ -167,6 +167,9 @@ a {
 .gray-text {
   color: $color-gray-light;
 }
+.black-text {
+  color: black;
+}
 .no-margin-top{
   margin-top: 0 !important;
 }
@@ -232,46 +235,46 @@ a {
 
 }
 
-.note-editor,
-.summernote-content {
-  h2, h3, h4, h5, h6 {
-    font-weight: bold;
-  }
+// .note-editor,
+// .summernote-content {
+//   h2, h3, h4, h5, h6 {
+//     font-weight: bold;
+//   }
 
-  h1 {
-    font-family: 'AmericanTypewriter-Bold','Arial';
-    font-weight: bold;
-    color: #8d8479 !important;
-    font-size: 24px;
-    margin-top: 0;
-  }
+//   h1 {
+//     font-family: 'AmericanTypewriter-Bold','Arial';
+//     font-weight: bold;
+//     color: #8d8479 !important;
+//     font-size: 24px;
+//     margin-top: 0;
+//   }
 
-  h2 {
-    font-size: 16px;
-  }
+//   h2 {
+//     font-size: 16px;
+//   }
 
-  h3 {
-    font-size: 15px;
-  }
+//   h3 {
+//     font-size: 15px;
+//   }
 
-  h4 {
-    font-size: 14px;
-  }
+//   h4 {
+//     font-size: 14px;
+//   }
 
-  h5 {
-    font-size: 13px;
-  }
+//   h5 {
+//     font-size: 13px;
+//   }
 
-  h6 {
-    font-size: 12px;
-  }
+//   h6 {
+//     font-size: 12px;
+//   }
 
-  .btn-sm {
-    padding: 0 10px;
-    height: 30px;
+//   .btn-sm {
+//     padding: 0 10px;
+//     height: 30px;
 
-    .fa {
-      font-size: 16px;
-    }
-  }
-}
+//     .fa {
+//       font-size: 16px;
+//     }
+//   }
+// }
