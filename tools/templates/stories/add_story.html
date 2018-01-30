@@ -23,6 +23,7 @@
 
 <section class="section--padded">
     <div class="container-fluid">
+        
         <h1>Add Story to <span class="tool-title">{{tool.title}}</span></h1>
 
         <form method="POST" action="{% url 'tools:add_story' tool.id %}" class="form" 
@@ -44,9 +45,10 @@
                 <span class="glyphicon glyphicon-question-sign"></span>
             </a>
             {% bootstrap_field form.content show_label=False %}
-
+            
             {% bootstrap_field form.country show_label=True %}
-
+        
+            
             {% buttons %}
                 <button type="submit" id="add-story" class="btn btn-primary">
                     {% bootstrap_icon "star" %} Add story

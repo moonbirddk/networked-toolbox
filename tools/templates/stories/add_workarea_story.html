@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 {% load static %}
 {% load compress %}
-
+{% load toolstags %}
 {% block head_statics %}
 {{ form.media }}
 <script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
@@ -52,8 +52,12 @@
             <a href="#" class="label-tooltip" data-toggle="tooltip" data-placement="right" data-html="true" title="<p>Here, you can mention specific tools that relate to your story.</p>">
                 <span class="glyphicon glyphicon-question-sign"></span>
             </a>
-            {% bootstrap_field form.associated_tools show_label=False %}
-
+            <div id="associated_tools">
+            {% for pk, choice in form.associated_tools.field.widget.choices %}
+            <label for="id_associated_tools_{{forloop.counter}}">
+                <input type="checkbox" name="associated_tools" value="{{pk}}" class="" title="" id="id_associated_tools_{{forloop.counter}}"> {%render_tool_miniphoto pk%} {{choice}} </label>
+            {% endfor %}
+            </div>
             {% buttons %}
                 <button type="submit" id="add-story" class="btn btn-primary">
                     Add story
