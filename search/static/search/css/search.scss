@@ -14,7 +14,8 @@
 .search-form-box {
   color: white;
   background-color: #bf0d13;
-  margin: -20px 0 0;
+  // margin: -20px 0 0;
+  padding: 20px 0;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   
 }
@@ -62,16 +63,13 @@
 
 .search-box {
   .title {
-    color: white;
-    background-color: #bf0d13;
-    padding: .5em .7em;
-    font-size: 22px;
+    // color: white;
+    // background-color: #bf0d13;
+    padding: .5em 0;
+    // font-size: 22px;
+    margin-top: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
-    .fa {
-      margin-right: .2em;
-    }
   }
   margin-bottom: 1em;
 

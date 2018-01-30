@@ -10,48 +10,13 @@
             <a href="{{toolbox.get_absolute_url}}">{{toolbox.title|truncatechars:50}}</a>
         </h4>
         <p>{{toolbox.description|bleach_striptags|truncatechars:130}}</p>
-         
         <div class="card__footer card__counter">
-            {% if toolbox.followers.count > 0 %}
             <div class="card__counter--people flex-vertical">
-                <svg class="icon icon--black" viewbox="0 0 1 1">
-                    <use href="{% static 'icons/profile.svg' %}#profile"></use>
+                <svg class="icon icon--white" viewbox="0 0 1 1">
+                    <use href="{% static 'icons/tools.svg' %}#tools"></use>
                 </svg>
-                <span>people</span>
-                <span>{{toolbox.followers.count}}</span>
+                <span class="white-text">{{toolbox.tools.count}} {{toolbox.tools.count|pluralize:"tool, tools"}} </span>
             </div>
-            {% endif %}
-             {% if toolbox.comments.count > 0 %}
-            <div class="card__counter--comments flex-vertical">
-                <svg class="icon icon--black" viewbox="0 0 1 1">
-                    <use href="{% static 'icons/comment.svg' %}#comment"></use>
-                </svg>
-                <span>{{toolbox.comments.count}}</span>
-                <span>comments</span>
-            </div>
-            {% endif %}
         </div>
-
     </div>
 </div>
-{% comment %}
-<div class="category col-md-3 col-xs-6">
-    <a href="{% url 'tools:show_category' category.id %}">
-        <div class="category-image">
-            {% if category.cover_image %}
-            <img src="{{ category.cover_image.url }}" /> {% else %}
-            <!--<img src="empty-image-here" />-->
-            {% endif %} {% if category.published == False %}
-            <div class="unpublished-banner">
-                <span>UNPUBLISHED</span>
-            </div>
-            {% endif %}
-        </div>
-    </a>
-    <div class="category-content">
-        <a href="{% url 'tools:show_category' category.id %}">
-            <h3>{{ category.title|truncatechars:40 }}</h3>
-        </a>
-        <p>{{ category.description|bleach_striptags|truncatechars:70 }}</p>
-    </div>
-</div> {% endcomment %}

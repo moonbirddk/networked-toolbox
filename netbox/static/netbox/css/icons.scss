@@ -4,8 +4,11 @@
   display: inline-block;
   margin-right: 5px;
   &--big{
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
+    .search & {
+      margin-bottom: 5px;
+    }
   }
   &--white{
     fill: white;

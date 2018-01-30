@@ -1,10 +1,19 @@
 {% load toolstags %}
 {% load partition_slice %}
 {% load commontags %}
+{% load static %}
 
 <div class="container-fluid overview--tools tools">
   <div class="overview__container">
-    {% include 'search/_search-bar.html' with placeholder="Search for a specific tool" %}
+    <section class="search-bar wow fadeinup">
+      <form class="form-inline search-form" method="get" action="{% url 'search:tool_results' %}?q={{query}}">
+        <div class="form-group">
+          <input type="text" name="q" value="" placeholder="Search for a specific tool" maxlength="30" class="form-control" title="" required=""
+            id="id_q">
+        </div>
+        <button class="btn btn-primary" type="submit" />Search</button>
+      </form>
+    </section>
     <h3>Tools overview</h3>
     <div class="tools cards thirds">
       {% for resource in resources %}
@@ -17,33 +26,3 @@
     </div>
   </div>
 </div>
-
-
-{% comment %} 
-<div class="row flex-wrapper">
-  {% for resource in resources %}
-    <div class="tool-item col-md-3 col-xs-6">
-        <a href="{% url 'tools:show' resource.id %}"><div class="tool-image">
-          {% if resource.cover_image %}
-            <img src="{{ resource.cover_image.url }}" />
-          {% else %}
-          <!--<img src="empty-image-here" />-->
-          {% endif %}
-          {% if resource.published == False %}
-          <div class="unpublished-banner">
-            <span>UNPUBLISHED</span>
-          </div>
-          {% endif %}
-        </div></a>
-        <div class="tool-content">
-          <a href="{% url 'tools:show' resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
-          <span style="font-size: small;padding-right:20px;">{{resource.followers.count}} user{{resource.followers.count|pluralize}}</span><span style="font-size: small">{{resource.comments.count}} comment{{resource.comments.count|pluralize}}</span>
-          <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
-        </div>
-    </div>
-  {% empty %}
-    <div class="col-md-3 col-xs-6">
-      <p>There are no items available.</p>
-    </div>
-  {% endfor %}
-</div> {% endcomment %}

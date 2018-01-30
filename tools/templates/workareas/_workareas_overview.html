@@ -29,24 +29,18 @@
                             <h5>
                                 <a href="{% url 'tools:show_categorygroup' category_group.id %}">Read more</a>
                             </h5>
-                            {% if category_group.followers.count > 0 %}
                             <div class="card__counter--people flex-vertical">
                                 <svg class="icon icon--black" viewbox="0 0 1 1">
                                     <use href="{% static 'icons/profile.svg' %}#profile"></use>
                                 </svg>
-                                <span>{{category_group.followers.count}}</span>
-                                <span>people</span>
+                                <span>{{category_group.followers.count}} {{category_group.followers.count|pluralize:"person, people"}} </span>
                             </div>
-                            {% endif %}
-                             {% if category_group.comments.count > 0 %}
                             <div class="card__counter--comments flex-vertical">
                                 <svg class="icon icon--black" viewbox="0 0 1 1">
-                                    <use href="{% static 'icons/comment.svg' %}#comment"></use>
+                                    <use href="{% static 'icons/stories.svg' %}#stories"></use>
                                 </svg>
-                                <span>{{category_group.comments.count}}</span>
-                                <span>comments</span>
+                                <span>{{category_group.stories.count}} {{category_group.stories.count|pluralize:"story, stories"}} </span>
                             </div>
-                            {% endif %}
                         </div>
 
                     </div>
@@ -55,7 +49,7 @@
                     {% endfor %}
                 </div>
             </div>
-
+            
             <!-- RECENT STORIES -->
             <div class="col-md-4 col-xs-12 sidebar--overlay sidebar--overlay--gray">
                 <div class="stories cards sidebar">
@@ -70,10 +64,8 @@
                     {% for story in stories %}
                         {% include 'stories/_story_card.html' %}
                     {% endfor %}
+                    <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>
                      {% if stories|length > 4 %}
-                    <div class="show-all">
-                        <a id="show-all-stories" href="#">Show all</a>
-                    </div>
                     {% endif %}
                 </div>
             </div>

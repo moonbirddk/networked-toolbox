@@ -25,10 +25,11 @@ ga('send', 'event', 'toolboxSection', 'view');
 {% block main %}
 
 {% include '_hero_breadcrumbs.html' with icon='work-areas' breadcrumbs=breadcrumbs %}
+
 <div class="container-fluid">
     <div class="content-card wow fadeinup">
-        <div class="row">
-            <div class="col-md-8 col-sm-12 summernote-container">
+        <div class="col-md-8 col-sm-12 summernote-container">
+            <div class="row">
                 <h2 class="title">{{category.title}}</h2>
                 <div class="category-description summernote-content category-more">
                     {% if perms.tools %}{% if perms.tools.change_category %}

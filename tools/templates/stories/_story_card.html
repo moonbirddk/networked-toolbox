@@ -2,7 +2,9 @@
 <div class="card card--story wow fadeinright {% if forloop.counter > 4%}hidden{% endif %}" data-wow-delay="0.{{forloop.counter}}s">
     <div class="card__content">
         <div class="card__category flex-vertical">
-            <img class="icon" src="{% static 'icons/tools.svg' %}" alt="">
+            <svg class="icon" viewbox="0 0 1 1">
+                <use href="{% static 'icons/work-areas.svg'%}#work-areas"></use>
+            </svg>
             <h5>{{ story.parent_object_name }}</h5>
         </div>
         <h4>

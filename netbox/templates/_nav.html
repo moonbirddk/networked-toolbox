@@ -5,7 +5,7 @@
 <nav class="navbar navbar-top">
   <div class="container-fluid navbar-top__inner">
 
-    <a class="navbar-brand flex-vertical" href="/">
+    <a class="navbar-brand flex-vertical" href="{% url 'homepage' %}" >
       Networked
       <br class="visible-xs-block" />
       Toolbox
@@ -38,7 +38,7 @@
       <ul class="nav navbar-right navbar__signup">
         {% if user.is_authenticated %}
         {% include '_notifications.html' %}
-        <li>{% render_profile_photo user %}</li>
+        <li>{% render_profile_photo user with show_name=True %}</li>
         <li><a class="btn btn-primary" href="{% url 'account_logout'%}">Log out</a></li>
         {% else %}
         <li><a class="btn btn-primary" href="{% url 'account_signup'%}">Sign Up</a></li>

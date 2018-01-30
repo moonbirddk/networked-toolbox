@@ -107,7 +107,7 @@ def show_all_stories(request):
     }
     order_name, order_query = ORDERINGS[request.GET.get('order', 'date')]
     # stories = Story.objects.filter(published=True).order_by(order_query)
-    stories = Story.objects.all().order_by(order_query)
+    stories = Story.objects.all().order_by(order_query)  # REMOVETODO
     context = {
         'stories': stories,
         'order': order_name,

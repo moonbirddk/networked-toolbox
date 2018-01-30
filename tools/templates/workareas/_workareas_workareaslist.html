@@ -2,13 +2,11 @@
 {% load partition_slice %}
 {% load commontags %}
 
-<div class="toolboxes cards halfs">
+<div class="toolboxes cards thirds">
     {% for category in categories %}    
-
             {% include 'toolboxes/_toolbox_card.html' with toolbox=category %}
-
     {% empty %}
-        <div class="categories-empty col-md-12">
+        <div class="categories-empty">
             There are no toolboxes sections in this Work Area.
         </div>
     {%endfor%}

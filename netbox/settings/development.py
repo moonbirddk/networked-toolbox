@@ -8,7 +8,7 @@ SECRET_KEY = 'secret key'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-INSTALLED_APPS += ('django_nose','template_debug')
+INSTALLED_APPS += ('django_nose',)
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
