@@ -34,15 +34,19 @@ ga('send', 'event', 'tool', 'view');
 
 <div class="container-fluid">
 	<div class="content-card wow fadeinup">
-
+		{% include "tools/_follow_button.html" %}
+		<div class="row">
+			<div class="col-md-8 col-sm-12 summernote-container">
+				<h2 class="title">
+				{{ tool.title }}
+				{% if perms.tools %}{% if perms.tools.change_tool %}
+					<a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
+				{% endif %}{% endif %}
+				</h2>
+			</div>
+		</div>
 <div class="row">
   <div class="col-md-8 col-sm-12 summernote-container">
-			<h2 class="title">
-		{{ tool.title }}
-		{% if perms.tools %}{% if perms.tools.change_tool %}
-		  <a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
-		{% endif %}{% endif %}
-	  </h2>
 	{% if tool.cover_image %}
 		<div class="cover-image" style="background-image: url({{ tool.cover_image.url }})"></div>
 	{% endif %}
@@ -100,21 +104,12 @@ ga('send', 'event', 'tool', 'view');
 		<div class="categories-tags">
 			{% for category in tool.published_categories %}
 			<div class="category-tag">
-				<a href="{% url 'tools:show_category' category.id %}">{{ category.title }}</a>
+				<a class="small gray-text" href="{% url 'tools:show_category' category.id %}">{{ category.title }}</a>
 			</div>
 			{% empty %}
 			<p>No toolboxes applied.</p>
 			{% endfor %}
 		</div>
-	  <div class="help-improve">
-		<h4 class="title">Help improve this tool</h4>
-		
-		<p>How can we improve this tool? Give us concrete feedback on what you think is missing.</p>
-		<a
-		  class="btn btn-primary"
-		  href="{% url 'tools:add_suggestion' 'tool' tool.id %}"
-		  data-requires-validated-user="true">Add a suggestion</a>
-	  </div>
   </div>
 </div>
 </div>

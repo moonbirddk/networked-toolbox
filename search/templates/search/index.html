@@ -91,32 +91,7 @@
         <div class="divider"></div>
         <div class="stories cards thirds">
             {% for story in recent_stories %}
-                <div class="card card--story wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
-                    <div class="card__content">
-                        <div class="card__category flex-vertical">
-                            <img class="icon" src="{% static 'icons/tools.svg' %}" alt="">
-                            <h5>{{ story.parent_object_name }}</h5>
-                        </div>
-                        <h4>
-                            <a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a>
-                        </h4>
-                        <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
-                        <div class="card__footer">
-                            <div class="flex-row">
-                                {% render_profile_photo story.user show_name=False %}
-                                <div class="user-info">
-                                    {% if story.country %}
-                                    <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
-                                    {% endif %}
-                                    <span class="results-story-author small">{{story.user.first_name}}</span>
-                                </div>
-                            </div>
-                            <h5>
-                                <a href="{{story.get_absolute_url}}">Read more</a>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
+                {% include "stories/_story_card.html" with story=story %}
             {% endfor %}
         </div>
     </div>

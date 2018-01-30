@@ -1,5 +1,5 @@
  {% load commontags %} {% load static %} {% load profilestags %}
-<div class="card card--story wow fadeinright {% if forloop.counter > 4%}hidden{% endif %}" data-wow-delay="0.{{forloop.counter}}s">
+<div class="card card--story wow fadeinright" data-wow-delay="0.{{forloop.counter}}s">
     <div class="card__content">
         <div class="card__category flex-vertical">
             <svg class="icon" viewbox="0 0 1 1">
@@ -13,7 +13,7 @@
         <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
         <div class="card__footer">
             <div class="flex-row">
-                {% render_profile_photo story.user show_name=False %}
+                {% render_profile_photo story.user %}
                 <div class="user-info">
                     {% if story.country %}
                     <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>

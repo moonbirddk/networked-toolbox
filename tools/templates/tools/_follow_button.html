@@ -1,33 +1,14 @@
-<div class="usage-indicator row">
-  <div class="usage-title col-sm-5 col-xs-12">
-    <h3 class="title">Want to {%if user.id in tool_follower_ids %}continue{%endif%} follow this tool?</h3>
-  </div>
-  <div class="usage-follow col-sm-2 col-xs-4">
-    {% if user.id in tool_follower_ids %}
-      <form action="{% url 'tools:unfollow' tool.id %}" method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-usage">
-          No, thank you
-        </button>
-      </form>
-    {% else %}
-      <form action="{% url 'tools:follow' tool.id %}" method="post">
-        {% csrf_token %}
-          <button
-            type="submit"
-            name='should_notify'
-            value='1'
-            class="btn btn-usage"
-            data-requires-validated-user="true">
-            Yes, please
-          </button>
-      </form>
-    {% endif %}
-  </div>
-  {%if tool.followers.count > 0%}
-  <div class="usage-followers col-sm-5 col-xs-8 text-right">
-    <p>{{ tool.followers.count }} user{{ tool.followers.count|pluralize:" is,s are" }}
-    following this tool.</p>
-  </div>
-  {%endif%}
-</div>
+{% load static %}
+<form class="follow-button " action="{% url 'tools:follow' tool.id %}" method="post">
+  {% csrf_token %}
+  <button type="submit" name='should_notify' value='1' class="btn flex-row" data-requires-validated-user="true">
+      <div class="follow-button__icon__container flex-center">
+        <svg class="icon icon--red" viewbox="0 0 1 1">
+          <use href="{% static 'icons/cross.svg' %}#cross"></use>
+        </svg>
+      </div>
+      <p class="follow-button__text flex-center">
+        Follow
+      </p>
+  </button>
+</form>

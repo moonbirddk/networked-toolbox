@@ -437,3 +437,13 @@
     }
   }
 }
+
+
+// ALERTS
+.alert{
+  animation: fadeOut 1s 3s forwards;
+  right: 0;
+  top: 0;
+  position: fixed;
+  z-index: 10;
+}

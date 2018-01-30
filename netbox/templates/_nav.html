@@ -38,7 +38,9 @@
       <ul class="nav navbar-right navbar__signup">
         {% if user.is_authenticated %}
         {% include '_notifications.html' %}
-        <li>{% render_profile_photo user with show_name=True %}</li>
+        <li>
+          {% render_profile_photo_with_name user  %}
+        </li>
         <li><a class="btn btn-primary" href="{% url 'account_logout'%}">Log out</a></li>
         {% else %}
         <li><a class="btn btn-primary" href="{% url 'account_signup'%}">Sign Up</a></li>
