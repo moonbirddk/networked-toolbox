@@ -32,13 +32,17 @@
             </p>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-6 col-sm-12 search-box">
-            <h1 class="title">
-                <i class="fa fa-wrench" aria-hidden="true"></i>
+    <div class="divider--bordered"></div>
+    <div class="row search-box">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="title flex-vertical">
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                    <use href="{% static 'icons/tools.svg'%}#tools"></use>
+                </svg>
                 Tools
-            </h1>
+            </h3>
+        </div>
+        <div class="col-md-6 col-sm-12">
            {% for tool in tools %}
              <div class="search-result">
                <h3><a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a></h3>
@@ -51,17 +55,23 @@
               </a></p>
            {% endif %}
         </div>
-
-        <div class="col-md-6 col-sm-12 search-box">
-            <h1 class="title">
-              <i class="fa fa-align-justify" aria-hidden="true"></i>
-              Stories
-            </h1>
+    </div>
+    <div class="divider--bordered"></div>
+    <div class="row search-box">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="title flex-vertical">
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                    <use href="{% static 'icons/stories.svg'%}#stories"></use>
+                </svg>
+                Stories
+            </h3>
+        </div>
+        <div class="col-md-6 col-sm-12">
             {% for story in stories %}
-                <div class="search-result">
-                  <h3><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></h3>
-                  <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
-                </div>
+            <div class="search-result">
+                <h3><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></h3>
+                <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
+            </div>
             {% endfor %}
             {% if query and stories_results_count > HOMEPAGE_DISPLAY_RESULTS%}
               <a class="more-results" href="{% url 'search:story_results' %}?q={{query}}">
@@ -69,30 +79,42 @@
               </a>
             {% endif %}
         </div>
-
-        <div class="clearfix"></div>
-
-        <div class="col-md-6 col-sm-12 search-box">
-            <h1 class="title">
-                <i class="fa fa-briefcase" aria-hidden="true"></i>
-                Toolboxes
-            </h1>
-            {% for category in categories %}
+    </div>
+    <div class="clearfix"></div>
+    <div class="divider--bordered"></div>
+    <div class="row search-box">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="title flex-vertical">
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                    <use href="{% static 'icons/work-areas.svg'%}#work-areas"></use>
+                </svg>
+                Work areas
+            </h3>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            {% for category_group in category_groups %}
                 <div class="search-result">
-                  <h3><a href="{{category.get_absolute_url}}">{{category.title|truncatechars:50}}</a></h3>
-                  <p>{{category.description|bleach_striptags|truncatechars:130}}</p>
+                  <h3><a href="{{category_group.get_absolute_url}}">{{category_group.title|truncatechars:50}}</a></h3>
+                  <p>{{category_group.description|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
               <a class="more-results" href="{% url 'tools:index'%}">
-                  Show all toolboxes
+                  Show all work areas
               </a>
         </div>
-
-        <div class="col-md-6 col-sm-12 search-box">
-            <h1 class="title">
-                <i class="fa fa-user" aria-hidden="true"></i>
+    </div>
+    
+    <div class="divider--bordered"></div>
+    <div class="row search-box">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="title flex-vertical">
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                    <use href="{% static 'icons/profile.svg'%}#profile"></use>
+                </svg>
                 Users
-            </h1>
+            </h3>
+        </div>
+        <div class="col-md-6 col-sm-12">
             {% for profile in profiles %}
                 <div class="search-result">
                   <h3><a  href="{{profile.get_absolute_url}}">{{profile.name|truncatechars:50}}</a></h3>
@@ -103,7 +125,6 @@
                 <a class="more-results" href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
             {% endif %}
         </div>
-
     </div>
 </div>
 {% endblock %}

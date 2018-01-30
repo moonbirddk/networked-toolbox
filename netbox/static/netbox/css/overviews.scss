@@ -23,6 +23,7 @@
 
 .sidebar{
   padding-top: 40px;
+  padding-bottom: 40px;
   @include breakpoint($media-large){
     padding-left: 30px;
     

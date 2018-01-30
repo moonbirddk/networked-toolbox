@@ -6,7 +6,7 @@
 {% load commontags %}
 {% load compress %}
 {% load profilestags %}
-{% load debug_tags %}
+
 
 {% block head_statics %}
 {% compress js %}
@@ -27,8 +27,12 @@
 <div class="container-fluid">
   <div class="content-card wow fadeinup">
     <div class="row">
+      <div class="col-sm-12">
+        <h2 class="title">{{category_group.name}}</h2>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-8 col-sm-12 summernote-container">   
-          <h2 class="title">{{category_group.name}}</h2>
           <p class="category-description">
             {{ category_group.description }}
             {% if perms.tools %}{% if perms.tools.change_category %}
@@ -38,15 +42,12 @@
           <p class="tool-description summernote-content more">
             {{ category_group.main_text }}
           </p>
-          <div class="divider--bordered"></div>
-          <h3>Toolboxes</h3>
-          {% include "workareas/_workareas_workareaslist.html" %}
       </div>
         {% if perms.tools %}{% if perms.tools.add_toolcategory %}
         <a class="btn btn-primary pull-right" href="{% url 'tools:add_category_to_group' category_group.id %}">Add Toolbox</a>
         {% endif %}{% endif %}
       <div class="col-md-4 col-sm-12">
-        <div class="">
+        <div class="resource-box">
           <h4 class="title">Resources 
             {% if perms.tools %}{% if perms.tools.add_toolresource %}
             <a href="{% url 'resources:add' 'toolcategory' category.id %}">
@@ -80,12 +81,29 @@
           </div>
           {% endfor %}
         </div>
+      </div>  
+    </div>  <!-- ROW -->
+    <div class="divider--bordered"></div>
+    <h3>Toolboxes</h3>
+    {% include "workareas/_workareas_workareaslist.html" %}
+  </div>
+  <div class="divider--bordered"></div>
+</div>
 
+<section class="section--padded">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h2 class="no-margin-top">SHARE YOUR STORIES</h2>
+        <p>Have you used the work area in practise? To share information about a budget in a clear and simple way. South Africa and
+        Uganda. Groups of women were.</p>
+      </div>
+      <div class="col-xs-12 col-md-6">
+          <a class="pull-right btn btn-primary" href="{% url 'tools:add_workarea_story' category_group.id %}">Add a story</a>
       </div>
     </div>
   </div>
-  <div class="divider__bordered"></div>
-</div>
+</section>
 
 <section class="section--gray section--padded wow fadeinup section--cards">
   <div class="container-fluid">
@@ -94,17 +112,13 @@
       <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>
     </div>
     <div class="divider"></div>
-    <div class="row stories flex-row cards">
-      {% if stories.length > 0 %}
+    <div class="stories cards thirds">
+      {% if stories.count > 0 %}
         {% for story in stories %}
-        <div class="col-md-4 ">
-          {% include 'stories/_story_card.html' %}
-        </div>
+          {% include 'stories/_story_card.html' with story=story %}
         {% endfor %}
         {% else %}
-        <div class="col-md-6">
-          <h4>There are no stories about this workarea</h4>
-        </div>
+        <h4>There are no stories about this workarea</h4>
       {% endif %}
     </div>
   </div>

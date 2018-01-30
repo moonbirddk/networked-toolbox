@@ -50,6 +50,7 @@
   margin-bottom: 20px;
   display: flex;
   flex-flow: column;
+  position: relative;
   @include breakpoint($media-medium){
     width: auto;
     flex: 0 0 auto;
@@ -86,7 +87,7 @@
   }
   &__category{
     border-bottom: 1px solid rgba($color-gray-light, 0.5);
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     height: 40px;
   }
   &__img{
@@ -175,6 +176,9 @@
     span{
       display: inline-block;
       margin-right: 5px;
+      // font-size: 15px;
+      line-height: 15px;
+      margin-top: 2px;
     }
     img{
       margin-right: 5px;

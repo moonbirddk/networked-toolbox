@@ -16,54 +16,57 @@
 
 {% block main %}
 
-{% include 'search/_back_to_search.html'%}
-    
-    
-<div class="row">
-    <div class="col-md-12">
-        <h1 class="title">
-        <i class="fa fa-wrench"></i>
-        Tool Search Results for:&nbsp;<span class="red-text">{{query}}</span>
-        </h1>
-        <h1 class="title gray-text">{{total_results_count}} Results</h1>
-    </div>
+<div class="container-fluid search">
+  <section class="section--padded">
+      {% include 'search/_back_to_search.html'%}
+      <div class="row">
+          <div class="col-md-12">
+            <h1 class="title flex-vertical">  
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                  <use href="{% static 'icons/tools.svg'%}#tools"></use>
+                </svg>
+                Tool Search Results for:&nbsp;<span class="red-text">{{query}}</span>
+              </h1>
+              <h2 class="title gray-text">{{total_results_count}} Results</h2>
+          </div>
+      </div>
+
+      <div class="row flex-wrapper">
+        {% for resource in results %}
+          <div class="col-md-6 results-item">
+          
+              <div class="row">
+              <div class="col-md-5 results-item-image-box">
+                <a href="{{ resource.get_absolute_url }}">
+                  <div class="results-item-image">
+                  {% if resource.cover_image %}
+                    <img src="{{ resource.cover_image.url }}" />
+                  {% else %}
+                  <!--<img src="empty-image-here" />-->
+                  {% endif %}
+                  </div>
+                </a>
+              </div>
+
+              <div class="col-md-7 results-item-content-box">
+                <p class="search-result__title">
+                  <a href="{{ resource.get_absolute_url }}">{{ resource.title|truncatechars:51 }}</a>
+                </p>
+                <p class="search-result__content">{{ resource.description|bleach_striptags|truncatechars:270 }}</p>
+              </div>
+              
+              </div>
+          </div>
+        {% empty %}
+          <div class="col-md-3 col-xs-6">
+            <p>There are no items available.</p>
+          </div>
+        {% endfor %}
+      </div>
+
+    {% if results_count %}
+        {% include 'search/_back_to_search.html'%}
+    {% endif %}
+  </section>
 </div>
-
-<div class="row flex-wrapper">
-  {% for resource in results %}
-    <div class="col-md-6 results-item">
-    
-        <div class="row">
-         <div class="col-md-5 results-item-image-box">
-          <a href="{{ resource.get_absolute_url }}">
-            <div class="results-item-image">
-            {% if resource.cover_image %}
-              <img src="{{ resource.cover_image.url }}" />
-            {% else %}
-            <!--<img src="empty-image-here" />-->
-            {% endif %}
-            </div>
-          </a>
-         </div>
-
-         <div class="col-md-7 results-item-content-box">
-           <p class="search-result__title">
-            <a href="{{ resource.get_absolute_url }}">{{ resource.title|truncatechars:51 }}</a>
-           </p>
-           <p class="search-result__content">{{ resource.description|bleach_striptags|truncatechars:270 }}</p>
-         </div>
-        
-        </div>
-    </div>
-  {% empty %}
-    <div class="col-md-3 col-xs-6">
-      <p>There are no items available.</p>
-    </div>
-  {% endfor %}
-</div>
-
-{% if results_count %}
-    {% include 'search/_back_to_search.html'%}
-{% endif %}
-
 {% endblock %}
