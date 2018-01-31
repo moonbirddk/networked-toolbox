@@ -89,8 +89,9 @@ ga('send', 'event', 'tool', 'view');
 				  </div>
 			  </div>
 		  {% endfor %}
-	  </div>
-	  	<h4 class="title">Used by</h4>
+		</div>
+		<div class="divider--bordered"></div>
+	  	<h4 class="title">We have used this tool</h4>
 		<div class="tool-followers flex-wrapper">
 			{% for follower in tool_followers %}
 				<div class="tool-follower">
@@ -100,7 +101,8 @@ ga('send', 'event', 'tool', 'view');
 				</div>
 			{% endfor %}
 		</div>
-		<h4 class="title">Toolboxes</h4>
+		<div class="divider--bordered"></div>
+		<h4 class="title">Used in these toolboxes</h4>
 		<div class="categories-tags">
 			{% for category in tool.published_categories %}
 			<div class="category-tag">

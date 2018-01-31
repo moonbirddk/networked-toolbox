@@ -1,7 +1,14 @@
 .activity {
   &-created,
   &-title {
-    font-size: 1.0rem;
+    font-size: 14px;
+    .icon{
+      height: 18px;
+      width: 18px;
+    }
+    a{
+      margin: 0 3px;
+    }
   }
   &-content {
     // margin: ($line-height-computed / 2) 0 0;
