@@ -40,6 +40,16 @@
   &__dropdown {
     padding-bottom: 0;
     overflow: hidden;
+    right: 0;
+    left: auto;
+    padding: 10px;
+    li{
+      border: none !important;
+      cursor: pointer;
+      &:hover{
+        background: none !important;
+      }
+    }
   }
 
   &__read {
