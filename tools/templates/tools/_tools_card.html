@@ -18,13 +18,13 @@
         <div class="card__footer card__counter">
             <div class="card__counter--people flex-vertical">
                 <svg class="icon icon--black" viewbox="0 0 1 1">
-                    <use href="{% static 'icons/profile.svg' %}#profile"></use>
+                    <use xlink:href="{% static 'icons/profile.svg' %}#profile"></use>
                 </svg>
                 <span >{{tool.followers.count}} {{tool.followers.count|pluralize:"person, people"}} </span>
             </div>
             <div class="card__counter--comments flex-vertical">
                 <svg class="icon icon--black" viewbox="0 0 1 1">
-                    <use href="{% static 'icons/comment.svg' %}#comment"></use>
+                    <use xlink:href="{% static 'icons/comment.svg' %}#comment"></use>
                 </svg>
                 <span>{{tool.comments.count}} {{tool.comments.count|pluralize:"comment, comments"}} </span>
             </div>

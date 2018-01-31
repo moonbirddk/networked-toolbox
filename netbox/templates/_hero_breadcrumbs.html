@@ -7,13 +7,13 @@
         <div class="hero-section__inner flex-vertical" >
           <div class="icon__bordered">
             <svg class="icon icon--black" viewbox="0 0 1 1">
-              <use href="{% get_static_prefix %}icons/{{icon}}.svg#{{icon}}"></use>
+              <use xlink:href="{% get_static_prefix %}icons/{{icon}}.svg#{{icon}}"></use>
             </svg>
           </div>
           {% for breadloaf in breadcrumbs %}
           {% if forloop.counter > 1 %}
           <svg class="icon icon--black icon--chevron" viewbox="0 0 1 1">
-            <use href="{% get_static_prefix %}icons/chevron.svg#chevron"></use>
+            <use xlink:href="{% get_static_prefix %}icons/chevron.svg#chevron"></use>
           </svg>
           {% endif %}
           <p >

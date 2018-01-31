@@ -11,15 +11,15 @@
     <div class="activity-title flex-vertical">
       {% if activity.entry_type == 'add_story' %}
         <svg class="icon icon--black" viewbox="0 0 1 1">
-          <use href="{% static 'icons/stories.svg'%}#stories"></use>
+          <use xlink:href="{% static 'icons/stories.svg'%}#stories"></use>
         </svg>
       {% elif activity.entry_type == 'add_comment' or activity.entry_type == 'add_comment_reply' %}
         <svg class="icon icon--black" viewbox="0 0 1 1">
-          <use href="{% static 'icons/comment.svg'%}#comment"></use>
+          <use xlink:href="{% static 'icons/comment.svg'%}#comment"></use>
         </svg>
       {% elif activity.entry_type == 'used_tool' %}
         <svg class="icon icon--black" viewbox="0 0 1 1">
-          <use href="{% static 'icons/tools.svg'%}#tools"></use>
+          <use xlink:href="{% static 'icons/tools.svg'%}#tools"></use>
         </svg>
       {% endif %}
       {% if activity.user == user %}
