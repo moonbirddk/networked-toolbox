@@ -454,3 +454,48 @@ iframe {
     }
   }
 }
+
+// WORKAREA FOOTER TO TOOLS OVERVIEW 
+.section--workareas{
+  h2{
+    margin-bottom: 40px;
+  }
+  .workareas{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  .workarea{
+    border-bottom: 1px solid $color-gray-light;
+    flex: 0 0 ;
+    flex-basis: 100%;
+    padding-bottom: 10px;
+    @include breakpoint($media-large){
+      flex-basis: 48%;
+    }
+    a{
+      font-weight: 500;
+    }
+  }
+}
+
+// ADD WORKAREA STORY
+#associated_tools{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  label{
+    font-size: 14px;
+    flex: 0 0 ;
+    flex-basis: 50%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color-gray-lighter;
+    input, img{
+      margin-right: 5px;
+    }
+    @include breakpoint($media-large){
+      flex-basis: 32%;
+    }
+  }
+}

@@ -14,15 +14,31 @@
         <button class="btn btn-primary" type="submit" />Search</button>
       </form>
     </section>
-    <h3>Tools overview</h3>
-    <div class="tools cards thirds">
-      {% for resource in resources %}
+    <section>
+
+      <h3>Tools overview</h3>
+      <div class="tools cards thirds">
+        {% for resource in resources %}
         {% include 'tools/_tools_card.html' with tool=resource %}
-      {% empty %}
-      <div class="categories-empty col-md-12">
-        There are no tools sections in this Work Area.
+        {% empty %}
+        <div class="categories-empty col-md-12">
+          There are no tools sections in this Work Area.
+        </div>
+        {%endfor%}
       </div>
-      {%endfor%}
-    </div>
+    </section>
   </div>
 </div>
+<section class="section--gray section--workareas section--padded">
+  <div class="container-fluid">
+    <h2>WORK AREAS</h2>
+    <div class="workareas">
+      {% for workarea in category_groups %}
+      <div class="workarea">
+        <h3>{{ workarea.title }}</h3>
+        <a href="{% url 'tools:show_categorygroup' workarea.id %}">Read More</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

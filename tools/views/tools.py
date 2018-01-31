@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.contenttypes.models import ContentType
 from ..forms import ToolForm
 
-from ..models import Tool, ToolCategory, ToolFollower, ToolOverviewPage
+from ..models import Tool, ToolCategory, ToolFollower, ToolOverviewPage, CategoryGroup
 from django.contrib.auth.models import User
 from comments.models import ThreadedComment
 from shared.helpers import OrderedSet
@@ -39,27 +39,28 @@ def add_tool(request):
 
 def list_tools(request):
     ORDERINGS = {
-        'a_z': ('alphabetically', 'title'), 
+        'a_z': ('alphabetically', 'title'),
         'created': ('recently added', 'created_date'),
         'newest_comments': ('recently discussed', 'comments__added_dt'),
-        'most_followed': ('most followed', 'followers'), 
+        'most_followed': ('most followed', 'followers'),
         'most_used': ('most used', 'users')
     }
     order_name, order_query = ORDERINGS[request.GET.get('order', 'a_z')]
     queryset = Tool.objects.filter(published=True)
-    if 'most' in order_name: 
+    if 'most' in order_name:
         queryset_ordered=queryset.annotate(num_count=Count(order_query)).order_by('-num_count')
-    
-    else: 
+
+    else:
         queryset_ordered = queryset.order_by(order_query)
     overview = ToolOverviewPage.get_solo()
-    
-    
+    category_groups = CategoryGroup.objects.filter(published=True).order_by('name')
+
     context = {
-            'tools_filter': queryset_ordered,
-            'overview': overview,
-            'order': order_name, 
-            'order_by_list': ORDERINGS, 
+        'tools_filter': queryset_ordered,
+        'category_groups': category_groups,
+        'overview': overview,
+        'order': order_name,
+        'order_by_list': ORDERINGS,
     }
     return render(request, 'tools/index.html', context)
 
@@ -82,7 +83,7 @@ def show_tool(request, tool_id):
         'tool': tool,
         'tool_follower_ids': tool_follower_ids,
         'tool_followers': tool_followers,
-        'stories': stories, 
+        'stories': stories,
         'comments': comments
     }
 
@@ -92,7 +93,7 @@ def show_tool(request, tool_id):
 @transaction.atomic
 @login_required
 def follow_tool(request, tool_id):
-    
+
     tool = get_object_or_404(Tool, id=tool_id, published=True)
     if request.method == 'POST':
         should_notify = False
@@ -149,7 +150,7 @@ def edit_tool(request, tool_id):
             else:
                 if form.cleaned_data['cover_image']:
                     if tool.has_existing_cover_image():
-                            default_storage.delete(tool.cover_image.name)
+                        default_storage.delete(tool.cover_image.name)
                     cover_image = form.cleaned_data['cover_image']
                 else:
                     cover_image = tool.cover_image
