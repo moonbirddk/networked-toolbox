@@ -175,8 +175,15 @@ $animationSpeed: 1.5s;
   height: 70px;
   span{
     position: absolute;
-    left: 0;
     opacity: 0;
+    display: block;
+    text-align: center;
+    width: 100%;
+    // left: 50%;
+    @include breakpoint($media-large){
+      text-align: left;
+      left: 0;
+    }
     &.first{
       animation: frontFadeInOut $animationSpeed forwards;
     }

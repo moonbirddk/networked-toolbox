@@ -312,7 +312,10 @@
   background-color: $color-primary;
   &--front{
     padding-bottom: 100px;
-    height: 476px;
+    height: 376px;
+    @include breakpoint($media-large){
+      height: 476px;
+    }
   }
   &--overview{
     background-size: cover;
@@ -362,6 +365,7 @@
   &__title{
     color: white;
     text-align: center;
+    font-size: 55px;
     @include breakpoint($media-large){
       text-align: left;
       font-size: 65px;
