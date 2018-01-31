@@ -94,8 +94,12 @@ def on_tool_used(sender, instance=None, created=False, **kwargs):
 # Send notifications as mail if they have an email_template associated
 @receiver(post_save, sender=Notification)
 def send_notification_email(sender, instance=None, created=False, **kwargs):
-    if not created: return
-    email_template = instance.data.get('email_template')
+    import pdb
+    if not created: 
+        return
+    email_template = None
+    if instance.data: 
+        email_template = instance.data.get('email_template')
     if email_template:
         context = {
             'user': instance.recipient,

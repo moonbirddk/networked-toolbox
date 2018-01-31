@@ -11,7 +11,7 @@ from django_countries import countries
 
 from .models import Tool, ToolCategory, CategoryGroup, Story
 from .widgets import ColumnCheckboxSelectMultiple
-
+from django.forms.widgets import CheckboxSelectMultiple
 log = logging.getLogger(__name__)
 
 
@@ -73,10 +73,12 @@ class StoryForm(forms.ModelForm):
         fields = ('title', 'content', 'country', 'associated_tools',)
         widgets = {
             'content': SummernoteInplaceWidget(), 
-            'associated_tools': ColumnCheckboxSelectMultiple(
-                columns=3,
-                css_class='col-md-4', wrapper_css_class='row',
-                ),
+            'associated_tools': CheckboxSelectMultiple,
+            #     columns=3,
+            #     css_class='col-md-4', 
+            #     wrapper_css_class='row',
+                
+            #    ),
         }
   
    

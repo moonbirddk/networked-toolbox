@@ -22,7 +22,8 @@ class ColumnCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
         self.columns = columns
         self.css_class = css_class
         self.wrapper_css_class = wrapper_css_class
-
+        
+       
     def render(self, name, value, attrs=None, choices=()):
         if value is None: value = []
         has_id = attrs and 'id' in attrs
@@ -57,6 +58,7 @@ class ColumnCheckboxSelectMultiple(forms.CheckboxSelectMultiple):
                 cb = forms.CheckboxInput(
                     final_attrs, check_test=lambda value: value in str_values)
                 option_value = force_text(option_value)
+                
                 rendered_cb = cb.render(name, option_value)
                 option_label = conditional_escape(force_text(option_label))
                 output.append(u'<li><label%s>%s %s</label></li>' % (
