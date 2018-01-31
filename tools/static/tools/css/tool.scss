@@ -78,13 +78,13 @@
 
 .resource-box a {
   color: black;
+  color: $color-gray-light;
 }
 
 .resource-title {
   font-size: 1.3rem;
   line-height: 1.5rem;
   max-height: 3.2rem;
-  overflow: hidden;
   width: 60%;
   display: inline-block;
   vertical-align: middle;
@@ -94,11 +94,11 @@
 
 .resource-item {
   margin: 1rem 0 2rem;
-  height: 2.25rem;
+  min-height: 2.25rem;
 }
 
 .resource-link:hover {
-  color: white !important;
+  color: $color-primary !important;
   text-decoration: none;
 }
 

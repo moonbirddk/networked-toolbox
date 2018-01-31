@@ -169,7 +169,7 @@
 }
 
 
-$animationSpeed: 1.5s;
+$animationSpeed: 1.2s;
 // FRONT ANIMATION
 .hero-section__title.front{
   height: 70px;
@@ -197,5 +197,5 @@ $animationSpeed: 1.5s;
 }
 .hero-section__tagline.front{
   opacity: 0;
-  animation: frontFadeIn $animationSpeed $animationSpeed*2.5 forwards;
+  animation: frontFadeIn $animationSpeed $animationSpeed*2.4 forwards;
 }
