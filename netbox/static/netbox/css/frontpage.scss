@@ -1,3 +1,6 @@
+
+
+
 .front{
   &__cards{
     background: $color-gray-lightest;
@@ -30,6 +33,7 @@
     .icon__rounded{
         position: absolute;
         right: 10px;
+        left: auto;
         top: calc(50% - 25px );
         background: black;
         border-radius: 50%;
@@ -162,10 +166,36 @@
       }
     }
   }
+}
 
-  // CARDS
-  .cards{
-    margin-top: 50px;
+
+$animationSpeed: 1.5s;
+// FRONT ANIMATION
+.hero-section__title.front{
+  height: 70px;
+  span{
+    position: absolute;
+    opacity: 0;
+    display: block;
+    text-align: center;
+    width: 100%;
+    // left: 50%;
+    @include breakpoint($media-large){
+      text-align: left;
+      left: 0;
+    }
+    &.first{
+      animation: frontFadeInOut $animationSpeed forwards;
+    }
+    &.second{
+      animation: frontFadeInOut $animationSpeed $animationSpeed forwards;
+    }
+    &.third{
+      animation: frontFadeIn $animationSpeed $animationSpeed*2 forwards;
+    }
   }
-
+}
+.hero-section__tagline.front{
+  opacity: 0;
+  animation: frontFadeIn $animationSpeed $animationSpeed*2.5 forwards;
 }

@@ -312,7 +312,10 @@
   background-color: $color-primary;
   &--front{
     padding-bottom: 100px;
-    height: 476px;
+    height: 376px;
+    @include breakpoint($media-large){
+      height: 476px;
+    }
   }
   &--overview{
     background-size: cover;
@@ -342,6 +345,7 @@
   &--breadcrumbs &__inner{
     padding-top: 30px;
     height: auto;
+    flex-wrap: wrap;
     p, a{
       color: black;
       font-size: 14px;
@@ -354,12 +358,14 @@
     }
     >*{
         margin-right: 10px;
+        margin-bottom: 20px;
       }
   }
 
   &__title{
     color: white;
     text-align: center;
+    font-size: 55px;
     @include breakpoint($media-large){
       text-align: left;
       font-size: 65px;
@@ -441,7 +447,7 @@
 
 // ALERTS
 .alert{
-  animation: fadeOut 1s 3s forwards;
+  animation: alertFade 4s forwards;
   right: 0;
   top: 0;
   position: fixed;

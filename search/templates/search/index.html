@@ -20,8 +20,12 @@
             <div class="col-xs-12">
                 <div class="hero-section__inner flex-vertical">
                     <div>
-                        <h1 class="hero-section__title">EXPLORE</h1>
-                        <p class="hero-section__tagline">Find the right tools by exploring one of the sections below</p>
+                        <h1 class="hero-section__title front">
+                            <span class="first">EXPLORE</span>
+                            <span class="second">DISCOVER</span>
+                            <span class="third">LEARN</span>
+                        </h1>
+                        <p class="hero-section__tagline front">Find the right tools by exploring one of the sections below</p>
                     </div>
                 </div>
             </div>
@@ -63,7 +67,7 @@
 </section>
 {% include 'search/_search-bar.html' with front=True placeholder="Find tools, stories, a users and more" %}
 
-<section class="section--cards section--white section--padded wow fadeinUp ">
+<section class="section--white section--padded wow fadeinUp section--cards">
     <div class="container-fluid">
         <div class="flex-space-between section--cards--header">
             <h2 class="title">
@@ -72,7 +76,7 @@
             <a href="{%url 'tools:list_tools' %}" class="btn btn-primary">View All Tools</a>
         </div>
         <div class="divider"></div>
-        <div class="tools cards thirds">
+        <div class="tools cards front thirds">
             {% for tool in recent_tools %}
                 {% include 'tools/_tool_card.html' %}
             {% endfor %}
@@ -89,7 +93,7 @@
             <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>  
         </div>
         <div class="divider"></div>
-        <div class="stories cards thirds">
+        <div class="stories cards front thirds">
             {% for story in recent_stories %}
                 {% include "stories/_story_card.html" with story=story %}
             {% endfor %}

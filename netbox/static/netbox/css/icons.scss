@@ -36,13 +36,13 @@
     left: 0;
     border-radius: 50%;
     padding: 8px;
+    bottom: -25px;
     &--black{
       background: black;
       fill: white;
     }
     @include breakpoint($media-large){
       left: 0;
-      bottom: -25px;
     }
     &--overlay{
       &:after{

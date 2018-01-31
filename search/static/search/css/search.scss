@@ -26,13 +26,18 @@
   margin: 0;
   width: 100%;
   height: 120px;
-
+  flex-wrap: wrap;
+  @include breakpoint($media-large){
+    flex-wrap: nowrap;
+  }
   .form-group {
     flex-grow: 1;
     width: 100%;
-    margin-right: 10px;
     margin-bottom: 0;
     height: 55px;
+    @include breakpoint($media-large){
+      margin-right: 10px;
+    }
     input {
       width: 100%;
       height: 100%;

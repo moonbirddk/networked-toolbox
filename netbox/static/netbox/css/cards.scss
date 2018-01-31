@@ -44,9 +44,15 @@
   //     flex: 0 1 50%;
   //   }
   // }
+  &.front{
+    flex-wrap: nowrap;
+    @include breakpoint($media-large){
+      flex-wrap: wrap;
+    }
+  }
 }
 .card{
-  width: 80vw;
+  width: 100%;
   margin-bottom: 20px;
   display: flex;
   flex-flow: column;
@@ -59,11 +65,25 @@
   .full &{
     flex-basis: 100%;
   }
-  .halfs &{
-    flex-basis: calc(50% - 15px);
+  @include breakpoint($media-large){
+    .halfs &{
+      flex-basis: calc(50% - 15px);
+    }
+    .thirds &{
+      flex-basis: calc(100% / 3 - 20px);
+    }
   }
-  .thirds &{
-    flex-basis: calc(100% / 3 - 20px);
+  .front &{
+    margin-right: 20px;
+    @include breakpoint($media-large){
+      margin-right: 0;
+    }
+    .card__content{
+      width: 80vw;
+      @include breakpoint($media-large){
+        width: auto;
+      }
+    }
   }
   .stories &{
     background: $color-gray-lightest;
