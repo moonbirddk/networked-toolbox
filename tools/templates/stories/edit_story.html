@@ -16,16 +16,19 @@
 {% block head_title %}Edit Story - {% endblock %}
 
 {% block main %}
-<h1>Edit Story</h1>
+<div class="container-fluid flex-grow flex-center">
+    <div class="row">
+        <h1>Edit Story</h1>
 
-<form method="POST" action="{% url 'tools:edit_story' story.id %}" class="form" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% buttons %}
-        <button type="submit" class="btn btn-primary">
-            {% bootstrap_icon "star" %} Submit
-        </button>
-    {% endbuttons %}
-</form>
+        <form method="POST" action="{% url 'tools:edit_story' story.id %}" class="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Submit
+                </button>
+            {% endbuttons %}
+        </form>
+</div></div>
 
 {% endblock %}

@@ -12,6 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
+  padding-right: 0 !important; // jquery modal padding fix
 }
 
 h1, h2, h3{

@@ -15,16 +15,19 @@
 {% block head_title %}Edit Tool - {% endblock %}
 
 {% block main %}
-<h1>Edit Tool</h1>
+<div class="container-fluid flex-grow flex-center">
+    <div class="section--padded">
+        <h1>Edit Tool</h1>
 
-<form method="POST" action="{% url 'tools:edit' tool.id %}" class="form" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    {% buttons %}
-        <button type="submit" class="btn btn-primary">
-            {% bootstrap_icon "star" %} Submit
-        </button>
-    {% endbuttons %}
-</form>
-
+        <form method="POST" action="{% url 'tools:edit' tool.id %}" class="form" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Submit
+                </button>
+            {% endbuttons %}
+        </form>
+    </div>
+</div>
 {% endblock %}

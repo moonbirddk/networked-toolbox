@@ -15,10 +15,10 @@
                             {% else %}
                             <span class="toggle-off">{{category_group.name}}</span>
                             {% endif %} {% if perms.tools %}{% if perms.tools.edit_categorygroup %}
-                            <a href="{% url 'tools:edit_workarea' category_group.id %}">
+                            <a href="{% url 'tools:edit_categorygroup' category_group.id %}">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a href="{% url 'tools:delete_workarea' category_group.id %}">
+                            <a href="{% url 'tools:delete_categorygroup' category_group.id %}">
                                 <i class="fa fa-trash-o"></i>
                             </a>
                             {% endif %}{% endif %}

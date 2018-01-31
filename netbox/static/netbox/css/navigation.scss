@@ -342,6 +342,7 @@
   &--breadcrumbs &__inner{
     padding-top: 30px;
     height: auto;
+    flex-wrap: wrap;
     p, a{
       color: black;
       font-size: 14px;
@@ -354,6 +355,7 @@
     }
     >*{
         margin-right: 10px;
+        margin-bottom: 20px;
       }
   }
 
@@ -441,7 +443,7 @@
 
 // ALERTS
 .alert{
-  animation: fadeOut 1s 3s forwards;
+  animation: alertFade 4s forwards;
   right: 0;
   top: 0;
   position: fixed;

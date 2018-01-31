@@ -1,4 +1,5 @@
 @import '../../../../netbox/static/netbox/css/variables';
+@import '../../../../netbox/static/netbox/css/functions';
 
 .flex-wrapper {
   display: flex;
@@ -162,11 +163,14 @@
   border-radius: 5px;
   height: 45px;
   width: 180px;
-  position: absolute;
-  right: 25px;
-  top: 20px;
   padding: 0;
   margin: 0;
+  @include breakpoint($media-large){
+    position: absolute;
+    right: 25px;
+    top: 20px;
+
+  }
   &__icon__container{
     border-right: 1px solid $color-gray-light;
     height: 44px;
@@ -181,6 +185,7 @@
     height: 100%;
     width: 100%;
     border: none;
+    background: white;
     &:hover{
       background: $color-gray-lightest;
       color: $color-primary;
