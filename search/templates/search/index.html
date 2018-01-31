@@ -41,7 +41,7 @@
             <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
                 <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
                     <svg class="icon" viewbox="0 0 1 1">
-                        <use href="{% get_static_prefix %}icons/{{overview_name|lower|slugify}}.svg#{{overview_name|lower|slugify}}"></use>
+                        <use xlink:href="{% get_static_prefix %}icons/{{overview_name|lower|slugify}}.svg#{{overview_name|lower|slugify}}"></use>
                     </svg>
                 </div>
                 <h3 class="title">

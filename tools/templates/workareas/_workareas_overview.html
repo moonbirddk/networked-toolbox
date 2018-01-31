@@ -31,13 +31,13 @@
                             </h5>
                             <div class="card__counter--people flex-vertical">
                                 <svg class="icon icon--black" viewbox="0 0 1 1">
-                                    <use href="{% static 'icons/profile.svg' %}#profile"></use>
+                                    <use xlink:href="{% static 'icons/profile.svg' %}#profile"></use>
                                 </svg>
                                 <span>{{category_group.followers.count}} {{category_group.followers.count|pluralize:"person, people"}} </span>
                             </div>
                             <div class="card__counter--comments flex-vertical">
                                 <svg class="icon icon--black" viewbox="0 0 1 1">
-                                    <use href="{% static 'icons/stories.svg' %}#stories"></use>
+                                    <use xlink:href="{% static 'icons/stories.svg' %}#stories"></use>
                                 </svg>
                                 <span>{{category_group.stories.count}} {{category_group.stories.count|pluralize:"story, stories"}} </span>
                             </div>
@@ -56,7 +56,7 @@
                     <div class="sidebar__header flex-vertical">
                         <div class="icon__rounded icon__rounded--black">
                             <svg class="icon icon--white" viewbox="0 0 1 1">
-                                <use href="{% static "/icons/stories.svg"%}#stories"></use>
+                                <use xlink:href="{% static "/icons/stories.svg"%}#stories"></use>
                             </svg>
                         </div>
                         <h4>Recent stories</h4>

@@ -13,7 +13,7 @@
         <div class="card__footer card__counter">
             <div class="card__counter--people flex-vertical">
                 <svg class="icon icon--white" viewbox="0 0 1 1">
-                    <use href="{% static 'icons/tools.svg' %}#tools"></use>
+                    <use xlink:href="{% static 'icons/tools.svg' %}#tools"></use>
                 </svg>
                 <span class="white-text">{{toolbox.tools.count}} {{toolbox.tools.count|pluralize:"tool, tools"}} </span>
             </div>
