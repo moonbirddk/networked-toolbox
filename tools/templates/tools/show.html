@@ -35,6 +35,7 @@ ga('send', 'event', 'tool', 'view');
 <div class="container-fluid">
 	<div class="content-card wow fadeinup">
 		{% include "tools/_follow_button.html" %}
+		
 		<div class="row">
 			<div class="col-md-8 col-sm-12 summernote-container">
 				<h2 class="title">
@@ -102,6 +103,7 @@ ga('send', 'event', 'tool', 'view');
 			{% endfor %}
 		</div>
 		<div class="divider--bordered"></div>
+		{%include 'tools/_use_button.html'%}
 		<h4 class="title">Used in these toolboxes</h4>
 		<div class="categories-tags">
 			{% for category in tool.published_categories %}
