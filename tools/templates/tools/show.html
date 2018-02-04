@@ -94,10 +94,10 @@ ga('send', 'event', 'tool', 'view');
 		<div class="divider--bordered"></div>
 	  	<h4 class="title">We have used this tool</h4>
 		<div class="tool-followers flex-wrapper">
-			{% for follower in tool_followers %}
+			{% for tool_user in tool_users %}
 				<div class="tool-follower">
-				<a href="{% url 'profiles:show' follower.user.profile.uid %}">
-					{% render_profile_photo follower.user %}
+				<a href="{% url 'profiles:show' tool_user.user.profile.uid %}">
+					{% render_profile_photo tool_user.user %}
 				</a>
 				</div>
 			{% endfor %}
