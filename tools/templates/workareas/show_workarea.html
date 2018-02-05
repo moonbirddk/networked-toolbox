@@ -26,7 +26,7 @@
 {% include '_hero_breadcrumbs.html' with icon='work-areas' breadcrumbs=breadcrumbs %}
 <div class="container-fluid">
   <div class="content-card wow fadeinup">
-    {% include "tools/_follow_button.html" with tool=category_group tools=category_groups %}
+    {% include "tools/_follow_button.html" with tool=category_group tools=category_groups tool_follower_ids=category_group_follower_ids %}
     <div class="row">
       <div class="col-sm-12 col-md-8">
         <h2 class="title">{{category_group.name}}</h2>

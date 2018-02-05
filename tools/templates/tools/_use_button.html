@@ -1,0 +1,19 @@
+{% load static %}
+  <form class="follow-button " action="
+    {%if user.id in tool_user_ids%}
+      {% url 'tools:unfollow' tool.id %}
+    {%else%}
+      {% url 'tools:follow' tool.id %}
+    {%endif%}" method="post">
+  {% csrf_token %}
+  <button type="submit" name='have_used' value='1' class="btn flex-row" data-requires-validated-user="true">
+      <div class="follow-button__icon__container flex-center">
+        <svg class="icon icon--red" viewbox="0 0 1 1">
+          <use xlink:href="{% static 'icons/cross.svg' %}#cross"></use>
+        </svg>
+      </div>
+      <p class="follow-button__text flex-center" style="font-size:small;">
+          I have {%if user.id in tool_user_ids%}not {%endif%}used<br>this tool 
+      </p>
+  </button>
+</form>

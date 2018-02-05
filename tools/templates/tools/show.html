@@ -35,6 +35,7 @@ ga('send', 'event', 'tool', 'view');
 <div class="container-fluid">
 	<div class="content-card wow fadeinup">
 		{% include "tools/_follow_button.html" %}
+		
 		<div class="row">
 			<div class="col-md-8 col-sm-12 summernote-container">
 				<h2 class="title">
@@ -93,15 +94,16 @@ ga('send', 'event', 'tool', 'view');
 		<div class="divider--bordered"></div>
 	  	<h4 class="title">We have used this tool</h4>
 		<div class="tool-followers flex-wrapper">
-			{% for follower in tool_followers %}
+			{% for tool_user in tool_users %}
 				<div class="tool-follower">
-				<a href="{% url 'profiles:show' follower.user.profile.uid %}">
-					{% render_profile_photo follower.user %}
+				<a href="{% url 'profiles:show' tool_user.user.profile.uid %}">
+					{% render_profile_photo tool_user.user %}
 				</a>
 				</div>
 			{% endfor %}
 		</div>
 		<div class="divider--bordered"></div>
+		{%include 'tools/_use_button.html'%}
 		<h4 class="title">Used in these toolboxes</h4>
 		<div class="categories-tags">
 			{% for category in tool.published_categories %}

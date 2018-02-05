@@ -93,7 +93,8 @@ class ToolUser(models.Model):
 
     user = models.ForeignKey('auth.User')
     tool = models.ForeignKey('Tool', related_name='users')
-    
+    should_notify = models.BooleanField(default=False, null=False)
+
     def __str__(self): 
         return '{} - {}'.format(self.user, self.tool)
 

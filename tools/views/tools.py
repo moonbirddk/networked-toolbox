@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.contenttypes.models import ContentType
 from ..forms import ToolForm
 
-from ..models import Tool, ToolCategory, ToolFollower, ToolOverviewPage, CategoryGroup
+from ..models import Tool, ToolCategory, ToolFollower, ToolUser, ToolOverviewPage, CategoryGroup
 from django.contrib.auth.models import User
 from comments.models import ThreadedComment
 from shared.helpers import OrderedSet
@@ -73,6 +73,8 @@ def show_tool(request, tool_id):
     comments = tool.comments.all()
     tool_follower_ids = list(tool.followers.all().values_list('user_id', flat=True))
     tool_followers = tool.followers.all().order_by('?')[:12]
+    tool_users = tool.users.all().order_by('?')[:12]
+    tool_user_ids = list(tool.users.all().values_list('user_id', flat=True))
     stories = tool.stories.all().order_by('-created')
     breadcrumbs = [
         'Tools',
@@ -80,9 +82,12 @@ def show_tool(request, tool_id):
     ]
     context = {
         'breadcrumbs': breadcrumbs,
+        'meta': tool._meta, 
         'tool': tool,
         'tool_follower_ids': tool_follower_ids,
         'tool_followers': tool_followers,
+        'tool_users': tool_users, 
+        'tool_user_ids': tool_user_ids,  
         'stories': stories,
         'comments': comments
     }
@@ -96,16 +101,21 @@ def follow_tool(request, tool_id):
 
     tool = get_object_or_404(Tool, id=tool_id, published=True)
     if request.method == 'POST':
+        nessage = ''
         should_notify = False
         if request.POST.get('should_notify', '0') == '1':
             should_notify = True
-        tool_follower, created = ToolFollower.objects.get_or_create(
-            user=request.user,
-            tool=tool
+            ToolFollowerOrUser = ToolFollower
+            message = 'You are now following this tool.'
+        elif request.POST.get('have_used', '0') == '1': 
+            ToolFollowerOrUser = ToolUser
+            message = 'You have used this tool.'   
+        tool_follower, created = ToolFollowerOrUser.objects.get_or_create(
+        user=request.user,
+        tool=tool
         )
         tool_follower.should_notify = should_notify
-        tool_follower.save()
-        messages.success(request, "You are now following this tool.")
+        messages.success(request, message)    
     return redirect(tool)
 
 
@@ -113,8 +123,14 @@ def follow_tool(request, tool_id):
 def unfollow_tool(request, tool_id):
     tool = get_object_or_404(Tool, id=tool_id, published=True)
     if request.method == 'POST':
-        tool.followers.all().filter(user_id=request.user.id).delete()
-        messages.success(request, "You are no longer following this tool.")
+        if request.POST.get('have_used'):
+            tool_followers_or_users = tool.users.all()
+            message = "You have not used this tool."
+        elif request.POST.get('should_notify'): 
+            tool_followers_or_users = tool.followers.all()
+            message = "You are no longer following this tool."
+        tool_followers_or_users.filter(user_id=request.user.id).delete()
+        messages.success(request, message)
     return redirect(tool)
 
 

@@ -62,7 +62,8 @@ def show_categorygroup(request, category_group_id):
     ]
     context = {
         'category_group': category_group,
-        'categories': categories, 
+        'categories': categories,
+        'meta': category_group._meta,  
         # 'stories': category_group.stories.filter(published=True), 
         'stories': category_group.stories.all(),  #WTODO
         'category_group_follower_ids': category_group_follower_ids,
