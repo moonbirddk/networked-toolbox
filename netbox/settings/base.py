@@ -73,7 +73,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'compressor',
     'django_countries',
-    #'trumbowyg', 
+    'trumbowyg', 
     'django_summernote',
     'easy_timezones',
     'haystack',

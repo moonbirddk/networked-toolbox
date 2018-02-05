@@ -4,13 +4,21 @@ from django.utils.html import format_html
 from solo.admin import SingletonModelAdmin
 from .models import Tool, ToolCategory, Suggestion, ToolFollower, ToolUser, \
     ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupFollower, CategoryGroupOverviewPage, Story, StoryOverviewPage
-#from .forms import ToolAdminForm
+from .forms import get_trumbowyg_form_for_model
+
+from django.utils.html import format_html
+
 
 
 class ToolAdmin(admin.ModelAdmin): 
-    #form = ToolAdminForm
+    
+    def link_to_tool_on_site(self): 
+        return format_html('<a href="{}">{}</a>',self.get_absolute_url(), self.title)
+
+    form = get_trumbowyg_form_for_model('tool','description')
     list_per_page = 20 
-    list_display = ['title', 'created_date', 'published']
+    list_display = ['title',link_to_tool_on_site,  'created_date', 'published']
+   
     
 
 class CategoryGroupAdmin(admin.ModelAdmin): 
@@ -31,7 +39,6 @@ class StoryAdmin(admin.ModelAdmin):
     def tool_or_work_area(self): 
         return '{}: {}'.format(self.parent_object._meta.verbose_name.title(), self.parent_object)
     
-
     list_display = ['__str__', author, tool_or_work_area, link_to_story_on_website, 'created', 'published']
     list_editable = ['published']
     list_per_page = 20
@@ -53,6 +60,7 @@ class CategoryGroupFollowerAdmin(admin.ModelAdmin):
 class ToolCategoryAdmin(admin.ModelAdmin): 
     list_display = ['__str__', 'group', 'published']
     list_per_page = 20
+    form = get_trumbowyg_form_for_model('toolcategory', 'description')
     
 admin.site.register(Tool, ToolAdmin)
 admin.site.register(Story, StoryAdmin)
