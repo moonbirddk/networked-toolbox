@@ -8,11 +8,38 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_countries.fields import LazyTypedChoiceField
 from django_countries import countries
+from django.contrib.contenttypes.models import ContentType
 
 from .models import Tool, ToolCategory, CategoryGroup, Story
 from .widgets import ColumnCheckboxSelectMultiple
 from django.forms.widgets import CheckboxSelectMultiple
 log = logging.getLogger(__name__)
+
+from trumbowyg.widgets import TrumbowygWidget
+
+class ToolAdminForm(forms.ModelForm):
+    class Meta:
+        model = Tool
+        exclude = ('created_date',)
+        widgets = {
+            'description': TrumbowygWidget(),
+        }
+
+def get_trumbowyg_form_for_model(model_name, excludes=None):
+    content_type = ContentType.objects.get(model=model_name)
+    model_class = content_type.model_class()
+    form_fields = fields
+
+    class _ObjectForm(forms.ModelForm):
+        class Meta:
+            model = model_class
+            exclude = (excludes,)
+            widgets = {
+                'description': TrumbowygWidget(),
+            }
+
+
+    return _ObjectForm
 
 
 class OverviewPageForm(forms.Form):

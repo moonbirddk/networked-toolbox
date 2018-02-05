@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^trumbowyg/', include('trumbowyg.urls')),
     url(r'^hijack/', include('hijack.urls', namespace='hijack')),
     url(r'^inbox/notifications/',
         include('notifications.urls',
@@ -39,3 +40,4 @@ urlpatterns = [
 
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
     static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)
+

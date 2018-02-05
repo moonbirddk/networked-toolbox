@@ -36,14 +36,7 @@ ga('send', 'event', 'toolboxSection', 'view');
                     {{category.group.name}}
                 </a>
             </div>
-            <h1 class="title no-top-margin">{{ category.title }}
-                {% if perms.tools %}{% if perms.tools.change_toolcategory%}
-                    <a href="{% url 'tools:edit_category' category.id %}"><i class="fa fa-pencil-square-o"></i></a>
-                {% endif %}{% endif %}
-                {% if perms.tools %}{% if perms.tools.delete_toolcategory%}
-                    <a href="{% url 'tools:delete_category' category.id %}"><i class="fa fa-trash-o"></i></a>
-                {% endif %}{% endif %}
-            </h1>
+            <h1 class="title no-top-margin">{{ category.title }}</h1>
             <div class="summernote-content category-more">{{category.description|safe }}</div>
         </div>
         <!--<div class="col-md-6">
@@ -72,11 +65,7 @@ ga('send', 'event', 'toolboxSection', 'view');
         </div>
         <div class="col-md-6 top-margin">
           <div class="resource-box">
-            <h3 class="title">Resources
-            {% if perms.tools %}{% if perms.tools.add_toolresource %}
-            <a href="{% url 'resources:add' 'toolcategory' category.id %}"><i class="fa fa-plus"></i></a>
-            {% endif %}{% endif %}
-            </h3>
+            <h3 class="title">Resources</h3>
             <p>{{ category.resources_text }}</p>
 
             {% for resource in category.resources.all %}
@@ -84,10 +73,7 @@ ga('send', 'event', 'toolboxSection', 'view');
               <div class="resource-item">
                 <div class="pull-right">
                   <a target="_blank" download href="{{ resource.document.url }}"><i class="fa fa-arrow-circle-o-down resource-action"></i></a>
-                  {% if perms.tools %}{% if perms.tools.delete_toolresource %}
-                  <a href="{% url 'resources:edit' resource.id %}"><i class="fa fa-pencil resource-action"></i></a>
-                  <a href="{% url 'resources:delete' resource.id %}"><i class="fa fa-close resource-action"></i></a>
-                  {% endif %}{% endif %}
+                 
                 </div>
                 <div>
                   <a class="resource-link" target="_blank"  href="{{ resource.document.url }}">

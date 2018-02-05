@@ -2,9 +2,16 @@ from django.contrib import admin
 from django.utils.html import format_html 
 
 from solo.admin import SingletonModelAdmin
-from .models import Tool, ToolCategory, Suggestion, ToolFollower, \
+from .models import Tool, ToolCategory, Suggestion, ToolFollower, ToolUser, \
     ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupFollower, CategoryGroupOverviewPage, Story, StoryOverviewPage
+from .forms import ToolAdminForm
 
+
+class ToolAdmin(admin.ModelAdmin): 
+    form = ToolAdminForm
+    list_per_page = 20 
+    list_display = ['title', 'created_date', 'published']
+    
 
 class CategoryGroupAdmin(admin.ModelAdmin): 
     list_per_page = 20 
@@ -33,7 +40,7 @@ class SuggestionAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'related_object']
     list_per_page = 20
 
-class ToolFollowerAdmin(admin.ModelAdmin): 
+class ToolFollowerUserAdmin(admin.ModelAdmin): 
     list_display = ['user', 'tool', 'should_notify']
     list_filter = ['user', 'tool'] #MTODO: Smart Filtering
     list_per_page = 20
@@ -47,12 +54,13 @@ class ToolCategoryAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'group', 'published']
     list_per_page = 20
     
-admin.site.register(Tool)
+admin.site.register(Tool, ToolAdmin)
 admin.site.register(Story, StoryAdmin)
 admin.site.register(ToolCategory, ToolCategoryAdmin)
 admin.site.register(CategoryGroup, CategoryGroupAdmin)
 admin.site.register(Suggestion, SuggestionAdmin)
-admin.site.register(ToolFollower, ToolFollowerAdmin)
+admin.site.register(ToolFollower, ToolFollowerUserAdmin)
+admin.site.register(ToolUser, ToolFollowerUserAdmin)
 admin.site.register(CategoryGroupFollower, CategoryGroupFollowerAdmin)
 admin.site.register(ToolOverviewPage, SingletonModelAdmin)
 admin.site.register(CategoryOverviewPage, SingletonModelAdmin)
