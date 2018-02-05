@@ -38,12 +38,7 @@ ga('send', 'event', 'tool', 'view');
 		
 		<div class="row">
 			<div class="col-md-8 col-sm-12 summernote-container">
-				<h2 class="title">
-				{{ tool.title }}
-				{% if perms.tools %}{% if perms.tools.change_tool %}
-					<a href="{% url 'tools:edit' tool.id %}"><i class="fa fa-pencil-square-o"></i></a>
-				{% endif %}{% endif %}
-				</h2>
+				<h2 class="title">{{ tool.title }}</h2>
 			</div>
 		</div>
 <div class="row">
@@ -58,13 +53,8 @@ ga('send', 'event', 'tool', 'view');
   </div>
   <div class="col-md-4 col-sm-12">
 	  <div class="resource-box">
-		  <h4 class="title">Resources
-			  {% if perms.tools %}{% if perms.tools.add_toolresource %}
-				  <a href="{% url 'resources:add' 'tool' tool.id  %}"><i class="fa fa-plus"></i></a>
-			  {% endif %}{% endif %}
-		  </h4>
-		  
-		  <p>{{ tool.resources_text }}</p>
+		  <h4 class="title">Resources</h4>
+			<p>{{ tool.resources_text }}</p>
 
 		  {% for resource in tool.resources.all %}
 			  {{ resource.document.type }}
@@ -73,14 +63,7 @@ ga('send', 'event', 'tool', 'view');
 					  <a target="_blank" download href="{{ resource.document.url }}">
 						  <i class="fa fa-arrow-circle-o-down resource-action"></i>
 					  </a>
-					  {% if perms.tools %}{% if perms.tools.delete_toolresource %}
-						  <a href="{% url 'resources:edit' resource.id %}">
-							  <i class="fa fa-pencil resource-action"></i>
-						  </a>
-						  <a href="{% url 'resources:delete' resource.id %}">
-							  <i class="fa fa-close resource-action"></i>
-						  </a>
-					  {% endif %}{% endif %}
+					  
 				  </div>
 				  <div>
 					  <a class="resource-link" target="_blank"  href="{{ resource.document.url }}">

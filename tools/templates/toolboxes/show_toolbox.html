@@ -36,22 +36,12 @@ ga('send', 'event', 'toolboxSection', 'view');
         <div class="row">
             <div class="col-md-8 col-sm-12 summernote-container">
                 <div class="category-description summernote-content category-more">
-                    {% if perms.tools %}{% if perms.tools.change_category %}
-                    <a href="{% url 'tools:edit_categorygroup' category.id %}">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                    {% endif %}{% endif %}
                     {{category.description|safe }}
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="resource-box">
-                    <h4 class="title">Resources {% if perms.tools %}{% if perms.tools.add_toolresource %}
-                        <a href="{% url 'resources:add' 'toolcategory' category.id %}">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                        {% endif %}{% endif %}
-                    </h4>
+                    <h4 class="title">Resources</h4>
                     <p>{{ category.resources_text }}</p>
             
                     {% for resource in category.resources.all %} {{ resource.document.type }}
@@ -60,14 +50,6 @@ ga('send', 'event', 'toolboxSection', 'view');
                             <a target="_blank" download href="{{ resource.document.url }}">
                                 <i class="fa fa-arrow-circle-o-down resource-action"></i>
                             </a>
-                            {% if perms.tools %}{% if perms.tools.delete_toolresource %}
-                            <a href="{% url 'resources:edit' resource.id %}">
-                                <i class="fa fa-pencil resource-action"></i>
-                            </a>
-                            <a href="{% url 'resources:delete' resource.id %}">
-                                <i class="fa fa-close resource-action"></i>
-                            </a>
-                            {% endif %}{% endif %}
                         </div>
                         <div>
                             <a class="resource-link" target="_blank" href="{{ resource.document.url }}">
@@ -89,9 +71,7 @@ ga('send', 'event', 'toolboxSection', 'view');
                 <p>There are no related tools.</p>
             {% endfor %}
         </div>
-            {% if perms.tools %}{% if perms.tools.add_toolcategory %}
-            <a class="btn btn-primary pull-right" href="{% url 'tools:add_category_to_group' category.id %}">Add Toolbox</a>
-            {% endif %}{% endif %}
+         
     </div>
 </div>
 

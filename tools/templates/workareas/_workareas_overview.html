@@ -1,4 +1,8 @@
-{% load toolstags %} {% load partition_slice %} {% load commontags %} {% load static %} {% load profilestags %}
+{% load toolstags %} 
+{% load partition_slice %} 
+{% load commontags %} 
+{% load static %} 
+{% load profilestags %}
  
 <div class="overview overview--workarea">
     <div class="container-fluid">
@@ -14,14 +18,7 @@
                             </a>
                             {% else %}
                             <span class="toggle-off">{{category_group.name}}</span>
-                            {% endif %} {% if perms.tools %}{% if perms.tools.edit_categorygroup %}
-                            <a href="{% url 'tools:edit_categorygroup' category_group.id %}">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <a href="{% url 'tools:delete_categorygroup' category_group.id %}">
-                                <i class="fa fa-trash-o"></i>
-                            </a>
-                            {% endif %}{% endif %}
+                            {% endif %} 
                         </h3>
                         <p>{{category_group.description}}</p>
 
