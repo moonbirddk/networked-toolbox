@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^summernote/', include('django_summernote.urls')),
-    url(r'^trumbowyg/', include('trumbowyg.urls')),
+    #url(r'^trumbowyg/', include('trumbowyg.urls')),
     url(r'^hijack/', include('hijack.urls', namespace='hijack')),
     url(r'^inbox/notifications/',
         include('notifications.urls',
