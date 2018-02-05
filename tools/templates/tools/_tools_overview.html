@@ -19,7 +19,7 @@
       <h3>Tools overview</h3>
       <div class="tools cards thirds">
         {% for resource in resources %}
-        {% include 'tools/_tools_card.html' with tool=resource %}
+        {% include 'tools/_tools_card.html' with tool=resource from="ov"%}
         {% empty %}
         <div class="categories-empty col-md-12">
           There are no tools sections in this Work Area.

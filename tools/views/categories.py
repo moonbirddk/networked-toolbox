@@ -13,6 +13,9 @@ from tools.forms import ToolCategoryForm
 from tools.models import ToolCategory, CategoryGroupOverviewPage,\
     CategoryGroup, get_default_category_group_id
 
+from django.urls import reverse
+from django.utils.html import format_html
+
 log = logging.getLogger(__name__)
 
 def list_categories(request):
@@ -38,7 +41,6 @@ def list_categories(request):
         'overview': overview,
         'categories_by_group': categories_by_group,
     }
-    # return render(request, 'category_groups/list_categorygroups.html', context)  #OLD PATH
     return render(request, 'workareas/list_workareas.html', context)
 
 
@@ -47,9 +49,11 @@ def show_category(request, cat_id):
         category = get_object_or_404(ToolCategory, id=cat_id)
     else:
         category = get_object_or_404(ToolCategory, id=cat_id, published=True)
+    work_areas_list_link =  format_html('<a href="{}">Work Areas</a>', reverse('tools:index'))  
+    work_area_link = format_html('<a href="{}">{}</a>', category.group.get_absolute_url(), category.group.name)
     breadcrumbs = [
-        'Work areas',
-        category.group.name,
+        work_areas_list_link, 
+        work_area_link, 
         category
     ]
     context = {
@@ -58,89 +62,3 @@ def show_category(request, cat_id):
     }
     return render(request, 'toolboxes/show_toolbox.html', context)
 
-
-@permission_required('tools.add_toolcategory', login_url='tools:index')
-@login_required
-def add_category(request, group_category_id=None):
-    if group_category_id: 
-
-        form = ToolCategoryForm(initial={'group':group_category_id})
-    else:
-        form = ToolCategoryForm()
-
-    if request.method == 'POST':
-        form = ToolCategoryForm(request.POST, request.FILES)
-        if form.is_valid():
-            cat = ToolCategory.objects.create(**form.cleaned_data)
-            messages.success(request, "You created a toolbox")
-            return redirect('tools:show_category', cat.id)
-
-    context = {'form': form}
-    return render(request, 'categories/add_category.html', context)
-
-
-@transaction.atomic
-@permission_required('tools.change_toolcategory', login_url='tools:index')
-@login_required
-def edit_category(request, cat_id):
-    # TODO: use celery tasks for storage IO so id doesn't block transaction
-    category = get_object_or_404(ToolCategory, id=cat_id)
-
-    attributes = {
-        'title': category.title,
-        'description': category.description,
-        'published': category.published,
-        'resources_text': category.resources_text,
-        'group': category.group.id,
-    }
-
-    if category.cover_image and \
-            default_storage.exists(category.cover_image.name):
-        files = {'cover_image': category.cover_image}
-    else:
-        files = {}
-    form = ToolCategoryForm(attributes, files)
-
-    if request.method == 'POST':
-        form = ToolCategoryForm(request.POST, request.FILES)
-        if form.is_valid():
-            if request.POST.get('cover_image-clear'):
-                cover_image = None
-                if category.has_existing_cover_image():
-                    default_storage.delete(category.cover_image.name)
-            else:
-                if form.cleaned_data['cover_image']:
-                    if category.has_existing_cover_image():
-                            default_storage.delete(category.cover_image.name)
-                    cover_image = form.cleaned_data['cover_image']
-                else:
-                    cover_image = category.cover_image
-
-            category.published = form.cleaned_data['published']
-            category.title = form.cleaned_data['title']
-            category.description = form.cleaned_data['description']
-            category.cover_image = cover_image
-            category.resources_text = form.cleaned_data['resources_text']
-            category.group = form.cleaned_data['group']
-            category.save()
-            messages.success(request, "You updated this toolbox")
-            return redirect('tools:show_category', category.id)
-
-    context = {'category': category, 'form': form}
-    return render(request, 'categories/edit_category.html', context)
-
-
-@transaction.atomic
-@permission_required('tools.delete_toolcategory', login_url='tools:index')
-@login_required
-def delete_category(request, cat_id):
-    category = get_object_or_404(ToolCategory, id=cat_id)
-
-    if request.method == 'GET':
-        context = {'category': category}
-        return render(request, 'categories/delete_category.html', context)
-    else:
-        if 'yes' == request.POST.get('confirmation', 'no'):
-            category.delete()
-            messages.success(request, "You deleted a toolbox")
-        return redirect('tools:index')

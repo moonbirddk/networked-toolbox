@@ -66,7 +66,7 @@ ga('send', 'event', 'toolboxSection', 'view');
         <h3>Tools in this toolbox</h3>
         <div class="cards thirds">
             {% for tool in category.published_tools %} 
-                {% include "tools/_tools_card.html" with tool=tool %} 
+                {% include "tools/_tools_card.html" with tool=tool from="tb_" parent_id=category.id%} 
             {% empty %}
                 <p>There are no related tools.</p>
             {% endfor %}

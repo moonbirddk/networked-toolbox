@@ -18,23 +18,6 @@ log = logging.getLogger(__name__)
 from trumbowyg.widgets import TrumbowygWidget
 
 
-def get_trumbowyg_form_for_model(model_name, text_field, fields='__all__', excludes=None):
-    content_type = ContentType.objects.get(model=model_name)
-    model_class = content_type.model_class()
-    form_fields = fields
-
-    class _ObjectForm(forms.ModelForm):
-        class Meta:
-            model = model_class
-            exclude = (excludes,)
-            widgets = {
-                text_field: TrumbowygWidget(),
-            }
-
-
-    return _ObjectForm
-
-
 class OverviewPageForm(forms.Form):
     description = forms.fields.CharField(
         max_length=255,
@@ -92,13 +75,9 @@ class StoryForm(forms.ModelForm):
         model = Story 
         fields = ('title', 'content', 'country', 'associated_tools',)
         widgets = {
-            'content': SummernoteInplaceWidget(), 
+            'content': TrumbowygWidget, 
             'associated_tools': CheckboxSelectMultiple,
-            #     columns=3,
-            #     css_class='col-md-4', 
-            #     wrapper_css_class='row',
-                
-            #    ),
+            
         }
   
    

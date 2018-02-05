@@ -59,7 +59,7 @@
                         <h4>Recent stories</h4>
                     </div>
                      {% for story in stories|slice:":4" %}
-                        {% include 'stories/_story_card.html' %}
+                        {% include 'stories/_story_card.html' with from="wa_ov" %}
                     {% endfor %}
                     <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>
                      {% if stories|length > 4 %}
