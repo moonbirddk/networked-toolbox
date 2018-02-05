@@ -4,11 +4,11 @@ from django.utils.html import format_html
 from solo.admin import SingletonModelAdmin
 from .models import Tool, ToolCategory, Suggestion, ToolFollower, ToolUser, \
     ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupFollower, CategoryGroupOverviewPage, Story, StoryOverviewPage
-from .forms import ToolAdminForm
+#from .forms import ToolAdminForm
 
 
 class ToolAdmin(admin.ModelAdmin): 
-    form = ToolAdminForm
+    #form = ToolAdminForm
     list_per_page = 20 
     list_display = ['title', 'created_date', 'published']
     

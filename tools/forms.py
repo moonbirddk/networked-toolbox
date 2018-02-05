@@ -15,15 +15,15 @@ from .widgets import ColumnCheckboxSelectMultiple
 from django.forms.widgets import CheckboxSelectMultiple
 log = logging.getLogger(__name__)
 
-from trumbowyg.widgets import TrumbowygWidget
+#from trumbowyg.widgets import TrumbowygWidget
 
-class ToolAdminForm(forms.ModelForm):
-    class Meta:
-        model = Tool
-        exclude = ('created_date',)
-        widgets = {
-            'description': TrumbowygWidget(),
-        }
+# class ToolAdminForm(forms.ModelForm):
+#     class Meta:
+#         model = Tool
+#         exclude = ('created_date',)
+#         widgets = {
+#             'description': TrumbowygWidget(),
+#         }
 
 def get_trumbowyg_form_for_model(model_name, excludes=None):
     content_type = ContentType.objects.get(model=model_name)
