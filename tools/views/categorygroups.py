@@ -41,10 +41,9 @@ def list_category_groups(request):
     }
     order_name, order_query = ORDERINGS[request.GET.get('order', 'a_z')]
     context = {
-        'categories_filter': cat_filter,
         'overview': overview,
         'categories_by_group': categories_by_group,
-        'stories': Story.objects.all().order_by('-created'),
+        'stories': Story.objects.filter(published=True).order_by('-created'),
         'order': order_name,
         'order_by_list': ORDERINGS
     }

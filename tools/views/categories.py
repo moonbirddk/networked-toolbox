@@ -37,7 +37,6 @@ def list_categories(request):
 
     overview = CategoryGroupOverviewPage.get_solo()
     context = {
-        'categories_filter': cat_filter,
         'overview': overview,
         'categories_by_group': categories_by_group,
     }
