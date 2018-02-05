@@ -23,7 +23,7 @@ django-hijack-admin
 Django==1.11.8
 elasticsearch==5.5.0
 git+https://github.com/jschneier/django-storages.git#egg=django-storages
-hg+https://MathiasWedeken@bitbucket.org/MathiasWedeken/django-fs-trumbowyg
+git+https://github.com/MathiasWedeken/django-fs-trumbowyg.git
 gunicorn
 bpython
 newrelic
