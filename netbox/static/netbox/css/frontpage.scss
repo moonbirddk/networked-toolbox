@@ -169,7 +169,8 @@
 }
 
 
-$animationSpeed: 1.2s;
+$animationSpeed: 1.5s;
+$animationDelay: 1.2s;
 // FRONT ANIMATION
 .hero-section__title.front{
   height: 70px;
@@ -185,17 +186,17 @@ $animationSpeed: 1.2s;
       left: 0;
     }
     &.first{
-      animation: frontFadeInOut $animationSpeed forwards;
+      animation: frontFadeInOut $animationSpeed $animationDelay forwards;
     }
     &.second{
-      animation: frontFadeInOut $animationSpeed $animationSpeed forwards;
+      animation: frontFadeInOut $animationSpeed ($animationSpeed + $animationDelay) forwards;
     }
     &.third{
-      animation: frontFadeIn $animationSpeed $animationSpeed*2 forwards;
+      animation: frontFadeIn $animationSpeed ($animationSpeed*2 + $animationDelay) forwards;
     }
   }
 }
 .hero-section__tagline.front{
   opacity: 0;
-  animation: frontFadeIn $animationSpeed $animationSpeed*2.4 forwards;
+  animation: frontFadeIn $animationSpeed ($animationSpeed*2.4 + $animationDelay) forwards;
 }
