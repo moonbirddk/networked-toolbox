@@ -48,9 +48,9 @@
       {% endif %}
     </div>
     {% if activity.content %}
-      <h4 class="activity-content">
+      <p class="activity-content">
         {{ activity.content | bleach_striptags | truncatechars:220 }}
-      </h4>
+      </p>
     {% endif %}
   </div>
 </div>

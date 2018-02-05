@@ -13,6 +13,7 @@ body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   padding-right: 0 !important; // jquery modal padding fix
+  word-break: break-word;
 }
 
 h1, h2, h3{
@@ -68,6 +69,9 @@ svg {
 // content container
 .main-wrap {
   min-height: 100vh;
+  &__inner{
+    min-height: calc(100vh - calc(95px + 280px));  //hardcoded calculate 100vh - navigation + footer
+  }
 }
 
 .main-content {

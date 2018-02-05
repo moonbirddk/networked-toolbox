@@ -1,6 +1,7 @@
 .btn {
   font-family: HelveticaNeue-Bold;
   font-size: 18px;
+  line-height: 18px;
   width: 100%;
   padding: 14px 0;
   @include breakpoint($media-medium){

@@ -199,6 +199,16 @@
     margin-top: 2px;
   }
 }
+
+.use-button{
+  margin-top: 20px;
+  button{
+    max-width: 100%;
+    width: auto;
+    padding: 14px;
+  }
+}
+
 #usage-modal {
   margin-top: 40vh;
   .modal-content {
