@@ -7,8 +7,7 @@ from .models import Tool, ToolCategory, Suggestion, ToolFollower, ToolUser, \
 
 from django.utils.html import format_html
 from trumbowyg.widgets import TrumbowygWidget
-
-
+from .widgets import ColumnCheckboxSelectMultiple
 
 class ToolAdmin(admin.ModelAdmin): 
     
@@ -21,7 +20,17 @@ class ToolAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.TextField: {
             'widget': TrumbowygWidget, 
-        } 
+
+        }, 
+        models.ManyToManyField: {
+            'widget': ColumnCheckboxSelectMultiple(
+                columns=4, 
+                css_class='col-md-4', 
+                wrapper_css_class='row',
+            ),
+
+            
+        }
     }
     
 

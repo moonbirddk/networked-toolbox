@@ -8,7 +8,7 @@
             <h5>{{ story.parent_object_name }}</h5>
         </div>
         <h4>
-            <a href="{{story.get_absolute_url}}?from={{from}}">{{story.title|truncatechars:50}}</a>
+            <a href="{{story.get_absolute_url}}?from={{from}}{%if parent_id%}{{parent_id}}{%endif%}">{{story.title|truncatechars:50}}</a>
         </h4>
         <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
         <div class="card__footer">
