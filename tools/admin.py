@@ -55,6 +55,19 @@ class StoryAdmin(admin.ModelAdmin):
     list_display = ['__str__', author, tool_or_work_area, link_to_story_on_website, 'created', 'published']
     list_editable = ['published']
     list_per_page = 20
+    formfield_overrides = {
+        models.TextField: {
+            'widget': TrumbowygWidget, 
+
+        }, 
+        models.ManyToManyField: {
+            'widget': ColumnCheckboxSelectMultiple(
+                columns=4, 
+                css_class='col-md-4', 
+                wrapper_css_class='row',
+            ),
+            }
+    }
 
 class SuggestionAdmin(admin.ModelAdmin): 
     list_display = ['__str__', 'related_object']
