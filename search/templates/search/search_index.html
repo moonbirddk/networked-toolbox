@@ -92,15 +92,13 @@
             </h3>
         </div>
         <div class="col-md-6 col-sm-12">
-            {% for category_group in category_groups %}
+            {% for work_area in work_areas %}
                 <div class="search-result">
-                  <h3><a href="{{category_group.get_absolute_url}}">{{category_group.title|truncatechars:50}}</a></h3>
-                  <p>{{category_group.description|bleach_striptags|truncatechars:130}}</p>
+                  <h3><a href="{{work_areas.get_absolute_url}}">{{work_area.title|truncatechars:50}}</a></h3>
+                  <p>{{work_area.description|bleach_striptags|truncatechars:130}}</p>
                 </div>
             {% endfor %}
-              <a class="more-results" href="{% url 'tools:index'%}">
-                  Show all work areas
-              </a>
+              
         </div>
     </div>
     

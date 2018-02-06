@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.utils.html import format_html 
-
+from django.db import models 
 from solo.admin import SingletonModelAdmin
 from .models import Tool, ToolCategory, Suggestion, ToolFollower, ToolUser, \
     ToolOverviewPage, CategoryOverviewPage, CategoryGroup, CategoryGroupFollower, CategoryGroupOverviewPage, Story, StoryOverviewPage
-from .forms import get_trumbowyg_form_for_model
 
 from django.utils.html import format_html
+from trumbowyg.widgets import TrumbowygWidget
 
 
 
@@ -15,10 +15,14 @@ class ToolAdmin(admin.ModelAdmin):
     def link_to_tool_on_site(self): 
         return format_html('<a href="{}">{}</a>',self.get_absolute_url(), self.title)
 
-    form = get_trumbowyg_form_for_model('tool','description')
     list_per_page = 20 
     list_display = ['title',link_to_tool_on_site,  'created_date', 'published']
-   
+    
+    formfield_overrides = {
+        models.TextField: {
+            'widget': TrumbowygWidget, 
+        } 
+    }
     
 
 class CategoryGroupAdmin(admin.ModelAdmin): 
@@ -60,7 +64,11 @@ class CategoryGroupFollowerAdmin(admin.ModelAdmin):
 class ToolCategoryAdmin(admin.ModelAdmin): 
     list_display = ['__str__', 'group', 'published']
     list_per_page = 20
-    form = get_trumbowyg_form_for_model('toolcategory', 'description')
+    formfield_overrides = {
+        models.TextField: {
+            'widget': TrumbowygWidget, 
+        } 
+    }
     
 admin.site.register(Tool, ToolAdmin)
 admin.site.register(Story, StoryAdmin)

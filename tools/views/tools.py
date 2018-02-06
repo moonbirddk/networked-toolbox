@@ -8,33 +8,13 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.contenttypes.models import ContentType
 from ..forms import ToolForm
 
-from ..models import Tool, ToolCategory, ToolFollower, ToolUser, ToolOverviewPage, CategoryGroup
+from ..models import Tool, Story, ToolCategory, ToolFollower, ToolUser, ToolOverviewPage, CategoryGroup
 from django.contrib.auth.models import User
 from comments.models import ThreadedComment
 from shared.helpers import OrderedSet
-
+from django.utils.html import format_html
+from django.urls import reverse
 log = logging.getLogger(__name__)
-
-
-@transaction.atomic
-@permission_required('tools.add_tool', login_url='tools:index')
-@login_required
-def add_tool(request):
-    form = ToolForm()
-
-    if request.method == 'POST':
-        form = ToolForm(request.POST, request.FILES)
-        if form.is_valid():
-            categories = form.cleaned_data.get('categories', [])
-            del form.cleaned_data['categories']
-            tool = Tool.objects.create(**form.cleaned_data)
-            tool.save()
-            tool.categories = categories
-            messages.success(request, "You created a tool")
-            return redirect(tool)
-
-    context = {'form': form}
-    return render(request, 'tools/add.html', context)
 
 
 def list_tools(request):
@@ -76,8 +56,22 @@ def show_tool(request, tool_id):
     tool_users = tool.users.all().order_by('?')[:12]
     tool_user_ids = list(tool.users.all().values_list('user_id', flat=True))
     stories = tool.stories.all().order_by('-created')
+    tools_home_objects = {
+        'st': Story, 
+        'tb': ToolCategory
+    }
+    parent_object = None
+    parent_id = None
+    if "_" in request.GET.get('from'): 
+        parent_object, parent_id = request.GET.get('from').split('_')
+        parent_object_instance = tools_home_objects.get(parent_object).objects.get(id=parent_id)
+    if parent_object: 
+        tools_home = format_html('<a href="{}">{}</a>', parent_object_instance.get_absolute_url(), parent_object_instance)    
+    else: 
+        tools_home = format_html('<a href="{}">Tools</a>', reverse('tools:list_tools'))
+    
     breadcrumbs = [
-        'Tools',
+        tools_home, 
         tool.title
     ]
     context = {
@@ -134,53 +128,4 @@ def unfollow_tool(request, tool_id):
     return redirect(tool)
 
 
-@transaction.atomic
-@permission_required('tools.change_tool', login_url='tools:index')
-@login_required
-def edit_tool(request, tool_id):
-    # TODO: use celery tasks for storage IO so it doesn't block transaction
-    tool = get_object_or_404(Tool, id=tool_id)
 
-    categories_ids = list(tool.categories.all().values_list('id', flat=True))
-    attributes = {
-        'title': tool.title,
-        'description': tool.description,
-        'resources_text': tool.resources_text,
-        'categories': categories_ids,
-        'published': tool.published,
-    }
-
-    if tool.cover_image and default_storage.exists(tool.cover_image.name):
-        files = {'cover_image': tool.cover_image}
-    else:
-        files = {}
-    form = ToolForm(attributes, files)
-
-    if request.method == 'POST':
-        form = ToolForm(request.POST, request.FILES)
-        if form.is_valid():
-            if request.POST.get('cover_image-clear'):
-                cover_image = None
-                if tool.has_existing_cover_image():
-                    default_storage.delete(tool.cover_image.name)
-            else:
-                if form.cleaned_data['cover_image']:
-                    if tool.has_existing_cover_image():
-                        default_storage.delete(tool.cover_image.name)
-                    cover_image = form.cleaned_data['cover_image']
-                else:
-                    cover_image = tool.cover_image
-            tool.published = form.cleaned_data['published']
-            tool.title = form.cleaned_data['title']
-            tool.description = form.cleaned_data['description']
-            tool.resources_text = form.cleaned_data['resources_text']
-            tool.cover_image = cover_image
-            tool.categories.clear()
-            tool.categories.add(*form.cleaned_data['categories'])
-            tool.save()
-
-            messages.success(request, "You updated a tool")
-            return redirect(tool)
-
-    context = {'tool': tool, 'form': form}
-    return render(request, 'tools/edit.html', context)
