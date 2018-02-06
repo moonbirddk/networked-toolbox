@@ -51,7 +51,7 @@ class Tool(ModelWithCoverImage):
         default='Here you can find the different resources related to the current tool.',
         blank=True
     )
-    categories = models.ManyToManyField('ToolCategory', related_name='tools',
+    categories = models.ManyToManyField('ToolCategory', verbose_name='toolboxes',related_name='tools',
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
