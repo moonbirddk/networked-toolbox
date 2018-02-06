@@ -106,9 +106,9 @@ class Story(ModelWithCoverImage):
 
     title = models.CharField(max_length=100, null=False, blank=False)
     content = models.TextField(max_length=20000, null=False, blank=False)
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey('auth.User', verbose_name='author')
     tool = models.ForeignKey('Tool', related_name='stories', blank=True, null=True)
-    category_group = models.ForeignKey('CategoryGroup', related_name='stories', blank=True, null=True)
+    category_group = models.ForeignKey('CategoryGroup', verbose_name='work area',related_name='stories', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools', blank=True)
