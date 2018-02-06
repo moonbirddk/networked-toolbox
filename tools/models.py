@@ -112,7 +112,7 @@ class Story(ModelWithCoverImage):
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools', blank=True)
-    published = models.BooleanField('Published', default=False)
+    published = models.BooleanField('Published', default=True)
     comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
 
     @property
