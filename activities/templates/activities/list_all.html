@@ -2,6 +2,7 @@
 {% load bootstrap3 %}
 {% load commontags %}
 {% load static %}
+{% load toolstags %}
 
 {% block head_statics %}
 <link rel="stylesheet" href="{% static "css/activities.min.css" %}">
@@ -26,4 +27,7 @@
     </div>
   </section>
 </div>
+
+{% footer_banner %}
+
 {% endblock %}

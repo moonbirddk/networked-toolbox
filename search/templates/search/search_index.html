@@ -3,6 +3,7 @@
 {% load commontags %}
 {% load static %}
 {% load compress %}
+{% load toolstags %}
 
 {% block head_statics %}
  {% compress css %}
@@ -127,4 +128,8 @@
         </div>
     </div>
 </div>
+
+{% footer_banner %}
+
+
 {% endblock %}

@@ -3,6 +3,7 @@
 {% load staticfiles %}
 {% load compress %}
 {% load profilestags %}
+{% load toolstags %}
 {% block head_statics %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
@@ -38,5 +39,10 @@
 
     </div>
 </div>
-  {% include "tools/_tools_overview.html" with resources=tools_filter  %}
+
+
+{% include "tools/_tools_overview.html" with resources=tools_filter  %}
+
+{% footer_banner  %}
+
 {% endblock %}
