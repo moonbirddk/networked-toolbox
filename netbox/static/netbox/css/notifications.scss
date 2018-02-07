@@ -68,17 +68,20 @@
 }
 
 .notification {
-  > a {
+  > a, > span {
     padding: $spacer-sm $spacer-md !important;
     display: block;
     width: 100%;
     text-decoration: none;
-
+    cursor: auto;
+  }
+  > a{
+    cursor: pointer;
     &:hover, &:focus {
       background-color: $color-gray-lightest;
     }
-  }
 
+  } 
   &__actor {
     color: $color-gray-dark;
     font-weight: $bold-weight;

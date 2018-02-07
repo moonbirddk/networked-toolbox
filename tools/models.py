@@ -1,4 +1,3 @@
-
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.core.urlresolvers import reverse
@@ -25,6 +24,7 @@ def do_upload_suggestion_attachement(inst, filename):
     return generate_upload_path(inst, filename, dirname='suggestions')
 
 
+
 class ModelWithCoverImage(models.Model):
     class Meta:
         abstract = True
@@ -43,7 +43,7 @@ class Tool(ModelWithCoverImage):
         verbose_name_plural = 'Tools'
         ordering = ['title']
 
-    
+
     title = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=20000, blank=False)
     resources_text = models.CharField(
@@ -58,7 +58,7 @@ class Tool(ModelWithCoverImage):
     resources = GenericRelation('resources.ToolResource')
     comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
 
-    def __str__(self): 
+    def __str__(self):
         return self.title
 
     def get_absolute_url(self):
@@ -69,7 +69,7 @@ class Tool(ModelWithCoverImage):
 
     def sort_tools_descendig(self):
         return self.tools.order_by('-title')
-    
+
 
 
 class ToolFollower(models.Model):
@@ -82,11 +82,11 @@ class ToolFollower(models.Model):
     tool = models.ForeignKey('Tool', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
 
-    def __str__(self): 
+    def __str__(self):
         return '{} - {}'.format(self.user, self.tool)
 
-class ToolUser(models.Model): 
-    class Meta: 
+class ToolUser(models.Model):
+    class Meta:
         unique_together = (('user', 'tool'))
         verbose_name = 'Tool User'
         verbose_name_plural = 'Tool Users'
@@ -95,11 +95,11 @@ class ToolUser(models.Model):
     tool = models.ForeignKey('Tool', related_name='users')
     should_notify = models.BooleanField(default=False, null=False)
 
-    def __str__(self): 
+    def __str__(self):
         return '{} - {}'.format(self.user, self.tool)
 
 class Story(ModelWithCoverImage):
-    class Meta: 
+    class Meta:
         verbose_name = 'Story'
         verbose_name_plural = 'Stories'
         ordering = ('created', )
@@ -116,24 +116,24 @@ class Story(ModelWithCoverImage):
     comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
 
     @property
-    def parent_object(self): 
-        return self.tool if self.tool else self.category_group 
+    def parent_object(self):
+        return self.tool if self.tool else self.category_group
 
-    @property 
-    def parent_object_name(self): 
-        return self.tool.title if self.tool else self.category_group.name 
+    @property
+    def parent_object_name(self):
+        return self.tool.title if self.tool else self.category_group.name
 
     def get_absolute_url(self):
         return reverse('tools:show_story', args=(self.id, ))
 
-    def __str__(self): 
+    def __str__(self):
         return self.title
 
 
 
 
 class CategoryGroup(models.Model):
-    class Meta: 
+    class Meta:
         verbose_name = 'Work Area'
         verbose_name_plural = 'Work Areas'
 
@@ -142,7 +142,7 @@ class CategoryGroup(models.Model):
     description = models.CharField(max_length=255, blank=True)
     main_text = models.TextField(max_length=5000, blank=True, null=True, default='Lorem ipsum.')
     published = models.BooleanField('published', default=False)
-    
+
     def get_absolute_url(self):
         return reverse('tools:show_categorygroup', args=(self.id, ))
 
@@ -153,7 +153,7 @@ class CategoryGroup(models.Model):
     def title(self):
         return self.name
 
-class CategoryGroupFollower(models.Model): 
+class CategoryGroupFollower(models.Model):
     class Meta:
         unique_together = (('user', 'category_group'))
         verbose_name = "'Work Area Follower"
@@ -163,22 +163,22 @@ class CategoryGroupFollower(models.Model):
     category_group = models.ForeignKey('CategoryGroup', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
 
-    def __str__(self): 
+    def __str__(self):
         return '{} - {}'.format(self.user, self.category_group)
-    
 
-def notify_work_area_followers(sender, instance, created, **kwargs): 
+
+def notify_work_area_followers(sender, instance, created, **kwargs):
     CREATED_BIT = {True : 'written'}
-    if instance.category_group: 
+    if instance.category_group:
         recipients = CategoryGroupFollower.objects.filter(~Q(user=instance.user), category_group=instance.category_group)
         verb="has {} a story related to a Work Area you follow".format(CREATED_BIT.get(created, 'edited'))
         href = instance.get_absolute_url()
         actions = [{
             'title': 'read',
             'href': href
-        }]        
+        }]
         email_template = 'stories/email/story_written_about_tool_area'
-        for recipient in recipients: 
+        for recipient in recipients:
             notify.send(instance.user, verb=verb, recipient=recipient.user, target=instance.category_group, description=instance.title, actions=actions, email_template=email_template)
 
 post_save.connect(notify_work_area_followers, sender=Story)
@@ -200,7 +200,7 @@ pre_save.connect(category_group_check, sender=CategoryGroup)
 
 
 class ToolCategory(ModelWithCoverImage):
-    class Meta: 
+    class Meta:
         verbose_name = 'Toolbox'
         verbose_name_plural = 'Toolboxes'
 
@@ -266,9 +266,9 @@ post_delete.connect(delete_suggestion_on_related_deleted, sender=Tool)
 post_delete.connect(delete_suggestion_on_related_deleted, sender=ToolCategory)
 
 
-class OverviewPage(SingletonModel): 
-    class Meta: 
-        abstract = True 
+class OverviewPage(SingletonModel):
+    class Meta:
+        abstract = True
 
     headline = models.CharField(max_length=100, default='Lorem ipsum.')
     description = models.CharField(max_length=255, default='Lorem ipsum.')
@@ -276,23 +276,23 @@ class OverviewPage(SingletonModel):
                                     blank=True, null=True)
     link = models.CharField(max_length=160, default='Loren ipsum.')
     link_text = models.CharField(max_length=40, default='Lorem ipsum.')
-    
+
     def has_existing_cover_image(self):
         return self.cover_image and \
             default_storage.exists(self.cover_image.name)
 
 class ToolOverviewPage(OverviewPage):
-    class Meta: 
+    class Meta:
         verbose_name = 'Tools Overview Page'
 
 class CategoryOverviewPage(OverviewPage):
     class Meta:
         verbose_name = "Toolboxes Overview Page"
-       
+
 class CategoryGroupOverviewPage(OverviewPage):
-    class Meta: 
+    class Meta:
         verbose_name = "Work Areas Overview Page"
 
-class StoryOverviewPage(OverviewPage): 
-    class Meta: 
+class StoryOverviewPage(OverviewPage):
+    class Meta:
         verbose_name = 'Stories Overview Page'

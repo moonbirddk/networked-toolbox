@@ -13,7 +13,6 @@ body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   padding-right: 0 !important; // jquery modal padding fix
-  word-break: break-word;
 }
 
 h1, h2, h3{
@@ -49,6 +48,9 @@ h5{
   font-size: 15px;
   line-height: 15px;
 }
+p{
+  word-break: break-word;
+}
 .splash{
   opacity: 0.9;
   font-family: "AmericanTypewriter";
@@ -79,7 +81,7 @@ svg {
 }
 
 .container-fluid {
-  max-width: $media-large;
+  max-width: 100%;
   // padding-left: 15px;
   // padding-right: 15px;
   @include breakpoint($media-medium){
@@ -90,6 +92,9 @@ svg {
     max-width: 90%;
   }
   @include breakpoint($media-xl){
+    max-width: 80%;
+  }
+  @include breakpoint(2000px){
     max-width: 70%;
   }
 }
@@ -202,7 +207,7 @@ a {
 }
 
 .profile-photo {
-  width: 42px;
+  min-width: 42px;
   height: 42px;
   display: block;
   .profile-photo-img {

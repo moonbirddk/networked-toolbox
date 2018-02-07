@@ -34,9 +34,9 @@
     <h2>WORK AREAS</h2>
     <div class="workareas">
       {% for workarea in category_groups %}
-      <div class="workarea">
+      <div class="workarea wow fadeinup" data-wow-delay="0.{{forloop.counter}}s">
         <h3>{{ workarea.title }}</h3>
-        <a href="{% url 'tools:show_categorygroup' workarea.id %}">Read More</a>
+        <a href="{% url 'tools:show_categorygroup' workarea.id %}"><strong>Read More</strong></a>
       </div>
       {% endfor %}
     </div>
