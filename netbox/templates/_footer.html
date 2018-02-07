@@ -4,14 +4,6 @@
 
 <footer class="footer">
   <div class="container-fluid">
-    {% if perms.menus.change_menuitems %}
-    <div class="text-right">
-      <a class="btn btn-sm btn-default"
-         href="{% url 'admin:menus_menuitem_changelist' %}">
-        Edit
-      </a>
-    </div>
-    {% endif %}
     <h4 class="footer__title">Networked Toolbox</h4>
     <div class="row footer__row">
       <div class="col-xs-12 col-sm-4 col-md-3">

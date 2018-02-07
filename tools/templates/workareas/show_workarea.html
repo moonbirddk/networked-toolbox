@@ -50,14 +50,6 @@
               <a target="_blank" download href="{{ resource.document.url }}">
                 <i class="fa fa-arrow-circle-o-down resource-action"></i>
               </a>
-              {% if perms.tools %}{% if perms.tools.delete_toolresource %}
-              <a href="{% url 'resources:edit' resource.id %}">
-                <i class="fa fa-pencil resource-action"></i>
-              </a>
-              <a href="{% url 'resources:delete' resource.id %}">
-                <i class="fa fa-close resource-action"></i>
-              </a>
-              {% endif %}{% endif %}
             </div>
             <div>
               <a class="resource-link" target="_blank" href="{{ resource.document.url }}">
@@ -102,7 +94,7 @@
     <div class="stories cards thirds">
       {% if stories.count > 0 %}
         {% for story in stories %}
-          {% include 'stories/_story_card.html' with story=story %}
+          {% include 'stories/_story_card.html' with story=story from="wa_" parent_id=category_group.id%}
         {% endfor %}
         {% else %}
         <h4>There are no stories about this workarea</h4>

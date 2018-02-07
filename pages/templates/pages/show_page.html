@@ -9,14 +9,7 @@
 {% block head_title %}{{ page.title }} - {% endblock %}
 
 {% block main %}
-  {% if perms.pages.change_page %}
-    <div class="pull-right">
-      <a class="btn btn-sm btn-default"
-         href="{% url 'pages:edit_page' page.slug %}">
-        Edit
-      </a>
-    </div>
-  {% endif %}
+ 
 <div class="container-fluid flex-center main-wrap__inner">
   <section class="section--padded">
     <h1 class="title no-top-margin">{{ page.title }}</h1>

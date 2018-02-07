@@ -15,31 +15,7 @@ from .widgets import ColumnCheckboxSelectMultiple
 from django.forms.widgets import CheckboxSelectMultiple
 log = logging.getLogger(__name__)
 
-#from trumbowyg.widgets import TrumbowygWidget
-
-# class ToolAdminForm(forms.ModelForm):
-#     class Meta:
-#         model = Tool
-#         exclude = ('created_date',)
-#         widgets = {
-#             'description': TrumbowygWidget(),
-#         }
-
-def get_trumbowyg_form_for_model(model_name, excludes=None):
-    content_type = ContentType.objects.get(model=model_name)
-    model_class = content_type.model_class()
-    form_fields = fields
-
-    class _ObjectForm(forms.ModelForm):
-        class Meta:
-            model = model_class
-            exclude = (excludes,)
-            widgets = {
-                'description': TrumbowygWidget(),
-            }
-
-
-    return _ObjectForm
+from trumbowyg.widgets import TrumbowygWidget
 
 
 class OverviewPageForm(forms.Form):
@@ -99,13 +75,9 @@ class StoryForm(forms.ModelForm):
         model = Story 
         fields = ('title', 'content', 'country', 'associated_tools',)
         widgets = {
-            'content': SummernoteInplaceWidget(), 
+            'content': TrumbowygWidget, 
             'associated_tools': CheckboxSelectMultiple,
-            #     columns=3,
-            #     css_class='col-md-4', 
-            #     wrapper_css_class='row',
-                
-            #    ),
+            
         }
   
    

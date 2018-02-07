@@ -83,7 +83,7 @@ def is_comment_root(instance, created):
 def notify_author(sender, instance, created, **kwargs):
     # Let's only notify when it's on a story and it's not on another persons
     # comment.
-    if instance.related_object_type.model == 'story' and is_comment_root(instance, created): #CommentLike TODO Fix 
+    if instance.related_object_type.model == 'story' and is_comment_root(instance, created): 
         actor = instance.author
         recipient = instance.related_object.user
         # Let's not send a notification when someone comments on their own story
@@ -101,19 +101,26 @@ def notify_author(sender, instance, created, **kwargs):
                         description=instance.content,
                         actions=actions,
                         email_template='comments/email/commented_on_your_story')
-
+post_save.connect(notify_author, sender=ThreadedComment)
 
 def notify_comment_author(sender, instance, created, **kwargs):
-    import pdb
     actor = instance.user
     recipient = instance.comment.author  
-    notify.send(actor, 
-                verb='has liked your comment', 
-                recipient=recipient, 
-                target=instance.comment, 
-                description=instance.comment.content[:10], 
+    if recipient != actor:
+        href = instance.comment.related_object.get_absolute_url()
+        href += '#comment-' + str(instance.comment.id)
+        actions = [{
+            'title': 'read',
+            'href': href
+        }]
+        notify.send(actor, 
+                    verb='has liked your comment', 
+                    recipient=recipient, 
+                    target=instance.comment, 
+                    actions=actions,
+                    description=instance.comment.content[:10], 
 
-    )
+        )
 post_save.connect(notify_comment_author, sender=CommentLike)
 
 def notify_parent_author(sender, instance, created, **kwargs):

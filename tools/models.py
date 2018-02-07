@@ -51,7 +51,7 @@ class Tool(ModelWithCoverImage):
         default='Here you can find the different resources related to the current tool.',
         blank=True
     )
-    categories = models.ManyToManyField('ToolCategory', related_name='tools',
+    categories = models.ManyToManyField('ToolCategory', verbose_name='toolboxes',related_name='tools',
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
@@ -105,14 +105,14 @@ class Story(ModelWithCoverImage):
         ordering = ('created', )
 
     title = models.CharField(max_length=100, null=False, blank=False)
-    content = models.TextField(max_length=5000, null=False, blank=False)
-    user = models.ForeignKey('auth.User')
+    content = models.TextField(max_length=20000, null=False, blank=False)
+    user = models.ForeignKey('auth.User', verbose_name='author')
     tool = models.ForeignKey('Tool', related_name='stories', blank=True, null=True)
-    category_group = models.ForeignKey('CategoryGroup', related_name='stories', blank=True, null=True)
+    category_group = models.ForeignKey('CategoryGroup', verbose_name='work area',related_name='stories', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
-    associated_tools = models.ManyToManyField(Tool, related_name='associated_tools')
-    published = models.BooleanField('Published', default=False)
+    associated_tools = models.ManyToManyField(Tool, related_name='associated_tools', blank=True)
+    published = models.BooleanField('Published', default=True)
     comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
 
     @property

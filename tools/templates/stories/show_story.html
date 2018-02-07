@@ -6,7 +6,6 @@
 {% load profilestags %}
 {% load commontags %}
 {% load compress %}
-
 {% block head_statics %}
 <script type="text/javascript" src="{% static 'netbox/javascript/jsrender.min.js' %}"></script>
 {% comments_javascript %}
@@ -79,7 +78,8 @@ ga('send', 'event', 'story', 'view');
             <div class="col-md-4">
                 <h4 class="title">Tools used in this story: </h4>
                 <div class="tools cards full">
-                    {% for resource in resources %} {% include 'tools/_tools_card.html' with tool=resource %} {% empty %}
+                     
+                    {% for resource in resources %}{%with story.id as bla %}{% include 'tools/_tools_card.html' with from='st_' parent_id=story.id tool=resource %}{%endwith%} {% empty %}
                     <div class="categories-empty col-md-12">
                         There are no tools used in this story.
                     </div>
