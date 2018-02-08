@@ -2,11 +2,11 @@
 {% load bootstrap3 %}
 {% load static %}
 
-{% block head_title %}Terms and Conditions{% endblock %}
+{% block head_title %}Terms and Conditions - {% endblock %}
 
 {% block main %}
 
-<div class="container">
+<div class="container-fluid flex-grow flex-center">
 <div class="row">
 
  <div class="col-md-8 col-md-offset-2">
@@ -23,7 +23,7 @@ By clicking accept you also accept that we are using cookies.</p>
   <form method="POST" action="">
     {% csrf_token %}
     <input type="hidden" name="{{redirect_field_name}}" value="{{next_page}}" />
-    <div class="form-group text-right">
+    <div class="form-group text-center">
         <label for="id_accepted">
             <input
               type="checkbox"

@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+{% load commontags %}
+{% load compress %}
+{% load profilestags %}
+
+
+{% block head_statics %}
+{% compress js %}
+<script src="{% static "js/tools.js"%}"></script>
+{% endcompress %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{ category_group.name }} - {% endblock %}
+
+{% block main %}
+{% comment %} {% include '_hero_breadcrumbs.html' with icon='work-areas' first='workarea' second=category_group.name %} {% endcomment %}
+{% include '_hero_breadcrumbs.html' with icon='work-areas' breadcrumbs=breadcrumbs %}
+<div class="container-fluid">
+  <div class="content-card wow fadeinup">
+    {% include "tools/_follow_button.html" with tool=category_group tools=category_groups tool_follower_ids=category_group_follower_ids %}
+    <div class="row">
+      <div class="col-sm-12 col-md-8">
+        <h2 class="title">{{category_group.name}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-sm-12 summernote-container">   
+          <p class="category-description">{{ category_group.description }}</p>
+          <p class="tool-description summernote-content more">
+            {{ category_group.main_text }}
+          </p>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <div class="resource-box">
+          <h4 class="title">Resources</h4>
+          <p>{{ category_group.resources_text }}</p>
+
+          {% for resource in category_group.resources.all %} {{ resource.document.type }}
+          <div class="resource-item">
+            <div class="pull-right">
+              <a target="_blank" download href="{{ resource.document.url }}">
+                <i class="fa fa-arrow-circle-o-down resource-action"></i>
+              </a>
+            </div>
+            <div>
+              <a class="resource-link" target="_blank" href="{{ resource.document.url }}">
+                <i class="fa {{ resource.document|css_filefield }} resource-icon"></i>
+                <span class="resource-title">{{ resource.title }}</span>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>  
+    </div>  <!-- ROW -->
+    <div class="divider--bordered"></div>
+    <h3>Toolboxes</h3>
+    {% include "workareas/_workareas_workareaslist.html" %}
+  </div>
+  <div class="divider--bordered"></div>
+</div>
+
+<section class="section--padded">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <h2 class="no-margin-top">SHARE YOUR STORIES</h2>
+        <p>Have you used the work area in practise? To share information about a budget in a clear and simple way. South Africa and
+        Uganda. Groups of women were.</p>
+      </div>
+      <div class="col-xs-12 col-md-6">
+          <a class="pull-right btn btn-primary" href="{% url 'tools:add_workarea_story' category_group.id %}">Add a story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section--gray section--padded wow fadeinup section--cards">
+  <div class="container-fluid">
+    <div class="flex-space-between section--cards--header">
+      <h3 class="title">Stories about this work area</h3>
+      <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>
+    </div>
+    <div class="divider"></div>
+    <div class="stories cards thirds">
+      {% if stories.count > 0 %}
+        {% for story in stories %}
+          {% include 'stories/_story_card.html' with story=story from="wa_" parent_id=category_group.id%}
+        {% endfor %}
+        {% else %}
+        <h4>There are no stories about this workarea</h4>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% footer_banner %}
+
+{% endblock %}

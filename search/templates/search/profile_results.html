@@ -13,55 +13,60 @@
 {% endcompress %}
 {% endblock %}
 
-{% block head_title %}User Search Results{% endblock %}
+{% block head_title %}User Search Results - {% endblock %}
 
 {% block main %}
 
-{% include 'search/_back_to_search.html'%}
-    
-    
-<div class="row">
-    <div class="col-md-12">
-        <h1 class="title">
-        <i class="fa fa-user"></i>
-        User Search Results for:&nbsp;<span class="red-text">{{query}}</span>
-        </h1>
-        <h1 class="title gray-text">{{total_results_count}} Results</h1>
-    </div>
-</div>
+<div class="container-fluid">
+  <section class="section--padded">
 
-<div class="row flex-wrapper">
-  {% for resource in results %}
-    <div class="col-md-6 results-item">
-    
-        <div class="row">
-         <div class="col-md-5 results-item-image-box__profile">
-            <div class="results-item-image__profile">
-            {% render_profile_photo resource.user %}
-            </div>
-         </div>
-
-         <div class="col-md-7 results-item-content-box">
-           <p class="search-result__title">
-            {% if resource.country %}
-                <span title="{{resource.country.name}}" class="flag-icon flag-icon-{{resource.country}}"></span>
-            {% endif %}
-            <a href="{{ resource.get_absolute_url }}">{{ resource.name|truncatechars:51 }}</a>
-           </p>
-           <p class="search-result__content">{{ resource.bio|bleach_striptags|truncatechars:270 }}</p>
-         </div>
-        
+    {% include 'search/_back_to_search.html'%}
+      
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title flex-vertical">
+            <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+              <use xlink:href="{% static 'icons/profile.svg'%}#profile"></use>
+            </svg>
+            User Search Results for:&nbsp;<span class="red-text">{{query}}</span>
+            </h1>
+            <h2 class="title gray-text">{{total_results_count}} Results</h2>
         </div>
     </div>
-  {% empty %}
-    <div class="col-md-3 col-xs-6">
-      <p>There are no items available.</p>
+
+    <div class="row flex-wrapper">
+      {% for resource in results %}
+        <div class="col-md-6 results-item">
+        
+            <div class="row">
+            <div class="col-md-5 results-item-image-box__profile">
+                <div class="results-item-image__profile">
+                {% render_profile_photo resource.user %}
+                </div>
+            </div>
+
+            <div class="col-md-7 results-item-content-box">
+              <p class="search-result__title">
+                {% if resource.country %}
+                    <span title="{{resource.country.name}}" class="flag-icon flag-icon-{{resource.country}}"></span>
+                {% endif %}
+                <a href="{{ resource.get_absolute_url }}">{{ resource.name|truncatechars:51 }}</a>
+              </p>
+              <p class="search-result__content">{{ resource.bio|bleach_striptags|truncatechars:270 }}</p>
+            </div>
+            
+            </div>
+        </div>
+      {% empty %}
+        <div class="col-md-3 col-xs-6">
+          <p>There are no items available.</p>
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
+
+    {% if results_count %}
+        {% include 'search/_back_to_search.html'%}
+    {% endif %}
+  </section>
 </div>
-
-{% if results_count %}
-    {% include 'search/_back_to_search.html'%}
-{% endif %}
-
 {% endblock %}

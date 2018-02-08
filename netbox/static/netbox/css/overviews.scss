@@ -1,0 +1,60 @@
+// GENERAL
+.overview{
+  &--workarea &__container, 
+  &--stories &__container{
+    padding-top: 50px;
+    @include breakpoint($media-large){
+      padding-top: 100px;
+      padding-right: 50px;
+    }
+  }
+  &--tools &__container{
+    padding-top: 50px;
+  }
+  &--workarea{
+    .stories{
+      min-height: 100vh;
+    }
+  }
+}
+
+// WORKAREAS
+.workarea{
+  border-bottom: 1px solid $color-gray-lighter;
+  
+}
+
+.sidebar{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  @include breakpoint($media-large){
+    padding-left: 30px;
+    
+  }
+  &__header{
+    margin-bottom: 40px;
+    .icon__rounded{
+      position: relative;
+      bottom: auto;
+      top: auto;
+      margin-right: 50px;
+    }
+  }
+  &--overlay{
+    position: relative;
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 150%;
+      z-index: -1;
+    }
+   &--gray{
+     &:before{
+       background: linear-gradient(to right, $color-gray-lightest 0%, white 100%);
+     }
+   } 
+  }
+}

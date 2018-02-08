@@ -1,11 +1,12 @@
 function netbox_fill_notification_list(data) {
-  var $list = $('#live_notify_list').empty();
+  console.log(data)
+  var $list = $('.live_notify_list').empty();
   if(data.unread_list.length == 0) {
-    $('#no-notification').show();
-    $('#mark_all_notifications_as_read, #live_notify_list').hide();
+    $('.no-notification').show();
+    $('.mark_all_notifications_as_read, .live_notify_list').hide();
   } else {
-    $('#no-notification').hide();
-    $('#mark_all_notifications_as_read, #live_notify_list').show();
+    $('.no-notification').hide();
+    $('.mark_all_notifications_as_read, .live_notify_list').show();
     for (var i=0; i < data.unread_list.length; i++) {
       var notification = data.unread_list[i];
       var notificationData = JSON.parse(notification.data) || {};
@@ -19,9 +20,12 @@ function netbox_fill_notification_list(data) {
       var content = '<div class="no-wrap">' + actor + verb + '</div>' + description;
 
       $notification = $('<li class="notification">');
-      if (notificationData.actions && notificationData.actions.length > 0) {
+
+      if (notificationData.actions && notificationData.actions.length > 0) {  // TODO causes likes to return empty
         var link = notificationData.actions[0].href;
         $notification.wrapInner('<a href="' + link + '">' + content + '</a>');
+      } else {
+        $notification.wrapInner('<span class="like" href="' + link + '">' + content + '</span>');  // RETURN LIKES
       }
       $notification.appendTo($list);
     }
@@ -31,7 +35,7 @@ function netbox_fill_notification_list(data) {
 }
 
 function fill_notification_badge(data) {
-  var $badge = $('#live_notify_badge');
+  var $badge = $('.notifications__count');
 
   if(data.unread_count <= 0) {
     $badge.addClass('notifications__count--zero');

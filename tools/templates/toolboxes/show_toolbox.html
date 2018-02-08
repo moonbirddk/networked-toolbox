@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load commontags %}
+{% load partition_slice %}
+{% load compress %}
+
+{% block head_statics %}
+{{ form.media }}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{ category.title }} - {% endblock %}
+
+{% block ga_events %}
+ga('send', 'event', 'toolboxSection', 'view');
+{% endblock %}
+
+{% block main %}
+
+{% include '_hero_breadcrumbs.html' with icon='work-areas' breadcrumbs=breadcrumbs %}
+
+<div class="container-fluid">
+    <div class="content-card wow fadeinup">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 summernote-container">
+                <h2 class="title">{{category.title}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-sm-12 summernote-container">
+                <div class="category-description summernote-content category-more">
+                    {{category.description|safe }}
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="resource-box">
+                    <h4 class="title">Resources</h4>
+                    <p>{{ category.resources_text }}</p>
+            
+                    {% for resource in category.resources.all %} {{ resource.document.type }}
+                    <div class="resource-item">
+                        <div class="pull-right">
+                            <a target="_blank" download href="{{ resource.document.url }}">
+                                <i class="fa fa-arrow-circle-o-down resource-action"></i>
+                            </a>
+                        </div>
+                        <div>
+                            <a class="resource-link" target="_blank" href="{{ resource.document.url }}">
+                                <i class="fa {{ resource.document|css_filefield }} resource-icon"></i>
+                                <span class="resource-title">{{ resource.title }}</span>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="divider--bordered"></div>
+        <h3>Tools in this toolbox</h3>
+        <div class="cards thirds">
+            {% for tool in category.published_tools %} 
+                {% include "tools/_tools_card.html" with tool=tool from="tb_" parent_id=category.id%} 
+            {% empty %}
+                <p>There are no related tools.</p>
+            {% endfor %}
+        </div>
+         
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

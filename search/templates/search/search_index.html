@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load commontags %}
+{% load static %}
+{% load compress %}
+{% load toolstags %}
+
+{% block head_statics %}
+ {% compress css %}
+ <link rel="stylesheet" href="{% static "css/search.min.css" %}">
+ {% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{block.super}}{% endblock %}
+
+{% block searchform %}
+<div class="search-form-box">
+    <div class="container-fluid">
+      <form class="form-inline search-form" method="get" action="{% url 'search:homepage' %}">
+        {% bootstrap_form form %}
+        <button class="btn btn-primary" type="submit" />Search</button>
+      </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="search-info">
+                Take a look on the recent activity or use the search field above to find specific content.
+            </p>
+        </div>
+    </div>
+    <div class="divider--bordered"></div>
+    <div class="row search-box">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="title flex-vertical">
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                    <use xlink:href="{% static 'icons/tools.svg'%}#tools"></use>
+                </svg>
+                Tools
+            </h3>
+        </div>
+        <div class="col-md-6 col-sm-12">
+           {% for tool in tools %}
+             <div class="search-result">
+               <h3><a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a></h3>
+               <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
+             </div>
+           {% endfor %}
+            {% if query and tools_results_count > HOMEPAGE_DISPLAY_RESULTS %}
+              <p><a class="more-results" href="{% url 'search:tool_results' %}?q={{query}}">
+                  Show more results
+              </a></p>
+           {% endif %}
+        </div>
+    </div>
+    <div class="divider--bordered"></div>
+    <div class="row search-box">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="title flex-vertical">
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                    <use xlink:href="{% static 'icons/stories.svg'%}#stories"></use>
+                </svg>
+                Stories
+            </h3>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            {% for story in stories %}
+            <div class="search-result">
+                <h3><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></h3>
+                <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
+            </div>
+            {% endfor %}
+            {% if query and stories_results_count > HOMEPAGE_DISPLAY_RESULTS%}
+              <a class="more-results" href="{% url 'search:story_results' %}?q={{query}}">
+                  Show more results
+              </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="divider--bordered"></div>
+    <div class="row search-box">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="title flex-vertical">
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                    <use xlink:href="{% static 'icons/work-areas.svg'%}#work-areas"></use>
+                </svg>
+                Work areas
+            </h3>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            {% for work_area in work_areas %}
+                <div class="search-result">
+                  <h3><a href="{{work_areas.get_absolute_url}}">{{work_area.title|truncatechars:50}}</a></h3>
+                  <p>{{work_area.description|bleach_striptags|truncatechars:130}}</p>
+                </div>
+            {% endfor %}
+              
+        </div>
+    </div>
+    
+    <div class="divider--bordered"></div>
+    <div class="row search-box">
+        <div class="col-md-6 col-sm-12">
+            <h3 class="title flex-vertical">
+                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
+                    <use xlink:href="{% static 'icons/profile.svg'%}#profile"></use>
+                </svg>
+                Users
+            </h3>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            {% for profile in profiles %}
+                <div class="search-result">
+                  <h3><a  href="{{profile.get_absolute_url}}">{{profile.name|truncatechars:50}}</a></h3>
+                  <p>{{profile.bio|bleach_striptags|truncatechars:130}}</p>
+                </div>
+            {% endfor %}
+            {% if query and profiles_results_count > HOMEPAGE_DISPLAY_RESULTS %}
+                <a class="more-results" href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% footer_banner %}
+
+
+{% endblock %}

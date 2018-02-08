@@ -39,12 +39,15 @@ class ActivityEntry(models.Model):
 @receiver(post_save, sender=Story)
 def on_story_create(sender, instance=None, created=False, **kwargs):
     if created:
-        link = reverse('tools:show', args=(instance.tool.id, ))
+        related_model = instance.tool if instance.tool else instance.category_group
+        print (instance)
+        print (related_model)
+        link = reverse('tools:show', args=(related_model.id, ))
         link += '#stories'
         ActivityEntry.objects.create(
             user=instance.user,
             entry_type=ActivityEntry.TYPE_ADD_STORY,
-            title=instance.tool.title[:150],
+            title=related_model.title[:150] if instance.tool else related_model.name[:150],
             content=instance.title,
             link=link
         )
@@ -91,8 +94,12 @@ def on_tool_used(sender, instance=None, created=False, **kwargs):
 # Send notifications as mail if they have an email_template associated
 @receiver(post_save, sender=Notification)
 def send_notification_email(sender, instance=None, created=False, **kwargs):
-    if not created: return
-    email_template = instance.data.get('email_template')
+    import pdb
+    if not created: 
+        return
+    email_template = None
+    if instance.data: 
+        email_template = instance.data.get('email_template')
     if email_template:
         context = {
             'user': instance.recipient,

@@ -14,3 +14,10 @@ celerybeat-schedule
 celerybeat.pid
 dump.rdb
 netbox/settings/local_development.py
+*.sublime-workspace
+nw-m.sublime-workspace
+*.sublime-project
+*.sublime-workspace
+nw-m.sublime-workspace
+.vscode
+.DS_Store

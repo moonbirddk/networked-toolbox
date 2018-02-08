@@ -1,0 +1,22 @@
+{% load toolstags %}
+{% load partition_slice %}
+{% load commontags %}
+{% load profilestags %}
+<div class="overview overview--stories">
+    <div class="container-fluid overview__container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="cards thirds stories">
+                    {% for story in stories %}        
+                        {% include 'stories/_story_card.html' %}
+                    {% empty %}
+                        <p>There are no items available.</p>
+                    {% endfor %}
+                </div>
+            </div>  
+            {% comment %} <div class="col-md-8 col-xs-12">
+                TODO MOST COUNTRIES AND MOST USERS
+            </div> {% endcomment %}
+        </div>  
+    </div>
+</div>

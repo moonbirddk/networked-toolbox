@@ -1,4 +1,5 @@
 {% load commontags %}
+{% load static %}
 {% load humanize %}
 
 <div class="panel panel-default activity">
@@ -7,13 +8,19 @@
       title="{{ activity.created | date:"F j, Y \a\t P" }}">
       {{ activity.created | naturaltime }}
     </span>
-    <div class="activity-title">
+    <div class="activity-title flex-vertical">
       {% if activity.entry_type == 'add_story' %}
-        <span class="glyphicon glyphicon-align-left"></span>
+        <svg class="icon icon--black" viewbox="0 0 1 1">
+          <use xlink:href="{% static 'icons/stories.svg'%}#stories"></use>
+        </svg>
       {% elif activity.entry_type == 'add_comment' or activity.entry_type == 'add_comment_reply' %}
-        <span class="glyphicon glyphicon-comment"></span>
+        <svg class="icon icon--black" viewbox="0 0 1 1">
+          <use xlink:href="{% static 'icons/comment.svg'%}#comment"></use>
+        </svg>
       {% elif activity.entry_type == 'used_tool' %}
-        <span class="glyphicon glyphicon-wrench"></span>
+        <svg class="icon icon--black" viewbox="0 0 1 1">
+          <use xlink:href="{% static 'icons/tools.svg'%}#tools"></use>
+        </svg>
       {% endif %}
       {% if activity.user == user %}
         You

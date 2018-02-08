@@ -3,107 +3,103 @@
 {% load commontags %}
 {% load static %}
 {% load compress %}
-
+{% load profilestags %}
 {% block head_statics %}
  {% compress css %}
  <link rel="stylesheet" href="{% static "css/search.min.css" %}">
  {% endcompress %}
 {% endblock %}
 
-{% block head_title %}Welcome{% endblock %}
+{% block head_title %}{{block.super}}{% endblock %}
 
-{% block searchform %}
-<div class="search-form-box">
-    <div class="container-fluid">
-      <form class="form-inline search-form" method="get" action="{% url 'search:homepage' %}">
-        {% bootstrap_form form %}
-        <button class="btn btn-primary" type="submit" />Search</button>
-      </form>
-    </div>
-</div>
-{% endblock %}
 
 {% block main %}
-
-    <div class="row">
-        <div class="col-md-12">
-            <p class="search-info">
-                Take a look on the recent activity or use the search field above to find specific content.
-            </p>
+<div class="hero-section hero-section--front">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="hero-section__inner flex-vertical">
+                    <div>
+                        <h1 class="hero-section__title front">
+                            <span class="first">EXPLORE</span>
+                            <span class="second">DISCOVER</span>
+                            <span class="third">LEARN</span>
+                        </h1>
+                        <p class="hero-section__tagline front">Find the right tools by exploring one of the sections below</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-6 col-sm-12 search-box">
-            <h1 class="title">
-                <i class="fa fa-wrench" aria-hidden="true"></i>
-                Tools
-            </h1>
-           {% for tool in tools %}
-             <div class="search-result">
-               <h3><a href="{{tool.get_absolute_url}}">{{tool.title|truncatechars:50}}</a></h3>
-               <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
-             </div>
-           {% endfor %}
-            {% if query and tools_results_count > HOMEPAGE_DISPLAY_RESULTS %}
-              <p><a class="more-results" href="{% url 'search:tool_results' %}?q={{query}}">
-                  Show more results
-              </a></p>
-           {% endif %}
-        </div>
-
-        <div class="col-md-6 col-sm-12 search-box">
-            <h1 class="title">
-              <i class="fa fa-align-justify" aria-hidden="true"></i>
-              Stories
-            </h1>
-            {% for story in stories %}
-                <div class="search-result">
-                  <h3><a href="{{story.get_absolute_url}}">{{story.title|truncatechars:50}}</a></h3>
-                  <p>{{story.content|bleach_striptags|truncatechars:130}}</p>
+<section class="front__cards gray">
+    <div class="container-fluid">
+        <div class="front__cards__inner">
+        {%for overview_name, overview in overviews.items %}
+            <div class="front__cards__card wow fadein" data-wow-delay=" 0.{{ forloop.counter }}s">
+            <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
+                <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
+                    <svg class="icon" viewbox="0 0 1 1">
+                        <use xlink:href="{% get_static_prefix %}icons/{{overview_name|lower|slugify}}.svg#{{overview_name|lower|slugify}}"></use>
+                    </svg>
                 </div>
-            {% endfor %}
-            {% if query and stories_results_count > HOMEPAGE_DISPLAY_RESULTS%}
-              <a class="more-results" href="{% url 'search:story_results' %}?q={{query}}">
-                  Show more results
-              </a>
-            {% endif %}
-        </div>
-
-        <div class="clearfix"></div>
-
-        <div class="col-md-6 col-sm-12 search-box">
-            <h1 class="title">
-                <i class="fa fa-briefcase" aria-hidden="true"></i>
-                Toolboxes
-            </h1>
-            {% for category in categories %}
+                <h3 class="title">
+                    {{ overview_name }}
+                </h3>
+                <div class="front__cards__bgimg" style="background-image: url({{ overview.cover_image.url }})"></div>
+                <!-- <img class="front__cards__bgimg" src="{{ overview.cover_image.url }}" alt="" width="100%"> -->
                 <div class="search-result">
-                  <h3><a href="{{category.get_absolute_url}}">{{category.title|truncatechars:50}}</a></h3>
-                  <p>{{category.description|bleach_striptags|truncatechars:130}}</p>
+                    <p >
+                    {{ overview.headline }}
+                    </p>
+                    <a href="{% url  overview.link  %}" class="btn btn-bordered">
+                        <h4 class="red-text">
+                            {{overview.link_text}}
+                        </h4>
+                        <img src="{% static "icons/chevron.svg" %}" alt="">
+                    </a>
                 </div>
-            {% endfor %}
-              <a class="more-results" href="{% url 'tools:list_categories'%}">
-                  Show all toolboxes
-              </a>
+            </div>
+        {% endfor %}
         </div>
-
-        <div class="col-md-6 col-sm-12 search-box">
-            <h1 class="title">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                Users
-            </h1>
-            {% for profile in profiles %}
-                <div class="search-result">
-                  <h3><a  href="{{profile.get_absolute_url}}">{{profile.name|truncatechars:50}}</a></h3>
-                  <p>{{profile.bio|bleach_striptags|truncatechars:130}}</p>
-                </div>
-            {% endfor %}
-            {% if query and profiles_results_count > HOMEPAGE_DISPLAY_RESULTS %}
-                <a class="more-results" href="{% url 'search:profile_results' %}?q={{query}}">Show more results</a>
-            {% endif %}
-        </div>
-
     </div>
+</section>
+{% include 'search/_search-bar.html' with front=True placeholder="Find tools, stories, users and more" %}
+
+<section class="section--white section--padded wow fadeinUp section--cards">
+    <div class="container-fluid">
+        <div class="flex-space-between section--cards--header">
+            <h2 class="title">
+                RECENTLY USED <br> TOOLS
+            </h2>
+            <a href="{%url 'tools:list_tools' %}" class="btn btn-primary">View All Tools</a>
+        </div>
+        <div class="divider"></div>
+        <div class="tools cards front thirds">
+            {% for tool in recent_tools %}
+                {% include 'tools/_tool_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section--gray section--padded wow fadeinup section--cards">
+    <div class="container-fluid">
+        <div class="flex-space-between section--cards--header">
+            <h2 class="title">
+            EXPLORE <br> LATEST STORIES
+            </h2>
+            <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>  
+        </div>
+        <div class="divider"></div>
+        <div class="stories cards front thirds">
+            {% for story in recent_stories %}
+                {% include "stories/_story_card.html" with story=story %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
 
 {% endblock %}
+

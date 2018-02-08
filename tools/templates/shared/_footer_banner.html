@@ -1,0 +1,36 @@
+{% load static %}
+<section class="footer-banner section--red section--padded wow fadein">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 col-md-5">
+        <h1 class="white-text no-margin-top">NOT FINDING WHAT YOU ARE LOOKING FOR? </h1>
+        <div class="splash">Take a look at these pages
+        </div>
+        <img class="pull-right footer-banner__arrow wow fadein" data-wow-delay="0.5s" src="{% static 'icons/splash-arrow.svg' %}" alt="">
+      </div>
+      <div class="col-sm-12 col-md-7">
+          <div class="footer-banner__links">
+            {%for overview_name, overview in overviews.items %}
+            <a href="{% url overview.link  %}" class="footer-banner__link wow fadein" data-wow-delay=" 0.{{ forloop.counter }}s">
+              <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
+              <div class="icon__rounded  icon__rounded--black">
+                <svg class="icon" viewbox="0 0 1 1">
+                  <use xlink:href="{% get_static_prefix %}icons/{{overview_name|lower|slugify}}.svg#{{overview_name|lower|slugify}}"></use>
+                </svg>
+              </div>
+              <div class="flex-horizontal">
+                <h3 class="title">
+                  {{ overview_name }}
+                </h3>
+                <h5 class="red-text small">
+                  {{overview.link_text}}
+                </h5>
+
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+      </div>
+    </div>
+  </div>
+</section>

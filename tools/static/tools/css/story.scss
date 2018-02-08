@@ -19,14 +19,20 @@
 .story-content img {
   max-width: 100%;
 }
-
+.story-info{
+  margin-bottom: 20px;
+}
 .story-user {
 
   .story-user-photo {
 
     .profile-photo {
-      width: 95px;
-      height: 95px;
+      width: 85px;
+      height: 85px;
+      &-img{
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 
@@ -72,5 +78,6 @@
 }
 
 .story-contributor {
-  margin: 1em 0;
+  // margin: 1em 0;
+  // border-bottom: 1px solid $color-gray-lighter;
 }

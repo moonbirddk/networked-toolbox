@@ -2,54 +2,47 @@
 {% load bootstrap3 %}
 {% load staticfiles %}
 {% load compress %}
-
+{% load profilestags %}
+{% load toolstags %}
 {% block head_statics %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/search.min.css" %}">
 {% endcompress %}
 {% endblock %}
 
-{% block head_title %}Tool Overview{% endblock %}
+{% block head_title %}Tool Overview - {% endblock %}
 
 {% block main %}
-
-<div class="row">
-    <div class="col-md-4 col-sm-4 col-xs-12 pull-right">
-        {% if perms.tools %}{% if perms.tools.add_tool %}
-            <div class="filter-buttons pull-right">
-                {{tools_filter.form}}
+<div class="hero-section hero-section--overview">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="hero-section__inner flex-vertical" style="background-image: url( {{ overview.cover_image.url }} )">
+                    <div class="hero-section__title-container flex-vertical">
+                        <h1 class="hero-section__title">TOOLS</h1>
+                    </div>
+                    <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
+                        <svg class="icon" viewbox="0 0 1 1">
+                            <use xlink:href="{% static "icons/tools.svg" %}#tools"></use>
+                        </svg>
+                    </div>
+                </div>
             </div>
-        {% endif %}{% endif %}
-        <div class="dropdown tools__dropdown pull-right">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-sort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                {% if order == 'd' %}
-                    Descending
-                {% else %}
-                    Ascending
-                {% endif %}
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdown-sort">
-                <li><a href="?o=a">A-Z</a></li>
-                <li><a href="?o=d">Z-A</a></li>
-            </ul>
+            <div class="col-xs-12 col-md-4">
+                <div class="hero-section__filters filters">
+                    <h4 class="white-text">Filter tools by:</h4>
+                    {% include '_filters.html' %}
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-8 col-sm-8 col-xs-12">
-        <h1 class="title">Tool Overview
-            {% if perms.tools %}{% if perms.tools.add_tool %}
-                <a href="{% url 'tools:add' %}"><i class="fa fa-plus"></i></a>
-            {% endif %}{% endif %}
-        </h1>
-        <div class="overview-description">
-            {{ overview.description }}
-            {% if perms.tools %}{% if perms.tools.add_tool %}
-                <a href="{% url 'tools:edit_overview' 'tool' %}"><i class="fa fa-edit"></i></a>
-            {% endif %}{% endif %}
-        </div>
-    </div>
 
+    </div>
 </div>
 
-  {% include "tools/_tools_overview.html" with resources=tools_filter route='tools:show' %}
+
+{% include "tools/_tools_overview.html" with resources=tools_filter  %}
+
+{% footer_banner  %}
+
 {% endblock %}

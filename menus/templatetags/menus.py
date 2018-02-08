@@ -1,7 +1,6 @@
 import os
 
 from django import template
-from django.template import Context
 from django.template.loader import get_template, select_template
 
 from menus.models import MenuItem
@@ -19,4 +18,4 @@ def render_menu(menu):
         'items': MenuItem.objects.filter(menu=menu).order_by('order', 'title')
     }
     t = select_template(['menus/menu.html'])
-    return t.render(Context(context))
+    return t.render(context)

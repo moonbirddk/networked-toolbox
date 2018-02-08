@@ -9,7 +9,7 @@ from django.views.generic import View
 from haystack.query import SearchQuerySet
 from haystack.views import SearchView
 
-from tools.models import Tool, ToolCategory, Story
+from tools.models import Tool, ToolCategory, Story, CategoryGroup, StoryOverviewPage, ToolOverviewPage, CategoryGroupOverviewPage
 from profiles.models import Profile
 from .forms import SearchForm, ModelSearchForm
 
@@ -28,7 +28,22 @@ def get_search_results(modelcls, q, limit=DEFAULT_LIMIT):
     return total_results_count, results
 
 
-def homepage(request):
+def homepage(request): 
+    recent_stories = Story.objects.filter(published=True).order_by('-created')[:3]
+    recent_tools = Tool.objects.all()[:3]
+    overviews = {
+        'Work Areas': CategoryGroupOverviewPage.objects.get(pk=1),
+        'Stories': StoryOverviewPage.objects.get(pk=1), 
+        'Tools': ToolOverviewPage.objects.get(pk=1)
+    }
+    context = {
+        'recent_stories': recent_stories, 
+        'recent_tools': recent_tools, 
+        'overviews': overviews, 
+    }
+    return render(request, 'search/index.html', context)
+
+def search_page(request):
     limit = settings.HOMEPAGE_DISPLAY_RESULTS
     q = request.GET.get('q', '')
     if q:
@@ -46,24 +61,31 @@ def homepage(request):
                 get_search_results(Story, q, limit=limit)
             profiles_results_count, profiles =\
                 get_search_results(Profile, q, limit=limit)
+            
+            work_areas_results_count, work_areas =\
+                get_search_results(CategoryGroup, q, limit=limit)
         else:
             messages.error(request, "invalid search expression")
     else:
         form = SearchForm()
         tools = Tool.objects.annotate(num_followers=Count('followers'))\
             .filter(published=True).order_by('-num_followers')[:limit]
+                
         tools_results_count = len(tools)
 
         categories = ToolCategory.objects.filter(published=True)\
             .order_by('?')[:limit]
         categories_results_count = len(categories)
 
-        stories = Story.objects.all().order_by('-created')[:limit]
+        stories = Story.objects.filter(published=True).order_by('-created')[:limit]
         stories_results_count = len(stories)
 
         profiles = Profile.objects.filter(user__is_superuser=False)\
             .order_by('-user__date_joined')[:limit]
         profiles_results_count = len(profiles)
+
+        work_areas = CategoryGroup.objects.filter(published=True).order_by('name')[:limit]
+        work_areas_results_count = len(work_areas)
 
     ctx = {
         'query': q,
@@ -76,8 +98,10 @@ def homepage(request):
         'stories_results_count': stories_results_count,
         'profiles': profiles,
         'profiles_results_count': profiles_results_count,
+        'work_areas': work_areas, 
+        'work_areas_results_count': work_areas_results_count, 
     }
-    return render(request, 'search/index.html', ctx)
+    return render(request, 'search/search_index.html', ctx)
 
 
 class BaseSearchView(View):

@@ -1,0 +1,28 @@
+{% load static %}
+{%if meta.model_name == 'tool' %}
+  <form class="follow-button " action="
+    {%if user.id in tool_follower_ids%}
+      {% url 'tools:unfollow' tool.id %}
+    {%else%}
+      {% url 'tools:follow' tool.id %}
+    {%endif%}" method="post">
+{%elif meta.model_name == 'categorygroup' %}
+  <form class="follow-button " action="
+    {%if user.id in category_group_follower_ids%}
+      {% url 'tools:unfollow_work_area' tool.id %}
+    {%else%}
+      {% url 'tools:follow_work_area' tool.id %}
+    {%endif%}" method="post">
+{%endif%}
+  {% csrf_token %}
+  <button type="submit" name='should_notify' value='1' class="btn flex-row" data-requires-validated-user="true">
+      <div class="follow-button__icon__container flex-center">
+        <svg class="icon icon--red" viewbox="0 0 1 1">
+          <use xlink:href="{% static 'icons/cross.svg' %}#cross"></use>
+        </svg>
+      </div>
+      <p class="follow-button__text flex-center">
+         {%if user.id in tool_follower_ids %}Unf{%else%}F{%endif%}ollow
+      </p>
+  </button>
+</form>

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load toolstags %}
+{% load commentstags %}
+{% load profilestags %}
+{% load commontags %}
+{% load compress %}
+{% block head_statics %}
+<script type="text/javascript" src="{% static 'netbox/javascript/jsrender.min.js' %}"></script>
+{% comments_javascript %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/story.min.css" %}">
+<link rel="stylesheet" href="{% static "css/comments.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{ story.title }} - {% endblock %}
+
+{% block ga_events %}
+ga('send', 'event', 'story', 'view');
+{% endblock %}
+
+{% block main %}
+
+{% include '_hero_breadcrumbs.html' with icon='stories' breadcrumbs=breadcrumbs %}
+<div class="container-fluid">
+    <div class="content-card wow fadeinup">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="story-contributor">
+                    <div class="story-user row">
+                        <div class="story-user-photo col-md-2">
+                            {% render_profile_photo story.user  %}
+                        </div>
+                        <div class="story-user-details col-md-10">
+                            <h4>
+                                {% if story.user.profile.country %}
+                                <span title="{{story.user.profile.country.name}}" class="flag-icon flag-icon-{{story.user.profile.country}}"></span>
+                                {% endif %}
+                                <a href="{% url 'profiles:show' story.user.profile.uid %} ">{{story.user.profile.name}}</a>
+                            </h4>
+                             
+                            <div class="story-user-bio">
+                                {{story.user.profile.bio}}
+                                <a href="{% url 'profiles:show' story.user.profile.uid %} ">See profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider--bordered"></div>
+                <div class="story-tool">
+                    {% if user.is_authenticated %}
+                        {% if story.user == user %}
+                            <a class="btn btn-primary pull-right" href="{% url 'tools:edit_story' story.id %}">Edit Story</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <h2 class="story-title title">
+                    
+                    {{story.title}}
+                </h2>
+                <div class="story-info">
+                    {% if story.country %}
+                   <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
+                   {% endif %}
+                    <span class="story-title-created">{{ story.created | date:"F j, Y \a\t P" }}</span>
+                </div>
+                <div class="story-content more">
+                    {{story.content|safe }}
+                </div>
+                
+                
+                
+                {% render_comment_list for story %}
+            </div>
+            <div class="col-md-4">
+                <h4 class="title">Tools used in this story: </h4>
+                <div class="tools cards full">
+                     
+                    {% for resource in resources %}{%with story.id as bla %}{% include 'tools/_tools_card.html' with from='st_' parent_id=story.id tool=resource %}{%endwith%} {% empty %}
+                    <div class="categories-empty col-md-12">
+                        There are no tools used in this story.
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% footer_banner %}
+
+{% endblock %}

@@ -4,7 +4,12 @@
   margin-top: 1em;
 }
 
-#comments { margin: 1em 0; }
+#comments { 
+    margin: 1em 0; 
+    p{
+        font-size: 14px;
+    }
+}
 
 .comment-item {
   padding-top: $spacer-md;
@@ -20,13 +25,13 @@
 
   .flag-icon {
     margin: 0px 2px 0px 0px;
-    padding: 0px 2px 0px 0px;
+    padding: 3px 2px 0px 0px;
   }
 }
 
 .comment-author-name {
     font-weight: bold;
-
+    font-size: 15px;
     a {
       color: black;
       text-decoration: none;
@@ -35,10 +40,11 @@
 
 .comment-added-dt {
     color: grey;
+    font-size: 12px;
 }
 
 .comment-vline {
-    border-right: thick solid gray;
+    border-right: 2px solid gray;
     width: 55px;
     margin-right: 20px;
     padding-right: 50px;

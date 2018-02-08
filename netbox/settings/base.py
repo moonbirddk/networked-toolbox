@@ -56,6 +56,7 @@ AUTHENTICATION_BACKENDS = (
 
 INSTALLED_APPS = (
     # Django
+  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,13 +73,16 @@ INSTALLED_APPS = (
     'bootstrap3',
     'compressor',
     'django_countries',
+    'trumbowyg', 
     'django_summernote',
     'easy_timezones',
     'haystack',
     'notifications',
     'solo',
     'storages',
-
+    'hijack', 
+    'compat', 
+    'hijack_admin', 
     # Networked toolbox apps
     'comments',
     'common',
@@ -90,6 +94,9 @@ INSTALLED_APPS = (
     'tools',
     'activities',
 )
+
+HIJACK_ALLOW_GET_REQUESTS = True
+HIJACK_LOGOUT_REDIRECT_URL = '/admin/profiles/profile/'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -124,8 +131,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "django.core.context_processors.media",
-                "django.core.context_processors.static",
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
                 "netbox.context_processors.timezone_name",
                 "netbox.context_processors.google_analytics_id",
                 "netbox.context_processors.user_has_verified_email",
@@ -189,14 +196,21 @@ WSGI_APPLICATION = 'netbox.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default':{ 
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'nwt_production',
+            'USER': 'postgres',
+            'HOST': 'localhost',
+            'PORT': '',
+            }
 }
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -313,3 +327,5 @@ GOOGLE_ANALYTICS_ID = 'UA-71138728-1'
 GULP_DEVELOP_COMMAND = 'node_modules/.bin/gulp'
 
 NOTIFICATIONS_USE_JSONFIELD=True
+
+

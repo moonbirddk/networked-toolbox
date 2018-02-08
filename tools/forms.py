@@ -8,11 +8,14 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_countries.fields import LazyTypedChoiceField
 from django_countries import countries
+from django.contrib.contenttypes.models import ContentType
 
-from .models import Tool, ToolCategory, CategoryGroup
-
-
+from .models import Tool, ToolCategory, CategoryGroup, Story
+from .widgets import ColumnCheckboxSelectMultiple
+from django.forms.widgets import CheckboxSelectMultiple
 log = logging.getLogger(__name__)
+
+from trumbowyg.widgets import TrumbowygWidget
 
 
 class OverviewPageForm(forms.Form):
@@ -42,7 +45,7 @@ class CategoryGroupForm(forms.Form):
                            max_length=255,
                            required=False,
                            help_text='255 characters max.')
-    categories = ToolCategoryChoiceField(label='Toolbox sections')
+    categories = ToolCategoryChoiceField(label='Toolboxes')
 
 
 class ToolForm(forms.Form):
@@ -63,19 +66,21 @@ class ToolForm(forms.Form):
         required=True,
         max_length=20000
     )
-    categories = ToolCategoryChoiceField(label='Toolbox sections')
+    categories = ToolCategoryChoiceField(label='Toolboxes')
 
 
-class StoryForm(forms.Form):
-    title = forms.fields.CharField(max_length=100, required=True)
-    content = forms.fields.CharField(
-        widget=SummernoteInplaceWidget(),
-        required=True,
-        max_length=5000
-    )
-    country = LazyTypedChoiceField(choices=[('', ''), ] + list(countries),
-                                   required=False,
-                                   label='Where did this take place?')
+class StoryForm(forms.ModelForm):
+    #title = forms.fields.CharField(max_length=100, required=True)
+    class Meta: 
+        model = Story 
+        fields = ('title', 'content', 'country', 'associated_tools',)
+        widgets = {
+            'content': TrumbowygWidget, 
+            'associated_tools': CheckboxSelectMultiple,
+            
+        }
+  
+   
 
 
 class ToolCategoryForm(forms.Form):
@@ -96,7 +101,7 @@ class ToolCategoryForm(forms.Form):
         required=True,
         max_length=20000
     )
-    group = forms.ModelChoiceField(label='Toolbox',
+    group = forms.ModelChoiceField(label='Work Area',
                                    queryset=CategoryGroup.objects.all(),
                                    required=True)
 
@@ -105,8 +110,14 @@ class SuggestionRelatedObjectForm(forms.Form):
     _rel_obj_type_choices = (
         ('tool', 'tool'),
         ('category', 'category'),
+        ('categorygroup', 'categorygroup'),
     )
 
+    RELATED_OBJECT_MODELS = {
+        'tool': Tool, 
+        'category': ToolCategory, 
+        'categorygroup': CategoryGroup, 
+    }
     related_object_type = forms.fields.ChoiceField(
         choices=_rel_obj_type_choices,
         required=True,
@@ -122,10 +133,8 @@ class SuggestionRelatedObjectForm(forms.Form):
         rel_obj_id = cleaned_data['related_object']
         rel_obj_type = self.cleaned_data['related_object_type']
         try:
-            if rel_obj_type == 'tool':
-                obj = Tool.objects.get(id=rel_obj_id)
-            elif rel_obj_type == 'category':
-                obj = ToolCategory.objects.get(id=rel_obj_id)
+            obj = self.RELATED_OBJECT_MODELS[rel_obj_type].objects.get(id=rel_obj_id)
+        
         except ObjectDoesNotExist as exc:
             raise ValidationError("Non existent related object")
 

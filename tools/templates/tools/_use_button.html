@@ -1,0 +1,12 @@
+{% load static %}
+  <form class="use-button" action="
+    {%if user.id in tool_user_ids%}
+      {% url 'tools:unfollow' tool.id %}
+    {%else%}
+      {% url 'tools:follow' tool.id %}
+    {%endif%}" method="post">
+  {% csrf_token %}
+  <button type="submit" name='have_used' value='1' class=" btn btn-primary" data-requires-validated-user="true">
+  I have {%if user.id in tool_user_ids%}not {%endif%}used this tool 
+  </button>
+</form>

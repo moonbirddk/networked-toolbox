@@ -3,15 +3,28 @@
   position: relative;
 
   &__count {
-    background-color: $color-primary;
-    border-radius: $border-radius;
-    color: white;
-    line-height: 1;
-    min-width: 1.8rem;
+    // line-height: 1;
+    // min-width: 1.8rem;
     padding: 2px;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 10px;
+    top: 10px;
+    color: $color-primary;
+    border-radius: 50%;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    line-height: 20px;
+    padding: 0;
+    padding-top: 2px;
+    margin: 0;
+    font-weight: 700;
+    min-height: 20px;
+    height: 20px;
+    width: 20px;
 
     &--zero {
       display: none;
@@ -19,7 +32,8 @@
   }
 
   &__wrapper {
-    height: 60vh;
+    // height: 60vh;
+    min-height: 100px;
     max-height: 300px;
     overflow-y: auto;
   }
@@ -27,6 +41,16 @@
   &__dropdown {
     padding-bottom: 0;
     overflow: hidden;
+    right: 0;
+    left: auto;
+    padding: 10px;
+    li{
+      border: none !important;
+      cursor: pointer;
+      &:hover{
+        background: none !important;
+      }
+    }
   }
 
   &__read {
@@ -44,17 +68,20 @@
 }
 
 .notification {
-  > a {
+  > a, > span {
     padding: $spacer-sm $spacer-md !important;
     display: block;
     width: 100%;
     text-decoration: none;
-
+    cursor: auto;
+  }
+  > a{
+    cursor: pointer;
     &:hover, &:focus {
       background-color: $color-gray-lightest;
     }
-  }
 
+  } 
   &__actor {
     color: $color-gray-dark;
     font-weight: $bold-weight;

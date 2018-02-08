@@ -52,6 +52,9 @@ class Profile(models.Model):
 
     objects = ProfileManager()
 
+    def __str__(self): 
+        return '{} {}'.format(self.user.first_name, self.user.last_name)
+
     def save(self, *args, **kwargs):
         if not self.uid:
             self.uid = generate_profile_uid()

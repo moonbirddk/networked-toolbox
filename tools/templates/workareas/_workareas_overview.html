@@ -1,0 +1,71 @@
+{% load toolstags %} 
+{% load partition_slice %} 
+{% load commontags %} 
+{% load static %} 
+{% load profilestags %}
+ 
+<div class="overview overview--workarea">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div class="overview__container">
+                {% for category_group in categories_by_group %}
+                    <div id="workarea-{{category_group.id}}" class="workarea card wow fadeinup">
+                        <h3 class="title">
+                            {% if category_group.categories.count > 0 %}
+                            <a id="category-group-{{category_group.id}}-link" href="{% url 'tools:show_categorygroup' category_group.id %}">
+                                {{category_group.name}}
+                            </a>
+                            {% else %}
+                            <span class="toggle-off">{{category_group.name}}</span>
+                            {% endif %} 
+                        </h3>
+                        <p>{{category_group.description}}</p>
+
+                        <div class="card__footer card__counter">
+                            <h5>
+                                <a href="{% url 'tools:show_categorygroup' category_group.id %}">Read more</a>
+                            </h5>
+                            <div class="card__counter--people flex-vertical">
+                                <svg class="icon icon--black" viewbox="0 0 1 1">
+                                    <use xlink:href="{% static 'icons/profile.svg' %}#profile"></use>
+                                </svg>
+                                <span>{{category_group.followers.count}} {{category_group.followers.count|pluralize:"person, people"}} </span>
+                            </div>
+                            <div class="card__counter--comments flex-vertical">
+                                <svg class="icon icon--black" viewbox="0 0 1 1">
+                                    <use xlink:href="{% static 'icons/stories.svg' %}#stories"></use>
+                                </svg>
+                                <span>{{category_group.stories.count}} {{category_group.stories.count|pluralize:"story, stories"}} </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% empty %}
+                    <p>There are no items available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- RECENT STORIES -->
+            <div class="col-md-4 col-xs-12 sidebar--overlay sidebar--overlay--gray">
+                <div class="stories cards sidebar">
+                    <div class="sidebar__header flex-vertical">
+                        <div class="icon__rounded icon__rounded--black">
+                            <svg class="icon icon--white" viewbox="0 0 1 1">
+                                <use xlink:href="{% static "/icons/stories.svg"%}#stories"></use>
+                            </svg>
+                        </div>
+                        <h4>Recent stories</h4>
+                    </div>
+                     {% for story in stories|slice:":4" %}
+                        {% include 'stories/_story_card.html' with from="wa_ov" %}
+                    {% endfor %}
+                    <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>
+                     {% if stories|length > 4 %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,16 +3,18 @@
 {% load compress %}
 {% load profilestags %}
 {% load notifications_tags %}
+{% load hijack_tags %}
 <html>
   <head>
     <meta charset="UTF-8">
     <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
     {% compress js %}
-    <script src="{% static "js/base.js" %}"></script>
     <script src="{% static "js/jquery.shorten.js" %}"></script>
     <!-- Notifications -->
     <script src="{% static "notifications/notify.js" %}"></script>
     <script src="{% static "js/notifications.js" %}"></script>
+    <script src="{% static "js/wow.min.js" %}"></script>
+    <script src="{% static "js/base.js" %}"></script>
     {% register_notify_callbacks fetch=100 callbacks='netbox_fill_notification_list,fill_notification_badge' %}
     {% endcompress %}
     {% bootstrap_javascript %}
@@ -21,9 +23,13 @@
     {% compress css %}
     <link rel="stylesheet" href="{% static "netbox/flags/css/flag-icon.min.css" %}">
     <link rel="stylesheet" href="{% static "css/base.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'hijack/hijack-styles.css' %}" />
+
     {% endcompress %}
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block head_title %}{% endblock %} - Networked Toolbox</title>
+
+    <title>{% block head_title %}{% endblock %}Networked Toolbox</title>
 
     {% block head_statics %}
     {% endblock %}
@@ -43,8 +49,8 @@
   </head>
   <body data-user-has-verified-email="{{ user_has_verified_email|yesno:"true,false" }}"
         data-user-is-authenticated="{{ user.is_authenticated|yesno:"true,false" }}">
+    {% hijack_notification %}
     <div class="flex-column main-wrap">
-
       <div> <!-- Nav -->
         {% include '_nav.html' %}
         {% block searchform %}
@@ -52,12 +58,10 @@
       </div> <!-- /Nav -->
 
       <div class="flex-grow"> <!-- Content -->
-        <div class="container-fluid main-content">
           {% bootstrap_messages %}
 
           {% block main %}
           {% endblock %}
-        </div>
       </div> <!-- /Content -->
 
       {% include '_footer.html' %}

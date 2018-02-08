@@ -1,7 +1,8 @@
+
 .form-group, .form-group.has-success {
   .form-control {
-    border-radius: 0;
-    border-color: $color-gray;
+    border-radius: 3px;
+    border-color: $color-gray-light;
 
     &:focus {
       border-color: black;
@@ -12,9 +13,9 @@
     color: inherit;
   }
   .help-block {
-    color: $color-gray-light;
+    color: red;
     text-align: right;
-    font-size: 85%;
+    font-size: 95%;
     margin-bottom: -$spacer-sm;
   }
   select.form-control {

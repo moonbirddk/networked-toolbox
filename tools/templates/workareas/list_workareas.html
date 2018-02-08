@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+{% load commontags %}
+{% load compress %}
+
+{% block head_statics %}
+{% compress js %}
+<script src="{% static "js/tools.js"%}"></script>
+{% endcompress %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}Work Area Overview - {% endblock %}
+
+{% block main %}
+<div class="hero-section hero-section--overview work-areas">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="hero-section__inner flex-vertical" style="background-image: url( {{ overview.cover_image.url }} )">
+                    <div class="hero-section__title-container flex-vertical">
+                        <h1 class="hero-section__title">WORK AREAS</h1>
+                    </div>
+                    <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
+                        <svg class="icon" viewbox="0 0 1 1">
+                            <use xlink:href="{% static "icons/work-areas.svg" %}#work-areas"></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include "workareas/_workareas_overview.html" with resources=cat_filter %}
+
+{% footer_banner %}
+
+{% endblock %}

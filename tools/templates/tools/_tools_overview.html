@@ -1,30 +1,44 @@
 {% load toolstags %}
 {% load partition_slice %}
 {% load commontags %}
+{% load static %}
 
-<div class="row flex-wrapper">
-  {% for resource in resources %}
-    <div class="tool-item col-md-3 col-xs-6">
-        <a href="{% url route resource.id %}"><div class="tool-image">
-          {% if resource.cover_image %}
-            <img src="{{ resource.cover_image.url }}" />
-          {% else %}
-          <!--<img src="empty-image-here" />-->
-          {% endif %}
-          {% if resource.published == False %}
-          <div class="unpublished-banner">
-            <span>UNPUBLISHED</span>
-          </div>
-          {% endif %}
-        </div></a>
-        <div class="tool-content">
-          <a href="{% url route resource.id %}"><h3>{{ resource.title|truncatechars:51 }}</h3></a>
-          <p>{{ resource.description|bleach_striptags|truncatechars:70 }}</p>
+<div class="container-fluid overview--tools tools">
+  <div class="overview__container">
+    <section class="search-bar wow fadeinup">
+      <form class="form-inline search-form" method="get" action="{% url 'search:tool_results' %}?q={{query}}">
+        <div class="form-group">
+          <input type="text" name="q" value="" placeholder="Search for a specific tool" maxlength="30" class="form-control" title="" required=""
+            id="id_q">
         </div>
-    </div>
-  {% empty %}
-    <div class="col-md-3 col-xs-6">
-      <p>There are no items available.</p>
-    </div>
-  {% endfor %}
+        <button class="btn btn-primary" type="submit" />Search</button>
+      </form>
+    </section>
+    <section>
+
+      <h3>Tools overview</h3>
+      <div class="tools cards thirds">
+        {% for resource in resources %}
+        {% include 'tools/_tools_card.html' with tool=resource from="ov"%}
+        {% empty %}
+        <div class="categories-empty col-md-12">
+          There are no tools sections in this Work Area.
+        </div>
+        {%endfor%}
+      </div>
+    </section>
+  </div>
 </div>
+<section class="section--gray section--workareas section--padded">
+  <div class="container-fluid">
+    <h2>WORK AREAS</h2>
+    <div class="workareas">
+      {% for workarea in category_groups %}
+      <div class="workarea wow fadeinup" data-wow-delay="0.{{forloop.counter}}s">
+        <h3>{{ workarea.title }}</h3>
+        <a href="{% url 'tools:show_categorygroup' workarea.id %}"><strong>Read More</strong></a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

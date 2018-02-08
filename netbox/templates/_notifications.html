@@ -7,13 +7,13 @@
     {% live_notify_badge classes="notifications__count notifications__count--zero" %}
   </a>
   <ul class="dropdown-menu notifications__dropdown hidden">
-    <div id="live_notify_list" class="notifications__wrapper"></div>
-    <li id="no-notification" class="no-notification">
+    <div id="live_notify_list" class="live_notify_list notifications__wrapper"></div>
+    <li id="no-notification" class="no-notification no-notification">
       You have no unread notifications
     </li>
-    <li id="mark_all_notifications_as_read">
+    <li id="mark_all_notifications_as_read" class="mark_all_notifications_as_read flex-center">
       <button onclick="mark_all_notifications_as_read()"
-        class="btn notifications__read">
+        class="btn btn-primary">
         Mark all as read
       </button>
     </li>

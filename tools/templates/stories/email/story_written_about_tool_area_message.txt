@@ -1,0 +1,3 @@
+{% extends 'email/base.txt' %} {% load i18n %} {% block message %} 
+You are following "{{target.title}}" on Networked Toolbox.
+{{actor}} has just shared a story called "{{description | truncatechars:220 }}". Click here to read to full story: {% for action in actions %}{{ BASE_URL }}{{ action.href }} {% endfor %}{% endblock %}

@@ -17,24 +17,27 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import static
-
+import search 
 urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^summernote/', include('django_summernote.urls')),
+    url(r'^trumbowyg/', include('trumbowyg.urls')),
+    url(r'^hijack/', include('hijack.urls', namespace='hijack')),
     url(r'^inbox/notifications/',
         include('notifications.urls',
         namespace='notifications')),
-
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
-    url(r'^tools/', include('tools.urls', namespace='tools')),
+    url(r'^workareas/', include('tools.urls', namespace='tools')),
     url(r'^resources/', include('resources.urls', namespace='resources')),
     url(r'^comments/', include('comments.urls', namespace='comments')),
     url(r'^search/', include('search.urls', namespace='search')),
     url(r'^pages/', include('pages.urls', namespace='pages')),
     url(r'^menus/', include('menus.urls', namespace='menus')),
     url(r'^activity/', include('activities.urls', namespace='activities')),
-    url(r'^$', 'search.views.homepage', name='homepage'),
+    url(r'search/^$', search.views.search_page, name='search_page'),
+    url(r'^$', search.views.homepage, name='homepage')
 
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
     static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)
+

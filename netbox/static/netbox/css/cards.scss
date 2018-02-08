@@ -1,0 +1,237 @@
+.section--cards{
+  position: relative;
+  padding-bottom: 140px;
+  @include breakpoint($media-medium){
+    padding-bottom: 40px;
+  }
+  &--header{
+    a.btn{
+      position: absolute;
+      bottom: 20px;
+      width: calc(100% - 30px);
+      @include breakpoint($media-medium){
+        position: static;
+        width: 100%;
+      }
+    }
+  }
+}
+.cards{
+  overflow-x: scroll;
+  @include breakpoint($media-large){
+    overflow: hidden;
+
+  }
+  > div[class*="col"] {
+    display: flex;
+
+  }
+  &.tools,
+  &.halfs,
+  &.thirds
+  {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  // &.toolboxes{
+  //   display: flex;
+  //   flex-direction: row;
+  //   flex-wrap: wrap;
+  //   justify-content: flex-start;
+  //   >*{
+  //     flex: 0 1 50%;
+  //   }
+  // }
+  &.front{
+    flex-wrap: nowrap;
+    @include breakpoint($media-large){
+      flex-wrap: wrap;
+    }
+  }
+}
+.card{
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  @include breakpoint($media-medium){
+    width: auto;
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+  .full &{
+    flex-basis: 100%;
+  }
+  @include breakpoint($media-large){
+    .halfs &{
+      flex-basis: calc(50% - 15px);
+    }
+    .thirds &{
+      flex-basis: calc(100% / 3 - 20px);
+    }
+  }
+  .front &{
+    margin-right: 20px;
+    @include breakpoint($media-large){
+      margin-right: 0;
+    }
+    .card__content{
+      width: 80vw;
+      @include breakpoint($media-large){
+        width: auto;
+      }
+    }
+  }
+  .stories &{
+    background: $color-gray-lightest;
+    // padding: 20px;
+  }
+  .sidebar.stories &{
+    background: $color-gray-lighter;
+  }
+  .tools &{
+    background: white;
+    // flex: 0 0 32%; 
+  }
+  .toolboxes &{
+    background: #454545;
+    h4 a{
+      color: white;
+    }
+    p{
+      color: $color-gray-light;
+    }
+  }
+  &__category{
+    border-bottom: 1px solid rgba($color-gray-light, 0.5);
+    margin-bottom: 15px;
+    height: 40px;
+  }
+  &__img{
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $color-gray-lightest;
+  }
+  &__content{
+    padding: 20px;
+    border: 1px solid $color-gray-lightest;
+    display: flex;
+    flex-flow: column;
+    @include breakpoint($media-large){
+      flex: 1 1 auto;
+      display: flex;
+      // flex-flow: row wrap;
+      align-content: flex-start;
+      > *{
+        flex: 0 1 auto;
+      }
+    }
+  }
+  h4{
+    margin-bottom: 20px;
+
+  }
+  a{
+    color: black;
+  }
+  p{
+    font-size: 15px;
+    line-height: 21px;
+    margin-bottom: 10px;
+    @include breakpoint($media-large){
+      flex-grow: 1;
+    }
+   
+  }
+  &__footer{
+    height: 42px;
+    align-self: flex-end;
+    width: 100%;
+    position: relative;
+    .stories &{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      .profile-photo{
+        width: 42px;
+        margin-right: 10px;
+      }
+      .user-info{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+    .workarea &{
+      justify-content: flex-end;
+      align-items: center;
+    }
+    h5{
+      margin: 0;
+      .workarea &{
+        position: absolute;
+        left: 0;
+      }
+      a{
+        color: $color-primary;
+      }
+    }
+  }
+  &__counter{
+    color: $color-primary;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    div{
+      margin-right: 15px;
+    }
+    span{
+      display: inline-block;
+      margin-right: 5px;
+      // font-size: 15px;
+      line-height: 15px;
+      margin-top: 2px;
+    }
+    img{
+      margin-right: 5px;
+    }
+  }
+
+}
+
+.content-card{
+  // transform: translateY(-100px);
+  margin-top: -100px;
+  background: white;
+  padding: 30px;
+  position: relative;
+  &:after, &:before{
+    content: '';
+    position: absolute;
+    height: 200px;
+    width: 10px;
+    top: 100px;
+    
+  }
+  &:before{
+    left: -10px;  
+    background: linear-gradient(to left bottom, rgba(black, 0.2) -100%, transparent 50% );
+  }
+  &:after{
+    right: -10px;
+    background: linear-gradient(to right bottom, rgba(black, 0.2) -100%, transparent 50% );
+  } 
+}
+// $color-gray-dark: #333;
+// $color-gray: #555;
+// $color-gray-light: #777;
+// $color-gray-lighter: #E5E5E5;
+// $color-gray-lightest: #F4F4F4;

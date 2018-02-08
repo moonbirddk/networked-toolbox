@@ -1,0 +1,40 @@
+       {% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+{% load commontags %}
+{% load compress %}
+
+{% block head_statics %}
+{% compress js %}
+<script src="{% static "js/tools.js"%}"></script>
+{% endcompress %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}Work Area Overview - {% endblock %}
+
+{% block main %}
+
+<div class="row">
+    <div class="col-md-4 col-xs-12 pull-right">
+    
+    </div>
+    <div class="col-md-8 col-xs-12">
+       <h1 class="title">Toolbox Overview
+        </h1>
+         <p class="category-description">
+           {{ overview.description }}
+         </p>
+    </div>
+
+
+</div>
+
+{% include "tools/_categorygroups_overview.html" %}
+{% endblock %}

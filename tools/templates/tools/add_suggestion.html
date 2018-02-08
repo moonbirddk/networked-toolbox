@@ -9,12 +9,12 @@
 {% endcompress %}
 {% endblock %}
 
-{% block head_title %}Add Suggestion{% endblock %}
+{% block head_title %}Add Suggestion - {% endblock %}
 
 {% block main %}
 <h1>Add Suggestion</h1>
-<p>You are adding suggestion to {{related_object_type}}:</p>
-<blockquote>&quot;{{related_object.title}}&quot;</blockquote>
+<p>You are adding suggestion to {{related_object_verbose_name}}:</p>
+<blockquote>&quot;{{object_title}}&quot;</blockquote>
 <hr />
 
 <form

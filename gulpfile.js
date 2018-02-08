@@ -5,12 +5,15 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var minifycss = require('gulp-minify-css');
+var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
 var rimraf = require('rimraf');
-
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
+var url = 'http://localhost:8000';
 // 2. FILE PATHS
 // - - - - - - - - - - - - - - -
 
@@ -34,6 +37,9 @@ var paths = {
     ],
     fonts: [
         'netbox/static/netbox/fonts/*',
+    ],
+    icons: [
+        'netbox/static/netbox/icons/*',
     ]
 }
 
@@ -55,32 +61,43 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest('staticfiles/fonts'));
 });
 
+// Copies icons
+gulp.task('icons', function() {
+    return gulp.src(paths.icons)
+    .pipe(gulp.dest('staticfiles/icons'));
+});
+
 // Compiles Sass
 gulp.task('sass', function() {
     return gulp.src(paths.sass)
+    .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie 10']}))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('.tmp/css'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(minifycss())
+    // .pipe(minifycss())
     .pipe(gulp.dest('staticfiles/css'))
-    .pipe(livereload());
+    // .pipe(livereload());
+    .pipe(reload({
+        stream: true
+    }))
 });
 
 // Compiles JS
 gulp.task('uglify', function() {
   return gulp.src(paths.js)
-    //.pipe(uglify().on('error', function(e){
-    //    console.log(e);
-    // }))
+    .pipe(uglify().on('error', function(e){
+       console.log(e);
+    }))
     .pipe(gulp.dest('staticfiles/js'))
-    .pipe(livereload());
+    // .pipe(livereload());
 });
 
 gulp.task('copyjs', function() {
     return gulp.src(paths.js)
     .pipe(gulp.dest('staticfiles/js'))
-    .pipe(livereload());
+    // .pipe(livereload());
 });
 
 gulp.task('watch', function() {
@@ -100,8 +117,44 @@ gulp.task('watch', function() {
 
 });
 
+gulp.task('default', function() {
+    browserSync.init({
+        proxy: url,
+        open: false,
+        notify: false,
+        ghostMode: {
+            clicks: true,
+            scroll: true,
+            forms: {
+                submit: true,
+                inputs: true,
+                toggles: true
+            }
+        }
+    });
+
+    // Watch fonts
+    gulp.watch(paths.fonts, ['fonts']);
+    // Watch fonts
+    gulp.watch(paths.icons, ['icons']);
+
+    // Watch Sass
+    gulp.watch(paths.sassWatch, ['sass']);
+
+    // Watch javascript
+    gulp.watch(paths.js, ['copyjs']);
+
+    // Watch Django temlates
+    // gulp.watch(['**/*.html', '**/*.py']).on('change', reload);
+    gulp.watch(['**/*.html']).on('change', reload);
+
+});
+
+
+
 // Builds your entire app once, without starting a server
-gulp.task('build', ['fonts', 'sass', 'uglify']);
+gulp.task('build', ['fonts', 'icons', 'sass', 'uglify']);
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['fonts', 'sass', 'copyjs', 'watch']);
+gulp.task('watch', ['fonts', 'sass', 'copyjs', 'watch']);
+

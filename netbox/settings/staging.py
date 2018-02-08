@@ -9,7 +9,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
 DOMAIN = 'staging.networkedtoolbox.com'
-ALLOWED_HOSTS = [DOMAIN, ]
+ALLOWED_HOSTS = [DOMAIN, 'network-toolbox-staging.herokuapp.com']
 
 # We're using S3 for media and static storage.
 # STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -17,7 +17,6 @@ ALLOWED_HOSTS = [DOMAIN, ]
 DATABASES = {
     'default': dj_database_url.config()
 }
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
 #DATABASES['default']['CONN_MAX_AGE'] = 5
 DATABASE_POOL_ARGS = {
     'max_overflow': 10,

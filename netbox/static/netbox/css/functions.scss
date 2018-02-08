@@ -1,0 +1,8 @@
+@mixin breakpoint($size){
+  @media (min-width: $size){
+    @content;
+  }
+}
+@mixin transition(){
+  transition: all 0.2s ease-out;
+}

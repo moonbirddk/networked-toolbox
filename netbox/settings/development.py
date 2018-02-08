@@ -8,7 +8,7 @@ SECRET_KEY = 'secret key'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-INSTALLED_APPS += ('django_nose', )
+INSTALLED_APPS += ('django_nose',)
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
@@ -82,3 +82,21 @@ LOGGING = {
 }
 
 MEDIA_URL = 'http://localhost:8000/media/'
+"""
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    }
+}
+"""

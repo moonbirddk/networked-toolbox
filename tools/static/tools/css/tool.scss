@@ -1,4 +1,5 @@
 @import '../../../../netbox/static/netbox/css/variables';
+@import '../../../../netbox/static/netbox/css/functions';
 
 .flex-wrapper {
   display: flex;
@@ -15,9 +16,7 @@
 }
 
 .resource-box {
-  background-color: $color-sand;
   overflow: hidden;
-  padding: 0px 1em 0.5em 1em;
   margin: 0 0 1em 0;
 }
 
@@ -79,13 +78,13 @@
 
 .resource-box a {
   color: black;
+  color: $color-gray-light;
 }
 
 .resource-title {
   font-size: 1.3rem;
   line-height: 1.5rem;
   max-height: 3.2rem;
-  overflow: hidden;
   width: 60%;
   display: inline-block;
   vertical-align: middle;
@@ -95,11 +94,11 @@
 
 .resource-item {
   margin: 1rem 0 2rem;
-  height: 2.25rem;
+  min-height: 2.25rem;
 }
 
 .resource-link:hover {
-  color: white !important;
+  color: $color-primary !important;
   text-decoration: none;
 }
 
@@ -156,6 +155,59 @@
     color: #8D8479;
   }
 }
+// NEW FOLLOW BUTTON
+
+.follow-button{
+  color: $color-primary;
+  border: 1px solid $color-gray-light;
+  border-radius: 5px;
+  height: 45px;
+  width: 180px;
+  padding: 0;
+  margin: 0;
+  @include breakpoint($media-large){
+    position: absolute;
+    right: 25px;
+    top: 20px;
+
+  }
+  &__icon__container{
+    border-right: 1px solid $color-gray-light;
+    height: 44px;
+    width: 44px;
+    margin-left: 2px;
+  }
+  .icon{
+    stroke: $color-primary;
+  }
+  .btn{
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    border: none;
+    background: white;
+    &:hover{
+      background: $color-gray-lightest;
+      color: $color-primary;
+    }
+  }
+  &__text{
+    height: 44px;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    margin-top: 2px;
+  }
+}
+
+.use-button{
+  margin-top: 20px;
+  button{
+    max-width: 100%;
+    width: auto;
+    padding: 14px;
+  }
+}
 
 #usage-modal {
   margin-top: 40vh;
@@ -176,15 +228,15 @@
 .summernote-container {
   overflow: hidden;
   word-wrap: break-word;
-  p[style], span[style] {
-    font-size: 15px !important;
-    font-family: 'Helvetica Neue', 'Arial' !important;
-  }
+  // p[style], span[style] {
+  //   font-size: 15px !important;
+  //   font-family: 'Helvetica Neue', 'Arial' !important;
+  // }
   img {
     max-width: 100% !important;
   }
   p {
-    font-size: 14px;
+    // font-size: 14px;
   }
   img {
     width: 100%;
@@ -192,8 +244,10 @@
 }
 
 .resource-box .title {
-  font-family: 'AmericanTypewriter-Bold','Arial';
-  font-size: 24px;
+  @extend h4 !optional;
+  margin-top: 0;
+  // font-family: 'AmericanTypewriter-Bold','Arial';
+  // font-size: 24px;
 }
 
 .resource-item i {
@@ -207,17 +261,14 @@ iframe {
 
 .unpublished-banner {
   background-color: #ED1C24;
-  height: 25%;
+  height: 50px;
   width: 100%;
   line-height: 25%;
   color: white;
   font-weight: 700;
   text-align: center;
   position: absolute;
-  top: -9999px;
-  bottom: -9999px;
-  left: -9999px;
-  right: -9999px;
+  top: 0;
   margin: auto;
   &:before {
     content: "";
@@ -410,6 +461,51 @@ iframe {
         background: #ed1c24;
         color: white;
       }
+    }
+  }
+}
+
+// WORKAREA FOOTER TO TOOLS OVERVIEW 
+.section--workareas{
+  h2{
+    margin-bottom: 40px;
+  }
+  .workareas{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+  .workarea{
+    border-bottom: 1px solid $color-gray-light;
+    flex: 0 0 ;
+    flex-basis: 100%;
+    padding-bottom: 10px;
+    @include breakpoint($media-large){
+      flex-basis: 48%;
+    }
+    a{
+      font-weight: 500;
+    }
+  }
+}
+
+// ADD WORKAREA STORY
+#associated_tools{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  label{
+    font-size: 14px;
+    flex: 0 0 ;
+    flex-basis: 50%;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color-gray-lighter;
+    input, img{
+      margin-right: 5px;
+    }
+    @include breakpoint($media-large){
+      flex-basis: 32%;
     }
   }
 }

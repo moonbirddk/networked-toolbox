@@ -1,7 +1,7 @@
 import logging
 from django import forms
 from django.db import models
-
+from django.apps import apps
 from haystack import forms as haystack_forms
 from haystack import models as haystack_models
 
@@ -24,6 +24,8 @@ class SearchForm(forms.Form):
             return newval
 
 
+
+
 class ModelSearchForm(SearchForm):
     model = forms.CharField(
         required=True,
@@ -37,6 +39,6 @@ class ModelSearchForm(SearchForm):
             hchoices = haystack_forms.model_choices()
             if model in [hch[0] for hch in hchoices]:
                 self.cleaned_data['model'] =\
-                    models.get_model(*model.split('.'))
+                    apps.get_model(*model.split('.'))
                 return self.cleaned_data['model']
             raise forms.ValidationError("invalid search model")
