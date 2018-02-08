@@ -62,7 +62,7 @@ def show_tool(request, tool_id):
     }
     parent_object = None
     parent_id = None
-    if "_" in request.GET.get('from'): 
+    if request.GET and "_" in request.GET.get('from'): 
         parent_object, parent_id = request.GET.get('from').split('_')
         parent_object_instance = tools_home_objects.get(parent_object).objects.get(id=parent_id)
     if parent_object: 
