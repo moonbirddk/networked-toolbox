@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+./manage.py migrate tools
 ./manage.py migrate django_summernote --fake-initial
 ./manage.py migrate --noinput
 
