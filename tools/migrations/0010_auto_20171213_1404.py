@@ -12,11 +12,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='categorygroupoverviewpage',
-            name='link',
-            field=models.CharField(default='Loren ipsum.', max_length=60),
-        ),
+        # migrations.AddField(
+        #     model_name='categorygroupoverviewpage',
+        #     name='link',
+        #     field=models.CharField(default='Loren ipsum.', max_length=60),
+        # ),
         migrations.AddField(
             model_name='categoryoverviewpage',
             name='link',

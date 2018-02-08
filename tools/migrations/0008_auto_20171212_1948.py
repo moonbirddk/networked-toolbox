@@ -23,10 +23,10 @@ class Migration(migrations.Migration):
                 'verbose_name': 'Stories Overview Page',
             },
         ),
-        migrations.AlterModelOptions(
-            name='categorygroupoverviewpage',
-            options={'verbose_name': 'Work Areas Overview Page'},
-        ),
+        # migrations.AlterModelOptions(
+        #     name='categorygroupoverviewpage',
+        #     options={'verbose_name': 'Work Areas Overview Page'},
+        # ),
         migrations.AlterModelOptions(
             name='categoryoverviewpage',
             options={'verbose_name': 'Toolboxes Overview Page'},
@@ -35,11 +35,11 @@ class Migration(migrations.Migration):
             name='tooloverviewpage',
             options={'verbose_name': 'Tools Overview Page'},
         ),
-        migrations.AddField(
-            model_name='categorygroupoverviewpage',
-            name='headline',
-            field=models.CharField(default='Lorem ipsum.', max_length=100),
-        ),
+        # migrations.AddField(
+        #     model_name='categorygroupoverviewpage',
+        #     name='headline',
+        #     field=models.CharField(default='Lorem ipsum.', max_length=100),
+        # ),
         migrations.AddField(
             model_name='categoryoverviewpage',
             name='headline',
