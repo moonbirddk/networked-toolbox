@@ -7,8 +7,9 @@ from django.db import migrations
 def gather_tool_ids(apps, schema_editor): 
     Story = apps.get_model('tools', 'Story')
     for story in Story.objects.all(): 
-        story.related_to_tool = story.tool.id
-        story.save()
+        if story.tool: 
+            story.related_to_tool = story.tool.id
+            story.save()
 
 class Migration(migrations.Migration):
 
