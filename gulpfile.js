@@ -76,7 +76,7 @@ gulp.task('sass', function() {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('.tmp/css'))
     .pipe(rename({suffix: '.min'}))
-    // .pipe(minifycss())
+    .pipe(minifycss())
     .pipe(gulp.dest('staticfiles/css'))
     // .pipe(livereload());
     .pipe(reload({
