@@ -269,7 +269,7 @@ ACCOUNT_LOGOUT_ON_GET = True
 SITE_OPEN_FOR_SIGNUP = True
 LOGOUT_URL = 'account_logout'
 LOGIN_URL = 'account_login'
-LOGIN_REDIRECT_URL = 'tools:index'
+LOGIN_REDIRECT_URL = 'homepage'
 
 
 IN_TEST = 'test' in sys.argv

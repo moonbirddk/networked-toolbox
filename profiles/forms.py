@@ -68,8 +68,7 @@ class NetboxSignupForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(NetboxSignupForm, self).__init__(*args, **kwargs)
-        self.fields['email'].help_text = 'We recommend you use your work e-mail'
-
+        
     def signup(self, request, user):
         """
         Invoked at signup time to complete the signup of the user.
