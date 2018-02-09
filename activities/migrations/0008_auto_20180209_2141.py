@@ -9,8 +9,7 @@ def link_to_reverse_url(apps, schema_editor):
     ActivityEntry = apps.get_model('activities', 'ActivityEntry')
     for entry in ActivityEntry.objects.all():
         if ":" in entry.reverse_url: 
-            cleaned_url = re.sub(r'#comment-\d+','',entry.reverse_url)
-            link = '{}{}'.format(reverse(cleaned_url, args=[entry.related_id]), entry.hashtag)
+            link = '{}{}'.format(reverse(entry.reverse_url, args=[entry.related_id]), entry.hashtag)
             entry.reverse_url = link
             entry.save()
 
