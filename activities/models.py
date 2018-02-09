@@ -13,9 +13,9 @@ from model_utils import Choices
 from notifications.models import Notification
 from allauth.account.utils import user_email
 
-from tools.models import Story, Tool, ToolFollower
+from tools.models import Story, Tool, ToolFollower, ToolUser
 from comments.models import ThreadedComment
-from django.urls import reverse
+from django.urls import reverse, resolve
 
 class ActivityEntry(models.Model):
     TYPE_ADD_STORY = 'add_story'
@@ -32,31 +32,23 @@ class ActivityEntry(models.Model):
     entry_type = StatusField(choices_name='ENTRY_TYPES')
     title = models.CharField(max_length=150)
     content = models.CharField(max_length=500)
-    reverse_url = models.CharField(max_length=100)
-    tool_or_story_id = models.IntegerField(default=0)
-    hashtag = models.CharField(max_length=25, default='')
+    link = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
 
-    @property
-    def link(self):
-        return '{}{}'.format(reverse(self.reverse_url, args=[self.tool_or_story_id]), self.hashtag)
         
 
 @receiver(post_save, sender=Story)
 def on_story_create(sender, instance=None, created=False, **kwargs):
     if created:
-        related_model = instance.tool if instance.tool else instance.category_group
-        print (instance)
-        print (related_model)
-        link = reverse('tools:show', args=(related_model.id, ))
-        link += '#stories'
+        related_work_area = instance.category_group
+        link = related_work_area.get_absolute_url()
         ActivityEntry.objects.create(
             user=instance.user,
             entry_type=ActivityEntry.TYPE_ADD_STORY,
-            title=related_model.title[:150] if instance.tool else related_model.name[:150],
+            title=related_work_area.name[:150],
             content=instance.title,
-            link=link
-        )
+            link=link, 
+    )
 
 
 @receiver(post_save, sender=ThreadedComment)
@@ -72,8 +64,7 @@ def on_comment_create(sender, instance=None, created=False, **kwargs):
         else:
             raise Error('Expected that the model that was commented on has a'
                         'method to generate an absolute URL.')
-        link += '#comment-%d' % instance.id
-        title = 'the %s "%s"' % (
+        title = 'the {} "{}"'.format(
             instance.related_object_type.model,
             instance.related_object.title[:150]
         )
@@ -82,14 +73,14 @@ def on_comment_create(sender, instance=None, created=False, **kwargs):
             entry_type=entry_type,
             title=title,
             content=instance.content[:500],
-            link=link
+            link=link,
         )
 
 
-@receiver(post_save, sender=ToolFollower)
+@receiver(post_save, sender=ToolUser)
 def on_tool_used(sender, instance=None, created=False, **kwargs):
     if created:
-        link = reverse('tools:show', args=(instance.tool.id, ))
+        link = instance.tool.get_absolute_url()
         ActivityEntry.objects.create(
             user=instance.user,
             entry_type=ActivityEntry.TYPE_USED_TOOL,
@@ -97,10 +88,11 @@ def on_tool_used(sender, instance=None, created=False, **kwargs):
             link=link
         )
 
+
 # Send notifications as mail if they have an email_template associated
 @receiver(post_save, sender=Notification)
 def send_notification_email(sender, instance=None, created=False, **kwargs):
-    import pdb
+    
     if not created: 
         return
     email_template = None

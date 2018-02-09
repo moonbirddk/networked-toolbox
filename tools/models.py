@@ -14,7 +14,7 @@ from shared.helpers import truncate_string
 
 from common.utils import generate_upload_path
 from notifications.signals import notify
-
+from uuid import uuid4
 
 def do_upload_cover_image(inst, filename):
     return generate_upload_path(inst, filename, dirname='cover_images')
@@ -78,6 +78,7 @@ class ToolFollower(models.Model):
         verbose_name = "'Tool Follower"
         verbose_name_plural = 'Tool Followers'
 
+    
     user = models.ForeignKey('auth.User')
     tool = models.ForeignKey('Tool', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
@@ -91,9 +92,11 @@ class ToolUser(models.Model):
         verbose_name = 'Tool User'
         verbose_name_plural = 'Tool Users'
 
+    
     user = models.ForeignKey('auth.User')
     tool = models.ForeignKey('Tool', related_name='users')
     should_notify = models.BooleanField(default=False, null=False)
+
 
     def __str__(self):
         return '{} - {}'.format(self.user, self.tool)
@@ -159,6 +162,8 @@ class CategoryGroupFollower(models.Model):
         verbose_name = "'Work Area Follower"
         verbose_name_plural = 'Work Area Followers'
 
+
+    
     user = models.ForeignKey('auth.User')
     category_group = models.ForeignKey('CategoryGroup', related_name='followers')
     should_notify = models.BooleanField(default=False, null=False)
@@ -176,6 +181,7 @@ def notify_work_area_followers(sender, instance, created, **kwargs):
         actions = [{
             'title': 'read',
             'href': href
+    
         }]
         email_template = 'stories/email/story_written_about_tool_area'
         for recipient in recipients:
