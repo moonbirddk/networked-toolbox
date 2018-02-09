@@ -15,7 +15,7 @@ from allauth.account.utils import user_email
 
 from tools.models import Story, Tool, ToolFollower
 from comments.models import ThreadedComment
-
+from django.urls import reverse
 
 class ActivityEntry(models.Model):
     TYPE_ADD_STORY = 'add_story'
@@ -32,9 +32,15 @@ class ActivityEntry(models.Model):
     entry_type = StatusField(choices_name='ENTRY_TYPES')
     title = models.CharField(max_length=150)
     content = models.CharField(max_length=500)
-    link = models.CharField(max_length=100)
+    reverse_url = models.CharField(max_length=100)
+    tool_or_story_id = models.IntegerField(default=0)
+    hashtag = models.CharField(max_length=25, default='')
     created = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def link(self):
+        return '{}{}'.format(reverse(self.reverse_url, args=[self.tool_or_story_id]), self.hashtag)
+        
 
 @receiver(post_save, sender=Story)
 def on_story_create(sender, instance=None, created=False, **kwargs):
