@@ -8,8 +8,9 @@ def connect_story_and_tool(apps, schema_editor):
     Story = apps.get_model('tools', 'Story')
     Tool = apps.get_model('tools', 'Tool')
     for story in Story.objects.all(): 
-        story.tool = Tool.objects.get(id=story.related_to_tool)
-        story.save()
+        if story.related_to_tool != 0: 
+            story.tool = Tool.objects.get(id=story.related_to_tool)
+            story.save()
 
 class Migration(migrations.Migration):
 
