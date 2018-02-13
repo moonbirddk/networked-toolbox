@@ -152,6 +152,9 @@
       margin-right: 15px;
       margin-left: 15px;
       display: block;
+      .container-fluid & {
+        margin: 0 !important;
+      }
       @include breakpoint($media-medium){
         display: flex;
         margin-right: 30px;

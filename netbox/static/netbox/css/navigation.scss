@@ -194,8 +194,12 @@
         font-family: $sans-serif;
         font-family: 'HelveticaNeue-Bold';  
         text-transform: uppercase;
-        font-size: 15px;
+        font-size: 18px;
+        padding: 15px;
         color: #FFFFFF;
+        @include breakpoint($media-large){
+          font-size: 15px;
+        }
         &:hover{
           transform: scale(1.1);
         }
@@ -308,8 +312,11 @@
 
 
 .hero-section{
-  height: 280px;
   background-color: $color-primary;
+  height: auto;
+  @include breakpoint($media-large){
+    height: 280px;
+  }
   &--front{
     padding-bottom: 100px;
     height: 376px;
@@ -321,10 +328,12 @@
     background-size: cover;
   }
   &__inner{
-    height: 100%;
+    height: 250px;
     background: center / cover  no-repeat;
     position: relative;
-    
+    @include breakpoint($media-large){
+      height: 100%;
+    }
   }
   &--overview &__inner{
     position: relative;
@@ -372,6 +381,8 @@
     }
     &-container{
       position: absolute;
+      top: 0;
+      left: 0;
       height: 100%;
       width: 100%;
       z-index: 10;
@@ -389,27 +400,35 @@
 }
 
 .filters{
-  height: 100%;
+  height: auto;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
-  display: none;
+  padding-top: 50px;
   @include breakpoint($media-large){
+    padding-top: 0;
+    height: 100%;
     display: flex;
   }
   &__list{
-    height: 50%;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
     padding: 0;
     list-style: none;
+    @include breakpoint($media-large){
+      flex-direction: column;
+      height: 50%;
+    }
   }
   li{
-    flex: 0 0 33.3%;
-
+    flex: 0 0 50%;
+    @include breakpoint($media-large){
+      flex: 0 0 33.3%;
+      
+    }
   }
   a{
     color: white;
@@ -417,6 +436,10 @@
     flex: 0 0 33.3%;
     display: inline-block;
     position: relative;
+    margin: 10px 0;
+    @include breakpoint($media-large){
+      padding: 0;
+    }
     &:hover, &:focus, &:active{
       text-decoration: none;
       &:after{
