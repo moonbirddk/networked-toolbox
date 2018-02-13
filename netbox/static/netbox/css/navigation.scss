@@ -256,10 +256,10 @@
   
   &-collapse#main-menu {
     width: 100vw;
+    
     margin: 0 !important;
     // background: $color-primary;
     padding-left: 20px;
-    // height: auto!important;
     // padding-bottom: 0;
     // overflow: visible!important;
     @include breakpoint($media-medium){
@@ -276,6 +276,7 @@
       justify-content: flex-end;
       flex: 1 1 100%;
       width: auto;
+      height: 95px!important;
       padding-right: 0 !important;
       padding-left: 10px !important;
     }
