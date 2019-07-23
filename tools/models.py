@@ -55,13 +55,19 @@ class Tool(ModelWithCoverImage):
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
-    resources = GenericRelation('resources.ToolResource')
     comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
+    resource_connection = models.OneToOneField('resources.ToolResourceConnection',on_delete=models.CASCADE, null=True)
+   
    
     @property
     def comments(self):
         return self.comment_root.comments.all()
-        
+
+    @property
+    def resources(self):
+        return self.resource_connection.resources.all()
+
+
     def __str__(self):
         return self.title
 
@@ -223,7 +229,8 @@ class ToolCategory(ModelWithCoverImage):
     title = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=20000, blank=False)
     published = models.BooleanField(default=False, null=False)
-    resources = GenericRelation('resources.ToolResource')
+    resource_connection = models.OneToOneField('resources.ToolResourceConnection', on_delete=models.CASCADE, null=True)
+
     order = models.PositiveIntegerField(default=0, null=False)
     resources_text = models.CharField(
         max_length=300,
@@ -241,6 +248,10 @@ class ToolCategory(ModelWithCoverImage):
         related_query_name='category',
         on_delete=models.SET_DEFAULT
     )
+
+    @property
+    def resources(self):
+        return self.resource_connection.resources.all()
 
     def get_absolute_url(self):
         return reverse('tools:show_category', args=[self.id, ])
