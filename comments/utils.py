@@ -34,8 +34,7 @@ def build_comment_data(comment, tzstr=None):
 
     comment_dict['author_url'] = comment.author.profile.get_absolute_url()
     comment_dict['author_photo_url'] = get_profile_photo_url(comment.author)
-    comment_dict['related_object_id'] = comment.related_object_id
-    comment_dict['related_object_type'] = \
-        comment.related_object_type.model
+    comment_dict['related_object_id'] = comment.related_object.id
+    comment_dict['related_object_type'] = comment.related_object._meta.model_name
     comment_dict['content'] = escape(comment.content, quote=True)
     return comment_dict

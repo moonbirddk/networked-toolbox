@@ -19,19 +19,23 @@ class ThreadedCommentManager(models.Manager):
     def get_parents(self):
         return self.get_queryset().filter(parent__isnull=True)
 
+class CommentRoot(models.Model): 
+    pass
 
 class ThreadedComment(models.Model):
     class Meta:
         ordering = ['tree_id', 'added_dt']
     
-    related_object_type = models.ForeignKey(
-        ContentType,
-        null=False,
-        blank=False
-    )
-    related_object_id = models.PositiveIntegerField(null=False, blank=False)
-    related_object = GenericForeignKey('related_object_type',
-                                       'related_object_id')
+    # related_object_type = models.ForeignKey(
+    #     ContentType,
+    #     null=False,
+    #     blank=False
+    # )
+    # related_object_id = models.PositiveIntegerField(null=False, blank=False)
+    # related_object = GenericForeignKey('related_object_type',
+    #                                    'related_object_id')
+    
+    comment_root = models.ForeignKey(CommentRoot, null=True, on_delete=models.CASCADE, related_name='comments')
     parent = models.ForeignKey(
         'self',
         null=True,
@@ -64,6 +68,13 @@ class ThreadedComment(models.Model):
     def related_object_title(self): 
         return self.related_object.title if self.related_object else None
     
+    @property
+    def related_object(self): 
+        try: 
+            return self.comment_root.story
+        except: 
+            return self.comment_root.tool 
+
     def __str__(self): 
         return '{} - {}...'.format(self.author, self.content[:10])
 
@@ -83,7 +94,7 @@ def is_comment_root(instance, created):
 def notify_author(sender, instance, created, **kwargs):
     # Let's only notify when it's on a story and it's not on another persons
     # comment.
-    if instance.related_object_type.model == 'story' and is_comment_root(instance, created): 
+    if instance.related_object._meta.model_name == 'story' and is_comment_root(instance, created): 
         actor = instance.author
         recipient = instance.related_object.user
         # Let's not send a notification when someone comments on their own story
@@ -129,8 +140,8 @@ def notify_parent_author(sender, instance, created, **kwargs):
         recipient = instance.parent.author
         # Only comments on tools and stories for now
         # And don't notify when someone comments on their own comment
-        if (instance.related_object_type.model == 'tool' or \
-            instance.related_object_type.model == 'story') and \
+        if (instance.related_object._meta.model_name == 'tool' or \
+            instance.related_object_meta.model_name == 'story') and \
             recipient != actor:
             href = instance.related_object.get_absolute_url()
             href += '#comment-' + str(instance.id)
@@ -149,7 +160,7 @@ def notify_parent_author(sender, instance, created, **kwargs):
 post_save.connect(notify_parent_author, sender=ThreadedComment)
 
 def notify_tool_follower(sender, instance, created, **kwargs):
-    if instance.related_object_type.model == 'tool' and is_comment_root(instance, created): 
+    if instance.related_object._meta.model_name == 'tool' and is_comment_root(instance, created): 
         recipients = ToolFollower.objects.filter(~Q(user=instance.author), tool=instance.related_object)
         verb = 'commented on a tool you follow'
         href = instance.related_object.get_absolute_url()

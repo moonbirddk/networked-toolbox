@@ -82,6 +82,7 @@ LOGGING = {
 }
 
 MEDIA_URL = 'http://localhost:8000/media/'
+
 """
 LOGGING = {
     'version': 1,

@@ -56,8 +56,12 @@ class Tool(ModelWithCoverImage):
     published = models.BooleanField(default=False, null=False)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     resources = GenericRelation('resources.ToolResource')
-    comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
-
+    comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
+   
+    @property
+    def comments(self):
+        return self.comment_root.comments.all()
+        
     def __str__(self):
         return self.title
 
@@ -116,7 +120,11 @@ class Story(ModelWithCoverImage):
     country = CountryField(blank_label='where did this take place?', null=True)
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools', blank=True)
     published = models.BooleanField('Published', default=True)
-    comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
+    comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
+    
+    @property
+    def comments(self): 
+        return self.comment_root.comments.all()
 
     @property
     def parent_object(self):

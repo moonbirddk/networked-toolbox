@@ -51,10 +51,10 @@ def show_tool(request, tool_id):
     else:
         tool = get_object_or_404(Tool, id=tool_id, published=True)
     comments = tool.comments.all()
-    tool_follower_ids = list(tool.followers.all().values_list('user_id', flat=True))
     tool_followers = tool.followers.all().order_by('?')[:12]
+    tool_follower_ids = list(tool_followers.values_list('user_id', flat=True))
     tool_users = tool.users.all().order_by('?')[:12]
-    tool_user_ids = list(tool.users.all().values_list('user_id', flat=True))
+    tool_user_ids = list(tool_users.values_list('user_id', flat=True))
     stories = tool.stories.all().order_by('-created')
     tools_home_objects = {
         'st': Story, 
