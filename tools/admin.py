@@ -59,7 +59,7 @@ class StoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
     
 
 class SuggestionAdmin(admin.ModelAdmin): 
-    list_display = ['__str__', 'related_object']
+    list_display = ['__str__', ]
     list_per_page = 20
 
 class ToolFollowerUserAdmin(admin.ModelAdmin): 

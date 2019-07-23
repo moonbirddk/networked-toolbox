@@ -25,6 +25,12 @@ def do_upload_suggestion_attachement(inst, filename):
 
 
 
+class SuggestionRoot(models.Model): 
+    # add foreign key to this to any model that should have suggestions
+    pass
+
+
+
 class ModelWithCoverImage(models.Model):
     class Meta:
         abstract = True
@@ -57,8 +63,7 @@ class Tool(ModelWithCoverImage):
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
     resource_connection = models.OneToOneField('resources.ToolResourceConnection',on_delete=models.CASCADE, null=True)
-   
-   
+    suggestion_root = models.OneToOneField(SuggestionRoot, on_delete=models.CASCADE, null=True)
     @property
     def comments(self):
         return self.comment_root.comments.all()
@@ -66,6 +71,10 @@ class Tool(ModelWithCoverImage):
     @property
     def resources(self):
         return self.resource_connection.resources.all()
+    
+    @property
+    def suggestionss(self):
+        return self.suggestion_root.suggestions.all()
 
 
     def __str__(self):
@@ -79,7 +88,6 @@ class Tool(ModelWithCoverImage):
 
     def sort_tools_descendig(self):
         return self.tools.order_by('-title')
-
 
 
 class ToolFollower(models.Model):
@@ -230,7 +238,7 @@ class ToolCategory(ModelWithCoverImage):
     description = models.TextField(max_length=20000, blank=False)
     published = models.BooleanField(default=False, null=False)
     resource_connection = models.OneToOneField('resources.ToolResourceConnection', on_delete=models.CASCADE, null=True)
-
+    suggestion_root = models.OneToOneField(SuggestionRoot, null=True, on_delete=models.CASCADE)
     order = models.PositiveIntegerField(default=0, null=False)
     resources_text = models.CharField(
         max_length=300,
@@ -252,6 +260,10 @@ class ToolCategory(ModelWithCoverImage):
     @property
     def resources(self):
         return self.resource_connection.resources.all()
+    
+    @property
+    def suggestionss(self):
+        return self.suggestion_root.suggestions.all()
 
     def get_absolute_url(self):
         return reverse('tools:show_category', args=[self.id, ])
@@ -267,28 +279,13 @@ class Suggestion(models.Model):
     description = models.TextField(max_length=5000, blank=False, null=False)
     attachement = models.FileField(upload_to=do_upload_suggestion_attachement,
                                    blank=True, null=True)
-    related_content_type = models.ForeignKey(
-        ContentType,
-        limit_choices_to={"model__in": ("tool", "toolcategory")}
-    )
-    related_object_id = models.PositiveIntegerField(null=False, blank=False)
-    related_object = GenericForeignKey('related_content_type',
-                                       'related_object_id')
+    
+    suggestion_root = models.ForeignKey(SuggestionRoot, on_delete=models.CASCADE, null=True, related_name='suggestions')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
                                blank=False)
 
     def __str__(self):
         return truncate_string(self.description, 20)
-
-def delete_suggestion_on_related_deleted(sender, instance, **kwargs):
-    ct = ContentType.objects.get_for_model(sender)
-    Suggestion.objects.filter(
-        related_content_type__pk=ct.id,
-        related_object_id=instance.id
-    ).delete()
-
-post_delete.connect(delete_suggestion_on_related_deleted, sender=Tool)
-post_delete.connect(delete_suggestion_on_related_deleted, sender=ToolCategory)
 
 
 class OverviewPage(SingletonModel):
