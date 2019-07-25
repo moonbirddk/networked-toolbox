@@ -6,7 +6,7 @@
 
   <h4>
     <i class="icon-mail{% if notice.unread %}-alt{% endif %}"></i>
-    <a href="{% url 'profiles:show' notice.actor.profile.uid %}">{{ notice.actor.profile.name }}</a>
+    <a href="{% url 'profiles:show' notice.actor.profile.uuid %}">{{ notice.actor.profile.name }}</a>
     {{ notice.verb }}
   </h4>
 

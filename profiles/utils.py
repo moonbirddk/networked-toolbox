@@ -4,7 +4,7 @@ from urllib.parse import quote
 
 
 def get_profile_url(user):
-    return reverse('profiles:show', args=(user.profile.uid,))
+    return reverse('profiles:show', args=(user.profile.uuid,))
 
 
 def get_profile_photo_url(user):

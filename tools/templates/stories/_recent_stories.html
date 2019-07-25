@@ -10,7 +10,7 @@
                 <div class="story-user">
                   {% render_profile_photo story.user %}
                   <div class="story-user-name">
-                    <a href="{% url 'profiles:show' story.user.profile.uid %}">{{ story.user.profile.short_name }}</a>
+                    <a href="{% url 'profiles:show' story.user.profile.uuid %}">{{ story.user.profile.short_name }}</a>
                   </div>
                   <div class="story-user-country">
                     <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>

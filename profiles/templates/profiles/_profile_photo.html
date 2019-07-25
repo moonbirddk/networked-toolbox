@@ -1,5 +1,5 @@
 {% if show_link %}
-<a class="profile-photo" href="{% url 'profiles:show' profile_uid %}">
+<a class="profile-photo" href="{% url 'profiles:show' profile_uuid=profile_uuid %}">
 {% else %}
 <div class="profile-photo">
 {% endif %}

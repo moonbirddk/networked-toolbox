@@ -6,11 +6,11 @@
 
 {% block head_statics %}
 {% compress js %}
-<script src="{% static "js/profiles.js" %}"></script>
+<script src="{% static 'js/profiles.js' %}"></script>
 {% endcompress %}
 {% compress css %}
-<link rel="stylesheet" href="{% static "css/profile.min.css" %}">
-<link rel="stylesheet" href="{% static "css/activities.min.css" %}">
+<link rel="stylesheet" href="{% static 'css/profile.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/activities.min.css' %}">
 {% endcompress %}
 {% endblock %}
 
@@ -58,10 +58,10 @@ ga('send', 'event', 'profile', 'view');
                                         {% if story.country %}
                                             <span title="{{story.country.name}}" class="flag-icon flag-icon-{{story.country}}"></span>
                                         {% endif %}
-                                        <a href="{% url 'tools:show_story' story.id %}">{{story.title}}</a>
+                                        <a href="{% url 'tools:show_story' story_id=story.id %}">{{story.title}}</a>
                                     </h4>
                                     {{ story.content|bleach_striptags|truncatechars:150 }}
-                                    <a href="{% url 'tools:show_story' story.id %}">Read more</a>
+                                    <a href="{% url 'tools:show_story' story_id=story.id %}">Read more</a>
                                 </div>
                             {% endfor %}
                         </div>
@@ -94,7 +94,7 @@ ga('send', 'event', 'profile', 'view');
                     <div class="flex-wrapper row">
                         {% for tool in tools|slice:":9" %}
                             <div class="tool col-md-4 col-xs-6">
-                                <a href="{% url 'tools:show' tool.id %}">
+                                <a href="{% url 'tools:show' tool_id=tool.id %}">
                                     {% if tool.cover_image %}
                                         <div class="tool-cover-image" style="background-image: url({{ tool.cover_image.url }})"></div>
                                     {% else %}
@@ -107,7 +107,7 @@ ga('send', 'event', 'profile', 'view');
                     </div>
                     {% if tools|length > 9 %}
                         <div class="show-all">
-                            <a href="{% url 'profiles:show_tools' profile_user.profile.uid %}">Show all</a>
+                            <a href="{% url 'profiles:show_tools' profile_user.profile.uuid %}">Show all</a>
                         </div>
                     {% endif %}
                     </div>
