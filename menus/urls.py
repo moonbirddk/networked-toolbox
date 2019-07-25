@@ -1,7 +1,9 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
+app_name = 'menus'
+ 
 urlpatterns = [
-    # url(r'^$', views.edit_menus, name='edit_menus'),
+    
 ]

@@ -6,10 +6,10 @@ from django.forms import model_to_dict
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView
-from notifications import settings
-from notifications.models import Notification
-from notifications.utils import id2slug, slug2id
-from notifications.settings import get_config
+from user_notifications import settings
+from user_notifications.models import UserNotification
+from user_notifications.utils import id2slug, slug2id
+from user_notifications.settings import get_config
 
 from django.http import JsonResponse  # noqa
 
@@ -109,7 +109,7 @@ def delete(request, slug=None):
 
 def live_unread_notification_count(request):
     try:
-        user_is_authenticated = request.user.is_authenticated()
+        user_is_authenticated = request.user.is_authenticated
     except TypeError:  # Django >= 1.11
         user_is_authenticated = request.user.is_authenticated
 
@@ -127,7 +127,7 @@ def live_unread_notification_count(request):
 def live_unread_notification_list(request):
     ''' Return a json with a unread notification list '''
     try:
-        user_is_authenticated = request.user.is_authenticated()
+        user_is_authenticated = request.user.is_authenticated
     except TypeError:  # Django >= 1.11
         user_is_authenticated = request.user.is_authenticated
 
@@ -174,7 +174,7 @@ def live_unread_notification_list(request):
 def live_all_notification_list(request):
     ''' Return a json with a unread notification list '''
     try:
-        user_is_authenticated = request.user.is_authenticated()
+        user_is_authenticated = request.user.is_authenticated
     except TypeError:  # Django >= 1.11
         user_is_authenticated = request.user.is_authenticated
 
@@ -220,7 +220,7 @@ def live_all_notification_list(request):
 
 def live_all_notification_count(request):
     try:
-        user_is_authenticated = request.user.is_authenticated()
+        user_is_authenticated = request.user.is_authenticated
     except TypeError:  # Django >= 1.11
         user_is_authenticated = request.user.is_authenticated
 

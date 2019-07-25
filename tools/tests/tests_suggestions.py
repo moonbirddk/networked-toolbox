@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core import mail
 from django.contrib.auth import get_user_model

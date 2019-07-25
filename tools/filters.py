@@ -71,7 +71,6 @@ class PublishedFilter(django_filters.FilterSet):
     published = django_filters.BooleanFilter(
         label='',
         help_text='',
-        name='published',
         widget=BooleanLinksGroupWidget(
             choices=((1, 'Published'), (0, 'Unpublished')))
     )

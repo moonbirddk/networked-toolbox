@@ -4,26 +4,27 @@ tools urlconf
 tools:url_name
 """
 
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
-
+app_name = 'tools'
 urlpatterns = [
-   # url(r'^$', views.index, name='index'),
-    url(r'^$', views.list_category_groups, name='index'),
-    url(r'^tools/$', views.list_tools, name='list_tools'), 
-    url(r'^tools/(\d+)/$', views.show_tool, name='show'),
-    url(r'^tools/follow/(\d+)/$', views.follow_tool, name='follow'),
-    url(r'^tools/unfollow/(\d+)/$', views.unfollow_tool, name='unfollow'),
-    url(r'^follow/(\d+)/$', views.follow_category_group, name='follow_work_area'),
-    url(r'^unfollow/(\d+)/$', views.unfollow_category_group, name='unfollow_work_area'),
-    url(r'^stories/story/add/tool/(\d+)/$', views.add_story, name='add_story'),
-    url(r'^stories/story/add/workarea/(\d+)/$', views.add_workarea_story, name='add_workarea_story'),
-    url(r'^stories/$', views.show_all_stories, name='show_all_stories'), 
-    url(r'^stories/story/(\d+)/$', views.show_story, name='show_story'),
-    url(r'^stories/story/edit/(\d+)/$', views.edit_story, name='edit_story'),
-    url(r'^toolboxes/show/(\d+)/$', views.show_category, name='show_category'),
-     url(r'^show/(\d+)/$', views.show_categorygroup, name='show_categorygroup'),
-    url(r'^suggestion/([a-z]+)/(\d+)/$', views.add_suggestion, name='add_suggestion'),
-    url(r'^overview/edit/([a-z]+)/$', views.edit_overview, name='edit_overview'),
+   # url(r'^', views.index, name='index'),
+    path('', views.list_category_groups, name='index'),
+    path('tools/', views.list_tools, name='list_tools'), 
+    path('tools/<int:tool_id>/', views.show_tool, name='show'),
+    path('tools/follow/<int>:tool_id/', views.follow_tool, name='follow'),
+    path('tools/unfollow/<int:tool_id>/', views.unfollow_tool, name='unfollow'),
+    path('follow/<int:category_group_id>/', views.follow_category_group, name='follow_work_area'),
+    path('unfollow/<int:category_group_id>/',
+         views.unfollow_category_group, name='unfollow_work_area'),
+    path('stories/story/add/tool/<int:tool_id>/', views.add_story, name='add_story'),
+    path('stories/story/add/workarea/<int:category_group_id>/', views.add_workarea_story, name='add_workarea_story'),
+    path('stories/', views.show_all_stories, name='show_all_stories'), 
+    path('stories/story/<int:story_id>/', views.show_story, name='show_story'),
+    path('stories/story/edit/<int:story_id>/', views.edit_story, name='edit_story'),
+    path('toolboxes/show/<int:cat_id>/', views.show_category, name='show_category'),
+    path('show/<int:category_group_id>/', views.show_categorygroup, name='show_categorygroup'),
+    path('suggestion/<string>/<int>/', views.add_suggestion, name='add_suggestion'),
+    path('overview/edit/<string>/', views.edit_overview, name='edit_overview'),
 ]

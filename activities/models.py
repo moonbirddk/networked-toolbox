@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save
-from django.core.urlresolvers import reverse
+#
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -10,7 +10,7 @@ from django.contrib.sites.models import Site
 
 from model_utils.fields import StatusField
 from model_utils import Choices
-from notifications.models import Notification
+from user_notifications.models import UserNotification
 from allauth.account.utils import user_email
 
 from tools.models import Story, Tool, ToolFollower, ToolUser
@@ -28,7 +28,7 @@ class ActivityEntry(models.Model):
             TYPE_ADD_COMMENT_REPLY,
             TYPE_USED_TOOL
     )
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     entry_type = StatusField(choices_name='ENTRY_TYPES')
     title = models.CharField(max_length=150)
     content = models.CharField(max_length=500)
@@ -90,7 +90,7 @@ def on_tool_used(sender, instance=None, created=False, **kwargs):
 
 
 # Send notifications as mail if they have an email_template associated
-@receiver(post_save, sender=Notification)
+@receiver(post_save, sender=UserNotification)
 def send_notification_email(sender, instance=None, created=False, **kwargs):
     
     if not created: 

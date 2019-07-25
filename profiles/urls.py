@@ -4,17 +4,19 @@ profiles urlconf
 profiles:url_name
 """
 
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 
+app_name = 'profiles'
+
 urlpatterns = [
-    url(r'^terms-and-conditions$', views.terms_and_conditions,
+    path('terms-and-conditions', views.terms_and_conditions,
         name='terms_and_conditions'),
-    url(r'^([\da-zA-Z]{32})/$', views.show, name='show'),
-    url(r'^([\da-zA-Z]{32})/tools$', views.show_tools, name='show_tools'),
-    url(r'^edit$', views.edit, name='edit'),
-    url(r'^resend-verification$',
+    path('<uuid>/', views.show, name='show'),
+    path('([\da-zA-Z]{32})/tools', views.show_tools, name='show_tools'),
+    path('edit', views.edit, name='edit'),
+    path('resend-verification',
         views.resend_verification,
         name='resend_verification'),
 ]

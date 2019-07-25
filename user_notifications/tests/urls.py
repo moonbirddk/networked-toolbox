@@ -4,7 +4,7 @@ from distutils.version import StrictVersion  # pylint: disable=no-name-in-module
 
 from django import get_version
 from django.contrib import admin
-from notifications.tests.views import (live_tester,  # pylint: disable=no-name-in-module,import-error
+from user_notifications.tests.views import (live_tester,  # pylint: disable=no-name-in-module,import-error
                                        make_notification)
 
 if StrictVersion(get_version()) >= StrictVersion('2.1'):

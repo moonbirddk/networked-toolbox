@@ -1,6 +1,6 @@
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
-from django.core.urlresolvers import reverse
+
 from django.conf import settings
 
 
@@ -9,7 +9,15 @@ class RedirectToTermsAndConditionsMiddleware(object):
     Redirects user to accept terms and conditions view
     before he/she is allowed to browse the site.
     """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.get_response(request)
+
     def process_request(self, request):
+
         if not settings.DJANGO_ENV == 'staging':
             return
 

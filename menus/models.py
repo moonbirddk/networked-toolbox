@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from pages.models import Page
 
 class MenuItem(models.Model):
@@ -21,7 +21,8 @@ class MenuItem(models.Model):
         Page,
         null=True,
         blank=True,
-        related_name='menu_items'
+        related_name='menu_items', 
+        on_delete=models.CASCADE
     )
     link = models.URLField(blank=True)
     order = models.PositiveIntegerField(default=1)

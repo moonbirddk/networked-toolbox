@@ -1,7 +1,7 @@
 import logging
 from collections import OrderedDict
 from django import template
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 from django.utils.encoding import smart_text
 from django.utils.safestring import mark_safe

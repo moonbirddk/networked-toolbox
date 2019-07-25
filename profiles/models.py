@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save, post_delete, pre_save
-from django.core.urlresolvers import reverse
+
 
 from django_countries.fields import CountryField
 
@@ -39,7 +39,7 @@ class Profile(models.Model):
     uid = models.CharField(unique=True, editable=False, null=True,
                            max_length=32)
     # FIXME: migrate uid to be not null
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to=do_upload_profile_photo,
                               blank=True, null=True)
     bio = models.TextField(

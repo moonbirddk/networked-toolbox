@@ -15,9 +15,9 @@ from django.template import Context, Template
 from django.test import RequestFactory, TestCase
 from django.utils import timezone
 from django.utils.timezone import localtime, utc
-from notifications.models import Notification, notify_handler
-from notifications.signals import notify
-from notifications.utils import id2slug
+from user_notifications.models import UserNotification, notify_handler
+from user_notifications.signals import notify
+from user_notifications.utils import id2slug
 
 try:
     # Django >= 1.7
@@ -31,7 +31,7 @@ try:
     from django.urls import reverse
 except ImportError:
     # Django <= 1.6
-    from django.core.urlresolvers import reverse  # pylint: disable=no-name-in-module,import-error
+      # pylint: disable=no-name-in-module,import-error
 
 
 

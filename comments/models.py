@@ -5,9 +5,9 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
-from django.core.urlresolvers import reverse
+
 from django.contrib.auth import get_user_model
-from notifications.signals import notify
+from user_notifications.signals import notify
 
 from tools.models import Tool, ToolFollower
 
@@ -41,21 +41,23 @@ class ThreadedComment(models.Model):
         null=True,
         blank=True,
         default=None,
-        related_name='children'
+        related_name='children', 
+        on_delete=models.CASCADE
     )
     tree_id = models.IntegerField(null=True, blank=False, db_index=True)
 
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=False,
-        null=False
+        null=False, 
+        on_delete=models.CASCADE
     )
     content = models.TextField(max_length=settings.COMMENT_MAX_LENGTH)
     added_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     is_removed = models.BooleanField(default=False)
     edited_dt = models.DateTimeField(auto_now=True, null=True, blank=True)
     notification_target = models.OneToOneField(
-        'user_notifications.NotificationTarget', null=True)
+        'user_notifications.NotificationTarget', null=True, on_delete=models.CASCADE)
 
 
     @property
@@ -87,8 +89,9 @@ class CommentLike(models.Model):
         verbose_name_plural = 'Comment Likes'
     pass
    
-    user = models.ForeignKey('auth.User')
-    comment = models.ForeignKey(ThreadedComment, related_name="likes")
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    comment = models.ForeignKey(
+        ThreadedComment, related_name="likes", on_delete=models.CASCADE)
    
 def is_comment_root(instance, created):
     return created and instance.parent == None

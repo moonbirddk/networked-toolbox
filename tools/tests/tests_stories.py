@@ -1,6 +1,6 @@
 
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User, Group
 from django_countries import countries

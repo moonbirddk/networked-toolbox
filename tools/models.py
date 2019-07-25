@@ -1,20 +1,22 @@
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.core.urlresolvers import reverse
+#
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import pre_delete, post_delete, pre_save
 from django.db.models.signals import post_save
+from django.urls import reverse
 
 from solo.models import SingletonModel
 from django_countries.fields import CountryField
 from shared.helpers import truncate_string
 
 from common.utils import generate_upload_path
-from notifications.signals import notify
+from user_notifications.signals import notify
 from uuid import uuid4
+
 
 def do_upload_cover_image(inst, filename):
     return generate_upload_path(inst, filename, dirname='cover_images')
@@ -64,7 +66,7 @@ class Tool(ModelWithCoverImage):
     comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
     resource_connection = models.OneToOneField('resources.ToolResourceConnection',on_delete=models.CASCADE, null=True)
     suggestion_root = models.OneToOneField(SuggestionRoot, on_delete=models.CASCADE, null=True)
-    notification_target = models.OneToOneField('user_notifications.NotificationTarget', null=True)
+    notification_target = models.OneToOneField('user_notifications.NotificationTarget', on_delete=models.CASCADE, null=True)
     
     @property
     def comments(self):
@@ -99,8 +101,8 @@ class ToolFollower(models.Model):
         verbose_name_plural = 'Tool Followers'
 
     
-    user = models.ForeignKey('auth.User')
-    tool = models.ForeignKey('Tool', related_name='followers')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    tool = models.ForeignKey('Tool', related_name='followers', on_delete=models.CASCADE)
     should_notify = models.BooleanField(default=False, null=False)
 
     def __str__(self):
@@ -112,9 +114,9 @@ class ToolUser(models.Model):
         verbose_name = 'Tool User'
         verbose_name_plural = 'Tool Users'
 
-    
-    user = models.ForeignKey('auth.User')
-    tool = models.ForeignKey('Tool', related_name='users')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    tool = models.ForeignKey(
+        'Tool', related_name='users', on_delete=models.CASCADE)
     should_notify = models.BooleanField(default=False, null=False)
 
 
@@ -129,16 +131,19 @@ class Story(ModelWithCoverImage):
 
     title = models.CharField(max_length=100, null=False, blank=False)
     content = models.TextField(max_length=20000, null=False, blank=False)
-    user = models.ForeignKey('auth.User', verbose_name='author')
-    tool = models.ForeignKey('Tool', related_name='stories', blank=True, null=True)
-    category_group = models.ForeignKey('CategoryGroup', verbose_name='work area',related_name='stories', blank=True, null=True)
+    user = models.ForeignKey(
+        'auth.User', verbose_name='author', on_delete=models.CASCADE)
+    tool = models.ForeignKey('Tool', related_name='stories',
+                             blank=True, null=True, on_delete=models.CASCADE)
+    category_group = models.ForeignKey('CategoryGroup', verbose_name='work area',
+                                       related_name='stories', blank=True, null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools', blank=True)
     published = models.BooleanField('Published', default=True)
     comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
     notification_target = models.OneToOneField(
-        'user_notifications.NotificationTarget', null=True)
+        'user_notifications.NotificationTarget', on_delete=models.CASCADE, null=True)
 
     @property
     def comments(self): 
@@ -172,7 +177,7 @@ class CategoryGroup(models.Model):
     main_text = models.TextField(max_length=5000, blank=True, null=True, default='Lorem ipsum.')
     published = models.BooleanField('published', default=False)
     notification_target = models.OneToOneField(
-        'user_notifications.NotificationTarget', null=True)
+        'user_notifications.NotificationTarget', on_delete=models.CASCADE, null=True)
 
     def get_absolute_url(self):
         return reverse('tools:show_categorygroup', args=(self.id, ))
@@ -191,9 +196,9 @@ class CategoryGroupFollower(models.Model):
         verbose_name_plural = 'Work Area Followers'
 
 
-    
-    user = models.ForeignKey('auth.User')
-    category_group = models.ForeignKey('CategoryGroup', related_name='followers')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    category_group = models.ForeignKey(
+        'CategoryGroup', related_name='followers', on_delete=models.CASCADE)
     should_notify = models.BooleanField(default=False, null=False)
 
     def __str__(self):
@@ -288,7 +293,7 @@ class Suggestion(models.Model):
     
     suggestion_root = models.ForeignKey(SuggestionRoot, on_delete=models.CASCADE, null=True, related_name='suggestions')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
-                               blank=False)
+                               blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
         return truncate_string(self.description, 20)

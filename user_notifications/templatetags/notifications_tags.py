@@ -5,11 +5,12 @@ from distutils.version import StrictVersion  # pylint: disable=no-name-in-module
 from django import get_version
 from django.template import Library
 from django.utils.html import format_html
-
+from user_notifications.models import UserNotification
 try:
     from django.urls import reverse
+
 except ImportError:
-    from django.core.urlresolvers import reverse  # pylint: disable=no-name-in-module,import-error
+    pass # pylint: disable=no-name-in-module,import-error
 
 register = Library()
 
@@ -18,7 +19,8 @@ def notifications_unread(context):
     user = user_context(context)
     if not user:
         return ''
-    return user.notifications.unread().count()
+    user_notifications = UserNotification.objects.filter(recipient=user)
+    return user_notifications.unread().count()
 
 
 if StrictVersion(get_version()) >= StrictVersion('2.0'):
@@ -30,7 +32,7 @@ else:
 @register.filter
 def has_notification(user):
     if user:
-        return user.notifications.unread().exists()
+        return UserNotification.objects.filter(recipient=user).unread().exists()
     return False
 
 
@@ -76,13 +78,13 @@ def register_notify_callbacks(badge_class='live_notify_badge',  # pylint: disabl
 
 
 @register.simple_tag(takes_context=True)
-def live_notify_badge(context, badge_class='live_notify_badge'):
+def live_notify_badge(context, classes='live_notify_badge'):
     user = user_context(context)
     if not user:
         return ''
-
-    html = "<span class='{badge_class}'>{unread}</span>".format(
-        badge_class=badge_class, unread=user.notifications.unread().count()
+    user_notifications = UserNotification.objects.filter(recipient=user)
+    html = "<span class='{classes}'>{unread}</span>".format(
+        classes=classes, unread=user_notifications.unread().count()
     )
     return format_html(html)
 

@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.urlresolvers import reverse
+
 
 class Page(models.Model):
     slug = models.SlugField(primary_key=True)

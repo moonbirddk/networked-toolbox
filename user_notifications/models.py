@@ -153,10 +153,6 @@ class AbstractNotification(models.Model):
     unread = models.BooleanField(default=True, blank=False, db_index=True)
 
     # The only actor is a user, thus code change 
-    # actor_content_type = models.ForeignKey(
-    #     ContentType, related_name='notify_actor', on_delete=models.CASCADE)
-    # actor_object_id = models.CharField(max_length=255)
-    # actor = GenericForeignKey('actor_content_type', 'actor_object_id')
     
     actor = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -169,28 +165,10 @@ class AbstractNotification(models.Model):
     description = models.TextField(blank=True, null=True)
 
     # notification targets can be stories, tools, workareas, comments
-
-    # target_content_type = models.ForeignKey(
-    #     ContentType,
-    #     related_name='notify_target',
-    #     blank=True,
-    #     null=True,
-    #     on_delete=models.CASCADE
-    # )
-    # target_object_id = models.CharField(max_length=255, blank=True, null=True)
-    # target = GenericForeignKey('target_content_type', 'target_object_id')
-
     target_connection = models.ForeignKey(NotificationTarget, on_delete=models.CASCADE, null=True, related_name='notifications')
 
-    ## This is never used and thus omitted
-    # action_object_content_type = models.ForeignKey(ContentType, blank=True, null=True,
-    #                                                related_name='notify_action_object', on_delete=models.CASCADE)
-    # action_object_object_id = models.CharField(
-    #     max_length=255, blank=True, null=True)
-    # action_object = GenericForeignKey(
-    #     'action_object_content_type', 'action_object_object_id')
-
-    ## MTODO THIS SHOULD RETURN THE TARGET OBJECT attachewd to the connection 
+    # Omitting action object
+    
     @property 
     def target(self): 
         if hasattr(self.target_connection, 'story'): 
@@ -277,8 +255,8 @@ def notify_handler(verb, **kwargs):
     public = bool(kwargs.pop('public', True))
     description = kwargs.pop('description', None)
     timestamp = kwargs.pop('timestamp', timezone.now())
-    Notification = load_model('user_notifications', 'UserNotification')
-    level = kwargs.pop('level', Notification.LEVELS.info)
+    UserNotification = load_model('user_notifications', 'UserNotification')
+    level = kwargs.pop('level', UserNotification.LEVELS.info)
 
     # Check if User or Group
     if isinstance(recipient, Group):
@@ -291,16 +269,19 @@ def notify_handler(verb, **kwargs):
     new_notifications = []
 
     for recipient in recipients:
-        newnotify = Notification(
+       
+        newnotify = UserNotification(
             recipient=recipient,
-            # MTODO Add actor according to code
-            #actor_content_type=ContentType.objects.get_for_model(actor),
+            actor=actor,
             verb=text_type(verb),
             public=public,
             description=description,
             timestamp=timestamp,
             level=level,
         )
+        for obj, opt in optional_objs:
+            if obj is not None:
+                newnotify.target_connection = obj.notification_target
 
         if kwargs and EXTRA_DATA:
             newnotify.data = kwargs
@@ -311,9 +292,9 @@ def notify_handler(verb, **kwargs):
     return new_notifications
 
 
-# connect the signal
-#notify.connect(
-#    notify_handler, dispatch_uid='user_notifications.models.UserNotification')
+#connect the signal
+notify.connect(
+   notify_handler, dispatch_uid='user_notifications.models.UserNotification')
 
 
 class UserNotification(AbstractNotification):
