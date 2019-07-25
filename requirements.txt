@@ -34,3 +34,6 @@ redis
 sqlparse
 whitenoise
 yanc
+swapper
+jsonfield
+pytz

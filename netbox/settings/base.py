@@ -75,15 +75,16 @@ INSTALLED_APPS = (
     'django_countries',
     'trumbowyg', 
     'django_summernote',
-    'easy_timezones',
+  #  'easy_timezones',
     'haystack',
-    'notifications',
+    #'notifications',
     'solo',
     'storages',
     'hijack', 
     'compat', 
     'hijack_admin', 
     # Networked toolbox apps
+    'activities',
     'comments',
     'common',
     'menus',
@@ -92,7 +93,7 @@ INSTALLED_APPS = (
     'resources',
     'search',
     'tools',
-    'activities',
+    'user_notifications'  # modified clone of https://github.com/django-notifications
 )
 
 HIJACK_ALLOW_GET_REQUESTS = True

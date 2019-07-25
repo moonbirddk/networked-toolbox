@@ -64,6 +64,8 @@ class Tool(ModelWithCoverImage):
     comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
     resource_connection = models.OneToOneField('resources.ToolResourceConnection',on_delete=models.CASCADE, null=True)
     suggestion_root = models.OneToOneField(SuggestionRoot, on_delete=models.CASCADE, null=True)
+    notification_target = models.OneToOneField('user_notifications.NotificationTarget', null=True)
+    
     @property
     def comments(self):
         return self.comment_root.comments.all()
@@ -135,7 +137,9 @@ class Story(ModelWithCoverImage):
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools', blank=True)
     published = models.BooleanField('Published', default=True)
     comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
-    
+    notification_target = models.OneToOneField(
+        'user_notifications.NotificationTarget', null=True)
+
     @property
     def comments(self): 
         return self.comment_root.comments.all()
@@ -167,6 +171,8 @@ class CategoryGroup(models.Model):
     description = models.CharField(max_length=255, blank=True)
     main_text = models.TextField(max_length=5000, blank=True, null=True, default='Lorem ipsum.')
     published = models.BooleanField('published', default=False)
+    notification_target = models.OneToOneField(
+        'user_notifications.NotificationTarget', null=True)
 
     def get_absolute_url(self):
         return reverse('tools:show_categorygroup', args=(self.id, ))

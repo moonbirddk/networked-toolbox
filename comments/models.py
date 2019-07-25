@@ -54,6 +54,8 @@ class ThreadedComment(models.Model):
     added_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     is_removed = models.BooleanField(default=False)
     edited_dt = models.DateTimeField(auto_now=True, null=True, blank=True)
+    notification_target = models.OneToOneField(
+        'user_notifications.NotificationTarget', null=True)
 
 
     @property
