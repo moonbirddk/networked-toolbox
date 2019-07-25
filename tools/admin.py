@@ -9,6 +9,9 @@ from django.utils.html import format_html
 from trumbowyg.widgets import TrumbowygWidget
 from .widgets import ColumnCheckboxSelectMultiple
 
+#MTODO FIX ALL ADMIN CHANGE FORMS FOR THEIR NEW LINKS TO 
+#COMMENT_ROOT, NOTIFICATION_TARGET, ETC (EXCLUDE_FIELDS MOSTLY) 
+
 class EditorAndMultiCheckBoxMixin(admin.ModelAdmin): 
     formfield_overrides = {
         models.TextField: {

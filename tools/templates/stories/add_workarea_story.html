@@ -24,7 +24,7 @@
     <section class="section--padded">
         <h1>Add Story to <span class="tool-title">{{category_group.name}}</span></h1>
 
-        <form method="POST" action="{% url 'tools:add_workarea_story' category_group_id:category_group.id %}" class="form" 
+        <form method="POST" action="{% url 'tools:add_workarea_story' category_group_id=category_group.id %}" class="form" 
         enctype="multipart/form-data">
             {% csrf_token %}
 
