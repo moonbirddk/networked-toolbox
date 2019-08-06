@@ -14,14 +14,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='tool',
-            name='resource_connection',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='resources.ToolResourceConnection'),
-        ),
-        migrations.AddField(
-            model_name='toolcategory',
-            name='resource_connection',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='resources.ToolResourceConnection'),
-        ),
+        
     ]
