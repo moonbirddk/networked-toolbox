@@ -9,7 +9,7 @@ from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 from user_notifications.signals import notify
 
-from tools.models import Tool, ToolFollower
+
 
 
 class ThreadedCommentManager(models.Manager):
@@ -25,16 +25,7 @@ class CommentRoot(models.Model):
 class ThreadedComment(models.Model):
     class Meta:
         ordering = ['tree_id', 'added_dt']
-    
-    # related_object_type = models.ForeignKey(
-    #     ContentType,
-    #     null=False,
-    #     blank=False
-    # )
-    # related_object_id = models.PositiveIntegerField(null=False, blank=False)
-    # related_object = GenericForeignKey('related_object_type',
-    #                                    'related_object_id')
-    
+
     comment_root = models.ForeignKey(CommentRoot, null=True, on_delete=models.CASCADE, related_name='comments')
     parent = models.ForeignKey(
         'self',
@@ -58,7 +49,6 @@ class ThreadedComment(models.Model):
     edited_dt = models.DateTimeField(auto_now=True, null=True, blank=True)
     notification_target = models.OneToOneField(
         'user_notifications.NotificationTarget', null=True, on_delete=models.CASCADE)
-
 
     @property
     def liker_ids(self): 
@@ -95,6 +85,16 @@ class CommentLike(models.Model):
    
 def is_comment_root(instance, created):
     return created and instance.parent == None
+
+
+def comment_saved(sender, instance, created, **kwargs): 
+    from user_notifications.models import NotificationTarget
+    if created: 
+        instance.notification_target = NotificationTarget.objects.create()#notification_target
+        instance.save()
+
+post_save.connect(comment_saved, sender=ThreadedComment)
+
 
 def notify_author(sender, instance, created, **kwargs):
     # Let's only notify when it's on a story and it's not on another persons
@@ -165,6 +165,7 @@ def notify_parent_author(sender, instance, created, **kwargs):
 post_save.connect(notify_parent_author, sender=ThreadedComment)
 
 def notify_tool_follower(sender, instance, created, **kwargs):
+    from tools.models  import ToolFollower
     if instance.related_object._meta.model_name == 'tool' and is_comment_root(instance, created): 
         recipients = ToolFollower.objects.filter(~Q(user=instance.author), tool=instance.related_object)
         verb = 'commented on a tool you follow'

@@ -7,12 +7,17 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.signals import pre_delete, post_delete, pre_save
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.urls import reverse
+
+from comments.models import CommentRoot
+from user_notifications.models import NotificationTarget
+from resources.models import ToolResourceConnection
 
 from solo.models import SingletonModel
 from django_countries.fields import CountryField
 from shared.helpers import truncate_string
-
+from shared.db.helpers import get_one_to_one_field_names
 from common.utils import generate_upload_path
 from user_notifications.signals import notify
 from uuid import uuid4
@@ -43,7 +48,6 @@ class ModelWithCoverImage(models.Model):
     def has_existing_cover_image(self):
         return self.cover_image and \
             default_storage.exists(self.cover_image.name)
-
 
 class Tool(ModelWithCoverImage):
     class Meta:
@@ -80,18 +84,33 @@ class Tool(ModelWithCoverImage):
     def suggestionss(self):
         return self.suggestion_root.suggestions.all()
 
-
-    def __str__(self):
-        return self.title
-
     def get_absolute_url(self):
         return reverse('tools:show', args=(self.id, ))
 
     def published_categories(self):
         return self.categories.filter(published=True)
 
-    def sort_tools_descendig(self):
-        return self.tools.order_by('-title')
+    def __str__(self):
+        return self.title
+
+@receiver(post_save, sender=Tool)
+def tool_saved(sender, instance, created, **kwargs): 
+    if created:
+        suggestion_root = SuggestionRoot()
+        comment_root = CommentRoot()
+        resource_connection = ToolResourceConnection()
+        notification_target = NotificationTarget() 
+        suggestion_root.save()
+        comment_root.save()
+        resource_connection.save()
+        notification_target.save()
+        instance.suggestion_root = suggestion_root
+        instance.comment_root = comment_root
+        instance.resource_connection = resource_connection
+        instance.notification_target = notification_target
+        instance.save()
+
+
 
 
 class ToolFollower(models.Model):
@@ -163,6 +182,17 @@ class Story(ModelWithCoverImage):
     def __str__(self):
         return self.title
 
+
+@receiver(post_save, sender=Tool)
+def story_saved(sender, instance, created, **kwargs):
+    if created:
+        comment_root = CommentRoot()
+        notification_target = NotificationTarget()
+        comment_root.save()
+        notification_target.save()
+        instance.comment_root = comment_root
+        instance.notification_target = notification_target
+        instance.save()
 
 
 
@@ -329,3 +359,5 @@ class CategoryGroupOverviewPage(OverviewPage):
 class StoryOverviewPage(OverviewPage):
     class Meta:
         verbose_name = 'Stories Overview Page'
+
+

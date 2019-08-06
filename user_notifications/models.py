@@ -136,7 +136,7 @@ class NotificationQuerySet(models.query.QuerySet):
 class NotificationTarget(models.Model): 
     pass
     ## Add this as OneToOneField to everything that can be a notification target
-    ## stories, tools, workareas, comments as of now
+    ## stories, tools, workareas, comments as of now (plus users??)
 
 class AbstractNotification(models.Model):
 
