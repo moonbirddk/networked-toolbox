@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 from django.apps import apps 
 from django.db import migrations, models
+import django.db.models.deletion
 
 def create_new_comment_root(apps, schema_editor): 
     from toolz.curried import pipe, map
