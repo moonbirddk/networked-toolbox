@@ -9,6 +9,9 @@ from django.utils.html import format_html
 from trumbowyg.widgets import TrumbowygWidget
 from .widgets import ColumnCheckboxSelectMultiple
 
+#MTODO FIX ALL ADMIN CHANGE FORMS FOR THEIR NEW LINKS TO 
+#COMMENT_ROOT, NOTIFICATION_TARGET, ETC (EXCLUDE_FIELDS MOSTLY) 
+
 class EditorAndMultiCheckBoxMixin(admin.ModelAdmin): 
     formfield_overrides = {
         models.TextField: {
@@ -59,7 +62,7 @@ class StoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
     
 
 class SuggestionAdmin(admin.ModelAdmin): 
-    list_display = ['__str__', 'related_object']
+    list_display = ['__str__', ] #MTODO FIX THIS 
     list_per_page = 20
 
 class ToolFollowerUserAdmin(admin.ModelAdmin): 

@@ -11,7 +11,7 @@
         class="flag-icon flag-icon-{{comment.author.profile.country.code}}"></i>
       {% endif %}
       <span class="comment-author-name">
-        <a href="{% url 'profiles:show' comment.author.profile.uid %}">
+        <a href="{% url 'profiles:show' profile_uuid=comment.author.profile.uuid %}">
           {{ comment.author.profile.name }}
         </a>
       </span>
@@ -19,7 +19,7 @@
       <span style="font-size: 11px !important">{{comment.likes.count}} like{{coment.likes.count|pluralize}}</span>
       {%if user.is_authenticated%}
       {% ifnotequal user.id comment.author.id %}
-        <a href="{% if user.id in comment.liker_ids %}{%url 'comments:unlike' comment.id%}{%else%}{%url 'comments:like' comment.id%}{%endif%}">
+        <a href="{% if user.id in comment.liker_ids %}{%url 'comments:unlike' comment_id=comment.id%}{%else%}{%url 'comments:like' comment_id=comment.id%}{%endif%}">
         {%if user.id in comment.liker_ids %}un{%endif%}like
         </a>
           

@@ -75,15 +75,16 @@ INSTALLED_APPS = (
     'django_countries',
     'trumbowyg', 
     'django_summernote',
-    'easy_timezones',
+  #  'easy_timezones',
     'haystack',
-    'notifications',
+   # 'notifications',
     'solo',
     'storages',
     'hijack', 
     'compat', 
     'hijack_admin', 
     # Networked toolbox apps
+    'activities',
     'comments',
     'common',
     'menus',
@@ -92,26 +93,28 @@ INSTALLED_APPS = (
     'resources',
     'search',
     'tools',
-    'activities',
+    'user_notifications'  # modified clone of https://github.com/django-notifications
 )
 
 HIJACK_ALLOW_GET_REQUESTS = True
 HIJACK_LOGOUT_REDIRECT_URL = '/admin/profiles/profile/'
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+   # 'django.middleware.common.CommonMiddleware',
+   # 'django.middleware.csrf.CsrfViewMiddleware',
+   # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+   # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   # 'django.middleware.security.SecurityMiddleware',
 
     'easy_timezones.middleware.EasyTimezoneMiddleware',
 
     'netbox.middleware.RedirectToTermsAndConditionsMiddleware',
-)
+]
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

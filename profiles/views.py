@@ -48,9 +48,9 @@ def terms_and_conditions(request):
     return resp
 
 
-def show(request, profile_uid):
+def show(request, profile_uuid):
     profile = get_object_or_404(Profile.objects.select_related('user'),
-                                uid=profile_uid)
+                                uuid=profile_uuid)
     user = profile.user
     tool_followers = ToolFollower.objects.filter(user_id=user.id)\
         .filter(tool__published=True).order_by('?')
@@ -68,9 +68,9 @@ def show(request, profile_uid):
     return render(request, 'profiles/show.html', ctx)
 
 
-def show_tools(request, profile_uid):
+def show_tools(request, profile_uuid):
     profile = get_object_or_404(Profile.objects.select_related('user'),
-                                uid=profile_uid)
+                                uid=profile_uuid)
     user = profile
     tool_followers = ToolFollower.objects.filter(user_id=user.id)\
         .filter(tool__published=True).order_by('tool__title')
@@ -122,7 +122,7 @@ def edit(request):
             user.last_name = form.cleaned_data.get('last_name', None)
             user.save()
             messages.success(request, "You have updated your profile.")
-            return redirect('profiles:show', profile.uid)
+            return redirect('profiles:show', profile.uuid)
     ctx = {
         'form': form,
     }

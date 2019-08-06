@@ -1,14 +1,14 @@
 import logging
 from collections import OrderedDict
 from django import template
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 from django.utils.encoding import smart_text
 from django.utils.safestring import mark_safe
 from django.template import Variable, VariableDoesNotExist, Template
 from django.template.loader import get_template, render_to_string
 from django.contrib.contenttypes.models import ContentType
-
+from django.db.models import Q
 from django_comments.templatetags.comments import BaseCommentNode
 from bootstrap3.utils import render_tag
 
@@ -135,9 +135,12 @@ class CommentNode(template.Node):
         if not object_pk:
             return ThreadedComment.objects.none()
 
+        filters = {
+            'story': Q(comment_root__story__pk=object_pk),
+            'tool': Q(comment_root__tool__pk=object_pk)
+        }
         qs = ThreadedComment.objects.select_related('author').filter(
-            related_object_type=ctype,
-            related_object_id=smart_text(object_pk),
+            filters.get(ctype.model)
         ).order_by('tree_id', 'added_dt')
         return qs
 
@@ -147,6 +150,7 @@ class CommentNode(template.Node):
                 obj = self.object_expr.resolve(context)
             except template.VariableDoesNotExist:
                 return None, None
+                
             return ContentType.objects.get_for_model(obj), obj.pk
         else:
             return (

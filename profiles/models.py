@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.core.files.storage import default_storage
 from django.dispatch.dispatcher import receiver
 from django.db.models.signals import post_save, post_delete, pre_save
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from django_countries.fields import CountryField
 
@@ -15,17 +15,12 @@ def do_upload_profile_photo(inst, filename):
     return generate_upload_path(inst, filename, dirname='profile_photos')
 
 
-def generate_profile_uid():
-    return uuid.uuid4().hex
 
 
 PROFILE_BIO_MAX_LEN = 400
 
 
 class ProfileManager(models.Manager):
-    def create(self, *args, **kwargs):
-        kwargs['uid'] = generate_profile_uid()
-        return super().create(*args, **kwargs)
 
     def get_or_create(self, *args, **kwargs):
         with transaction.atomic():
@@ -36,10 +31,8 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-    uid = models.CharField(unique=True, editable=False, null=True,
-                           max_length=32)
-    # FIXME: migrate uid to be not null
-    user = models.OneToOneField(User)
+    uuid = models.UUIDField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to=do_upload_profile_photo,
                               blank=True, null=True)
     bio = models.TextField(
@@ -55,11 +48,7 @@ class Profile(models.Model):
     def __str__(self): 
         return '{} {}'.format(self.user.first_name, self.user.last_name)
 
-    def save(self, *args, **kwargs):
-        if not self.uid:
-            self.uid = generate_profile_uid()
-        return super().save(*args, **kwargs)
-
+    
     def name(self):
         user = self.user
         if user.first_name and user.last_name:
@@ -86,30 +75,30 @@ class Profile(models.Model):
             default_storage.exists(self.photo.name)
 
     def get_absolute_url(self):
-        return reverse('profiles:show', args=(self.uid, ))
+        return reverse('profiles:show', args=(self.uuid, ))
 
 
-@receiver(post_save, sender=User, dispatch_uid='profiles-create_user_profile')
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+# @receiver(post_save, sender=User, dispatch_uid='profiles-create_user_profile')
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
 
 
-@receiver(pre_save, sender=Profile, dispatch_uid="profiles-on_profile_pre_save")
-def on_profile_pre_save(sender, instance, **kwargs):
-    try:
-        old = Profile.objects.get(id=instance.id)
-    except Profile.DoesNotExist:
-        return
+# @receiver(pre_save, sender=Profile, dispatch_uid="profiles-on_profile_pre_save")
+# def on_profile_pre_save(sender, instance, **kwargs):
+#     try:
+#         old = Profile.objects.get(uuid=instance.uuid)
+#     except Profile.DoesNotExist:
+#         return
 
-    if old.photo and old.photo.name and old.photo != instance.photo and\
-            default_storage.exists(old.photo.name):
-        default_storage.delete(old.photo.name)
+#     if old.photo and old.photo.name and old.photo != instance.photo and\
+#             default_storage.exists(old.photo.name):
+#         default_storage.delete(old.photo.name)
 
 
-@receiver(post_delete, sender=Profile,
-          dispatch_uid="profiles-on_profile_post_delete")
-def on_profile_post_delete(sender, instance, **kwargs):
-    if instance.photo and instance.photo.name and\
-            default_storage.exists(instance.photo.name):
-        default_storage.delete(instance.photo.name)
+# @receiver(post_delete, sender=Profile,
+#           dispatch_uid="profiles-on_profile_post_delete")
+# def on_profile_post_delete(sender, instance, **kwargs):
+#     if instance.photo and instance.photo.name and\
+#             default_storage.exists(instance.photo.name):
+#         default_storage.delete(instance.photo.name)

@@ -5,11 +5,11 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import post_save
-from django.core.urlresolvers import reverse
-from django.contrib.auth import get_user_model
-from notifications.signals import notify
 
-from tools.models import Tool, ToolFollower
+from django.contrib.auth import get_user_model
+from user_notifications.signals import notify
+
+
 
 
 class ThreadedCommentManager(models.Manager):
@@ -19,38 +19,36 @@ class ThreadedCommentManager(models.Manager):
     def get_parents(self):
         return self.get_queryset().filter(parent__isnull=True)
 
+class CommentRoot(models.Model): 
+    pass
 
 class ThreadedComment(models.Model):
     class Meta:
         ordering = ['tree_id', 'added_dt']
-    
-    related_object_type = models.ForeignKey(
-        ContentType,
-        null=False,
-        blank=False
-    )
-    related_object_id = models.PositiveIntegerField(null=False, blank=False)
-    related_object = GenericForeignKey('related_object_type',
-                                       'related_object_id')
+
+    comment_root = models.ForeignKey(CommentRoot, null=True, on_delete=models.CASCADE, related_name='comments')
     parent = models.ForeignKey(
         'self',
         null=True,
         blank=True,
         default=None,
-        related_name='children'
+        related_name='children', 
+        on_delete=models.CASCADE
     )
     tree_id = models.IntegerField(null=True, blank=False, db_index=True)
 
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=False,
-        null=False
+        null=False, 
+        on_delete=models.CASCADE
     )
     content = models.TextField(max_length=settings.COMMENT_MAX_LENGTH)
     added_dt = models.DateTimeField(auto_now_add=True, db_index=True)
     is_removed = models.BooleanField(default=False)
     edited_dt = models.DateTimeField(auto_now=True, null=True, blank=True)
-
+    notification_target = models.OneToOneField(
+        'user_notifications.NotificationTarget', null=True, on_delete=models.CASCADE)
 
     @property
     def liker_ids(self): 
@@ -64,6 +62,13 @@ class ThreadedComment(models.Model):
     def related_object_title(self): 
         return self.related_object.title if self.related_object else None
     
+    @property
+    def related_object(self): 
+        try: 
+            return self.comment_root.story
+        except: 
+            return self.comment_root.tool 
+
     def __str__(self): 
         return '{} - {}...'.format(self.author, self.content[:10])
 
@@ -74,16 +79,27 @@ class CommentLike(models.Model):
         verbose_name_plural = 'Comment Likes'
     pass
    
-    user = models.ForeignKey('auth.User')
-    comment = models.ForeignKey(ThreadedComment, related_name="likes")
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    comment = models.ForeignKey(
+        ThreadedComment, related_name="likes", on_delete=models.CASCADE)
    
 def is_comment_root(instance, created):
     return created and instance.parent == None
 
+
+def comment_saved(sender, instance, created, **kwargs): 
+    from user_notifications.models import NotificationTarget
+    if created: 
+        instance.notification_target = NotificationTarget.objects.create()#notification_target
+        instance.save()
+
+post_save.connect(comment_saved, sender=ThreadedComment)
+
+
 def notify_author(sender, instance, created, **kwargs):
     # Let's only notify when it's on a story and it's not on another persons
     # comment.
-    if instance.related_object_type.model == 'story' and is_comment_root(instance, created): 
+    if instance.related_object._meta.model_name == 'story' and is_comment_root(instance, created): 
         actor = instance.author
         recipient = instance.related_object.user
         # Let's not send a notification when someone comments on their own story
@@ -129,8 +145,8 @@ def notify_parent_author(sender, instance, created, **kwargs):
         recipient = instance.parent.author
         # Only comments on tools and stories for now
         # And don't notify when someone comments on their own comment
-        if (instance.related_object_type.model == 'tool' or \
-            instance.related_object_type.model == 'story') and \
+        if (instance.related_object._meta.model_name == 'tool' or \
+            instance.related_object_meta.model_name == 'story') and \
             recipient != actor:
             href = instance.related_object.get_absolute_url()
             href += '#comment-' + str(instance.id)
@@ -149,7 +165,8 @@ def notify_parent_author(sender, instance, created, **kwargs):
 post_save.connect(notify_parent_author, sender=ThreadedComment)
 
 def notify_tool_follower(sender, instance, created, **kwargs):
-    if instance.related_object_type.model == 'tool' and is_comment_root(instance, created): 
+    from tools.models  import ToolFollower
+    if instance.related_object._meta.model_name == 'tool' and is_comment_root(instance, created): 
         recipients = ToolFollower.objects.filter(~Q(user=instance.author), tool=instance.related_object)
         verb = 'commented on a tool you follow'
         href = instance.related_object.get_absolute_url()

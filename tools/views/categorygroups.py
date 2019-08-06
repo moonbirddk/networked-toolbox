@@ -1,7 +1,7 @@
 
 from django.db import transaction
 from django.db.models import Q
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
@@ -22,8 +22,7 @@ def list_category_groups(request):
     cat_filter = PublishedFilter(request.GET, queryset=queryset)
 
     categories_by_group = CategoryGroup.objects\
-        .prefetch_related(Prefetch('categories', queryset=cat_filter.qs))\
-        .order_by('name')
+        .prefetch_related(Prefetch('categories', queryset=cat_filter.qs)).order_by('name')
 
     default_id = get_default_category_group_id()
     default_category = categories_by_group.get(id=default_id)
@@ -58,7 +57,7 @@ def show_categorygroup(request, category_group_id):
 
     breadcrumbs = [
         work_areas_list_link, 
-        category_group.name
+        category_group.title
     ]
     context = {
         'category_group': category_group,

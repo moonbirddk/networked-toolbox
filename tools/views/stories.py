@@ -115,7 +115,7 @@ def show_all_stories(request):
         'newest_comments': ('recently discussed', 'comments__added_dt'),
     }
     order_name, order_query = ORDERINGS[request.GET.get('order', 'date')]
-    stories = Story.objects.filter(published=True).order_by(order_query)
+    stories = Story.objects.filter(published=True).prefetch_related('tool', 'category_group', 'comment_root__comments').order_by(order_query)
     context = {
         'stories': stories,
         'order': order_name,
