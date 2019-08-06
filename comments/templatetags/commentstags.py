@@ -9,7 +9,6 @@ from django.template import Variable, VariableDoesNotExist, Template
 from django.template.loader import get_template, render_to_string
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
-from django_comments.templatetags.comments import BaseCommentNode
 from bootstrap3.utils import render_tag
 
 from ..models import ThreadedComment
