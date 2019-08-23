@@ -8,6 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('tools', '0033_create_comment_relations'), 
         ('comments', '0005_auto_20190723_1337'),
     ]
 

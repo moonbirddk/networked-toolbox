@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('resources', '0002_auto_20190723_1621'),
+        ('tools', '0038_auto_20190723_1646')
     ]
 
     operations = [

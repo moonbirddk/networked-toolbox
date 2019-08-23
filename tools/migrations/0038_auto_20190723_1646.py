@@ -51,7 +51,8 @@ def create_new_resource_connection(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tools', '0034_auto_20190723_1621'),
+        
+        ('tools', '0034_auto_20190823_1233'),
     ]
 
     operations = [

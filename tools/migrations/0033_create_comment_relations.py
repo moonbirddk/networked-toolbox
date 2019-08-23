@@ -44,21 +44,12 @@ def create_new_comment_root(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('comments', '0004_threadedcomment_comment_root'), 
         ('tools', '0032_auto_20190723_1319'),
     ]
 
     operations = [
         migrations.RunPython(create_new_comment_root), 
-        migrations.AddField(
-            model_name='tool',
-            name='resource_connection',
-            field=models.OneToOneField(
-                null=True, on_delete=django.db.models.deletion.CASCADE, to='resources.ToolResourceConnection'),
-        ),
-        migrations.AddField(
-            model_name='toolcategory',
-            name='resource_connection',
-            field=models.OneToOneField(
-                null=True, on_delete=django.db.models.deletion.CASCADE, to='resources.ToolResourceConnection'),
-        ),
+        
+        
     ]
