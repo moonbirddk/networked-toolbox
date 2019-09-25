@@ -90,8 +90,8 @@ def show_story(request, story_id):
     related_stories = Story.objects.filter(tool_id=story.tool_id).exclude(id=story.id).order_by('-created')[:3]
     associated_tools = story.associated_tools.all()
     stories_home = {
-        'ov': format_html('<a href="{}">Stories</a>',reverse('tools:show_all_stories')), 
-        'wa_ov': format_html('<a href="{}">Work Areas</a>',reverse('tools:index'))
+        'ov': format_html('<a href="{}">Stories Of Change</a>',reverse('tools:show_all_stories')), 
+        'wa_ov': format_html('<a href="{}">Thematic Areas</a>',reverse('tools:index'))
     }
     parent_of_story = format_html('<a href="{}">{}</a>', related_model_instance.get_absolute_url(),related_model_instance.title)
     breadcrumb_root = stories_home.get(request.GET.get('from'), parent_of_story)

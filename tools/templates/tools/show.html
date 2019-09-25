@@ -30,7 +30,7 @@ ga('send', 'event', 'tool', 'view');
 
 {% block main %}
 
-{% include '_hero_breadcrumbs.html' with icon='tools' breadcrumbs=breadcrumbs %}
+{% include '_hero_breadcrumbs.html' with icon='tools-and-methods' breadcrumbs=breadcrumbs %}
 
 <div class="container-fluid">
 	<div class="content-card wow fadeinup">
@@ -75,7 +75,7 @@ ga('send', 'event', 'tool', 'view');
 		  {% endfor %}
 		</div>
 		<div class="divider--bordered"></div>
-	  	<h4 class="title">We have used this tool</h4>
+	  	<h4 class="title">We have used this tool or method</h4>
 		<div class="tool-followers flex-wrapper">
 			{% for tool_user in tool_users %}
 				<div class="tool-follower">

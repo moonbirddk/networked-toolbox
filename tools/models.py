@@ -51,8 +51,8 @@ class ModelWithCoverImage(models.Model):
 
 class Tool(ModelWithCoverImage):
     class Meta:
-        verbose_name = 'Tool'
-        verbose_name_plural = 'Tools'
+        verbose_name = 'Tool or Method'
+        verbose_name_plural = 'Tools and Methods'
         ordering = ['title']
 
 
@@ -144,8 +144,8 @@ class ToolUser(models.Model):
 
 class Story(ModelWithCoverImage):
     class Meta:
-        verbose_name = 'Story'
-        verbose_name_plural = 'Stories'
+        verbose_name = 'Story Of Change'
+        verbose_name_plural = 'Stories Of Change'
         ordering = ('created', )
 
     title = models.CharField(max_length=100, null=False, blank=False)
@@ -198,8 +198,8 @@ def story_saved(sender, instance, created, **kwargs):
 
 class CategoryGroup(models.Model):
     class Meta:
-        verbose_name = 'Work Area'
-        verbose_name_plural = 'Work Areas'
+        verbose_name = 'Thematic Area'
+        verbose_name_plural = 'Thematic Areas'
 
     name = models.CharField(max_length=30, null=False, blank=False,
                             unique=True)
@@ -346,7 +346,7 @@ class OverviewPage(SingletonModel):
 
 class ToolOverviewPage(OverviewPage):
     class Meta:
-        verbose_name = 'Tools Overview Page'
+        verbose_name = 'Tools And Methods Overview Page'
 
 class CategoryOverviewPage(OverviewPage):
     class Meta:
@@ -354,10 +354,10 @@ class CategoryOverviewPage(OverviewPage):
 
 class CategoryGroupOverviewPage(OverviewPage):
     class Meta:
-        verbose_name = "Work Areas Overview Page"
+        verbose_name = "Thematic Areas Overview Page"
 
 class StoryOverviewPage(OverviewPage):
     class Meta:
-        verbose_name = 'Stories Overview Page'
+        verbose_name = 'Stories Of Change Overview Page'
 
 

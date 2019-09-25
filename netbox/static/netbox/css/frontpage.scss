@@ -186,17 +186,12 @@ $animationDelay: 1.2s;
       left: 0;
     }
     &.first{
-      animation: frontFadeInOut $animationSpeed $animationDelay forwards;
+      animation: frontFadeIn $animationSpeed $animationDelay forwards;
     }
-    &.second{
-      animation: frontFadeInOut $animationSpeed ($animationSpeed + $animationDelay) forwards;
-    }
-    &.third{
-      animation: frontFadeIn $animationSpeed ($animationSpeed*2 + $animationDelay) forwards;
-    }
+    
   }
 }
 .hero-section__tagline.front{
   opacity: 0;
-  animation: frontFadeIn $animationSpeed ($animationSpeed*2.4 + $animationDelay) forwards;
+  animation: frontFadeIn $animationSpeed ($animationSpeed + $animationDelay) forwards;
 }

@@ -9,7 +9,7 @@ from django.urls import reverse
 from django_countries.fields import CountryField
 
 from common.utils import generate_upload_path
-
+from uuid import uuid4
 
 def do_upload_profile_photo(inst, filename):
     return generate_upload_path(inst, filename, dirname='profile_photos')
@@ -31,7 +31,7 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-    uuid = models.UUIDField(primary_key=True)
+    uuid = models.UUIDField(primary_key=True, default=uuid4)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to=do_upload_profile_photo,
                               blank=True, null=True)
@@ -40,7 +40,7 @@ class Profile(models.Model):
         blank=True,
         null=True
     )
-    country = CountryField(blank_label='where did this take place?',
+    country = CountryField(blank_label='where does the user live?',
                            blank=True, null=True)
 
     objects = ProfileManager()

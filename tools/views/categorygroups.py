@@ -53,7 +53,7 @@ def show_categorygroup(request, category_group_id):
     category_group = get_object_or_404(CategoryGroup, id=category_group_id)
     categories = category_group.categories.all().order_by('title')
     category_group_follower_ids = list(category_group.followers.all().values_list('user_id', flat=True))
-    work_areas_list_link =  format_html('<a href="{}">Work Areas</a>', reverse('tools:index'))  
+    work_areas_list_link =  format_html('<a href="{}">Thematic Areas</a>', reverse('tools:index'))  
 
     breadcrumbs = [
         work_areas_list_link, 

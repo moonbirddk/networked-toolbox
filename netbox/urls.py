@@ -15,7 +15,7 @@ urlpatterns = [
     path('trumbowyg/', include('trumbowyg.urls')),
     path('hijack/', include('hijack.urls', namespace='hijack')),
     path('profiles/', include('profiles.urls', namespace='profiles')),
-    path('workareas/', include('tools.urls', namespace='tools')),
+    path('thematicareas/', include('tools.urls', namespace='tools')),
     path('resources/', include('resources.urls', namespace='resources')),
     path('comments/', include('comments.urls', namespace='comments')),
     path('search/', include('search.urls', namespace='search')),

@@ -37,7 +37,7 @@ DEBUG = True
 
 APPEND_SLASH = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 CACHES = {
     'default': {
@@ -93,7 +93,7 @@ INSTALLED_APPS = (
     'resources',
     'search',
     'tools',
-    'user_notifications'  # modified clone of https://github.com/django-notifications
+    'user_notifications', # modified clone of https://github.com/django-notifications
 )
 
 HIJACK_ALLOW_GET_REQUESTS = True

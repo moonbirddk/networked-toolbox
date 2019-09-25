@@ -16,13 +16,13 @@
     </section>
     <section>
 
-      <h3>Tools overview</h3>
+      <h3>Tools And Methods overview</h3>
       <div class="tools cards thirds">
         {% for resource in resources %}
         {% include 'tools/_tools_card.html' with tool=resource from="ov"%}
         {% empty %}
         <div class="categories-empty col-md-12">
-          There are no tools sections in this Work Area.
+          There are no Tools and Methods sections in this Thematic Area.
         </div>
         {%endfor%}
       </div>
@@ -31,7 +31,7 @@
 </div>
 <section class="section--gray section--workareas section--padded">
   <div class="container-fluid">
-    <h2>WORK AREAS</h2>
+    <h2>THEMATIC AREAS</h2>
     <div class="workareas">
       {% for workarea in category_groups %}
       <div class="workarea wow fadeinup" data-wow-delay="0.{{forloop.counter}}s">

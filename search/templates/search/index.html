@@ -21,11 +21,10 @@
                 <div class="hero-section__inner flex-vertical">
                     <div>
                         <h1 class="hero-section__title front">
-                            <span class="first">EXPLORE</span>
-                            <span class="second">DISCOVER</span>
-                            <span class="third">LEARN</span>
+                            <span class="first">{{flash_headline}}</span>
+                            
                         </h1>
-                        <p class="hero-section__tagline front">Find the right tools by exploring one of the sections below</p>
+                        <p class="hero-section__tagline front">{{flash_subtext}}</p>
                     </div>
                 </div>
             </div>
@@ -71,7 +70,7 @@
     <div class="container-fluid">
         <div class="flex-space-between section--cards--header">
             <h2 class="title">
-                RECENTLY USED <br> TOOLS
+                RECENTLY USED <br> TOOLS AND METHODS
             </h2>
             <a href="{%url 'tools:list_tools' %}" class="btn btn-primary">View All Tools</a>
         </div>
@@ -88,7 +87,7 @@
     <div class="container-fluid">
         <div class="flex-space-between section--cards--header">
             <h2 class="title">
-            EXPLORE <br> LATEST STORIES
+            EXPLORE <br> LATEST STORIES OF CHANGE
             </h2>
             <a href="{% url 'tools:show_all_stories' %}" class="btn btn-primary">Show all Stories</a>  
         </div>
