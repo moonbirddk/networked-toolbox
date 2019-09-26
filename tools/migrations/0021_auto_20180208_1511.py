@@ -13,43 +13,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='CategoryGroupOverviewPage',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('description', models.CharField(default='Lorem ipsum.', max_length=255)),
-            ],
-            options={
-                'verbose_name': 'Work Area Overview Page',
-            },
-        ),
-
-        migrations.AlterModelOptions(
-            name='categorygroupoverviewpage',
-            options={'verbose_name': 'Work Areas Overview Page'},
-        ),
-        # migrations.RemoveField(
-        #     model_name='story',
-        #     name='category_group',
-        # ),
-        migrations.AddField(
-            model_name='categorygroupoverviewpage',
-            name='cover_image',
-            field=models.ImageField(blank=True, null=True, upload_to=tools.models.do_upload_cover_image),
-        ),
-        migrations.AddField(
-            model_name='categorygroupoverviewpage',
-            name='headline',
-            field=models.CharField(default='Lorem ipsum.', max_length=100),
-        ),
-        migrations.AddField(
-            model_name='categorygroupoverviewpage',
-            name='link',
-            field=models.CharField(default='Loren ipsum.', max_length=160),
-        ),
-        migrations.AddField(
-            model_name='categorygroupoverviewpage',
-            name='link_text',
-            field=models.CharField(default='Lorem ipsum.', max_length=40),
-        ),
+      
     ]

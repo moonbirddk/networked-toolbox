@@ -13,9 +13,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='story',
-            name='category_group',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='stories', to='tools.CategoryGroup', verbose_name='work area'),
-        ),
+        
     ]

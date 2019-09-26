@@ -12,17 +12,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='StoryOverviewPage',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('headline', models.CharField(default='Lorem ipsum.', max_length=100)),
-                ('description', models.CharField(default='Lorem ipsum.', max_length=255)),
-            ],
-            options={
-                'verbose_name': 'Stories Overview Page',
-            },
-        ),
+        
         # migrations.AlterModelOptions(
         #     name='categorygroupoverviewpage',
         #     options={'verbose_name': 'Work Areas Overview Page'},
@@ -40,14 +30,5 @@ class Migration(migrations.Migration):
         #     name='headline',
         #     field=models.CharField(default='Lorem ipsum.', max_length=100),
         # ),
-        migrations.AddField(
-            model_name='categoryoverviewpage',
-            name='headline',
-            field=models.CharField(default='Lorem ipsum.', max_length=100),
-        ),
-        migrations.AddField(
-            model_name='tooloverviewpage',
-            name='headline',
-            field=models.CharField(default='Lorem ipsum.', max_length=100),
-        ),
+        
     ]

@@ -17,19 +17,5 @@ class Migration(migrations.Migration):
         #     name='link',
         #     field=models.CharField(default='Loren ipsum.', max_length=60),
         # ),
-        migrations.AddField(
-            model_name='categoryoverviewpage',
-            name='link',
-            field=models.CharField(default='Loren ipsum.', max_length=60),
-        ),
-        migrations.AddField(
-            model_name='storyoverviewpage',
-            name='link',
-            field=models.CharField(default='Loren ipsum.', max_length=60),
-        ),
-        migrations.AddField(
-            model_name='tooloverviewpage',
-            name='link',
-            field=models.CharField(default='Loren ipsum.', max_length=60),
-        ),
+      
     ]

@@ -11,10 +11,4 @@ class Migration(migrations.Migration):
         ('tools', '0022_story_category_group'),
     ]
 
-    operations = [
-         migrations.AddField(
-            model_name='categorygroup',
-            name='main_text',
-            field=models.TextField(blank=True, default='Lorem ipsum.', max_length=5000, null=True),
-        ),
-    ]
+   

@@ -11,10 +11,4 @@ class Migration(migrations.Migration):
         ('tools', '0015_tool_created_date'),
     ]
 
-    operations = [
-        migrations.AddField(
-            model_name='tooluser',
-            name='should_notify',
-            field=models.BooleanField(default=False),
-        ),
-    ]
+  
