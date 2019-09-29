@@ -5,7 +5,7 @@ celery==4.1.0
 coverage==4.5
 dj-database-url==0.4.2
 dj-static==0.0.6
-django-allauth==0.35
+django-allauth==0.38
 django-bootstrap3==9.1.0
 django-compressor==2.2
 django-countries==5.1.0
