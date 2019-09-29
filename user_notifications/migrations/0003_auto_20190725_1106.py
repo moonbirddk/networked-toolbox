@@ -15,18 +15,21 @@ class Migration(migrations.Migration):
         def transfer_and_link_notification(obj): 
             NewNotification = apps.get_model('user_notifications', 'UserNotification')
             User = apps.get_model('auth','user')
-            actor = User.objects.get(id=obj.actor_object_id)
-            recipient = User.objects.get(id=obj.recipient.id)
+            try: 
+                actor = User.objects.get(id=obj.actor_object_id)
+                recipient = User.objects.get(id=obj.recipient.id)
+            except User.DoesNotExist as e: 
+                print (e)
+                return 
             target_models = {
                 7: apps.get_model('tools', 'Tool'), 
                 22: apps.get_model('tools', 'CategoryGroup'), 
                 23: apps.get_model('tools', 'Story'),
-                25: apps.get_model('comments', 'ThreadedComment'),
+                26: apps.get_model('comments', 'ThreadedComment'),
 
             }
-
+            
             TargetModel = target_models[obj.target_content_type.id]
-         
             try: 
                 target = TargetModel.objects.get(id=obj.target_object_id).notification_target
             
