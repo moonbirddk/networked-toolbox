@@ -21,6 +21,7 @@ class Migration(migrations.Migration):
             except User.DoesNotExist as e: 
                 print (e)
                 return 
+                
             target_models = {
                 7: apps.get_model('tools', 'Tool'), 
                 22: apps.get_model('tools', 'CategoryGroup'), 

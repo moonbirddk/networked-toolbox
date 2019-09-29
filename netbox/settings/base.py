@@ -77,7 +77,7 @@ INSTALLED_APPS = (
     'django_summernote',
   #  'easy_timezones',
     'haystack',
-    'notifications',
+   # 'notifications',
     'solo',
     'storages',
     'hijack', 

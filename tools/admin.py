@@ -36,15 +36,14 @@ class ToolAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
 
     list_per_page = 20 
     list_display = ['title',link_to_tool_on_site,  'created_date', 'published']
+    exclude = ['comment_root', 'resource_connection', 'suggestion_root', 'notification_target']
     
     
-    
-
-class CategoryGroupAdmin(admin.ModelAdmin): 
+class CategoryGroupAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
     list_per_page = 20 
-    list_display = ('__str__','published')
+    list_display = ('__str__', 'published')
     list_editable = ('published',)
-
+    exclude = ['notification_target']
 
 class StoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin): 
 
@@ -57,6 +56,7 @@ class StoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
     
     list_display = ['__str__', 'user', tool_or_work_area, link_to_story_on_website, 'created', 'published']
     list_editable = ['published']
+    exclude = ['notification_target', 'comment_root']
     list_select_related = ('user','tool', 'category_group')
     list_per_page = 20
     
@@ -64,22 +64,27 @@ class StoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
 class SuggestionAdmin(admin.ModelAdmin): 
     list_display = ['__str__', ] #MTODO FIX THIS 
     list_per_page = 20
+    exclude = ['suggestion_root']
 
 class ToolFollowerUserAdmin(admin.ModelAdmin): 
     list_display = ['user', 'tool', 'should_notify']
+    list_editable = ['should_notify']
     list_filter = ['user', 'tool'] #MTODO: Smart Filtering
     list_per_page = 20
     list_select_related = ('tool', 'user')
 
 class CategoryGroupFollowerAdmin(admin.ModelAdmin): 
-    lsit_display = ['user','category_group','should_notify']
+    list_display = ['user','category_group','should_notify']
+    list_editable = ['should_notify']
     list_filter = ['user', 'category_group']
     list_per_page = 20 
 
-class ToolCategoryAdmin(admin.ModelAdmin):
+
+class ToolCategoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
     list_display = ['__str__', 'group', 'published']
     list_per_page = 20
     list_select_related = ('group',)
+    exclude = ['resource_connection', 'suggestion_root']
     
     
 admin.site.register(Tool, ToolAdmin)
