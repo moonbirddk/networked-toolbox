@@ -37,3 +37,4 @@ swapper
 jsonfield
 pytz
 django-extensions
+django-admin-tools
