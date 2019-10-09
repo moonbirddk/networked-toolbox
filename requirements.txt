@@ -36,4 +36,4 @@ yanc
 swapper
 jsonfield
 pytz
-django-exensions
+django-extensions
