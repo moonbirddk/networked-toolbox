@@ -1,5 +1,5 @@
-import bleach
 from django import template
+import bleach
 import  html.parser 
 register = template.Library()
 

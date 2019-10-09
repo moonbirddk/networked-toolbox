@@ -4,6 +4,8 @@ from django.contrib.auth.views import redirect_to_login
 from django.conf import settings
 
 
+
+
 class RedirectToTermsAndConditionsMiddleware(object):
     """
     Redirects user to accept terms and conditions view

@@ -334,7 +334,7 @@ class OverviewPage(SingletonModel):
         abstract = True
 
     headline = models.CharField(max_length=100, default='Lorem ipsum.')
-    description = models.CharField(max_length=255, default='Lorem ipsum.')
+    description = models.TextField("Explanation", max_length=2000, default='Lorem ipsum.')
     cover_image = models.ImageField(upload_to=do_upload_cover_image,
                                     blank=True, null=True)
     link = models.CharField(max_length=160, default='Loren ipsum.')

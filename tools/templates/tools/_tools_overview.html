@@ -5,6 +5,7 @@
 
 <div class="container-fluid overview--tools tools">
   <div class="overview__container">
+    <div style="padding-bottom: 50px; font-weight:bolder">{{overview.description}}</div>
     <section class="search-bar wow fadeinup">
       <form class="form-inline search-form" method="get" action="{% url 'search:tool_results' %}?q={{query}}">
         <div class="form-group">

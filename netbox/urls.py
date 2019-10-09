@@ -15,7 +15,6 @@ urlpatterns = [
     path('trumbowyg/', include('trumbowyg.urls')),
     path('hijack/', include('hijack.urls', namespace='hijack')),
     path('profiles/', include('profiles.urls', namespace='profiles')),
-    path('thematicareas/', include('tools.urls', namespace='tools')),
     path('resources/', include('resources.urls', namespace='resources')),
     path('comments/', include('comments.urls', namespace='comments')),
     path('search/', include('search.urls', namespace='search')),
@@ -24,7 +23,10 @@ urlpatterns = [
     path('activity/', include('activities.urls', namespace='activities')),
     path('search/', search_page, name='search_page'),
     path('notifications/', include('user_notifications.urls', namespace='notifications')), 
-    path('', homepage, name='homepage')
+    path('', include('tools.urls', namespace='tools')),
+    path('', homepage, name='homepage'), 
+    path('admin_tools/', include('admin_tools.urls')),
+    
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
         static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)
 

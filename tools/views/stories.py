@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.files.storage import default_storage
 from tools.forms import StoryForm
-from tools.models import Tool, Story, CategoryGroup
+from tools.models import Tool, Story, CategoryGroup, StoryOverviewPage
 from django.utils.html import format_html
 from django.urls import reverse
 
@@ -114,9 +114,12 @@ def show_all_stories(request):
         'date': ('newest', '-created'),
         'newest_comments': ('recently discussed', 'comments__added_dt'),
     }
+
     order_name, order_query = ORDERINGS[request.GET.get('order', 'date')]
     stories = Story.objects.filter(published=True).prefetch_related('tool', 'category_group', 'comment_root__comments').order_by(order_query)
     context = {
+        'overview': StoryOverviewPage.get_solo(),
+
         'stories': stories,
         'order': order_name,
         'order_by_list': ORDERINGS

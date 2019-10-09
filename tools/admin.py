@@ -29,6 +29,42 @@ class EditorAndMultiCheckBoxMixin(admin.ModelAdmin):
         }
     }
 
+class OverviewPageAdmnin(EditorAndMultiCheckBoxMixin, SingletonModelAdmin): 
+    pass
+
+
+class FollowerInline(admin.TabularInline):
+    fields = ('user',)
+    readonly_fields = ('user',)
+    extra = 0
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, *args):
+        return False
+
+
+class CategoryGroupFollowerAdmin(admin.ModelAdmin): 
+    list_display = ['user','category_group','should_notify']
+    list_editable = ['should_notify']
+    list_filter = ['user', 'category_group']
+    list_per_page = 20 
+
+class CategoryGroupFollowerInline(FollowerInline): 
+    model = CategoryGroupFollower
+
+
+class ToolFollowerUserAdmin(admin.ModelAdmin): 
+    list_display = ['user', 'tool', 'should_notify']
+    list_editable = ['should_notify']
+    list_filter = ['user', 'tool'] #MTODO: Smart Filtering
+    list_per_page = 20
+    list_select_related = ('tool', 'user')
+
+class ToolFollowerInline(FollowerInline): 
+    model = ToolFollower
+
 class ToolAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin): 
     
     def link_to_tool_on_site(self): 
@@ -36,14 +72,29 @@ class ToolAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
 
     list_per_page = 20 
     list_display = ['title',link_to_tool_on_site,  'created_date', 'published']
+    inlines = [ToolFollowerInline,]
     exclude = ['comment_root', 'resource_connection', 'suggestion_root', 'notification_target']
+
+    def get_formsets_with_inlines(self, request, obj=None):
+        for inline in self.get_inline_instances(request, obj):
+            if inline.get_queryset(request):
+                yield inline.get_formset(request, obj), inline
     
     
 class CategoryGroupAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
+    class Meta: 
+        model = CategoryGroup
+
     list_per_page = 20 
     list_display = ('__str__', 'published')
     list_editable = ('published',)
     exclude = ['notification_target']
+    inlines = [CategoryGroupFollowerInline, ]
+
+    def get_formsets_with_inlines(self, request, obj=None):
+        for inline in self.get_inline_instances(request, obj):
+            if inline.get_queryset(request):
+                yield inline.get_formset(request, obj), inline
 
 class StoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin): 
 
@@ -66,18 +117,7 @@ class SuggestionAdmin(admin.ModelAdmin):
     list_per_page = 20
     exclude = ['suggestion_root']
 
-class ToolFollowerUserAdmin(admin.ModelAdmin): 
-    list_display = ['user', 'tool', 'should_notify']
-    list_editable = ['should_notify']
-    list_filter = ['user', 'tool'] #MTODO: Smart Filtering
-    list_per_page = 20
-    list_select_related = ('tool', 'user')
 
-class CategoryGroupFollowerAdmin(admin.ModelAdmin): 
-    list_display = ['user','category_group','should_notify']
-    list_editable = ['should_notify']
-    list_filter = ['user', 'category_group']
-    list_per_page = 20 
 
 
 class ToolCategoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
@@ -92,10 +132,10 @@ admin.site.register(Story, StoryAdmin)
 admin.site.register(ToolCategory, ToolCategoryAdmin)
 admin.site.register(CategoryGroup, CategoryGroupAdmin)
 admin.site.register(Suggestion, SuggestionAdmin)
-admin.site.register(ToolFollower, ToolFollowerUserAdmin)
+#admin.site.register(ToolFollower, ToolFollowerUserAdmin)
 admin.site.register(ToolUser, ToolFollowerUserAdmin)
 admin.site.register(CategoryGroupFollower, CategoryGroupFollowerAdmin)
-admin.site.register(ToolOverviewPage, SingletonModelAdmin)
-admin.site.register(CategoryOverviewPage, SingletonModelAdmin)
-admin.site.register(CategoryGroupOverviewPage, SingletonModelAdmin)
-admin.site.register(StoryOverviewPage, SingletonModelAdmin)
+admin.site.register(ToolOverviewPage, OverviewPageAdmnin)
+admin.site.register(CategoryOverviewPage, OverviewPageAdmnin)
+admin.site.register(CategoryGroupOverviewPage, OverviewPageAdmnin)
+admin.site.register(StoryOverviewPage, OverviewPageAdmnin)

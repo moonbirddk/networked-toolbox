@@ -19,12 +19,14 @@ var url = 'http://localhost:8000';
 
 var paths = {
     sass: [
+        'admin_tools/css/theming.css',
         'netbox/static/netbox/css/base.scss',
         'tools/static/tools/css/*.scss',
         'profiles/static/profiles/css/*.scss',
         'search/static/search/css/*.scss',
         'comments/static/comments/css/*.scss',
         'activities/static/activities/css/*.scss',
+        ''
     ],
     sassWatch: [
         'netbox/static/netbox/css/*.scss'
