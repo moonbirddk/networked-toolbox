@@ -2,7 +2,8 @@
   "name": "networked-toolbox",
   "version": "1.0.0",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "build": "gulp build"
   },
   "dependencies": {
     "browser-sync": "^2.23.5",

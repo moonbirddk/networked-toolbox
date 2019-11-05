@@ -83,9 +83,7 @@ function sass() {
     .pipe(minifycss())
     .pipe(gulp.dest('staticfiles/css'))
     // .pipe(livereload());
-    .pipe(reload({
-        stream: true
-    }))
+    
 }
 
 // Compiles JS
@@ -144,7 +142,13 @@ gulp.task('default', gulp.series(function(done) {
 
 
 // Builds your entire app once, without starting a server
-//gulp.task('build', ['fonts', 'icons', 'sass', 'uglify']);
+gulp.task('build', gulp.parallel(function(done) {
+    fonts()
+    icons()
+    sass()
+    uglify()
+    done()
+} ));
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
 //gulp.task('watch', ['fonts', 'sass', 'copyjs', 'watch']);
