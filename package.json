@@ -6,7 +6,6 @@
   },
   "dependencies": {
     "browser-sync": "^2.23.5",
-    "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-livereload": "^3.8.1",
     "gulp-minify-css": "^1.2.4",
@@ -19,5 +18,8 @@
     "rimraf": "^2.5.2",
     "wow": "0.0.6"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }
