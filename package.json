@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "gulp",
-    "build": "gulp build --production"
+    "build": "gulp build"
   },
   "dependencies": {
     "browser-sync": "^2.23.5",
@@ -17,10 +17,8 @@
     "gulp-watch": "^4.3.5",
     "node-sass": "^4.*",
     "rimraf": "^2.5.2",
-    "wow": "0.0.6"
-  },
-  "private": true,
-  "devDependencies": {
+    "wow": "0.0.6",
     "gulp": "^4.0.2"
-  }
+  },
+  "private": true
 }
