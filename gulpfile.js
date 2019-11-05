@@ -5,7 +5,7 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var minifycss = require('gulp-minify-css');
-//var sourcemaps = require('gulp-sourcemaps');
+var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
 //var watch = require('gulp-watch');
 //var livereload = require('gulp-livereload');
@@ -141,7 +141,7 @@ gulp.task('default', gulp.series(function(done) {
 
 
 // Builds your entire app once, without starting a server
-gulp.task('build', gulp.parallel(function(done) {
+gulp.task('build', gulp.series(function(done) {
     fonts()
     icons()
     sass()
