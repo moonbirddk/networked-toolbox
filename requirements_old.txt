@@ -19,7 +19,7 @@ django-nose
 django-postgrespool==0.3.0
 django-solo
 django-summernote==0.6.16
-Django<1.9
+Django<2.3
 elasticsearch==2.3.0
 git+https://github.com/jschneier/django-storages.git#egg=django-storages
 gunicorn==19.1.1
