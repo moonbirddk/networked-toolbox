@@ -64,6 +64,9 @@ class ToolFollowerUserAdmin(admin.ModelAdmin):
 
 class ToolFollowerInline(FollowerInline): 
     model = ToolFollower
+    
+class ToolUserInline(FollowerInline): 
+    model = ToolUser
 
 class ToolAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin): 
     
@@ -72,12 +75,12 @@ class ToolAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
 
     list_per_page = 20 
     list_display = ['title',link_to_tool_on_site,  'created_date', 'published']
-    inlines = [ToolFollowerInline,]
+    inlines = [ToolFollowerInline, ToolUserInline]
     exclude = ['comment_root', 'resource_connection', 'suggestion_root', 'notification_target']
 
     def get_formsets_with_inlines(self, request, obj=None):
         for inline in self.get_inline_instances(request, obj):
-            if inline.get_queryset(request):
+            if inline.get_queryset(request) and inline.get_queryset(request).filter(tool=obj).exists():
                 yield inline.get_formset(request, obj), inline
     
     
@@ -93,7 +96,9 @@ class CategoryGroupAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin):
 
     def get_formsets_with_inlines(self, request, obj=None):
         for inline in self.get_inline_instances(request, obj):
-            if inline.get_queryset(request):
+            if (inline.get_queryset(request) and 
+                inline.get_queryset(request).filter(category_group=obj).exists()):
+                
                 yield inline.get_formset(request, obj), inline
 
 class StoryAdmin(EditorAndMultiCheckBoxMixin, admin.ModelAdmin): 
@@ -133,8 +138,8 @@ admin.site.register(ToolCategory, ToolCategoryAdmin)
 admin.site.register(CategoryGroup, CategoryGroupAdmin)
 admin.site.register(Suggestion, SuggestionAdmin)
 #admin.site.register(ToolFollower, ToolFollowerUserAdmin)
-admin.site.register(ToolUser, ToolFollowerUserAdmin)
-admin.site.register(CategoryGroupFollower, CategoryGroupFollowerAdmin)
+#admin.site.register(ToolUser, ToolFollowerUserAdmin)
+#admin.site.register(CategoryGroupFollower, CategoryGroupFollowerAdmin)
 admin.site.register(ToolOverviewPage, OverviewPageAdmnin)
 admin.site.register(CategoryOverviewPage, OverviewPageAdmnin)
 admin.site.register(CategoryGroupOverviewPage, OverviewPageAdmnin)
