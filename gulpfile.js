@@ -1,32 +1,25 @@
 // 1. LIBRARIES
 // - - - - - - - - - - - - - - -
-
-var gulp = require('gulp');
+const { watch, task, series, parallel, src, dest } = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var minifycss = require('gulp-minify-css');
+let cleanCSS = require('gulp-clean-css');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
-//var watch = require('gulp-watch');
-//var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
-var rimraf = require('rimraf');
-//var browserSync = require('browser-sync').create();
-//var reload = browserSync.reload;
-var url = 'http://localhost:8000';
+var pipeline = require('readable-stream').pipeline;
+
 // 2. FILE PATHS
 // - - - - - - - - - - - - - - -
 
 var paths = {
     sass: [
-        'admin_tools/css/theming.css',
         'netbox/static/netbox/css/base.scss',
         'tools/static/tools/css/*.scss',
         'profiles/static/profiles/css/*.scss',
         'search/static/search/css/*.scss',
         'comments/static/comments/css/*.scss',
-        'activities/static/activities/css/*.scss',
-        ''
+        'activities/static/activities/css/*.scss'
     ],
     sassWatch: [
         'netbox/static/netbox/css/*.scss'
@@ -51,104 +44,51 @@ paths.sassWatch = paths.sassWatch.concat(paths.sass);
 // 3. TASKS
 // - - - - - - - - - - - - - - -
 
-// Cleans the build directory
-function clean() {
-    return gulp.src(paths.clean)
-        .pipe(rimraf('./staticfiles/*', cb))
-  
-}
-
 // Copies fonts
 function fonts() {
-    return gulp.src(paths.fonts)
-        .pipe(gulp.dest('staticfiles/fonts'));
+    return src(paths.fonts)
+        .pipe(dest('staticfiles/fonts'));
 }
 
 // Copies icons
 function icons(){
-    return gulp.src(paths.icons)
-        .pipe(gulp.dest('staticfiles/icons'));
+    return src(paths.icons)
+        .pipe(dest('staticfiles/icons'));
 }
 
 // Compiles Sass
-function sass() {
-    return gulp.src(paths.sass)
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(autoprefixer({browsers: ['last 2 versions', 'ie 10']}))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('.tmp/css'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(minifycss())
-    .pipe(gulp.dest('staticfiles/css'))
-    // .pipe(livereload());
-    
+function css() {
+    return src(paths.sass)
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write())
+        .pipe(dest('.tmp/css'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(cleanCSS())
+        .pipe(dest('staticfiles/css'))
 }
 
 // Compiles JS
-function uglify() {
-  return gulp.src(paths.js)
-    .pipe(uglify().on('error', function(e){
-       console.log(e);
-    }))
-    .pipe(gulp.dest('staticfiles/js'))
-    // .pipe(livereload());
+function javascript() {
+    return pipeline(
+        src(paths.js),
+        uglify(),
+        dest('staticfiles/js')
+    )
 }
 
 function copyjs() {
-    return gulp.src(paths.js)
-    .pipe(gulp.dest('staticfiles/js'))
-    // .pipe(livereload());
+    return src(paths.js)
+        .pipe(dest('staticfiles/js'))
+}
+
+function watchfiles() {
+    watch(paths.fonts, fonts);
+    watch(paths.sassWatch, css);
+    watch(paths.js, copyjs);
 }
 
 
-
-function watchall() {
-    
-
-    // Watch fonts
-    gulp.watch(paths.fonts, fonts);
-
-    // Watch Sass
-    gulp.watch(paths.sassWatch, sass);
-
-    // Watch javascript
-    gulp.watch(paths.js, copyjs);
-
-
-
-};
-
-gulp.task('default', gulp.series(function(done) {
-
-    // Watch fonts
-    gulp.watch(paths.fonts, fonts);
-    // Watch fonts
-    gulp.watch(paths.icons, icons);
-
-    // Watch Sass
-    gulp.watch(paths.sassWatch, sass);
-
-    // Watch javascript
-    gulp.watch(paths.js, copyjs);
-
-    // Watch Django temlates
-    // gulp.watch(['**/*.html', '**/*.py']).on('change', reload);
-    //gulp.watch(['**/*.html']).on('change', reload);
-
-}));
-
-
-
-// Builds your entire app once, without starting a server
-gulp.task('build', gulp.series(function(done) {
-    fonts()
-    icons()
-    sass()
-    uglify()
-    done()
-} ));
-
-// Default task: builds your app, starts a server, and recompiles assets when they change
-//gulp.task('watch', ['fonts', 'sass', 'copyjs', 'watch']);
-
+exports.watchfiles = series(parallel(fonts,css,copyjs),watchfiles);
+exports.build = parallel(fonts, icons, css, javascript);
