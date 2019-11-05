@@ -47,7 +47,6 @@ var paths = {
 
 paths.sassWatch = paths.sassWatch.concat(paths.sass);
 
-console.log(paths.sassWatch);
 
 // 3. TASKS
 // - - - - - - - - - - - - - - -
