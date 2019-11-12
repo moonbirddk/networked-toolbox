@@ -92,3 +92,4 @@ function watchfiles() {
 
 exports.watchfiles = series(parallel(fonts,css,copyjs),watchfiles);
 exports.build = parallel(fonts, icons, css, javascript);
+exports.default = series(parallel(fonts, css, copyjs), watchfiles);

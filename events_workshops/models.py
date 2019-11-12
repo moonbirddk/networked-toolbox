@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse
 # Create your models here.
 
 
@@ -24,7 +25,10 @@ class EventWorkshop(models.Model):
     description = models.TextField(_('Event Description'), max_length=2000, null=False, blank=False, help_text=_("Describe your Event here."))
     url = models.CharField(_('URL for Event'), max_length=200, blank=True, null=True)
     participiants = models.ManyToManyField('auth.User', related_name="participiants")
+    published = models.BooleanField('published', default=False)
 
+    def get_absolute_url(self): 
+        return reverse("events_workshops:show_event", args = (self.id,))
 
 class EventFollower(models.Model): 
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)

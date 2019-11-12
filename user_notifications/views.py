@@ -31,21 +31,21 @@ class AllNotificationsList(NotificationViewList):
 
     def get_queryset(self):
         if settings.get_config()['SOFT_DELETE']:
-            qset = self.request.user.notifications.active()
+            qset = self.request.user.received_notifications.active()
         else:
-            qset = self.request.user.notifications.all()
+            qset = self.request.user.received_notifications.all()
         return qset
 
 
 class UnreadNotificationsList(NotificationViewList):
 
     def get_queryset(self):
-        return self.request.user.notifications.unread()
+        return self.request.user.received_notifications.unread()
 
 
 @login_required
 def mark_all_as_read(request):
-    request.user.notifications.mark_all_as_read()
+    request.user.received_notifications.mark_all_as_read()
 
     _next = request.GET.get('next')
 
@@ -119,7 +119,7 @@ def live_unread_notification_count(request):
         }
     else:
         data = {
-            'unread_count': request.user.notifications.unread().count(),
+            'unread_count': request.user.received_notifications.unread.count(),
         }
     return JsonResponse(data)
 
@@ -148,8 +148,7 @@ def live_unread_notification_list(request):
 
     unread_list = []
 
-    #import pdb; pdb.set_trace()
-    for notification in request.user.notifications.unread()[0:num_to_fetch]:
+    for notification in request.user.received_notifications.unread()[0:num_to_fetch]:
         struct = model_to_dict(notification)
         struct['slug'] = id2slug(notification.id)
         if notification.actor:
@@ -164,7 +163,7 @@ def live_unread_notification_list(request):
         if request.GET.get('mark_as_read'):
             notification.mark_as_read()
     data = {
-        'unread_count': request.user.notifications.unread().count(),
+        'unread_count': request.user.received_notifications.unread().count(),
         'unread_list': unread_list
     }
     return JsonResponse(data)
@@ -196,7 +195,7 @@ def live_all_notification_list(request):
 
     all_list = []
 
-    for notification in request.user.notifications.all()[0:num_to_fetch]:
+    for notification in request.user.received_notifications.all()[0:num_to_fetch]:
         struct = model_to_dict(notification)
         struct['slug'] = id2slug(notification.id)
         if notification.actor:
@@ -211,7 +210,7 @@ def live_all_notification_list(request):
         if request.GET.get('mark_as_read'):
             notification.mark_as_read()
     data = {
-        'all_count': request.user.notifications.count(),
+        'all_count': request.user.received_notifications.count(),
         'all_list': all_list
     }
     return JsonResponse(data)
@@ -229,6 +228,6 @@ def live_all_notification_count(request):
         }
     else:
         data = {
-            'all_count': request.user.notifications.count(),
+            'all_count': request.user.received_notifications.count(),
         }
     return JsonResponse(data)

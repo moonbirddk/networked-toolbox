@@ -20,7 +20,17 @@ class  EventWorkshopAdmin(admin.ModelAdmin):
         model = EventWorkshop 
     inlines = [EventFollowerInline, ]
     
-    fields = ['event_type', 'title', 'description', 'start_datetime', 'end_datetime', 'participiants']
+    fields = ['event_type', 'title', 'published', 'description', 'start_datetime', 'end_datetime', 'participiants']
+    
+    def list_participiants(self): 
+        participiants_list = ""
+        for p in self.participiants.all(): 
+            participiants_list += "{} {}<br>".format(p.first_name, p.last_name)
+        return mark_safe(participiants_list)
+    list_participiants.short_description = "Participiants"
+
+    list_display = ["title", "published", list_participiants]
+    list_editable = ["published"]
     readonly_fields = ['participiants']
     
     def get_formsets_with_inlines(self, request, obj=None):

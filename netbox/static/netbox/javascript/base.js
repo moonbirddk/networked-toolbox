@@ -70,7 +70,32 @@ $(document).ready(function() {
   $('#verified-email-required-modal').on('hidden.bs.modal', function() {
     $(this).removeClass('email-sent');
   });
+  $('button[data-signup-user-for-event]').click(function(e) {
+    var $btn = $(e.target);
+    $btn.attr('disabled', true);
+    
+    
+    $.get('/events_workshops/' + $btn.attr('event-id') + '/signup_user/', function(response) {
+      $btn.attr('disabled', false);
+      // Update the modal
+      $btn.closest('.modal').addClass('signup-success');
+    });
+  });
+  $('button[data-signoff-user-for-event]').click(function(e) {
+    var $btn = $(e.target);
+    $btn.attr('disabled', true);
+    
+    $.get('/events_workshops/' + $btn.attr('event-id') + '/signoff_user/', function(response) {
+      $btn.attr('disabled', false);
+      // Update the modal
+      $btn.closest('.modal').addClass('signoff-success');
+    });
+  });
 });
+  
+function delayedRedirect(destLink){
+  window.location.href=destLink
+}
 
 function setCookie(name, value, exdays) {
   var d = new Date();
