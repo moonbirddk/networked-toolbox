@@ -11,9 +11,11 @@
     }
   }
   &--white{
+    color: white;
     fill: white;
   }
   &--black{
+    color: black;
     fill: black;
   }
   &__bordered{
@@ -39,6 +41,7 @@
     bottom: -25px;
     &--black{
       background: black;
+      color: white;
       fill: white;
     }
     @include breakpoint($media-large){
@@ -64,6 +67,7 @@
     .icon{
       height: 100%;
       width: 100%;
+      color: white;
       fill: white;
     }
   }
