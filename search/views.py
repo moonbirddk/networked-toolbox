@@ -32,6 +32,7 @@ def get_search_results(modelcls, q, limit=DEFAULT_LIMIT):
 def homepage(request): 
     recent_stories = Story.objects.filter(published=True).order_by('-created')[:3]
     recent_tools = Tool.objects.all()[:3]
+    flash = FlashText.objects.first() or None
     
     overviews = {
         'Thematic Areas': CategoryGroupOverviewPage.objects.get(pk=1),
@@ -42,8 +43,8 @@ def homepage(request):
         'recent_stories': recent_stories, 
         'recent_tools': recent_tools, 
         'overviews': overviews, 
-        'flash_headline': FlashText.objects.get().headline,
-        'flash_subtext': FlashText.objects.get().subtext
+        'flash_headline': flash.headline if flash else None,
+        'flash_subtext': flash.subtext if flash else None
     }
     return render(request, 'search/index.html', context)
 
