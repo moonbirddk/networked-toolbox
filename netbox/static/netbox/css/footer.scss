@@ -34,7 +34,14 @@
       background: black;
       border-radius: 50%;
       padding: 8px;
+      &--thematic-areas {
+        .icon {
+          width: 34px;
+          height: 34px;
+        }
+      }
     }
+
   }
   .flex-horizontal{
     height: 100%;

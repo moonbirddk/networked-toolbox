@@ -43,6 +43,12 @@
           top: calc(0% - 25px );
           left: calc( 50% - 25px );
         } 
+        &--thematic-areas {
+          .icon {
+            width: 34px;
+            height: 34px;
+          }
+        }
     }
     // &__icon{
     //   height: 100%;
