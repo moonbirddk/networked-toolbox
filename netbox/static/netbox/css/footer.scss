@@ -116,7 +116,7 @@
     color: white;
 
     &:hover, &:focus {
-      color: darken($color-footer-link, 10%);
+      color: #ed1c24;//darken($color-footer-link, 10%);
     }
   }
   &__contact *{

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load static %}
+{% load compress %}
+
+{% block head_statics %}
+{{ form.media }}
+<script type="text/javascript" src="{% static 'django_summernote/plugin/summernote-ext-video.js'%}"></script>
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/story.min.css" %}">
+{% endcompress %}
+
+{% compress js %}
+<script type="text/javascript" src="{% static 'js/tools.js' %}"></script>
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}Give Feedback {% endblock %}
+
+{% block main %}
+
+<section class="section--padded">
+    <div class="container-fluid">
+
+        <h1>Send us your feedback 
+        </h1>
+        <p>
+            We value your input- how can we make Reflection Action better? What are you missing? What do you think is utterly fantastic as it is? 
+        </p>
+        <form method="POST" action="{% url 'feedback:send_feedback' %}" class="form"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+
+
+            <label class="control-label" for="id_headline">Headline</label>
+            {% bootstrap_field form.headline show_label=False%}
+
+
+            <label class="control-label" for="id_text">Feedback Text</label>
+            {% bootstrap_field form.text show_label=False %}
+            {% buttons %}
+            <button type="submit" id="submit-feedback" class="btn btn-primary">
+                {% bootstrap_icon "star" %} Submit Feedback
+            </button>
+            {% endbuttons %}
+        </form>
+</section>
+</div>
+
+{% endblock %}
