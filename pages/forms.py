@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import fields
 from django.utils.text import slugify
-from django_summernote.widgets import SummernoteInplaceWidget
+from trumbowyg.widgets import TrumbowygWidget
 
 class PageForm(forms.Form):
     title = fields.CharField(max_length=128)
@@ -10,7 +10,7 @@ class PageForm(forms.Form):
                             help_text='Leave empty to derive it from the title')
     published = fields.BooleanField(initial=False, required=False)
     content = forms.fields.CharField(
-        widget=SummernoteInplaceWidget()
+        widget=TrumbowygWidget()
     )
 
     def clean_slug(self):

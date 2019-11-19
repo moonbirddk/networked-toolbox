@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'tools',
     'user_notifications', # modified clone of https://github.com/django-notifications
     'events_workshops',
+    'feedback', 
 )
 
 
