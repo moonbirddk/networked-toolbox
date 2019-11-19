@@ -38,10 +38,8 @@
         {%for overview_name, overview in overviews.items %}
             <div class="front__cards__card wow fadein" data-wow-delay=" 0.{{ forloop.counter }}s">
             <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
-                <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
-                    <svg class="icon" viewbox="0 0 1 1">
-                        <use xlink:href="{% get_static_prefix %}icons/{{overview_name|lower|slugify}}.svg#{{overview_name|lower|slugify}}"></use>
-                    </svg>
+                <div class="icon-container icon-container--overlay icon-container--black">
+                    {% svg_icon icon_id=overview_name|lower|slugify %}
                 </div>
                 <h3 class="title">
                     {{ overview_name }}

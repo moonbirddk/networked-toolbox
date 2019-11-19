@@ -2,9 +2,7 @@
 <div class="card card--story wow fadeinright" data-wow-delay="0.{{forloop.counter}}s">
     <div class="card__content">
         <div class="card__category flex-vertical">
-            <svg class="icon" viewbox="0 0 1 1">
-                <use xlink:href="{% static 'icons/work-areas.svg'%}#work-areas"></use>
-            </svg>
+            {% svg_icon icon_id="work-areas" %}
             <h5>{{ story.parent_object_name }}</h5>
         </div>
         <h4>

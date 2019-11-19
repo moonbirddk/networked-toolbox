@@ -3,6 +3,7 @@
   width: 22px; 
   display: inline-block;
   margin-right: 5px;
+  z-index: 2;
   &--big{
     height: 45px;
     width: 45px;
@@ -18,18 +19,22 @@
     color: black;
     fill: black;
   }
-  &__bordered{
-    // padding: 10px;
-    @extend .flex-center !optional;
-    height: 40px;
-    width: 40px;
-    border: 1px solid black;
-    border-radius: 50%;
-    .icon{
-     margin: 0;
-    }
+  
+  
+}
+
+.icon-container-bordered{
+  @extend .flex-center !optional;
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+  border-radius: 50%;
+  .icon{
+   margin: 0;
   }
-  &__rounded{
+}
+
+.icon-container{
     height: 50px;
     width: 50px;
     position: absolute;
@@ -37,8 +42,9 @@
     bottom: 0;
     left: 0;
     border-radius: 50%;
-    padding: 8px;
+    // padding: 8px;
     bottom: -25px;
+    display: flex;
     &--black{
       background: black;
       color: white;
@@ -65,10 +71,8 @@
       }
     }
     .icon{
-      height: 100%;
-      width: 100%;
+      margin: auto;
       color: white;
       fill: white;
     }
   }
-}

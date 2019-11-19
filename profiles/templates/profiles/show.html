@@ -86,9 +86,7 @@ ga('send', 'event', 'profile', 'view');
                 {% if tools %}
                     <div class="tools-used">
                     <h3 class="title flex-vertical">
-                        <svg class="icon icon--big" viewbox="0 0 1 1">
-                            <use xlink:href="{% static 'icons/tools.svg' %}#tools"></use>
-                        </svg>
+                        {% svg_icon icon_id="tools" icon_classes="icon--big"%}
                         Tools I have used
                     </h3>
                     <div class="flex-wrapper row">

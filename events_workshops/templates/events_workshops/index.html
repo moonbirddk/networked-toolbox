@@ -29,9 +29,8 @@
                     <div class="hero-section__title-container flex-vertical">
                         <h1 class="hero-section__title">EVENTS AND WORKSHOPS</h1>
                     </div>
-                    <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
-                    <img style="padding:5px 5px 5px 5px;" class="icon" src="{% static 'icons/calendar.svg'%}" alt="">
-                        </svg>
+                    <div class="icon-container icon-container--overlay icon-container--black">
+                        {% svg_icon icon_id="calendar" %}
                     </div>
                 </div>
             </div>
@@ -53,7 +52,7 @@
                         <div class="card card--story wow fadeinright" data-wow-delay="0.{{forloop.counter}}s">
                             <div class="card__content">
                                 <div class="card__category flex-vertical">
-                                    <img style="margin:0px 11px 7px 0px;" class="icon" src="{% static 'icons/iconmonstr-calendar-4.svg'%}" alt="">
+                                    {% svg_icon icon_id="calendar"%}
                                     <h6 style="font-size: 15px; color: #ed1c24; font-weight: bold">{{ event.start_datetime.date }}</h6>
                                 </div>
                                 <h4>
@@ -67,7 +66,7 @@
                                         <h4 class="red-text">
                                             See Event
                                         </h4>
-                                        <img src="/static/icons/chevron.svg" alt="">
+                                        {% svg_icon icon_id="chevron" %}
                                     </a>
                                 </div>
                             </div>

@@ -1,20 +1,17 @@
 {% load static %}
+{% load commontags %}
 
 <div class="hero-section hero-section--breadcrumbs" >
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
         <div class="hero-section__inner flex-vertical" >
-          <div class="icon__bordered">
-            <svg class="icon icon--black" viewbox="0 0 1 1">
-              <use xlink:href="{% get_static_prefix %}icons/{{icon}}.svg#{{icon}}"></use>
-            </svg>
+          <div class="icon-container-bordered">
+            {% svg_icon icon_id=icon icon_classes="icon--black" %}
           </div>
           {% for breadloaf in breadcrumbs %}
           {% if forloop.counter > 1 %}
-          <svg class="icon icon--black icon--chevron" viewbox="0 0 1 1">
-            <use xlink:href="{% get_static_prefix %}icons/chevron.svg#chevron"></use>
-          </svg>
+          {% svg_icon icon_id="chevron" icon_classes="icon--black icon--chevron"%}
           {% endif %}
           <p >
             {{ breadloaf }}

@@ -9,6 +9,12 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var pipeline = require('readable-stream').pipeline;
 
+const path = require('path');
+const svgmin = require('gulp-svgmin');
+const svgstore = require('gulp-svgstore');
+const cheerio = require('gulp-cheerio');
+
+
 // 2. FILE PATHS
 // - - - - - - - - - - - - - - -
 
@@ -50,6 +56,46 @@ function fonts() {
         .pipe(dest('staticfiles/fonts'));
 }
 
+function iconsprite() {
+    return src(paths.icons[0]+".svg")
+        .pipe(cheerio({
+            run: function ($) {
+                $('g[fill]').removeAttr('fill');
+            },
+            parserOptions: { xmlMode: true }
+        }))
+        .pipe(svgmin(function getOptions (file) {
+            var prefix = path.basename(file.relative, path.extname(file.relative));
+            return {
+                plugins: [{
+                    cleanupIDs: {
+                        prefix: prefix + '-',
+                        minify: true
+                    }
+                },{
+                    removeXMLProcIns: true
+                }, {
+                    removeComments: true
+                }, {
+                    removeDoctype: true
+                }, {
+                    collapseGroups: true
+                }, {
+                    moveGroupAttrsToElems: false
+                },{
+                    removeAttrs: false
+                },{
+                    removeViewBox: false
+                }]
+            }
+        }))
+        .pipe(svgstore({inlineSvg: false}))
+        .pipe(dest('staticfiles/icons'))
+}
+
+// exports.iconsprite = parallel(iconsprite);
+
+
 // Copies icons
 function icons(){
     return src(paths.icons)
@@ -87,9 +133,10 @@ function watchfiles() {
     watch(paths.fonts, fonts);
     watch(paths.sassWatch, css);
     watch(paths.js, copyjs);
+    watch(paths.icons, iconsprite)
 }
 
 
-exports.watchfiles = series(parallel(fonts,css,copyjs),watchfiles);
-exports.build = parallel(fonts, icons, css, javascript);
-exports.default = series(parallel(fonts, css, copyjs), watchfiles);
+exports.watchfiles = series(parallel(fonts,css,copyjs,iconsprite),watchfiles);
+exports.build = parallel(fonts, icons, css, javascript, iconsprite);
+exports.default = series(parallel(fonts, css, copyjs, iconsprite), watchfiles);

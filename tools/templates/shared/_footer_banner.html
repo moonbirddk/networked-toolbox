@@ -1,4 +1,4 @@
-{% load static %}
+{% load static commontags %}
 <section class="footer-banner section--red section--padded wow fadein">
   <div class="container-fluid">
     <div class="row">
@@ -13,10 +13,8 @@
             {%for overview_name, overview in overviews.items %}
             <a href="{% url overview.link  %}" class="footer-banner__link wow fadein" data-wow-delay=" 0.{{ forloop.counter }}s">
               <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
-              <div class="icon__rounded  icon__rounded--black">
-                <svg class="icon" viewbox="0 0 1 1">
-                  <use xlink:href="{% get_static_prefix %}icons/{{overview_name|lower|slugify}}.svg#{{overview_name|lower|slugify}}"></use>
-                </svg>
+              <div class="icon-container  icon-container--black">
+                {% svg_icon icon_id=overview_name|lower|slugify %}
               </div>
               <div class="flex-horizontal">
                 <h3 class="title">

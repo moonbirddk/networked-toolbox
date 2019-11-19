@@ -4,6 +4,7 @@
 {% load compress %}
 {% load profilestags %}
 {% load toolstags %}
+{% load commontags %}
 {% block head_statics %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
@@ -22,10 +23,8 @@
                     <div class="hero-section__title-container flex-vertical">
                         <h1 class="hero-section__title">TOOLS AND METHODS</h1>
                     </div>
-                    <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
-                        <svg class="icon" viewbox="0 0 1 1">
-                            <use xlink:href="{% static "icons/tools.svg" %}#tools"></use>
-                        </svg>
+                    <div class="icon-container icon-container--overlay icon-container--black">
+                        {% svg_icon icon_id="tools" %}
                     </div>
                 </div>
             </div>
