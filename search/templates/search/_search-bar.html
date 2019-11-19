@@ -6,7 +6,7 @@
       <img class="search-bar__arrow wow zoomin" data-delay="0.5s" src="{% static 'icons/splash-arrow.svg' %}" alt="">
     </div>  
   {% endif %}
-    <form class="form-inline search-form" method="get" action="{% url 'homepage' %}">
+    <form class="form-inline search-form" method="get" action="{% url 'search:homepage' %}">
       <div class="form-group">
         <input type="text" name="q" value="" placeholder="{{placeholder}}" maxlength="30" class="form-control" title="" required="" id="id_q">
       </div>
