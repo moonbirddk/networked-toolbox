@@ -56,7 +56,7 @@ class CustomIndexDashboard(Dashboard):
             models=[
                 'pages.models.Page',
                 'menus.models.MenuItem', 
-                'pages.models.FlashText', 
+                'pages.models.FlashTextNew', 
                 'pages.models.FooterTextblock', 
                 'pages.models.SearchBarInfotext',
             ], 

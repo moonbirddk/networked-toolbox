@@ -33,3 +33,7 @@ def render_profile_photo_with_name(user, show_link=True, show_name=True):
         'title': user.profile.name,
         'user': user
         }
+
+@register.filter
+def anim_delay(num, ad=0): 
+    return '{}s'.format(num * 1.5 + 1.2 + ad)

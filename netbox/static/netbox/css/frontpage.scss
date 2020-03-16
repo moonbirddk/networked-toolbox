@@ -191,13 +191,23 @@ $animationDelay: 1.2s;
       text-align: left;
       left: 0;
     }
-    &.first{
-      animation: frontFadeIn $animationSpeed $animationDelay forwards;
-    }
+  //   &.first{
+  //     animation: frontFadeInOut $animationSpeed $animationDelay forwards;
+  //   }
+  //   &.second{
+  //     animation: frontFadeInOut $animationSpeed ($animationDelay + 1.5s)forwards;
+  //   }
     
-  }
+  //   &.third{
+  //     animation: frontFadeInOut $animationSpeed ($animationDelay +  3s) forwards;
+  //   }
+  //   &.fourth{
+  //     animation: frontFadeInOut $animationSpeed ($animationDelay + 4.5s)forwards;
+  //   }
+    
+   }
 }
 .hero-section__tagline.front{
   opacity: 0;
-  animation: frontFadeIn $animationSpeed ($animationSpeed + $animationDelay) forwards;
+//   animation: frontFadeIn $animationSpeed ($animationSpeed + $animationDelay) forwards;
 }

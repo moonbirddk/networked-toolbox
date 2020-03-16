@@ -21,10 +21,15 @@
                 <div class="hero-section__inner flex-vertical">
                     <div>
                         <h1 class="hero-section__title front">
-                            <span class="first">{{flash_headline}}</span>
-                            
+                            {%for flash_text in flash_texts%}
+                            <span style="animation: {%if forloop.counter == flash_texts|length%} frontFadeIn {%else%} frontFadeInOut {%endif%} 1.5s {{forloop.counter0|anim_delay}} forwards;">{{flash_text.headline}}</span>
+                            {%endfor%}
                         </h1>
-                        <p class="hero-section__tagline front">{{flash_subtext}}</p>
+                        <h6 class="hero-section__title front">
+                        {%for flash_text in flash_texts%}
+                        <span class="hero-section__tagline front" style="animation: {%if forloop.counter == flash_texts|length%} frontFadeIn {%else%} frontFadeInOut {%endif%} 1.0s {{forloop.counter0|anim_delay:0.5}} forwards;">{{flash_text.subtext}}</span>
+                        {%endfor%}
+                        </h6>
                     </div>
                 </div>
             </div>
@@ -36,11 +41,12 @@
     <div class="container-fluid">
         <div class="front__cards__inner">
         {%for overview_name, overview in overviews.items %}
+        <a href="{% url overview.link%}" style="text-decoration: none;">
             <div class="front__cards__card wow fadein" data-wow-delay=" 0.{{ forloop.counter }}s">
             <!-- <a href="{% url  overview.link  %}" class="btn btn-bordered">{{overview.link_text}}</a> -->
                 <div class="icon-container icon-container--overlay icon-container--black icon-container--{{overview_name|lower|slugify}}">
-                    {% svg_icon icon_id=overview_name|lower|slugify %}
-                </div>
+                {% svg_icon icon_id=overview_name|lower|slugify %}                
+            </div>
                 <h3 class="title">
                     {{ overview_name }}
                 </h3>
@@ -48,7 +54,7 @@
                 <!-- <img class="front__cards__bgimg" src="{{ overview.cover_image.url }}" alt="" width="100%"> -->
                 <div class="search-result">
                     <p >
-                    {{ overview.headline }}
+                    <span style="color:#000">{{ overview.headline }}</span>
                     </p>
                     <a href="{% url  overview.link  %}" class="btn btn-bordered">
                         <h4 class="red-text">
@@ -58,6 +64,7 @@
                     </a>
                 </div>
             </div>
+        </a>
         {% endfor %}
         </div>
     </div>

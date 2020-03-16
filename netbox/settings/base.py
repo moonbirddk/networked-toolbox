@@ -87,6 +87,7 @@ INSTALLED_APPS = (
     'hijack', 
     'compat', 
     'hijack_admin', 
+    'adminsortable', 
     # Networked toolbox apps
     'activities',
     'comments',

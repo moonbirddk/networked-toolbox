@@ -38,3 +38,4 @@ jsonfield
 pytz
 django-extensions
 django-admin-tools
+django-admin-sortable==2.1.8

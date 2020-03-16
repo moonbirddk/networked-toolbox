@@ -11,7 +11,7 @@ from haystack.views import SearchView
 
 from tools.models import Tool, ToolCategory, Story, CategoryGroup, StoryOverviewPage, ToolOverviewPage, CategoryGroupOverviewPage
 from profiles.models import Profile
-from pages.models import FlashText
+from pages.models import FlashText, FlashTextNew
 from .forms import SearchForm, ModelSearchForm
 
 
@@ -34,6 +34,10 @@ def homepage(request):
     recent_tools = Tool.objects.all()[:3]
     flash = FlashText.objects.first() or None
     
+    
+
+    flash_texts = FlashTextNew.objects.all()
+    
     overviews = {
         'Thematic Areas': CategoryGroupOverviewPage.objects.get(pk=1),
         'Stories Of Change': StoryOverviewPage.objects.get(pk=1), 
@@ -44,7 +48,8 @@ def homepage(request):
         'recent_tools': recent_tools, 
         'overviews': overviews, 
         'flash_headline': flash.headline if flash else None,
-        'flash_subtext': flash.subtext if flash else None
+        'flash_subtext': flash.subtext if flash else None, 
+        'flash_texts': flash_texts
     }
     return render(request, 'search/index.html', context)
 
