@@ -21,8 +21,11 @@
           <p class="gray-text">
             {{footer_text.body}} 
           </p>
-          <a href="{{footer_text.email_link}}"><strong class="red-text">
+          <a href="{{footer_text.email_link}}"><strong>
             {{footer_text.contact_mail}}
+          </strong></a><br>
+          <a href="{% url 'feedback:send_feedback'%}"><strong class="red-text">
+            Feedback
           </strong></a>
         </div>
       </div>

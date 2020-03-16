@@ -68,6 +68,7 @@ class CustomIndexDashboard(Dashboard):
             models=[
                 'user_notifications.*',
                 'comments.*', 
+                'feedback.*',
          
             ], 
             draggable=False,

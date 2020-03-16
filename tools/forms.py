@@ -62,7 +62,7 @@ class ToolForm(forms.Form):
         label='Cover image (recommended size: 1200x600)'
     )
     description = forms.fields.CharField(
-        widget=SummernoteInplaceWidget(),
+        widget=TrumbowygWidget(),
         required=True,
         max_length=20000
     )
@@ -97,7 +97,7 @@ class ToolCategoryForm(forms.Form):
         label='Cover image (recommended size: 1200x600)'
     )
     description = forms.fields.CharField(
-        widget=SummernoteInplaceWidget(),
+        widget=TrumbowygWidget(),
         required=True,
         max_length=20000
     )
