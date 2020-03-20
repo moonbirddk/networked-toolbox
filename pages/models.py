@@ -33,7 +33,7 @@ class FlashTextNew(SortableMixin):
         ordering = ['order']
 
     headline = models.CharField(_('Headline'), max_length=50, null=True, blank=True)
-    subtext = models.CharField(_('Subtext'), max_length=200, null=True, blank=True)
+    subtext = models.CharField(_('Subtext'), max_length=200, default="")
     order = models.PositiveIntegerField(
         default=0, editable=False, db_index=True)
     def __str__(self):
