@@ -22,7 +22,7 @@ django-summernote==0.6.16
 Django<2.3
 elasticsearch==2.3.0
 git+https://github.com/jschneier/django-storages.git#egg=django-storages
-gunicorn==19.1.1
+gunicorn==19.5.0
 bpython
 newrelic==2.60.0.46
 pillow
