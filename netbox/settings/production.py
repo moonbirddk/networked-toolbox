@@ -13,6 +13,7 @@ ALLOWED_HOSTS = [
     DOMAIN,
     'www.' + DOMAIN,
     'network-toolbox-production.herokuapp.com',
+    'www.reflectionaction.org'
 ]
 
 DATABASES = {
