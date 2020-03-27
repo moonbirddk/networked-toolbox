@@ -81,7 +81,7 @@ INSTALLED_APPS = (
     'django_summernote',
   #  'easy_timezones',
     'haystack',
-   # 'notifications',
+    'notifications',
     'solo',
     'storages',
     'hijack', 
@@ -225,7 +225,7 @@ WSGI_APPLICATION = 'netbox.wsgi.application'
 DATABASES = {
     'default':{ 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'nwt_staging',
+            'NAME': 'nwt_production_new',
             'USER': 'postgres',
             'HOST': 'localhost',
             'PORT': '',
