@@ -26,8 +26,8 @@ class Migration(migrations.Migration):
                 7: apps.get_model('tools', 'Tool'), 
                 22: apps.get_model('tools', 'CategoryGroup'), 
                 23: apps.get_model('tools', 'Story'),
-                26: apps.get_model('comments', 'ThreadedComment'),
-
+                25: apps.get_model('comments', 'ThreadedComment'),
+                
             }
             
             TargetModel = target_models[obj.target_content_type.id]
