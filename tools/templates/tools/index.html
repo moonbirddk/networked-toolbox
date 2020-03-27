@@ -4,6 +4,7 @@
 {% load compress %}
 {% load profilestags %}
 {% load toolstags %}
+{% load commontags %}
 {% block head_statics %}
 {% compress css %}
 <link rel="stylesheet" href="{% static "css/tool.min.css" %}">
@@ -11,7 +12,7 @@
 {% endcompress %}
 {% endblock %}
 
-{% block head_title %}Tool Overview - {% endblock %}
+{% block head_title %}Tools And Methods Overview - {% endblock %}
 
 {% block main %}
 <div class="hero-section hero-section--overview">
@@ -20,12 +21,10 @@
             <div class="col-xs-12 col-md-8">
                 <div class="hero-section__inner flex-vertical" style="background-image: url( {{ overview.cover_image.url }} )">
                     <div class="hero-section__title-container flex-vertical">
-                        <h1 class="hero-section__title">TOOLS</h1>
+                        <h1 class="hero-section__title">TOOLS AND METHODS</h1>
                     </div>
-                    <div class="icon__rounded icon__rounded--overlay icon__rounded--black">
-                        <svg class="icon" viewbox="0 0 1 1">
-                            <use xlink:href="{% static "icons/tools.svg" %}#tools"></use>
-                        </svg>
+                    <div class="icon-container icon-container--overlay icon-container--black">
+                        {% svg_icon icon_id="tools" %}
                     </div>
                 </div>
             </div>

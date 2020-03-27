@@ -37,7 +37,7 @@ DEBUG = True
 
 APPEND_SLASH = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 CACHES = {
     'default': {
@@ -56,7 +56,10 @@ AUTHENTICATION_BACKENDS = (
 
 INSTALLED_APPS = (
     # Django
-  
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,6 +71,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # 3rd party
+    'django_extensions',
     'allauth.account',
     'allauth',
     'bootstrap3',
@@ -75,15 +79,17 @@ INSTALLED_APPS = (
     'django_countries',
     'trumbowyg', 
     'django_summernote',
-    'easy_timezones',
+  #  'easy_timezones',
     'haystack',
-    'notifications',
+   # 'notifications',
     'solo',
     'storages',
     'hijack', 
     'compat', 
     'hijack_admin', 
+    'adminsortable', 
     # Networked toolbox apps
+    'activities',
     'comments',
     'common',
     'menus',
@@ -92,27 +98,31 @@ INSTALLED_APPS = (
     'resources',
     'search',
     'tools',
-    'activities',
+    'user_notifications', # modified clone of https://github.com/django-notifications
+    'events_workshops',
+    'feedback', 
 )
+
 
 HIJACK_ALLOW_GET_REQUESTS = True
 HIJACK_LOGOUT_REDIRECT_URL = '/admin/profiles/profile/'
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+   # 'django.middleware.common.CommonMiddleware',
+   # 'django.middleware.csrf.CsrfViewMiddleware',
+   # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+   # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+   # 'django.middleware.security.SecurityMiddleware',
 
     'easy_timezones.middleware.EasyTimezoneMiddleware',
 
     'netbox.middleware.RedirectToTermsAndConditionsMiddleware',
-)
-
+]
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ROOT_URLCONF = 'netbox.urls'
@@ -123,7 +133,8 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(PROJECT_DIR, 'templates'),
         ],
-        'APP_DIRS': True,
+
+       #'APP_DIRS': True,
         'OPTIONS': {
             'debug': DEBUG,
             'context_processors': [
@@ -137,7 +148,16 @@ TEMPLATES = [
                 "netbox.context_processors.google_analytics_id",
                 "netbox.context_processors.user_has_verified_email",
                 "search.context_processors.homepage_display_results",
+                "pages.context_processors.footer_text_processor"
             ],
+            'loaders':[
+                'admin_tools.template_loaders.Loader',
+                ('django.template.loaders.cached.Loader', [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                ]),
+            ]
+
         },
     },
 ]
@@ -205,7 +225,7 @@ WSGI_APPLICATION = 'netbox.wsgi.application'
 DATABASES = {
     'default':{ 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'nwt_production',
+            'NAME': 'nwt_staging',
             'USER': 'postgres',
             'HOST': 'localhost',
             'PORT': '',
@@ -328,4 +348,5 @@ GULP_DEVELOP_COMMAND = 'node_modules/.bin/gulp'
 
 NOTIFICATIONS_USE_JSONFIELD=True
 
-
+ADMIN_TOOLS_INDEX_DASHBOARD = 'netbox.dashboard.CustomIndexDashboard'
+#ADMIN_TOOLS_THEMING_CSS = 'netbox/css/theming.css'

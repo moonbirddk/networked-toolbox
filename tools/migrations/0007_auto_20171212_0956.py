@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
             model_name='tool',
             name='story',
         ),
-        migrations.AddField(
+        migrations.AlterField(
             model_name='story',
             name='associated_tools',
             field=models.ManyToManyField(related_name='associated_tools', to='tools.Tool'),

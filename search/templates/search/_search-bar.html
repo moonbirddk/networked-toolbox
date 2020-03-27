@@ -1,8 +1,8 @@
 {% load static %}
 <section class="search-bar wow fadeinup">
   {% if front %}
-    <div class="search-bar__splash splash">Looking for a specific tool?<br>
-      <span class="red-text">Search</span> within all tools and stories here
+    <div class="search-bar__splash splash">{{search_text.headline}}<br>
+      {{search_text.body_html}}
       <img class="search-bar__arrow wow zoomin" data-delay="0.5s" src="{% static 'icons/splash-arrow.svg' %}" alt="">
     </div>  
   {% endif %}

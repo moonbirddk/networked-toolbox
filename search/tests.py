@@ -1,6 +1,6 @@
 import unittest
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+
 from django.contrib.auth.models import User
 
 from tools.models import Tool, ToolFollower, Story

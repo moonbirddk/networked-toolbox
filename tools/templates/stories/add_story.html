@@ -26,7 +26,7 @@
         
         <h1>Add Story to <span class="tool-title">{{tool.title}}</span></h1>
 
-        <form method="POST" action="{% url 'tools:add_story' tool.id %}" class="form" 
+        <form method="POST" action="{% url 'tools:add_story' tool_id=tool.id %}" class="form" 
         enctype="multipart/form-data">
             {% csrf_token %}
 

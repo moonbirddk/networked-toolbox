@@ -30,10 +30,11 @@ def add(request):
             tree_id = None
             if form.cleaned_data['parent']:
                 tree_id = form.cleaned_data['parent'].id
+            comment_root = form.cleaned_data['related_object'].comment_root
             comment = ThreadedComment.objects.create(
                 author=request.user,
                 content=form.cleaned_data['content'],
-                related_object=form.cleaned_data['related_object'],
+                comment_root=comment_root,
                 parent=form.cleaned_data['parent'],
                 tree_id=tree_id
             )

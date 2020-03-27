@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head_title %}Edit Menus - {% endblock %}
+
+{% block main %}
+
+  <!--
+  Section #1
+
+  [Titel] [Page \/] [Link] [/\] [\/] [x]
+
+  [Add new]
+  -->
+
+  <h1>Edit Menus</h1>
+
+  {% for menu in menus %}
+    <h2>{{ menu.label }}</h2>
+    <ol>
+    {% for menu_item in menu.items %}
+      <li>
+        {{ menu_item }}
+      </li>
+    {% endfor %}
+    </ol>
+  {% endfor %}
+{% endblock %}

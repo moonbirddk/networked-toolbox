@@ -65,3 +65,23 @@
     display: none;
   }
 }
+#signup-confirm-modal:not(.signup-success) {
+  .after-signup-success {
+    display: none;
+  }
+}
+#signup-confirm-modal.signup-success {
+  .before-signup-success {
+    display: none;
+  }
+}
+#signoff-confirm-modal:not(.signoff-success) {
+  .after-signoff-success {
+    display: none;
+  }
+}
+#signoff-confirm-modal.signoff-success {
+  .before-signoff-success {
+    display: none;
+  }
+}

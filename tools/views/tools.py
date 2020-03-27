@@ -51,10 +51,10 @@ def show_tool(request, tool_id):
     else:
         tool = get_object_or_404(Tool, id=tool_id, published=True)
     comments = tool.comments.all()
-    tool_follower_ids = list(tool.followers.all().values_list('user_id', flat=True))
     tool_followers = tool.followers.all().order_by('?')[:12]
+    tool_follower_ids = list(tool_followers.values_list('user_id', flat=True))
     tool_users = tool.users.all().order_by('?')[:12]
-    tool_user_ids = list(tool.users.all().values_list('user_id', flat=True))
+    tool_user_ids = list(tool_users.values_list('user_id', flat=True))
     stories = tool.stories.all().order_by('-created')
     tools_home_objects = {
         'st': Story, 
@@ -68,7 +68,7 @@ def show_tool(request, tool_id):
     if parent_object: 
         tools_home = format_html('<a href="{}">{}</a>', parent_object_instance.get_absolute_url(), parent_object_instance)    
     else: 
-        tools_home = format_html('<a href="{}">Tools</a>', reverse('tools:list_tools'))
+        tools_home = format_html('<a href="{}">Tools And Methods</a>', reverse('tools:list_tools'))
     
     breadcrumbs = [
         tools_home, 
@@ -100,10 +100,10 @@ def follow_tool(request, tool_id):
         if request.POST.get('should_notify', '0') == '1':
             should_notify = True
             ToolFollowerOrUser = ToolFollower
-            message = 'You are now following this tool.'
+            message = 'You are now following this tool or method.'
         elif request.POST.get('have_used', '0') == '1': 
             ToolFollowerOrUser = ToolUser
-            message = 'You have used this tool.'   
+            message = 'You have used this tool or method.'   
         tool_follower, created = ToolFollowerOrUser.objects.get_or_create(
         user=request.user,
         tool=tool
@@ -119,10 +119,10 @@ def unfollow_tool(request, tool_id):
     if request.method == 'POST':
         if request.POST.get('have_used'):
             tool_followers_or_users = tool.users.all()
-            message = "You have not used this tool."
+            message = "You have not used this tool or method."
         elif request.POST.get('should_notify'): 
             tool_followers_or_users = tool.followers.all()
-            message = "You are no longer following this tool."
+            message = "You are no longer following this tool or method."
         tool_followers_or_users.filter(user_id=request.user.id).delete()
         messages.success(request, message)
     return redirect(tool)

@@ -1,6 +1,6 @@
 import unittest
 from django.test import TestCase
-from django.core.urlresolvers import reverse
+
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User
 from django.contrib.auth import REDIRECT_FIELD_NAME
@@ -109,7 +109,7 @@ class ProfilesViewsTestCase(TestCase):
         )
 
     def test_show_profile_get(self):
-        url = reverse('profiles:show', args=(self.test_user.profile.uid,))
+        url = reverse('profiles:show', args=(self.test_user.profile.uuid,))
         resp = self.client.get(url, follow=True)
         self.assertEqual([], resp.redirect_chain)
         self.assertEqual(200, resp.status_code)
@@ -140,7 +140,7 @@ class ProfilesViewsTestCase(TestCase):
         self.client.login(username='testuser', password='testpass')
         resp = self.client.get(url, follow=True)
         self.assertContains(resp, 'glyphicon-pencil')
-        url = reverse('profiles:show', args=(self.another_user.profile.uid,))
+        url = reverse('profiles:show', args=(self.another_user.profile.uuid,))
         resp = self.client.get(url, follow=True)
         self.assertNotContains(resp, 'glyphicon-pencil')
 
@@ -179,7 +179,7 @@ class ProfilesViewsTestCase(TestCase):
         resp = self.client.post(url, data, follow=True)
         self.assertEqual(200, resp.status_code)
         expected_status = (
-            'http://testserver/profiles/%s/' % self.test_user.profile.uid,
+            'http://testserver/profiles/%s/' % self.test_user.profile.uuid,
             302
         )
         self.assertEqual([expected_status], resp.redirect_chain)

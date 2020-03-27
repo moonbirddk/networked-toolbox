@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.files.storage import default_storage
 from tools.forms import StoryForm
-from tools.models import Tool, Story, CategoryGroup
+from tools.models import Tool, Story, CategoryGroup, StoryOverviewPage
 from django.utils.html import format_html
 from django.urls import reverse
 
@@ -90,8 +90,8 @@ def show_story(request, story_id):
     related_stories = Story.objects.filter(tool_id=story.tool_id).exclude(id=story.id).order_by('-created')[:3]
     associated_tools = story.associated_tools.all()
     stories_home = {
-        'ov': format_html('<a href="{}">Stories</a>',reverse('tools:show_all_stories')), 
-        'wa_ov': format_html('<a href="{}">Work Areas</a>',reverse('tools:index'))
+        'ov': format_html('<a href="{}">Stories Of Change</a>',reverse('tools:show_all_stories')), 
+        'wa_ov': format_html('<a href="{}">Thematic Areas</a>',reverse('tools:index'))
     }
     parent_of_story = format_html('<a href="{}">{}</a>', related_model_instance.get_absolute_url(),related_model_instance.title)
     breadcrumb_root = stories_home.get(request.GET.get('from'), parent_of_story)
@@ -114,9 +114,12 @@ def show_all_stories(request):
         'date': ('newest', '-created'),
         'newest_comments': ('recently discussed', 'comments__added_dt'),
     }
+
     order_name, order_query = ORDERINGS[request.GET.get('order', 'date')]
-    stories = Story.objects.filter(published=True).order_by(order_query)
+    stories = Story.objects.filter(published=True).prefetch_related('tool', 'category_group', 'comment_root__comments').order_by(order_query)
     context = {
+        'overview': StoryOverviewPage.get_solo(),
+
         'stories': stories,
         'order': order_name,
         'order_by_list': ORDERINGS

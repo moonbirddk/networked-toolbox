@@ -22,9 +22,7 @@
       <div class="row">
           <div class="col-md-12">
             <h1 class="title flex-vertical">  
-                <svg class="icon icon--black icon--big" viewbox="0 0 1 1">
-                  <use xlink:href="{% static 'icons/tools.svg'%}#tools"></use>
-                </svg>
+                {% svg_icon icon_id="tools" icon_classes="icon--black icon--big" %}
                 Tool Search Results for:&nbsp;<span class="red-text">{{query}}</span>
               </h1>
               <h2 class="title gray-text">{{total_results_count}} Results</h2>

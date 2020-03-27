@@ -41,9 +41,9 @@ def render_tool_miniphoto(pk):
 @register.inclusion_tag('shared/_footer_banner.html')
 def footer_banner():
     overviews = {
-        'Work Areas': CategoryGroupOverviewPage.objects.get(pk=1),
-        'Stories': StoryOverviewPage.objects.get(pk=1),
-        'Tools': ToolOverviewPage.objects.get(pk=1)
+        'Thematic Areas': CategoryGroupOverviewPage.objects.get(pk=1),
+        'Stories Of Change': StoryOverviewPage.objects.get(pk=1),
+        'Tools And Methods': ToolOverviewPage.objects.get(pk=1)
     }
     return {
         'overviews': overviews

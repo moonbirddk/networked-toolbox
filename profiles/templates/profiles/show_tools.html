@@ -21,7 +21,7 @@
 <div class="flex-wrapper row">
   {% for tool in tools %}
     <div class="tool-item col-md-3 col-sm-4 col-xs-6">
-        <a href="{% url 'tools:show' tool.id %}"><div class="tool-image">
+        <a href="{% url 'tools:show' tool_id=tool.id %}"><div class="tool-image">
           {% if tool.cover_image %}
             <img src="{{ tool.cover_image.url }}" />
           {% else %}
@@ -29,7 +29,7 @@
           {% endif %}
         </div></a>
         <div class="tool-content">
-          <a href="{% url 'tools:show' tool.id %}"><h3>{{ tool.title|truncatechars:51 }}</h3></a>
+          <a href="{% url 'tools:show' tool_id=tool.id %}"><h3>{{ tool.title|truncatechars:51 }}</h3></a>
           <p>{{ tool.description|bleach_striptags|truncatechars:70 }}</p>
         </div>
     </div>

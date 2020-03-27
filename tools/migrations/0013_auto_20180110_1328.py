@@ -15,19 +15,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='CategoryGroupFollower',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('should_notify', models.BooleanField(default=False)),
-                ('category_group', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='followers', to='tools.CategoryGroup')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-            ],
-            options={
-                'verbose_name': "'Work Area Follower",
-                'verbose_name_plural': 'Work Area Followers',
-            },
-        ),
+        
         migrations.AlterUniqueTogether(
             name='categorygroupfollower',
             unique_together=set([('user', 'category_group')]),

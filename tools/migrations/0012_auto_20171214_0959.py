@@ -17,19 +17,5 @@ class Migration(migrations.Migration):
         #     name='link_text',
         #     field=models.CharField(default='Lorem ipsum.', max_length=40),
         # ),
-        migrations.AddField(
-            model_name='categoryoverviewpage',
-            name='link_text',
-            field=models.CharField(default='Lorem ipsum.', max_length=40),
-        ),
-        migrations.AddField(
-            model_name='storyoverviewpage',
-            name='link_text',
-            field=models.CharField(default='Lorem ipsum.', max_length=40),
-        ),
-        migrations.AddField(
-            model_name='tooloverviewpage',
-            name='link_text',
-            field=models.CharField(default='Lorem ipsum.', max_length=40),
-        ),
+    
     ]

@@ -5,6 +5,7 @@
 
 <div class="container-fluid overview--tools tools">
   <div class="overview__container">
+    <div style="padding-bottom: 50px; font-weight:bolder">{{overview.description}}</div>
     <section class="search-bar wow fadeinup">
       <form class="form-inline search-form" method="get" action="{% url 'search:tool_results' %}?q={{query}}">
         <div class="form-group">
@@ -16,13 +17,13 @@
     </section>
     <section>
 
-      <h3>Tools overview</h3>
+      <h3>Tools And Methods overview</h3>
       <div class="tools cards thirds">
         {% for resource in resources %}
         {% include 'tools/_tools_card.html' with tool=resource from="ov"%}
         {% empty %}
         <div class="categories-empty col-md-12">
-          There are no tools sections in this Work Area.
+          There are no Tools and Methods sections in this Thematic Area.
         </div>
         {%endfor%}
       </div>
@@ -31,7 +32,7 @@
 </div>
 <section class="section--gray section--workareas section--padded">
   <div class="container-fluid">
-    <h2>WORK AREAS</h2>
+    <h2>THEMATIC AREAS</h2>
     <div class="workareas">
       {% for workarea in category_groups %}
       <div class="workarea wow fadeinup" data-wow-delay="0.{{forloop.counter}}s">

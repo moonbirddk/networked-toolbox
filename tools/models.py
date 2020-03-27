@@ -1,20 +1,27 @@
 from django.conf import settings
 from django.core.files.storage import default_storage
-from django.core.urlresolvers import reverse
+#
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.db.models import Q
 from django.db.models.signals import pre_delete, post_delete, pre_save
 from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.urls import reverse
+
+from comments.models import CommentRoot
+from user_notifications.models import NotificationTarget
+from resources.models import ToolResourceConnection
 
 from solo.models import SingletonModel
 from django_countries.fields import CountryField
 from shared.helpers import truncate_string
-
+from shared.db.helpers import get_one_to_one_field_names
 from common.utils import generate_upload_path
-from notifications.signals import notify
+from user_notifications.signals import notify
 from uuid import uuid4
+
 
 def do_upload_cover_image(inst, filename):
     return generate_upload_path(inst, filename, dirname='cover_images')
@@ -22,6 +29,12 @@ def do_upload_cover_image(inst, filename):
 
 def do_upload_suggestion_attachement(inst, filename):
     return generate_upload_path(inst, filename, dirname='suggestions')
+
+
+
+class SuggestionRoot(models.Model): 
+    # add foreign key to this to any model that should have suggestions
+    pass
 
 
 
@@ -36,11 +49,10 @@ class ModelWithCoverImage(models.Model):
         return self.cover_image and \
             default_storage.exists(self.cover_image.name)
 
-
 class Tool(ModelWithCoverImage):
     class Meta:
-        verbose_name = 'Tool'
-        verbose_name_plural = 'Tools'
+        verbose_name = 'Tool or Method'
+        verbose_name_plural = 'Tools and Methods'
         ordering = ['title']
 
 
@@ -55,11 +67,22 @@ class Tool(ModelWithCoverImage):
                                         related_query_name='tool')
     published = models.BooleanField(default=False, null=False)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
-    resources = GenericRelation('resources.ToolResource')
-    comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
+    comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
+    resource_connection = models.OneToOneField('resources.ToolResourceConnection',on_delete=models.CASCADE, null=True)
+    suggestion_root = models.OneToOneField(SuggestionRoot, on_delete=models.CASCADE, null=True)
+    notification_target = models.OneToOneField('user_notifications.NotificationTarget', on_delete=models.CASCADE, null=True)
+    
+    @property
+    def comments(self):
+        return self.comment_root.comments.all()
 
-    def __str__(self):
-        return self.title
+    @property
+    def resources(self):
+        return self.resource_connection.resources.all()
+    
+    @property
+    def suggestionss(self):
+        return self.suggestion_root.suggestions.all()
 
     def get_absolute_url(self):
         return reverse('tools:show', args=(self.id, ))
@@ -67,8 +90,26 @@ class Tool(ModelWithCoverImage):
     def published_categories(self):
         return self.categories.filter(published=True)
 
-    def sort_tools_descendig(self):
-        return self.tools.order_by('-title')
+    def __str__(self):
+        return self.title
+
+@receiver(post_save, sender=Tool)
+def tool_saved(sender, instance, created, **kwargs): 
+    if created:
+        suggestion_root = SuggestionRoot()
+        comment_root = CommentRoot()
+        resource_connection = ToolResourceConnection()
+        notification_target = NotificationTarget() 
+        suggestion_root.save()
+        comment_root.save()
+        resource_connection.save()
+        notification_target.save()
+        instance.suggestion_root = suggestion_root
+        instance.comment_root = comment_root
+        instance.resource_connection = resource_connection
+        instance.notification_target = notification_target
+        instance.save()
+
 
 
 
@@ -79,8 +120,8 @@ class ToolFollower(models.Model):
         verbose_name_plural = 'Tool Followers'
 
     
-    user = models.ForeignKey('auth.User')
-    tool = models.ForeignKey('Tool', related_name='followers')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    tool = models.ForeignKey('Tool', related_name='followers', on_delete=models.CASCADE)
     should_notify = models.BooleanField(default=False, null=False)
 
     def __str__(self):
@@ -92,9 +133,9 @@ class ToolUser(models.Model):
         verbose_name = 'Tool User'
         verbose_name_plural = 'Tool Users'
 
-    
-    user = models.ForeignKey('auth.User')
-    tool = models.ForeignKey('Tool', related_name='users')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    tool = models.ForeignKey(
+        'Tool', related_name='users', on_delete=models.CASCADE)
     should_notify = models.BooleanField(default=False, null=False)
 
 
@@ -103,20 +144,29 @@ class ToolUser(models.Model):
 
 class Story(ModelWithCoverImage):
     class Meta:
-        verbose_name = 'Story'
-        verbose_name_plural = 'Stories'
+        verbose_name = 'Story Of Change'
+        verbose_name_plural = 'Stories Of Change'
         ordering = ('created', )
 
     title = models.CharField(max_length=100, null=False, blank=False)
     content = models.TextField(max_length=20000, null=False, blank=False)
-    user = models.ForeignKey('auth.User', verbose_name='author')
-    tool = models.ForeignKey('Tool', related_name='stories', blank=True, null=True)
-    category_group = models.ForeignKey('CategoryGroup', verbose_name='work area',related_name='stories', blank=True, null=True)
+    user = models.ForeignKey(
+        'auth.User', verbose_name='author', on_delete=models.CASCADE)
+    tool = models.ForeignKey('Tool', related_name='stories',
+                             blank=True, null=True, on_delete=models.CASCADE)
+    category_group = models.ForeignKey('CategoryGroup', verbose_name='work area',
+                                       related_name='stories', blank=True, null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
     associated_tools = models.ManyToManyField(Tool, related_name='associated_tools', blank=True)
     published = models.BooleanField('Published', default=True)
-    comments = GenericRelation('comments.ThreadedComment', object_id_field='related_object_id',  content_type_field='related_object_type')
+    comment_root = models.OneToOneField('comments.CommentRoot', on_delete=models.CASCADE, null=True)
+    notification_target = models.OneToOneField(
+        'user_notifications.NotificationTarget', on_delete=models.CASCADE, null=True)
+
+    @property
+    def comments(self): 
+        return self.comment_root.comments.all()
 
     @property
     def parent_object(self):
@@ -133,18 +183,31 @@ class Story(ModelWithCoverImage):
         return self.title
 
 
+@receiver(post_save, sender=Tool)
+def story_saved(sender, instance, created, **kwargs):
+    if created:
+        comment_root = CommentRoot()
+        notification_target = NotificationTarget()
+        comment_root.save()
+        notification_target.save()
+        instance.comment_root = comment_root
+        instance.notification_target = notification_target
+        instance.save()
+
 
 
 class CategoryGroup(models.Model):
     class Meta:
-        verbose_name = 'Work Area'
-        verbose_name_plural = 'Work Areas'
+        verbose_name = 'Thematic Area'
+        verbose_name_plural = 'Thematic Areas'
 
     name = models.CharField(max_length=30, null=False, blank=False,
                             unique=True)
     description = models.CharField(max_length=255, blank=True)
     main_text = models.TextField(max_length=5000, blank=True, null=True, default='Lorem ipsum.')
     published = models.BooleanField('published', default=False)
+    notification_target = models.OneToOneField(
+        'user_notifications.NotificationTarget', on_delete=models.CASCADE, null=True)
 
     def get_absolute_url(self):
         return reverse('tools:show_categorygroup', args=(self.id, ))
@@ -163,9 +226,9 @@ class CategoryGroupFollower(models.Model):
         verbose_name_plural = 'Work Area Followers'
 
 
-    
-    user = models.ForeignKey('auth.User')
-    category_group = models.ForeignKey('CategoryGroup', related_name='followers')
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    category_group = models.ForeignKey(
+        'CategoryGroup', related_name='followers', on_delete=models.CASCADE)
     should_notify = models.BooleanField(default=False, null=False)
 
     def __str__(self):
@@ -215,7 +278,8 @@ class ToolCategory(ModelWithCoverImage):
     title = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=20000, blank=False)
     published = models.BooleanField(default=False, null=False)
-    resources = GenericRelation('resources.ToolResource')
+    resource_connection = models.OneToOneField('resources.ToolResourceConnection', on_delete=models.CASCADE, null=True)
+    suggestion_root = models.OneToOneField(SuggestionRoot, null=True, on_delete=models.CASCADE)
     order = models.PositiveIntegerField(default=0, null=False)
     resources_text = models.CharField(
         max_length=300,
@@ -234,6 +298,14 @@ class ToolCategory(ModelWithCoverImage):
         on_delete=models.SET_DEFAULT
     )
 
+    @property
+    def resources(self):
+        return self.resource_connection.resources.all()
+    
+    @property
+    def suggestionss(self):
+        return self.suggestion_root.suggestions.all()
+
     def get_absolute_url(self):
         return reverse('tools:show_category', args=[self.id, ])
 
@@ -248,28 +320,13 @@ class Suggestion(models.Model):
     description = models.TextField(max_length=5000, blank=False, null=False)
     attachement = models.FileField(upload_to=do_upload_suggestion_attachement,
                                    blank=True, null=True)
-    related_content_type = models.ForeignKey(
-        ContentType,
-        limit_choices_to={"model__in": ("tool", "toolcategory")}
-    )
-    related_object_id = models.PositiveIntegerField(null=False, blank=False)
-    related_object = GenericForeignKey('related_content_type',
-                                       'related_object_id')
+    
+    suggestion_root = models.ForeignKey(SuggestionRoot, on_delete=models.CASCADE, null=True, related_name='suggestions')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
-                               blank=False)
+                               blank=False, on_delete=models.CASCADE)
 
     def __str__(self):
         return truncate_string(self.description, 20)
-
-def delete_suggestion_on_related_deleted(sender, instance, **kwargs):
-    ct = ContentType.objects.get_for_model(sender)
-    Suggestion.objects.filter(
-        related_content_type__pk=ct.id,
-        related_object_id=instance.id
-    ).delete()
-
-post_delete.connect(delete_suggestion_on_related_deleted, sender=Tool)
-post_delete.connect(delete_suggestion_on_related_deleted, sender=ToolCategory)
 
 
 class OverviewPage(SingletonModel):
@@ -277,7 +334,7 @@ class OverviewPage(SingletonModel):
         abstract = True
 
     headline = models.CharField(max_length=100, default='Lorem ipsum.')
-    description = models.CharField(max_length=255, default='Lorem ipsum.')
+    description = models.TextField("Explanation", max_length=2000, default='Lorem ipsum.')
     cover_image = models.ImageField(upload_to=do_upload_cover_image,
                                     blank=True, null=True)
     link = models.CharField(max_length=160, default='Loren ipsum.')
@@ -289,7 +346,7 @@ class OverviewPage(SingletonModel):
 
 class ToolOverviewPage(OverviewPage):
     class Meta:
-        verbose_name = 'Tools Overview Page'
+        verbose_name = 'Tools And Methods Overview Page'
 
 class CategoryOverviewPage(OverviewPage):
     class Meta:
@@ -297,8 +354,10 @@ class CategoryOverviewPage(OverviewPage):
 
 class CategoryGroupOverviewPage(OverviewPage):
     class Meta:
-        verbose_name = "Work Areas Overview Page"
+        verbose_name = "Thematic Areas Overview Page"
 
 class StoryOverviewPage(OverviewPage):
     class Meta:
-        verbose_name = 'Stories Overview Page'
+        verbose_name = 'Stories Of Change Overview Page'
+
+

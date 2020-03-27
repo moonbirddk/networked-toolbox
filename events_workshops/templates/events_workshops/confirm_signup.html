@@ -1,0 +1,31 @@
+{% extends "events_workshops/see_event.html" %}
+
+{% block main %}
+<div class="container-fluid">
+    <section class="section--padded">
+        <h1 class="title no-top-margin">{{ event.title }}</h1>
+        <span style="font-size: 15px; margin-top: 1.2em; color: #ed1c24">{{event.start_datetime}}, GMT</span>
+        <div class="summernote-content">{{ event.description |safe }}</div>
+
+    </section>
+    <p>
+        {% if user.is_authenticated and user.emailaddress_set.first.verified %}
+        {% if user_participates %}
+        <button type="button" data-toggle="modal" data-target="#signoff-confirm-modal" class="btn btn-primary">Sign me
+            off, please.</button>
+        {% else %}
+        <button type="button" data-toggle="modal" data-target="#signup-confirm-modal" class="btn btn-primary">Sign me up
+            to this!</button>
+        {% endif %}
+        {% endif %}
+    </p>
+
+    <p style="margin-top:20px; ">
+        <h5>
+            <a href="{% url 'events_workshops:list_events'%}">Back to events</a>
+        </h5>
+    </p>
+
+</div>
+
+{% endblock %}

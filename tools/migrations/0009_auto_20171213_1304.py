@@ -18,19 +18,5 @@ class Migration(migrations.Migration):
         #     name='cover_image',
         #     field=models.ImageField(blank=True, null=True, upload_to=tools.models.do_upload_cover_image),
         # ),
-        migrations.AddField(
-            model_name='categoryoverviewpage',
-            name='cover_image',
-            field=models.ImageField(blank=True, null=True, upload_to=tools.models.do_upload_cover_image),
-        ),
-        migrations.AddField(
-            model_name='storyoverviewpage',
-            name='cover_image',
-            field=models.ImageField(blank=True, null=True, upload_to=tools.models.do_upload_cover_image),
-        ),
-        migrations.AddField(
-            model_name='tooloverviewpage',
-            name='cover_image',
-            field=models.ImageField(blank=True, null=True, upload_to=tools.models.do_upload_cover_image),
-        ),
+       
     ]

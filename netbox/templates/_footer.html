@@ -4,7 +4,7 @@
 
 <footer class="footer">
   <div class="container-fluid">
-    <h4 class="footer__title">Networked Toolbox</h4>
+    <h4 class="footer__title">Reflection Action</h4>
     <div class="row footer__row">
       <div class="col-xs-12 col-sm-4 col-md-3">
         {% render_menu 'footer-1' %}
@@ -17,12 +17,15 @@
       </div> -->
       <div class="col-xs-12 col-sm-4 col-md-3">
         <div class="footer__contact">
-          <strong class="white-text" >Contact the team</strong>
+          <strong class="white-text" >{{footer_text.headline}}</strong>
           <p class="gray-text">
-            To get in touch with the team behind Networked Toolbox, drop us an e-mail at: 
+            {{footer_text.body}} 
           </p>
-          <a href="mailto:networkedtoolbox@ms.dk"><strong class="red-text">
-            networkedtoolbox@ms.dk
+          <a href="{{footer_text.email_link}}"><strong>
+            {{footer_text.contact_mail}}
+          </strong></a><br>
+          <a href="{% url 'feedback:send_feedback'%}"><strong class="red-text">
+            Feedback
           </strong></a>
         </div>
       </div>

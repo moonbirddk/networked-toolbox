@@ -24,7 +24,7 @@ ga('send', 'event', 'story', 'view');
 
 {% block main %}
 
-{% include '_hero_breadcrumbs.html' with icon='stories' breadcrumbs=breadcrumbs %}
+{% include '_hero_breadcrumbs.html' with icon='stories-of-change' breadcrumbs=breadcrumbs %}
 <div class="container-fluid">
     <div class="content-card wow fadeinup">
         <div class="row">
@@ -39,12 +39,12 @@ ga('send', 'event', 'story', 'view');
                                 {% if story.user.profile.country %}
                                 <span title="{{story.user.profile.country.name}}" class="flag-icon flag-icon-{{story.user.profile.country}}"></span>
                                 {% endif %}
-                                <a href="{% url 'profiles:show' story.user.profile.uid %} ">{{story.user.profile.name}}</a>
+                                <a href="{% url 'profiles:show' story.user.profile.uuid %} ">{{story.user.profile.name}}</a>
                             </h4>
                              
                             <div class="story-user-bio">
                                 {{story.user.profile.bio}}
-                                <a href="{% url 'profiles:show' story.user.profile.uid %} ">See profile</a>
+                                <a href="{% url 'profiles:show' story.user.profile.uuid %} ">See profile</a>
                             </div>
                         </div>
                     </div>

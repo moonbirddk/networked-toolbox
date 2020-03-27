@@ -26,7 +26,7 @@
     &:hover{
       background: $color-gray-lightest;
     }
-    .icon__rounded{
+    .icon-container{
       position: absolute;
       right: 30px;
       left: auto;
@@ -34,7 +34,14 @@
       background: black;
       border-radius: 50%;
       padding: 8px;
+      &--thematic-areas {
+        .icon {
+          width: 34px;
+          height: 34px;
+        }
+      }
     }
+
   }
   .flex-horizontal{
     height: 100%;
@@ -116,7 +123,7 @@
     color: white;
 
     &:hover, &:focus {
-      color: darken($color-footer-link, 10%);
+      color: #ed1c24;//darken($color-footer-link, 10%);
     }
   }
   &__contact *{

@@ -335,6 +335,13 @@
     @include breakpoint($media-large){
       height: 100%;
     }
+
+    .icon-container--thematic-areas {
+        .icon {
+          width: 34px;
+          height: 34px;
+        }
+    }
   }
   &--overview &__inner{
     position: relative;

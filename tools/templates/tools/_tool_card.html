@@ -12,15 +12,11 @@
         <p>{{tool.description|bleach_striptags|truncatechars:130}}</p>
         <div class="card__footer card__counter">
             <div class="card__counter--people flex-vertical">
-                <svg class="icon icon--black" viewbox="0 0 1 1">
-                    <use xlink:href="{% static 'icons/profile.svg' %}#profile"></use>
-                </svg>
+                {% svg_icon icon_id="profile" icon_classes="icon--black" %}
                 <span>{{tool.followers.count}} {{tool.followers.count|pluralize:"person, people"}} </span>
             </div>
             <div class="card__counter--comments flex-vertical">
-                <svg class="icon icon--black" viewbox="0 0 1 1">
-                    <use xlink:href="{% static 'icons/comment.svg' %}#comment"></use>
-                </svg>
+                {% svg_icon icon_id="comment" icon_classes="icon--black" %}
                 <span>{{tool.comments.count}} {{tool.comments.count|pluralize:"comment, comments"}} </span>
             </div>
         </div>

@@ -30,7 +30,7 @@
         border: none;
       }
     }
-    .icon__rounded{
+    .icon-container{
         position: absolute;
         right: 10px;
         left: auto;
@@ -43,6 +43,12 @@
           top: calc(0% - 25px );
           left: calc( 50% - 25px );
         } 
+        &--thematic-areas {
+          .icon {
+            width: 34px;
+            height: 34px;
+          }
+        }
     }
     // &__icon{
     //   height: 100%;
@@ -185,18 +191,23 @@ $animationDelay: 1.2s;
       text-align: left;
       left: 0;
     }
-    &.first{
-      animation: frontFadeInOut $animationSpeed $animationDelay forwards;
-    }
-    &.second{
-      animation: frontFadeInOut $animationSpeed ($animationSpeed + $animationDelay) forwards;
-    }
-    &.third{
-      animation: frontFadeIn $animationSpeed ($animationSpeed*2 + $animationDelay) forwards;
-    }
-  }
+  //   &.first{
+  //     animation: frontFadeInOut $animationSpeed $animationDelay forwards;
+  //   }
+  //   &.second{
+  //     animation: frontFadeInOut $animationSpeed ($animationDelay + 1.5s)forwards;
+  //   }
+    
+  //   &.third{
+  //     animation: frontFadeInOut $animationSpeed ($animationDelay +  3s) forwards;
+  //   }
+  //   &.fourth{
+  //     animation: frontFadeInOut $animationSpeed ($animationDelay + 4.5s)forwards;
+  //   }
+    
+   }
 }
 .hero-section__tagline.front{
   opacity: 0;
-  animation: frontFadeIn $animationSpeed ($animationSpeed*2.4 + $animationDelay) forwards;
+//   animation: frontFadeIn $animationSpeed ($animationSpeed + $animationDelay) forwards;
 }

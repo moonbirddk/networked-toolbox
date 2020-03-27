@@ -11,10 +11,4 @@ class Migration(migrations.Migration):
         ('tools', '0014_auto_20180112_1429'),
     ]
 
-    operations = [
-        migrations.AddField(
-            model_name='tool',
-            name='created_date',
-            field=models.DateTimeField(auto_now_add=True, null=True),
-        ),
-    ]
+    

@@ -13,7 +13,7 @@ def google_analytics_id(request):
     }
 
 def user_has_verified_email(request):
-    if(request.user.is_authenticated()):
+    if(request.user.is_authenticated):
         result = request.user.emailaddress_set.filter(verified=True).exists()
     else:
         result = False

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+{% load commontags %}
+{% load compress %}
+
+{% block head_statics %}
+{% compress js %}
+<script src="{% static "js/tools.js"%}"></script>
+{% endcompress %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}Events And Workshops - {% endblock %}
+
+{% block main %}
+<div class="hero-section hero-section--overview">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="hero-section__inner flex-vertical"
+                    style="background-image: url( {{ overview.cover_image.url }} )">
+                    <div class="hero-section__title-container flex-vertical">
+                        <h1 class="hero-section__title">EVENTS AND WORKSHOPS</h1>
+                    </div>
+                    <div class="icon-container icon-container--overlay icon-container--black">
+                        {% svg_icon icon_id="calendar" %}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+<div class="overview overview--stories">
+    <div class="container-fluid overview__container">
+        <div style="padding-bottom: 50px; font-weight:bolder">{{overview.description}}</div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <section class="front__cards" style="background-color: white">
+                    
+                    <div class="cards thirds stories">
+                        {% for event in events %}
+                        <div class="card card--story wow fadeinright" data-wow-delay="0.{{forloop.counter}}s">
+                            <div class="card__content">
+                                <div class="card__category flex-vertical">
+                                    {% svg_icon icon_id="calendar"%}
+                                    <h6 style="font-size: 15px; color: #ed1c24; font-weight: bold">{{ event.start_datetime.date }}</h6>
+                                </div>
+                                <h4>
+                                    <a
+                                        href="{{event.get_absolute_url}}">{{event.title|truncatechars:50}}</a>
+                                </h4>
+                                <p style="width:100%">{{event.description|bleach_striptags|truncatechars:130}}</p>
+                                <div class="card__footer">
+                                    
+                                    <a href="{{event.get_absolute_url}}" class="btn btn-bordered">
+                                        <h4 class="red-text">
+                                            See Event
+                                        </h4>
+                                        {% svg_icon icon_id="chevron" %}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        {% empty %}
+                        <p style="margin-bottom: 124px">There are no upcoming events at the moment...</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+                </section>
+</div>
+
+{% footer_banner %}
+
+{% endblock %}
