@@ -8,12 +8,12 @@ DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
-DOMAIN = 'networkedtoolbox.com'
+DOMAIN = 'www.reflectionaction.org'
 ALLOWED_HOSTS = [
     DOMAIN,
     'www.' + DOMAIN,
     'network-toolbox-production.herokuapp.com',
-    'www.reflectionaction.org'
+    'networkedtoolbox.com'
 ]
 
 DATABASES = {
