@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'django_countries',
     'trumbowyg', 
     'django_summernote',
+    'import_export', 
   #  'easy_timezones',
     'haystack',
     'notifications',

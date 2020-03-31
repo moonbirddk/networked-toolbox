@@ -1,8 +1,11 @@
 from django.contrib import admin
+from django.urls import path
 from .models import Profile
 from hijack_admin.admin import HijackRelatedAdminMixin
-
-
+from allauth.account.models import EmailAddress
+from allauth.account.admin import EmailAddressAdmin
+from import_export.admin import ExportMixin
+from import_export.formats.base_formats import CSV, XLS, XLSX
 
 class CountryListFilter(admin.SimpleListFilter):
     title = 'Country'
@@ -18,6 +21,10 @@ class CountryListFilter(admin.SimpleListFilter):
         else:
             return queryset
 
+class EmailAddressAdminCustom(ExportMixin, EmailAddressAdmin):
+    formats = [CSV, XLS, XLSX]
+    
+
 class ProfileAdmin(HijackRelatedAdminMixin, admin.ModelAdmin): 
 
 
@@ -25,4 +32,7 @@ class ProfileAdmin(HijackRelatedAdminMixin, admin.ModelAdmin):
     list_filter= [CountryListFilter,]
     list_per_page = 20
 
+
 admin.site.register(Profile, ProfileAdmin)
+admin.site.unregister(EmailAddress)
+admin.site.register(EmailAddress, EmailAddressAdminCustom)
