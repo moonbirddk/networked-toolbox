@@ -13,7 +13,7 @@ urlpatterns = [
     path('thematic_areas/', views.list_category_groups, name='index'),
     path('tools_and_methods/', views.list_tools, name='list_tools'), 
     path('tools_and_methods/<int:tool_id>/', views.show_tool, name='show'),
-    path('tools_and_methods/follow/<int>:tool_id/', views.follow_tool, name='follow'),
+    path('tools_and_methods/follow/<int:tool_id>/', views.follow_tool, name='follow'),
     path('tools_and_methods/unfollow/<int:tool_id>/', views.unfollow_tool, name='unfollow'),
     path('follow/<int:category_group_id>/', views.follow_category_group, name='follow_work_area'),
     path('unfollow/<int:category_group_id>/',

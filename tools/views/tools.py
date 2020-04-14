@@ -95,7 +95,7 @@ def follow_tool(request, tool_id):
 
     tool = get_object_or_404(Tool, id=tool_id, published=True)
     if request.method == 'POST':
-        nessage = ''
+        message = ''
         should_notify = False
         if request.POST.get('should_notify', '0') == '1':
             should_notify = True
@@ -108,6 +108,8 @@ def follow_tool(request, tool_id):
         user=request.user,
         tool=tool
         )
+
+        import pdb; pdb.set_trace()
         tool_follower.should_notify = should_notify
         messages.success(request, message)    
     return redirect(tool)

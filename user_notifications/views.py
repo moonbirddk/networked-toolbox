@@ -155,8 +155,7 @@ def live_unread_notification_list(request):
             struct['actor'] = str(notification.actor)
         if notification.target:
             struct['target'] = str(notification.target)
-        if notification.action_object:
-            struct['action_object'] = str(notification.action_object)
+        
         if notification.data:
             struct['data'] = notification.data
         unread_list.append(struct)
