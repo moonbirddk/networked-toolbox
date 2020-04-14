@@ -109,7 +109,6 @@ def follow_tool(request, tool_id):
         tool=tool
         )
 
-        import pdb; pdb.set_trace()
         tool_follower.should_notify = should_notify
         messages.success(request, message)    
     return redirect(tool)
