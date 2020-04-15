@@ -112,7 +112,7 @@ def show_all_stories(request):
         'a_z': ('alphabetically', 'title'),
         'country': ('by country', 'country'),
         'date': ('newest', '-created'),
-        'newest_comments': ('recently discussed', 'comments__added_dt'),
+        'newest_comments': ('recently discussed', 'comment_root__comments__added_dt'),
     }
 
     order_name, order_query = ORDERINGS[request.GET.get('order', 'date')]

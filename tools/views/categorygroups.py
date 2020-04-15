@@ -34,7 +34,7 @@ def list_category_groups(request):
     ORDERINGS = {
         'a_z': ('alphabetically', 'title'), 
         'created': ('recently added', 'created_date'),
-        'newest_comments': ('recently discussed', 'comments__added_dt'),
+        'newest_comments': ('recently discussed', 'comment_root__comments__added_dt'),
         'most_followed': ('most followed', 'followers'), 
         'most_used': ('most used', 'users')
     }

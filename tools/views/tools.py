@@ -21,7 +21,7 @@ def list_tools(request):
     ORDERINGS = {
         'a_z': ('alphabetically', 'title'),
         'created': ('recently added', 'created_date'),
-        'newest_comments': ('recently discussed', 'comments__added_dt'),
+        'newest_comments': ('recently discussed', 'comment_root__comments__added_dt'),
         'most_followed': ('most followed', 'followers'),
         'most_used': ('most used', 'users')
     }
@@ -89,7 +89,6 @@ def show_tool(request, tool_id):
     return render(request, 'tools/show.html', context)
 
 
-@transaction.atomic
 @login_required
 def follow_tool(request, tool_id):
 
@@ -104,12 +103,14 @@ def follow_tool(request, tool_id):
         elif request.POST.get('have_used', '0') == '1': 
             ToolFollowerOrUser = ToolUser
             message = 'You have used this tool or method.'   
-        tool_follower, created = ToolFollowerOrUser.objects.get_or_create(
-        user=request.user,
-        tool=tool
+        tool_follower = ToolFollowerOrUser(
+        id=max(ToolFollowerOrUser.objects.all().values_list('id', flat=True)) + 1, 
+        user_id=request.user.id,
+        tool_id=tool.id, 
+        should_notify=should_notify
         )
-
-        tool_follower.should_notify = should_notify
+        tool_follower.save()
+       
         messages.success(request, message)    
     return redirect(tool)
 
