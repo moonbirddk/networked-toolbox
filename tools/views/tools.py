@@ -88,7 +88,7 @@ def show_tool(request, tool_id):
 
     return render(request, 'tools/show.html', context)
 
-
+@transaction.atomic
 @login_required
 def follow_tool(request, tool_id):
 
