@@ -72,6 +72,9 @@ INSTALLED_APPS = (
 
     # 3rd party
     'django_extensions',
+    'easy_thumbnails', 
+    'filer', 
+    'mptt', 
     'allauth.account',
     'allauth',
     'bootstrap3',
@@ -80,7 +83,7 @@ INSTALLED_APPS = (
     'trumbowyg', 
     'django_summernote',
     'import_export', 
-  #  'easy_timezones',
+    'easy_timezones',
     'haystack',
     'notifications',
     'solo',
@@ -101,7 +104,9 @@ INSTALLED_APPS = (
     'tools',
     'user_notifications', # modified clone of https://github.com/django-notifications
     'events_workshops',
-    'feedback', 
+    'feedback',
+    'library', 
+    
 )
 
 

@@ -9,6 +9,7 @@ function netbox_fill_notification_list(data) {
     $('.mark_all_notifications_as_read, .live_notify_list').show();
     for (var i=0; i < data.unread_list.length; i++) {
       var notification = data.unread_list[i];
+      console.log(notification.data)
       var notificationData = JSON.parse(notification.data) || {};
       var actor = notification.actor || 'Someone';
       var verb = notification.verb || 'did something';

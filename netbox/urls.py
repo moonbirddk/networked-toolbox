@@ -28,6 +28,7 @@ urlpatterns = [
     path('admin_tools/', include('admin_tools.urls')),
     path('events_workshops/', include('events_workshops.urls')), 
     path('feedback/', include('feedback.urls')), 
+    path('library/', include('library.urls')), 
 
 ] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
         static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)

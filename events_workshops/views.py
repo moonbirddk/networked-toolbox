@@ -9,8 +9,6 @@ from allauth.account.decorators import verified_email_required
 def list_events(request):
     
     queryset = EventWorkshop.objects.filter(published=True, start_datetime__gt=now()).order_by("start_datetime")
-    print ("BLA")
-    print (queryset)
     
     context = {
         'events': queryset,

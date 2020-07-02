@@ -64,6 +64,20 @@ class CustomIndexDashboard(Dashboard):
             deletable=False,
         ))
         self.children.append(modules.ModelList(
+            _('Library'),
+            models=[
+                'filer.models.foldermodels.Folder', 
+                'library.models.Video',
+                'library.models.DocumentCategory',
+                'library.models.LibraryDocument', 
+                'library.models.VideoResource', 
+                'library.models.OnlineCourse',
+
+            ], 
+            draggable=True,
+            deletable=False,
+        ))
+        self.children.append(modules.ModelList(
             _('Interactions'),
             models=[
                 'user_notifications.*',

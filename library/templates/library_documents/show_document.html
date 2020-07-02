@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load compress %}
+{% load static from staticfiles %}
+{% load toolstags %}
+{% load profilestags %}
+{% load commentstags %}
+{% load commontags %}
+
+{% block head_statics %}
+{% compress css %}
+<link rel="stylesheet" href="{% static 'css/tool.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/comments.min.css' %}">
+{% endcompress %}
+
+{{ form.media }}
+
+
+{% endblock %}
+
+
+
+
+{% block head_title %}{{ document.title }} - {% endblock %}
+
+{% block main %}
+
+<div class="container-fluid">
+    <div class="col-md-8">
+    <section class="section--padded">
+        {% if document.cover_image is not None%}
+        <div class="cover-image" style="background-image: url({{ document.cover_image.url }})">
+        {%endif%}
+        </div>
+        <h1 class="title no-top-margin">{{ document.title }}</h1>
+        <div class="summernote-content">{{ document.summary |safe }}</div>
+
+    </section>
+  
+    <p style="margin-top:20px; ">
+    <a href="{{document.document_file.url}}" target="_BLANK"><button style="float: left; margin-bottom: 2em" class="btn btn-primary">Read document</button></a>
+    <h5>
+        <a href="{% url 'library:document_index'%}"><button style="margin-left:2em" class="btn btn-secondary">Back to documents</button></a>
+    </h5>
+    </p>
+
+    {% render_comment_list for document %}
+    </div>
+</div>
+
+{% endblock %}

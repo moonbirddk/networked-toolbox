@@ -9,15 +9,15 @@
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-cheerio": "^1.0.0",
-    "gulp-clean-css": "^4.2.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.*",
+    "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.*",
     "gulp-svgmin": "^2.2.0",
     "gulp-svgstore": "^7.0.1",
     "gulp-uglify": "^3.0.2",
-    "node-sass": "^4.*",
-    "readable-stream": "^3.4.0"
+    "node-sass": "^4.14.1",
+    "readable-stream": "^3.6.0"
   },
   "private": true
 }

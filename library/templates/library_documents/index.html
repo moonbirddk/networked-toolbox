@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load toolstags %}
+{% load partition_slice %}
+{% load commontags %}
+{% load compress %}
+
+{% block head_statics %}
+{% compress js %}
+<script src="{% static "js/tools.js"%}"></script>
+{% endcompress %}
+
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/tool.min.css" %}">
+<link rel="stylesheet" href="{% static "css/category.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}Library And Online Courses - {% endblock %}
+
+{% block main %}
+<div class="hero-section hero-section--overview">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="hero-section__inner flex-vertical"
+                    style="background-image: url( {{ overview.cover_image.url }} )">
+                    <div class="hero-section__title-container flex-vertical">
+                        <h1 class="hero-section__title">LIBRARY AND ONLINE COURSES</h1>
+                    </div>
+                    <div class="icon-container icon-container--overlay icon-container--black">
+                        {% svg_icon icon_id="calendar" %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="overview overview--stories">
+    <div class="container-fluid overview__container">
+        <div style="padding-bottom: 50px; font-weight:bolder">{{overview.description}}</div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <section class="front__cards" style="background-color: white">
+
+                    <div class="cards thirds stories">
+                        {% for document in documents %}
+                        <div class="card card--tool wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
+                            {% if document.published == False %}
+                            <div class="unpublished-banner">
+                                <span>UNPUBLISHED</span>
+                            </div>
+                            {% endif %}
+                            {% if document.cover_image %}
+                            <div class="card__img" style="background-image: url({{ document.cover_image.url }})"></div>
+                            {% else %}
+                            <div class="card__img" style="background-image: url(https://placeimg.com/640/480/any)"></div>
+                            {% endif %}
+                            <div class="card__content">
+                                <h5> {{document.category}}<span style ="float:right">{{document.document_class}}</span></h5>
+                                <h4>
+                                    <a
+                                        href="{{document.get_absolute_url}}">{{document.title|truncatechars:50}}</a>
+                                </h4>
+                                <p>{{document.summary|bleach_striptags|truncatechars:130}}</p>
+                                <div class="card__footer card__counter">
+                                   
+                                    <div class="card__counter--comments flex-vertical">
+                                        {% svg_icon icon_id="comment" icon_classes="icon--black" %}
+                                        <span>{{document.comments.count}} {{document.comments.count|pluralize:"comment, comments"}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p style="margin-bottom: 124px">There are no documents at the moment...</p>
+                        {% endfor %}
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+    </section>
+</div>
+
+{% footer_banner %}
+
+{% endblock %}

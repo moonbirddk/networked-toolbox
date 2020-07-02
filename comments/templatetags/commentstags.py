@@ -136,7 +136,10 @@ class CommentNode(template.Node):
 
         filters = {
             'story': Q(comment_root__story__pk=object_pk),
-            'tool': Q(comment_root__tool__pk=object_pk)
+            'tool': Q(comment_root__tool__pk=object_pk),
+            'librarydocument': Q(comment_root__librarydocument__pk=object_pk),
+            'onlinecourse': Q(comment_root__onlinecourse__pk=object_pk),
+            'videoresource': Q(comment_root__videoresource__pk=object_pk),
         }
         qs = ThreadedComment.objects.select_related('author').filter(
             filters.get(ctype.model)
@@ -230,6 +233,8 @@ class RenderCommentListNode(CommentListNode):
             ]
             qs = self.get_queryset(context)
             context_dict = context.flatten()
+            context_dict['related_object_verbose_name'] = ctype.model_class(
+            )._meta.verbose_name
             context_dict['comment_related_object_type'] = ctype.model
             context_dict['comment_related_object_id'] = object_pk
             context_dict['comment_dict'] = \
@@ -251,4 +256,5 @@ def render_comment_list(parser, token):
     Example usage::
         {% render_comment_list for event %}
     """
+    
     return RenderCommentListNode.handle_token(parser, token)

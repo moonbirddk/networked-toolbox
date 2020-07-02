@@ -1,3 +1,5 @@
+humanize
+django-filer
 amqp==2.5.0
 ansicolors==1.1.8
 billiard==3.5.0.5

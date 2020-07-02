@@ -137,7 +137,8 @@ class NotificationTarget(models.Model):
     pass
     ## Add this as OneToOneField to everything that can be a notification target
     ## stories, tools, workareas, comments as of now (plus users??)
-
+    ## and Online Courses
+    
 class AbstractNotification(models.Model):
 
     LEVELS = Choices('success', 'info', 'warning', 'error')
@@ -164,7 +165,7 @@ class AbstractNotification(models.Model):
     verb = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
 
-    # notification targets can be stories, tools, workareas, comments
+    # notification targets can be stories, tools, workareas, comments, or online courses
     target_connection = models.ForeignKey(NotificationTarget, on_delete=models.CASCADE, null=True, related_name='notifications')
 
     # Omitting action object
