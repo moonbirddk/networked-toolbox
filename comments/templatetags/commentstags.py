@@ -50,6 +50,7 @@ def comments_javascript():
     javascript = mark_safe(javascript + commentsjs)
     itemjstmpl = get_template('comments/_item_js.html').render({})
     javascript += itemjstmpl
+    print(javascript)
     return javascript
 
 

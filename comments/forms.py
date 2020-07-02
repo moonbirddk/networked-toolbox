@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 
 from tools.models import Tool, ToolCategory, Story
+from library.models import LibraryDocument, VideoResource, OnlineCourse
 from .models import ThreadedComment
 
 
@@ -22,6 +23,9 @@ class CommentForm(forms.Form):
         'tool': Tool,
         'story': Story,
         'toolcategory': ToolCategory,
+        'librarydocument': LibraryDocument, 
+        'onlinecourse': OnlineCourse, 
+        'videoresource': VideoResource
     }
     _rel_obj_type_choices = tuple(
         [(k, k) for k in _rel_obj_type_cls.keys()]

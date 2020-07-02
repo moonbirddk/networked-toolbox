@@ -51,6 +51,7 @@ def add(request):
         'errors': errors,
         'comment': comment_dict,
     }
+    import pdb; pdb.set_trace()
     return JsonResponse(data)
 
 

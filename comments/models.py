@@ -67,7 +67,16 @@ class ThreadedComment(models.Model):
         try: 
             return self.comment_root.story
         except: 
-            return self.comment_root.tool 
+            try: 
+                return self.comment_root.tool 
+            except: 
+                try: 
+                    return self.comment_root.librarydocument
+                except: 
+                    try: 
+                        return self.comment_root.onlinecourse
+                    except: 
+                        return self.comment_root.videoresource
 
     def __str__(self): 
         return '{} - {}...'.format(self.author, self.content[:10])

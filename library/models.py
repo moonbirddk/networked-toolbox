@@ -1,9 +1,12 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 import humanize
 import datetime
+
+from comments.models import CommentRoot
 
 #from shared.db.fields import FilerVideoField
 
@@ -113,3 +116,12 @@ class LibraryDocument(LibraryResource):
         'Library Document'), related_name="library_document", on_delete=models.CASCADE,)
     cover_image = FilerImageField(verbose_name=_(
         'Cover Image'), related_name="document_cover_image", null=True, blank=True, on_delete=models.CASCADE)
+
+@receiver(post_save, sender=LibraryDocument)
+def document_saved(sender, instance, created, **kwargs):
+    import pdb; pdb.set_trace()
+    if created:
+        comment_root = CommentRoot()
+        comment_root.save()
+        instance.comment_root = comment_root
+        instance.save()

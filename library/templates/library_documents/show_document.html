@@ -8,13 +8,12 @@
 {% load commontags %}
 
 {% block head_statics %}
+{% comments_javascript %}
+
 {% compress css %}
 <link rel="stylesheet" href="{% static 'css/tool.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/comments.min.css' %}">
 {% endcompress %}
-
-{{ form.media }}
-
 
 {% endblock %}
 
