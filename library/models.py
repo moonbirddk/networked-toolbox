@@ -119,7 +119,6 @@ class LibraryDocument(LibraryResource):
 
 @receiver(post_save, sender=LibraryDocument)
 def document_saved(sender, instance, created, **kwargs):
-    import pdb; pdb.set_trace()
     if created:
         comment_root = CommentRoot()
         comment_root.save()
