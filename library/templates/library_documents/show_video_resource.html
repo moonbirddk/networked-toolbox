@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load toolstags %}
+{% load commentstags %}
+{% load profilestags %}
+{% load commontags %}
+{% load compress %}
+{% block head_statics %}
+<script type="text/javascript" src="{% static 'netbox/javascript/jsrender.min.js' %}"></script>
+{% comments_javascript %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/comments.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{ document.title }} - {% endblock %}
+
+{% block main %}
+
+<div class="container-fluid">
+    <div class="col-md-8">
+        <section class="section--padded">
+            {% if document.cover_image %}
+            <div class="cover-image" style="background-image: url({{ document.cover_image.url }})">
+                {%endif%}
+            </div>
+            <h1 class="title no-top-margin">{{ document.title }}</h1>
+            <div class="summernote-content">{{ document.summary |safe }}</div>
+
+        </section>
+
+        <video preload controls loop width="100%" height="auto" poster="{{document.cover_image.url}}">
+            <source src="{{document.video_file.url}}" type="video/mp4">
+                
+            </video>
+
+        {% render_comment_list for document %}
+    </div>
+</div>
+
+{% endblock %}
