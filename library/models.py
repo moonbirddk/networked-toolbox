@@ -84,7 +84,7 @@ class VideoResource(LibraryResource):
         verbose_name = "Video Resource"
         verbose_name_plural = "Video Resources"
 
-    video_file = FilerVideoField(verbose_name=_("Video file"), related_name="video_resource", on_delete=models.CASCADE)
+    video_file = FilerFileField(verbose_name=_("Video file"), related_name="video_resource", on_delete=models.CASCADE)
     category = models.ForeignKey('library.DocumentCategory', verbose_name=_(
         "Document Category"), on_delete=models.CASCADE, related_name="videos", null=True)
     cover_image = FilerImageField(verbose_name=_(
