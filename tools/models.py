@@ -300,7 +300,8 @@ class ToolCategory(ModelWithCoverImage):
 
     @property
     def resources(self):
-        return self.resource_connection.resources.all()
+        if self.resource_connection is not None: 
+            return self.resource_connection.resources.all()
     
     @property
     def suggestionss(self):

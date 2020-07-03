@@ -67,7 +67,6 @@ class CustomIndexDashboard(Dashboard):
             _('Library'),
             models=[
                 'filer.models.foldermodels.Folder', 
-                'library.models.Video',
                 'library.models.DocumentCategory',
                 'library.models.LibraryDocument', 
                 'library.models.VideoResource', 

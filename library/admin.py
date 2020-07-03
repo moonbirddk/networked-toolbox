@@ -27,7 +27,7 @@ class OnlineCourseAdmin(EventWorkshopAdmin):
     list_display = ['__str__', 'category', 'start_date_time', 'duration','published']
     list_editable = ["published"]
 
-
+admin.site.register(Video)
 admin.site.register(VideoResource, VideoAdmin)
 admin.site.register(DocumentCategory)
 admin.site.register(OnlineCourse, OnlineCourseAdmin)
