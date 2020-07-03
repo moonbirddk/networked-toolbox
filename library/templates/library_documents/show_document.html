@@ -1,20 +1,17 @@
 {% extends "base.html" %}
-{% load bootstrap3 %}
-{% load compress %}
-{% load static from staticfiles %}
+
+{% load static %}
 {% load toolstags %}
-{% load profilestags %}
 {% load commentstags %}
+{% load profilestags %}
 {% load commontags %}
-
+{% load compress %}
 {% block head_statics %}
+<script type="text/javascript" src="{% static 'netbox/javascript/jsrender.min.js' %}"></script>
 {% comments_javascript %}
-
 {% compress css %}
-<link rel="stylesheet" href="{% static 'css/tool.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/comments.min.css' %}">
+<link rel="stylesheet" href="{% static "css/comments.min.css" %}">
 {% endcompress %}
-
 {% endblock %}
 
 {% block head_title %}{{ document.title }} - {% endblock %}

@@ -81,6 +81,7 @@ $(document).ready(function() {
       $btn.closest('.modal').addClass('signup-success');
     });
   });
+
   $('button[data-signoff-user-for-event]').click(function(e) {
     var $btn = $(e.target);
     $btn.attr('disabled', true);
@@ -91,8 +92,35 @@ $(document).ready(function() {
       $btn.closest('.modal').addClass('signoff-success');
     });
   });
+  $('button[data-signup-user-for-onlinecourse]').click(function (e) {
+    var $btn = $(e.target);
+    console.log("ONLINE COURSE !!!!")
+    $btn.attr('disabled', true);
+
+
+    $.get('/library/' + $btn.attr('course-id') + '/signup_user/', function (response) {
+      $btn.attr('disabled', false);
+      // Update the modal
+      $btn.closest('.modal').addClass('signup-success');
+    });
+  });
+
+  $('button[data-signoff-user-for-onlinecourse]').click(function (e) {
+    var $btn = $(e.target);
+    $btn.attr('disabled', true);
+    console.log(e.target)
+
+    $.get('/library/' + $btn.attr('course-id') + '/signoff_user/', function (response) {
+      $btn.attr('disabled', false);
+      // Update the modal
+      $btn.closest('.modal').addClass('signoff-success');
+    });
+  });
 });
+
   
+
+
 function delayedRedirect(destLink){
   window.location.href=destLink
 }

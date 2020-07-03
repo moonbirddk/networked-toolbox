@@ -7,6 +7,7 @@ import humanize
 import datetime
 
 from comments.models import CommentRoot
+from user_notifications.models import NotificationTarget
 
 #from shared.db.fields import FilerVideoField
 
@@ -32,7 +33,7 @@ class Video(File):
 
 
 class FilerVideoField(FilerFileField):
-    udefault_model_class = Video
+    efault_model_class = Video
 
 
 
@@ -57,7 +58,8 @@ class LibraryResource(models.Model):
     upload_date = models.DateTimeField(_('Upload Date'), auto_now_add=True, null=True)
     published = models.BooleanField(_("Published"), default=False)
     comment_root = models.OneToOneField("comments.CommentRoot", on_delete=models.CASCADE, null=True)
-
+    notification_target = models.OneToOneField(
+        'user_notifications.NotificationTarget', null=True, on_delete=models.CASCADE)
     @property
     def document_class(self): 
         return self._meta.verbose_name
@@ -93,17 +95,32 @@ class OnlineCourse(LibraryResource):
     cover_image = FilerImageField(verbose_name=_(
         'Cover Image'), related_name="course_cover_image", null=True, blank=True, on_delete=models.CASCADE)
     category = models.ForeignKey("library.DocumentCategory", verbose_name=_("Document Category"), related_name="courses", on_delete=models.CASCADE, null=True)
+    course_url = models.URLField("Course URL", max_length=100, null=True, blank=True)
     start_date_time = models.DateTimeField(_("Start Date And Time"))
     end_date_time = models.DateTimeField(_("End Date And Time"))
-    notification_target = models.OneToOneField(
-        'user_notifications.NotificationTarget', on_delete=models.CASCADE, null=True)
-
+    participiants = models.ManyToManyField(
+            'auth.User', related_name="participiants")
     @property
     def duration(self):
         return humanize.naturaldelta(self.end_date_time - self.start_date_time)
 
+@receiver(post_save, sender=OnlineCourse)
+def onlinecourse_saved(sender, instance, created, **kwargs):
+    if created:
+        comment_root = CommentRoot()
+        notification_target = NotificationTarget()
+        comment_root.save()
+        notification_target.save()
+        instance.comment_root = comment_root
+        instance.notification_target = notification_target
+        instance.save()
 
 
+class CourseFollower(models.Model):
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    online_course = models.ForeignKey(
+        OnlineCourse, related_name='followers', on_delete=models.CASCADE)
+    should_notify = models.BooleanField(default=True, null=False)
 
 class LibraryDocument(LibraryResource): 
     class Meta: 
@@ -121,6 +138,9 @@ class LibraryDocument(LibraryResource):
 def document_saved(sender, instance, created, **kwargs):
     if created:
         comment_root = CommentRoot()
+        notification_target = NotificationTarget()
         comment_root.save()
+        notification_target.save()
         instance.comment_root = comment_root
+        instance.notification_target = notification_target
         instance.save()

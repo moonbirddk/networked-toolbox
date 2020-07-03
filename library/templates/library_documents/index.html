@@ -5,7 +5,7 @@
 {% load partition_slice %}
 {% load commontags %}
 {% load compress %}
-
+{% load humanize %}
 {% block head_statics %}
 {% compress js %}
 <script src="{% static "js/tools.js"%}"></script>
@@ -30,7 +30,7 @@
                         <h1 class="hero-section__title">LIBRARY AND ONLINE COURSES</h1>
                     </div>
                     <div class="icon-container icon-container--overlay icon-container--black">
-                        {% svg_icon icon_id="calendar" %}
+                        {% svg_icon icon_id="library" %}
                     </div>
                 </div>
             </div>
@@ -61,7 +61,10 @@
                             <div class="card__img" style="background-image: url(https://placeimg.com/640/480/any)"></div>
                             {% endif %}
                             <div class="card__content">
-                                <h5> {{document.category}}<span style ="float:right">{{document.document_class}}</span></h5>
+                            <h5 style="{%if document.start_date_time%} margin-bottom: -5px{%else%} line-height: 30px{%endif%}"> {{document.category}}<span style ="float:right">{{document.document_class}}</span></h5>
+                                {%if document.start_date_time%}
+                                <h6><span style="float: right; margin-top:0">{{document.start_date_time}}</span></h6>
+                                {%endif%}
                                 <h4>
                                     <a
                                         href="{{document.get_absolute_url}}">{{document.title|truncatechars:50}}</a>

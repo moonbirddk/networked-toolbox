@@ -24,7 +24,7 @@ class EventWorkshop(models.Model):
     title = models.CharField(_('Event Title'), max_length=150, null=False, blank=False, help_text=_("Give Your Event a name."))
     description = models.TextField(_('Event Description'), max_length=2000, null=False, blank=False, help_text=_("Describe your Event here."))
     url = models.CharField(_('URL for Event'), max_length=200, blank=True, null=True)
-    participiants = models.ManyToManyField('auth.User', related_name="participiants")
+    participiants = models.ManyToManyField('auth.User', related_name="course_participiants")
     published = models.BooleanField('published', default=False)
 
     def get_absolute_url(self): 

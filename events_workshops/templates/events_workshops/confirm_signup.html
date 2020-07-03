@@ -1,11 +1,11 @@
-{% extends "events_workshops/see_event.html" %}
+{% extends "library/show_course.html" %}
 
 {% block main %}
 <div class="container-fluid">
     <section class="section--padded">
-        <h1 class="title no-top-margin">{{ event.title }}</h1>
-        <span style="font-size: 15px; margin-top: 1.2em; color: #ed1c24">{{event.start_datetime}}, GMT</span>
-        <div class="summernote-content">{{ event.description |safe }}</div>
+        <h1 class="title no-top-margin">{{ document.title }}</h1>
+        <span style="font-size: 15px; margin-top: 1.2em; color: #ed1c24">{{event.start_date_time}}, GMT</span>
+        <div class="summernote-content">{{ document.description |safe }}</div>
 
     </section>
     <p>

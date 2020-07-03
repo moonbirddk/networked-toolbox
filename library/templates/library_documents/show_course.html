@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load toolstags %}
+{% load commentstags %}
+{% load profilestags %}
+{% load commontags %}
+{% load compress %}
+{% block head_statics %}
+<script type="text/javascript" src="{% static 'netbox/javascript/jsrender.min.js' %}"></script>
+{% comments_javascript %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/comments.min.css" %}">
+{% endcompress %}
+{% endblock %}
+
+{% block head_title %}{{ document.title }} - {% endblock %}
+
+{% block main %}
+
+<div class="container-fluid">
+    <div class="col-md-8">
+        <section class="section--padded">
+            {% if document.cover_image is not None%}
+            <div class="cover-image" style="background-image: url({{ document.cover_image.url }})">
+                {%endif%}
+            </div>
+            <h1 class="title no-top-margin">{{ document.title }}</h1>
+            {% if document.start_date_time %}
+            <h4>Course starts {{document.start_date_time.date}}, duration: {{document.duration}}</h4>
+            {%endif%}
+            <div class="summernote-content">{{ document.summary |safe }}</div>
+            {%if document.course_url%}
+            <h4>Find the course at: <a href="{{document.course_url}}" target="_BLANK">{{document.course_url}}</a> </h4>
+            {% endif %}
+
+            <p>
+                {% if user.is_authenticated and user.emailaddress_set.first.verified %}
+                {% if user_participates %}
+                <button type="button" data-toggle="modal" data-target="#signoff-confirm-modal" class="btn btn-primary">Sign me off,
+                    please.</button>
+                {% else %}
+                <button type="button" data-toggle="modal" data-target="#signup-confirm-modal" class="btn btn-primary">Sign me up to
+                    this!</button>
+                {% endif %}
+                {% endif %}
+            </p>
+        </section>
+
+        
+
+        {% render_comment_list for document %}
+    </div>
+</div>
+<div class="modal fade hide" id="signoff-confirm-modal" tabindex="-1" role="dialog"
+    aria-labelledby="signoff-confirm-modal-label" style="display: block;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="signoff-confirm-modal-label">
+                    <span class="before-signoff-success">Sign me off of this Event</span>
+                    <span class="after-signoff-success">We have signed you off.</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <p>
+                            <span class="before-signoff-success">If you don't want to take part in {{ document.title}}
+                                anymore, you can be signed off by pressing "Confirm".</span>
+                            <span class="After-signoff-success">You have been signed off of this Event - and we have
+                                sent you an email confirming this. </span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <span class="before-signoff-success">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button value="Confirm" type="submit" data-signoff-user-for-onlinecourse course-id="{{document.id}}"
+                        class="btn btn-primary">Confirm
+
+                    </button>
+                </span>
+                <span class="after-signoff-success">
+                    <button onClick="window.setTimeout(delayedRedirect({% url 'library:document_index'%}), 2000)"
+                        type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close.
+                    </button>
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade hide" id="signup-confirm-modal" tabindex="-1" role="dialog"
+    aria-labelledby="signup-confirm-modal-label" style="display: block;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="signup-confirm-modal-label">
+                    <span class="before-signup-success">Sign me up for this Event</span>
+                    <span class="after-signup-success">Thanks for signing up!</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <p>
+                            <span class="before-signup-success">If you want to take part in {{ document.title}}, you can be
+                                signed up to it by pressing "Confirm".</span>
+                            <span class="After-signup-success">You have been signed up for this Event - and we have sent
+                                you an email confirming this. </span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <span class="before-signup-success">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button value="Confirm" type="submit" data-signup-user-for-onlinecourse course-id="{{document.id}}"
+                        class="btn btn-primary">Confirm
+
+                    </button>
+                </span>
+                <span class="after-signup-success">
+                    <button onClick="window.setTimeout(delayedRedirect({% url 'library:document_index'%}), 2000)"
+                        type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Close.
+                    </button>
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
