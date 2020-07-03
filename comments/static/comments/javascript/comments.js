@@ -28,7 +28,8 @@ $(function() {
         var postdata = thisform.serialize();
         var thistextarea = thisform.find('textarea');
         postdata += '&csrfmiddlewaretoken=' + csrftoken;
-
+        console.log(postdata)
+        console.log(window.COMMENTS_ADD_COMMENT_URL)
         $.ajax({
             type: 'POST',
             url: window.COMMENTS_ADD_COMMENT_URL,

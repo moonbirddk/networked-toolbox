@@ -154,9 +154,11 @@ def notify_parent_author(sender, instance, created, **kwargs):
         recipient = instance.parent.author
         # Only comments on tools and stories for now
         # And don't notify when someone comments on their own comment
-        if (instance.related_object._meta.model_name == 'tool' or \
-            instance.related_object_meta.model_name == 'story') and \
-            recipient != actor:
+        if (instance.related_object._meta.model_name == 'tool' or 
+            instance.related_object._meta.model_name == 'librarydocument' or 
+            instance.related_object._meta.model_name == 'onlinecourse' or 
+            instance.related_object._meta.model_name == 'story' and 
+                recipient != actor):
             href = instance.related_object.get_absolute_url()
             href += '#comment-' + str(instance.id)
             actions = [{
