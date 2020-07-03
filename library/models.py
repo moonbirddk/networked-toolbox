@@ -129,7 +129,8 @@ class LibraryDocument(LibraryResource):
     class Meta: 
         verbose_name = "Library Document"
         verbose_name_plural = "Library Documents"
-
+    author = models.CharField("Author", max_length=255, null=True,
+                              blank=True, help_text=_("Enter Document Author here."))
     category = models.ForeignKey('library.DocumentCategory', verbose_name=_(
         "Document Category"), on_delete=models.CASCADE, related_name="documents")
     document_file = FilerFileField(verbose_name=_(
