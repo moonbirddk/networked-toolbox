@@ -12,7 +12,7 @@ from user_notifications.models import NotificationTarget
 #from shared.db.fields import FilerVideoField
 
 #from shared.db.fields import 
-from filer.fields.image import FilerImageField
+from filer.fields.image import FilerImageField, AdminImageFormField
 from filer.fields.file import FilerFileField
 from filer.models.filemodels import File
 from filer import settings as filer_settings
@@ -33,7 +33,8 @@ class Video(File):
 
 
 class FilerVideoField(FilerFileField):
-    efault_model_class = Video
+    default_form_class = AdminImageFormField
+    default_model_class = Video
 
 
 
@@ -86,7 +87,9 @@ class VideoResource(LibraryResource):
     video_file = FilerVideoField(verbose_name=_("Video file"), related_name="video_resource", on_delete=models.CASCADE)
     category = models.ForeignKey('library.DocumentCategory', verbose_name=_(
         "Document Category"), on_delete=models.CASCADE, related_name="videos", null=True)
-    
+    cover_image = FilerImageField(verbose_name=_(
+        'Cover Image'), related_name="video_cover_image", null=True, blank=True, on_delete=models.CASCADE)
+
 class OnlineCourse(LibraryResource): 
     class Meta: 
         verbose_name = "Online Course"
