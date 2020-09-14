@@ -61,19 +61,14 @@ def search_page(request):
         if form.is_valid():
             q = form.cleaned_data['q']
 
-            tools_results_count, tools =\
-                get_search_results(Tool, q, limit=limit)
+            tools_results_count, tools = get_search_results(Tool, q, limit=limit)
 
-            categories_results_count, categories =\
-                get_search_results(ToolCategory, q, limit=limit)
+            categories_results_count, categories = get_search_results(ToolCategory, q, limit=limit)
 
-            stories_results_count, stories =\
-                get_search_results(Story, q, limit=limit)
-            profiles_results_count, profiles =\
-                get_search_results(Profile, q, limit=limit)
+            stories_results_count, stories = get_search_results(Story, q, limit=limit)
+            profiles_results_count, profiles = get_search_results(Profile, q, limit=limit)
             
-            work_areas_results_count, work_areas =\
-                get_search_results(CategoryGroup, q, limit=limit)
+            work_areas_results_count, work_areas = get_search_results(CategoryGroup, q, limit=limit)
         else:
             messages.error(request, "invalid search expression")
     else:

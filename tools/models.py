@@ -22,6 +22,7 @@ from common.utils import generate_upload_path
 from user_notifications.signals import notify
 from uuid import uuid4
 
+from ckeditor.fields import RichTextField
 
 def do_upload_cover_image(inst, filename):
     return generate_upload_path(inst, filename, dirname='cover_images')
@@ -149,7 +150,13 @@ class Story(ModelWithCoverImage):
         ordering = ('created', )
 
     title = models.CharField(max_length=100, null=False, blank=False)
-    content = models.TextField(max_length=20000, null=False, blank=False)
+    content = RichTextField(
+        max_length=20000, 
+        null=False, 
+        blank=False, 
+    )
+    
+    #content = models.TextField(max_length=20000, null=False, blank=False)
     user = models.ForeignKey(
         'auth.User', verbose_name='author', on_delete=models.CASCADE)
     tool = models.ForeignKey('Tool', related_name='stories',

@@ -92,6 +92,8 @@ INSTALLED_APPS = (
     'compat', 
     'hijack_admin', 
     'adminsortable', 
+    'ckeditor', 
+    #'ckeditor_uploader',
     # Networked toolbox apps
     'activities',
     'comments',
@@ -231,7 +233,7 @@ WSGI_APPLICATION = 'netbox.wsgi.application'
 DATABASES = {
     'default':{ 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'nwt_production_new',
+            'NAME': 'nwt_working',
             'USER': 'postgres',
             'HOST': 'localhost',
             'PORT': '',
@@ -272,6 +274,21 @@ MEDIA_URL_PATTERN = "/media/"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+CKEDITOR_UPLOAD_PATH = "/media/ckeditor/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source'], 
+            ['Image', 'Iframe'],
+            ['Undo', 'Redo'], 
+        ], 
+    }
+}
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = False

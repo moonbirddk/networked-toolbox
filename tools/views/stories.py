@@ -65,7 +65,7 @@ def edit_story(request, story_id):
         form = StoryForm(request.POST, request.FILES)
         if form.is_valid():
 
-            story.associated_tools=form.cleaned_data['associated_tools']
+            story.associated_tools.set(form.cleaned_data['associated_tools'])
             story.title = form.cleaned_data['title']
             story.content = form.cleaned_data['content']
             story.country = form.cleaned_data['country']
