@@ -29,7 +29,10 @@ def render_profile_photo_with_name(user, show_link=True, show_name=True):
     """
     {% render_profile_photo user %}
     """
-    photo_url = get_profile_photo_url(user)
+    try: 
+        photo_url = get_profile_photo_url(user)
+    except: 
+        return 
     if hasattr(user, "profile"): 
         return {
             'photo_url': photo_url,
