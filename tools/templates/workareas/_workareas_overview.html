@@ -13,13 +13,11 @@
                 {% for category_group in categories_by_group %}
                     <div id="workarea-{{category_group.id}}" class="workarea card wow fadeinup">
                         <h3 class="title">
-                            {% if category_group.categories.count > 0 %}
+                           
                             <a id="category-group-{{category_group.id}}-link" href="{% url 'tools:show_categorygroup' category_group.id %}">
                                 {{category_group.name}}
                             </a>
-                            {% else %}
-                            <span class="toggle-off">{{category_group.name}}</span>
-                            {% endif %} 
+                          
                         </h3>
                         <p>{{category_group.description}}</p>
 
