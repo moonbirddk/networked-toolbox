@@ -16,6 +16,11 @@ ALLOWED_HOSTS = [
     'networkedtoolbox.com'
 ]
 
+MIDDLEWARE = ['django.middleware.security.SecurityMiddleware', ] + MIDDLEWARE
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+
 DATABASES = {
     'default': dj_database_url.config()
 }
