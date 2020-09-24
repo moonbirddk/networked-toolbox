@@ -23,8 +23,8 @@
     <section class="section--padded">
         {% if document.cover_image is not None%}
         <div class="cover-image" style="background-image: url({{ document.cover_image.url }})">
-        {%endif%}
         </div>
+        {%endif%}
         <h1 class="title no-top-margin">{{ document.title }}</h1>
         <div class="summernote-content">{{ document.summary |safe }}</div>
 
