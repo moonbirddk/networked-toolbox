@@ -28,13 +28,13 @@ DATABASE_POOL_ARGS = {
 }
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-DEFAULT_FROM_EMAIL = 'Networked Toolbox <info@{0}>'.format(DOMAIN)
-SERVER_EMAIL = 'Networked Toolbox <alerts@{0}>'.format(DOMAIN)
+DEFAULT_FROM_EMAIL = 'Reflection Action <info@{0}>'.format(DOMAIN)
+SERVER_EMAIL = 'Reflection Action <alerts@{0}>'.format(DOMAIN)
 ADMINS = (
     ('Kræn', 'kraen+network-toolbox-production@socialsquare.dk', ),
     ('Andreas', 'andreas+network-toolbox-production@socialsquare.dk', ),
 )
-SITE_ADMIN_EMAIL = 'networkedtoolbox@actionaid.dk'
+SITE_ADMIN_EMAIL = 'reflectionaction@actionaid.dk'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['MAILGUN_SMTP_SERVER']

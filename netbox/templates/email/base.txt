@@ -1,6 +1,6 @@
 {% load i18n %}{% load account %}{% user_display user as user_display %}{% blocktrans %}Hi {{user_display}},{% endblocktrans %}
 {% block message %}{% endblock %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
 Kind regards,
-The Networked Toolbox Team
+The Reflection Action Team
 
-www.networkedtoolbox.com{% endblocktrans %}
+www.reflectionaction.com{% endblocktrans %}

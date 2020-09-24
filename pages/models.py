@@ -44,8 +44,8 @@ class FooterTextblock(SingletonModel):
         verbose_name = _('Footer Contact Text Block')
     headline = models.CharField(_('Headline'), max_length=50, default="Contact the team")
     body = models.TextField(_('Body'), max_length=200,
-                            default="To get in touch with the team behind Networked Toolbox, drop us an e-mail at: ")
-    contact_mail = models.EmailField(_('Contact address'), default="networkedtoolbox@ms.dk")
+                            default="To get in touch with the team behind Reflection Action, drop us an e-mail at: ")
+    contact_mail = models.EmailField(_('Contact address'), default="reflectionaction@ms.dk")
 
     def __str__(self): 
         return self.headline

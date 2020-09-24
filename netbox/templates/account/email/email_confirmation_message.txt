@@ -1,9 +1,9 @@
 {% extends 'email/base.txt' %}
 {% load i18n %}
 {% block message %}
-You’re only one step from being able to join the Networked Toolbox community!
+You’re only one step from being able to join the Reflection Action community!
 
-Click this link to verify your account on Networked Toolbox:
+Click this link to verify your account on Reflection Action:
 {{ activate_url }}
 
 We’re glad to have you with us!

@@ -7,7 +7,7 @@ class MenuItem(models.Model):
     MENU_FOOTER_2 = 'footer-2'
     MENU_FOOTER_3 = 'footer-3'
     MENU_CHOICES = (
-        (MENU_FOOTER_1, 'Networked Toolbox'),
+        (MENU_FOOTER_1, 'Reflection Action'),
         (MENU_FOOTER_2, 'The Network'),
         (MENU_FOOTER_3, 'The Toolbox'),
     )

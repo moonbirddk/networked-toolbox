@@ -1,4 +1,4 @@
 {% load i18n %}
 {% autoescape off %}
-{% blocktrans %}Verify your account for Networked Toolbox{% endblocktrans %}
+{% blocktrans %}Verify your account for  Reflection Action{% endblocktrans %}
 {% endautoescape %}
