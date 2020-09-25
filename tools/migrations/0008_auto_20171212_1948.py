@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         
         # migrations.AlterModelOptions(
         #     name='categorygroupoverviewpage',
-        #     options={'verbose_name': 'Work Areas Overview Page'},
+        #     options={'verbose_name': 'Thematic Areas Overview Page'},
         # ),
         migrations.AlterModelOptions(
             name='categoryoverviewpage',

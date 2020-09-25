@@ -101,7 +101,7 @@ class ToolCategoryForm(forms.Form):
         required=True,
         max_length=20000
     )
-    group = forms.ModelChoiceField(label='Work Area',
+    group = forms.ModelChoiceField(label='Thematic Area',
                                    queryset=CategoryGroup.objects.all(),
                                    required=True)
 

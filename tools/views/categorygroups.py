@@ -91,7 +91,7 @@ def follow_category_group(request, category_group_id):
         )
         category_group_follower.should_notify = should_notify
         category_group_follower.save()
-        messages.success(request, "You are now following this Work Area.")
+        messages.success(request, "You are now following this Thematic Area.")
     return redirect(category_group)
 
 
@@ -103,5 +103,5 @@ def unfollow_category_group(request, category_group_id):
         category_group = get_object_or_404(CategoryGroup, id=category_group_id, published=True)
     if request.method == 'POST':
         category_group.followers.all().filter(user_id=request.user.id).delete()
-        messages.success(request, "You are no longer following this Work Area.")
+        messages.success(request, "You are no longer following this Thematic Area.")
     return redirect(category_group)

@@ -41,7 +41,7 @@ def create_overviews(apps, schema_editor):
             'id':1, 
             'headline':'Our best practice about participatory action.',
             'link': 'tools:index', 
-            'link_text':'Explore Work Areas.'
+            'link_text':'Explore Thematic Areas.'
             }
         )
 

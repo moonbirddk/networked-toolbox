@@ -161,7 +161,7 @@ class Story(ModelWithCoverImage):
         'auth.User', verbose_name='author', on_delete=models.CASCADE)
     tool = models.ForeignKey('Tool', related_name='stories',
                              blank=True, null=True, on_delete=models.CASCADE)
-    category_group = models.ForeignKey('CategoryGroup', verbose_name='work area',
+    category_group = models.ForeignKey('CategoryGroup', verbose_name='Thematic Area',
                                        related_name='stories', blank=True, null=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     country = CountryField(blank_label='where did this take place?', null=True)
@@ -229,8 +229,8 @@ class CategoryGroup(models.Model):
 class CategoryGroupFollower(models.Model):
     class Meta:
         unique_together = (('user', 'category_group'))
-        verbose_name = "'Work Area Follower"
-        verbose_name_plural = 'Work Area Followers'
+        verbose_name = "'Thematic Area Follower"
+        verbose_name_plural = 'Thematic Area Followers'
 
 
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -246,7 +246,7 @@ def notify_work_area_followers(sender, instance, created, **kwargs):
     CREATED_BIT = {True : 'written'}
     if instance.category_group:
         recipients = CategoryGroupFollower.objects.filter(~Q(user=instance.user), category_group=instance.category_group)
-        verb="has {} a story related to a Work Area you follow".format(CREATED_BIT.get(created, 'edited'))
+        verb="has {} a story related to a Thematic Area you follow".format(CREATED_BIT.get(created, 'edited'))
         href = instance.get_absolute_url()
         actions = [{
             'title': 'read',

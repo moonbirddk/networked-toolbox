@@ -29,8 +29,8 @@ class Migration(migrations.Migration):
                 ('published', models.BooleanField(default=False, verbose_name='published')),
             ],
             options={
-                'verbose_name': 'Work Area',
-                'verbose_name_plural': 'Work Areas',
+                'verbose_name': 'Thematic Area',
+                'verbose_name_plural': 'Thematic Areas',
             },
         ),
         migrations.CreateModel(
@@ -42,8 +42,8 @@ class Migration(migrations.Migration):
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'verbose_name': "'Work Area Follower",
-                'verbose_name_plural': 'Work Area Followers',
+                'verbose_name': "'Thematic Area Follower",
+                'verbose_name_plural': 'Thematic Area Followers',
             },
         ),
         migrations.CreateModel(
@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
                 ('link_text', models.CharField(default='Lorem ipsum.', max_length=40)),
             ],
             options={
-                'verbose_name': 'Work Areas Overview Page',
+                'verbose_name': 'Thematic Areas Overview Page',
             },
         ),
         migrations.CreateModel(
@@ -204,7 +204,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='story',
             name='category_group',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='stories', to='tools.CategoryGroup', verbose_name='work area'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='stories', to='tools.CategoryGroup', verbose_name='Thematic Area'),
         ),
         migrations.AddField(
             model_name='story',

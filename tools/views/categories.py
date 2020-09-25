@@ -48,7 +48,7 @@ def show_category(request, cat_id):
         category = get_object_or_404(ToolCategory, id=cat_id)
     else:
         category = get_object_or_404(ToolCategory, id=cat_id, published=True)
-    work_areas_list_link =  format_html('<a href="{}">Work Areas</a>', reverse('tools:index'))  
+    work_areas_list_link =  format_html('<a href="{}">Thematic Areas</a>', reverse('tools:index'))  
     work_area_link = format_html('<a href="{}">{}</a>', category.group.get_absolute_url(), category.group.name)
     breadcrumbs = [
         work_areas_list_link, 
