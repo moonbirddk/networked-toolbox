@@ -34,9 +34,9 @@
     </div>
     <div class="row">
       <div class="col-md-8 col-sm-12 summernote-container">   
-          <p class="category-description">{{ category_group.description }}</p>
+          <p class="category-description">{{ category_group.description | safe }}</p>
           <p class="tool-description summernote-content more">
-            {{ category_group.main_text }}
+            {{ category_group.main_text | safe }}
           </p>
       </div>
       <div class="col-md-4 col-sm-12">
