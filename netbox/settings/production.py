@@ -36,8 +36,8 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 DEFAULT_FROM_EMAIL = 'Reflection Action <info@{0}>'.format(DOMAIN)
 SERVER_EMAIL = 'Reflection Action <alerts@{0}>'.format(DOMAIN)
 ADMINS = (
-    ('Kræn', 'kraen+network-toolbox-production@socialsquare.dk', ),
-    ('Andreas', 'andreas+network-toolbox-production@socialsquare.dk', ),
+    ('Mathias', 'mathias@moonbird.dk', ),
+    
 )
 SITE_ADMIN_EMAIL = 'reflectionaction@actionaid.dk'
 
