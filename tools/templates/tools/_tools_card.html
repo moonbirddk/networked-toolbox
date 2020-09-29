@@ -5,11 +5,9 @@
         <span>UNPUBLISHED</span>
     </div>
     {% endif %}
-    {% if tool.cover_image %}
-    <div class="card__img" style="background-image: url({{ tool.cover_image.url }})"></div>
-    {% else %}
-    <div class="card__img" style="background-image: url(https://placeimg.com/640/480/any)"></div>
-    {% endif %}
+    <div class="card__img" 
+    {% if tool.cover_image %} style="background-image: url({{ tool.cover_image.url }})" {% endif %}></div>
+   
     <div class="card__content">
         <h4>
             <a href="{{tool.get_absolute_url}}?from={{from}}{%if parent_id%}{{parent_id}}{%endif%}">{{tool.title|truncatechars:50}}</a>

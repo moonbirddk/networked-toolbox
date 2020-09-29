@@ -55,11 +55,9 @@
                                 <span>UNPUBLISHED</span>
                             </div>
                             {% endif %}
-                            {% if document.cover_image %}
-                            <div class="card__img" style="background-image: url({{ document.cover_image.url }})"></div>
-                            {% else %}
-                            <div class="card__img" style="background-image: url(https://placeimg.com/640/480/any)"></div>
-                            {% endif %}
+                            
+                            <div class="card__img"{% if document.cover_image %} style="background-image: url({{ document.cover_image.url }})" {% endif %}></div>
+                         
                             <div class="card__content">
                             <h5 style="{%if document.start_date_time%} margin-bottom: -5px{%else%} line-height: 30px{%endif%}"> {{document.category}}<span style ="float:right">{{document.document_class}}</span></h5>
                                 {%if document.start_date_time%}
