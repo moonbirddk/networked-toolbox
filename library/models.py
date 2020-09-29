@@ -76,7 +76,10 @@ class LibraryResource(models.Model):
         
 
     def __str__(self):
-        return self.title
+        if self.title is not None: 
+            return self.title
+        else: 
+            return super().__str__()
 
 
 class VideoResource(LibraryResource): 
