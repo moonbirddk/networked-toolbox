@@ -15,10 +15,12 @@ from itertools import chain
 def document_index(request):
     documents = LibraryDocument.objects.filter(published=True)
     courses = OnlineCourse.objects.filter(published=True)
-    viodeo_resources = VideoResource.objects.filter(published=True)
-    queryset = list(chain(documents, courses, viodeo_resources))
+    video_resources = VideoResource.objects.filter(published=True)
+   # queryset = list(chain(documents, courses, video_resources))
     context = {
-        'documents': queryset,
+        'documents': documents,
+        'courses': courses, 
+        'video_resources': video_resources, 
 
     }
     return render(request, 'library_documents/index.html', context)

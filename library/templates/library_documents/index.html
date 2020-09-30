@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% load staticfiles %}
-{% load toolstags %}
+{% load toolstags i18n %}
 {% load partition_slice %}
 {% load commontags %}
 {% load compress %}
@@ -46,8 +46,9 @@
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <section class="front__cards" style="background-color: white">
-
+                    <h3 style="padding-bottom:20px">{% trans "Library Documents" %}</h3>
                     <div class="cards thirds stories">
+                        
                         {% for document in documents %}
                         <div class="card card--tool wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
                             {% if document.published == False %}
@@ -81,7 +82,77 @@
                         <p style="margin-bottom: 124px">There are no documents at the moment...</p>
                         {% endfor %}
                     </div>
-            </div>
+                    <h3 style="padding-bottom:20px">{% trans "Online Courses" %}</h3>
+                    <div class="cards thirds stories">
+                        
+                        {% for document in courses %}
+                        <div class="card card--tool wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
+                            {% if document.published == False %}
+                            <div class="unpublished-banner">
+                                <span>UNPUBLISHED</span>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="card__img"{% if document.cover_image %} style="background-image: url({{ document.cover_image.url }})" {% endif %}></div>
+                         
+                            <div class="card__content">
+                            <h5 style="{%if document.start_date_time%} margin-bottom: -5px{%else%} line-height: 30px{%endif%}"> {{document.category}}<span style ="float:right">{{document.document_class}}</span></h5>
+                                {%if document.start_date_time%}
+                                <h6><span style="float: right; margin-top:0">{{document.start_date_time}}</span></h6>
+                                {%endif%}
+                                <h4>
+                                    <a
+                                        href="{{document.get_absolute_url}}">{{document.title|truncatechars:50}}</a>
+                                </h4>
+                                <p>{{document.summary|bleach_striptags|truncatechars:130}}</p>
+                                <div class="card__footer card__counter">
+                                   
+                                    <div class="card__counter--comments flex-vertical">
+                                        {% svg_icon icon_id="comment" icon_classes="icon--black" %}
+                                        <span>{{document.comments.count}} {{document.comments.count|pluralize:"comment, comments"}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p style="margin-bottom: 124px">There are no courses at the moment...</p>
+                        {% endfor %}
+                    </div>
+                    <h3 style="padding-bottom: 20px">{% trans "Video Resources" %}</h3>
+                   <div class="cards thirds stories">
+                        
+                        {% for document in video_resources %}
+                        <div class="card card--tool wow fadeinup" data-wow-delay=" 0.{{ forloop.counter }}s">
+                            {% if document.published == False %}
+                            <div class="unpublished-banner">
+                                <span>UNPUBLISHED</span>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="card__img"{% if document.cover_image %} style="background-image: url({{ document.cover_image.url }})" {% endif %}></div>
+                         
+                            <div class="card__content">
+                            <h5 style="{%if document.start_date_time%} margin-bottom: -5px{%else%} line-height: 30px{%endif%}"> {{document.category}}<span style ="float:right">{{document.document_class}}</span></h5>
+                                {%if document.start_date_time%}
+                                <h6><span style="float: right; margin-top:0">{{document.start_date_time}}</span></h6>
+                                {%endif%}
+                                <h4>
+                                    <a
+                                        href="{{document.get_absolute_url}}">{{document.title|truncatechars:50}}</a>
+                                </h4>
+                                <p>{{document.summary|bleach_striptags|truncatechars:130}}</p>
+                                <div class="card__footer card__counter">
+                                   
+                                    <div class="card__counter--comments flex-vertical">
+                                        {% svg_icon icon_id="comment" icon_classes="icon--black" %}
+                                        <span>{{document.comments.count}} {{document.comments.count|pluralize:"comment, comments"}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p style="margin-bottom: 124px">There are no video resources at the moment...</p>
+                        {% endfor %}
 
         </div>
     </div>
