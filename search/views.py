@@ -66,7 +66,7 @@ def search_page(request):
             categories_results_count, categories = get_search_results(ToolCategory, q, limit=limit)
 
             stories_results_count, stories = get_search_results(Story, q, limit=limit)
-            profiles_results_count, profiles = get_search_results(Profile, q, limit=limit)
+      #      profiles_results_count, profiles = get_search_results(Profile, q, limit=limit)
             
             work_areas_results_count, work_areas = get_search_results(CategoryGroup, q, limit=limit)
         else:
@@ -85,9 +85,9 @@ def search_page(request):
         stories = Story.objects.filter(published=True).order_by('-created')[:limit]
         stories_results_count = len(stories)
 
-        profiles = Profile.objects.filter(user__is_superuser=False)\
-            .order_by('-user__date_joined')[:limit]
-        profiles_results_count = len(profiles)
+     #   profiles = Profile.objects.filter(user__is_superuser=False)\
+     #       .order_by('-user__date_joined')[:limit]
+      #  profiles_results_count = len(profiles)
 
         work_areas = CategoryGroup.objects.filter(published=True).order_by('name')[:limit]
         work_areas_results_count = len(work_areas)
@@ -101,8 +101,8 @@ def search_page(request):
         'categories_results_count': categories_results_count,
         'stories': stories,
         'stories_results_count': stories_results_count,
-        'profiles': profiles if profiles else [],
-        'profiles_results_count': profiles_results_count if profiles else 0,
+       # 'profiles': profiles if profiles else [],
+       # 'profiles_results_count': profiles_results_count if profiles else 0,
         'work_areas': work_areas, 
         'work_areas_results_count': work_areas_results_count, 
     }
