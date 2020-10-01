@@ -101,8 +101,8 @@ def search_page(request):
         'categories_results_count': categories_results_count,
         'stories': stories,
         'stories_results_count': stories_results_count,
-        'profiles': profiles,
-        'profiles_results_count': profiles_results_count,
+        'profiles': profiles if profiles else [],
+        'profiles_results_count': profiles_results_count if profiles else 0,
         'work_areas': work_areas, 
         'work_areas_results_count': work_areas_results_count, 
     }

@@ -48,7 +48,8 @@ class ProfileIndex(indexes.SearchIndex, indexes.Indexable):
          * profile country (full country name)
     """
     text = indexes.CharField(document=True, use_template=True)
-    uuid = indexes.CharField(model_attr='uuid')
+    bio = indexes.CharField(model_attr="bio")
+   # uuid = indexes.CharField(model_attr='uuid')
     
     def get_model(self):
         return Profile

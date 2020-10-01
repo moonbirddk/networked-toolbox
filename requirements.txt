@@ -29,7 +29,7 @@ django-easy-timezones==0.8.0
 django-extensions==2.2.3
 django-filter==2.2.0
 django-gulp==4.1.0
-django-haystack==2.8.1
+django-haystack==3.0.0
 django-hijack==2.1.10
 django-hijack-admin==2.1.6
 django-model-utils==3.1.1
