@@ -14,11 +14,12 @@
 {% block head_title %}Tools Used by {{profile_user.profile.name}} - {% endblock %}
 
 {% block main %}
-
-<h1 class="title">
+<h1 style="padding: 20px 0px 0px 20px" class="title">
     Tools Used by {{profile_user.profile.name}}
 </h1>
-<div class="flex-wrapper row">
+
+<div style="padding: 10px 10px 10px 20px" class="flex-wrapper row">
+
   {% for tool in tools %}
     <div class="tool-item col-md-3 col-sm-4 col-xs-6">
         <a href="{% url 'tools:show' tool_id=tool.id %}"><div class="tool-image">

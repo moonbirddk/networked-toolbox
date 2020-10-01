@@ -71,8 +71,8 @@ def show(request, profile_uuid):
 
 def show_tools(request, profile_uuid):
     profile = get_object_or_404(Profile.objects.select_related('user'),
-                                uid=profile_uuid)
-    user = profile
+                                uuid=profile_uuid)
+    user = profile.user
     tool_followers = ToolFollower.objects.filter(user_id=user.id)\
         .filter(tool__published=True).order_by('tool__title')
     tools = [tf.tool for tf in tool_followers]
