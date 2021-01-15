@@ -4,11 +4,6 @@ $(document).on("click", "#btn-resource-list", function() {
   $('#btn-collapse').toggleClass('hidden');
 });
 
-$(document).on("click", "#accept-cookies", function(e) {
-  e.preventDefault();
-  setCookie('accept-cookies', 1, 365);
-  $('#cookies-notice').fadeOut(300);
-});
 
 $(document).on("click", "#user-signup", function(e) {
   ga('send', 'event', 'profile', 'signup');
@@ -51,10 +46,6 @@ $(document).ready(function() {
     }
   });
 
-  // hide cookie notice, if user already accepted
-  if (getCookie('accept-cookies')) {
-    $('#cookies-notice').hide();
-  }
 
   // Register listner for button to resend verification e-mail
   $('button[data-resend-verification]').click(function(e) {

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"padding",
+				"padding-bottom\tabc"
+			],
+			[
+				"vide",
+				"video_resources\tabc"
+			],
+			[
+				"communi",
+				"community_id\t(properties_real_estate_property.ex)"
+			],
+			[
 				"ver",
 				"verbose_name_plural"
 			],
@@ -502,28 +514,32 @@
 			[
 				"sales",
 				"sales_blanket"
-			],
-			[
-				"images",
-				"images_sorted"
-			],
-			[
-				"sor",
-				"sort_order"
-			],
-			[
-				"Pa",
-				"Page"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "tools/models.py",
+			"file": "tools/templates/workareas/show_workarea.html",
 			"settings":
 			{
-				"buffer_size": 8401,
+				"buffer_size": 3936,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "tools/templates/toolboxes/_toolbox_card.html",
+			"settings":
+			{
+				"buffer_size": 869,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "netbox/settings/base.py",
+			"settings":
+			{
+				"buffer_size": 10866,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -533,7 +549,64 @@
 			"settings":
 			{
 				"buffer_size": 13,
-				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "library/models.py",
+			"settings":
+			{
+				"buffer_size": 5979,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 24770 files for \"andreas+\" (regex, case sensitive)\n\n/Users/mathiaswedeken/python/networked-toolbox/netbox/settings/production.py:\n   40:     ('Andreas', 'andreas+network-toolbox-production@socialsquare.dk', ),\n\n/Users/mathiaswedeken/python/networked-toolbox/netbox/settings/staging.py:\n   34:     ('Andreas', 'andreas+network-toolbox-staging@socialsquare.dk', ),\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/allauth/socialaccount/providers/dataporten/provider.py:\n   52:             \"userid_sec\": [\"feide:andreas@uninett.no\"],\n   54:             \"email\": \"andreas.solberg@uninett.no\",\n   70:             \"userid_sec\": [\"feide:andreas@uninett.no\"],\n   72:             \"email\": \"andreas.solberg@uninett.no\",\n   74:             \"username\": \"andreas\",\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/allauth/socialaccount/providers/dataporten/tests.py:\n   14:             'userid_sec': ['feide:andreas@uninett.no'],\n   16:             'email': 'andreas.solberg@uninett.no',\n   38:                     \"userid_sec\": [\"feide:andreas@uninett.no\"],\n   40:                     \"email\": \"andreas.solberg@uninett.no\",\n   62:         self.assertEqual(common_fields['username'], 'andreas')\n   68:         self.assertEqual(new_common_fields['username'], 'andreas.solberg')\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/django/conf/locale/sv/LC_MESSAGES/django.po:\n    5: # Andreas Pelme <andreas@pelme.se>, 2014\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/django/contrib/admin/locale/sv/LC_MESSAGES/django.po:\n    5: # Andreas Pelme <andreas@pelme.se>, 2014\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/django/contrib/admin/locale/sv/LC_MESSAGES/djangojs.po:\n    4: # Andreas Pelme <andreas@pelme.se>, 2012\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/django/contrib/admindocs/locale/sv/LC_MESSAGES/django.po:\n    4: # Andreas Pelme <andreas@pelme.se>, 2012,2014\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/django/contrib/contenttypes/locale/sv/LC_MESSAGES/django.po:\n    4: # Andreas Pelme <andreas@pelme.se>, 2012\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/django/contrib/flatpages/locale/sv/LC_MESSAGES/django.po:\n    4: # Andreas Pelme <andreas@pelme.se>, 2011-2012\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/django/contrib/gis/locale/sv/LC_MESSAGES/django.po:\n    4: # Andreas Pelme <andreas@pelme.se>, 2011-2012\n\n/Users/mathiaswedeken/python/networked-toolbox/venv/lib/python3.6/site-packages/django/contrib/humanize/locale/sv/LC_MESSAGES/django.po:\n    4: # Andreas Pelme <andreas@pelme.se>, 2011-2012,2014\n\n21 matches across 12 files\n",
+			"settings":
+			{
+				"buffer_size": 2864,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "netbox/settings/production.py",
+			"settings":
+			{
+				"buffer_size": 1513,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "library/templates/library_documents/index.html",
+			"settings":
+			{
+				"buffer_size": 8967,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "profiles/views.py",
+			"settings":
+			{
+				"buffer_size": 5267,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "profiles/templates/profiles/show_tools.html",
+			"settings":
+			{
+				"buffer_size": 1176,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "feedback/views.py",
+			"settings":
+			{
+				"buffer_size": 829,
 				"line_ending": "Unix"
 			}
 		},
@@ -541,234 +614,40 @@
 			"file": "search/views.py",
 			"settings":
 			{
-				"buffer_size": 4926,
-				"encoding": "UTF-8",
+				"buffer_size": 5645,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "search/urls.py",
+			"file": "search/templates/search/search_index.html",
 			"settings":
 			{
-				"buffer_size": 363,
-				"encoding": "UTF-8",
+				"buffer_size": 4539,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "requirements.txt",
+			"file": "search/search_indexes.py",
 			"settings":
 			{
-				"buffer_size": 511,
-				"encoding": "UTF-8",
+				"buffer_size": 1688,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Procfile",
+			"file": "profiles/models.py",
 			"settings":
 			{
-				"buffer_size": 274,
-				"encoding": "UTF-8",
+				"buffer_size": 3372,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "tools/admin.py",
+			"file": "library/views.py",
 			"settings":
 			{
-				"buffer_size": 1893,
-				"encoding": "UTF-8",
+				"buffer_size": 2881,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tools/views/stories.py",
-			"settings":
-			{
-				"buffer_size": 4025,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tools/templates/stories/add_workarea_story.html",
-			"settings":
-			{
-				"buffer_size": 2636,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tools/forms.py",
-			"settings":
-			{
-				"buffer_size": 5468,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tools/templates/stories/edit_story.html",
-			"settings":
-			{
-				"buffer_size": 857,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tools/widgets.py",
-			"settings":
-			{
-				"buffer_size": 3553,
-				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "# A fork from https://djangosnippets.org/snippets/"
-			}
-		},
-		{
-			"file": "netbox/settings/base.py",
-			"settings":
-			{
-				"buffer_size": 9282,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "menus/templatetags/menus.py",
-			"settings":
-			{
-				"buffer_size": 571,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tools/views/tools.py",
-			"settings":
-			{
-				"buffer_size": 5651,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "comments/templatetags/commentstags.py",
-			"settings":
-			{
-				"buffer_size": 8805,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tools/templates/stories/show_all_stories.html",
-			"settings":
-			{
-				"buffer_size": 1410,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tools/templates/stories/_stories_overview.html",
-			"settings":
-			{
-				"buffer_size": 1253,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tools/urls.py",
-			"settings":
-			{
-				"buffer_size": 1892,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "netbox/templates/_nav.html",
-			"settings":
-			{
-				"buffer_size": 1987,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "profiles/admin.py",
-			"settings":
-			{
-				"buffer_size": 811,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "netbox/templates/base.html",
-			"settings":
-			{
-				"buffer_size": 2962,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "search/forms.py",
-			"settings":
-			{
-				"buffer_size": 1243,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "profiles/templates/profiles/show.html",
-			"settings":
-			{
-				"buffer_size": 4566,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "profiles/forms.py",
-			"settings":
-			{
-				"buffer_size": 3052,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "netbox/urls.py",
-			"settings":
-			{
-				"buffer_size": 1961,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "search/templates/search/index.html",
-			"settings":
-			{
-				"buffer_size": 2479,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "tools/templates/tools/_tools_overview.html",
-			"settings":
-			{
-				"buffer_size": 990,
-				"line_ending": "Windows"
 			}
 		}
 	],
@@ -780,9 +659,53 @@
 	"command_palette":
 	{
 		"height": 354.0,
-		"last_filter": "m",
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"pa",
+				"Package Control: Enable Package"
+			],
+			[
+				"pack",
+				"Package Control: Disable Package"
+			],
+			[
+				"pac",
+				"Package Control: List Packages"
+			],
+			[
+				"set syntax: E",
+				"Set Syntax: Elixir"
+			],
+			[
+				"",
+				"Set Syntax: NPM (JSON)"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"ui",
+				"UI: Select Theme"
+			],
+			[
+				"Package",
+				"View Package File"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insat",
+				"Package Control: Install Package"
+			],
+			[
+				"com",
+				"Compare with..."
+			],
 			[
 				"m",
 				"Material Theme: Advanced configuration"
@@ -808,16 +731,8 @@
 				"User: Python PEP8 Autoformat"
 			],
 			[
-				"pa",
-				"Package Control: Disable Package"
-			],
-			[
 				"pre",
 				"Pretty JSON: Format and Sort JSON"
-			],
-			[
-				"pac",
-				"Package Control: Install Package"
 			],
 			[
 				"json",
@@ -828,16 +743,8 @@
 				"HTMLPrettify"
 			],
 			[
-				"",
-				"Package Control: Install Package"
-			],
-			[
 				"pretty",
 				"HTMLPrettify"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
 			]
 		],
 		"width": 462.0
@@ -860,158 +767,155 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/mathiaswedeken/python/networked-toolbox-master",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/__pycache__",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools"
+		"/Users/mathiaswedeken/python/networked-toolbox",
+		"/Users/mathiaswedeken/python/networked-toolbox/netbox",
+		"/Users/mathiaswedeken/python/networked-toolbox/netbox/__pycache__",
+		"/Users/mathiaswedeken/python/networked-toolbox/netbox/settings",
+		"/Users/mathiaswedeken/python/networked-toolbox/search",
+		"/Users/mathiaswedeken/python/networked-toolbox/search/templates",
+		"/Users/mathiaswedeken/python/networked-toolbox/search/templates/search"
 	],
 	"file_history":
 	[
-		"/etc/hosts",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/migrations/0009_auto_20171212_2027.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/overview_pages/models.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/overview_pages/migrations/0001_initial.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/overview_pages/migrations/0002_auto_20171212_2004.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/bin/post_compile",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/filters.py",
-		"/Users/mathiaswedeken/python/django-notifications/setup.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/requirements_old.txt",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/production.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/staging.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/requirements-old.txt",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/stories/add_workarea_story.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templatetags/storiestags.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_category.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/categories.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/categorygroups.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/category_groups/list_categorygroups.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/category_groups/show_categorygroup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_categories_overview.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_category.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_categories.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_story.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/search/views.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/_hijack_form.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/common/templatetags/commontags.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/requirements.txt",
-		"/Users/mathiaswedeken/python/networked-toolbox-bleedingedge/requirements.txt",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/development.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/stories.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_workarea_story.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/activities/models.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/admin.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show_categorygroup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/forms.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_suggestion.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/suggestions.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/tools.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/show.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/urls.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/models.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_categorygroup_categorylist.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templates/profiles/_profile_photo.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templatetags/profilestags.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/admin.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/_nav.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_categorygroup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_category.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_categorygroup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_categorygroups.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/search/templates/search/index.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/views/overviews.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/admin.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/comments/admin.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_categorygroups_overview.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/settings/base.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/urls.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/list_category_groups.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/_category_group_overview_aly.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/models.py",
-		"/Users/mathiaswedeken/python/unik_boligsalg/unik_boligsalg/unik_boligsalg/local_apps/buildings/admin.py",
-		"/Users/mathiaswedeken/python/awesome/README.rst",
-		"/Users/mathiaswedeken/python/awesome/awesome/awesome/users/models.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/forms.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/index.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/logout.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/account_inactive.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/email.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/email_confirm.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/email_confirmed.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/login.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/password_change.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/password_reset.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/password_reset_done.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/password_reset_from_key.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/password_reset_from_key_done.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/password_set.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/signup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/signup_closed.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/account/verified_email_required.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templates/profiles/show.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/pages/templates/pages/show_page.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/edit_overview.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/home.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/delete_category.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/delete_categorygroup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add_story.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/resources/delete.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/resources/edit.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/tools/add.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/resources/templates/resources/edit.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/search/templates/search/profile_results.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/search/templates/search/tool_results.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/tools/templates/resources/add.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/search/templates/search/story_results.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templates/profiles/terms_and_conditions.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/pages/templates/pages/add_page.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/pages/templates/pages/edit_page.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templates/profiles/edit.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/profiles/templates/profiles/show_tools.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/menus/templates/menus/edit_menus.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/openid/login.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/activities/templates/activities/list_all.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/comments/models.py",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/netbox/templates/base.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/account_inactive.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/email.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/socialaccount/signup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/email_confirm.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/email_confirmed.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/login.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/logout.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/password_change.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/password_reset.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/password_reset_done.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/password_reset_from_key.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/password_reset_from_key_done.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/password_set.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/signup.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/signup_closed.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/verification_sent.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/account/verified_email_required.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/socialaccount/authentication_error.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/socialaccount/connections.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/staticfiles/css/base.min.css",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/.venv/lib/python3.5/site-packages/allauth/templates/socialaccount/login_cancelled.html",
-		"/Users/mathiaswedeken/python/networked-toolbox-master/gulpfile.js"
+		"/Users/mathiaswedeken/python/networked-toolbox/library/templates/library_documents/index.html",
+		"/Users/mathiaswedeken/python/networked-toolbox/tools/templates/tools/_tool_card.html",
+		"/Users/mathiaswedeken/python/networked-toolbox/tools/templates/tools/_tools_card.html",
+		"/Users/mathiaswedeken/python/rem_ftp/oeens_ejendomsadministration_as/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/phoenix/property_finances_import/lib/property_finances_import/communities.ex",
+		"/Users/mathiaswedeken/phoenix/property_finances_import/lib/property_finances_import/application.ex",
+		"/Users/mathiaswedeken/phoenix/property_finances_import/lib/property_finances_import/properties.ex",
+		"/Users/mathiaswedeken/phoenix/property_finances_import/lib/property_finances_import/importers/unik_importer.ex",
+		"/Users/mathiaswedeken/python/rem_ftp/spar_nord_ejendomsadministration/data/XML/historic_financial_years.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/82538E84-710A-4C99-B2C4-481560E0F70E/proboftp.dk/deas/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/A2760A07-9F8A-4CBF-9CC0-319562F2EB07/proboftp.dk/spar_nord_ejendomsadministration/data/XML/historic_postings_1.json",
+		"/Users/mathiaswedeken/python/rem_ftp/wedo/boligadministratorerne/IntraRegnskab-0292.xml",
+		"/Users/mathiaswedeken/python/rem_ftp/bjoernsholm/data/ProboData/historic_financial_years.json",
+		"/Users/mathiaswedeken/phoenix/littlechat/assets/js/app.js",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/22A241B3-158B-45B4-A104-A74F612550CC/proboftp.dk/herbo/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/A420409B-3613-4BFB-B537-188A09466973/proboftp.dk/herbo/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/84DA4C94-04D8-473F-967A-B281333AA425/proboftp.dk/advodan_lyngby/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/97091911-ECC5-4AED-BD23-BC60D7764CD9/proboftp.dk/advodan_lyngby/data/XML/historic_accounts_1.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/C148D3A3-FD51-4F1F-858E-71C158AD7D45/proboftp.dk/advokatfirmaet_svendsen/data/XML/historic_accounts_1.json",
+		"/Users/mathiaswedeken/Downloads/library (1).svg",
+		"/Users/mathiaswedeken/python/rem_ftp/oeens_ejendomsadministration_as/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/python/rem_ftp/wedo/boligadministratorerne/IntraRegnskab-0114.xml",
+		"/Users/mathiaswedeken/python/rem_ftp/wedo/boligadministratorerne/IntraRegnskab-0144.xml",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/697F9286-AE5C-4267-9B1A-7697636578D5/proboftp.dk/wedo/adlex/IntraRegnskab-0012.xml",
+		"/Users/mathiaswedeken/.phoenix.js",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/E639D8CC-719F-46A9-BA6C-B27B4A599F7F/proboftp.dk/spar_nord_ejendomsadministration/data/XML/historic_accounts_1.json",
+		"/Users/mathiaswedeken/Downloads/kisspng-library-computer-icons-book-symbol-classified-vector-5ad8d30dbbb852.4653196415241592457689.svg",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/E6377381-7FA2-4AF4-907C-8F3E557BB6AB/proboftp.dk/spar_nord_ejendomsadministration/data/XML/historic_financial_years.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/8EB05AFC-AC98-45E1-8ABC-B66D41EAE509/proboftp.dk/spar_nord_ejendomsadministration/data/XML/historic_accounts_1.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/C24C9F77-3CEC-406E-A197-3E806CE550FE/proboftp.dk/spar_nord_ejendomsadministration/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/04C046BC-8E28-4EA7-89C5-6D72FF591901/proboftp.dk/spar_nord_ejendomsadministration/data/XML/historic_financial_years.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/85B5FB88-B8D9-422B-9934-11D8549299D7/proboftp.dk/advice_ejendomsadministration/data/Probo_data/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/FC0FB1D4-08FA-4480-AFDC-8E43B84015F2/proboftp.dk/spar_nord_ejendomsadministration/data/XML/historic_financial_years.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/AE5B16B4-5CE6-4916-92DB-B391F8CFC30D/proboftp.dk/wtc_advokaterne_as/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/6D669788-ABFE-4D6A-B07E-3BE4DB765839/proboftp.dk/lea_ejendomspartner/data/XML/probo_voucher.json",
+		"/Users/mathiaswedeken/python/rem_ftp/lea_ejendomspartner/data/XML/historic_financial_years.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/DDED02E2-AB50-442B-93DB-455A615B5EF5/proboftp.dk/lea_ejendomspartner/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/DACB1198-49CC-48A6-8232-3AE1890366C8/proboftp.dk/lea_ejendomspartner/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/FD52B302-D047-4C5E-8F6B-59D5AD65DF79/proboftp.dk/lea_ejendomspartner/data/XML/historic_financial_years.json",
+		"/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/AppKit.framework/Versions/C/Headers/NSBezierPath.h",
+		"/Users/mathiaswedeken/Downloads/Chart.js",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/spar_nord_ejendomsadministration/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/remote_ftp/nord_ejendomsadministration/data/XML/historic_accounts_1.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/homann/data/probo_data/probo_financial_associations.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/homann/data/probo_data/probo_voucher.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/homann/data/probo_data/probo_postings.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/homann/data/probo_data/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/homann/data/probo_data/probo_financial_associations 2.json",
+		"/Users/mathiaswedeken/probo_financial_associations.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/spar_nord_ejendomsadministration/data/XML/historic_vouchers_1.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/oeens_ejendomsadministration_as/data/XML/probo_postings_last.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/blub.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/749E704A-6A38-4E78-B7F4-0626B41CB89F/proboftp.dk/spar_nord_ejendomsadministration/data/XML/probo_voucher.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/76C03989-8F9E-4C29-A41A-1B3D74A098CF/proboftp.dk/wedo/sleipner/IntraRegnskab-0202.xml",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/E6916304-F2BB-4E2E-8969-640310FF98DF/proboftp.dk/valdal_ejendomsadministration/data/XML_ProBo/probo_postings.json",
+		"/Users/mathiaswedeken/phoenix/hello/assets/css/phoenix.css",
+		"/Users/mathiaswedeken/phoenix/hello/assets/css/app.css",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/291413D0-2EC9-41ED-AE47-012EF64ABF66/proboftp.dk/wantzin_ejendomsadvokater/data/XML/historic_postings_1.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/4127AA06-082F-495E-9535-B0765DAE78F8/proboftp.dk/wantzin_ejendomsadvokater/data/XML/historic_all_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/AC079665-A236-4D97-B7AC-D3010AA711B6/proboftp.dk/valdal_ejendomsadministration/data/XML_ProBo/probo_accounts.json",
+		"/Users/mathiaswedeken/Downloads/EmailAddress-2020-03-30.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/9B8D2F0A-EA1D-4147-AE0F-9EAC7C6DA972/proboftp.dk/advodan_lyngby/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/620A9ADE-1554-461A-9D4B-966847A932D1/proboftp.dk/advodan_lyngby/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/16158FFD-019E-4EC2-BF34-5B535B1F74DC/proboftp.dk/advodan_lyngby/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/hupfeld_&_hove_advokataktieselskab/data/ProBo/historic_all_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/1237FEBA-6DDE-4BA2-A14C-18D0F2332071/proboftp.dk/advodan_glostrup/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Desktop/mappe uden navn 2/css/_bootstrap.css",
+		"/Users/mathiaswedeken/Desktop/mappe uden navn 2/css/bootstrap.css",
+		"/Users/mathiaswedeken/Desktop/mappe uden navn 2/css/base.css",
+		"/Users/mathiaswedeken/Desktop/mappe uden navn 2/css/additional.css",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/409426D9-D082-4232-BDCB-5900E1D48815/proboftp.dk/spar_nord_ejendomsadministration/data/XML/historic_financial_years.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/90AF6D88-FAD7-499C-AA2E-7F5DFAD95B18/proboftp.dk/drachmann_ejendomsadministration_as/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/advodan_glostrup/data/XML/probo_postings_last.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/drachmann_ejendomsadministration_as/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/5A2288C0-7497-49CC-A17A-ADD1FD078792/proboftp.dk/drachmann_ejendomsadministration_as/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/CDF85288-E4F5-42D9-9EBD-3A6D8E30B814/proboftp.dk/advodan_hilleroed/data/XML/historic_accounts_1.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/spar_nord_ejendomsadministration/data/XML/historic_accounts_3.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/spar_nord_ejendomsadministration/data/XML/historic_accounts_2.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/575637B5-02F6-49D2-AEB4-CC7617823282/proboftp.dk/wedo/sleipner/IntraRegnskab-0138.xml",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/59518C8E-1270-449A-A30B-1D82735EE60F/proboftp.dk/nord_ejendomsadministration/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/valdal_ejendomsadministration/data/XML_ProBo/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/valdal_ejendomsadministration/data/XML_ProBo/historic_accounts_2.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/BB028494-B68A-4D45-BD9E-E8A1DBAC024E/proboftp.dk/oeens_ejendomsadministration_as/data/XML/historic_accounts_1.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/ejendomsvirke/data/Probo/historic_postings_2.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/ejendomsvirke/data/Probo/historic_accounts_2.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/ejendomsvirke/data/Probo/historic_postings_1.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/ejendomsvirke/data/Probo/historic_financial_years.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/ejendomsvirke/data/Probo/historic_accounts_1.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/63EF00D3-419A-40F7-82E9-7D7DC9E14580/proboftp.dk/wtc_advokaterne_as/data/XML/probo_postings.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/A8B06A87-1D1C-41A9-B443-E4BBD798024C/proboftp.dk/valdal_ejendomsadministration/data/XML_ProBo/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/2E9911AE-B96B-4C5B-A3E1-DEF65F0B03FD/proboftp.dk/valdal_ejendomsadministration/data/XML_ProBo/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/33B7B250-F5A0-464E-A478-E9B8E9422863/proboftp.dk/spar_nord_ejendomsadministration/data/XML/probo_postings_last.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/64AF9B1A-025F-4C93-8F71-FB56AF64FAE5/proboftp.dk/wantzin_ejendomsadvokater/data/XML/probo_postings.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/4252CA79-9A14-4F98-959F-1C4C3CC05D1B/proboftp.dk/oeens_ejendomsadministration_as/data/XML/probo_voucher.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/424C1C49-3A36-4308-967D-F9BDEC77D612/proboftp.dk/valdal_ejendomsadministration/data/XML_ProBo/experimential_vouchers_load.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/1E50D44D-0D8B-4711-9582-63779DA0A464/proboftp.dk/oeens_ejendomsadministration_as/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/oeens_ejendomsadministration_as/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/FED6FD68-818B-4967-845F-1408DB168907/proboftp.dk/oeens_ejendomsadministration_as/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/nord_ejendomsadministration/data/XML/probo_postings_last.json",
+		"/Users/mathiaswedeken/phoenix/wedo/IntraLejer-0170.xml",
+		"/Users/mathiaswedeken/phoenix/wedo/IntraRegnskab-0170.xml",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/nord_ejendomsadministration/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/799303DF-3C47-402D-BA40-636F7EB4FC7F/proboftp.dk/ejendomsvirke/Probo/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/42874D1A-B33C-4B04-8CAC-7D0B5F62E648/proboftp.dk/administrationsselskabet_ejendomsvirke_as/Probo/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/2D644493-3B01-446F-AC8C-A9656C203318/proboftp.dk/administrationsselskabet_ejendomsvirke_as/Probo/probo_postings_last.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/DF2B4774-CE37-4887-BD60-B0E86214DFD8/proboftp.dk/administrationsselskabet_ejendomsvirke_as/Probo/probo_postings.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/58B2CEB8-89FE-4119-B969-10C2D05102FE/proboftp.dk/administrationsselskabet_ejendomsvirke_as/Probo/probo_postings_last.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/9EDF1D5F-B15A-498C-B571-94F3C62F16B4/proboftp.dk/bjoernsholm/data/ProboData/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/5D083A15-AAEA-4E36-B3AC-3EC3026E9278/proboftp.dk/advodan_hilleroed/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/DB05C760-2AB0-4A7F-8E28-619D10A90EE2/proboftp.dk/drachmann_ejendomsadministration_as/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/07B2996F-E28A-4DB2-AB1A-07195533D142/proboftp.dk/valdal_ejendomsadministration/data/XML_ProBo/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/drachmann_ejendomsadministration_as/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/6F44718E-2E2E-42BF-BB30-B33F2DD01F5F/proboftp.dk/advodan_helsingoer/XML/probo_postings.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/FBB73DCB-E654-4F7D-974F-906762585C12/proboftp.dk/advodan_helsingoer/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/local_apps/property_finances/rem_ftp/wedo/boligadministratorerne/IntraRegnskab-0281.xml",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/AA8922BA-B331-4456-AB3A-51230013288E/proboftp.dk/oeens_ejendomsadministration_as/XML/probo_postings_last.json",
+		"/Users/mathiaswedeken/python/mansfield/app/app/templates/base.html",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/4788D7AE-AFF2-4DEB-9E7F-3AFC87A44091/proboftp.dk/spar_nord_ejendomsadministration/data/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/3BB5C681-4092-482D-923D-19AC80C40500/proboftp.dk/wantzin_ejendomsadvokater/XML/probo_postings.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/06D6E52C-9EA7-4276-8B72-410B11F7E830/proboftp.dk/spar_nord_ejendomsadministration/data/XML/probo_accounts.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/33ECAD87-2140-46BC-B3FC-58D5C5AC1C61/proboftp.dk/oeens_ejendomsadministration_as/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/BA5AC7D1-1012-44C7-8AE3-09F0FAB78337/proboftp.dk/wedo/advokatfirmaet_marker/IntraRegnskab-0155.xml",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/72203610-D1A9-40B9-83DC-E191B42C050F/proboftp.dk/wedo/advokatfirmaet_marker/IntraRegnskab-0145.xml",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/6654F158-7B7D-46CD-9759-EAD05D955262/proboftp.dk/nord_ejendomsadministration/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/12A2E89C-5AA2-4A1F-9645-52C17BA152A8/proboftp.dk/nord_ejendomsadministration/XML/probo_financial_associations.json",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/F9CE29D5-E8CF-4309-A62F-807F3FE5C261/proboftp.dk/advodan_glostrup/XML/probo_postings.json",
+		"/Users/mathiaswedeken/python/community_app/community_app/bla.html",
+		"/Users/mathiaswedeken/Library/Caches/Transmit/EA38B392-0747-4B32-BCDC-7DB3B5D0472C/proboftp.dk/wedo/advokatfirmaet_marker/IntraRegnskab-0197.xml"
 	],
 	"find":
 	{
-		"height": 25.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
 		"height": 158.0,
 		"where_history":
 		[
-			"<project>,-*.js, -*.html",
-			"<project>,-*.js, -*.html, -.venv/*",
-			"<project>,-*.js, -.venv/*",
-			"<project>"
+			""
 		]
 	},
 	"find_state":
@@ -1019,85 +923,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"    '",
-			"4",
-			"overview_pages_",
-			"newapp_themodel",
-			")",
-			"),",
-			"AlterModelTable",
-			" =",
-			"tools",
-			"Ol",
-			"SingletonModel",
-			"postgrespool",
-			"user",
-			"force_unicode",
-			"form",
-			"django.core.urlresolvers",
-			"OneToOneField",
-			"OneToOne",
-			"SectionHeadline",
-			"Context",
-			"==",
-			"Wark Area",
-			"category",
-			"\n",
-			" = models",
-			"pull",
-			"related",
-			"bleach_striptags",
-			"url 'tools:add_workarea_story'",
-			"'tools:add_story",
-			"'tools:add",
-			"add_story",
-			"category_group",
-			"on_story_create",
-			"tool",
-			"{% url 'tools:add_story' tool.id %}",
-			"used by",
-			"DEFAULT_CATEGORY_GROUP_NAME",
-			"Toolbox",
-			"list_categories",
-			"\n            ",
-			"'tools:list_categories'",
-			"Tool",
-			"GenericRelation",
-			"({% block head_title %}([aA-zZ {}])+)",
-			"({% block head_title %}([aA-zZ ])+)",
-			"1.5rem",
-			"-logo",
-			"navbar-logo",
-			"navbar-",
-			"navbar-logo",
-			" - {% endblock %}",
-			" - ",
-			"{% block head_title %}",
-			"{% block head_title %} -",
-			" - {% endblock %}",
-			" - {% endblock%}",
-			" - {% endblock %}",
-			"{% block head_title %}",
-			"{% block head_title ‰}",
-			"- ",
-			"navbar-log",
-			"Here you can find the different resources related to the current tool",
-			"{% block head_title %}*",
-			"{% block head_title %}*{% endblock %}",
-			"{% block head_title %}{%*%}{% endblock %}",
-			"{% block head_title %} * {% endblock %}",
-			"{% block head_title %}*+{% endblock %}",
-			"{% block head_title %}[*+]{% endblock %}",
-			"{% block head_title %}[*]+{% endblock %}",
-			"{% block head_title %}*{% endblock %}",
-			"{% block head_title %}",
-			"{%block head_title%}",
-			"logo",
-			"index.html",
-			"(published)",
-			"published",
-			"bleach_striptags",
-			"related_object_title"
+			"andreas+",
+			"placeimg",
+			"palceimg"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1105,8 +933,6 @@
 		"regex": true,
 		"replace_history":
 		[
-			"{% endblock %}",
-			""
 		],
 		"reverse": false,
 		"show_context": false,
@@ -1117,24 +943,86 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "tools/models.py",
+					"file": "tools/templates/workareas/show_workarea.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8401,
+						"buffer_size": 3936,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1146,
-								1146
+								1567,
+								1567
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 81.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tools/templates/toolboxes/_toolbox_card.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 869,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								861,
+								861
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "netbox/settings/base.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10866,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10170,
+								10170
 							]
 						],
 						"settings":
@@ -1145,14 +1033,14 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 10.0,
+						"translation.y": 4617.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 3,
 					"file": "runtime.txt",
 					"semi_transient": false,
 					"settings":
@@ -1164,351 +1052,13 @@
 						"selection":
 						[
 							[
-								10,
-								10
+								12,
+								12
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "search/views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4926,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1217,
-								1217
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 379.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "search/urls.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 363,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								99,
-								99
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "requirements.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 511,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								294,
-								294
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Procfile",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 274,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/zzz A File Icon zzz/aliases/YAML (Procfile).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "tools/admin.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1893,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								299,
-								299
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 211.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "tools/views/stories.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4025,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3615,
-								3615
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "tools/templates/stories/add_workarea_story.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2636,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2429,
-								2429
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 194.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 15,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "tools/forms.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5468,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2522,
-								2522
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1439.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "tools/templates/stories/edit_story.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 857,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								827,
-								827
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 17,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "tools/widgets.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3553,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1009,
-								1009
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"auto_name": "# A fork from https://djangosnippets.org/snippets/",
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 181.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 16,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 12,
-					"file": "netbox/settings/base.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 9282,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1958,
-								1958
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1518,20 +1068,179 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
-					"file": "menus/templatetags/menus.py",
+					"buffer": 4,
+					"file": "library/models.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 571,
+						"buffer_size": 5979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								569,
-								569
+								2599,
+								2642
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 677.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2864,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										164,
+										171
+									],
+									[
+										320,
+										327
+									],
+									[
+										551,
+										558
+									],
+									[
+										602,
+										609
+									],
+									[
+										672,
+										679
+									],
+									[
+										723,
+										730
+									],
+									[
+										784,
+										791
+									],
+									[
+										969,
+										976
+									],
+									[
+										1020,
+										1027
+									],
+									[
+										1098,
+										1105
+									],
+									[
+										1157,
+										1164
+									],
+									[
+										1246,
+										1253
+									],
+									[
+										1320,
+										1327
+									],
+									[
+										1488,
+										1495
+									],
+									[
+										1671,
+										1678
+									],
+									[
+										1856,
+										1863
+									],
+									[
+										2043,
+										2050
+									],
+									[
+										2238,
+										2245
+									],
+									[
+										2425,
+										2432
+									],
+									[
+										2611,
+										2618
+									],
+									[
+										2802,
+										2809
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								106,
+								106
+							]
+						],
+						"settings":
+						{
+							"default_dir": "/Users/mathiaswedeken/python/networked-toolbox/library",
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 1,
+							"result_base_dir": "",
+							"result_file_regex": "^([^ \t].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "netbox/settings/production.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1513,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								949,
+								949
 							]
 						],
 						"settings":
@@ -1545,86 +1254,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
-					"file": "tools/views/tools.py",
+					"buffer": 7,
+					"file": "library/templates/library_documents/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5651,
+						"buffer_size": 8967,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1575,
-								1575
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 83.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 20,
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "comments/templatetags/commentstags.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8805,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1071,
-								1071
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 18,
-					"type": "text"
-				},
-				{
-					"buffer": 16,
-					"file": "tools/templates/stories/show_all_stories.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1410,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1132,
-								1132
+								6533,
+								6533
 							]
 						],
 						"settings":
@@ -1635,58 +1282,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 284.0,
+						"translation.y": 1808.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
-					"file": "tools/templates/stories/_stories_overview.html",
+					"buffer": 8,
+					"file": "profiles/views.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1253,
+						"buffer_size": 5267,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								784,
-								784
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 19,
-					"type": "text"
-				},
-				{
-					"buffer": 18,
-					"file": "tools/urls.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1892,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								818,
-								818
+								2667,
+								2667
 							]
 						],
 						"settings":
@@ -1697,27 +1313,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 148.0,
+						"translation.y": 594.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
-					"file": "netbox/templates/_nav.html",
+					"buffer": 9,
+					"file": "profiles/templates/profiles/show_tools.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1987,
+						"buffer_size": 1176,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1017,
-								1017
+								488,
+								488
 							]
 						],
 						"settings":
@@ -1728,27 +1344,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 198.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
-					"file": "profiles/admin.py",
+					"buffer": 10,
+					"file": "feedback/views.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 811,
+						"buffer_size": 829,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								704,
-								704
+								130,
+								130
 							]
 						],
 						"settings":
@@ -1766,219 +1382,164 @@
 					"type": "text"
 				},
 				{
-					"buffer": 21,
-					"file": "netbox/templates/base.html",
+					"buffer": 11,
+					"file": "search/views.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2962,
+						"buffer_size": 5645,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								136,
-								136
+								2293,
+								2293
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 367.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "search/templates/search/search_index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4539,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3565,
+								3565
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
 							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1059.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "search/search_indexes.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1688,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1105,
+								1105
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 24,
-					"type": "text"
-				},
-				{
-					"buffer": 22,
-					"file": "search/forms.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1243,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								656,
-								656
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 186.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 25,
-					"type": "text"
-				},
-				{
-					"buffer": 23,
-					"file": "profiles/templates/profiles/show.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4566,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1586,
-								1586
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 382.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 27,
-					"type": "text"
-				},
-				{
-					"buffer": 24,
-					"file": "profiles/forms.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3052,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2515,
-								2515
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 582.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 26,
-					"type": "text"
-				},
-				{
-					"buffer": 25,
-					"file": "netbox/urls.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1961,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1784,
-								1784
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 188.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 26,
-					"file": "search/templates/search/index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2479,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								892,
-								892
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 342.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
 				{
-					"buffer": 27,
-					"file": "tools/templates/tools/_tools_overview.html",
-					"semi_transient": true,
+					"buffer": 14,
+					"file": "profiles/models.py",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 990,
+						"buffer_size": 3372,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								889,
+								889
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 76.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "library/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2881,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								152,
+								210
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"open_with_edit": true,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -1986,7 +1547,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 25.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -2003,25 +1564,25 @@
 				1
 			],
 			[
+				1,
 				0,
-				1,
-				1,
-				2
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.568258275506,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.563962859603,
 			1.0
 		]
 	},
-	"menu_visible": true,
+	"menu_visible": false,
 	"output.find_results":
 	{
 		"height": 0.0
@@ -2030,9 +1591,9 @@
 	"project": "nw-m.sublime-project",
 	"replace":
 	{
-		"height": 46.0
+		"height": 44.0
 	},
-	"save_all_on_build": true,
+	"save_all_on_build": false,
 	"select_file":
 	{
 		"height": 0.0,
@@ -2068,7 +1629,7 @@
 		],
 		"width": 392.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},

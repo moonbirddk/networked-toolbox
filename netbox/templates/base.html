@@ -15,6 +15,8 @@
     <script src="{% static "js/notifications.js" %}"></script>
     <script src="{% static "js/wow.min.js" %}"></script>
     <script src="{% static "js/base.js" %}"></script>
+    <script id="CookieConsent" src="https://policy.app.cookieinformation.com/uc.js"
+    data-culture="EN" type="text/javascript"></script>
     {% register_notify_callbacks fetch=100 callbacks='netbox_fill_notification_list,fill_notification_badge' %}
     {% endcompress %}
     {% bootstrap_javascript %}
@@ -68,14 +70,6 @@
 
     </div>
 
-    <div id="cookies-notice">
-      <form>
-        We use cookies to give you the best online experience. By using our
-        website you agree to our use of cookies in accordance with our cookie
-        policy.
-        <button id="accept-cookies" class="btn btn-primary" type="submit">OK</button>
-      </form>
-    </div>
 
   <!-- Modals -->
   {% include 'modals/_login_required.html' %}
