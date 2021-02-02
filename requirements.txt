@@ -3,7 +3,7 @@ django-filer
 amqp==2.5.0
 ansicolors==1.1.8
 billiard==3.5.0.5
-bleach==2.1.2
+bleach==3.3.0
 blessings==1.7
 boto==2.48.0
 bpython==0.18
