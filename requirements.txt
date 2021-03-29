@@ -57,7 +57,7 @@ psutil==5.6.3
 psycopg2==2.8.3
 psycopg2-binary==2.8.3
 pygeoip==0.3.2
-Pygments==2.4.2
+Pygments==2.7.4
 python3-openid==3.1.0
 pytz==2019.2
 rcssmin==1.0.6
