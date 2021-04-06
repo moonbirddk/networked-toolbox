@@ -6,7 +6,7 @@
     "build": "gulp build --production"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-media-embed": "^22.0.0",
+    "@ckeditor/ckeditor5-media-embed": "^27.0.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-cheerio": "^1.0.0",
