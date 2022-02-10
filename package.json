@@ -17,7 +17,7 @@
     "gulp-svgmin": "^2.2.0",
     "gulp-svgstore": "^7.0.1",
     "gulp-uglify": "^3.0.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "readable-stream": "^3.6.0"
   },
   "private": true
